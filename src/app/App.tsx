@@ -397,7 +397,7 @@ function HeroSection() {
             <div
               className="relative overflow-hidden w-full aspect-[3/4]"
               style={{ 
-                maxWidth: "240px", 
+                maxWidth: "380px", 
                 borderRadius: "16px",
                 boxShadow: "0 20px 40px -15px rgba(25, 36, 78, 0.15)"
               }}
@@ -408,13 +408,13 @@ function HeroSection() {
                 className="absolute inset-0 w-full h-full object-cover object-top animate-fade-in"
               />
               <div
-                className="absolute bottom-0 left-0 right-0 px-5 py-5"
+                className="absolute bottom-0 left-0 right-0 px-6 py-6"
                 style={{ background: `linear-gradient(to top, rgba(25,36,78,0.92) 0%, rgba(25,36,78,0.4) 60%, transparent 100%)` }}
               >
-                <p className="font-display font-medium text-base text-white mb-0.5" style={{ letterSpacing: "-0.01em" }}>
+                <p className="font-display font-medium text-lg text-white mb-0.5" style={{ letterSpacing: "-0.01em" }}>
                   Adina Fayza Gayo
                 </p>
-                <span className="font-mono text-[9px] font-semibold tracking-widest uppercase text-white/70">
+                <span className="font-mono text-[10px] font-semibold tracking-widest uppercase text-white/70">
                   Senior Product Designer
                 </span>
               </div>
