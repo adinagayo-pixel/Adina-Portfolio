@@ -248,19 +248,19 @@ function HeroSection() {
     >
       {/* Top nav bar */}
       <div
-        className="flex items-center justify-between px-8 lg:px-16 py-5"
-        style={{ borderBottom: `1px solid ${HAIR}` }}
+        className="flex items-center justify-between px-8 lg:px-16 py-6"
+        style={{ borderBottom: `1px solid rgba(25, 36, 78, 0.05)` }}
       >
-        <span className="font-mono text-[11px] font-semibold tracking-widest" style={{ color: N }}>
+        <span className="font-mono text-[11px] font-semibold tracking-[0.15em]" style={{ color: N }}>
           AFG<span style={{ color: C }}> ·</span> PORTFOLIO 2026
         </span>
-        <div className="flex items-center gap-3">
-          <MonoTag>SG / MY / ID</MonoTag>
+        <div className="flex items-center gap-4">
+          <span className="font-mono text-[10px] font-semibold tracking-wider text-[#19244E]/60 uppercase">SG / MY / ID</span>
           <a
             href="/resume-adina-fayza-gayo.pdf"
             download
-            className="flex items-center gap-1.5 font-mono text-[10px] font-semibold tracking-widest uppercase px-4 py-2 transition-colors duration-150"
-            style={{ border: `1px solid ${HAIR}`, color: `${N}DD`, borderRadius: "4px" }}
+            className="flex items-center gap-1.5 font-mono text-[10px] font-semibold tracking-widest uppercase px-4 py-2.5 transition-all duration-150"
+            style={{ border: `1px solid ${HAIR}`, color: `${N}DD`, borderRadius: "6px" }}
             onMouseEnter={(e) => {
               ;(e.currentTarget as HTMLElement).style.borderColor = N
               ;(e.currentTarget as HTMLElement).style.color = N
@@ -275,8 +275,8 @@ function HeroSection() {
           </a>
           <a
             href="mailto:adina.gayo@design.id"
-            className="font-mono text-[10px] font-semibold tracking-widest uppercase px-4 py-2 transition-colors duration-150"
-            style={{ border: `1px solid ${N}`, color: N, borderRadius: "4px" }}
+            className="font-mono text-[10px] font-semibold tracking-widest uppercase px-4 py-2.5 transition-all duration-150"
+            style={{ border: `1px solid ${N}`, color: N, borderRadius: "6px" }}
             onMouseEnter={(e) => {
               ;(e.currentTarget as HTMLElement).style.backgroundColor = N
               ;(e.currentTarget as HTMLElement).style.color = W
@@ -292,19 +292,21 @@ function HeroSection() {
       </div>
 
       {/* Main hero grid */}
-      <div className="flex-1 grid lg:grid-cols-[1fr_1px_480px] relative">
+      <div className="flex-1 grid lg:grid-cols-[1.1fr_0.9fr] relative">
         {/* Left: editorial text column */}
-        <div className="flex flex-col justify-between px-8 lg:px-16 py-14 lg:py-20">
+        <div className="flex flex-col justify-between px-8 lg:px-20 py-20 lg:py-24">
           {/* ID tag */}
           <div>
-            <div className="mb-10 lg:mb-16">
-              <MonoTag>[AFG-2026 // SENIOR STRATEGIC DESIGNER]</MonoTag>
+            <div className="mb-12 lg:mb-16">
+              <span className="font-mono text-[10px] font-semibold tracking-[0.2em] text-[#19244E]/60">
+                [AFG-2026 // SENIOR STRATEGIC DESIGNER]
+              </span>
             </div>
 
             {/* Big editorial headline */}
             <h1
-              className="font-display font-light leading-[0.92] mb-8"
-              style={{ fontSize: "clamp(3.2rem, 6.5vw, 6rem)", color: N, letterSpacing: "-0.02em" }}
+              className="font-display font-light leading-[0.95] mb-8"
+              style={{ fontSize: "clamp(3.2rem, 6.5vw, 6.2rem)", color: N, letterSpacing: "-0.02em" }}
             >
               Enterprise<br />
               <em className="font-normal not-italic" style={{ color: C }}>Product</em><br />
@@ -312,29 +314,29 @@ function HeroSection() {
             </h1>
 
             <p
-              className="font-mono text-[10px] font-semibold tracking-widest uppercase mb-4"
+              className="font-mono text-[10px] font-semibold tracking-[0.15em] uppercase mb-6"
               style={{ color: C }}
             >
               Specializing in Enterprise Systems, Multi-Brand Architecture & API-Driven Workflows.
             </p>
             <p
-              className="text-base leading-relaxed max-w-[420px] mb-10"
-              style={{ color: `${N}DD`, fontWeight: 400, lineHeight: 1.75 }}
+              className="text-base leading-relaxed max-w-[460px] mb-12"
+              style={{ color: `${N}CC`, fontWeight: 400, lineHeight: 1.8 }}
             >
               Strategic Product Designer with an M.MT background, specializing in Enterprise B2B and multi-brand platforms. I design cross-border fintech systems and AI-accelerated workflows operating at regional scale across Singapore, Malaysia, and Indonesia.
             </p>
 
             <div className="flex items-center gap-4 flex-wrap">
               <button
-                className="flex items-center gap-2 px-6 py-3 text-sm font-medium text-white transition-opacity duration-150 hover:opacity-85"
-                style={{ backgroundColor: N, borderRadius: "4px" }}
+                className="flex items-center gap-2 px-6 py-3.5 text-sm font-medium text-white transition-opacity duration-150 hover:opacity-85 cursor-pointer"
+                style={{ backgroundColor: N, borderRadius: "6px" }}
                 onClick={() => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })}
               >
-                View Work <ArrowRight size={14} />
+                View Selected Work <ArrowRight size={14} />
               </button>
               <button
-                className="flex items-center gap-2 px-6 py-3 text-sm font-medium transition-colors duration-150"
-                style={{ border: `1px solid ${HAIR}`, color: N, borderRadius: "4px" }}
+                className="flex items-center gap-2 px-6 py-3.5 text-sm font-medium transition-colors duration-150 cursor-pointer"
+                style={{ border: `1px solid ${HAIR}`, color: N, borderRadius: "6px" }}
                 onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
               >
                 <Mail size={14} /> Get In Touch
@@ -344,8 +346,8 @@ function HeroSection() {
 
           {/* Bottom status row */}
           <div
-            className="mt-16 pt-5 flex items-center gap-6 flex-wrap"
-            style={{ borderTop: `1px solid ${HAIR}` }}
+            className="mt-20 pt-6 flex items-center gap-8 flex-wrap"
+            style={{ borderTop: `1px solid rgba(25, 36, 78, 0.05)` }}
           >
             {[
               { label: "Based in", val: "Surabaya, ID" },
@@ -353,79 +355,78 @@ function HeroSection() {
               { label: "Available", val: "Q3 2026" },
             ].map(({ label, val }) => (
               <div key={label}>
-                <MonoTag>{label}</MonoTag>
+                <span className="font-mono text-[9px] font-semibold tracking-wider text-[#19244E]/50 uppercase">{label}</span>
                 <p className="text-sm font-medium mt-0.5" style={{ color: N }}>{val}</p>
               </div>
             ))}
             <div className="ml-auto flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: "#22c55e" }} />
-              <MonoTag accent>Open to opportunities</MonoTag>
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="font-mono text-[10px] font-semibold tracking-wider uppercase text-emerald-600">
+                Open to opportunities
+              </span>
             </div>
           </div>
         </div>
 
-        {/* Vertical hairline divider */}
-        <div className="hidden lg:block" style={{ backgroundColor: HAIR }} />
-
         {/* Right: photo + cycling greeting */}
         <div
-          className="relative flex flex-col overflow-hidden"
-          style={{ backgroundColor: S, borderLeft: `1px solid ${HAIR}` }}
+          className="relative flex flex-col justify-between overflow-hidden py-10"
+          style={{ backgroundColor: "rgba(25, 36, 78, 0.015)" }}
         >
           {/* Greeting ticker — top strip */}
-          <div
-            className="flex items-center justify-between px-8 py-4 flex-shrink-0"
-            style={{ borderBottom: `1px solid ${HAIR}` }}
-          >
-            <MonoTag>[{LANGS[tick]}]</MonoTag>
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={tick}
-                initial={{ y: 14, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -14, opacity: 0 }}
-                transition={{ duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="font-display text-lg font-light"
-                style={{ color: N, letterSpacing: "-0.01em" }}
-              >
-                {HELLOS[tick]}
-              </motion.span>
-            </AnimatePresence>
+          <div className="flex flex-col items-center flex-shrink-0 mb-4">
+            <div className="flex items-center gap-2 bg-white px-4 py-1.5 rounded-full shadow-sm border border-[#19244E]/5">
+              <span className="font-mono text-[9px] font-semibold tracking-widest text-[#19244E]/60 uppercase">[{LANGS[tick]}]</span>
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={tick}
+                  initial={{ y: 8, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: -8, opacity: 0 }}
+                  transition={{ duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  className="font-display text-sm font-light text-[#19244E]"
+                >
+                  {HELLOS[tick]}
+                </motion.span>
+              </AnimatePresence>
+            </div>
           </div>
 
           {/* Photo */}
-          <div className="flex-1 flex items-center justify-center px-8 py-8">
+          <div className="flex-1 flex items-center justify-center px-8 py-4">
             <div
-              className="relative overflow-hidden w-full"
-              style={{ maxWidth: "210px", aspectRatio: "3/4", borderRadius: "4px", border: `1px solid ${HAIR}` }}
+              className="relative overflow-hidden w-full aspect-[3/4]"
+              style={{ 
+                maxWidth: "240px", 
+                borderRadius: "16px",
+                boxShadow: "0 20px 40px -15px rgba(25, 36, 78, 0.15)"
+              }}
             >
               <ImageWithFallback
                 src={adinaPhotoAbout}
                 alt="Adina Fayza Gayo — Senior Product Designer"
-                className="absolute inset-0 w-full h-full object-cover object-top"
+                className="absolute inset-0 w-full h-full object-cover object-top animate-fade-in"
               />
               <div
-                className="absolute bottom-0 left-0 right-0 px-4 py-4"
-                style={{ background: `linear-gradient(to top, ${N}EE 0%, transparent 100%)` }}
+                className="absolute bottom-0 left-0 right-0 px-5 py-5"
+                style={{ background: `linear-gradient(to top, rgba(25,36,78,0.92) 0%, rgba(25,36,78,0.4) 60%, transparent 100%)` }}
               >
-                <p className="font-display font-light text-base text-white mb-0.5" style={{ letterSpacing: "-0.01em" }}>
+                <p className="font-display font-medium text-base text-white mb-0.5" style={{ letterSpacing: "-0.01em" }}>
                   Adina Fayza Gayo
                 </p>
-                <MonoTag>Senior Product Designer</MonoTag>
+                <span className="font-mono text-[9px] font-semibold tracking-widest uppercase text-white/70">
+                  Senior Product Designer
+                </span>
               </div>
             </div>
           </div>
 
           {/* Credential strip */}
-          <div
-            className="flex items-center gap-4 px-8 py-4 flex-shrink-0 flex-wrap"
-            style={{ borderTop: `1px solid ${HAIR}`, backgroundColor: W }}
-          >
+          <div className="flex items-center justify-center gap-2 px-8 py-6 flex-shrink-0 flex-wrap">
             {["Enterprise B2B", "Multi-Brand Arch.", "AI-Accelerated", "Cross-Border"].map((tag) => (
               <span
                 key={tag}
-                className="font-mono text-[9px] font-semibold tracking-wider uppercase"
-                style={{ color: `${N}BB` }}
+                className="font-mono text-[9px] font-semibold tracking-wider uppercase px-3 py-1.5 bg-white border border-[#19244E]/5 text-[#19244E]/70 rounded-full shadow-sm"
               >
                 {tag}
               </span>
@@ -442,20 +443,20 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
   const { ref, inView } = useInView(0.06)
 
   return (
-    <section id="work" style={{ backgroundColor: W, borderTop: `1px solid ${HAIR}` }}>
+    <section id="work" style={{ backgroundColor: W, borderTop: `1px solid rgba(25, 36, 78, 0.05)` }}>
       {/* Header */}
       <div
         ref={ref}
-        className="px-8 lg:px-16 py-8 flex items-center gap-6"
-        style={{ borderBottom: `1px solid ${HAIR}` }}
+        className="px-8 lg:px-16 py-10 flex items-center gap-6"
+        style={{ borderBottom: `1px solid rgba(25, 36, 78, 0.05)` }}
       >
-        <MonoTag>[03 // SELECTED WORK]</MonoTag>
-        <div className="flex-1 h-px" style={{ backgroundColor: HAIR }} />
-        <MonoTag>ENTERPRISE · B2B · REGIONAL</MonoTag>
+        <span className="font-mono text-[10px] font-semibold tracking-[0.2em] text-[#19244E]/60">[03 // SELECTED WORK]</span>
+        <div className="flex-1 h-px" style={{ backgroundColor: "rgba(25, 36, 78, 0.05)" }} />
+        <span className="font-mono text-[10px] font-semibold tracking-[0.15em] text-[#19244E]/60">ENTERPRISE · B2B · REGIONAL</span>
       </div>
 
       {/* Section intro */}
-      <div className="px-8 lg:px-16 py-12 lg:py-16" style={{ borderBottom: `1px solid ${HAIR}` }}>
+      <div className="px-8 lg:px-16 py-16 lg:py-24" style={{ borderBottom: `1px solid rgba(25, 36, 78, 0.05)` }}>
         <h2
           className="font-display font-light leading-tight"
           style={{ fontSize: "clamp(2.4rem, 4.5vw, 4rem)", color: N, letterSpacing: "-0.02em", maxWidth: "680px" }}
@@ -473,72 +474,67 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: i * 0.1, duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="grid lg:grid-cols-[560px_1px_1fr] group cursor-pointer"
-          style={{ borderBottom: `1px solid ${HAIR}` }}
+          className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-20 p-8 lg:p-20 group cursor-pointer border-b border-[#19244E]/5"
           onClick={() => onOpenProject(project.projectId)}
         >
-          {/* Image side — always left */}
+          {/* Image side — Left rounded card mockup container */}
           <div
-            className="relative overflow-hidden"
-            style={{ minHeight: "360px", backgroundColor: S }}
+            className="relative overflow-hidden w-full aspect-[16/11] rounded-2xl border border-[#19244E]/5 shadow-sm bg-[#F9FAFB] flex items-center justify-center p-8"
           >
             <motion.div
-              className="absolute inset-0"
-              whileHover={{ scale: 1.04 }}
+              className="absolute inset-0 w-full h-full"
+              whileHover={{ scale: 1.03 }}
               transition={{ duration: 0.6 }}
             >
               <ImageWithFallback
                 src={project.thumb}
                 alt={`${project.name} — product mockup`}
-                className="w-full h-full object-cover object-center"
-                style={{ filter: "grayscale(8%)" }}
+                className="w-full h-full object-cover object-center rounded-xl"
+                style={{ filter: "grayscale(3%)" }}
               />
             </motion.div>
             <div
-              className="absolute inset-0"
-              style={{ background: `linear-gradient(135deg, ${N}CC 0%, transparent 65%)` }}
+              className="absolute inset-0 bg-gradient-to-b from-[#19244E]/15 via-transparent to-[#19244E]/30 rounded-xl"
             />
             <span
-              className="absolute top-8 left-8 font-display font-light select-none pointer-events-none"
-              style={{ fontSize: "clamp(5rem, 8vw, 8rem)", color: "rgba(255,255,255,0.13)", lineHeight: 1, letterSpacing: "-0.04em" }}
+              className="absolute bottom-6 left-6 font-display font-light select-none pointer-events-none text-white/70"
+              style={{ fontSize: "clamp(3rem, 5vw, 4.5rem)", lineHeight: 1, letterSpacing: "-0.04em" }}
             >
               {project.num}
             </span>
             <div
-              className="absolute top-8 right-8 px-3 py-1.5"
-              style={{ backgroundColor: "rgba(0,0,0,0.45)", borderRadius: "3px" }}
+              className="absolute top-6 right-6 px-3 py-1"
+              style={{ backgroundColor: "rgba(25, 36, 78, 0.78)", backdropFilter: "blur(8px)", borderRadius: "6px" }}
             >
-              <MonoTag>[{project.location} · {project.year}]</MonoTag>
+              <span className="font-mono text-[9px] font-semibold tracking-widest uppercase text-white">
+                {project.location} · {project.year}
+              </span>
             </div>
           </div>
 
-          {/* Hairline divider */}
-          <div style={{ backgroundColor: HAIR }} />
-
           {/* Content side */}
-          <div className="flex flex-col justify-between px-10 py-12">
+          <div className="flex flex-col justify-between py-4">
             <div>
-              <div className="flex flex-wrap items-center gap-2 mb-6">
+              <div className="flex flex-wrap items-center gap-1.5 mb-6">
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="font-mono text-[9px] font-semibold tracking-widest uppercase px-2.5 py-1.5"
-                    style={{ border: `1px solid ${HAIR}`, color: `${N}CC`, borderRadius: "3px" }}
+                    className="font-mono text-[9px] font-semibold tracking-widest uppercase px-3 py-1 bg-[#19244E]/5 text-[#19244E]/75 rounded-full"
                   >
                     {tag}
                   </span>
                 ))}
               </div>
-              <p className="font-mono text-[10px] font-medium tracking-widest uppercase mb-3" style={{ color: `${N}AA` }}>
+              <p className="font-mono text-[10px] font-semibold tracking-wider text-[#19244E]/55 uppercase mb-3">
                 {project.client}
               </p>
               <h3
-                className="font-display font-light mb-5 leading-tight"
+                className="font-display font-semibold mb-4 leading-snug"
                 style={{ fontSize: "clamp(1.6rem, 2.4vw, 2.2rem)", color: N, letterSpacing: "-0.015em" }}
               >
                 {project.name}
               </h3>
-              <p className="text-sm leading-relaxed mb-8" style={{ color: `${N}EE`, lineHeight: 1.75 }}>
+              <p className="text-sm leading-relaxed mb-8 font-sans" style={{ color: `${N}EE`, lineHeight: 1.8 }}>
                 {project.headline}
               </p>
             </div>
@@ -548,19 +544,20 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
               <div className="flex flex-wrap gap-8 mb-8">
                 {project.metrics.map((m) => (
                   <div key={m.sub}>
-                    <p className="font-display font-light mb-0.5" style={{ fontSize: "1.5rem", color: N, letterSpacing: "-0.02em" }}>
+                    <p className="font-display font-medium mb-0.5" style={{ fontSize: "1.6rem", color: N, letterSpacing: "-0.02em" }}>
                       {m.val}
                     </p>
-                    <MonoTag>{m.sub}</MonoTag>
+                    <span className="font-mono text-[9px] font-semibold tracking-widest text-[#19244E]/50 uppercase">{m.sub}</span>
                   </div>
                 ))}
               </div>
-              <Hairline className="mb-6" />
+              <div className="w-full h-px mb-6" style={{ backgroundColor: "rgba(25, 36, 78, 0.05)" }} />
               <div className="flex items-center justify-between">
-                <MonoTag>View Case Study</MonoTag>
+                <span className="font-mono text-[10px] font-semibold tracking-widest uppercase text-[#19244E]/85">
+                  View Case Study
+                </span>
                 <div
-                  className="w-8 h-8 flex items-center justify-center transition-colors duration-200 group-hover:bg-[#19244E] group-hover:text-white"
-                  style={{ border: `1px solid ${HAIR}`, borderRadius: "4px", color: N }}
+                  className="w-9 h-9 flex items-center justify-center transition-all duration-200 group-hover:bg-[#19244E] group-hover:text-white rounded-full text-[#19244E] border border-[#19244E]/10 bg-white"
                 >
                   <ArrowUpRight size={14} />
                 </div>
@@ -600,7 +597,6 @@ const PHASES = [
 
 function WorkflowSection() {
   const { ref, inView } = useInView()
-  const [expanded, setExpanded] = useState<string | null>(null)
 
   return (
     <section id="process" style={{ backgroundColor: N, borderTop: `1px solid rgba(255,255,255,0.06)` }}>
@@ -621,7 +617,7 @@ function WorkflowSection() {
       {/* Section headline */}
       <div
         ref={ref}
-        className="px-8 lg:px-16 py-12 lg:py-16"
+        className="px-8 lg:px-16 py-16 lg:py-24"
         style={{ borderBottom: `1px solid rgba(255,255,255,0.06)` }}
       >
         <h2
@@ -633,98 +629,53 @@ function WorkflowSection() {
         </h2>
       </div>
 
-      {/* Phase cards — vertical stack */}
-      {PHASES.map((phase, i) => {
-        const isOpen = expanded === phase.num
-        const Icon = phase.Icon
-        return (
-          <motion.div
-            key={phase.num}
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : {}}
-            transition={{ delay: i * 0.1, duration: 0.5 }}
-            style={{ borderBottom: `1px solid rgba(255,255,255,0.06)` }}
-          >
-            {/* Phase header — always visible, clickable */}
-            <button
-              className="w-full flex items-center gap-6 px-8 lg:px-16 py-8 text-left transition-colors duration-150 focus:outline-none"
-              style={{
-                backgroundColor: isOpen ? "rgba(219,62,140,0.06)" : "transparent",
-              }}
-              onClick={() => setExpanded(isOpen ? null : phase.num)}
+      {/* Phase cards — 3-column grid */}
+      <div className="px-8 lg:px-16 py-16 lg:py-24 grid lg:grid-cols-3 gap-8">
+        {PHASES.map((phase, i) => {
+          const Icon = phase.Icon
+          return (
+            <motion.div
+              key={phase.num}
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: i * 0.1, duration: 0.5 }}
+              className="bg-white/[0.02] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] rounded-2xl p-8 transition-all duration-300 flex flex-col justify-between min-h-[300px]"
             >
-              <span
-                className="font-mono text-[10px] font-semibold tracking-widest flex-shrink-0"
-                style={{ color: isOpen ? C : "rgba(255,255,255,0.25)" }}
-              >
-                [{phase.num}]
-              </span>
-              <div className="flex-1 min-w-0">
-                <p className="text-base font-medium text-white mb-0.5">{phase.phase}</p>
-                <p className="font-mono text-[10px] tracking-widest" style={{ color: "rgba(255,255,255,0.35)" }}>
+              <div>
+                <div className="flex items-center justify-between mb-6">
+                  <span className="font-mono text-xs font-semibold tracking-widest text-[#DB3E8C]">
+                    [{phase.num}]
+                  </span>
+                  <Icon size={16} className="text-white/40" />
+                </div>
+                <h3 className="text-lg font-medium text-white mb-1.5">{phase.phase}</h3>
+                <p className="font-mono text-[10px] tracking-widest text-white/40 uppercase mb-4">
                   {phase.sub}
                 </p>
+                <p className="text-sm leading-relaxed text-white/60 mb-6 font-sans">
+                  {phase.desc}
+                </p>
               </div>
-              <div className="flex items-center gap-4 flex-shrink-0">
-                <Icon size={14} style={{ color: isOpen ? C : "rgba(255,255,255,0.3)" }} />
-                <ChevronRight
-                  size={14}
-                  style={{
-                    color: isOpen ? C : "rgba(255,255,255,0.3)",
-                    transform: isOpen ? "rotate(90deg)" : "rotate(0deg)",
-                    transition: "transform 0.25s",
-                  }}
-                />
+              
+              <div className="mt-auto pt-6 border-t border-white/5">
+                <p className="font-mono text-[8px] font-semibold tracking-widest uppercase text-white/25 mb-3">
+                  [Tools & Artifacts]
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {phase.tools.map((tool) => (
+                    <span
+                      key={tool}
+                      className="font-mono text-[9px] font-medium px-2.5 py-1 bg-white/5 text-white/50 border border-white/5 rounded"
+                    >
+                      {tool}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </button>
-
-            {/* Expandable detail */}
-            <AnimatePresence>
-              {isOpen && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ type: "spring", stiffness: 260, damping: 26 }}
-                  style={{ overflow: "hidden" }}
-                >
-                  <div
-                    className="grid lg:grid-cols-[1fr_1px_360px] px-8 lg:px-16 pb-10"
-                    style={{ paddingTop: "2px" }}
-                  >
-                    <div className="py-6">
-                      <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.6)", lineHeight: 1.8, maxWidth: "520px" }}>
-                        {phase.desc}
-                      </p>
-                    </div>
-                    <div className="hidden lg:block mx-12" style={{ backgroundColor: "rgba(255,255,255,0.06)" }} />
-                    <div className="py-6">
-                      <p className="font-mono text-[9px] font-semibold tracking-widest uppercase mb-4" style={{ color: "rgba(255,255,255,0.25)" }}>
-                        [TOOLS & ARTIFACTS]
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        {phase.tools.map((tool) => (
-                          <span
-                            key={tool}
-                            className="font-mono text-[10px] font-medium px-3 py-1.5"
-                            style={{
-                              border: `1px solid rgba(219,62,140,0.25)`,
-                              color: "rgba(255,255,255,0.55)",
-                              borderRadius: "3px",
-                            }}
-                          >
-                            {tool}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.div>
-        )
-      })}
+            </motion.div>
+          )
+        })}
+      </div>
     </section>
   )
 }
@@ -757,27 +708,29 @@ function ProjectArchiveSection() {
       {/* Header */}
       <div
         ref={ref}
-        className="px-8 lg:px-16 py-8 flex items-center gap-6"
-        style={{ borderBottom: `1px solid ${HAIR}` }}
+        className="px-8 lg:px-16 py-10 flex items-center gap-6"
+        style={{ borderBottom: `1px solid rgba(25, 36, 78, 0.05)` }}
       >
-        <MonoTag>[05 // DATA INDEX]</MonoTag>
-        <div className="flex-1 h-px" style={{ backgroundColor: HAIR }} />
-        <MonoTag>PROJECT ARCHIVE</MonoTag>
+        <span className="font-mono text-[10px] font-semibold tracking-[0.2em] text-[#19244E]/60">[05 // DATA INDEX]</span>
+        <div className="flex-1 h-px" style={{ backgroundColor: "rgba(25, 36, 78, 0.05)" }} />
+        <span className="font-mono text-[10px] font-semibold tracking-[0.15em] text-[#19244E]/60">PROJECT ARCHIVE</span>
       </div>
 
       {/* Count + filter row */}
       <div
-        className="px-8 lg:px-16 py-6 flex flex-col lg:flex-row lg:items-center gap-4 justify-between"
-        style={{ borderBottom: `1px solid ${HAIR}` }}
+        className="px-8 lg:px-16 py-8 flex flex-col lg:flex-row lg:items-center gap-6 justify-between"
+        style={{ borderBottom: `1px solid rgba(25, 36, 78, 0.05)` }}
       >
         <div className="flex items-baseline gap-3">
           <span
-            className="font-display font-light"
-            style={{ fontSize: "2.8rem", color: N, letterSpacing: "-0.03em", lineHeight: 1 }}
+            className="font-display font-light text-5xl"
+            style={{ color: N, letterSpacing: "-0.03em", lineHeight: 1 }}
           >
             {filtered.length}
           </span>
-          <MonoTag>of {PROJECTS.length} projects</MonoTag>
+          <span className="font-mono text-[10px] font-semibold tracking-widest text-[#19244E]/60 uppercase">
+            of {PROJECTS.length} projects
+          </span>
         </div>
         <div className="flex flex-wrap gap-2">
           {CATEGORIES.map((cat) => {
@@ -786,12 +739,12 @@ function ProjectArchiveSection() {
               <button
                 key={cat.id}
                 onClick={() => setActiveCat(cat.id)}
-                className="flex items-center gap-1.5 px-4 py-2 font-mono text-[10px] font-semibold tracking-widest uppercase transition-all duration-150 focus:outline-none"
+                className="flex items-center gap-1.5 px-5 py-2.5 font-mono text-[10px] font-semibold tracking-widest uppercase transition-all duration-150 focus:outline-none rounded-full cursor-pointer"
                 style={{
                   backgroundColor: isActive ? N : W,
                   color: isActive ? W : `${N}DD`,
-                  border: `1px solid ${isActive ? N : HAIR}`,
-                  borderRadius: "3px",
+                  border: `1px solid ${isActive ? N : "rgba(25, 36, 78, 0.08)"}`,
+                  boxShadow: isActive ? "0 4px 12px -2px rgba(25, 36, 78, 0.12)" : "none"
                 }}
               >
                 {cat.label}
@@ -812,22 +765,21 @@ function ProjectArchiveSection() {
         >
           {/* Table header */}
           <div
-            className="hidden lg:grid px-8 lg:px-16 py-3"
+            className="hidden lg:grid px-8 lg:px-16 py-4"
             style={{
-              gridTemplateColumns: "40px 1fr 200px 130px 56px 130px 1fr",
-              borderBottom: `1px solid ${HAIR}`,
-              backgroundColor: W,
+              gridTemplateColumns: "50px 1.2fr 1fr 140px 60px 140px 1.5fr",
+              borderBottom: `1px solid rgba(25, 36, 78, 0.05)`,
             }}
           >
             {["#", "Project", "Client / System", "Market", "Year", "Status", "Category & Scope"].map((col) => (
-              <span key={col} className="font-mono text-[9px] font-semibold tracking-widest uppercase" style={{ color: `${N}80` }}>
+              <span key={col} className="font-mono text-[9px] font-semibold tracking-[0.15em] uppercase" style={{ color: `${N}65` }}>
                 {col}
               </span>
             ))}
           </div>
 
           {/* Table rows */}
-          <div className="pb-24 lg:pb-12">
+          <div className="pb-24 lg:pb-16">
             {filtered.map((project, i) => {
               const statusColor = STATUS_COLOR[project.status] ?? `${N}80`
               return (
@@ -837,63 +789,68 @@ function ProjectArchiveSection() {
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: Math.min(i * 0.025, 0.4), duration: 0.3 }}
                   className="group"
-                  style={{ borderBottom: `1px solid ${HAIR}` }}
+                  style={{ borderBottom: `1px solid rgba(25, 36, 78, 0.04)` }}
                 >
                   {/* Desktop row */}
                   <div
-                    className="hidden lg:grid items-start px-8 lg:px-16 py-4 transition-colors duration-100 hover:bg-white"
-                    style={{ gridTemplateColumns: "40px 1fr 200px 130px 56px 130px 1fr", cursor: "default" }}
+                    className="hidden lg:grid items-start px-8 lg:px-16 py-6 transition-all duration-150 hover:bg-white"
+                    style={{ gridTemplateColumns: "50px 1.2fr 1fr 140px 60px 140px 1.5fr", cursor: "default" }}
                   >
-                    <span className="font-mono text-[10px] pt-0.5" style={{ color: `${N}DD` }}>
+                    <span className="font-mono text-xs pt-0.5" style={{ color: `${N}50` }}>
                       {String(project.id).padStart(2, "0")}
                     </span>
-                    <p className="text-sm font-medium pr-4" style={{ color: N }}>{project.name}</p>
-                    <p className="text-xs pr-3" style={{ color: `${N}CC` }}>{project.client}</p>
-                    <span className="font-mono text-[9px] font-semibold" style={{ color: `${N}AA` }}>
+                    <p className="text-sm font-semibold pr-4 text-[#19244E]">{project.name}</p>
+                    <p className="text-xs pr-3 text-[#19244E]/80">{project.client}</p>
+                    <span className="font-mono text-[10px] font-semibold text-[#19244E]/70">
                       [{project.market}]
                     </span>
-                    <span className="font-mono text-[10px]" style={{ color: `${N}AA` }}>{project.year}</span>
-                    <div className="flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: statusColor }} />
-                      <span className="font-mono text-[9px] font-semibold tracking-wider" style={{ color: statusColor }}>
+                    <span className="font-mono text-xs text-[#19244E]/60">{project.year}</span>
+                    
+                    {/* Status Badge */}
+                    <div className="flex items-center gap-2">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style={{ backgroundColor: statusColor }}></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2" style={{ backgroundColor: statusColor }}></span>
+                      </span>
+                      <span className="font-mono text-[9px] font-bold tracking-widest uppercase" style={{ color: statusColor }}>
                         {project.status}
                       </span>
                     </div>
+                    
                     <div className="pl-2">
                       <span
-                        className="font-mono text-[8px] font-semibold tracking-widest uppercase px-2 py-0.5 inline-block mb-1.5"
-                        style={{ border: `1px solid ${HAIR}`, color: `${N}AA`, borderRadius: "2px" }}
+                        className="font-mono text-[8px] font-bold tracking-widest uppercase px-2.5 py-1 inline-block mb-2 bg-[#19244E]/5 text-[#19244E]/80 rounded"
                       >
                         {project.category}
                       </span>
-                      <p className="text-[11px] leading-snug" style={{ color: `${N}BB` }}>{project.scope}</p>
+                      <p className="text-xs leading-relaxed text-[#19244E]/70">{project.scope}</p>
                     </div>
                   </div>
 
                   {/* Mobile row */}
-                  <div className="lg:hidden px-6 py-4">
+                  <div className="lg:hidden px-6 py-6 transition-colors duration-150 hover:bg-white">
                     <div className="flex items-start justify-between gap-3 mb-2">
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
-                          <span className="font-mono text-[9px]" style={{ color: `${N}DD` }}>{String(project.id).padStart(2, "0")}</span>
-                          <span className="font-mono text-[9px] font-semibold" style={{ color: `${N}AA` }}>[{project.market}]</span>
-                          <span className="font-mono text-[9px]" style={{ color: `${N}99` }}>{project.year}</span>
+                          <span className="font-mono text-[10px]" style={{ color: `${N}50` }}>{String(project.id).padStart(2, "0")}</span>
+                          <span className="font-mono text-[9px] font-semibold" style={{ color: `${N}70` }}>[{project.market}]</span>
+                          <span className="font-mono text-[10px]" style={{ color: `${N}60` }}>{project.year}</span>
                         </div>
-                        <p className="text-sm font-medium mb-0.5" style={{ color: N }}>{project.name}</p>
-                        <p className="text-xs" style={{ color: `${N}BB` }}>{project.client}</p>
+                        <p className="text-sm font-semibold mb-0.5 text-[#19244E]">{project.name}</p>
+                        <p className="text-xs text-[#19244E]/80">{project.client}</p>
                       </div>
+                      
                       <div className="flex items-center gap-1.5 flex-shrink-0 mt-1">
                         <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: statusColor }} />
-                        <span className="font-mono text-[9px] font-semibold" style={{ color: statusColor }}>{project.status}</span>
+                        <span className="font-mono text-[9px] font-semibold uppercase tracking-wider" style={{ color: statusColor }}>{project.status}</span>
                       </div>
                     </div>
                     <span
-                      className="font-mono text-[8px] font-semibold tracking-widest uppercase px-2 py-0.5 inline-block mb-1"
-                      style={{ border: `1px solid ${HAIR}`, color: `${N}AA`, borderRadius: "2px" }}
+                      className="font-mono text-[8px] font-bold tracking-widest uppercase px-2.5 py-1 inline-block mb-2 bg-[#19244E]/5 text-[#19244E]/80 rounded"
                     >
                       {project.category}
                     </span>
-                    <p className="text-[11px] leading-snug" style={{ color: `${N}BB` }}>{project.scope}</p>
+                    <p className="text-xs leading-relaxed text-[#19244E]/70">{project.scope}</p>
                   </div>
                 </motion.div>
               )
