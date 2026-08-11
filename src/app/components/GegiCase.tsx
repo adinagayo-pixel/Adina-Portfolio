@@ -19,7 +19,7 @@ const BODY = "#2E3A5C"
 function MonoTag({ children, accent = false }: { children: React.ReactNode; accent?: boolean }) {
   return (
     <span
-      className="font-mono text-[10px] font-semibold tracking-wider uppercase"
+      className="font-sans text-[10px] font-semibold tracking-wider uppercase"
       style={{ color: accent ? C : `${N}CC` }}
     >
       {children}
@@ -82,7 +82,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
       >
         <button
           onClick={onBack}
-          className="flex items-center gap-2 font-mono text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
+          className="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
           style={{ color: N }}
         >
           <ArrowLeft size={12} /> Back
@@ -105,10 +105,10 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
             { label: "Role", val: "Lead UI/UX Designer" },
           ].map(({ label, val }) => (
             <div key={label}>
-              <span className="font-mono text-[9px] tracking-widest uppercase block mb-0.5" style={{ color: "rgba(255,255,255,0.3)" }}>
+              <span className="font-sans text-[9px] tracking-widest uppercase block mb-0.5" style={{ color: "rgba(255,255,255,0.3)" }}>
                 {label}
               </span>
-              <span className="font-mono text-[10px] font-semibold" style={{ color: "rgba(255,255,255,0.7)" }}>
+              <span className="font-sans text-[10px] font-semibold" style={{ color: "rgba(255,255,255,0.7)" }}>
                 {val}
               </span>
             </div>
@@ -122,7 +122,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
         {/* Title block */}
         <div className="grid lg:grid-cols-[1fr_1px_480px]">
           <div className="px-8 lg:px-16 py-16 lg:py-24">
-            <p className="font-mono text-[10px] font-semibold tracking-widest uppercase mb-6" style={{ color: C }}>
+            <p className="font-sans text-[10px] font-semibold tracking-widest uppercase mb-6" style={{ color: C }}>
               Case Study · 02
             </p>
             <h1
@@ -187,7 +187,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
               >
                 {s.val}
               </p>
-              <p className="font-mono text-[9px] font-semibold tracking-widest uppercase mb-1" style={{ color: C }}>
+              <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-1" style={{ color: C }}>
                 {s.label}
               </p>
               <p className="text-[10px] leading-snug" style={{ color: "rgba(255,255,255,0.35)" }}>{s.sub}</p>
@@ -225,7 +225,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
           <p className="font-display font-light leading-relaxed mb-10" style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.35rem)", color: N, letterSpacing: "-0.005em", lineHeight: 1.65, maxWidth: "680px" }}>
             Great Eastern Singapore required an engaging digital marketing tool to assess critical illness (CI) protection gaps among prospective Singaporean clients while capturing qualified lead sign-ups.
           </p>
-          <p className="font-mono text-[9px] font-semibold tracking-widest uppercase mb-5" style={{ color: `${N}99` }}>
+          <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-5" style={{ color: `${N}99` }}>
             [Key System & Business Constraints]
           </p>
           <div className="space-y-3">
@@ -281,7 +281,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
                 </div>
                 {/* Label */}
                 <div className="px-5 py-4" style={{ backgroundColor: W }}>
-                  <p className="font-mono text-[9px] font-semibold tracking-widest uppercase mb-1" style={{ color: C }}>
+                  <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-1" style={{ color: C }}>
                     [{String(i + 1).padStart(2, "0")}]
                   </p>
                   <p className="text-sm font-semibold mb-1" style={{ color: N }}>{p.name}</p>
@@ -316,7 +316,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
                       </div>
                       <div>
                         <p className="text-xs font-semibold" style={{ color: N }}>{step.label}</p>
-                        <p className="font-mono text-[9px] mt-0.5" style={{ color: `${N}AA` }}>{step.sub}</p>
+                        <p className="font-sans text-[9px] mt-0.5" style={{ color: `${N}AA` }}>{step.sub}</p>
                       </div>
                     </div>
                     {i < 2 && (
@@ -338,7 +338,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
               { num: "3.", title: "Unprompted Growth Initiative (Instagram Story Assets)", desc: "Proactively designed customized Instagram Story shareable cards for each persona result — going beyond the initial brief to drive organic, word-of-mouth brand awareness across social channels." },
             ].map(({ num, title, desc }) => (
               <div key={title} className="flex gap-5 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
-                <span className="font-mono text-[10px] font-semibold flex-shrink-0 mt-0.5" style={{ color: C }}>{num}</span>
+                <span className="font-sans text-[10px] font-semibold flex-shrink-0 mt-0.5" style={{ color: C }}>{num}</span>
                 <div>
                   <p className="text-sm font-semibold mb-1.5" style={{ color: N }}>{title}</p>
                   <p className="text-sm leading-relaxed" style={{ color: BODY, lineHeight: 1.75 }}>{desc}</p>
@@ -353,7 +353,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
         {/* 05 Design Process */}
         <div>
           <SectionTag num="05" label="Design Process & Workflow Pipeline" />
-          <p className="font-mono text-[9px] font-semibold tracking-widest uppercase mb-8" style={{ color: `${N}99` }}>
+          <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-8" style={{ color: `${N}99` }}>
             [METHODOLOGY: RAPID SPRINT & GAMIFIED UX] · [TECH STACK: AEM & GA TRACKING]
           </p>
 
@@ -464,7 +464,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
             {onPrev && (
               <button
                 onClick={onPrev}
-                className="flex items-center gap-2 font-mono text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
+                className="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
                 style={{ color: N }}
               >
                 <ArrowLeft size={12} /> Previous Case
@@ -472,7 +472,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
             )}
             <button
               onClick={onBack}
-              className="flex items-center gap-2 font-mono text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
+              className="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
               style={{ color: N }}
             >
               Back to Portfolio
@@ -481,7 +481,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
           {onNext && (
             <button
               onClick={onNext}
-              className="flex items-center gap-2 font-mono text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
+              className="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
               style={{ color: N }}
             >
               Next Case <ChevronRight size={12} />

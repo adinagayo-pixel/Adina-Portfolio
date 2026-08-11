@@ -14,7 +14,7 @@ const BODY = "#2E3A5C"
 function MonoTag({ children, accent = false }: { children: React.ReactNode; accent?: boolean }) {
   return (
     <span
-      className="font-mono text-[10px] font-semibold tracking-wider uppercase"
+      className="font-sans text-[10px] font-semibold tracking-wider uppercase"
       style={{ color: accent ? C : `${N}CC` }}
     >
       {children}
@@ -70,7 +70,7 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
       >
         <button
           onClick={onBack}
-          className="flex items-center gap-2 font-mono text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
+          className="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
           style={{ color: N }}
         >
           <ArrowLeft size={12} /> Back
@@ -93,10 +93,10 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
             { label: "Role", val: "Lead Freelance Product Designer & AI Systems Integrator" },
           ].map(({ label, val }) => (
             <div key={label}>
-              <span className="font-mono text-[9px] tracking-widest uppercase block mb-0.5" style={{ color: "rgba(255,255,255,0.3)" }}>
+              <span className="font-sans text-[9px] tracking-widest uppercase block mb-0.5" style={{ color: "rgba(255,255,255,0.3)" }}>
                 {label}
               </span>
-              <span className="font-mono text-[10px] font-semibold" style={{ color: "rgba(255,255,255,0.7)" }}>
+              <span className="font-sans text-[10px] font-semibold" style={{ color: "rgba(255,255,255,0.7)" }}>
                 {val}
               </span>
             </div>
@@ -105,7 +105,7 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
 
         {/* Title block */}
         <div className="px-8 lg:px-16 py-16 lg:py-24">
-          <p className="font-mono text-[10px] font-semibold tracking-widest uppercase mb-6" style={{ color: C }}>
+          <p className="font-sans text-[10px] font-semibold tracking-widest uppercase mb-6" style={{ color: C }}>
             Case Study · 04
           </p>
           <h1
@@ -143,7 +143,7 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
               >
                 {s.val}
               </p>
-              <p className="font-mono text-[9px] font-semibold tracking-widest uppercase mb-1" style={{ color: C }}>
+              <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-1" style={{ color: C }}>
                 {s.label}
               </p>
               <p className="text-[10px] leading-snug" style={{ color: "rgba(255,255,255,0.35)" }}>{s.sub}</p>
@@ -181,7 +181,7 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
           <p className="font-display font-light leading-relaxed mb-10" style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.35rem)", color: N, letterSpacing: "-0.005em", lineHeight: 1.65, maxWidth: "680px" }}>
             Transitioning a brick-and-mortar archery enterprise into a regional e-commerce power required an ultra-fast Proof of Concept to secure investor and partner alignments while managing complex technical product attributes.
           </p>
-          <p className="font-mono text-[9px] font-semibold tracking-widest uppercase mb-5" style={{ color: `${N}99` }}>
+          <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-5" style={{ color: `${N}99` }}>
             [Key System & Business Constraints]
           </p>
           <div className="space-y-3">
@@ -227,7 +227,7 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
                       </div>
                       <div>
                         <p className="text-xs font-semibold" style={{ color: N }}>{step.label}</p>
-                        <p className="font-mono text-[9px] mt-0.5" style={{ color: `${N}AA` }}>{step.sub}</p>
+                        <p className="font-sans text-[9px] mt-0.5" style={{ color: `${N}AA` }}>{step.sub}</p>
                       </div>
                     </div>
                     {i < 2 && (
@@ -249,7 +249,7 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
               { num: "3.", title: "Granular Order Lifecycle & Serial Number (SN) Tracking", desc: "Designed a high-density Admin Portal capable of tracking complex archery inventory — including serial number inputs for high-value bows, warranty claim statuses, order fulfillment timelines, and point-of-sale (POS) integration." },
             ].map(({ num, title, desc }) => (
               <div key={title} className="flex gap-5 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
-                <span className="font-mono text-[10px] font-semibold flex-shrink-0 mt-0.5" style={{ color: C }}>{num}</span>
+                <span className="font-sans text-[10px] font-semibold flex-shrink-0 mt-0.5" style={{ color: C }}>{num}</span>
                 <div>
                   <p className="text-sm font-semibold mb-1.5" style={{ color: N }}>{title}</p>
                   <p className="text-sm leading-relaxed" style={{ color: BODY, lineHeight: 1.75 }}>{desc}</p>
@@ -325,7 +325,7 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
               <LayoutGrid size={13} style={{ color: C }} />
             </div>
             <div>
-              <p className="font-mono text-[9px] font-semibold tracking-widest uppercase mb-2" style={{ color: C }}>
+              <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-2" style={{ color: C }}>
                 [PROTOTYPE FEATURE: LIVE SCENARIO TESTER WIDGET]
               </p>
               <p className="text-sm font-semibold text-white mb-1.5">Interactive Scenario Tester — Built Into the Prototype</p>
@@ -341,7 +341,7 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
         {/* 05 Design Process */}
         <div>
           <SectionTag num="05" label="AI-First Design Process" />
-          <p className="font-mono text-[9px] font-semibold tracking-widest uppercase mb-8" style={{ color: `${N}99` }}>
+          <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-8" style={{ color: `${N}99` }}>
             [WORKFLOW: AI-FIRST PROMPT-TO-CODE] · [NO TRADITIONAL WIREFRAME PHASE]
           </p>
 
@@ -452,7 +452,7 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
             {onPrev && (
               <button
                 onClick={onPrev}
-                className="flex items-center gap-2 font-mono text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
+                className="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
                 style={{ color: N }}
               >
                 <ArrowLeft size={12} /> Previous Case
@@ -460,7 +460,7 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
             )}
             <button
               onClick={onBack}
-              className="flex items-center gap-2 font-mono text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
+              className="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
               style={{ color: N }}
             >
               Back to Portfolio
@@ -469,7 +469,7 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
           {onNext && (
             <button
               onClick={onNext}
-              className="flex items-center gap-2 font-mono text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
+              className="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
               style={{ color: N }}
             >
               Next Case <ChevronRight size={12} />

@@ -16,7 +16,7 @@ const GOV = "#0F3460" // Deeper civic navy accent
 function MonoTag({ children, accent = false }: { children: React.ReactNode; accent?: boolean }) {
   return (
     <span
-      className="font-mono text-[10px] font-semibold tracking-wider uppercase"
+      className="font-sans text-[10px] font-semibold tracking-wider uppercase"
       style={{ color: accent ? C : `${N}CC` }}
     >
       {children}
@@ -72,7 +72,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
       >
         <button
           onClick={onBack}
-          className="flex items-center gap-2 font-mono text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
+          className="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
           style={{ color: N }}
         >
           <ArrowLeft size={12} /> Back
@@ -96,10 +96,10 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
             { label: "Role", val: "Solo UX/UI Designer & System Logic Architect" },
           ].map(({ label, val }) => (
             <div key={label}>
-              <span className="font-mono text-[9px] tracking-widest uppercase block mb-0.5" style={{ color: "rgba(255,255,255,0.3)" }}>
+              <span className="font-sans text-[9px] tracking-widest uppercase block mb-0.5" style={{ color: "rgba(255,255,255,0.3)" }}>
                 {label}
               </span>
-              <span className="font-mono text-[10px] font-semibold" style={{ color: "rgba(255,255,255,0.7)" }}>
+              <span className="font-sans text-[10px] font-semibold" style={{ color: "rgba(255,255,255,0.7)" }}>
                 {val}
               </span>
             </div>
@@ -108,7 +108,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
 
         {/* Title block */}
         <div className="px-8 lg:px-16 py-16 lg:py-24">
-          <p className="font-mono text-[10px] font-semibold tracking-widest uppercase mb-6" style={{ color: C }}>
+          <p className="font-sans text-[10px] font-semibold tracking-widest uppercase mb-6" style={{ color: C }}>
             Case Study · 05
           </p>
           <h1
@@ -146,7 +146,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
               >
                 {s.val}
               </p>
-              <p className="font-mono text-[9px] font-semibold tracking-widest uppercase mb-1" style={{ color: C }}>
+              <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-1" style={{ color: C }}>
                 {s.label}
               </p>
               <p className="text-[10px] leading-snug" style={{ color: "rgba(255,255,255,0.35)" }}>{s.sub}</p>
@@ -194,7 +194,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
               <AlertCircle size={13} style={{ color: C }} />
             </div>
             <div>
-              <p className="font-mono text-[9px] font-semibold tracking-widest uppercase mb-2" style={{ color: C }}>
+              <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-2" style={{ color: C }}>
                 [CRITICAL WINDOW: FEBRUARY 14–15, 2024]
               </p>
               <p className="text-sm text-white leading-relaxed" style={{ lineHeight: 1.75 }}>
@@ -203,7 +203,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
             </div>
           </div>
 
-          <p className="font-mono text-[9px] font-semibold tracking-widest uppercase mb-5" style={{ color: `${N}99` }}>
+          <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-5" style={{ color: `${N}99` }}>
             [Key System & Technical Constraints]
           </p>
           <div className="space-y-3">
@@ -249,7 +249,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
                       </div>
                       <div>
                         <p className="text-xs font-semibold" style={{ color: N }}>{step.label}</p>
-                        <p className="font-mono text-[9px] mt-0.5" style={{ color: `${N}AA` }}>{step.sub}</p>
+                        <p className="font-sans text-[9px] mt-0.5" style={{ color: `${N}AA` }}>{step.sub}</p>
                       </div>
                     </div>
                     {i < 2 && (
@@ -271,7 +271,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
               { num: "3.", title: "Real-Time Executive Monitoring Web CMS", desc: "Engineered a high-density Web CMS featuring an interactive national heat map, live presidential quick count gauges, legislative seat allocation tables (Saint-Laguë formula), and regional progress trackers (Total TPS, Verified vs. Pending) across 38 provinces." },
             ].map(({ num, title, desc }) => (
               <div key={title} className="flex gap-5 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
-                <span className="font-mono text-[10px] font-semibold flex-shrink-0 mt-0.5" style={{ color: C }}>{num}</span>
+                <span className="font-sans text-[10px] font-semibold flex-shrink-0 mt-0.5" style={{ color: C }}>{num}</span>
                 <div>
                   <p className="text-sm font-semibold mb-1.5" style={{ color: N }}>{title}</p>
                   <p className="text-sm leading-relaxed" style={{ color: BODY, lineHeight: 1.75 }}>{desc}</p>
@@ -361,7 +361,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
               >
                 90%
               </p>
-              <p className="font-mono text-[9px] font-semibold tracking-widest uppercase mb-3" style={{ color: C }}>
+              <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-3" style={{ color: C }}>
                 Unassisted Task Completion
               </p>
               <p className="text-sm leading-relaxed" style={{ color: BODY, lineHeight: 1.75 }}>
@@ -380,7 +380,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
               >
                 10%
               </p>
-              <p className="font-mono text-[9px] font-semibold tracking-widest uppercase mb-3" style={{ color: C }}>
+              <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-3" style={{ color: C }}>
                 Pre-Election Friction Identified & Resolved
               </p>
               <p className="text-sm leading-relaxed" style={{ color: BODY, lineHeight: 1.75 }}>
@@ -431,7 +431,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
             {onPrev && (
               <button
                 onClick={onPrev}
-                className="flex items-center gap-2 font-mono text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
+                className="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
                 style={{ color: N }}
               >
                 <ArrowLeft size={12} /> Previous Case
@@ -439,7 +439,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
             )}
             <button
               onClick={onBack}
-              className="flex items-center gap-2 font-mono text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
+              className="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
               style={{ color: N }}
             >
               Back to Portfolio
@@ -448,7 +448,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
           {onNext && (
             <button
               onClick={onNext}
-              className="flex items-center gap-2 font-mono text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
+              className="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
               style={{ color: N }}
             >
               Next Case <ChevronRight size={12} />

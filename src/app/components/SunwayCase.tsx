@@ -14,7 +14,7 @@ const BODY = "#2E3A5C"
 function MonoTag({ children, accent = false }: { children: React.ReactNode; accent?: boolean }) {
   return (
     <span
-      className="font-mono text-[10px] font-semibold tracking-wider uppercase"
+      className="font-sans text-[10px] font-semibold tracking-wider uppercase"
       style={{ color: accent ? C : `${N}CC` }}
     >
       {children}
@@ -29,7 +29,7 @@ function Hairline() {
 function SectionTag({ num, label }: { num: string; label: string }) {
   return (
     <div className="flex items-center gap-4 mb-8">
-      <span className="font-mono text-[10px] font-semibold tracking-widest" style={{ color: C }}>
+      <span className="font-sans text-[10px] font-semibold tracking-widest" style={{ color: C }}>
         [{num}]
       </span>
       <div className="flex-1 h-px" style={{ backgroundColor: HAIR }} />
@@ -66,7 +66,7 @@ export default function SunwayCase({ onBack }: Props) {
       >
         <button
           onClick={onBack}
-          className="flex items-center gap-2 font-mono text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
+          className="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
           style={{ color: N }}
         >
           <ArrowLeft size={12} /> Back
@@ -88,10 +88,10 @@ export default function SunwayCase({ onBack }: Props) {
             { label: "Role", val: "Solo Product Designer & System Logic Architect" },
           ].map(({ label, val }) => (
             <div key={label}>
-              <span className="font-mono text-[9px] tracking-widest uppercase block mb-0.5" style={{ color: "rgba(255,255,255,0.3)" }}>
+              <span className="font-sans text-[9px] tracking-widest uppercase block mb-0.5" style={{ color: "rgba(255,255,255,0.3)" }}>
                 {label}
               </span>
-              <span className="font-mono text-[10px] font-semibold" style={{ color: "rgba(255,255,255,0.7)" }}>
+              <span className="font-sans text-[10px] font-semibold" style={{ color: "rgba(255,255,255,0.7)" }}>
                 {val}
               </span>
             </div>
@@ -104,7 +104,7 @@ export default function SunwayCase({ onBack }: Props) {
 
         {/* Title block */}
         <div className="px-8 lg:px-16 py-16 lg:py-24">
-          <p className="font-mono text-[10px] font-semibold tracking-widest uppercase mb-6" style={{ color: C }}>
+          <p className="font-sans text-[10px] font-semibold tracking-widest uppercase mb-6" style={{ color: C }}>
             Case Study · 01
           </p>
           <h1
@@ -142,7 +142,7 @@ export default function SunwayCase({ onBack }: Props) {
               >
                 {s.val}
               </p>
-              <p className="font-mono text-[9px] font-semibold tracking-widest uppercase mb-1" style={{ color: C }}>
+              <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-1" style={{ color: C }}>
                 {s.label}
               </p>
               <p className="text-[10px] leading-snug" style={{ color: "rgba(255,255,255,0.35)" }}>{s.sub}</p>
@@ -185,7 +185,7 @@ export default function SunwayCase({ onBack }: Props) {
             Integrating third-party financial products into an established ecosystem requires balancing strict legal compliance with frictionless user experience. The core objective was to build an embedded insurance purchasing microsite within the native Sunway App alongside a B2B Partner Portal for operational control.
           </p>
 
-          <p className="font-mono text-[9px] font-semibold tracking-widest uppercase mb-5" style={{ color: `${N}99` }}>
+          <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-5" style={{ color: `${N}99` }}>
             [Key System Constraints]
           </p>
           <div className="space-y-3">
@@ -256,7 +256,7 @@ export default function SunwayCase({ onBack }: Props) {
                       </div>
                       <div>
                         <p className="text-xs font-semibold" style={{ color: N }}>{step.label}</p>
-                        <p className="font-mono text-[9px] mt-0.5" style={{ color: `${N}AA` }}>{step.sub}</p>
+                        <p className="font-sans text-[9px] mt-0.5" style={{ color: `${N}AA` }}>{step.sub}</p>
                       </div>
                     </div>
                     {i < 2 && (
@@ -290,7 +290,7 @@ export default function SunwayCase({ onBack }: Props) {
               },
             ].map(({ num, title, desc }) => (
               <div key={title} className="flex gap-5 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
-                <span className="font-mono text-[10px] font-semibold flex-shrink-0 mt-0.5" style={{ color: C }}>{num}</span>
+                <span className="font-sans text-[10px] font-semibold flex-shrink-0 mt-0.5" style={{ color: C }}>{num}</span>
                 <div>
                   <p className="text-sm font-semibold mb-1.5" style={{ color: N }}>{title}</p>
                   <p className="text-sm leading-relaxed" style={{ color: BODY, lineHeight: 1.75 }}>{desc}</p>
@@ -305,7 +305,7 @@ export default function SunwayCase({ onBack }: Props) {
         {/* 04 Design Process */}
         <div>
           <SectionTag num="04" label="Design Process & Systemic Pipeline" />
-          <p className="font-mono text-[9px] font-semibold tracking-widest uppercase mb-8" style={{ color: `${N}99` }}>
+          <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-8" style={{ color: `${N}99` }}>
             [METHODOLOGY: SYSTEMIC PRODUCT DESIGN] · [APPROACH: REVERSE ENGINEERING & API-DRIVEN]
           </p>
 
@@ -360,7 +360,7 @@ export default function SunwayCase({ onBack }: Props) {
                   {/* Timeline node */}
                   <div className="flex flex-col items-center flex-shrink-0 z-10" style={{ paddingTop: "2px" }}>
                     <div
-                      className="w-10 h-10 flex items-center justify-center font-mono text-[9px] font-semibold"
+                      className="w-10 h-10 flex items-center justify-center font-sans text-[9px] font-semibold"
                       style={{
                         backgroundColor: pi === 0 ? N : W,
                         border: `1px solid ${pi === 0 ? N : HAIR}`,
@@ -376,7 +376,7 @@ export default function SunwayCase({ onBack }: Props) {
                   {/* Phase content */}
                   <div className="flex-1 pb-10">
                     <div className="flex items-center gap-3 mb-4 mt-1">
-                      <span className="font-mono text-[9px] font-semibold tracking-widest" style={{ color: C }}>
+                      <span className="font-sans text-[9px] font-semibold tracking-widest" style={{ color: C }}>
                         [{phase.phase} // {phase.tag}]
                       </span>
                     </div>
@@ -596,7 +596,7 @@ export default function SunwayCase({ onBack }: Props) {
             >
               "While third-party app boundaries restricted direct A/B testing at launch, the deployment of the Partner Portal's drop-off tracking provides the structural foundation needed to run granular usability iterations on complex form fields and CTA placements post-release."
             </p>
-            <p className="font-mono text-[9px] font-semibold tracking-widest uppercase mt-6" style={{ color: "rgba(255,255,255,0.3)" }}>
+            <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mt-6" style={{ color: "rgba(255,255,255,0.3)" }}>
               [LEARNINGS & SYSTEM EVOLUTION]
             </p>
           </blockquote>
@@ -609,7 +609,7 @@ export default function SunwayCase({ onBack }: Props) {
         <div className="px-8 lg:px-16 py-8 flex items-center justify-between">
           <button
             onClick={onBack}
-            className="flex items-center gap-2 font-mono text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
+            className="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
             style={{ color: N }}
           >
             <ArrowLeft size={12} /> Back to Portfolio

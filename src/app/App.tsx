@@ -132,7 +132,7 @@ function useScrollSpy(ids: string[]) {
 function MonoTag({ children, accent = false }: { children: React.ReactNode; accent?: boolean }) {
   return (
     <span
-      className="font-mono text-[10px] font-semibold tracking-wider uppercase"
+      className="font-sans text-[10px] font-semibold tracking-wider uppercase"
       style={{ color: accent ? C : `${N}CC` }}
     >
       {children}
@@ -202,7 +202,7 @@ function FloatingDock({ activeSection }: { activeSection: string }) {
             }}
           >
             <entry.Icon size={13} strokeWidth={isActive ? 2.2 : 1.6} />
-            <span className="font-mono text-[8px] font-semibold tracking-widest uppercase">
+            <span className="font-sans text-[8px] font-semibold tracking-widest uppercase">
               {entry.label}
             </span>
             {isActive && (
@@ -241,15 +241,15 @@ function HeroSection() {
         className="flex items-center justify-between px-8 lg:px-16 py-6"
         style={{ borderBottom: `1px solid rgba(25, 36, 78, 0.05)` }}
       >
-        <span className="font-mono text-[11px] font-semibold tracking-[0.15em]" style={{ color: N }}>
+        <span className="font-sans text-[11px] font-semibold tracking-[0.15em]" style={{ color: N }}>
           AFG<span style={{ color: C }}> ·</span> PORTFOLIO 2026
         </span>
         <div className="flex items-center gap-4">
-          <span className="font-mono text-[10px] font-semibold tracking-wider text-[#19244E]/60 uppercase">SG / MY / ID</span>
+          <span className="font-sans text-[10px] font-semibold tracking-wider text-[#19244E]/60 uppercase">SG / MY / ID</span>
           <a
             href="/resume-adina-fayza-gayo.pdf"
             download
-            className="flex items-center gap-1.5 font-mono text-[10px] font-semibold tracking-widest uppercase px-4 py-2.5 transition-all duration-150"
+            className="flex items-center gap-1.5 font-sans text-[10px] font-semibold tracking-widest uppercase px-4 py-2.5 transition-all duration-150"
             style={{ border: `1px solid ${HAIR}`, color: `${N}DD`, borderRadius: "6px" }}
             onMouseEnter={(e) => {
               ;(e.currentTarget as HTMLElement).style.borderColor = N
@@ -265,7 +265,7 @@ function HeroSection() {
           </a>
           <a
             href="mailto:adina.gayo@design.id"
-            className="font-mono text-[10px] font-semibold tracking-widest uppercase px-4 py-2.5 transition-all duration-150"
+            className="font-sans text-[10px] font-semibold tracking-widest uppercase px-4 py-2.5 transition-all duration-150"
             style={{ border: `1px solid ${N}`, color: N, borderRadius: "6px" }}
             onMouseEnter={(e) => {
               ;(e.currentTarget as HTMLElement).style.backgroundColor = N
@@ -288,7 +288,7 @@ function HeroSection() {
           {/* ID tag */}
           <div>
             <div className="mb-12 lg:mb-16">
-              <span className="font-mono text-[10px] font-semibold tracking-[0.2em] text-[#19244E]/60">
+              <span className="font-sans text-[10px] font-semibold tracking-[0.2em] text-[#19244E]/60">
                 [AFG-2026 // SENIOR STRATEGIC DESIGNER]
               </span>
             </div>
@@ -345,13 +345,13 @@ function HeroSection() {
               { label: "Available", val: "Q3 2026" },
             ].map(({ label, val }) => (
               <div key={label}>
-                <span className="font-mono text-[9px] font-semibold tracking-wider text-[#19244E]/50 uppercase">{label}</span>
+                <span className="font-sans text-[9px] font-semibold tracking-wider text-[#19244E]/50 uppercase">{label}</span>
                 <p className="text-sm font-medium mt-0.5" style={{ color: N }}>{val}</p>
               </div>
             ))}
             <div className="ml-auto flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="font-mono text-[10px] font-semibold tracking-wider uppercase text-emerald-600">
+              <span className="font-sans text-[10px] font-semibold tracking-wider uppercase text-emerald-600">
                 Open to opportunities
               </span>
             </div>
@@ -366,7 +366,7 @@ function HeroSection() {
           {/* Greeting ticker — top strip */}
           <div className="flex flex-col items-center flex-shrink-0 mb-4">
             <div className="flex items-center gap-2 bg-white px-4 py-1.5 rounded-full shadow-sm border border-[#19244E]/5">
-              <span className="font-mono text-[9px] font-semibold tracking-widest text-[#19244E]/60 uppercase">[{LANGS[tick]}]</span>
+              <span className="font-sans text-[9px] font-semibold tracking-widest text-[#19244E]/60 uppercase">[{LANGS[tick]}]</span>
               <AnimatePresence mode="wait">
                 <motion.span
                   key={tick}
@@ -404,7 +404,7 @@ function HeroSection() {
                 <p className="font-display font-medium text-lg text-white mb-0.5" style={{ letterSpacing: "-0.01em" }}>
                   Adina Fayza Gayo
                 </p>
-                <span className="font-mono text-[10px] font-semibold tracking-widest uppercase text-white/70">
+                <span className="font-sans text-[10px] font-semibold tracking-widest uppercase text-white/70">
                   Senior Product Designer
                 </span>
               </div>
@@ -416,7 +416,7 @@ function HeroSection() {
             {["Enterprise B2B", "Multi-Brand Arch.", "AI-Accelerated", "Cross-Border"].map((tag) => (
               <span
                 key={tag}
-                className="font-mono text-[9px] font-semibold tracking-wider uppercase px-3 py-1.5 bg-white border border-[#19244E]/5 text-[#19244E]/70 rounded-full shadow-sm"
+                className="font-sans text-[9px] font-semibold tracking-wider uppercase px-3 py-1.5 bg-white border border-[#19244E]/5 text-[#19244E]/70 rounded-full shadow-sm"
               >
                 {tag}
               </span>
@@ -453,9 +453,9 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
         className="px-8 lg:px-16 py-10 flex items-center gap-6"
         style={{ borderBottom: `1px solid rgba(255, 255, 255, 0.08)` }}
       >
-        <span className="font-mono text-[10px] font-semibold tracking-[0.2em] text-white/60">[03 // SELECTED WORK]</span>
+        <span className="font-sans text-[10px] font-semibold tracking-[0.2em] text-white/60">[03 // SELECTED WORK]</span>
         <div className="flex-1 h-px bg-white/10" />
-        <span className="font-mono text-[10px] font-semibold tracking-[0.15em] text-white/60">ENTERPRISE · B2B · REGIONAL</span>
+        <span className="font-sans text-[10px] font-semibold tracking-[0.15em] text-white/60">ENTERPRISE · B2B · REGIONAL</span>
       </div>
 
       {/* Section intro */}
@@ -487,7 +487,7 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
                 >
                   <div className="flex items-start gap-3">
                     <span
-                      className="font-mono text-[10px] tracking-wider transition-colors duration-300 pt-1"
+                      className="font-sans text-[10px] tracking-wider transition-colors duration-300 pt-1"
                       style={{ color: isActive ? C : "rgba(255, 255, 255, 0.3)" }}
                     >
                       [{project.num}]
@@ -520,12 +520,12 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
             }}
           >
             {/* Figma frame label */}
-            <div className="absolute top-4 left-4 bg-white/5 border border-white/10 px-2 py-0.5 rounded text-[8px] font-mono tracking-wider text-white/50">
+            <div className="absolute top-4 left-4 bg-white/5 border border-white/10 px-2 py-0.5 rounded text-[8px] font-sans tracking-wider text-white/50">
               # Frame // {activeProject.projectId.toUpperCase()} // Zoom 100%
             </div>
 
             {/* Canvas Dimensions tag */}
-            <div className="absolute bottom-4 right-4 bg-white/5 border border-white/10 px-2 py-0.5 rounded text-[8px] font-mono tracking-wider text-white/50">
+            <div className="absolute bottom-4 right-4 bg-white/5 border border-white/10 px-2 py-0.5 rounded text-[8px] font-sans tracking-wider text-white/50">
               W: 1280 px  H: 880 px  X: 240 px  Y: 120 px
             </div>
 
@@ -549,10 +549,10 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
 
               {/* Frame footer bar */}
               <div className="mt-3 flex items-center justify-between">
-                <span className="font-mono text-[9px] text-white/60 tracking-wider">
+                <span className="font-sans text-[9px] text-white/60 tracking-wider">
                   {activeProject.num} · {activeProject.location} · {activeProject.year}
                 </span>
-                <span className="font-mono text-[8px] text-white/30 tracking-widest uppercase">
+                <span className="font-sans text-[8px] text-white/30 tracking-widest uppercase">
                   Click to open
                 </span>
               </div>
@@ -582,7 +582,7 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
                   </svg>
                   {/* User badge label */}
                   <div
-                    className="ml-4 -mt-1 px-1.5 py-0.5 rounded text-[8px] font-mono font-semibold text-white shadow-md"
+                    className="ml-4 -mt-1 px-1.5 py-0.5 rounded text-[8px] font-sans font-semibold text-white shadow-md"
                     style={{ backgroundColor: C }}
                   >
                     Adina
@@ -609,14 +609,14 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
                     {activeProject.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="font-mono text-[8px] font-semibold tracking-widest uppercase px-2 py-0.5 bg-white/10 text-white/80 rounded"
+                        className="font-sans text-[8px] font-semibold tracking-widest uppercase px-2 py-0.5 bg-white/10 text-white/80 rounded"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
 
-                  <span className="font-mono text-[9px] font-semibold tracking-wider text-white/50 uppercase block mb-1">
+                  <span className="font-sans text-[9px] font-semibold tracking-wider text-white/50 uppercase block mb-1">
                     CLIENT: {activeProject.client}
                   </span>
                   <h3 className="font-display font-semibold mb-4 leading-snug text-white" style={{ fontSize: "1.6rem", letterSpacing: "-0.01em" }}>
@@ -632,7 +632,7 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
                   <div className="flex flex-col gap-4 mb-6">
                     {activeProject.metrics.map((m) => (
                       <div key={m.sub} className="flex items-baseline justify-between border-b border-white/5 pb-2">
-                        <span className="font-mono text-[9px] font-semibold tracking-widest text-white/40 uppercase">{m.sub}</span>
+                        <span className="font-sans text-[9px] font-semibold tracking-widest text-white/40 uppercase">{m.sub}</span>
                         <span className="font-display font-medium text-white text-base" style={{ color: C }}>
                           {m.val}
                         </span>
@@ -644,7 +644,7 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
                     onClick={() => onOpenProject(activeProject.projectId)}
                     className="group flex items-center justify-between w-full px-4 py-2.5 rounded border border-white/10 hover:border-white/30 text-white bg-white/5 transition-all duration-200"
                   >
-                    <span className="font-mono text-[9px] font-semibold tracking-widest uppercase text-white/80 group-hover:text-white">
+                    <span className="font-sans text-[9px] font-semibold tracking-widest uppercase text-white/80 group-hover:text-white">
                       Open Case Study
                     </span>
                     <ArrowUpRight size={12} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -665,10 +665,10 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
             >
               {/* Figma frame label */}
               <div className="flex justify-between items-center mb-4">
-                <span className="font-mono text-[8px] text-white/40 tracking-wider">
+                <span className="font-sans text-[8px] text-white/40 tracking-wider">
                   # Frame: {project.projectId.toUpperCase()}
                 </span>
-                <span className="font-mono text-[8px] text-white/40 tracking-wider">
+                <span className="font-sans text-[8px] text-white/40 tracking-wider">
                   [{project.num}]
                 </span>
               </div>
@@ -691,14 +691,14 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
                   {project.tags.slice(0, 3).map((tag) => (
                     <span
                       key={tag}
-                      className="font-mono text-[7px] font-semibold tracking-widest uppercase px-2 py-0.5 bg-white/5 text-white/60 rounded"
+                      className="font-sans text-[7px] font-semibold tracking-widest uppercase px-2 py-0.5 bg-white/5 text-white/60 rounded"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
 
-                <p className="font-mono text-[8px] font-semibold text-white/40 uppercase mb-0.5">
+                <p className="font-sans text-[8px] font-semibold text-white/40 uppercase mb-0.5">
                   {project.client}
                 </p>
                 <h3 className="font-display font-semibold text-white text-lg mb-2">
@@ -713,7 +713,7 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
                   {project.metrics.map((m) => (
                     <div key={m.sub} className="text-center">
                       <span className="font-display text-sm font-semibold block text-white" style={{ color: C }}>{m.val}</span>
-                      <span className="font-mono text-[7px] text-white/40 uppercase tracking-wider">{m.sub}</span>
+                      <span className="font-sans text-[7px] text-white/40 uppercase tracking-wider">{m.sub}</span>
                     </div>
                   ))}
                 </div>
@@ -761,11 +761,11 @@ function WorkflowSection() {
         className="px-8 lg:px-16 py-8 flex items-center gap-6"
         style={{ borderBottom: `1px solid rgba(255,255,255,0.06)` }}
       >
-        <span className="font-mono text-[10px] font-semibold tracking-widest uppercase" style={{ color: "rgba(255,255,255,0.3)" }}>
+        <span className="font-sans text-[10px] font-semibold tracking-widest uppercase" style={{ color: "rgba(255,255,255,0.3)" }}>
           [04 // SYSTEM LOGIC]
         </span>
         <div className="flex-1 h-px" style={{ backgroundColor: "rgba(255,255,255,0.06)" }} />
-        <span className="font-mono text-[10px] font-semibold tracking-widest uppercase" style={{ color: "rgba(255,255,255,0.3)" }}>
+        <span className="font-sans text-[10px] font-semibold tracking-widest uppercase" style={{ color: "rgba(255,255,255,0.3)" }}>
           3-PHASE ENGINE
         </span>
       </div>
@@ -799,13 +799,13 @@ function WorkflowSection() {
             >
               <div>
                 <div className="flex items-center justify-between mb-6">
-                  <span className="font-mono text-xs font-semibold tracking-widest text-[#DB3E8C]">
+                  <span className="font-sans text-xs font-semibold tracking-widest text-[#DB3E8C]">
                     [{phase.num}]
                   </span>
                   <Icon size={16} className="text-white/40" />
                 </div>
                 <h3 className="text-lg font-medium text-white mb-1.5">{phase.phase}</h3>
-                <p className="font-mono text-[10px] tracking-widest text-white/40 uppercase mb-4">
+                <p className="font-sans text-[10px] tracking-widest text-white/40 uppercase mb-4">
                   {phase.sub}
                 </p>
                 <p className="text-sm leading-relaxed text-white/60 mb-6 font-sans">
@@ -814,14 +814,14 @@ function WorkflowSection() {
               </div>
               
               <div className="mt-auto pt-6 border-t border-white/5">
-                <p className="font-mono text-[8px] font-semibold tracking-widest uppercase text-white/25 mb-3">
+                <p className="font-sans text-[8px] font-semibold tracking-widest uppercase text-white/25 mb-3">
                   [Tools & Artifacts]
                 </p>
                 <div className="flex flex-wrap gap-1.5">
                   {phase.tools.map((tool) => (
                     <span
                       key={tool}
-                      className="font-mono text-[9px] font-medium px-2.5 py-1 bg-white/5 text-white/50 border border-white/5 rounded"
+                      className="font-sans text-[9px] font-medium px-2.5 py-1 bg-white/5 text-white/50 border border-white/5 rounded"
                     >
                       {tool}
                     </span>
@@ -867,9 +867,9 @@ function ProjectArchiveSection() {
         className="px-8 lg:px-16 py-10 flex items-center gap-6"
         style={{ borderBottom: `1px solid rgba(25, 36, 78, 0.05)` }}
       >
-        <span className="font-mono text-[10px] font-semibold tracking-[0.2em] text-[#19244E]/60">[05 // DATA INDEX]</span>
+        <span className="font-sans text-[10px] font-semibold tracking-[0.2em] text-[#19244E]/60">[05 // DATA INDEX]</span>
         <div className="flex-1 h-px" style={{ backgroundColor: "rgba(25, 36, 78, 0.05)" }} />
-        <span className="font-mono text-[10px] font-semibold tracking-[0.15em] text-[#19244E]/60">PROJECT ARCHIVE</span>
+        <span className="font-sans text-[10px] font-semibold tracking-[0.15em] text-[#19244E]/60">PROJECT ARCHIVE</span>
       </div>
 
       {/* Count + filter row */}
@@ -884,7 +884,7 @@ function ProjectArchiveSection() {
           >
             {filtered.length}
           </span>
-          <span className="font-mono text-[10px] font-semibold tracking-widest text-[#19244E]/60 uppercase">
+          <span className="font-sans text-[10px] font-semibold tracking-widest text-[#19244E]/60 uppercase">
             of {PROJECTS.length} projects
           </span>
         </div>
@@ -895,7 +895,7 @@ function ProjectArchiveSection() {
               <button
                 key={cat.id}
                 onClick={() => setActiveCat(cat.id)}
-                className="flex items-center gap-1.5 px-5 py-2.5 font-mono text-[10px] font-semibold tracking-widest uppercase transition-all duration-150 focus:outline-none rounded-full cursor-pointer"
+                className="flex items-center gap-1.5 px-5 py-2.5 font-sans text-[10px] font-semibold tracking-widest uppercase transition-all duration-150 focus:outline-none rounded-full cursor-pointer"
                 style={{
                   backgroundColor: isActive ? N : W,
                   color: isActive ? W : `${N}DD`,
@@ -928,7 +928,7 @@ function ProjectArchiveSection() {
             }}
           >
             {["#", "Project", "Client / System", "Market", "Year", "Status", "Category & Scope"].map((col) => (
-              <span key={col} className="font-mono text-[9px] font-semibold tracking-[0.15em] uppercase" style={{ color: `${N}65` }}>
+              <span key={col} className="font-sans text-[9px] font-semibold tracking-[0.15em] uppercase" style={{ color: `${N}65` }}>
                 {col}
               </span>
             ))}
@@ -952,15 +952,15 @@ function ProjectArchiveSection() {
                     className="hidden lg:grid items-start px-8 lg:px-16 py-6 transition-all duration-150 hover:bg-white"
                     style={{ gridTemplateColumns: "50px 1.2fr 1fr 140px 60px 140px 1.5fr", cursor: "default" }}
                   >
-                    <span className="font-mono text-xs pt-0.5" style={{ color: `${N}50` }}>
+                    <span className="font-sans text-xs pt-0.5" style={{ color: `${N}50` }}>
                       {String(project.id).padStart(2, "0")}
                     </span>
                     <p className="text-sm font-semibold pr-4 text-[#19244E]">{project.name}</p>
                     <p className="text-xs pr-3 text-[#19244E]/80">{project.client}</p>
-                    <span className="font-mono text-[10px] font-semibold text-[#19244E]/70">
+                    <span className="font-sans text-[10px] font-semibold text-[#19244E]/70">
                       [{project.market}]
                     </span>
-                    <span className="font-mono text-xs text-[#19244E]/60">{project.year}</span>
+                    <span className="font-sans text-xs text-[#19244E]/60">{project.year}</span>
                     
                     {/* Status Badge */}
                     <div className="flex items-center gap-2">
@@ -968,14 +968,14 @@ function ProjectArchiveSection() {
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style={{ backgroundColor: statusColor }}></span>
                         <span className="relative inline-flex rounded-full h-2 w-2" style={{ backgroundColor: statusColor }}></span>
                       </span>
-                      <span className="font-mono text-[9px] font-bold tracking-widest uppercase" style={{ color: statusColor }}>
+                      <span className="font-sans text-[9px] font-bold tracking-widest uppercase" style={{ color: statusColor }}>
                         {project.status}
                       </span>
                     </div>
                     
                     <div className="pl-2">
                       <span
-                        className="font-mono text-[8px] font-bold tracking-widest uppercase px-2.5 py-1 inline-block mb-2 bg-[#19244E]/5 text-[#19244E]/80 rounded"
+                        className="font-sans text-[8px] font-bold tracking-widest uppercase px-2.5 py-1 inline-block mb-2 bg-[#19244E]/5 text-[#19244E]/80 rounded"
                       >
                         {project.category}
                       </span>
@@ -988,9 +988,9 @@ function ProjectArchiveSection() {
                     <div className="flex items-start justify-between gap-3 mb-2">
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
-                          <span className="font-mono text-[10px]" style={{ color: `${N}50` }}>{String(project.id).padStart(2, "0")}</span>
-                          <span className="font-mono text-[9px] font-semibold" style={{ color: `${N}70` }}>[{project.market}]</span>
-                          <span className="font-mono text-[10px]" style={{ color: `${N}60` }}>{project.year}</span>
+                          <span className="font-sans text-[10px]" style={{ color: `${N}50` }}>{String(project.id).padStart(2, "0")}</span>
+                          <span className="font-sans text-[9px] font-semibold" style={{ color: `${N}70` }}>[{project.market}]</span>
+                          <span className="font-sans text-[10px]" style={{ color: `${N}60` }}>{project.year}</span>
                         </div>
                         <p className="text-sm font-semibold mb-0.5 text-[#19244E]">{project.name}</p>
                         <p className="text-xs text-[#19244E]/80">{project.client}</p>
@@ -998,11 +998,11 @@ function ProjectArchiveSection() {
                       
                       <div className="flex items-center gap-1.5 flex-shrink-0 mt-1">
                         <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: statusColor }} />
-                        <span className="font-mono text-[9px] font-semibold uppercase tracking-wider" style={{ color: statusColor }}>{project.status}</span>
+                        <span className="font-sans text-[9px] font-semibold uppercase tracking-wider" style={{ color: statusColor }}>{project.status}</span>
                       </div>
                     </div>
                     <span
-                      className="font-mono text-[8px] font-bold tracking-widest uppercase px-2.5 py-1 inline-block mb-2 bg-[#19244E]/5 text-[#19244E]/80 rounded"
+                      className="font-sans text-[8px] font-bold tracking-widest uppercase px-2.5 py-1 inline-block mb-2 bg-[#19244E]/5 text-[#19244E]/80 rounded"
                     >
                       {project.category}
                     </span>

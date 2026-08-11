@@ -16,7 +16,7 @@ const GAME = "#0047AB"   // myKawan blue
 function MonoTag({ children, accent = false }: { children: React.ReactNode; accent?: boolean }) {
   return (
     <span
-      className="font-mono text-[10px] font-semibold tracking-wider uppercase"
+      className="font-sans text-[10px] font-semibold tracking-wider uppercase"
       style={{ color: accent ? C : `${N}CC` }}
     >
       {children}
@@ -72,7 +72,7 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
       >
         <button
           onClick={onBack}
-          className="flex items-center gap-2 font-mono text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
+          className="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
           style={{ color: N }}
         >
           <ArrowLeft size={12} /> Back
@@ -96,10 +96,10 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
             { label: "Role", val: "Lead UI/UX Designer & Gamification Architect" },
           ].map(({ label, val }) => (
             <div key={label}>
-              <span className="font-mono text-[9px] tracking-widest uppercase block mb-0.5" style={{ color: "rgba(255,255,255,0.35)" }}>
+              <span className="font-sans text-[9px] tracking-widest uppercase block mb-0.5" style={{ color: "rgba(255,255,255,0.35)" }}>
                 {label}
               </span>
-              <span className="font-mono text-[10px] font-semibold" style={{ color: "rgba(255,255,255,0.8)" }}>
+              <span className="font-sans text-[10px] font-semibold" style={{ color: "rgba(255,255,255,0.8)" }}>
                 {val}
               </span>
             </div>
@@ -108,7 +108,7 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
 
         {/* Title block */}
         <div className="px-8 lg:px-16 py-16 lg:py-24">
-          <p className="font-mono text-[10px] font-semibold tracking-widest uppercase mb-6" style={{ color: C }}>
+          <p className="font-sans text-[10px] font-semibold tracking-widest uppercase mb-6" style={{ color: C }}>
             Case Study · 07
           </p>
           <h1
@@ -146,7 +146,7 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
               >
                 {s.val}
               </p>
-              <p className="font-mono text-[9px] font-semibold tracking-widest uppercase mb-1" style={{ color: C }}>
+              <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-1" style={{ color: C }}>
                 {s.label}
               </p>
               <p className="text-[10px] leading-snug" style={{ color: "rgba(255,255,255,0.4)" }}>{s.sub}</p>
@@ -184,7 +184,7 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
               <Trophy size={13} style={{ color: C }} />
             </div>
             <div>
-              <p className="font-mono text-[9px] font-semibold tracking-widest uppercase mb-2" style={{ color: C }}>
+              <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-2" style={{ color: C }}>
                 [NATIONAL CAMPAIGN: MYSALAM x KEMENTERIAN DIGITAL MALAYSIA]
               </p>
               <p className="text-sm font-semibold text-white mb-1">World & Malaysia Book of Records Attempt</p>
@@ -203,7 +203,7 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
           <p className="font-display font-light leading-relaxed mb-10" style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.35rem)", color: N, letterSpacing: "-0.005em", lineHeight: 1.65, maxWidth: "700px" }}>
             Transforming dry financial education into a viral, high-stakes competition across Malaysian universities — requiring a dual-phase architecture supporting both self-paced learning and ultra-low-latency live broadcast tournament events.
           </p>
-          <p className="font-mono text-[9px] font-semibold tracking-widest uppercase mb-5" style={{ color: `${N}99` }}>
+          <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-5" style={{ color: `${N}99` }}>
             [Key System & Interaction Constraints]
           </p>
           <div className="space-y-3">
@@ -268,7 +268,7 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
                       </div>
                       <div>
                         <p className="text-xs font-semibold" style={{ color: N }}>{step.label}</p>
-                        <p className="font-mono text-[9px] mt-0.5" style={{ color: `${N}AA` }}>{step.sub}</p>
+                        <p className="font-sans text-[9px] mt-0.5" style={{ color: `${N}AA` }}>{step.sub}</p>
                       </div>
                     </div>
                     {i < 2 && (
@@ -292,7 +292,7 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
             ].map(({ val, label, desc, color }) => (
               <div key={label} className="px-6 py-5 text-center" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
                 <p className="font-display font-light mb-1" style={{ fontSize: "2.2rem", color, lineHeight: 1, letterSpacing: "-0.04em" }}>{val}</p>
-                <p className="font-mono text-[9px] font-semibold tracking-widest uppercase mb-1" style={{ color: `${N}BB` }}>{label}</p>
+                <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-1" style={{ color: `${N}BB` }}>{label}</p>
                 <p className="text-xs" style={{ color: BODY }}>{desc}</p>
               </div>
             ))}
@@ -305,7 +305,7 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
               { num: "3.", title: "Contextual Gemini AI Audio Integration", desc: "Used Gemini AI music generation tools to compose lightweight, custom instrumental soundscapes for each game state: relaxed ambient in the waiting lobby, high-tension countdown during answer submission, and triumphant celebratory audio for podium reveals — zero external licensing costs." },
             ].map(({ num, title, desc }) => (
               <div key={title} className="flex gap-5 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
-                <span className="font-mono text-[10px] font-semibold flex-shrink-0 mt-0.5" style={{ color: C }}>{num}</span>
+                <span className="font-sans text-[10px] font-semibold flex-shrink-0 mt-0.5" style={{ color: C }}>{num}</span>
                 <div>
                   <p className="text-sm font-semibold mb-1.5" style={{ color: N }}>{title}</p>
                   <p className="text-sm leading-relaxed" style={{ color: BODY, lineHeight: 1.75 }}>{desc}</p>
@@ -381,7 +381,7 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
               <BarChart2 size={13} style={{ color: C }} />
             </div>
             <div>
-              <p className="font-mono text-[9px] font-semibold tracking-widest uppercase mb-2" style={{ color: C }}>
+              <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-2" style={{ color: C }}>
                 [GAMEPLAY: KAHOOT-INSPIRED LIVE MULTIPLAYER ENGINE]
               </p>
               <p className="text-sm font-semibold text-white mb-1.5">Answer Distribution Charts After Every Question</p>
@@ -437,7 +437,7 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
             {onPrev && (
               <button
                 onClick={onPrev}
-                className="flex items-center gap-2 font-mono text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
+                className="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
                 style={{ color: N }}
               >
                 <ArrowLeft size={12} /> Previous Case
@@ -445,7 +445,7 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
             )}
             <button
               onClick={onBack}
-              className="flex items-center gap-2 font-mono text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
+              className="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
               style={{ color: N }}
             >
               Back to Portfolio
@@ -454,7 +454,7 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
           {onNext && (
             <button
               onClick={onNext}
-              className="flex items-center gap-2 font-mono text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
+              className="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
               style={{ color: N }}
             >
               Next Case <ChevronRight size={12} />

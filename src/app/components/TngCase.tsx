@@ -15,7 +15,7 @@ const BODY = "#2E3A5C"
 function MonoTag({ children, accent = false }: { children: React.ReactNode; accent?: boolean }) {
   return (
     <span
-      className="font-mono text-[10px] font-semibold tracking-wider uppercase"
+      className="font-sans text-[10px] font-semibold tracking-wider uppercase"
       style={{ color: accent ? C : `${N}CC` }}
     >
       {children}
@@ -71,7 +71,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
       >
         <button
           onClick={onBack}
-          className="flex items-center gap-2 font-mono text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
+          className="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
           style={{ color: N }}
         >
           <ArrowLeft size={12} /> Back
@@ -94,10 +94,10 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
             { label: "Role", val: "Lead UI/UX Designer & Systems Integrator" },
           ].map(({ label, val }) => (
             <div key={label}>
-              <span className="font-mono text-[9px] tracking-widest uppercase block mb-0.5" style={{ color: "rgba(255,255,255,0.3)" }}>
+              <span className="font-sans text-[9px] tracking-widest uppercase block mb-0.5" style={{ color: "rgba(255,255,255,0.3)" }}>
                 {label}
               </span>
-              <span className="font-mono text-[10px] font-semibold" style={{ color: "rgba(255,255,255,0.7)" }}>
+              <span className="font-sans text-[10px] font-semibold" style={{ color: "rgba(255,255,255,0.7)" }}>
                 {val}
               </span>
             </div>
@@ -110,7 +110,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
 
         {/* Title block */}
         <div className="px-8 lg:px-16 py-16 lg:py-24">
-          <p className="font-mono text-[10px] font-semibold tracking-widest uppercase mb-6" style={{ color: C }}>
+          <p className="font-sans text-[10px] font-semibold tracking-widest uppercase mb-6" style={{ color: C }}>
             Case Study · 03
           </p>
           <h1
@@ -148,7 +148,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
               >
                 {s.val}
               </p>
-              <p className="font-mono text-[9px] font-semibold tracking-widest uppercase mb-1" style={{ color: C }}>
+              <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-1" style={{ color: C }}>
                 {s.label}
               </p>
               <p className="text-[10px] leading-snug" style={{ color: "rgba(255,255,255,0.35)" }}>{s.sub}</p>
@@ -186,7 +186,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
           <p className="font-display font-light leading-relaxed mb-10" style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.35rem)", color: N, letterSpacing: "-0.005em", lineHeight: 1.65, maxWidth: "680px" }}>
             Integrating the Great Tenang Madani micro-insurance policy directly into Touch 'n Go's high-concurrency e-wallet required a zero-friction checkout for millions of active users while enforcing strict fraud-prevention controls.
           </p>
-          <p className="font-mono text-[9px] font-semibold tracking-widest uppercase mb-5" style={{ color: `${N}99` }}>
+          <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-5" style={{ color: `${N}99` }}>
             [Key System & Business Constraints]
           </p>
           <div className="space-y-3">
@@ -235,7 +235,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
                       </div>
                       <div>
                         <p className="text-xs font-semibold" style={{ color: N }}>{step.label}</p>
-                        <p className="font-mono text-[9px] mt-0.5" style={{ color: `${N}AA` }}>{step.sub}</p>
+                        <p className="font-sans text-[9px] mt-0.5" style={{ color: `${N}AA` }}>{step.sub}</p>
                       </div>
                     </div>
                     {i < 2 && (
@@ -257,7 +257,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
               { num: "3.", title: "Multi-Version Design Iteration (V1 to V5 Evolution)", desc: "Managed continuous iterations across 5 design versions — refining copy nuances, adapting pricing updates, and synchronizing layout structures directly with Touch 'n Go's design and technical teams." },
             ].map(({ num, title, desc }) => (
               <div key={title} className="flex gap-5 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
-                <span className="font-mono text-[10px] font-semibold flex-shrink-0 mt-0.5" style={{ color: C }}>{num}</span>
+                <span className="font-sans text-[10px] font-semibold flex-shrink-0 mt-0.5" style={{ color: C }}>{num}</span>
                 <div>
                   <p className="text-sm font-semibold mb-1.5" style={{ color: N }}>{title}</p>
                   <p className="text-sm leading-relaxed" style={{ color: BODY, lineHeight: 1.75 }}>{desc}</p>
@@ -280,7 +280,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
             <div style={{ borderRight: `1px solid ${HAIR}` }}>
               <div className="px-6 py-4 flex items-center gap-2" style={{ borderBottom: `1px solid ${HAIR}`, backgroundColor: "#E8F5EC" }}>
                 <span className="w-2 h-2 rounded-full" style={{ backgroundColor: "#22c55e" }} />
-                <span className="font-mono text-[9px] font-semibold tracking-widest uppercase" style={{ color: "#166534" }}>
+                <span className="font-sans text-[9px] font-semibold tracking-widest uppercase" style={{ color: "#166534" }}>
                   [PTV ELIGIBLE · RM 0 FLOW]
                 </span>
               </div>
@@ -292,7 +292,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
                   "Policy confirmed — no e-wallet debit triggered",
                 ].map((step, i) => (
                   <div key={i} className="flex items-start gap-3">
-                    <span className="font-mono text-[9px] font-semibold flex-shrink-0 mt-0.5" style={{ color: "#22c55e" }}>
+                    <span className="font-sans text-[9px] font-semibold flex-shrink-0 mt-0.5" style={{ color: "#22c55e" }}>
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <p className="text-sm leading-relaxed" style={{ color: N, lineHeight: 1.7 }}>{step}</p>
@@ -305,7 +305,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
             <div>
               <div className="px-6 py-4 flex items-center gap-2" style={{ borderBottom: `1px solid ${HAIR}`, backgroundColor: `${TNG}0a` }}>
                 <span className="w-2 h-2 rounded-full" style={{ backgroundColor: TNG }} />
-                <span className="font-mono text-[9px] font-semibold tracking-widest uppercase" style={{ color: TNG }}>
+                <span className="font-sans text-[9px] font-semibold tracking-widest uppercase" style={{ color: TNG }}>
                   [STANDARD · TNG E-WALLET DEBIT]
                 </span>
               </div>
@@ -317,7 +317,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
                   "Policy confirmed — standard debit processed",
                 ].map((step, i) => (
                   <div key={i} className="flex items-start gap-3">
-                    <span className="font-mono text-[9px] font-semibold flex-shrink-0 mt-0.5" style={{ color: TNG }}>
+                    <span className="font-sans text-[9px] font-semibold flex-shrink-0 mt-0.5" style={{ color: TNG }}>
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <p className="text-sm leading-relaxed" style={{ color: N, lineHeight: 1.7 }}>{step}</p>
@@ -365,7 +365,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
                       {ver.v}
                     </p>
                     <span
-                      className="font-mono text-[8px] font-semibold tracking-widest uppercase mt-1 block"
+                      className="font-sans text-[8px] font-semibold tracking-widest uppercase mt-1 block"
                       style={{ color: i === 4 ? C : `${N}99` }}
                     >
                       {ver.status}
@@ -387,7 +387,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
               ))}
             </div>
           </div>
-          <p className="font-mono text-[9px] tracking-widest mt-3" style={{ color: `${N}80` }}>
+          <p className="font-sans text-[9px] tracking-widest mt-3" style={{ color: `${N}80` }}>
             [VERSION EVOLUTION: V1 ──► V5 PRODUCTION RELEASE] · 5 MAJOR ITERATIONS ACROSS 3 MONTHS
           </p>
         </div>
@@ -397,7 +397,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
         {/* 06 Design Process */}
         <div>
           <SectionTag num="06" label="Design Process & Systemic Pipeline" />
-          <p className="font-mono text-[9px] font-semibold tracking-widest uppercase mb-8" style={{ color: `${N}99` }}>
+          <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-8" style={{ color: `${N}99` }}>
             [METHODOLOGY: E-WALLET PWA INTEGRATION] · [GOVERNANCE: 5-STAGE VERSION CONTROL]
           </p>
 
@@ -508,7 +508,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
             {onPrev && (
               <button
                 onClick={onPrev}
-                className="flex items-center gap-2 font-mono text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
+                className="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
                 style={{ color: N }}
               >
                 <ArrowLeft size={12} /> Previous Case
@@ -516,7 +516,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
             )}
             <button
               onClick={onBack}
-              className="flex items-center gap-2 font-mono text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
+              className="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
               style={{ color: N }}
             >
               Back to Portfolio
@@ -525,7 +525,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
           {onNext && (
             <button
               onClick={onNext}
-              className="flex items-center gap-2 font-mono text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
+              className="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
               style={{ color: N }}
             >
               Next Case <ChevronRight size={12} />
