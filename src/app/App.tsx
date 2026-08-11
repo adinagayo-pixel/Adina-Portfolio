@@ -838,11 +838,16 @@ const CATEGORIES = [
   { id: "live",     label: "Live / Production",   filter: (p: Project) => ["LIVE", "LIVE INTERNAL", "PRODUCTION"].includes(p.status) },
 ]
 
+const DEFAULT_VISIBLE = 5
+
 function ProjectArchiveSection() {
   const [activeCat, setActiveCat] = useState("all")
+  const [showAll, setShowAll] = useState(false)
   const { ref, inView } = useInView()
   const activeDef = CATEGORIES.find((c) => c.id === activeCat)!
   const filtered = PROJECTS.filter(activeDef.filter)
+  const visible = showAll ? filtered : filtered.slice(0, DEFAULT_VISIBLE)
+  const hasMore = filtered.length > DEFAULT_VISIBLE
 
   return (
     <section id="archive" style={{ backgroundColor: S, borderTop: `1px solid ${HAIR}` }}>
@@ -879,7 +884,7 @@ function ProjectArchiveSection() {
             return (
               <button
                 key={cat.id}
-                onClick={() => setActiveCat(cat.id)}
+                onClick={() => { setActiveCat(cat.id); setShowAll(false) }}
                 className="flex items-center gap-1.5 px-5 py-2.5 font-sans text-[10px] font-semibold tracking-widest uppercase transition-all duration-150 focus:outline-none rounded-full cursor-pointer"
                 style={{
                   backgroundColor: isActive ? N : W,
@@ -920,15 +925,15 @@ function ProjectArchiveSection() {
           </div>
 
           {/* Table rows */}
-          <div className="pb-24 lg:pb-16">
-            {filtered.map((project, i) => {
+          <div>
+            {visible.map((project, i) => {
               const statusColor = STATUS_COLOR[project.status] ?? `${N}80`
               return (
                 <motion.div
                   key={project.id}
                   initial={{ opacity: 0, y: 10 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: Math.min(i * 0.025, 0.4), duration: 0.3 }}
+                  transition={{ delay: Math.min(i * 0.025, 0.3), duration: 0.3 }}
                   className="group"
                   style={{ borderBottom: `1px solid rgba(25, 36, 78, 0.04)` }}
                 >
@@ -997,6 +1002,47 @@ function ProjectArchiveSection() {
               )
             })}
           </div>
+
+          {/* Show all / Show less toggle */}
+          {hasMore && (
+            <div
+              className="flex flex-col items-center gap-3 py-8 px-8"
+              style={{ borderTop: `1px solid rgba(25, 36, 78, 0.05)` }}
+            >
+              {!showAll && (
+                <p className="font-sans text-[10px] tracking-widest text-[#19244E]/40 uppercase">
+                  Showing {DEFAULT_VISIBLE} of {filtered.length} projects
+                </p>
+              )}
+              <button
+                onClick={() => {
+                  if (showAll) {
+                    setShowAll(false)
+                    document.getElementById("archive")?.scrollIntoView({ behavior: "smooth", block: "start" })
+                  } else {
+                    setShowAll(true)
+                  }
+                }}
+                className="group flex items-center gap-2.5 px-6 py-3 rounded-full font-sans text-[10px] font-semibold tracking-widest uppercase transition-all duration-200 cursor-pointer"
+                style={{
+                  backgroundColor: showAll ? "transparent" : N,
+                  color: showAll ? `${N}80` : "white",
+                  border: `1px solid ${showAll ? "rgba(25,36,78,0.12)" : N}`,
+                  boxShadow: showAll ? "none" : "0 4px 16px -4px rgba(25,36,78,0.20)"
+                }}
+              >
+                {showAll ? (
+                  <>
+                    <span>↑ Show less</span>
+                  </>
+                ) : (
+                  <>
+                    <span>+ Show all {filtered.length} projects</span>
+                  </>
+                )}
+              </button>
+            </div>
+          )}
         </motion.div>
       </AnimatePresence>
     </section>
