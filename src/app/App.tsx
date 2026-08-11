@@ -343,9 +343,9 @@ function HeroSection() {
           className="relative flex flex-col justify-between overflow-hidden py-10"
           style={{ backgroundColor: "rgba(25, 36, 78, 0.015)" }}
         >
-          {/* Greeting ticker — top strip */}
-          <div className="flex flex-col items-center flex-shrink-0 mb-4">
-            <div className="flex items-center gap-2 bg-white px-4 py-1.5 rounded-full shadow-sm border border-[#19244E]/5">
+          {/* Greeting ticker — floats over photo */}
+          <div className="flex flex-col items-center flex-shrink-0 relative z-10 mb-[-20px]">
+            <div className="flex items-center gap-2 bg-white px-4 py-1.5 rounded-full shadow-md border border-[#19244E]/5">
               <span className="font-sans text-[9px] font-semibold tracking-widest text-[#19244E]/60 uppercase">[{LANGS[tick]}]</span>
               <AnimatePresence mode="wait">
                 <motion.span
@@ -363,7 +363,7 @@ function HeroSection() {
           </div>
 
           {/* Photo */}
-          <div className="flex-1 flex items-center justify-center px-8 py-4">
+          <div className="flex-1 flex items-center justify-center px-8 pt-0 pb-4">
             <div
               className="relative overflow-hidden w-full aspect-[3/4]"
               style={{ 
