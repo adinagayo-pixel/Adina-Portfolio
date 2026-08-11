@@ -334,28 +334,7 @@ function HeroSection() {
             </div>
           </div>
 
-          {/* Bottom status row */}
-          <div
-            className="mt-20 pt-6 flex items-center gap-8 flex-wrap"
-            style={{ borderTop: `1px solid rgba(25, 36, 78, 0.05)` }}
-          >
-            {[
-              { label: "Based in", val: "Surabaya, ID" },
-              { label: "Open to", val: "SG · MY · Remote" },
-              { label: "Available", val: "Q3 2026" },
-            ].map(({ label, val }) => (
-              <div key={label}>
-                <span className="font-sans text-[9px] font-semibold tracking-wider text-[#19244E]/50 uppercase">{label}</span>
-                <p className="text-sm font-medium mt-0.5" style={{ color: N }}>{val}</p>
-              </div>
-            ))}
-            <div className="ml-auto flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="font-sans text-[10px] font-semibold tracking-wider uppercase text-emerald-600">
-                Open to opportunities
-              </span>
-            </div>
-          </div>
+
         </div>
 
         {/* Right: photo + cycling greeting */}
