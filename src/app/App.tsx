@@ -902,15 +902,17 @@ function ContactSection() {
           </p>
           <div className="flex flex-wrap gap-3">
             <a
-              href="mailto:adina.gayo@design.id"
+              href="mailto:adinagayo@gmail.com"
               className="flex items-center gap-2 px-6 py-3 text-sm font-medium text-white transition-opacity duration-150 hover:opacity-85"
               style={{ backgroundColor: N, borderRadius: "4px" }}
             >
               <Mail size={14} /> Say Hello <ArrowRight size={14} />
             </a>
             <a
-              href="#"
-              className="flex items-center gap-2 px-6 py-3 text-sm font-medium transition-colors duration-150"
+              href="https://www.linkedin.com/in/adinafayzagayo/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-6 py-3 text-sm font-medium transition-colors duration-150 hover:bg-[#19244E]/5"
               style={{ border: `1px solid ${HAIR}`, color: N, borderRadius: "4px" }}
             >
               <ExternalLink size={14} /> LinkedIn
@@ -930,10 +932,10 @@ function ContactSection() {
           style={{ backgroundColor: S }}
         >
           {[
-            { label: "Email", value: "adina.gayo@design.id", sub: "Primary contact" },
-            { label: "Location", value: "Surabaya, Indonesia", sub: "Open to SG · MY relocation" },
-            { label: "Availability", value: "Q3 2026", sub: "Open to new opportunities" },
-            { label: "LinkedIn", value: "/in/adinagayo", sub: "Portfolio & recommendations" },
+            { label: "Email", value: "adinagayo@gmail.com", sub: "Primary contact", href: "mailto:adinagayo@gmail.com" },
+            { label: "Location", value: "Jakarta, Indonesia", sub: "Open for relocation" },
+            { label: "Availability", value: "Open to new opportunities", sub: "" },
+            { label: "LinkedIn", value: "/in/adinafayzagayo", sub: "Portfolio & recommendations", href: "https://www.linkedin.com/in/adinafayzagayo/" },
           ].map((item, i) => (
             <div
               key={item.label}
@@ -941,8 +943,20 @@ function ContactSection() {
               style={{ borderBottom: i < 3 ? `1px solid ${HAIR}` : "none" }}
             >
               <MonoTag>[{item.label.toUpperCase()}]</MonoTag>
-              <p className="text-base font-medium mt-2 mb-0.5" style={{ color: N }}>{item.value}</p>
-              <p className="text-xs" style={{ color: `${N}AA` }}>{item.sub}</p>
+              {item.href ? (
+                <a
+                  href={item.href}
+                  target={item.label === "LinkedIn" ? "_blank" : undefined}
+                  rel={item.label === "LinkedIn" ? "noopener noreferrer" : undefined}
+                  className="block text-base font-medium mt-2 mb-0.5 hover:opacity-75 transition-opacity"
+                  style={{ color: N }}
+                >
+                  {item.value}
+                </a>
+              ) : (
+                <p className="text-base font-medium mt-2 mb-0.5" style={{ color: N }}>{item.value}</p>
+              )}
+              {item.sub && <p className="text-xs" style={{ color: `${N}AA` }}>{item.sub}</p>}
             </div>
           ))}
         </motion.div>

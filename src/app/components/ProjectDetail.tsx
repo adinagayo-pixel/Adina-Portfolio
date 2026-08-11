@@ -1226,7 +1226,7 @@ export default function ProjectDetail({ onBack, onNext, onPrev }: ProjectDetailP
 
             <div className="flex gap-3 flex-wrap">
               <a
-                href="mailto:adina.fayza@email.com"
+                href="mailto:adinagayo@gmail.com"
                 className="flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold text-white border-2 border-white/20 hover:border-white/50 transition-all duration-300"
               >
                 <ExternalLink size={14} /> Discuss This Work
