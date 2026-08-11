@@ -293,11 +293,6 @@ function HeroSection() {
         <div className="flex flex-col justify-between px-8 lg:px-20 py-20 lg:py-24">
           {/* ID tag */}
           <div>
-            <div className="mb-12 lg:mb-16">
-              <span className="font-sans text-[10px] font-semibold tracking-[0.2em] text-[#19244E]/60">
-                [AFG-2026 // SENIOR STRATEGIC DESIGNER]
-              </span>
-            </div>
 
             {/* Big editorial headline */}
             <h1
