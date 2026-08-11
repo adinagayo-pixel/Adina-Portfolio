@@ -1151,11 +1151,10 @@ function ContactSection() {
 function Footer() {
   return (
     <footer
-      className="px-8 lg:px-16 py-6 flex flex-col sm:flex-row items-center justify-between gap-3"
+      className="px-8 lg:px-16 py-6 flex items-center justify-center"
       style={{ borderTop: `1px solid ${HAIR}`, backgroundColor: W }}
     >
-      <MonoTag>© 2026 ADINA FAYZA GAYO · STRATEGIC PRODUCT DESIGNER</MonoTag>
-      <MonoTag>M.MT · ITS SURABAYA · SG / MY / ID</MonoTag>
+      <MonoTag>© 2026 Adina Fayza Gayo</MonoTag>
     </footer>
   )
 }
