@@ -430,26 +430,39 @@ function HeroSection() {
 
 // ─── FEATURED WORK ─────────────────────────────────────────────────────────────
 function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) => void }) {
-  const { ref, inView } = useInView(0.06)
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
+  const [isHoveringCanvas, setIsHoveringCanvas] = useState(false)
+  const canvasRef = useRef<HTMLDivElement>(null)
+
+  const activeProject = FEATURED[activeIndex]
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!canvasRef.current) return
+    const rect = canvasRef.current.getBoundingClientRect()
+    setMousePos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    })
+  }
 
   return (
-    <section id="work" style={{ backgroundColor: W, borderTop: `1px solid rgba(25, 36, 78, 0.05)` }}>
+    <section id="work" className="relative transition-all duration-300" style={{ backgroundColor: "#19244E" }}>
       {/* Header */}
       <div
-        ref={ref}
         className="px-8 lg:px-16 py-10 flex items-center gap-6"
-        style={{ borderBottom: `1px solid rgba(25, 36, 78, 0.05)` }}
+        style={{ borderBottom: `1px solid rgba(255, 255, 255, 0.08)` }}
       >
-        <span className="font-mono text-[10px] font-semibold tracking-[0.2em] text-[#19244E]/60">[03 // SELECTED WORK]</span>
-        <div className="flex-1 h-px" style={{ backgroundColor: "rgba(25, 36, 78, 0.05)" }} />
-        <span className="font-mono text-[10px] font-semibold tracking-[0.15em] text-[#19244E]/60">ENTERPRISE · B2B · REGIONAL</span>
+        <span className="font-mono text-[10px] font-semibold tracking-[0.2em] text-white/60">[03 // SELECTED WORK]</span>
+        <div className="flex-1 h-px bg-white/10" />
+        <span className="font-mono text-[10px] font-semibold tracking-[0.15em] text-white/60">ENTERPRISE · B2B · REGIONAL</span>
       </div>
 
       {/* Section intro */}
-      <div className="px-8 lg:px-16 py-16 lg:py-24" style={{ borderBottom: `1px solid rgba(25, 36, 78, 0.05)` }}>
+      <div className="px-8 lg:px-16 py-16 lg:py-20" style={{ borderBottom: `1px solid rgba(255, 255, 255, 0.08)` }}>
         <h2
-          className="font-display font-light leading-tight"
-          style={{ fontSize: "clamp(2.4rem, 4.5vw, 4rem)", color: N, letterSpacing: "-0.02em", maxWidth: "680px" }}
+          className="font-display font-light leading-tight text-white"
+          style={{ fontSize: "clamp(2.4rem, 4.5vw, 4rem)", letterSpacing: "-0.02em", maxWidth: "680px" }}
         >
           Projects that<br />
           define{" "}
@@ -457,105 +470,264 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
         </h2>
       </div>
 
-      {/* Project rows */}
-      {FEATURED.map((project, i) => (
-        <motion.div
-          key={project.num}
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: i * 0.1, duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-20 p-8 lg:p-20 group cursor-pointer border-b border-[#19244E]/5"
-          onClick={() => onOpenProject(project.projectId)}
-        >
-          {/* Image side — Left rounded card mockup container */}
-          <div
-            className="relative overflow-hidden w-full aspect-[16/11] rounded-2xl border border-[#19244E]/5 shadow-sm bg-[#F9FAFB] flex items-center justify-center p-8"
-          >
-            <motion.div
-              className="absolute inset-0 w-full h-full"
-              whileHover={{ scale: 1.03 }}
-              transition={{ duration: 0.6 }}
-            >
-              <ImageWithFallback
-                src={project.thumb}
-                alt={`${project.name} — product mockup`}
-                className="w-full h-full object-cover object-center rounded-xl"
-                style={{ filter: "grayscale(3%)" }}
-              />
-            </motion.div>
-            <div
-              className="absolute inset-0 bg-gradient-to-b from-[#19244E]/15 via-transparent to-[#19244E]/30 rounded-xl"
-            />
-            <span
-              className="absolute bottom-6 left-6 font-display font-light select-none pointer-events-none text-white/70"
-              style={{ fontSize: "clamp(3rem, 5vw, 4.5rem)", lineHeight: 1, letterSpacing: "-0.04em" }}
-            >
-              {project.num}
-            </span>
-            <div
-              className="absolute top-6 right-6 px-3 py-1"
-              style={{ backgroundColor: "rgba(25, 36, 78, 0.78)", backdropFilter: "blur(8px)", borderRadius: "6px" }}
-            >
-              <span className="font-mono text-[9px] font-semibold tracking-widest uppercase text-white">
-                {project.location} · {project.year}
-              </span>
-            </div>
+      {/* Showcase container */}
+      <div className="px-8 lg:px-16">
+        {/* Desktop Showcase */}
+        <div className="hidden lg:grid lg:grid-cols-[300px_1fr_320px] gap-10 py-16 min-h-[580px]">
+          {/* Left Column: Project Selector */}
+          <div className="flex flex-col gap-6 justify-center pr-6 border-r border-white/10">
+            {FEATURED.map((project, i) => {
+              const isActive = i === activeIndex
+              return (
+                <button
+                  key={project.projectId}
+                  onClick={() => setActiveIndex(i)}
+                  onMouseEnter={() => setActiveIndex(i)}
+                  className="group text-left transition-all duration-300 focus:outline-none"
+                >
+                  <div className="flex items-start gap-3">
+                    <span
+                      className="font-mono text-[10px] tracking-wider transition-colors duration-300 pt-1"
+                      style={{ color: isActive ? C : "rgba(255, 255, 255, 0.3)" }}
+                    >
+                      [{project.num}]
+                    </span>
+                    <span
+                      className="text-base font-semibold transition-all duration-300"
+                      style={{
+                        color: isActive ? "#FFFFFF" : "rgba(255, 255, 255, 0.4)",
+                        transform: isActive ? "translateX(4px)" : "translateX(0px)",
+                      }}
+                    >
+                      {project.client}
+                    </span>
+                  </div>
+                  <span
+                    className="block text-[11px] mt-1 pl-7 transition-colors duration-300"
+                    style={{ color: isActive ? "rgba(255, 255, 255, 0.6)" : "rgba(255, 255, 255, 0.2)" }}
+                  >
+                    {project.name}
+                  </span>
+                </button>
+              )
+            })}
           </div>
 
-          {/* Content side */}
-          <div className="flex flex-col justify-between py-4">
-            <div>
-              <div className="flex flex-wrap items-center gap-1.5 mb-6">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="font-mono text-[9px] font-semibold tracking-widest uppercase px-3 py-1 bg-[#19244E]/5 text-[#19244E]/75 rounded-full"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <p className="font-mono text-[10px] font-semibold tracking-wider text-[#19244E]/55 uppercase mb-3">
-                {project.client}
-              </p>
-              <h3
-                className="font-display font-semibold mb-4 leading-snug"
-                style={{ fontSize: "clamp(1.6rem, 2.4vw, 2.2rem)", color: N, letterSpacing: "-0.015em" }}
-              >
-                {project.name}
-              </h3>
-              <p className="text-sm leading-relaxed mb-8 font-sans" style={{ color: `${N}EE`, lineHeight: 1.8 }}>
-                {project.headline}
-              </p>
+          {/* Center Column: Figma Canvas */}
+          <div
+            ref={canvasRef}
+            onMouseMove={handleMouseMove}
+            onMouseEnter={() => setIsHoveringCanvas(true)}
+            onMouseLeave={() => setIsHoveringCanvas(false)}
+            className="relative flex items-center justify-center p-12 overflow-hidden rounded-2xl bg-[#111936] border border-white/5 cursor-crosshair select-none aspect-[16/11]"
+            style={{
+              backgroundImage: "radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px)",
+              backgroundSize: "16px 16px",
+            }}
+          >
+            {/* Figma frame label */}
+            <div className="absolute top-4 left-4 bg-white/5 border border-white/10 px-2 py-0.5 rounded text-[8px] font-mono tracking-wider text-white/50">
+              # Frame // {activeProject.projectId.toUpperCase()} // Zoom 100%
             </div>
 
-            {/* Metrics row */}
-            <div>
-              <div className="flex flex-wrap gap-8 mb-8">
-                {project.metrics.map((m) => (
-                  <div key={m.sub}>
-                    <p className="font-display font-medium mb-0.5" style={{ fontSize: "1.6rem", color: N, letterSpacing: "-0.02em" }}>
-                      {m.val}
-                    </p>
-                    <span className="font-mono text-[9px] font-semibold tracking-widest text-[#19244E]/50 uppercase">{m.sub}</span>
-                  </div>
-                ))}
+            {/* Canvas Dimensions tag */}
+            <div className="absolute bottom-4 right-4 bg-white/5 border border-white/10 px-2 py-0.5 rounded text-[8px] font-mono tracking-wider text-white/50">
+              W: 1280 px  H: 880 px  X: 240 px  Y: 120 px
+            </div>
+
+            {/* Active Figma Frame Card */}
+            <motion.div
+              key={activeProject.projectId}
+              initial={{ scale: 0.98, opacity: 0.9 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.3 }}
+              onClick={() => onOpenProject(activeProject.projectId)}
+              className="relative w-full aspect-[16/11] max-w-[420px] rounded-xl border border-white/10 shadow-2xl bg-[#1c2446] p-4 flex flex-col justify-between group cursor-pointer transition-all duration-300 hover:scale-[1.02]"
+            >
+              <div className="relative flex-1 rounded-lg overflow-hidden border border-white/5 bg-[#19244E]/40 flex items-center justify-center">
+                <ImageWithFallback
+                  src={activeProject.thumb}
+                  alt={`${activeProject.name} — mockup`}
+                  className="w-full h-full object-cover object-center rounded-lg group-hover:scale-[1.01] transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#19244E]/30" />
               </div>
-              <div className="w-full h-px mb-6" style={{ backgroundColor: "rgba(25, 36, 78, 0.05)" }} />
-              <div className="flex items-center justify-between">
-                <span className="font-mono text-[10px] font-semibold tracking-widest uppercase text-[#19244E]/85">
-                  View Case Study
+
+              {/* Frame footer bar */}
+              <div className="mt-3 flex items-center justify-between">
+                <span className="font-mono text-[9px] text-white/60 tracking-wider">
+                  {activeProject.num} · {activeProject.location} · {activeProject.year}
                 </span>
-                <div
-                  className="w-9 h-9 flex items-center justify-center transition-all duration-200 group-hover:bg-[#19244E] group-hover:text-white rounded-full text-[#19244E] border border-[#19244E]/10 bg-white"
+                <span className="font-mono text-[8px] text-white/30 tracking-widest uppercase">
+                  Click to open
+                </span>
+              </div>
+
+              {/* Hover visual highlight */}
+              <div className="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-[#DB3E8C]/40 pointer-events-none transition-all duration-300" />
+            </motion.div>
+
+            {/* Custom Figma cursor follower */}
+            <AnimatePresence>
+              {isHoveringCanvas && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.15 }}
+                  className="absolute pointer-events-none z-30"
+                  style={{
+                    left: mousePos.x,
+                    top: mousePos.y,
+                    transform: "translate(-2px, -2px)",
+                  }}
                 >
-                  <ArrowUpRight size={14} />
+                  {/* Custom mouse cursor shape */}
+                  <svg width="14" height="19" viewBox="0 0 14 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 0V18.1186L4.76807 13.3506L10.2606 18.8431L13.1119 15.9918L7.65306 10.533H13.1119L0 0Z" fill={C} />
+                  </svg>
+                  {/* User badge label */}
+                  <div
+                    className="ml-4 -mt-1 px-1.5 py-0.5 rounded text-[8px] font-mono font-semibold text-white shadow-md"
+                    style={{ backgroundColor: C }}
+                  >
+                    Adina
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* Right Column: Project Specs */}
+          <div className="flex flex-col justify-center pl-6 border-l border-white/10 min-h-[480px]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeProject.projectId}
+                initial={{ opacity: 0, x: 10 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -10 }}
+                transition={{ duration: 0.25 }}
+                className="flex flex-col justify-between h-full py-4"
+              >
+                <div>
+                  {/* Tags */}
+                  <div className="flex flex-wrap items-center gap-1.5 mb-6">
+                    {activeProject.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="font-mono text-[8px] font-semibold tracking-widest uppercase px-2 py-0.5 bg-white/10 text-white/80 rounded"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  <span className="font-mono text-[9px] font-semibold tracking-wider text-white/50 uppercase block mb-1">
+                    CLIENT: {activeProject.client}
+                  </span>
+                  <h3 className="font-display font-semibold mb-4 leading-snug text-white" style={{ fontSize: "1.6rem", letterSpacing: "-0.01em" }}>
+                    {activeProject.name}
+                  </h3>
+                  <p className="text-[12px] leading-relaxed mb-6 font-sans text-white/70">
+                    {activeProject.headline}
+                  </p>
+                </div>
+
+                {/* Metrics/Stats */}
+                <div>
+                  <div className="flex flex-col gap-4 mb-6">
+                    {activeProject.metrics.map((m) => (
+                      <div key={m.sub} className="flex items-baseline justify-between border-b border-white/5 pb-2">
+                        <span className="font-mono text-[9px] font-semibold tracking-widest text-white/40 uppercase">{m.sub}</span>
+                        <span className="font-display font-medium text-white text-base" style={{ color: C }}>
+                          {m.val}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <button
+                    onClick={() => onOpenProject(activeProject.projectId)}
+                    className="group flex items-center justify-between w-full px-4 py-2.5 rounded border border-white/10 hover:border-white/30 text-white bg-white/5 transition-all duration-200"
+                  >
+                    <span className="font-mono text-[9px] font-semibold tracking-widest uppercase text-white/80 group-hover:text-white">
+                      Open Case Study
+                    </span>
+                    <ArrowUpRight size={12} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </button>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
+
+        {/* Mobile Showcase */}
+        <div className="block lg:hidden space-y-12 py-12">
+          {FEATURED.map((project) => (
+            <div
+              key={project.projectId}
+              onClick={() => onOpenProject(project.projectId)}
+              className="group relative rounded-2xl bg-[#111936] border border-white/5 p-5 cursor-pointer shadow-lg"
+            >
+              {/* Figma frame label */}
+              <div className="flex justify-between items-center mb-4">
+                <span className="font-mono text-[8px] text-white/40 tracking-wider">
+                  # Frame: {project.projectId.toUpperCase()}
+                </span>
+                <span className="font-mono text-[8px] text-white/40 tracking-wider">
+                  [{project.num}]
+                </span>
+              </div>
+
+              {/* Image Frame */}
+              <div className="relative aspect-[16/11] rounded-xl border border-white/10 bg-[#1c2446] overflow-hidden mb-4 p-2 flex items-center justify-center">
+                <div className="relative w-full h-full rounded-lg overflow-hidden">
+                  <ImageWithFallback
+                    src={project.thumb}
+                    alt={project.name}
+                    className="w-full h-full object-cover object-center rounded-lg"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#19244E]/30" />
+                </div>
+              </div>
+
+              {/* Metadata */}
+              <div>
+                <div className="flex flex-wrap gap-1.5 mb-3">
+                  {project.tags.slice(0, 3).map((tag) => (
+                    <span
+                      key={tag}
+                      className="font-mono text-[7px] font-semibold tracking-widest uppercase px-2 py-0.5 bg-white/5 text-white/60 rounded"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <p className="font-mono text-[8px] font-semibold text-white/40 uppercase mb-0.5">
+                  {project.client}
+                </p>
+                <h3 className="font-display font-semibold text-white text-lg mb-2">
+                  {project.name}
+                </h3>
+                <p className="text-xs leading-relaxed text-white/70 mb-4">
+                  {project.headline}
+                </p>
+
+                {/* Metrics */}
+                <div className="grid grid-cols-3 gap-2 border-t border-white/5 pt-4">
+                  {project.metrics.map((m) => (
+                    <div key={m.sub} className="text-center">
+                      <span className="font-display text-sm font-semibold block text-white" style={{ color: C }}>{m.val}</span>
+                      <span className="font-mono text-[7px] text-white/40 uppercase tracking-wider">{m.sub}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
-          </div>
-        </motion.div>
-      ))}
+          ))}
+        </div>
+      </div>
     </section>
   )
 }
