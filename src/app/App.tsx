@@ -499,7 +499,7 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
                         transform: isActive ? "translateX(4px)" : "translateX(0px)",
                       }}
                     >
-                      {project.client}
+                      {project.name}
                     </span>
                   </div>
                 </button>
