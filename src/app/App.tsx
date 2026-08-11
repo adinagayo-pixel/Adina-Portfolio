@@ -513,7 +513,7 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
             onMouseMove={handleMouseMove}
             onMouseEnter={() => setIsHoveringCanvas(true)}
             onMouseLeave={() => setIsHoveringCanvas(false)}
-            className="relative flex items-center justify-center p-12 overflow-hidden rounded-2xl bg-[#111936] border border-white/5 cursor-crosshair select-none aspect-[16/11]"
+            className="relative flex items-center justify-center p-12 overflow-hidden rounded-2xl bg-[#111936] border border-white/5 cursor-crosshair select-none h-full min-h-[480px]"
             style={{
               backgroundImage: "radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px)",
               backgroundSize: "16px 16px",
