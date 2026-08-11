@@ -502,12 +502,6 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
                       {project.client}
                     </span>
                   </div>
-                  <span
-                    className="block text-[11px] mt-1 pl-7 transition-colors duration-300"
-                    style={{ color: isActive ? "rgba(255, 255, 255, 0.6)" : "rgba(255, 255, 255, 0.2)" }}
-                  >
-                    {project.name}
-                  </span>
                 </button>
               )
             })}
