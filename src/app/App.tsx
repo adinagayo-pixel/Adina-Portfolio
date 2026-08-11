@@ -3,7 +3,6 @@ import { motion, useMotionValue, useSpring, AnimatePresence } from "motion/react
 import adinaPhotoAbout from "@/imports/ChatGPT_Image_Aug_3__2026__03_31_22_PM.png"
 import projectThumb1 from "@/imports/image-7.png"
 import projectThumb2 from "@/imports/image-8.png"
-import projectThumb3 from "@/imports/image-9.png"
 import projectThumb4 from "@/imports/image-7.png"
 import projectThumb5 from "@/imports/image-9.png"
 import projectThumb6 from "@/imports/image-8.png"
@@ -14,7 +13,6 @@ import {
   Users, CheckCircle, Coins, Bot, LayoutGrid,
   ArrowUpRight, ChevronRight,
 } from "lucide-react"
-import ProjectDetail from "./components/ProjectDetail"
 import SunwayCase from "./components/SunwayCase"
 import GegiCase from "./components/GegiCase"
 import TngCase from "./components/TngCase"
@@ -57,15 +55,7 @@ const FEATURED = [
     thumb: projectThumb2,
   },
   {
-    num: "03", name: "High-Efficiency Design Framework", client: "M.MT Thesis — ITS Surabaya",
-    location: "ID", year: "2024", tags: ["AI-Assisted Workflow", "Academic Research", "Systems Thinking"],
-    headline: "A design system integration and rapid prototyping methodology backed by S2 research at ITS Surabaya, proving 70% faster delivery cycles.",
-    metrics: [{ val: "70%", sub: "Faster Delivery" }, { val: "3", sub: "Product Cycles" }, { val: "M.MT", sub: "Thesis Published" }],
-    projectId: "ai",
-    thumb: projectThumb3,
-  },
-  {
-    num: "04", name: "Digital Transformation & AI Retail", client: "Pro Archery Jakarta",
+    num: "03", name: "Digital Transformation & AI Retail", client: "Pro Archery Jakarta",
     location: "ID", year: "2025", tags: ["AI Prompt-to-Code", "E-Commerce", "Admin POS"],
     headline: "An end-to-end digital ecosystem scaling a physical archery retailer into an Asia-wide e-commerce platform featuring AI-accelerated prototyping.",
     metrics: [{ val: "24h", sub: "POC Delivery" }, { val: "4", sub: "Portals Built" }, { val: "0", sub: "Figma Wireframes" }],
@@ -73,7 +63,7 @@ const FEATURED = [
     thumb: projectThumb4,
   },
   {
-    num: "05", name: "National Quick Count & Monitoring", client: "Indonesian Political Party",
+    num: "04", name: "National Quick Count & Monitoring", client: "Indonesian Political Party",
     location: "ID", year: "2024", tags: ["Public Sector", "Civic Tech", "Real-Time CMS"],
     headline: "An end-to-end multi-level election monitoring system for Indonesia's 2024 Presidential Election, tracking vote tabulation across 38 provinces in real-time.",
     metrics: [{ val: "820K+", sub: "TPS Polling Stations" }, { val: "38", sub: "Provinces Tracked" }, { val: "48h", sub: "Critical Window" }],
@@ -81,7 +71,7 @@ const FEATURED = [
     thumb: projectThumb5,
   },
   {
-    num: "06", name: "Medical Diagnostics & Field Sales Revamp", client: "Fonterra × Anlene",
+    num: "05", name: "Medical Diagnostics & Field Sales Revamp", client: "Fonterra × Anlene",
     location: "ID", year: "2023", tags: ["Health Tech", "Field Sales Enablement", "Diagnostic Matrix"],
     headline: "Translating clinical diagnostic data from GE Achilles bone scanners and Omron devices into personalized health passports and automated WhatsApp PDF delivery.",
     metrics: [{ val: "3mo", sub: "Delivery Sprint" }, { val: "2", sub: "Medical Devices" }, { val: "4-tier", sub: "Health Matrix" }],
@@ -89,7 +79,7 @@ const FEATURED = [
     thumb: projectThumb6,
   },
   {
-    num: "07", name: "100K-Player Live Tournament Platform", client: "mySalam Malaysia × myKawan",
+    num: "06", name: "100K-Player Live Tournament Platform", client: "mySalam Malaysia × myKawan",
     location: "MY", year: "2025", tags: ["Gamification", "Multiplayer", "Gemini AI Audio"],
     headline: "A Kahoot-inspired live multiplayer tournament platform built for mySalam Malaysia's #BijakWang Challenge, supporting 100,000 concurrent players.",
     metrics: [{ val: "100K", sub: "Live Players" }, { val: "3-Player", sub: "Squad Teams" }, { val: "Gemini", sub: "AI Audio Engine" }],
@@ -980,7 +970,7 @@ function Footer() {
 
 // ─── APP ──────────────────────────────────────────────────────────────────────
 export default function App() {
-  const [currentView, setCurrentView] = useState<"home" | "project-detail" | "sunway-case" | "gegi-case" | "tng-case" | "archery-case" | "election-case" | "anlene-case" | "bijakwang-case">("home")
+  const [currentView, setCurrentView] = useState<"home" | "sunway-case" | "gegi-case" | "tng-case" | "archery-case" | "election-case" | "anlene-case" | "bijakwang-case">("home")
   const activeSection = useScrollSpy(["home", "work", "process", "archive", "contact"])
 
   if (currentView === "bijakwang-case") {
@@ -1015,7 +1005,7 @@ export default function App() {
       <ProArcheryCase
         onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
         onNext={() => { setCurrentView("election-case"); window.scrollTo({ top: 0 }) }}
-        onPrev={() => { setCurrentView("project-detail"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { setCurrentView("tng-case"); window.scrollTo({ top: 0 }) }}
       />
     )
   }
@@ -1023,7 +1013,7 @@ export default function App() {
     return (
       <TngCase
         onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
-        onNext={() => { setCurrentView("project-detail"); window.scrollTo({ top: 0 }) }}
+        onNext={() => { setCurrentView("archery-case"); window.scrollTo({ top: 0 }) }}
         onPrev={() => { setCurrentView("gegi-case"); window.scrollTo({ top: 0 }) }}
       />
     )
@@ -1047,23 +1037,12 @@ export default function App() {
     )
   }
 
-  if (currentView === "project-detail") {
-    return (
-      <ProjectDetail
-        onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
-        onNext={() => { setCurrentView("archery-case"); window.scrollTo({ top: 0 }) }}
-        onPrev={() => { setCurrentView("tng-case"); window.scrollTo({ top: 0 }) }}
-      />
-    )
-  }
-
   return (
     <div className="min-h-screen overflow-x-hidden" style={{ backgroundColor: S }}>
       <HeroSection />
       <FeaturedWorkSection onOpenProject={(id) => {
         if (id === "gegi") setCurrentView("gegi-case")
         if (id === "tng") setCurrentView("tng-case")
-        if (id === "ai") setCurrentView("project-detail")
         if (id === "archery") setCurrentView("archery-case")
         if (id === "election") setCurrentView("election-case")
         if (id === "anlene") setCurrentView("anlene-case")
