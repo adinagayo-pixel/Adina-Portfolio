@@ -201,7 +201,7 @@ function FloatingDock({ activeSection }: { activeSection: string }) {
             key={entry.id}
             onClick={() => scrollTo(entry.id)}
             aria-label={entry.label}
-            className="relative flex flex-col items-center gap-1.5 px-5 py-3 transition-colors duration-150 focus:outline-none"
+            className="relative flex flex-col items-center gap-1.5 px-5 py-3 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] focus-visible:ring-inset rounded"
             style={{
               borderRight: i < DOCK.length - 1 ? `1px solid ${HAIR}` : "none",
               color: isActive ? N : `${N}BB`,
@@ -270,7 +270,7 @@ function HeroSection() {
             Resume
           </a>
           <a
-            href="mailto:adina.gayo@design.id"
+            href="mailto:adinagayo@gmail.com"
             className="font-sans text-[10px] font-semibold tracking-widest uppercase px-4 py-2.5 transition-all duration-150"
             style={{ border: `1px solid ${N}`, color: N, borderRadius: "6px" }}
             onMouseEnter={(e) => {
@@ -463,7 +463,9 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
                   key={project.projectId}
                   onClick={() => setActiveIndex(i)}
                   onMouseEnter={() => setActiveIndex(i)}
-                  className="group text-left transition-all duration-300 focus:outline-none"
+                  aria-label={`View project: ${project.name}`}
+                  aria-pressed={i === activeIndex}
+                  className="group text-left transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] rounded px-1"
                 >
                   <div className="flex items-start gap-3">
                     <span
@@ -516,7 +518,11 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.3 }}
               onClick={() => onOpenProject(activeProject.projectId)}
-              className="relative w-full aspect-[16/11] max-w-[420px] rounded-xl border border-white/10 shadow-2xl bg-[#1c2446] p-4 flex flex-col justify-between group cursor-pointer transition-all duration-300 hover:scale-[1.02]"
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onOpenProject(activeProject.projectId) }}
+              role="button"
+              tabIndex={0}
+              aria-label={`Open case study: ${activeProject.name}`}
+              className="relative w-full aspect-[16/11] max-w-[420px] rounded-xl border border-white/10 shadow-2xl bg-[#1c2446] p-4 flex flex-col justify-between group cursor-pointer transition-all duration-300 hover:scale-[1.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C]"
             >
               <div className="relative flex-1 rounded-lg overflow-hidden border border-white/5 bg-[#19244E]/40 flex items-center justify-center">
                 <ImageWithFallback
@@ -589,7 +595,7 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
                     {activeProject.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="font-sans text-[7px] font-semibold tracking-widest uppercase px-1.5 py-0.5 bg-white/10 text-white/70 rounded"
+                        className="font-sans text-[9px] font-semibold tracking-widest uppercase px-1.5 py-0.5 bg-white/10 text-white/70 rounded"
                       >
                         {tag}
                       </span>
@@ -641,7 +647,11 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
             <div
               key={project.projectId}
               onClick={() => onOpenProject(project.projectId)}
-              className="group relative rounded-2xl bg-[#111936] border border-white/5 p-5 cursor-pointer shadow-lg"
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onOpenProject(project.projectId) }}
+              role="button"
+              tabIndex={0}
+              aria-label={`Open case study: ${project.name}`}
+              className="group relative rounded-2xl bg-[#111936] border border-white/5 p-5 cursor-pointer shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C]"
             >
               {/* Figma frame label */}
               <div className="flex justify-between items-center mb-4">
@@ -671,7 +681,7 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
                   {project.tags.slice(0, 3).map((tag) => (
                     <span
                       key={tag}
-                      className="font-sans text-[7px] font-semibold tracking-widest uppercase px-2 py-0.5 bg-white/5 text-white/60 rounded"
+                      className="font-sans text-[9px] font-semibold tracking-widest uppercase px-2 py-0.5 bg-white/5 text-white/60 rounded"
                     >
                       {tag}
                     </span>
@@ -693,7 +703,7 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
                   {project.metrics.map((m) => (
                     <div key={m.sub} className="text-center">
                       <span className="font-display text-sm font-semibold block text-white" style={{ color: C }}>{m.val}</span>
-                      <span className="font-sans text-[7px] text-white/40 uppercase tracking-wider">{m.sub}</span>
+                      <span className="font-sans text-[9px] text-white/40 uppercase tracking-wider">{m.sub}</span>
                     </div>
                   ))}
                 </div>
@@ -880,7 +890,7 @@ function ProjectArchiveSection() {
               <button
                 key={cat.id}
                 onClick={() => { setActiveCat(cat.id); setShowAll(false) }}
-                className="flex items-center gap-1.5 px-5 py-2.5 font-sans text-[10px] font-semibold tracking-widest uppercase transition-all duration-150 focus:outline-none rounded-full cursor-pointer"
+                className="flex items-center gap-1.5 px-5 py-2.5 font-sans text-[10px] font-semibold tracking-widest uppercase transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] rounded-full cursor-pointer"
                 style={{
                   backgroundColor: isActive ? N : W,
                   color: isActive ? W : `${N}DD`,
