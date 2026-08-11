@@ -41,58 +41,58 @@ interface Project {
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const FEATURED = [
   {
-    num: "01", name: "Insurance Agent Portal", client: "Grab Financial Group",
-    location: "SG", year: "2024", tags: ["Cross-Border", "Enterprise"],
-    headline: "Rebuilding trust at scale for 12,000+ insurance agents across SEA.",
-    metrics: [{ val: "12K", sub: "Agents Served" }, { val: "45%", sub: "Faster Onboarding" }, { val: "Live", sub: "In Production" }],
-    projectId: "grab",
+    num: "01", name: "Gamified CI Evaluation Campaign", client: "GEGI Singapore",
+    location: "SG", year: "2026", tags: ["Gamified Evaluation", "Singlish Persona", "Campaign"],
+    headline: "A rapid-sprint interactive campaign tool combining scroll-based gamified evaluation, localized Singlish persona mechanics, and AEM integration.",
+    metrics: [{ val: "2wk", sub: "Sprint Execution" }, { val: "7Q", sub: "Question Matrix" }, { val: "4", sub: "Persona Tiers" }],
+    projectId: "gegi",
     thumb: projectThumb1,
   },
   {
-    num: "02", name: "Multi-Brand Architecture", client: "Touch 'n Go × GEGM",
-    location: "MY", year: "2024", tags: ["Multi-Brand", "B2B"],
-    headline: "One component base. Three distinct brand identities. Zero visual leakage.",
-    metrics: [{ val: "3", sub: "Brand Identities" }, { val: "60%", sub: "Dev Velocity ↑" }, { val: "Tokens", sub: "Token-based" }],
+    num: "02", name: "Seamless Micro-Insurance Integration", client: "Touch 'n Go × GEGM",
+    location: "MY", year: "2024", tags: ["PWA / SSO", "eKYC Data Mapping", "B2C / FinTech"],
+    headline: "An embedded Progressive Web Application (PWA) architecture built inside Malaysia's leading e-wallet ecosystem, integrating native SSO and eKYC.",
+    metrics: [{ val: "V5", sub: "Production Release" }, { val: "3mo", sub: "Timeline" }, { val: "RM0", sub: "PTV Checkout" }],
     projectId: "tng",
     thumb: projectThumb2,
   },
   {
-    num: "03", name: "AI-Accelerated Workflow", client: "M.MT Thesis — ITS Surabaya",
-    location: "ID", year: "2024", tags: ["AI-Assisted", "Research"],
-    headline: "A documented methodology that cut delivery cycles by 70% across three enterprise products.",
-    metrics: [{ val: "70%", sub: "Faster Delivery" }, { val: "3", sub: "Product Cycles" }, { val: "M.MT", sub: "Published" }],
+    num: "03", name: "High-Efficiency Design Framework", client: "M.MT Thesis — ITS Surabaya",
+    location: "ID", year: "2024", tags: ["AI-Assisted Workflow", "Academic Research", "Systems Thinking"],
+    headline: "A design system integration and rapid prototyping methodology backed by S2 research at ITS Surabaya, proving 70% faster delivery cycles.",
+    metrics: [{ val: "70%", sub: "Faster Delivery" }, { val: "3", sub: "Product Cycles" }, { val: "M.MT", sub: "Thesis Published" }],
     projectId: "ai",
     thumb: projectThumb3,
   },
   {
-    num: "04", name: "B2C E-Commerce & Admin POS", client: "Pro Archery × Jakarta",
-    location: "ID", year: "2025", tags: ["AI-Assisted", "E-Commerce"],
-    headline: "24-hour POC delivery using AI-first prompt-to-code — 4 portals, zero wireframes.",
-    metrics: [{ val: "24h", sub: "POC Delivery" }, { val: "4", sub: "Portals Built" }, { val: "AI", sub: "First Workflow" }],
+    num: "04", name: "Digital Transformation & AI Retail", client: "Pro Archery Jakarta",
+    location: "ID", year: "2025", tags: ["AI Prompt-to-Code", "E-Commerce", "Admin POS"],
+    headline: "An end-to-end digital ecosystem scaling a physical archery retailer into an Asia-wide e-commerce platform featuring AI-accelerated prototyping.",
+    metrics: [{ val: "24h", sub: "POC Delivery" }, { val: "4", sub: "Portals Built" }, { val: "0", sub: "Figma Wireframes" }],
     projectId: "archery",
     thumb: projectThumb4,
   },
   {
-    num: "05", name: "National Election Monitoring System", client: "Indonesian Political Party",
-    location: "ID", year: "2024", tags: ["Public Sector", "Civic Tech"],
-    headline: "820,000+ TPS polling stations. 38 provinces. One 48-hour critical window.",
-    metrics: [{ val: "820K+", sub: "TPS Data Points" }, { val: "38", sub: "Provinces" }, { val: "Solo", sub: "1-Person Team" }],
+    num: "05", name: "National Quick Count & Monitoring", client: "Indonesian Political Party",
+    location: "ID", year: "2024", tags: ["Public Sector", "Civic Tech", "Real-Time CMS"],
+    headline: "An end-to-end multi-level election monitoring system for Indonesia's 2024 Presidential Election, tracking vote tabulation across 38 provinces in real-time.",
+    metrics: [{ val: "820K+", sub: "TPS Polling Stations" }, { val: "38", sub: "Provinces Tracked" }, { val: "48h", sub: "Critical Window" }],
     projectId: "election",
     thumb: projectThumb5,
   },
   {
-    num: "06", name: "Anlene Health Passport", client: "Fonterra Indonesia × Anlene",
-    location: "ID", year: "2023", tags: ["Health Tech", "Field Sales"],
-    headline: "Clinical diagnostics → instant PDF health passport, delivered via WhatsApp at the event booth.",
-    metrics: [{ val: "2", sub: "Medical Devices" }, { val: "4-tier", sub: "Health Matrix" }, { val: "3mo", sub: "Sprint Delivery" }],
+    num: "06", name: "Medical Diagnostics & Field Sales Revamp", client: "Fonterra × Anlene",
+    location: "ID", year: "2023", tags: ["Health Tech", "Field Sales Enablement", "Diagnostic Matrix"],
+    headline: "Translating clinical diagnostic data from GE Achilles bone scanners and Omron devices into personalized health passports and automated WhatsApp PDF delivery.",
+    metrics: [{ val: "3mo", sub: "Delivery Sprint" }, { val: "2", sub: "Medical Devices" }, { val: "4-tier", sub: "Health Matrix" }],
     projectId: "anlene",
     thumb: projectThumb6,
   },
   {
-    num: "07", name: "#BijakWang Challenge", client: "mySalam Malaysia × myKawan",
-    location: "MY", year: "2025", tags: ["Gamification", "Civic Tech"],
-    headline: "100,000 concurrent players. Kahoot-style scoring. Gemini AI audio. Financial literacy at national scale.",
-    metrics: [{ val: "100K", sub: "Live Players" }, { val: "3-Player", sub: "Squad Teams" }, { val: "AI", sub: "Audio Engine" }],
+    num: "07", name: "100K-Player Live Tournament Platform", client: "mySalam Malaysia × myKawan",
+    location: "MY", year: "2025", tags: ["Gamification", "Multiplayer", "Gemini AI Audio"],
+    headline: "A Kahoot-inspired live multiplayer tournament platform built for mySalam Malaysia's #BijakWang Challenge, supporting 100,000 concurrent players.",
+    metrics: [{ val: "100K", sub: "Live Players" }, { val: "3-Player", sub: "Squad Teams" }, { val: "Gemini", sub: "AI Audio Engine" }],
     projectId: "bijakwang",
     thumb: projectThumb1,
   },
@@ -461,7 +461,7 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
           className="font-display font-light leading-tight"
           style={{ fontSize: "clamp(2.4rem, 4.5vw, 4rem)", color: N, letterSpacing: "-0.02em", maxWidth: "680px" }}
         >
-          Three projects that<br />
+          Projects that<br />
           define{" "}
           <em className="font-normal" style={{ color: C }}>how I think.</em>
         </h2>
@@ -1033,7 +1033,7 @@ export default function App() {
     <div className="min-h-screen overflow-x-hidden" style={{ backgroundColor: S }}>
       <HeroSection />
       <FeaturedWorkSection onOpenProject={(id) => {
-        if (id === "grab") setCurrentView("gegi-case")
+        if (id === "gegi") setCurrentView("gegi-case")
         if (id === "tng") setCurrentView("tng-case")
         if (id === "ai") setCurrentView("project-detail")
         if (id === "archery") setCurrentView("archery-case")
