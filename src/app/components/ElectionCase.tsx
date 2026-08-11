@@ -30,12 +30,14 @@ function Hairline() {
 
 function SectionTag({ num, label }: { num: string; label: string }) {
   return (
-    <div className="flex items-center gap-4 mb-8">
-      <span className="font-mono text-[10px] font-semibold tracking-widest" style={{ color: C }}>
-        [{num}]
-      </span>
-      <div className="flex-1 h-px" style={{ backgroundColor: HAIR }} />
-      <MonoTag>{label}</MonoTag>
+    <div className="mb-10">
+      <div className="text-[10px] font-semibold uppercase tracking-[0.2em] mb-2" style={{ color: C }}>
+        [{num} // {label.toUpperCase()}]
+      </div>
+      <h2 className="font-display text-2xl lg:text-3xl font-bold" style={{ color: N }}>
+        {label}
+      </h2>
+      <div className="w-12 h-[2px] mt-4" style={{ backgroundColor: C }} />
     </div>
   )
 }

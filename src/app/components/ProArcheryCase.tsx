@@ -28,12 +28,14 @@ function Hairline() {
 
 function SectionTag({ num, label }: { num: string; label: string }) {
   return (
-    <div className="flex items-center gap-4 mb-8">
-      <span className="font-mono text-[10px] font-semibold tracking-widest" style={{ color: C }}>
-        [{num}]
-      </span>
-      <div className="flex-1 h-px" style={{ backgroundColor: HAIR }} />
-      <MonoTag>{label}</MonoTag>
+    <div className="mb-10">
+      <div className="text-[10px] font-semibold uppercase tracking-[0.2em] mb-2" style={{ color: C }}>
+        [{num} // {label.toUpperCase()}]
+      </div>
+      <h2 className="font-display text-2xl lg:text-3xl font-bold" style={{ color: N }}>
+        {label}
+      </h2>
+      <div className="w-12 h-[2px] mt-4" style={{ backgroundColor: C }} />
     </div>
   )
 }
@@ -344,8 +346,8 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
           </p>
 
           <div className="relative">
-            <div className="absolute left-[19px] top-0 bottom-0 w-px" style={{ backgroundColor: HAIR }} />
-            <div className="space-y-0">
+            <div className="hidden lg:block absolute left-[calc(3rem-1px)] top-8 bottom-8 w-px" style={{ backgroundColor: HAIR }} />
+            <div className="space-y-6">
               {[
                 {
                   phase: "PHASE 01", tag: "BRIEF & PROMPT",
@@ -372,36 +374,43 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
                   ],
                 },
               ].map((phase, pi) => (
-                <div key={phase.phase} className="flex gap-6">
-                  <div className="flex flex-col items-center flex-shrink-0 z-10" style={{ paddingTop: "2px" }}>
+                <div key={phase.phase} className="grid lg:grid-cols-[6rem_1.1fr_0.9fr] gap-6 lg:gap-10 items-start pb-12 relative">
+                  {/* Badge */}
+                  <div className="flex flex-col items-center gap-2">
                     <div
-                      className="w-10 h-10 flex items-center justify-center font-mono text-[9px] font-semibold"
-                      style={{
-                        backgroundColor: pi === 0 ? N : W,
-                        border: `1px solid ${pi === 0 ? N : HAIR}`,
-                        color: pi === 0 ? W : `${N}BB`,
-                        borderRadius: "4px",
-                        flexShrink: 0,
-                      }}
+                      className="w-12 h-12 rounded-2xl flex items-center justify-center font-display font-bold text-lg text-white shadow-md z-10"
+                      style={{ backgroundColor: pi === 0 ? N : C }}
                     >
                       {String(pi + 1).padStart(2, "0")}
                     </div>
+                    <div className="text-[9px] font-bold uppercase tracking-widest text-[#19244E]/30 text-center leading-tight">
+                      {phase.tag}
+                    </div>
                   </div>
-                  <div className="flex-1 pb-10">
-                    <div className="flex items-center gap-3 mb-4 mt-1">
-                      <span className="font-mono text-[9px] font-semibold tracking-widest" style={{ color: C }}>
-                        [{phase.phase} // {phase.tag}]
-                      </span>
+
+                  {/* Left Column: Details */}
+                  <div>
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.2em] mb-2" style={{ color: C }}>
+                      {phase.phase}
                     </div>
-                    <h3 className="text-base font-semibold mb-5" style={{ color: N }}>{phase.title}</h3>
-                    <div className="space-y-3">
-                      {phase.items.map(({ title, desc }) => (
-                        <div key={title} className="px-5 py-4" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
-                          <p className="text-sm font-semibold mb-1" style={{ color: N }}>{title}</p>
-                          <p className="text-sm leading-relaxed" style={{ color: BODY, lineHeight: 1.75 }}>{desc}</p>
+                    <h3 className="font-display text-xl font-bold text-[#19244E] mb-4 leading-tight">
+                      {phase.title}
+                    </h3>
+                  </div>
+
+                  {/* Right Column: Items */}
+                  <div className="space-y-3">
+                    {phase.items.map(({ title, desc }) => (
+                      <div key={title} className="rounded-xl border border-[#19244E]/8 bg-[#F8F8F6] p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
+                        <div className="flex items-center gap-2 mb-1.5">
+                          <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: C }} />
+                          <span className="text-xs font-bold text-[#19244E]">{title}</span>
                         </div>
-                      ))}
-                    </div>
+                        <p className="text-xs text-[#19244E]/65 leading-relaxed pl-3.5">
+                          {desc}
+                        </p>
+                      </div>
+                    ))}
                   </div>
                 </div>
               ))}
