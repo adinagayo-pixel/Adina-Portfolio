@@ -588,7 +588,7 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
                     {activeProject.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="font-sans text-[8px] font-semibold tracking-widest uppercase px-2 py-0.5 bg-white/10 text-white/80 rounded"
+                        className="font-sans text-[7px] font-semibold tracking-widest uppercase px-1.5 py-0.5 bg-white/10 text-white/70 rounded"
                       >
                         {tag}
                       </span>
