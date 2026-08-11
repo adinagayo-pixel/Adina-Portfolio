@@ -41,9 +41,11 @@ function SectionTag({ num, label }: { num: string; label: string }) {
 
 interface Props {
   onBack: () => void
+  onNext?: () => void
+  onPrev?: () => void
 }
 
-export default function TngCase({ onBack }: Props) {
+export default function TngCase({ onBack, onNext, onPrev }: Props) {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -492,15 +494,34 @@ export default function TngCase({ onBack }: Props) {
 
       {/* Back CTA */}
       <div style={{ borderTop: `1px solid ${HAIR}`, backgroundColor: W }}>
-        <div className="px-8 lg:px-16 py-8 flex items-center justify-between">
-          <button
-            onClick={onBack}
-            className="flex items-center gap-2 font-mono text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
-            style={{ color: N }}
-          >
-            <ArrowLeft size={12} /> Back to Portfolio
-          </button>
-          <MonoTag>TOUCH 'N GO × GEGM · RELEASED V5 · 2024</MonoTag>
+        <div className="px-8 lg:px-16 py-8 flex items-center justify-between flex-wrap gap-4">
+          <div className="flex items-center gap-6">
+            {onPrev && (
+              <button
+                onClick={onPrev}
+                className="flex items-center gap-2 font-mono text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
+                style={{ color: N }}
+              >
+                <ArrowLeft size={12} /> Previous Case
+              </button>
+            )}
+            <button
+              onClick={onBack}
+              className="flex items-center gap-2 font-mono text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
+              style={{ color: N }}
+            >
+              Back to Portfolio
+            </button>
+          </div>
+          {onNext && (
+            <button
+              onClick={onNext}
+              className="flex items-center gap-2 font-mono text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
+              style={{ color: N }}
+            >
+              Next Case <ChevronRight size={12} />
+            </button>
+          )}
         </div>
       </div>
 

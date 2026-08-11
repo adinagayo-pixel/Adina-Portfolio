@@ -973,6 +973,8 @@ export default function App() {
     return (
       <BijakWangCase
         onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
+        onNext={() => { setCurrentView("gegi-case"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { setCurrentView("anlene-case"); window.scrollTo({ top: 0 }) }}
       />
     )
   }
@@ -980,6 +982,8 @@ export default function App() {
     return (
       <AnleneCase
         onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
+        onNext={() => { setCurrentView("bijakwang-case"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { setCurrentView("election-case"); window.scrollTo({ top: 0 }) }}
       />
     )
   }
@@ -987,6 +991,8 @@ export default function App() {
     return (
       <ElectionCase
         onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
+        onNext={() => { setCurrentView("anlene-case"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { setCurrentView("archery-case"); window.scrollTo({ top: 0 }) }}
       />
     )
   }
@@ -994,6 +1000,8 @@ export default function App() {
     return (
       <ProArcheryCase
         onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
+        onNext={() => { setCurrentView("election-case"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { setCurrentView("project-detail"); window.scrollTo({ top: 0 }) }}
       />
     )
   }
@@ -1001,6 +1009,8 @@ export default function App() {
     return (
       <TngCase
         onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
+        onNext={() => { setCurrentView("project-detail"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { setCurrentView("gegi-case"); window.scrollTo({ top: 0 }) }}
       />
     )
   }
@@ -1009,6 +1019,8 @@ export default function App() {
     return (
       <GegiCase
         onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
+        onNext={() => { setCurrentView("tng-case"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { setCurrentView("bijakwang-case"); window.scrollTo({ top: 0 }) }}
       />
     )
   }
@@ -1025,6 +1037,8 @@ export default function App() {
     return (
       <ProjectDetail
         onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
+        onNext={() => { setCurrentView("archery-case"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { setCurrentView("tng-case"); window.scrollTo({ top: 0 }) }}
       />
     )
   }

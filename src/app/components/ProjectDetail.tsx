@@ -12,6 +12,7 @@ const TNG_BG = "#E6F0F9"
 interface ProjectDetailProps {
   onBack: () => void
   onNext?: () => void
+  onPrev?: () => void
 }
 
 // ── Animated flow diagram ──────────────────────────────────────────────────
@@ -278,7 +279,7 @@ function SolutionBlock({
 }
 
 // ── Main component ─────────────────────────────────────────────────────────
-export default function ProjectDetail({ onBack, onNext }: ProjectDetailProps) {
+export default function ProjectDetail({ onBack, onNext, onPrev }: ProjectDetailProps) {
   const [activeScreen, setActiveScreen] = useState(0)
 
   return (
@@ -1205,15 +1206,25 @@ export default function ProjectDetail({ onBack, onNext }: ProjectDetailProps) {
           </div>
 
           {/* Navigation CTAs */}
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-4 pt-8 border-t border-white/10">
-            <button
-              onClick={onBack}
-              className="flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold text-white border-2 border-white/20 hover:border-white/50 transition-all duration-300"
-            >
-              <ArrowLeft size={14} /> Back to Portfolio
-            </button>
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-4 pt-8 border-t border-white/10 flex-wrap">
+            <div className="flex gap-3 flex-wrap">
+              {onPrev && (
+                <button
+                  onClick={onPrev}
+                  className="flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold text-white border-2 border-white/20 hover:border-white/50 transition-all duration-300"
+                >
+                  <ArrowLeft size={14} /> Previous Project
+                </button>
+              )}
+              <button
+                onClick={onBack}
+                className="flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold text-white border-2 border-white/20 hover:border-white/50 transition-all duration-300"
+              >
+                Back to Portfolio
+              </button>
+            </div>
 
-            <div className="flex gap-3">
+            <div className="flex gap-3 flex-wrap">
               <a
                 href="mailto:adina.fayza@email.com"
                 className="flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold text-white border-2 border-white/20 hover:border-white/50 transition-all duration-300"
