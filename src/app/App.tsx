@@ -752,7 +752,7 @@ function WorkflowSection() {
       {/* Section headline */}
       <div
         ref={ref}
-        className="px-8 lg:px-16 py-16 lg:py-24"
+        className="px-8 lg:px-16 py-8 lg:py-12"
         style={{ borderBottom: `1px solid rgba(255,255,255,0.06)` }}
       >
         <h2
@@ -765,7 +765,7 @@ function WorkflowSection() {
       </div>
 
       {/* Phase cards — 3-column grid */}
-      <div className="px-8 lg:px-16 py-16 lg:py-24 grid lg:grid-cols-3 gap-8">
+      <div className="px-8 lg:px-16 py-10 lg:py-14 grid lg:grid-cols-3 gap-8">
         {PHASES.map((phase, i) => {
           const Icon = phase.Icon
           return (
