@@ -314,7 +314,7 @@ function HeroSection() {
             </h1>
 
             <p
-              className="font-mono text-[10px] font-semibold tracking-[0.15em] uppercase mb-6"
+              className="font-sans text-[11px] font-semibold tracking-[0.12em] uppercase mb-6"
               style={{ color: C }}
             >
               Specializing in Enterprise Systems, Multi-Brand Architecture & API-Driven Workflows.
