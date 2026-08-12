@@ -306,7 +306,7 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
                     </span>
                   </div>
                   <p className="text-xs font-semibold mb-2" style={{ color: tier.text }}>{label}</p>
-                  <p className="font-sans text-[8px] leading-relaxed whitespace-pre-line" style={{ color: tier.text, opacity: 0.75 }}>
+                  <p className="font-sans text-xs leading-relaxed whitespace-pre-line" style={{ color: tier.text, opacity: 0.75 }}>
                     {examples}
                   </p>
                 </div>

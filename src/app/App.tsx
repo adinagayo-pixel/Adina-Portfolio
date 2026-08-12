@@ -696,7 +696,7 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
                   ))}
                 </div>
 
-                <p className="font-sans text-[8px] font-semibold text-white/40 uppercase mb-0.5">
+                <p className="font-sans text-[9px] font-semibold text-white/40 uppercase mb-0.5">
                   {project.client}
                 </p>
                 <h3 className="font-display font-semibold text-white text-lg mb-2">
@@ -824,7 +824,7 @@ function WorkflowSection() {
               </div>
               
               <div className="mt-auto pt-6 border-t border-white/5">
-                <p className="font-sans text-[8px] font-semibold tracking-widest uppercase text-white/25 mb-3">
+                <p className="font-sans text-[9px] font-semibold tracking-widest uppercase text-white/25 mb-3">
                   [Tools & Artifacts]
                 </p>
                 <div className="flex flex-wrap gap-1.5">
@@ -990,7 +990,7 @@ function ProjectArchiveSection() {
                     
                     <div className="pl-2">
                       <span
-                        className="font-sans text-[8px] font-bold tracking-widest uppercase px-2.5 py-1 inline-block mb-2 bg-[#19244E]/5 text-[#19244E]/80 rounded"
+                        className="font-sans text-[9px] font-bold tracking-widest uppercase px-2.5 py-1 inline-block mb-2 bg-[#19244E]/5 text-[#19244E]/80 rounded"
                       >
                         {project.category}
                       </span>
@@ -1017,7 +1017,7 @@ function ProjectArchiveSection() {
                       </div>
                     </div>
                     <span
-                      className="font-sans text-[8px] font-bold tracking-widest uppercase px-2.5 py-1 inline-block mb-2 bg-[#19244E]/5 text-[#19244E]/80 rounded"
+                      className="font-sans text-[9px] font-bold tracking-widest uppercase px-2.5 py-1 inline-block mb-2 bg-[#19244E]/5 text-[#19244E]/80 rounded"
                     >
                       {project.category}
                     </span>

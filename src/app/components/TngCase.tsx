@@ -365,7 +365,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
                       {ver.v}
                     </p>
                     <span
-                      className="font-sans text-[8px] font-semibold tracking-widest uppercase mt-1 block"
+                      className="font-sans text-[9px] font-semibold tracking-widest uppercase mt-1 block"
                       style={{ color: i === 4 ? C : `${N}99` }}
                     >
                       {ver.status}
