@@ -190,8 +190,8 @@ function FloatingDock({ activeSection }: { activeSection: string }) {
         "fixed z-50 flex items-center gap-0",
         // Mobile: full-width bottom tab bar
         "bottom-0 left-0 right-0 w-full rounded-none border-t",
-        // Desktop: floating centered pill
-        "lg:bottom-6 lg:left-1/2 lg:right-auto lg:-translate-x-1/2 lg:w-auto lg:rounded-[6px] lg:border",
+        // Tablet/Desktop: floating centered pill
+        "md:bottom-6 md:left-1/2 md:right-auto md:-translate-x-1/2 md:w-auto md:rounded-[6px] md:border",
       ].join(" ")}
       style={{
         backgroundColor: "rgba(255,255,255,0.96)",
@@ -209,7 +209,7 @@ function FloatingDock({ activeSection }: { activeSection: string }) {
             onClick={() => scrollTo(entry.id)}
             aria-label={entry.label}
             aria-current={isActive ? "page" : undefined}
-            className="relative flex flex-col items-center gap-1.5 py-3 flex-1 px-1 lg:flex-none lg:px-5 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] focus-visible:ring-inset rounded"
+            className="relative flex flex-col items-center gap-1.5 py-2 flex-1 px-1 md:flex-none md:px-5 md:py-3 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] focus-visible:ring-inset rounded"
             style={{
               borderRight: i < DOCK.length - 1 ? `1px solid ${HAIR}` : "none",
               color: isActive ? N : `${N}BB`,
