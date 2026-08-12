@@ -760,18 +760,30 @@ function WorkflowSection() {
         </span>
       </div>
 
-      {/* Section headline */}
+      {/* Section headline — editorial inline emoji style */}
       <div
         ref={ref}
-        className="px-8 lg:px-16 py-8 lg:py-12"
+        className="px-8 lg:px-16 py-16 lg:py-24 flex flex-col items-center text-center"
         style={{ borderBottom: `1px solid rgba(255,255,255,0.06)` }}
       >
+        <p className="font-sans text-[10px] font-semibold tracking-[0.2em] uppercase mb-10" style={{ color: "rgba(255,255,255,0.3)" }}>
+          How I work
+        </p>
         <h2
-          className="font-display font-light leading-tight text-white"
-          style={{ fontSize: "clamp(2.2rem, 4vw, 3.8rem)", letterSpacing: "-0.02em" }}
+          className="font-display font-light leading-[1.15] text-white max-w-4xl"
+          style={{ fontSize: "clamp(2.4rem, 5vw, 4.8rem)", letterSpacing: "-0.025em" }}
         >
-          A three-phase engine<br />
-          <em className="font-normal" style={{ color: C }}>built for enterprise pace.</em>
+          I start by{" "}
+          <span style={{ fontSize: "0.75em" }}>🔍</span>{" "}
+          listening,
+          <br className="hidden lg:block" />
+          {" "}design with{" "}
+          <span style={{ fontSize: "0.75em" }}>⚡</span>{" "}
+          <em className="font-normal not-italic" style={{ color: C }}>speed,</em>
+          <br className="hidden lg:block" />
+          {" "}and close with a{" "}
+          <span style={{ fontSize: "0.75em" }}>📋</span>{" "}
+          clean handoff.
         </h2>
       </div>
 
