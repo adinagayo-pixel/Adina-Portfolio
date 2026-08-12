@@ -185,13 +185,20 @@ function FloatingDock({ activeSection }: { activeSection: string }) {
       initial={{ y: 80, opacity: 0 }}
       animate={{ y: visible ? 0 : 80, opacity: visible ? 1 : 0 }}
       transition={{ type: "spring", stiffness: 300, damping: 28 }}
-      className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-0"
+      aria-label="Page navigation"
+      className={[
+        "fixed z-50 flex items-center gap-0",
+        // Mobile: full-width bottom tab bar
+        "bottom-0 left-0 right-0 w-full rounded-none border-t",
+        // Desktop: floating centered pill
+        "lg:bottom-6 lg:left-1/2 lg:right-auto lg:-translate-x-1/2 lg:w-auto lg:rounded-[6px] lg:border",
+      ].join(" ")}
       style={{
-        backgroundColor: "rgba(255,255,255,0.92)",
+        backgroundColor: "rgba(255,255,255,0.96)",
         backdropFilter: "blur(18px)",
-        border: `1px solid ${HAIR}`,
-        borderRadius: "6px",
-        boxShadow: `0 4px 24px ${N}12`,
+        borderColor: HAIR,
+        boxShadow: "0 -2px 16px rgba(25,36,78,0.05), 0 4px 24px rgba(25,36,78,0.07)",
+        paddingBottom: "env(safe-area-inset-bottom, 0px)",
       }}
     >
       {DOCK.map((entry, i) => {
@@ -201,7 +208,8 @@ function FloatingDock({ activeSection }: { activeSection: string }) {
             key={entry.id}
             onClick={() => scrollTo(entry.id)}
             aria-label={entry.label}
-            className="relative flex flex-col items-center gap-1.5 px-5 py-3 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] focus-visible:ring-inset rounded"
+            aria-current={isActive ? "page" : undefined}
+            className="relative flex flex-col items-center gap-1.5 py-3 flex-1 px-1 lg:flex-none lg:px-5 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] focus-visible:ring-inset rounded"
             style={{
               borderRight: i < DOCK.length - 1 ? `1px solid ${HAIR}` : "none",
               color: isActive ? N : `${N}BB`,
