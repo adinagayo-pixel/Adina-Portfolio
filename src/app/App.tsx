@@ -216,7 +216,7 @@ function FloatingDock({ activeSection }: { activeSection: string }) {
             }}
           >
             <entry.Icon size={13} strokeWidth={isActive ? 2.2 : 1.6} />
-            <span className="font-sans text-[8px] font-semibold tracking-widest uppercase">
+            <span className="font-sans text-[8px] font-semibold tracking-widest">
               {entry.label}
             </span>
             {isActive && (
@@ -271,7 +271,7 @@ function HeroSection() {
           <a
             href="/resume-adina-fayza-gayo.pdf"
             download
-            className="flex items-center gap-1.5 font-sans text-[10px] font-semibold tracking-widest uppercase transition-all duration-150"
+            className="flex items-center gap-1.5 font-sans text-[10px] font-semibold tracking-widest transition-all duration-150"
             style={{
               border: `1px solid ${HAIR}`,
               color: `${N}DD`,
@@ -294,7 +294,7 @@ function HeroSection() {
           {/* Hire Me button */}
           <a
             href="mailto:adinagayo@gmail.com"
-            className="font-sans text-[10px] font-semibold tracking-widest uppercase transition-all duration-150"
+            className="font-sans text-[10px] font-semibold tracking-widest transition-all duration-150"
             style={{
               border: `1px solid ${N}`,
               color: N,
