@@ -246,15 +246,13 @@ function HeroPhoto({ isAtWork, tick, LANGS, HELLOS }: {
 }) {
   return (
     <motion.div
-      className="relative overflow-hidden w-full max-w-[320px] sm:max-w-[360px] lg:max-w-[410px] xl:max-w-[440px]"
+      className="relative overflow-hidden w-full h-full min-h-[420px] lg:min-h-0"
       style={{
-        aspectRatio: "3/4",
-        borderRadius: "16px",
-        boxShadow: "0 20px 40px -15px rgba(25, 36, 78, 0.18)",
+        boxShadow: "none",
       }}
     >
       {/* Greeting ticker */}
-      <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2 bg-white px-4 py-1.5 rounded-full shadow-md border border-[#19244E]/5 whitespace-nowrap">
+      <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 bg-white px-4 py-1.5 rounded-full shadow-md border border-[#19244E]/5 whitespace-nowrap">
         <span className="font-sans text-[9px] font-semibold tracking-widest text-[#19244E]/60 uppercase">[{LANGS[tick]}]</span>
         <AnimatePresence mode="wait">
           <motion.span
@@ -269,6 +267,28 @@ function HeroPhoto({ isAtWork, tick, LANGS, HELLOS }: {
           </motion.span>
         </AnimatePresence>
       </div>
+
+      {/* Floating credential tags on top-left (Glassmorphism design, hidden in life mode) */}
+      <AnimatePresence>
+        {isAtWork && (
+          <motion.div
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -10 }}
+            transition={{ duration: 0.22 }}
+            className="absolute top-4 left-4 z-20 hidden md:flex items-center gap-1.5 flex-wrap max-w-[80%]"
+          >
+            {["Enterprise B2B", "Multi-Brand Arch.", "AI-Accelerated", "Cross-Border"].map((tag) => (
+              <span
+                key={tag}
+                className="font-sans text-[8px] font-semibold tracking-wider uppercase px-2.5 py-1 bg-white/90 backdrop-blur-sm border border-[#19244E]/5 text-[#19244E]/90 rounded-md shadow-sm"
+              >
+                {tag}
+              </span>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Staged Photo Stack with crossfade transition */}
       <motion.div
@@ -297,7 +317,7 @@ function HeroPhoto({ isAtWork, tick, LANGS, HELLOS }: {
 
       {/* Gradient overlay */}
       <div
-        className="absolute bottom-0 left-0 right-0 px-6 py-6 z-10"
+        className="absolute bottom-0 left-0 right-0 px-8 py-8 z-10"
         style={{ background: "linear-gradient(to top, rgba(25,36,78,0.92) 0%, rgba(25,36,78,0.4) 60%, transparent 100%)" }}
       >
         <p className="font-display font-medium text-lg text-white mb-0.5" style={{ letterSpacing: "-0.01em" }}>
@@ -551,38 +571,16 @@ function HeroSection() {
           </AnimatePresence>
         </motion.div>
 
-        {/* Photo Container — Stays mounted, shifts columns on desktop using position layout */}
+        {/* Photo Container — Stays mounted, shifts columns on desktop, edge-to-edge full bleed (no padding) */}
         <motion.div
           layout="position"
           transition={HERO_SPRING}
-          className={`flex flex-col items-center justify-center px-8 py-10 lg:py-16 order-1 lg:order-none lg:row-start-1 min-h-[55vw] lg:min-h-0 ${
+          className={`flex flex-col items-stretch justify-stretch p-0 order-1 lg:order-none lg:row-start-1 min-h-[55vw] lg:min-h-0 ${
             isAtWork ? "lg:col-start-2" : "lg:col-start-1"
           }`}
           style={{ backgroundColor: "rgba(25, 36, 78, 0.015)" }}
         >
           <HeroPhoto isAtWork={isAtWork} tick={tick} LANGS={LANGS} HELLOS={HELLOS} />
-          
-          {/* Credential tags under the photo (fade out in life mode) */}
-          <AnimatePresence>
-            {isAtWork && (
-              <motion.div
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 8 }}
-                transition={{ duration: 0.2 }}
-                className="flex items-center justify-center gap-2 flex-wrap mt-6"
-              >
-                {["Enterprise B2B", "Multi-Brand Arch.", "AI-Accelerated", "Cross-Border"].map((tag) => (
-                  <span
-                    key={tag}
-                    className="font-sans text-[9px] font-semibold tracking-wider uppercase px-3 py-1.5 bg-white border border-[#19244E]/5 text-[#19244E]/70 rounded-full shadow-sm"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </motion.div>
-            )}
-          </AnimatePresence>
         </motion.div>
       </div>
     </section>
