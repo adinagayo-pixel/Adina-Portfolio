@@ -233,8 +233,78 @@ function FloatingDock({ activeSection }: { activeSection: string }) {
   )
 }
 
-// ─── HERO SECTION ─────────────────────────────────────────────────────────────
+// ─── Hero Spring Config ───────────────────────────────────────────────────────
+const HERO_SPRING = { type: "spring" as const, stiffness: 280, damping: 26, mass: 1 }
+
+// ─── Hero Toggle Photo ────────────────────────────────────────────────────────
+function HeroPhoto({ isAtWork, tick, LANGS, HELLOS }: {
+  isAtWork: boolean
+  tick: number
+  LANGS: string[]
+  HELLOS: string[]
+}) {
+  return (
+    <motion.div
+      layoutId="hero-photo"
+      layout
+      transition={HERO_SPRING}
+      className="relative overflow-hidden w-full"
+      style={{
+        maxWidth: "380px",
+        aspectRatio: "3/4",
+        borderRadius: "16px",
+        boxShadow: "0 20px 40px -15px rgba(25, 36, 78, 0.18)",
+      }}
+    >
+      {/* Greeting ticker */}
+      <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2 bg-white px-4 py-1.5 rounded-full shadow-md border border-[#19244E]/5 whitespace-nowrap">
+        <span className="font-sans text-[9px] font-semibold tracking-widest text-[#19244E]/60 uppercase">[{LANGS[tick]}]</span>
+        <AnimatePresence mode="wait">
+          <motion.span
+            key={tick}
+            initial={{ y: 8, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -8, opacity: 0 }}
+            transition={{ duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="font-display text-sm font-light text-[#19244E]"
+          >
+            {HELLOS[tick]}
+          </motion.span>
+        </AnimatePresence>
+      </div>
+
+      {/* Photo */}
+      <ImageWithFallback
+        src={adinaPhotoAbout}
+        alt="Adina Fayza Gayo"
+        className="absolute inset-0 w-full h-full object-cover object-top"
+      />
+
+      {/* Gradient overlay */}
+      <div
+        className="absolute bottom-0 left-0 right-0 px-6 py-6"
+        style={{ background: "linear-gradient(to top, rgba(25,36,78,0.92) 0%, rgba(25,36,78,0.4) 60%, transparent 100%)" }}
+      >
+        <p className="font-display font-medium text-lg text-white mb-0.5" style={{ letterSpacing: "-0.01em" }}>
+          Adina Fayza Gayo
+        </p>
+        <motion.span
+          key={isAtWork ? "work-title" : "life-title"}
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35, delay: 0.15 }}
+          className="font-sans text-[10px] font-semibold tracking-widest text-white/70"
+        >
+          {isAtWork ? "Senior Product Designer" : "Explorer · Matcha Lover · Spreadsheet Nerd"}
+        </motion.span>
+      </div>
+    </motion.div>
+  )
+}
+
+// ─── Hero Section ─────────────────────────────────────────────────────────────
 function HeroSection() {
+  const [isAtWork, setIsAtWork] = useState(true)
   const [tick, setTick] = useState(0)
   const LANGS = ["EN", "ID", "KO"]
   const HELLOS = ["Hello.", "Halo.", "안녕하세요."]
@@ -250,187 +320,258 @@ function HeroSection() {
       className="relative min-h-screen flex flex-col"
       style={{ backgroundColor: W }}
     >
-      {/* Top nav bar */}
+      {/* ── Top nav bar ── */}
       <div
         className="flex items-center justify-between px-5 py-4 lg:px-16 lg:py-6"
         style={{ borderBottom: `1px solid rgba(25, 36, 78, 0.05)` }}
       >
-        {/* Logo */}
         <span className="font-sans text-[10px] lg:text-[11px] font-semibold tracking-[0.15em]" style={{ color: N }}>
           AFG<span style={{ color: C }}> ·</span><span className="hidden sm:inline"> PORTFOLIO 2026</span>
         </span>
-
-        {/* Right actions */}
         <div className="flex items-center gap-2 lg:gap-4">
-          {/* Locale tag — hide on mobile */}
           <span className="hidden md:inline font-sans text-[10px] font-semibold tracking-wider text-[#19244E]/60 uppercase">
             SG / MY / ID
           </span>
-
-          {/* Resume button */}
           <a
             href="/resume-adina-fayza-gayo.pdf"
             download
             className="flex items-center gap-1.5 font-sans text-[10px] font-semibold tracking-widest transition-all duration-150"
-            style={{
-              border: `1px solid ${HAIR}`,
-              color: `${N}DD`,
-              borderRadius: "6px",
-              padding: "6px 10px",
-            }}
-            onMouseEnter={(e) => {
-              ;(e.currentTarget as HTMLElement).style.borderColor = N
-              ;(e.currentTarget as HTMLElement).style.color = N
-            }}
-            onMouseLeave={(e) => {
-              ;(e.currentTarget as HTMLElement).style.borderColor = HAIR
-              ;(e.currentTarget as HTMLElement).style.color = `${N}DD`
-            }}
+            style={{ border: `1px solid ${HAIR}`, color: `${N}DD`, borderRadius: "6px", padding: "6px 10px" }}
+            onMouseEnter={(e) => { ;(e.currentTarget as HTMLElement).style.borderColor = N; ;(e.currentTarget as HTMLElement).style.color = N }}
+            onMouseLeave={(e) => { ;(e.currentTarget as HTMLElement).style.borderColor = HAIR; ;(e.currentTarget as HTMLElement).style.color = `${N}DD` }}
           >
             <ExternalLink size={10} />
             <span className="hidden sm:inline">Resume</span>
           </a>
-
-          {/* Hire Me button */}
           <a
             href="mailto:adinagayo@gmail.com"
             className="font-sans text-[10px] font-semibold tracking-widest transition-all duration-150"
-            style={{
-              border: `1px solid ${N}`,
-              color: N,
-              borderRadius: "6px",
-              padding: "6px 10px",
-              whiteSpace: "nowrap",
-            }}
-            onMouseEnter={(e) => {
-              ;(e.currentTarget as HTMLElement).style.backgroundColor = N
-              ;(e.currentTarget as HTMLElement).style.color = W
-            }}
-            onMouseLeave={(e) => {
-              ;(e.currentTarget as HTMLElement).style.backgroundColor = "transparent"
-              ;(e.currentTarget as HTMLElement).style.color = N
-            }}
+            style={{ border: `1px solid ${N}`, color: N, borderRadius: "6px", padding: "6px 10px", whiteSpace: "nowrap" }}
+            onMouseEnter={(e) => { ;(e.currentTarget as HTMLElement).style.backgroundColor = N; ;(e.currentTarget as HTMLElement).style.color = W }}
+            onMouseLeave={(e) => { ;(e.currentTarget as HTMLElement).style.backgroundColor = "transparent"; ;(e.currentTarget as HTMLElement).style.color = N }}
           >
             Hire Me
           </a>
         </div>
       </div>
 
-      {/* Main hero grid */}
-      <div className="flex-1 grid lg:grid-cols-[1.1fr_0.9fr] relative">
-        {/* Left: editorial text column */}
-        <div className="flex flex-col justify-between px-8 lg:px-20 py-20 lg:py-24">
-          {/* ID tag */}
-          <div>
+      {/* ── Mode toggle bar ── */}
+      <div
+        className="flex items-center justify-between px-5 lg:px-16 py-3.5"
+        style={{ borderBottom: `1px solid rgba(25, 36, 78, 0.05)` }}
+      >
+        <span className="font-sans text-[10px] tracking-[0.12em] hidden sm:block" style={{ color: `${N}50` }}>
+          Designing systems that think. Living a life that's color-coded.
+        </span>
 
-            {/* Big editorial headline */}
-            <h1
-              className="font-display font-light leading-[0.95] mb-8"
-              style={{ fontSize: "clamp(3.2rem, 6.5vw, 6.2rem)", color: N, letterSpacing: "-0.02em" }}
-            >
-              Enterprise<br />
-              <em className="font-normal not-italic" style={{ color: C }}>Product</em><br />
-              <span className="font-light">Design.</span>
-            </h1>
+        {/* Toggle pill */}
+        <div className="flex items-center gap-3 mx-auto sm:mx-0">
+          <span
+            className="font-sans text-[10px] font-semibold tracking-widest transition-all duration-300 cursor-pointer select-none"
+            style={{ color: N, opacity: isAtWork ? 1 : 0.35 }}
+            onClick={() => setIsAtWork(true)}
+          >
+            At Work
+          </span>
 
-            <p
-              className="font-sans text-[11px] font-semibold tracking-[0.12em] uppercase mb-6"
-              style={{ color: C }}
-            >
-              Specializing in Enterprise Systems, Multi-Brand Architecture & API-Driven Workflows.
-            </p>
-            <p
-              className="text-base leading-relaxed max-w-[460px] mb-12"
-              style={{ color: `${N}CC`, fontWeight: 400, lineHeight: 1.8 }}
-            >
-              Strategic Product Designer with an M.MT background, specializing in Enterprise B2B and multi-brand platforms. I design cross-border fintech systems and AI-accelerated workflows operating at regional scale across Singapore, Malaysia, and Indonesia.
-            </p>
+          <button
+            onClick={() => setIsAtWork((v) => !v)}
+            aria-label="Toggle between At Work and In Life mode"
+            className="relative flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] rounded-full cursor-pointer"
+            style={{
+              width: "44px",
+              height: "24px",
+              borderRadius: "999px",
+              backgroundColor: isAtWork ? N : C,
+              transition: "background-color 0.3s ease",
+              flexShrink: 0,
+            }}
+          >
+            <motion.span
+              layout
+              transition={HERO_SPRING}
+              className="absolute bg-white rounded-full shadow-sm"
+              style={{
+                width: "18px",
+                height: "18px",
+                left: isAtWork ? "3px" : "23px",
+              }}
+            />
+          </button>
 
-            <div className="flex items-center gap-4 flex-wrap">
-              <button
-                className="flex items-center gap-2 px-6 py-3.5 text-sm font-medium text-white transition-opacity duration-150 hover:opacity-85 cursor-pointer"
-                style={{ backgroundColor: N, borderRadius: "6px" }}
-                onClick={() => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })}
-              >
-                View Selected Work <ArrowRight size={14} />
-              </button>
-              <button
-                className="flex items-center gap-2 px-6 py-3.5 text-sm font-medium transition-colors duration-150 cursor-pointer"
-                style={{ border: `1px solid ${HAIR}`, color: N, borderRadius: "6px" }}
-                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-              >
-                <Mail size={14} /> Get In Touch
-              </button>
-            </div>
-          </div>
-
-
+          <span
+            className="font-sans text-[10px] font-semibold tracking-widest transition-all duration-300 cursor-pointer select-none"
+            style={{ color: C, opacity: !isAtWork ? 1 : 0.35 }}
+            onClick={() => setIsAtWork(false)}
+          >
+            In Life
+          </span>
         </div>
 
-        {/* Right: photo + cycling greeting */}
+        <span className="font-sans text-[10px] tracking-wider hidden sm:block" style={{ color: `${N}35` }}>
+          Same brain. Different mode. ✦
+        </span>
+      </div>
+
+      {/* ── Main hero grid ── */}
+      <div className="flex-1 grid lg:grid-cols-2 relative overflow-hidden">
+
+        {/* Column A — Left slot */}
+        <div className="flex items-center justify-center lg:justify-start px-8 lg:px-20 py-16 lg:py-20 order-2 lg:order-1">
+          <AnimatePresence mode="popLayout" initial={false}>
+            {isAtWork ? (
+              /* AT WORK — left text block */
+              <motion.div
+                key="work-text"
+                initial={{ opacity: 0, x: -28 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -28 }}
+                transition={HERO_SPRING}
+                className="max-w-[520px] w-full"
+              >
+                {/* Eyebrow */}
+                <p className="font-sans text-[10px] font-semibold tracking-[0.2em] mb-5" style={{ color: C }}>
+                  Product Designer · System Logic Architect · M.MT Candidate
+                </p>
+
+                {/* Headline */}
+                <h1
+                  className="font-display font-light leading-[0.93] mb-8"
+                  style={{ fontSize: "clamp(2.8rem, 5.5vw, 5.6rem)", color: N, letterSpacing: "-0.02em" }}
+                >
+                  Enterprise-grade<br />
+                  design,{" "}
+                  <em className="not-italic" style={{ color: C }}>delivered</em>
+                  <br />
+                  at startup speed.
+                </h1>
+
+                {/* Para 1 */}
+                <p className="text-[15px] leading-[1.8] mb-5 max-w-[460px]" style={{ color: `${N}BB` }}>
+                  I bridge complex, multi-brand product ecosystems — from embedded insurance platforms (Sunway, TNG, GEGM) to B2B enterprise portals and public-sector systems like Quick Count 2024. As the sole designer at Friendsure, I architect the logic underneath: flows, edge cases, and handoffs that developers actually enjoy receiving.
+                </p>
+
+                {/* Para 2 */}
+                <p className="text-[15px] leading-[1.8] mb-10 max-w-[460px]" style={{ color: `${N}BB` }}>
+                  My workflow runs AI-first — Figma, Claude, Gemini, VS Code aren't tools I use, they're the studio I think inside. The result: <strong style={{ color: N }}>70% faster delivery cycles</strong>, zero-defect handoffs, and design systems that scale quietly while the business moves fast.
+                </p>
+
+                {/* CTAs */}
+                <div className="flex items-center gap-4 flex-wrap">
+                  <button
+                    className="flex items-center gap-2 px-6 py-3.5 text-sm font-medium text-white transition-opacity duration-150 hover:opacity-85 cursor-pointer"
+                    style={{ backgroundColor: N, borderRadius: "6px" }}
+                    onClick={() => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })}
+                  >
+                    View Selected Work <ArrowRight size={14} />
+                  </button>
+                  <button
+                    className="flex items-center gap-2 px-6 py-3.5 text-sm font-medium transition-colors duration-150 cursor-pointer"
+                    style={{ border: `1px solid ${HAIR}`, color: N, borderRadius: "6px" }}
+                    onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+                  >
+                    <Mail size={14} /> Get In Touch
+                  </button>
+                </div>
+              </motion.div>
+            ) : (
+              /* IN LIFE — left photo slot */
+              <motion.div
+                key="life-photo-left"
+                initial={{ opacity: 0, scale: 0.97 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.97 }}
+                transition={HERO_SPRING}
+                className="flex items-center justify-center w-full"
+              >
+                <HeroPhoto isAtWork={isAtWork} tick={tick} LANGS={LANGS} HELLOS={HELLOS} />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* Column B — Right slot */}
         <div
-          className="relative flex flex-col justify-between overflow-hidden py-10"
+          className="flex flex-col items-center justify-center px-8 py-10 lg:py-16 order-1 lg:order-2 min-h-[55vw] lg:min-h-0"
           style={{ backgroundColor: "rgba(25, 36, 78, 0.015)" }}
         >
-          {/* Greeting ticker — floats over photo */}
-          <div className="flex flex-col items-center flex-shrink-0 relative z-10 mb-[-20px]">
-            <div className="flex items-center gap-2 bg-white px-4 py-1.5 rounded-full shadow-md border border-[#19244E]/5">
-              <span className="font-sans text-[9px] font-semibold tracking-widest text-[#19244E]/60 uppercase">[{LANGS[tick]}]</span>
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={tick}
-                  initial={{ y: 8, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: -8, opacity: 0 }}
-                  transition={{ duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] }}
-                  className="font-display text-sm font-light text-[#19244E]"
-                >
-                  {HELLOS[tick]}
-                </motion.span>
-              </AnimatePresence>
-            </div>
-          </div>
-
-          {/* Photo */}
-          <div className="flex-1 flex items-center justify-center px-8 pt-0 pb-4">
-            <div
-              className="relative overflow-hidden w-full aspect-[3/4]"
-              style={{ 
-                maxWidth: "380px", 
-                borderRadius: "16px",
-                boxShadow: "0 20px 40px -15px rgba(25, 36, 78, 0.15)"
-              }}
-            >
-              <ImageWithFallback
-                src={adinaPhotoAbout}
-                alt="Adina Fayza Gayo — Senior Product Designer"
-                className="absolute inset-0 w-full h-full object-cover object-top animate-fade-in"
-              />
-              <div
-                className="absolute bottom-0 left-0 right-0 px-6 py-6"
-                style={{ background: `linear-gradient(to top, rgba(25,36,78,0.92) 0%, rgba(25,36,78,0.4) 60%, transparent 100%)` }}
+          <AnimatePresence mode="popLayout" initial={false}>
+            {isAtWork ? (
+              /* AT WORK — right photo slot */
+              <motion.div
+                key="work-photo-right"
+                initial={{ opacity: 0, scale: 0.97 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.97 }}
+                transition={HERO_SPRING}
+                className="flex flex-col items-center gap-6 w-full"
               >
-                <p className="font-display font-medium text-lg text-white mb-0.5" style={{ letterSpacing: "-0.01em" }}>
-                  Adina Fayza Gayo
+                <HeroPhoto isAtWork={isAtWork} tick={tick} LANGS={LANGS} HELLOS={HELLOS} />
+                {/* Credential tags */}
+                <div className="flex items-center justify-center gap-2 flex-wrap">
+                  {["Enterprise B2B", "Multi-Brand Arch.", "AI-Accelerated", "Cross-Border"].map((tag) => (
+                    <span
+                      key={tag}
+                      className="font-sans text-[9px] font-semibold tracking-wider uppercase px-3 py-1.5 bg-white border border-[#19244E]/5 text-[#19244E]/70 rounded-full shadow-sm"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            ) : (
+              /* IN LIFE — right text block */
+              <motion.div
+                key="life-text"
+                initial={{ opacity: 0, x: 28 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 28 }}
+                transition={HERO_SPRING}
+                className="max-w-[480px] w-full px-0 lg:px-4"
+              >
+                {/* Eyebrow */}
+                <p className="font-sans text-[10px] font-semibold tracking-[0.2em] mb-5" style={{ color: C }}>
+                  Off The Clock · Real Human · Highly Organized Chaos
                 </p>
-                <span className="font-sans text-[10px] font-semibold tracking-widest uppercase text-white/70">
-                  Senior Product Designer
-                </span>
-              </div>
-            </div>
-          </div>
 
-          {/* Credential strip */}
-          <div className="flex items-center justify-center gap-2 px-8 py-6 flex-shrink-0 flex-wrap">
-            {["Enterprise B2B", "Multi-Brand Arch.", "AI-Accelerated", "Cross-Border"].map((tag) => (
-              <span
-                key={tag}
-                className="font-sans text-[9px] font-semibold tracking-wider uppercase px-3 py-1.5 bg-white border border-[#19244E]/5 text-[#19244E]/70 rounded-full shadow-sm"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
+                {/* Headline */}
+                <h1
+                  className="font-display font-light leading-[0.93] mb-8"
+                  style={{ fontSize: "clamp(2.6rem, 5vw, 5rem)", color: N, letterSpacing: "-0.02em" }}
+                >
+                  Chaotic good,
+                  <br />
+                  <em className="not-italic" style={{ color: C }}>with</em> a
+                  <br />
+                  color-coded plan.
+                </h1>
+
+                {/* Para 1 */}
+                <p className="text-[15px] leading-[1.8] mb-5 max-w-[440px]" style={{ color: `${N}BB` }}>
+                  Off-screen, I'm the friend who sends the group itinerary three weeks early — color-coded by day, cross-referenced by walking distance, with a backup cafe in case the first one has a queue. Bangkok was just practice. My love language is a well-organized shared folder and a bowl of hot ramen at 11 PM.
+                </p>
+
+                {/* Para 2 */}
+                <p className="text-[15px] leading-[1.8] mb-10 max-w-[440px]" style={{ color: `${N}BB` }}>
+                  I'm genuinely obsessed with using AI to eliminate the boring parts of being a human — splitting group bills to the last cent (yes, there's a transparent spreadsheet), turning 3-hour travel research into a 15-minute brief. Good matcha optional, but <em>strongly</em> recommended.
+                </p>
+
+                {/* CTA */}
+                <div className="flex items-center gap-4 flex-wrap">
+                  <a
+                    href="mailto:adinagayo@gmail.com"
+                    className="flex items-center gap-2 px-6 py-3.5 text-sm font-medium text-white transition-opacity duration-150 hover:opacity-85"
+                    style={{ backgroundColor: C, borderRadius: "6px" }}
+                  >
+                    Let's grab matcha <ArrowUpRight size={14} />
+                  </a>
+                  <span className="font-sans text-[10px] tracking-wider" style={{ color: `${N}50` }}>
+                    adinagayo@gmail.com
+                  </span>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </section>
