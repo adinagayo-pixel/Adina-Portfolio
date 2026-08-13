@@ -156,7 +156,7 @@ const DOCK = [
   { id: "home", label: "Home", Icon: Home },
   { id: "work", label: "Work", Icon: Briefcase },
   { id: "process", label: "Process", Icon: Layers },
-  { id: "archive", label: "Archive", Icon: Archive },
+  { id: "archive", label: "Catalog", Icon: Archive },
   { id: "contact", label: "Contact", Icon: Mail },
 ]
 
@@ -252,19 +252,32 @@ function HeroSection() {
     >
       {/* Top nav bar */}
       <div
-        className="flex items-center justify-between px-8 lg:px-16 py-6"
+        className="flex items-center justify-between px-5 py-4 lg:px-16 lg:py-6"
         style={{ borderBottom: `1px solid rgba(25, 36, 78, 0.05)` }}
       >
-        <span className="font-sans text-[11px] font-semibold tracking-[0.15em]" style={{ color: N }}>
-          AFG<span style={{ color: C }}> ·</span> PORTFOLIO 2026
+        {/* Logo */}
+        <span className="font-sans text-[10px] lg:text-[11px] font-semibold tracking-[0.15em]" style={{ color: N }}>
+          AFG<span style={{ color: C }}> ·</span><span className="hidden sm:inline"> PORTFOLIO 2026</span>
         </span>
-        <div className="flex items-center gap-4">
-          <span className="font-sans text-[10px] font-semibold tracking-wider text-[#19244E]/60 uppercase">SG / MY / ID</span>
+
+        {/* Right actions */}
+        <div className="flex items-center gap-2 lg:gap-4">
+          {/* Locale tag — hide on mobile */}
+          <span className="hidden md:inline font-sans text-[10px] font-semibold tracking-wider text-[#19244E]/60 uppercase">
+            SG / MY / ID
+          </span>
+
+          {/* Resume button */}
           <a
             href="/resume-adina-fayza-gayo.pdf"
             download
-            className="flex items-center gap-1.5 font-sans text-[10px] font-semibold tracking-widest uppercase px-4 py-2.5 transition-all duration-150"
-            style={{ border: `1px solid ${HAIR}`, color: `${N}DD`, borderRadius: "6px" }}
+            className="flex items-center gap-1.5 font-sans text-[10px] font-semibold tracking-widest uppercase transition-all duration-150"
+            style={{
+              border: `1px solid ${HAIR}`,
+              color: `${N}DD`,
+              borderRadius: "6px",
+              padding: "6px 10px",
+            }}
             onMouseEnter={(e) => {
               ;(e.currentTarget as HTMLElement).style.borderColor = N
               ;(e.currentTarget as HTMLElement).style.color = N
@@ -275,12 +288,20 @@ function HeroSection() {
             }}
           >
             <ExternalLink size={10} />
-            Resume
+            <span className="hidden sm:inline">Resume</span>
           </a>
+
+          {/* Hire Me button */}
           <a
             href="mailto:adinagayo@gmail.com"
-            className="font-sans text-[10px] font-semibold tracking-widest uppercase px-4 py-2.5 transition-all duration-150"
-            style={{ border: `1px solid ${N}`, color: N, borderRadius: "6px" }}
+            className="font-sans text-[10px] font-semibold tracking-widest uppercase transition-all duration-150"
+            style={{
+              border: `1px solid ${N}`,
+              color: N,
+              borderRadius: "6px",
+              padding: "6px 10px",
+              whiteSpace: "nowrap",
+            }}
             onMouseEnter={(e) => {
               ;(e.currentTarget as HTMLElement).style.backgroundColor = N
               ;(e.currentTarget as HTMLElement).style.color = W
@@ -882,9 +903,9 @@ function ProjectArchiveSection() {
         className="px-8 lg:px-16 py-10 flex items-center gap-6"
         style={{ borderBottom: `1px solid rgba(25, 36, 78, 0.05)` }}
       >
-        <span className="font-sans text-[10px] font-semibold tracking-[0.2em] text-[#19244E]/60">[05 // DATA INDEX]</span>
+        <span className="font-sans text-[10px] font-semibold tracking-[0.2em] text-[#19244E]/60">[05 // CATALOG]</span>
         <div className="flex-1 h-px" style={{ backgroundColor: "rgba(25, 36, 78, 0.05)" }} />
-        <span className="font-sans text-[10px] font-semibold tracking-[0.15em] text-[#19244E]/60">PROJECT ARCHIVE</span>
+        <span className="font-sans text-[10px] font-semibold tracking-[0.15em] text-[#19244E]/60">Additional Works & Shipped Systems</span>
       </div>
 
       {/* Count + filter row */}
