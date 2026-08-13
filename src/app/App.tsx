@@ -235,7 +235,7 @@ function FloatingDock({ activeSection }: { activeSection: string }) {
 }
 
 // ─── Hero Spring Config ───────────────────────────────────────────────────────
-const HERO_SPRING = { type: "tween" as const, ease: [0.16, 1, 0.3, 1], duration: 0.7 }
+const HERO_SPRING = { type: "tween" as const, ease: [0.16, 1, 0.3, 1] as const, duration: 0.7 }
 
 // ─── Hero Section ─────────────────────────────────────────────────────────────
 function HeroSection() {
