@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react"
 import { motion, useMotionValue, useSpring, AnimatePresence } from "motion/react"
 import adinaPhotoAbout from "@/imports/ChatGPT_Image_Aug_3__2026__03_31_22_PM.png"
+import adinaPhotoLife from "@/imports/Foto In Life.jpg"
 import projectThumb1 from "@/imports/image-7.png"
 import projectThumb2 from "@/imports/image-8.png"
 import projectThumb4 from "@/imports/image-7.png"
@@ -275,7 +276,7 @@ function HeroPhoto({ isAtWork, tick, LANGS, HELLOS }: {
 
       {/* Photo */}
       <ImageWithFallback
-        src={adinaPhotoAbout}
+        src={isAtWork ? adinaPhotoAbout : adinaPhotoLife}
         alt="Adina Fayza Gayo"
         className="absolute inset-0 w-full h-full object-cover object-top"
       />
