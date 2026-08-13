@@ -417,94 +417,146 @@ function HeroSection() {
       {/* ── Main hero grid ── */}
       <div className="flex-1 grid lg:grid-cols-2 relative overflow-hidden">
 
-        {/* Column A — Left slot */}
-        <div className="flex items-center justify-center lg:justify-start px-8 lg:px-20 py-16 lg:py-20 order-2 lg:order-1">
-          {isAtWork ? (
-            /* AT WORK — left text block (Wrapped in its own AnimatePresence container, avoiding photo layout conflicts) */
-            <AnimatePresence mode="wait">
-              {isAtWork && (
-                <motion.div
-                  key="work-text"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.25 }}
-                  className="max-w-[520px] w-full"
+        {/* Text Container — Stays mounted, shifts columns on desktop, fades inner content */}
+        <motion.div
+          layout
+          transition={HERO_SPRING}
+          className={`flex items-center justify-center lg:justify-start px-8 lg:px-20 py-16 lg:py-20 order-2 lg:order-none lg:row-start-1 ${
+            isAtWork ? "lg:col-start-1" : "lg:col-start-2"
+          }`}
+        >
+          <AnimatePresence mode="wait" initial={false}>
+            {isAtWork ? (
+              /* AT WORK — text block */
+              <motion.div
+                key="work-text"
+                initial={{ opacity: 0, x: -16 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 16 }}
+                transition={{ duration: 0.22 }}
+                className="max-w-[520px] w-full"
+              >
+                {/* Eyebrow */}
+                <p className="font-sans text-[10px] font-semibold tracking-[0.2em] mb-5" style={{ color: C }}>
+                  Product Designer · System Logic Architect · M.MT Candidate
+                </p>
+
+                {/* Headline */}
+                <h1
+                  className="font-display font-light leading-[0.93] mb-8"
+                  style={{ fontSize: "clamp(2.8rem, 5.5vw, 5.6rem)", color: N, letterSpacing: "-0.02em" }}
                 >
-                  {/* Eyebrow */}
-                  <p className="font-sans text-[10px] font-semibold tracking-[0.2em] mb-5" style={{ color: C }}>
-                    Product Designer · System Logic Architect · M.MT Candidate
-                  </p>
+                  Enterprise-grade<br />
+                  design,{" "}
+                  <em className="not-italic" style={{ color: C }}>delivered</em>
+                  <br />
+                  at startup speed.
+                </h1>
 
-                  {/* Headline */}
-                  <h1
-                    className="font-display font-light leading-[0.93] mb-8"
-                    style={{ fontSize: "clamp(2.8rem, 5.5vw, 5.6rem)", color: N, letterSpacing: "-0.02em" }}
+                {/* Para 1 */}
+                <p className="text-[15px] leading-[1.8] mb-5 max-w-[460px]" style={{ color: `${N}BB` }}>
+                  I bridge complex, multi-brand product ecosystems — from embedded insurance platforms (Sunway, TNG, GEGM) to B2B enterprise portals and public-sector systems like Quick Count 2024. As the sole designer at Friendsure, I architect the logic underneath: flows, edge cases, and handoffs that developers actually enjoy receiving.
+                </p>
+
+                {/* Para 2 */}
+                <p className="text-[15px] leading-[1.8] mb-10 max-w-[460px]" style={{ color: `${N}BB` }}>
+                  My workflow runs AI-first — Figma, Claude, Gemini, VS Code aren't tools I use, they're the studio I think inside. The result: <strong style={{ color: N }}>70% faster delivery cycles</strong>, zero-defect handoffs, and design systems that scale quietly while the business moves fast.
+                </p>
+
+                {/* CTAs */}
+                <div className="flex items-center gap-4 flex-wrap">
+                  <button
+                    className="flex items-center gap-2 px-6 py-3.5 text-sm font-medium text-white transition-opacity duration-150 hover:opacity-85 cursor-pointer"
+                    style={{ backgroundColor: N, borderRadius: "6px" }}
+                    onClick={() => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })}
                   >
-                    Enterprise-grade<br />
-                    design,{" "}
-                    <em className="not-italic" style={{ color: C }}>delivered</em>
-                    <br />
-                    at startup speed.
-                  </h1>
+                    View Selected Work <ArrowRight size={14} />
+                  </button>
+                  <button
+                    className="flex items-center gap-2 px-6 py-3.5 text-sm font-medium transition-colors duration-150 cursor-pointer"
+                    style={{ border: `1px solid ${HAIR}`, color: N, borderRadius: "6px" }}
+                    onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+                  >
+                    <Mail size={14} /> Get In Touch
+                  </button>
+                </div>
+              </motion.div>
+            ) : (
+              /* IN LIFE — text block */
+              <motion.div
+                key="life-text"
+                initial={{ opacity: 0, x: -16 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 16 }}
+                transition={{ duration: 0.22 }}
+                className="max-w-[480px] w-full px-0 lg:px-4"
+              >
+                {/* Eyebrow */}
+                <p className="font-sans text-[10px] font-semibold tracking-[0.2em] mb-5" style={{ color: C }}>
+                  Off The Clock · Real Human · Highly Organized Chaos
+                </p>
 
-                  {/* Para 1 */}
-                  <p className="text-[15px] leading-[1.8] mb-5 max-w-[460px]" style={{ color: `${N}BB` }}>
-                    I bridge complex, multi-brand product ecosystems — from embedded insurance platforms (Sunway, TNG, GEGM) to B2B enterprise portals and public-sector systems like Quick Count 2024. As the sole designer at Friendsure, I architect the logic underneath: flows, edge cases, and handoffs that developers actually enjoy receiving.
-                  </p>
+                {/* Headline */}
+                <h1
+                  className="font-display font-light leading-[0.93] mb-8"
+                  style={{ fontSize: "clamp(2.6rem, 5vw, 5rem)", color: N, letterSpacing: "-0.02em" }}
+                >
+                  Chaotic good,
+                  <br />
+                  <em className="not-italic" style={{ color: C }}>with</em> a
+                  <br />
+                  color-coded plan.
+                </h1>
 
-                  {/* Para 2 */}
-                  <p className="text-[15px] leading-[1.8] mb-10 max-w-[460px]" style={{ color: `${N}BB` }}>
-                    My workflow runs AI-first — Figma, Claude, Gemini, VS Code aren't tools I use, they're the studio I think inside. The result: <strong style={{ color: N }}>70% faster delivery cycles</strong>, zero-defect handoffs, and design systems that scale quietly while the business moves fast.
-                  </p>
+                {/* Para 1 */}
+                <p className="text-[15px] leading-[1.8] mb-5 max-w-[440px]" style={{ color: `${N}BB` }}>
+                  Off-screen, I'm the friend who sends the group itinerary three weeks early — color-coded by day, cross-referenced by walking distance, with a backup cafe in case the first one has a queue. Bangkok was just practice. My love language is a well-organized shared folder and a bowl of hot ramen at 11 PM.
+                </p>
 
-                  {/* CTAs */}
-                  <div className="flex items-center gap-4 flex-wrap">
-                    <button
-                      className="flex items-center gap-2 px-6 py-3.5 text-sm font-medium text-white transition-opacity duration-150 hover:opacity-85 cursor-pointer"
-                      style={{ backgroundColor: N, borderRadius: "6px" }}
-                      onClick={() => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })}
-                    >
-                      View Selected Work <ArrowRight size={14} />
-                    </button>
-                    <button
-                      className="flex items-center gap-2 px-6 py-3.5 text-sm font-medium transition-colors duration-150 cursor-pointer"
-                      style={{ border: `1px solid ${HAIR}`, color: N, borderRadius: "6px" }}
-                      onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-                    >
-                      <Mail size={14} /> Get In Touch
-                    </button>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          ) : (
-            /* IN LIFE — left photo slot (Renders outside AnimatePresence so layoutId moves cleanly) */
-            <motion.div
-              layoutId="hero-photo-container"
-              transition={HERO_SPRING}
-              className="flex items-center justify-center w-full"
-            >
-              <HeroPhoto isAtWork={isAtWork} tick={tick} LANGS={LANGS} HELLOS={HELLOS} />
-            </motion.div>
-          )}
-        </div>
+                {/* Para 2 */}
+                <p className="text-[15px] leading-[1.8] mb-10 max-w-[440px]" style={{ color: `${N}BB` }}>
+                  I'm genuinely obsessed with using AI to eliminate the boring parts of being a human — splitting group bills to the last cent (yes, there's a transparent spreadsheet), turning 3-hour travel research into a 15-minute brief. Good matcha optional, but <em>strongly</em> recommended.
+                </p>
 
-        {/* Column B — Right slot */}
-        <div
-          className="flex flex-col items-center justify-center px-8 py-10 lg:py-16 order-1 lg:order-2 min-h-[55vw] lg:min-h-0"
+                {/* CTA */}
+                <div className="flex items-center gap-4 flex-wrap">
+                  <a
+                    href="mailto:adinagayo@gmail.com"
+                    className="flex items-center gap-2 px-6 py-3.5 text-sm font-medium text-white transition-opacity duration-150 hover:opacity-85"
+                    style={{ backgroundColor: C, borderRadius: "6px" }}
+                  >
+                    Let's grab matcha <ArrowUpRight size={14} />
+                  </a>
+                  <span className="font-sans text-[10px] tracking-wider" style={{ color: `${N}50` }}>
+                    adinagayo@gmail.com
+                  </span>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
+
+        {/* Photo Container — Stays mounted, shifts columns on desktop */}
+        <motion.div
+          layout
+          transition={HERO_SPRING}
+          className={`flex flex-col items-center justify-center px-8 py-10 lg:py-16 order-1 lg:order-none lg:row-start-1 min-h-[55vw] lg:min-h-0 ${
+            isAtWork ? "lg:col-start-2" : "lg:col-start-1"
+          }`}
           style={{ backgroundColor: "rgba(25, 36, 78, 0.015)" }}
         >
-          {isAtWork ? (
-            /* AT WORK — right photo slot (Renders outside AnimatePresence so layoutId moves cleanly) */
-            <motion.div
-              layoutId="hero-photo-container"
-              transition={HERO_SPRING}
-              className="flex flex-col items-center gap-6 w-full"
-            >
-              <HeroPhoto isAtWork={isAtWork} tick={tick} LANGS={LANGS} HELLOS={HELLOS} />
-              {/* Credential tags */}
-              <div className="flex items-center justify-center gap-2 flex-wrap">
+          <HeroPhoto isAtWork={isAtWork} tick={tick} LANGS={LANGS} HELLOS={HELLOS} />
+          
+          {/* Credential tags under the photo (fade out in life mode) */}
+          <AnimatePresence>
+            {isAtWork && (
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 8 }}
+                transition={{ duration: 0.2 }}
+                className="flex items-center justify-center gap-2 flex-wrap mt-6"
+              >
                 {["Enterprise B2B", "Multi-Brand Arch.", "AI-Accelerated", "Cross-Border"].map((tag) => (
                   <span
                     key={tag}
@@ -513,65 +565,11 @@ function HeroSection() {
                     {tag}
                   </span>
                 ))}
-              </div>
-            </motion.div>
-          ) : (
-            /* IN LIFE — right text block (Wrapped in its own AnimatePresence container) */
-            <AnimatePresence mode="wait">
-              {!isAtWork && (
-                <motion.div
-                  key="life-text"
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 20 }}
-                  transition={{ duration: 0.25 }}
-                  className="max-w-[480px] w-full px-0 lg:px-4"
-                >
-                  {/* Eyebrow */}
-                  <p className="font-sans text-[10px] font-semibold tracking-[0.2em] mb-5" style={{ color: C }}>
-                    Off The Clock · Real Human · Highly Organized Chaos
-                  </p>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
 
-                  {/* Headline */}
-                  <h1
-                    className="font-display font-light leading-[0.93] mb-8"
-                    style={{ fontSize: "clamp(2.6rem, 5vw, 5rem)", color: N, letterSpacing: "-0.02em" }}
-                  >
-                    Chaotic good,
-                    <br />
-                    <em className="not-italic" style={{ color: C }}>with</em> a
-                    <br />
-                    color-coded plan.
-                  </h1>
-
-                  {/* Para 1 */}
-                  <p className="text-[15px] leading-[1.8] mb-5 max-w-[440px]" style={{ color: `${N}BB` }}>
-                    Off-screen, I'm the friend who sends the group itinerary three weeks early — color-coded by day, cross-referenced by walking distance, with a backup cafe in case the first one has a queue. Bangkok was just practice. My love language is a well-organized shared folder and a bowl of hot ramen at 11 PM.
-                  </p>
-
-                  {/* Para 2 */}
-                  <p className="text-[15px] leading-[1.8] mb-10 max-w-[440px]" style={{ color: `${N}BB` }}>
-                    I'm genuinely obsessed with using AI to eliminate the boring parts of being a human — splitting group bills to the last cent (yes, there's a transparent spreadsheet), turning 3-hour travel research into a 15-minute brief. Good matcha optional, but <em>strongly</em> recommended.
-                  </p>
-
-                  {/* CTA */}
-                  <div className="flex items-center gap-4 flex-wrap">
-                    <a
-                      href="mailto:adinagayo@gmail.com"
-                      className="flex items-center gap-2 px-6 py-3.5 text-sm font-medium text-white transition-opacity duration-150 hover:opacity-85"
-                      style={{ backgroundColor: C, borderRadius: "6px" }}
-                    >
-                      Let's grab matcha <ArrowUpRight size={14} />
-                    </a>
-                    <span className="font-sans text-[10px] tracking-wider" style={{ color: `${N}50` }}>
-                      adinagayo@gmail.com
-                    </span>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          )}
-        </div>
       </div>
     </section>
   )
