@@ -249,9 +249,8 @@ function HeroPhoto({ isAtWork, tick, LANGS, HELLOS }: {
       layoutId="hero-photo"
       layout
       transition={HERO_SPRING}
-      className="relative overflow-hidden w-full"
+      className="relative overflow-hidden w-full max-w-[320px] sm:max-w-[360px] lg:max-w-[410px] xl:max-w-[440px]"
       style={{
-        maxWidth: "380px",
         aspectRatio: "3/4",
         borderRadius: "16px",
         boxShadow: "0 20px 40px -15px rgba(25, 36, 78, 0.18)",
