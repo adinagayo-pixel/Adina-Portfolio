@@ -246,9 +246,6 @@ function HeroPhoto({ isAtWork, tick, LANGS, HELLOS }: {
 }) {
   return (
     <motion.div
-      layoutId="hero-photo"
-      layout
-      transition={HERO_SPRING}
       className="relative overflow-hidden w-full max-w-[320px] sm:max-w-[360px] lg:max-w-[410px] xl:max-w-[440px]"
       style={{
         aspectRatio: "3/4",
@@ -273,16 +270,34 @@ function HeroPhoto({ isAtWork, tick, LANGS, HELLOS }: {
         </AnimatePresence>
       </div>
 
-      {/* Photo */}
-      <ImageWithFallback
-        src={isAtWork ? adinaPhotoAbout : adinaPhotoLife}
-        alt="Adina Fayza Gayo"
-        className="absolute inset-0 w-full h-full object-cover object-top"
-      />
+      {/* Staged Photo Stack with crossfade transition */}
+      <motion.div
+        animate={{ opacity: isAtWork ? 1 : 0 }}
+        transition={{ duration: 0.35, ease: "easeInOut" }}
+        className="absolute inset-0 w-full h-full"
+      >
+        <ImageWithFallback
+          src={adinaPhotoAbout}
+          alt="Adina Fayza Gayo - At Work"
+          className="absolute inset-0 w-full h-full object-cover object-top"
+        />
+      </motion.div>
+
+      <motion.div
+        animate={{ opacity: isAtWork ? 0 : 1 }}
+        transition={{ duration: 0.35, ease: "easeInOut" }}
+        className="absolute inset-0 w-full h-full"
+      >
+        <ImageWithFallback
+          src={adinaPhotoLife}
+          alt="Adina Fayza Gayo - In Life"
+          className="absolute inset-0 w-full h-full object-cover object-top"
+        />
+      </motion.div>
 
       {/* Gradient overlay */}
       <div
-        className="absolute bottom-0 left-0 right-0 px-6 py-6"
+        className="absolute bottom-0 left-0 right-0 px-6 py-6 z-10"
         style={{ background: "linear-gradient(to top, rgba(25,36,78,0.92) 0%, rgba(25,36,78,0.4) 60%, transparent 100%)" }}
       >
         <p className="font-display font-medium text-lg text-white mb-0.5" style={{ letterSpacing: "-0.01em" }}>
@@ -293,7 +308,7 @@ function HeroPhoto({ isAtWork, tick, LANGS, HELLOS }: {
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35, delay: 0.15 }}
-          className="font-sans text-[10px] font-semibold tracking-widest text-white/70"
+          className="font-sans text-[10px] font-semibold tracking-widest text-white/70 block"
         >
           {isAtWork ? "Senior Product Designer" : "Explorer · Matcha Lover · Spreadsheet Nerd"}
         </motion.span>
@@ -415,11 +430,11 @@ function HeroSection() {
       </div>
 
       {/* ── Main hero grid ── */}
-      <div className="flex-1 grid lg:grid-cols-2 relative overflow-hidden">
-
-        {/* Text Container — Stays mounted, shifts columns on desktop, fades inner content */}
+      <div className="flex-1 grid lg:grid-cols-2 relative overflow-hidden lg:min-h-[620px]">
+        
+        {/* Text Container — Stays mounted, shifts columns on desktop using position layout */}
         <motion.div
-          layout
+          layout="position"
           transition={HERO_SPRING}
           className={`flex items-center justify-center lg:justify-start px-8 lg:px-20 py-16 lg:py-20 order-2 lg:order-none lg:row-start-1 ${
             isAtWork ? "lg:col-start-1" : "lg:col-start-2"
@@ -536,9 +551,9 @@ function HeroSection() {
           </AnimatePresence>
         </motion.div>
 
-        {/* Photo Container — Stays mounted, shifts columns on desktop */}
+        {/* Photo Container — Stays mounted, shifts columns on desktop using position layout */}
         <motion.div
-          layout
+          layout="position"
           transition={HERO_SPRING}
           className={`flex flex-col items-center justify-center px-8 py-10 lg:py-16 order-1 lg:order-none lg:row-start-1 min-h-[55vw] lg:min-h-0 ${
             isAtWork ? "lg:col-start-2" : "lg:col-start-1"
@@ -569,7 +584,6 @@ function HeroSection() {
             )}
           </AnimatePresence>
         </motion.div>
-
       </div>
     </section>
   )
