@@ -883,20 +883,71 @@ function WorkflowSection() {
           How I work
         </p>
         <h2
-          className="font-display font-light leading-[1.15] text-white max-w-4xl"
+          className="font-display font-light leading-[1.25] text-white max-w-4xl"
           style={{ fontSize: "clamp(2.4rem, 5vw, 4.8rem)", letterSpacing: "-0.025em" }}
         >
-          I start by{" "}
-          <span style={{ fontSize: "0.75em" }}>🔍</span>{" "}
-          listening,
-          <br className="hidden lg:block" />
-          {" "}design with{" "}
-          <span style={{ fontSize: "0.75em" }}>⚡</span>{" "}
-          <em className="font-normal not-italic" style={{ color: C }}>speed,</em>
-          <br className="hidden lg:block" />
-          {" "}and close with a{" "}
-          <span style={{ fontSize: "0.75em" }}>📋</span>{" "}
-          clean handoff.
+          {/* Line 1 */}
+          <span className="block overflow-hidden py-1">
+            <motion.span
+              initial={{ y: "100%", opacity: 0 }}
+              animate={inView ? { y: 0, opacity: 1 } : {}}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+              className="inline-block"
+            >
+              I start by{" "}
+              <motion.span
+                animate={inView ? { scale: [0, 1.2, 1], rotate: [0, -10, 0] } : {}}
+                transition={{ type: "spring", stiffness: 260, damping: 15, delay: 0.5 }}
+                className="inline-block origin-center"
+                style={{ fontSize: "0.75em" }}
+              >
+                🔍
+              </motion.span>{" "}
+              listening,
+            </motion.span>
+          </span>
+
+          {/* Line 2 */}
+          <span className="block overflow-hidden py-1">
+            <motion.span
+              initial={{ y: "100%", opacity: 0 }}
+              animate={inView ? { y: 0, opacity: 1 } : {}}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.25 }}
+              className="inline-block"
+            >
+              design with{" "}
+              <motion.span
+                animate={inView ? { scale: [0, 1.3, 1], y: [5, -2, 0] } : {}}
+                transition={{ type: "spring", stiffness: 300, damping: 12, delay: 0.7 }}
+                className="inline-block origin-center"
+                style={{ fontSize: "0.75em" }}
+              >
+                ⚡
+              </motion.span>{" "}
+              <em className="font-normal not-italic" style={{ color: C }}>speed,</em>
+            </motion.span>
+          </span>
+
+          {/* Line 3 */}
+          <span className="block overflow-hidden py-1">
+            <motion.span
+              initial={{ y: "100%", opacity: 0 }}
+              animate={inView ? { y: 0, opacity: 1 } : {}}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
+              className="inline-block"
+            >
+              and close with a{" "}
+              <motion.span
+                animate={inView ? { scale: [0, 1.2, 1], rotate: [0, 5, 0] } : {}}
+                transition={{ type: "spring", stiffness: 240, damping: 16, delay: 0.9 }}
+                className="inline-block origin-center"
+                style={{ fontSize: "0.75em" }}
+              >
+                📋
+              </motion.span>{" "}
+              clean handoff.
+            </motion.span>
+          </span>
         </h2>
       </div>
 
