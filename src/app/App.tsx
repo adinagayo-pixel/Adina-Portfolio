@@ -237,85 +237,6 @@ function FloatingDock({ activeSection }: { activeSection: string }) {
 // ─── Hero Spring Config ───────────────────────────────────────────────────────
 const HERO_SPRING = { type: "spring" as const, stiffness: 280, damping: 26, mass: 1 }
 
-// ─── Hero Toggle Photo ────────────────────────────────────────────────────────
-function HeroPhoto({ isAtWork, tick, LANGS, HELLOS }: {
-  isAtWork: boolean
-  tick: number
-  LANGS: string[]
-  HELLOS: string[]
-}) {
-  return (
-    <motion.div
-      className="relative overflow-hidden w-full h-full min-h-[420px] lg:min-h-0"
-      style={{
-        boxShadow: "none",
-      }}
-    >
-      {/* Greeting ticker */}
-      <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 bg-white px-4 py-1.5 rounded-full shadow-md border border-[#19244E]/5 whitespace-nowrap">
-        <span className="font-sans text-[9px] font-semibold tracking-widest text-[#19244E]/60 uppercase">[{LANGS[tick]}]</span>
-        <AnimatePresence mode="wait">
-          <motion.span
-            key={tick}
-            initial={{ y: 8, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -8, opacity: 0 }}
-            transition={{ duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="font-display text-sm font-light text-[#19244E]"
-          >
-            {HELLOS[tick]}
-          </motion.span>
-        </AnimatePresence>
-      </div>
-
-
-      {/* Staged Photo Stack with crossfade transition */}
-      <motion.div
-        animate={{ opacity: isAtWork ? 1 : 0 }}
-        transition={{ duration: 0.35, ease: "easeInOut" }}
-        className="absolute inset-0 w-full h-full"
-      >
-        <ImageWithFallback
-          src={adinaPhotoAbout}
-          alt="Adina Fayza Gayo - At Work"
-          className="absolute inset-0 w-full h-full object-cover object-top"
-        />
-      </motion.div>
-
-      <motion.div
-        animate={{ opacity: isAtWork ? 0 : 1 }}
-        transition={{ duration: 0.35, ease: "easeInOut" }}
-        className="absolute inset-0 w-full h-full"
-      >
-        <ImageWithFallback
-          src={adinaPhotoLife}
-          alt="Adina Fayza Gayo - In Life"
-          className="absolute inset-0 w-full h-full object-cover object-top"
-        />
-      </motion.div>
-
-      {/* Gradient overlay */}
-      <div
-        className="absolute bottom-0 left-0 right-0 px-8 py-8 z-10"
-        style={{ background: "linear-gradient(to top, rgba(25,36,78,0.92) 0%, rgba(25,36,78,0.4) 60%, transparent 100%)" }}
-      >
-        <p className="font-display font-medium text-lg text-white mb-0.5" style={{ letterSpacing: "-0.01em" }}>
-          Adina Fayza Gayo
-        </p>
-        <motion.span
-          key={isAtWork ? "work-title" : "life-title"}
-          initial={{ opacity: 0, y: 6 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.35, delay: 0.15 }}
-          className="font-sans text-[10px] font-semibold tracking-widest text-white/70 block"
-        >
-          {isAtWork ? "Senior Product Designer" : "Explorer · Matcha Lover · Spreadsheet Nerd"}
-        </motion.span>
-      </div>
-    </motion.div>
-  )
-}
-
 // ─── Hero Section ─────────────────────────────────────────────────────────────
 function HeroSection() {
   const [isAtWork, setIsAtWork] = useState(true)
@@ -383,7 +304,7 @@ function HeroSection() {
           </span>
         </div>
 
-        {/* Toggle pill (Repositioned to the far right) */}
+        {/* Toggle pill */}
         <div className="flex items-center gap-3 flex-shrink-0">
           <span
             className="font-sans text-[10px] font-semibold tracking-widest transition-all duration-300 cursor-pointer select-none"
@@ -428,34 +349,21 @@ function HeroSection() {
         </div>
       </div>
 
-      {/* ── Main hero grid ── */}
-      <div className="flex-1 grid lg:grid-cols-2 relative overflow-hidden lg:min-h-[620px]">
-        
-        {/* Text Container — Stays mounted, shifts columns on desktop using position layout */}
+      {/* ── Sliding viewports wrapper ── */}
+      <div className="flex-1 overflow-hidden relative">
         <motion.div
-          layout="position"
+          animate={{ x: isAtWork ? "0%" : "-50%" }}
           transition={HERO_SPRING}
-          className={`flex items-center justify-center lg:justify-start px-8 lg:px-20 py-16 lg:py-20 order-2 lg:order-none lg:row-start-1 ${
-            isAtWork ? "lg:col-start-1" : "lg:col-start-2"
-          }`}
+          className="flex w-[200%] h-full"
         >
-          <AnimatePresence mode="wait" initial={false}>
-            {isAtWork ? (
-              /* AT WORK — text block */
-              <motion.div
-                key="work-text"
-                initial={{ opacity: 0, x: -16 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 16 }}
-                transition={{ duration: 0.22 }}
-                className="max-w-[520px] w-full"
-              >
-                {/* Eyebrow */}
+          {/* ── PANEL A: AT WORK (Left: Text, Right: Photo) ── */}
+          <div className="w-1/2 h-full grid lg:grid-cols-2 flex-shrink-0">
+            {/* Left Slot: Professional Bio Text */}
+            <div className="flex items-center justify-center lg:justify-start px-8 lg:px-20 py-16 lg:py-20">
+              <div className="max-w-[520px] w-full">
                 <p className="font-sans text-[10px] font-semibold tracking-[0.2em] mb-5" style={{ color: C }}>
                   Product Designer · System Logic Architect · M.MT Candidate
                 </p>
-
-                {/* Headline */}
                 <h1
                   className="font-display font-light leading-[0.93] mb-8"
                   style={{ fontSize: "clamp(2.8rem, 5.5vw, 5.6rem)", color: N, letterSpacing: "-0.02em" }}
@@ -466,18 +374,12 @@ function HeroSection() {
                   <br />
                   at startup speed.
                 </h1>
-
-                {/* Para 1 */}
                 <p className="text-[15px] leading-[1.8] mb-5 max-w-[460px]" style={{ color: `${N}BB` }}>
                   I bridge complex, multi-brand product ecosystems — from embedded insurance platforms (Sunway, TNG, GEGM) to B2B enterprise portals and public-sector systems like Quick Count 2024. As the sole designer at Friendsure, I architect the logic underneath: flows, edge cases, and handoffs that developers actually enjoy receiving.
                 </p>
-
-                {/* Para 2 */}
                 <p className="text-[15px] leading-[1.8] mb-10 max-w-[460px]" style={{ color: `${N}BB` }}>
                   My workflow runs AI-first — Figma, Claude, Gemini, VS Code aren't tools I use, they're the studio I think inside. The result: <strong style={{ color: N }}>70% faster delivery cycles</strong>, zero-defect handoffs, and design systems that scale quietly while the business moves fast.
                 </p>
-
-                {/* CTAs */}
                 <div className="flex items-center gap-4 flex-wrap">
                   <button
                     className="flex items-center gap-2 px-6 py-3.5 text-sm font-medium text-white transition-opacity duration-150 hover:opacity-85 cursor-pointer"
@@ -494,45 +396,110 @@ function HeroSection() {
                     <Mail size={14} /> Get In Touch
                   </button>
                 </div>
-              </motion.div>
-            ) : (
-              /* IN LIFE — text block */
-              <motion.div
-                key="life-text"
-                initial={{ opacity: 0, x: -16 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 16 }}
-                transition={{ duration: 0.22 }}
-                className="max-w-[480px] w-full px-0 lg:px-4"
+              </div>
+            </div>
+
+            {/* Right Slot: Edge-to-edge Photo Column */}
+            <div className="relative overflow-hidden w-full h-full min-h-[420px] lg:min-h-0 bg-[#19244E]/5">
+              {/* Greeting ticker */}
+              <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 bg-white px-4 py-1.5 rounded-full shadow-md border border-[#19244E]/5 whitespace-nowrap">
+                <span className="font-sans text-[9px] font-semibold tracking-widest text-[#19244E]/60 uppercase">[{LANGS[tick]}]</span>
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={tick}
+                    initial={{ y: 8, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -8, opacity: 0 }}
+                    transition={{ duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    className="font-display text-sm font-light text-[#19244E]"
+                  >
+                    {HELLOS[tick]}
+                  </motion.span>
+                </AnimatePresence>
+              </div>
+
+              <ImageWithFallback
+                src={adinaPhotoAbout}
+                alt="Adina Fayza Gayo - At Work"
+                className="absolute inset-0 w-full h-full object-cover object-top"
+              />
+
+              {/* Bottom Info Overlay */}
+              <div
+                className="absolute bottom-0 left-0 right-0 px-8 py-8 z-10"
+                style={{ background: "linear-gradient(to top, rgba(25,36,78,0.92) 0%, rgba(25,36,78,0.4) 60%, transparent 100%)" }}
               >
-                {/* Eyebrow */}
+                <p className="font-display font-medium text-lg text-white mb-0.5" style={{ letterSpacing: "-0.01em" }}>
+                  Adina Fayza Gayo
+                </p>
+                <span className="font-sans text-[10px] font-semibold tracking-widest text-white/70 block">
+                  Senior Product Designer
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* ── PANEL B: IN LIFE (Left: Photo, Right: Text) ── */}
+          <div className="w-1/2 h-full grid lg:grid-cols-2 flex-shrink-0">
+            {/* Left Slot: Edge-to-edge Photo Column */}
+            <div className="relative overflow-hidden w-full h-full min-h-[420px] lg:min-h-0 bg-[#19244E]/5">
+              {/* Greeting ticker */}
+              <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 bg-white px-4 py-1.5 rounded-full shadow-md border border-[#19244E]/5 whitespace-nowrap">
+                <span className="font-sans text-[9px] font-semibold tracking-widest text-[#19244E]/60 uppercase">[{LANGS[tick]}]</span>
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={tick}
+                    initial={{ y: 8, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -8, opacity: 0 }}
+                    transition={{ duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    className="font-display text-sm font-light text-[#19244E]"
+                  >
+                    {HELLOS[tick]}
+                  </motion.span>
+                </AnimatePresence>
+              </div>
+
+              <ImageWithFallback
+                src={adinaPhotoLife}
+                alt="Adina Fayza Gayo - In Life"
+                className="absolute inset-0 w-full h-full object-cover object-top"
+              />
+
+              {/* Bottom Info Overlay */}
+              <div
+                className="absolute bottom-0 left-0 right-0 px-8 py-8 z-10"
+                style={{ background: "linear-gradient(to top, rgba(25,36,78,0.92) 0%, rgba(25,36,78,0.4) 60%, transparent 100%)" }}
+              >
+                <p className="font-display font-medium text-lg text-white mb-0.5" style={{ letterSpacing: "-0.01em" }}>
+                  Adina Fayza Gayo
+                </p>
+                <span className="font-sans text-[10px] font-semibold tracking-widest text-white/70 block">
+                  Explorer · Matcha Lover · Spreadsheet Nerd
+                </span>
+              </div>
+            </div>
+
+            {/* Right Slot: Personal Text Column */}
+            <div className="flex items-center justify-center lg:justify-start px-8 lg:px-20 py-16 lg:py-20">
+              <div className="max-w-[480px] w-full px-0 lg:px-4">
                 <p className="font-sans text-[10px] font-semibold tracking-[0.2em] mb-5" style={{ color: C }}>
                   Off The Clock · Real Human · Highly Organized Chaos
                 </p>
-
-                {/* Headline */}
                 <h1
                   className="font-display font-light leading-[0.93] mb-8"
                   style={{ fontSize: "clamp(2.6rem, 5vw, 5rem)", color: N, letterSpacing: "-0.02em" }}
                 >
-                  Chaotic good,
-                  <br />
-                  <em className="not-italic" style={{ color: C }}>with</em> a
-                  <br />
+                  Chaotic good,<br />
+                  <em className="not-italic" style={{ color: C }}>with</em> a<br />
                   color-coded plan.
                 </h1>
-
-                {/* Para 1 */}
                 <p className="text-[15px] leading-[1.8] mb-5 max-w-[440px]" style={{ color: `${N}BB` }}>
                   Off-screen, I'm the friend who sends the group itinerary three weeks early — color-coded by day, cross-referenced by walking distance, with a backup cafe in case the first one has a queue. Bangkok was just practice. My love language is a well-organized shared folder and a bowl of hot ramen at 11 PM.
                 </p>
-
-                {/* Para 2 */}
                 <p className="text-[15px] leading-[1.8] mb-10 max-w-[440px]" style={{ color: `${N}BB` }}>
-                  I'm genuinely obsessed with using AI to eliminate the boring parts of being a human — splitting group bills to the last cent (yes, there's a transparent spreadsheet), turning 3-hour travel research into a 15-minute brief. Good matcha optional, but <em>strongly</em> recommended.
+                  I'm genuinely obsessed with using AI to eliminate the boring parts of being a human — splitting group bills to the last cent (yes, there's a transparent spreadsheet), turning 3-hour travel research into a 1-minute brief. Good matcha optional, but <em>strongly</em> recommended.
                 </p>
-
-                {/* CTA */}
                 <div className="flex items-center gap-4 flex-wrap">
                   <a
                     href="mailto:adinagayo@gmail.com"
@@ -545,21 +512,9 @@ function HeroSection() {
                     adinagayo@gmail.com
                   </span>
                 </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.div>
-
-        {/* Photo Container — Stays mounted, shifts columns on desktop, edge-to-edge full bleed (no padding) */}
-        <motion.div
-          layout="position"
-          transition={HERO_SPRING}
-          className={`flex flex-col items-stretch justify-stretch p-0 order-1 lg:order-none lg:row-start-1 min-h-[55vw] lg:min-h-0 ${
-            isAtWork ? "lg:col-start-2" : "lg:col-start-1"
-          }`}
-          style={{ backgroundColor: "rgba(25, 36, 78, 0.015)" }}
-        >
-          <HeroPhoto isAtWork={isAtWork} tick={tick} LANGS={LANGS} HELLOS={HELLOS} />
+              </div>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>
