@@ -252,7 +252,7 @@ function HeroSection() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col"
+      className="relative flex flex-col"
       style={{ backgroundColor: W }}
     >
       {/* ── Top nav bar ── */}
@@ -350,16 +350,16 @@ function HeroSection() {
       </div>
 
       {/* ── Sliding viewports wrapper ── */}
-      <div className="flex-1 overflow-hidden relative">
+      <div className="overflow-hidden relative">
         <motion.div
           animate={{ x: isAtWork ? "0%" : "-50%" }}
           transition={HERO_SPRING}
-          className="flex w-[200%] h-full"
+          className="flex w-[200%]"
         >
           {/* ── PANEL A: AT WORK (Left: Text, Right: Photo) ── */}
-          <div className="w-1/2 h-full grid lg:grid-cols-2 flex-shrink-0">
+          <div className="w-1/2 grid lg:grid-cols-2 flex-shrink-0">
             {/* Left Slot: Professional Bio Text */}
-            <div className="flex items-center justify-center lg:justify-start px-8 lg:px-20 py-16 lg:py-20">
+            <div className="flex items-center justify-center lg:justify-start px-8 lg:px-20 py-10 lg:py-12">
               <div className="max-w-[520px] w-full">
                 <p className="font-sans text-[10px] font-semibold tracking-[0.2em] mb-5" style={{ color: C }}>
                   Product Designer · System Logic Architect · M.MT Candidate
@@ -374,12 +374,39 @@ function HeroSection() {
                   <br />
                   at startup speed.
                 </h1>
-                <p className="text-[15px] leading-[1.8] mb-5 max-w-[460px]" style={{ color: `${N}BB` }}>
-                  I bridge complex, multi-brand product ecosystems — from embedded insurance platforms (Sunway, TNG, GEGM) to B2B enterprise portals and public-sector systems like Quick Count 2024. As the sole designer at Friendsure, I architect the logic underneath: flows, edge cases, and handoffs that developers actually enjoy receiving.
+                <p className="text-[15px] leading-[1.7] mb-6 max-w-[460px]" style={{ color: `${N}BB` }}>
+                  I bridge complex product ecosystems — from embedded insurance platforms to B2B enterprise portals. As the sole designer at Friendsure, I architect the logic under the hood: flows, edge cases, and handoffs that developers love.
                 </p>
-                <p className="text-[15px] leading-[1.8] mb-10 max-w-[460px]" style={{ color: `${N}BB` }}>
-                  My workflow runs AI-first — Figma, Claude, Gemini, VS Code aren't tools I use, they're the studio I think inside. The result: <strong style={{ color: N }}>70% faster delivery cycles</strong>, zero-defect handoffs, and design systems that scale quietly while the business moves fast.
-                </p>
+                
+                {/* Visual Highlights Grid */}
+                <div className="grid grid-cols-2 gap-6 mb-10 max-w-[460px]">
+                  <div className="flex gap-2.5 items-start">
+                    <div className="p-1.5 rounded flex-shrink-0" style={{ backgroundColor: `${N}0D`, color: C }}>
+                      <Zap size={14} />
+                    </div>
+                    <div>
+                      <h4 className="font-sans text-[11px] font-bold tracking-wider uppercase mb-0.5" style={{ color: N }}>
+                        AI-First Workflow
+                      </h4>
+                      <p className="font-sans text-[11px] leading-relaxed" style={{ color: `${N}99` }}>
+                        Figma, Claude, Gemini, VS Code.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex gap-2.5 items-start">
+                    <div className="p-1.5 rounded flex-shrink-0" style={{ backgroundColor: `${N}0D`, color: C }}>
+                      <CheckCircle size={14} />
+                    </div>
+                    <div>
+                      <h4 className="font-sans text-[11px] font-bold tracking-wider uppercase mb-0.5" style={{ color: N }}>
+                        Rapid Delivery
+                      </h4>
+                      <p className="font-sans text-[11px] leading-relaxed" style={{ color: `${N}99` }}>
+                        70% faster sprints, zero-defect handoffs.
+                      </p>
+                    </div>
+                  </div>
+                </div>
                 <div className="flex items-center gap-4 flex-wrap">
                   <button
                     className="flex items-center gap-2 px-6 py-3.5 text-sm font-medium text-white transition-opacity duration-150 hover:opacity-85 cursor-pointer"
@@ -440,7 +467,7 @@ function HeroSection() {
           </div>
 
           {/* ── PANEL B: IN LIFE (Left: Photo, Right: Text) ── */}
-          <div className="w-1/2 h-full grid lg:grid-cols-2 flex-shrink-0">
+          <div className="w-1/2 grid lg:grid-cols-2 flex-shrink-0">
             {/* Left Slot: Edge-to-edge Photo Column */}
             <div className="relative overflow-hidden w-full h-full min-h-[420px] lg:min-h-0 bg-[#19244E]/5">
               {/* Greeting ticker */}
@@ -481,7 +508,7 @@ function HeroSection() {
             </div>
 
             {/* Right Slot: Personal Text Column */}
-            <div className="flex items-center justify-center lg:justify-start px-8 lg:px-20 py-16 lg:py-20">
+            <div className="flex items-center justify-center lg:justify-start px-8 lg:px-20 py-10 lg:py-12">
               <div className="max-w-[480px] w-full px-0 lg:px-4">
                 <p className="font-sans text-[10px] font-semibold tracking-[0.2em] mb-5" style={{ color: C }}>
                   Off The Clock · Real Human · Highly Organized Chaos
@@ -494,12 +521,39 @@ function HeroSection() {
                   <em className="not-italic" style={{ color: C }}>with</em> a<br />
                   color-coded plan.
                 </h1>
-                <p className="text-[15px] leading-[1.8] mb-5 max-w-[440px]" style={{ color: `${N}BB` }}>
-                  Off-screen, I'm the friend who sends the group itinerary three weeks early — color-coded by day, cross-referenced by walking distance, with a backup cafe in case the first one has a queue. Bangkok was just practice. My love language is a well-organized shared folder and a bowl of hot ramen at 11 PM.
+                <p className="text-[15px] leading-[1.7] mb-6 max-w-[440px]" style={{ color: `${N}BB` }}>
+                  Off-screen, I'm the friend who sends the group itinerary three weeks early — color-coded by day and cross-referenced by distance. My love language is a well-organized shared folder, a hot bowl of ramen, and optimizing daily life.
                 </p>
-                <p className="text-[15px] leading-[1.8] mb-10 max-w-[440px]" style={{ color: `${N}BB` }}>
-                  I'm genuinely obsessed with using AI to eliminate the boring parts of being a human — splitting group bills to the last cent (yes, there's a transparent spreadsheet), turning 3-hour travel research into a 1-minute brief. Good matcha optional, but <em>strongly</em> recommended.
-                </p>
+                
+                {/* Visual Highlights Grid */}
+                <div className="grid grid-cols-2 gap-6 mb-10 max-w-[440px]">
+                  <div className="flex gap-2.5 items-start">
+                    <div className="p-1.5 rounded flex-shrink-0" style={{ backgroundColor: `${N}0D`, color: C }}>
+                      <Globe size={14} />
+                    </div>
+                    <div>
+                      <h4 className="font-sans text-[11px] font-bold tracking-wider uppercase mb-0.5" style={{ color: N }}>
+                        Obsessive Travel
+                      </h4>
+                      <p className="font-sans text-[11px] leading-relaxed" style={{ color: `${N}99` }}>
+                        Color-coded plans, spreadsheet-tracked cafe backups.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex gap-2.5 items-start">
+                    <div className="p-1.5 rounded flex-shrink-0" style={{ backgroundColor: `${N}0D`, color: C }}>
+                      <Bot size={14} />
+                    </div>
+                    <div>
+                      <h4 className="font-sans text-[11px] font-bold tracking-wider uppercase mb-0.5" style={{ color: N }}>
+                        Life Optimization
+                      </h4>
+                      <p className="font-sans text-[11px] leading-relaxed" style={{ color: `${N}99` }}>
+                        AI scripts for bill splitting & travel briefs.
+                      </p>
+                    </div>
+                  </div>
+                </div>
                 <div className="flex items-center gap-4 flex-wrap">
                   <a
                     href="mailto:adinagayo@gmail.com"
