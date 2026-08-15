@@ -120,7 +120,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
             <em className="font-normal" style={{ color: C }}>at the Scale of a Nation.</em>
           </h1>
           <p className="text-sm leading-relaxed max-w-[640px]" style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.8 }}>
-            An end-to-end multi-level election monitoring system for Indonesia's 2024 Presidential & Legislative Elections — combining a field witness Progressive Web App (PWA), OCR-powered C-Hasil form scanning, WhatsApp verification pipelines, and a real-time executive CMS tracking vote tabulation across 38 provinces and 127 international districts.
+            An end-to-end multi-level election monitoring system for Indonesia's 2024 Presidential & Legislative Elections, combining a field witness Progressive Web App (PWA), OCR-powered C-Hasil form scanning, WhatsApp verification pipelines, and a real-time executive CMS tracking vote tabulation across 38 provinces and 127 international districts.
           </p>
         </div>
 
@@ -164,7 +164,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
           <div className="grid lg:grid-cols-2 gap-4">
             {[
               { label: "Client & Sector", val: "Indonesian Political Party × Public Sector / Election Services" },
-              { label: "Role & Team", val: "Solo UX/UI Designer & System Logic Architect — 1-Person Design Team" },
+              { label: "Role & Team", val: "Solo UX/UI Designer & System Logic Architect: 1-Person Design Team" },
               { label: "System Suite", val: "Field Witness Mobile PWA + Executive Monitoring Web CMS" },
               { label: "Core Stack", val: "Figma · FigJam · OCR Engine Specs · WhatsApp API · Angular System Explorations" },
             ].map(({ label, val }) => (
@@ -182,7 +182,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
         <div>
           <SectionTag num="02" label="The Strategic Challenge" />
           <p className="font-display font-light leading-relaxed mb-10" style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.35rem)", color: N, letterSpacing: "-0.005em", lineHeight: 1.65, maxWidth: "700px" }}>
-            Capturing paper-based C-Hasil election forms from over 820,000 polling stations within a high-stakes 48-hour critical window — establishing early vote trends, legislative seat projections, and strategic party intelligence before the official March 20 tally.
+            Capturing paper-based C-Hasil election forms from over 820,000 polling stations within a high-stakes 48-hour critical window, establishing early vote trends, legislative seat projections, and strategic party intelligence before the official March 20 tally.
           </p>
 
           {/* Critical window callout */}
@@ -198,7 +198,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
                 [CRITICAL WINDOW: FEBRUARY 14–15, 2024]
               </p>
               <p className="text-sm text-white leading-relaxed" style={{ lineHeight: 1.75 }}>
-                Election day through the 48-hour post-election quick count window required uninterrupted, real-time data ingestion from 820,000+ polling stations — a zero-downtime constraint with no tolerance for data entry bottlenecks or system failures.
+                Election day through the 48-hour post-election quick count window required uninterrupted, real-time data ingestion from 820,000+ polling stations, a zero-downtime constraint with no tolerance for data entry bottlenecks or system failures.
               </p>
             </div>
           </div>
@@ -208,8 +208,8 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
           </p>
           <div className="space-y-3">
             {[
-              { Icon: Smartphone, title: "Critical Speed & Precision — \"Fast & Accurate\"", desc: "Field witnesses needed an input flow optimized for rapid completion under chaotic polling station conditions — including rural areas with poor internet connectivity and low tech literacy." },
-              { Icon: Camera, title: "Dual Data-Input Integrity", desc: "Designing a dual-role workflow — Image Uploaders at TPS vs. Verifiers at regional HQ — with OCR automated parsing for photo-captured forms and manual entry fallbacks for offline scenarios." },
+              { Icon: Smartphone, title: "Critical Speed & Precision: \"Fast & Accurate\"", desc: "Field witnesses needed an input flow optimized for rapid completion under chaotic polling station conditions, including rural areas with poor internet connectivity and low tech literacy." },
+              { Icon: Camera, title: "Dual Data-Input Integrity", desc: "Designing a dual-role workflow (Image Uploaders at TPS vs. Verifiers at regional HQ), with OCR automated parsing for photo-captured forms and manual entry fallbacks for offline scenarios." },
               { Icon: BarChart2, title: "Complex Legislative Calculation Logic", desc: "The Web CMS needed to automatically process Saint-Laguë vote-to-seat allocation algorithms, Parliamentary Threshold filters, and multi-candidate ranking tables across every DAPIL district in real time." },
             ].map(({ Icon, title, desc }) => (
               <div key={title} className="flex gap-5 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
@@ -266,7 +266,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
 
           <div className="space-y-3">
             {[
-              { num: "1.", title: "Location-Predefined Mobile Witness PWA", desc: "Designed a lightweight PWA where polling station (TPS) witnesses were pre-assigned location contexts by super-admins — reducing data entry steps. Witnesses simply captured C-Hasil form photos or completed manual fallbacks when connectivity dropped." },
+              { num: "1.", title: "Location-Predefined Mobile Witness PWA", desc: "Designed a lightweight PWA where polling station (TPS) witnesses were pre-assigned location contexts by super-admins, reducing data entry steps. Witnesses simply captured C-Hasil form photos or completed manual fallbacks when connectivity dropped." },
               { num: "2.", title: "OCR Integration & WhatsApp Verification Engine", desc: "Integrated OCR to automatically extract candidate numbers and party vote totals from uploaded form photos. The pipeline featured WhatsApp API integration for real-time verification alerts, system announcements, and credential blasts to regional leaders." },
               { num: "3.", title: "Real-Time Executive Monitoring Web CMS", desc: "Engineered a high-density Web CMS featuring an interactive national heat map, live presidential quick count gauges, legislative seat allocation tables (Saint-Laguë formula), and regional progress trackers (Total TPS, Verified vs. Pending) across 38 provinces." },
             ].map(({ num, title, desc }) => (
@@ -298,7 +298,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
               </div>
               <div className="px-6 py-5 space-y-5">
                 {[
-                  { title: "Mobile C-Hasil Data Entry", desc: "Dual-state camera capture and input fields for Presidential (Pilpres) and Legislative (DPR RI / DPRD) vote tallies — optimized for low-connectivity environments." },
+                  { title: "Mobile C-Hasil Data Entry", desc: "Dual-state camera capture and input fields for Presidential (Pilpres) and Legislative (DPR RI / DPRD) vote tallies, optimized for low-connectivity environments." },
                   { title: "Photo Verification & Rejection Module", desc: "Admin verification interface for regional supervisors to cross-examine uploaded C-Hasil photos against OCR-extracted data before final database committal." },
                   { title: "Regional Input Progress Tracker", desc: "Live status lists for regional captains to monitor data entry percentages across sub-districts (Kecamatan / Kelurahan) in real time." },
                 ].map(({ title, desc }) => (
@@ -323,7 +323,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
               </div>
               <div className="px-6 py-5 space-y-5">
                 {[
-                  { title: "Interactive National Heat Map", desc: "Real-time visual representation of vote distributions across all 38 provinces — updated continuously as field witnesses submitted data from TPS locations." },
+                  { title: "Interactive National Heat Map", desc: "Real-time visual representation of vote distributions across all 38 provinces, updated continuously as field witnesses submitted data from TPS locations." },
                   { title: "Saint-Laguë Seat Projection Engine", desc: "Automated calculation dashboards displaying seat projections, party rank lists, and parliamentary threshold filters per electoral district (DAPIL)." },
                   { title: "Candidate & Representative Database", desc: "Comprehensive record management for candidates, vote totals, witness profiles, and WhatsApp blast templates for regional coordinator communication." },
                 ].map(({ title, desc }) => (
@@ -346,7 +346,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
         <div>
           <SectionTag num="05" label="Field Study & User Testing Validation" />
           <p className="font-display font-light leading-relaxed mb-10" style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.35rem)", color: N, letterSpacing: "-0.005em", lineHeight: 1.65, maxWidth: "680px" }}>
-            A nationwide onboarding campaign was conducted across regional hubs in Semarang, Palembang, and Jakarta — training representatives from all 38 provinces before election day.
+            A nationwide onboarding campaign was conducted across regional hubs in Semarang, Palembang, and Jakarta, training representatives from all 38 provinces before election day.
           </p>
 
           <div className="grid lg:grid-cols-2 gap-4 mb-6">
@@ -365,7 +365,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
                 Unassisted Task Completion
               </p>
               <p className="text-sm leading-relaxed" style={{ color: BODY, lineHeight: 1.75 }}>
-                During live simulation sessions, 90% of regional representatives successfully operated the mobile PWA and full data entry flows without any technical intervention — validating the "fast & accurate" design brief.
+                During live simulation sessions, 90% of regional representatives successfully operated the mobile PWA and full data entry flows without any technical intervention, validating the "fast & accurate" design brief.
               </p>
             </div>
 
@@ -384,7 +384,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
                 Pre-Election Friction Identified & Resolved
               </p>
               <p className="text-sm leading-relaxed" style={{ color: BODY, lineHeight: 1.75 }}>
-                Remaining operational friction — primarily unmatched NIK numbers or electoral district mismatches — was identified and addressed prior to election day through fallback admin override protocols, preventing live-day failures.
+                Remaining operational friction, primarily unmatched NIK numbers or electoral district mismatches, was identified and addressed prior to election day through fallback admin override protocols, preventing live-day failures.
               </p>
             </div>
           </div>
@@ -404,10 +404,10 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
           <SectionTag num="06" label="Business Impact & Key Deliverables" />
           <div className="grid lg:grid-cols-2 gap-4">
             {[
-              { Icon: Shield, title: "Successful Nationwide 2024 Election Rollout", desc: "Maintained continuous operational uptime throughout the critical February 14–15 quick count window — capturing real-time internal data across 38 provinces and 127 international districts without interruption." },
+              { Icon: Shield, title: "Successful Nationwide 2024 Election Rollout", desc: "Maintained continuous operational uptime throughout the critical February 14–15 quick count window, capturing real-time internal data across 38 provinces and 127 international districts without interruption." },
               { Icon: BarChart2, title: "High-Precision Early Seat Projections", desc: "Executive party leadership monitored legislative seat gains (DPR RI/DPRD) using automated Saint-Laguë calculation tables immediately as vote tallies entered the system." },
-              { Icon: Database, title: "Optimized Field Data Efficiency", desc: "OCR auto-fill, location pre-definition, and WhatsApp verification minimized input latency — delivering a fast, accurate internal data baseline hours ahead of competing party intelligence." },
-              { Icon: Users, title: "Solo Architecture, National Scale", desc: "Designed, prototyped, and delivered a two-surface system (mobile PWA + web CMS) as a 1-person design team — covering UX flows, system logic, and stakeholder alignment from June 2023 to election day." },
+              { Icon: Database, title: "Optimized Field Data Efficiency", desc: "OCR auto-fill, location pre-definition, and WhatsApp verification minimized input latency, delivering a fast, accurate internal data baseline hours ahead of competing party intelligence." },
+              { Icon: Users, title: "Solo Architecture, National Scale", desc: "Designed, prototyped, and delivered a two-surface system (mobile PWA + web CMS) as a 1-person design team, covering UX flows, system logic, and stakeholder alignment from June 2023 to election day." },
             ].map(({ Icon, title, desc }) => (
               <div key={title} className="flex gap-4 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
                 <div className="w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5" style={{ backgroundColor: `${C}08`, border: `1px solid ${C}20`, borderRadius: "4px" }}>

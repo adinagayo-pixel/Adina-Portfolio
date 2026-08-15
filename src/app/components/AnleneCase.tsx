@@ -4,6 +4,12 @@ import {
   Activity, Heart, MessageSquare, Clipboard,
   CheckCircle2, Users, Zap, AlertTriangle
 } from "lucide-react"
+import anlene0 from "@/imports/anlene.png"
+import anlene1 from "@/imports/anlene1.png"
+import anlene2 from "@/imports/anlene2.png"
+import anlene3 from "@/imports/anlene3.png"
+import anlene4 from "@/imports/anlene4.png"
+import anlene5 from "@/imports/anlene5.png"
 
 const N = "#19244E"
 const C = "#DB3E8C"
@@ -125,7 +131,7 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
             <em className="font-normal" style={{ color: C }}>The Anlene Health Passport.</em>
           </h1>
           <p className="text-sm leading-relaxed max-w-[640px]" style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.8 }}>
-            A complete product revamp of Fonterra's field sales tool — translating clinical data from Achilles bone scanners and Omron body composition devices into personalized health dashboards, automated PDF reports, and WhatsApp delivery pipelines used by SPGs during live event activations across Indonesia.
+            A complete product revamp of Fonterra's field sales tool, translating clinical data from Achilles bone scanners and Omron body composition devices into personalized health dashboards, automated PDF reports, and WhatsApp delivery pipelines used by SPGs during live event activations across Indonesia.
           </p>
         </div>
 
@@ -169,7 +175,7 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
           <div className="grid lg:grid-cols-2 gap-4">
             {[
               { label: "Client & Brand", val: "Fonterra Indonesia × Anlene (Dairy & Nutrition Enterprise)" },
-              { label: "Role & Team", val: "Lead UX/UI Designer & Systems Researcher — 1-Person Design Team" },
+              { label: "Role & Team", val: "Lead UX/UI Designer & Systems Researcher: 1-Person Design Team" },
               { label: "Core Product Suite", val: "SPG Field Data Entry App (Tablet/Mobile) · Customer PDF Health Passport · WhatsApp/Email API Integration" },
               { label: "Core Stack", val: "Figma · FigJam · Photoshop · Adobe Illustrator · Graphic Standard Manual (GSM) Guidelines" },
             ].map(({ label, val }) => (
@@ -179,6 +185,42 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
               </div>
             ))}
           </div>
+
+          {/* UI Screen Showcase Gallery */}
+          <div className="mt-10 p-6 bg-[#0a0f24] rounded-2xl border border-white/10 shadow-2xl">
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <MonoTag accent>[FONTERRA × ANLENE UI GALLERY]</MonoTag>
+                <h3 className="font-display text-xl font-bold text-white mt-1">
+                  Medical Diagnostics & Field Sales Flow
+                </h3>
+              </div>
+              <span className="font-sans text-[10px] text-white/50 tracking-widest uppercase hidden sm:inline">
+                6 High-Fidelity Views
+              </span>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                { title: "01 · Health Passport Main UI", img: anlene0, desc: "Personalized consumer health passport displaying body age, bone density T-score, and muscle metrics." },
+                { title: "02 · Diagnostic Matrix View", img: anlene1, desc: "4-tier color-coded health diagnostic ranges for fast SPG consultation." },
+                { title: "03 · Bone Scanner Output", img: anlene2, desc: "GE Achilles ultrasound device integration and automated bone density status calculation." },
+                { title: "04 · Field Intake System", img: anlene3, desc: "Fast-entry offline form for SPG event reps with zero data loss protection." },
+                { title: "05 · Checkout & Redemption", img: anlene4, desc: "In-booth product purchase completion and automated WhatsApp PDF dispatch." },
+                { title: "06 · Reports & Analytics", img: anlene5, desc: "Nationwide activation analytics tracking daily attendee intake per city." },
+              ].map(({ title, img, desc }) => (
+                <div key={title} className="bg-[#141b36] border border-white/10 rounded-xl p-3 flex flex-col justify-between group hover:border-[#DB3E8C]/50 transition-all duration-300">
+                  <div className="aspect-[16/10] rounded-lg overflow-hidden border border-white/10 mb-3 bg-[#0d142d] p-1">
+                    <img src={img} alt={title} className="w-full h-full object-contain rounded group-hover:scale-105 transition-transform duration-500" />
+                  </div>
+                  <div>
+                    <h4 className="font-sans text-xs font-bold text-white mb-1 tracking-wide">{title}</h4>
+                    <p className="font-sans text-[10px] text-white/60 leading-relaxed">{desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         <Hairline />
@@ -187,7 +229,7 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
         <div>
           <SectionTag num="02" label="The Strategic Challenge" />
           <p className="font-display font-light leading-relaxed mb-10" style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.35rem)", color: N, letterSpacing: "-0.005em", lineHeight: 1.65, maxWidth: "680px" }}>
-            On-site brand activations required SPGs to rapidly capture participant health metrics from hardware devices during busy event setups. The legacy app lacked clear data visualization — producing high entry friction for SPGs and confusing health summaries for consumers.
+            On-site brand activations required SPGs to rapidly capture participant health metrics from hardware devices during busy event setups. The legacy app lacked clear data visualization, producing high entry friction for SPGs and confusing health summaries for consumers.
           </p>
           <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-5" style={{ color: `${N}99` }}>
             [Key System & Domain Constraints]
@@ -197,17 +239,17 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
               {
                 Icon: Activity,
                 title: "Medical Hardware & Data Mapping",
-                desc: "Translating diagnostic metrics from two distinct physical devices — GE Lunar Achilles Ultrasonometer (T-Score / Stiffness Index for bone density) and Omron Karada Scan HBF-375 (BMI, Body Fat %, Visceral Fat, Skeletal Muscle %, Body Age) — into standard visual health ranges.",
+                desc: "Translating diagnostic metrics from two distinct physical devices: GE Lunar Achilles Ultrasonometer (T-Score / Stiffness Index for bone density) and Omron Karada Scan HBF-375 (BMI, Body Fat %, Visceral Fat, Skeletal Muscle %, Body Age), into standard visual health ranges.",
               },
               {
                 Icon: Zap,
                 title: "High-Stress Field Sales Workflow",
-                desc: "SPGs needed offline draft-saving, rapid data editing, and instant upload status tracking (Uploaded, Pending) while managing long queues at event booths — with no tolerance for data loss during network drops.",
+                desc: "SPGs needed offline draft-saving, rapid data editing, and instant upload status tracking (Uploaded, Pending) while managing long queues at event booths, with no tolerance for data loss during network drops.",
               },
               {
                 Icon: Clipboard,
-                title: "Strict Brand Compliance — Fonterra GSM",
-                desc: "Applying Anlene's Graphic Standard Manual guidelines consistently across mobile interfaces, PDF health reports, and activation marketing collateral — ensuring zero brand deviation across all surfaces.",
+                title: "Strict Brand Compliance: Fonterra GSM",
+                desc: "Applying Anlene's Graphic Standard Manual guidelines consistently across mobile interfaces, PDF health reports, and activation marketing collateral, ensuring zero brand deviation across all surfaces.",
               },
             ].map(({ Icon, title, desc }) => (
               <div key={title} className="flex gap-5 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
@@ -265,9 +307,9 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
           {/* Research steps */}
           <div className="space-y-3 mb-8">
             {[
-              { num: "1.", title: "Physical Device & Field Observational Research", desc: "Analyzed operational documentation, user manuals, and field video recordings of SPG booth interactions to map hardware printout outputs directly into digital input fields — ensuring form fields mirrored the exact sequence of physical device readouts." },
-              { num: "2.", title: "Medical Metric Threshold Categorization", desc: "Structured a unified 4-tier color diagnostic system across all health parameters — establishing clinically grounded visual ranges that SPGs and consumers could interpret instantly without medical training." },
-              { num: "3.", title: "Dual-Journey Alignment — SPG Efficiency vs. Customer Value", desc: "Re-engineered the journey so SPGs could complete survey and medical data capture in under 2 minutes, while customers immediately received a QR code or direct WhatsApp/Email link to their personalized health passport." },
+              { num: "1.", title: "Physical Device & Field Observational Research", desc: "Analyzed operational documentation, user manuals, and field video recordings of SPG booth interactions to map hardware printout outputs directly into digital input fields, ensuring form fields mirrored the exact sequence of physical device readouts." },
+              { num: "2.", title: "Medical Metric Threshold Categorization", desc: "Structured a unified 4-tier color diagnostic system across all health parameters, establishing clinically grounded visual ranges that SPGs and consumers could interpret instantly without medical training." },
+              { num: "3.", title: "Dual-Journey Alignment: SPG Efficiency vs. Customer Value", desc: "Re-engineered the journey so SPGs could complete survey and medical data capture in under 2 minutes, while customers immediately received a QR code or direct WhatsApp/Email link to their personalized health passport." },
             ].map(({ num, title, desc }) => (
               <div key={title} className="flex gap-5 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
                 <span className="font-sans text-[10px] font-semibold flex-shrink-0 mt-0.5" style={{ color: C }}>{num}</span>
@@ -333,8 +375,8 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
               </div>
               <div className="px-6 py-5 space-y-5">
                 {[
-                  { title: "Rapid Multi-Step Intake", desc: "Sequential forms for participant registration, milk consumption surveys, Achilles bone scan inputs, and Omron body composition fields — mirroring the exact order of physical device readouts." },
-                  { title: "Draft Saving & Upload Status Tracking", desc: "Centralized participant dashboard with upload statuses (Uploaded, Pending) and instant edit capabilities — preventing data loss during network drops at busy event booths." },
+                  { title: "Rapid Multi-Step Intake", desc: "Sequential forms for participant registration, milk consumption surveys, Achilles bone scan inputs, and Omron body composition fields, mirroring the exact order of physical device readouts." },
+                  { title: "Draft Saving & Upload Status Tracking", desc: "Centralized participant dashboard with upload statuses (Uploaded, Pending) and instant edit capabilities, preventing data loss during network drops at busy event booths." },
                 ].map(({ title, desc }) => (
                   <div key={title}>
                     <div className="flex items-start gap-2 mb-1.5">
@@ -358,9 +400,9 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
               </div>
               <div className="px-6 py-5 space-y-5">
                 {[
-                  { title: "Visual Metric Gauges", desc: "Intuitive indicators comparing participant results against ideal age-adjusted baselines — including BMI semi-circle gauges and T-Score bone density indicators using the 4-tier color system." },
+                  { title: "Visual Metric Gauges", desc: "Intuitive indicators comparing participant results against ideal age-adjusted baselines, including BMI semi-circle gauges and T-Score bone density indicators using the 4-tier color system." },
                   { title: "Targeted Product & Lifestyle Recommendations", desc: "Automated recommendation engine suggesting specific Anlene milk variants and daily movement tips tailored to individual health scores." },
-                  { title: "Automated PDF & WhatsApp Dispatch", desc: "One-click PDF report generator enabling SPGs or automated triggers to dispatch full health passports via WhatsApp Official API or Email — delivered while still at the event booth." },
+                  { title: "Automated PDF & WhatsApp Dispatch", desc: "One-click PDF report generator enabling SPGs or automated triggers to dispatch full health passports via WhatsApp Official API or Email, delivered while still at the event booth." },
                 ].map(({ title, desc }) => (
                   <div key={title}>
                     <div className="flex items-start gap-2 mb-1.5">
@@ -388,7 +430,7 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
               </p>
               <p className="text-sm font-semibold text-white mb-1.5">Clinical Metrics Made Instantly Legible at the Point of Sale</p>
               <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.6)", lineHeight: 1.75 }}>
-                SPGs could reference a participant's <strong className="text-white">Visceral Fat 7.0</strong> (Red band) or <strong className="text-white">T-Score 2 </strong>(Green band) as a live visual argument — pointing to specific Anlene product lines backed by that consumer's own clinical data.
+                SPGs could reference a participant's <strong className="text-white">Visceral Fat 7.0</strong> (Red band) or <strong className="text-white">T-Score 2 </strong>(Green band) as a live visual argument, pointing to specific Anlene product lines backed by that consumer's own clinical data.
               </p>
             </div>
           </div>
@@ -404,17 +446,17 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
               {
                 Icon: Zap,
                 title: "Streamlined Field Operations",
-                desc: "Reduced SPG data input friction through device-mapped form structures and draft-saving features — enabling reliable data capture during high-volume event activations with minimal training overhead.",
+                desc: "Reduced SPG data input friction through device-mapped form structures and draft-saving features, enabling reliable data capture during high-volume event activations with minimal training overhead.",
               },
               {
                 Icon: Users,
                 title: "Empowered Field Sales Conversion",
-                desc: "SPGs gained clear visual argument points (low T-Scores, high body age) to recommend specific Anlene product lines at the moment of health insight — transforming a diagnostic interaction into a sales conversion.",
+                desc: "SPGs gained clear visual argument points (low T-Scores, high body age) to recommend specific Anlene product lines at the moment of health insight, transforming a diagnostic interaction into a sales conversion.",
               },
               {
                 Icon: CheckCircle2,
                 title: "Flawless Brand Governance",
-                desc: "Successfully unified Anlene's digital app interface, PDF health reports, and physical event marketing materials under Fonterra's strict Graphic Standard Manual — zero brand deviation across all surfaces.",
+                desc: "Successfully unified Anlene's digital app interface, PDF health reports, and physical event marketing materials under Fonterra's strict Graphic Standard Manual, ensuring zero brand deviation across all surfaces.",
               },
             ].map(({ Icon, title, desc }) => (
               <div key={title} className="flex flex-col gap-4 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>

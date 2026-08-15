@@ -341,8 +341,8 @@ export default function SunwayCase({ onBack }: Props) {
                   items: [
                     { title: "Interactive Prototyping", desc: "Built high-fidelity Figma prototypes with realistic, context-appropriate copy to facilitate executive stakeholder demonstrations." },
                     { title: "Regional Stakeholder Review", desc: "Conducted intensive synchronization with regional Project Managers in Malaysia to finalize technical flow shifts, such as relocating consent terms into the microsite." },
-                    { title: "Advocating Low-Friction Flows", desc: "Proposed streamlined interaction models to client stakeholders (GE) — advocating to consolidate product filtering and catalog displays onto a single screen to minimize interaction cost for a 5-product matrix." },
-                    { title: "Technical & Logical Advocacy", desc: "Actively challenged client feedback regarding address field overrides by analyzing backend OCR data flows — presenting logical counter-arguments that prevented data loss and saved development rework." },
+                    { title: "Advocating Low-Friction Flows", desc: "Proposed streamlined interaction models to client stakeholders (GE), advocating to consolidate product filtering and catalog displays onto a single screen to minimize interaction cost for a 5-product matrix." },
+                    { title: "Technical & Logical Advocacy", desc: "Actively challenged client feedback regarding address field overrides by analyzing backend OCR data flows, presenting logical counter-arguments that prevented data loss and saved development rework." },
                     { title: "B2B Back-Office Console Design", desc: "Developed the Partner Portal interface to support dynamic banner CMS management, sales performance visualizations, and funnel drop-off tracking." },
                   ],
                 },
@@ -437,7 +437,7 @@ export default function SunwayCase({ onBack }: Props) {
               <div className="px-6 py-4" style={{ borderBottom: `1px solid ${HAIR}`, backgroundColor: `${N}04` }}>
                 <div className="flex items-center gap-2">
                   <BarChart2 size={12} style={{ color: C }} />
-                  <MonoTag accent>[B] B2B Partner Portal — Back-Office Console</MonoTag>
+                  <MonoTag accent>[B] B2B Partner Portal: Back-Office Console</MonoTag>
                 </div>
               </div>
               <div className="px-6 py-5 space-y-4">
@@ -470,7 +470,7 @@ export default function SunwayCase({ onBack }: Props) {
               {
                 Icon: CheckCircle2,
                 title: "First-Round Executive Approval",
-                desc: "High-fidelity UI architecture and interaction flows were approved on the first review cycle by key stakeholders — zero revision rounds.",
+                desc: "High-fidelity UI architecture and interaction flows were approved on the first review cycle by key stakeholders with zero revision rounds.",
               },
               {
                 Icon: FileCode2,

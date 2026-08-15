@@ -122,7 +122,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
             <em className="font-normal" style={{ color: C }}>Touch 'n Go E-Wallet.</em>
           </h1>
           <p className="text-sm leading-relaxed max-w-[640px]" style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.8 }}>
-            An embedded Progressive Web Application (PWA) architecture built inside Malaysia's leading e-wallet ecosystem — leveraging TNG native SSO + eKYC data pipelines, automated Government Voucher (PTV) eligibility checks, and 5-version iterative design system alignments.
+            An embedded Progressive Web Application (PWA) architecture built inside Malaysia's leading e-wallet ecosystem, leveraging TNG native SSO + eKYC data pipelines, automated Government Voucher (PTV) eligibility checks, and 5-version iterative design system alignments.
           </p>
         </div>
 
@@ -252,9 +252,9 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
 
           <div className="space-y-3">
             {[
-              { num: "1.", title: "Zero-Friction Identity Auto-Fill (SSO + eKYC)", desc: "Mapped TNG's native Single Sign-On (SSO) and eKYC data schema (base user profile, NRIC, full name, age parameters) directly into the embedded PWA forms — eliminating manual typing friction and preventing identity spoofing." },
+              { num: "1.", title: "Zero-Friction Identity Auto-Fill (SSO + eKYC)", desc: "Mapped TNG's native Single Sign-On (SSO) and eKYC data schema (base user profile, NRIC, full name, age parameters) directly into the embedded PWA forms, eliminating manual typing friction and preventing identity spoofing." },
               { num: "2.", title: "Automated PTV Voucher Eligibility Verification", desc: "Engineered an inline identity validation screen where users input/confirm their NRIC to instantly check government subsidy eligibility. The system automatically adjusts premium totals to RM 0 (for eligible PTV recipients) or routes to standard TNG e-wallet debit." },
-              { num: "3.", title: "Multi-Version Design Iteration (V1 to V5 Evolution)", desc: "Managed continuous iterations across 5 design versions — refining copy nuances, adapting pricing updates, and synchronizing layout structures directly with Touch 'n Go's design and technical teams." },
+              { num: "3.", title: "Multi-Version Design Iteration (V1 to V5 Evolution)", desc: "Managed continuous iterations across 5 design versions, refining copy nuances, adapting pricing updates, and synchronizing layout structures directly with Touch 'n Go's design and technical teams." },
             ].map(({ num, title, desc }) => (
               <div key={title} className="flex gap-5 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
                 <span className="font-sans text-[10px] font-semibold flex-shrink-0 mt-0.5" style={{ color: C }}>{num}</span>
@@ -273,7 +273,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
         <div>
           <SectionTag num="04" label="PTV Voucher vs. Standard Checkout Split Flow" />
           <p className="text-sm leading-relaxed mb-6 max-w-[600px]" style={{ color: BODY, lineHeight: 1.75 }}>
-            The core UX fork — dynamically routing users based on real-time NRIC eligibility check results at the payment gateway step.
+            The core UX fork, dynamically routing users based on real-time NRIC eligibility check results at the payment gateway step.
           </p>
           <div className="grid lg:grid-cols-2 gap-0" style={{ border: `1px solid ${HAIR}`, borderRadius: "4px", overflow: "hidden" }}>
             {/* PTV eligible */}
@@ -289,7 +289,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
                   "User confirms NRIC on eligibility screen",
                   "System validates against PTV government database",
                   "Premium auto-adjusted to RM 0",
-                  "Policy confirmed — no e-wallet debit triggered",
+                  "Policy confirmed: no e-wallet debit triggered",
                 ].map((step, i) => (
                   <div key={i} className="flex items-start gap-3">
                     <span className="font-sans text-[9px] font-semibold flex-shrink-0 mt-0.5" style={{ color: "#22c55e" }}>
@@ -314,7 +314,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
                   "Non-eligible or no NRIC entered",
                   "System routes to full premium calculation",
                   "TNG e-wallet PIN confirmation triggered",
-                  "Policy confirmed — standard debit processed",
+                  "Policy confirmed: standard debit processed",
                 ].map((step, i) => (
                   <div key={i} className="flex items-start gap-3">
                     <span className="font-sans text-[9px] font-semibold flex-shrink-0 mt-0.5" style={{ color: TNG }}>
@@ -332,7 +332,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
 
         {/* Version Evolution */}
         <div>
-          <SectionTag num="05" label="Version Evolution — V1 → V5 Production Release" />
+          <SectionTag num="05" label="Version Evolution: V1 → V5 Production Release" />
           <div className="overflow-x-auto">
             <div className="flex gap-0 min-w-max" style={{ border: `1px solid ${HAIR}`, borderRadius: "4px", overflow: "hidden" }}>
               {[

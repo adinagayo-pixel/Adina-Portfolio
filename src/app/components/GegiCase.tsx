@@ -8,6 +8,10 @@ import persona1 from "@/imports/image-11.png"
 import persona2 from "@/imports/image-12.png"
 import persona3 from "@/imports/image-13.png"
 import persona4 from "@/imports/image-14.png"
+import ci1 from "@/imports/CI1.png"
+import ci2 from "@/imports/CI2.png"
+import ci3 from "@/imports/CI3.png"
+import ci4 from "@/imports/CI4.png"
 
 const N = "#19244E"
 const C = "#DB3E8C"
@@ -62,10 +66,10 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
   }, [])
 
   const PERSONAS = [
-    { img: persona1, name: "Steady Pom Pi Pi", desc: "High CI readiness — fully covered & confident.", bg: "#E8F5EC" },
-    { img: persona2, name: "Agak-Agak Planner", desc: "Partially covered — planning but not quite there.", bg: "#FDF3E3" },
-    { img: persona3, name: "Hopeful Thinker", desc: "Low coverage — optimistic yet underinsured.", bg: "#EEF2FB" },
-    { img: persona4, name: "YOLO Warrior", desc: "Critical gap — living in the moment, unprotected.", bg: "#FDE8EF" },
+    { img: persona1, name: "Steady Pom Pi Pi", desc: "High CI readiness, fully covered & confident.", bg: "#E8F5EC" },
+    { img: persona2, name: "Agak-Agak Planner", desc: "Partially covered, planning but not quite there.", bg: "#FDF3E3" },
+    { img: persona3, name: "Hopeful Thinker", desc: "Low coverage, optimistic yet underinsured.", bg: "#EEF2FB" },
+    { img: persona4, name: "YOLO Warrior", desc: "Critical gap, living in the moment, unprotected.", bg: "#FDE8EF" },
   ]
 
   return (
@@ -134,7 +138,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
               <em className="font-normal" style={{ color: C }}>Acquisition Campaign.</em>
             </h1>
             <p className="text-sm leading-relaxed max-w-[560px]" style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.8 }}>
-              A rapid-sprint interactive campaign tool for Great Eastern General Insurance Singapore — combining scroll-based gamified evaluation, localized Singlish persona mechanics, AEM integration, and organic social-sharing loops under a strict 2-week execution timeline.
+              A rapid-sprint interactive campaign tool for Great Eastern General Insurance Singapore, combining scroll-based gamified evaluation, localized Singlish persona mechanics, AEM integration, and organic social-sharing loops under a strict 2-week execution timeline.
             </p>
           </div>
 
@@ -215,6 +219,40 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
               </div>
             ))}
           </div>
+
+          {/* UI Screen Showcase Gallery */}
+          <div className="mt-10 p-6 bg-[#0a0f24] rounded-2xl border border-white/10 shadow-2xl">
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <MonoTag accent>[GEGI SINGAPORE UI GALLERY]</MonoTag>
+                <h3 className="font-display text-xl font-bold text-white mt-1">
+                  Gamified CI Evaluation Flow
+                </h3>
+              </div>
+              <span className="font-sans text-[10px] text-white/50 tracking-widest uppercase hidden sm:inline">
+                4 High-Fidelity Views
+              </span>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {[
+                { title: "01 · Campaign Hero Screen", img: ci1, desc: "Interactive landing hero featuring scroll-based gamified evaluation entry." },
+                { title: "02 · Localized Singlish Personas", img: ci2, desc: "Interactive Singaporean Singlish persona mechanics for relatable protection tiering." },
+                { title: "03 · Evaluation Question Matrix", img: ci3, desc: "7-question evaluation matrix engineered without traditional Next buttons to prevent fatigue." },
+                { title: "04 · AEM & Analytics Integration", img: ci4, desc: "Seamless Adobe Experience Manager component integration with Google Analytics tracking tags." },
+              ].map(({ title, img, desc }) => (
+                <div key={title} className="bg-[#141b36] border border-white/10 rounded-xl p-3 flex flex-col justify-between group hover:border-[#DB3E8C]/50 transition-all duration-300">
+                  <div className="aspect-[16/10] rounded-lg overflow-hidden border border-white/10 mb-3 bg-[#0d142d] p-1">
+                    <img src={img} alt={title} className="w-full h-full object-contain rounded group-hover:scale-105 transition-transform duration-500" />
+                  </div>
+                  <div>
+                    <h4 className="font-sans text-xs font-bold text-white mb-1 tracking-wide">{title}</h4>
+                    <p className="font-sans text-[10px] text-white/60 leading-relaxed">{desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         <Hairline />
@@ -253,7 +291,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
         <div>
           <SectionTag num="03" label="Localized Persona System" />
           <p className="text-sm leading-relaxed mb-8 max-w-[600px]" style={{ color: BODY, lineHeight: 1.75 }}>
-            Collaborated with a dedicated illustrator to produce 4 Singapore-centric character personas representing distinct CI Gap tiers — fine-tuned with Singlish terminology for authentic market resonance.
+            Collaborated with a dedicated illustrator to produce 4 Singapore-centric character personas representing distinct CI Gap tiers, fine-tuned with Singlish terminology for authentic market resonance.
           </p>
 
           {/* 2×2 bento grid */}
@@ -335,7 +373,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
             {[
               { num: "1.", title: "Scroll-Driven UX Matrix", desc: "Eliminated traditional multi-step wizard buttons in favor of an intuitive, scroll-based question flow. Users navigate financial questions (income ranges, sum insured expectations) alongside visual preference cards (hobbies, food choices) in one continuous, fluid layout." },
               { num: "2.", title: "Localized Character Personas & Culture Alignment", desc: "Collaborated with a dedicated illustrator to establish brand-compliant, Singapore-centric character personas representing different CI Gap tiers. Fine-tuned visual assets and localized Singlish terminology based on client feedback to ensure authentic market resonance." },
-              { num: "3.", title: "Unprompted Growth Initiative (Instagram Story Assets)", desc: "Proactively designed customized Instagram Story shareable cards for each persona result — going beyond the initial brief to drive organic, word-of-mouth brand awareness across social channels." },
+              { num: "3.", title: "Unprompted Growth Initiative (Instagram Story Assets)", desc: "Proactively designed customized Instagram Story shareable cards for each persona result, going beyond the initial brief to drive organic, word-of-mouth brand awareness across social channels." },
             ].map(({ num, title, desc }) => (
               <div key={title} className="flex gap-5 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
                 <span className="font-sans text-[10px] font-semibold flex-shrink-0 mt-0.5" style={{ color: C }}>{num}</span>

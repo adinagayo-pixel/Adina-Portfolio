@@ -4,6 +4,11 @@ import {
   Zap, Volume2, Radio, BarChart2,
   Star, CheckCircle2, Globe, Target
 } from "lucide-react"
+import mykawan1 from "@/imports/mykawan1.png"
+import mykawan2 from "@/imports/mykawan2.png"
+import mykawan3 from "@/imports/mykawan3.png"
+import mykawan4 from "@/imports/mykawan4.png"
+import mykawan5 from "@/imports/mykawan5.png"
 
 const N = "#19244E"
 const C = "#DB3E8C"
@@ -120,7 +125,7 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
             <em className="font-normal" style={{ color: C }}>at National Scale.</em>
           </h1>
           <p className="text-sm leading-relaxed max-w-[640px]" style={{ color: "rgba(255,255,255,0.6)", lineHeight: 1.8 }}>
-            A Kahoot-inspired live multiplayer gamification platform built for mySalam Malaysia's #BijakWang Challenge — supporting 100,000 concurrent tournament players, 3-player team formation, synchronized question mechanics, and Gemini AI-generated contextual audio across TikTok Live broadcast events.
+            A Kahoot-inspired live multiplayer gamification platform built for mySalam Malaysia's #BijakWang Challenge, supporting 100,000 concurrent tournament players, 3-player team formation, synchronized question mechanics, and Gemini AI-generated contextual audio across TikTok Live broadcast events.
           </p>
         </div>
 
@@ -163,7 +168,7 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
           <SectionTag num="01" label="Executive Summary" />
           <div className="grid lg:grid-cols-2 gap-4">
             {[
-              { label: "Client & Initiative", val: "mySalam Malaysia × myKawan — Kementerian Digital & ASEAN 2025 Financial Literacy Initiative" },
+              { label: "Client & Initiative", val: "mySalam Malaysia × myKawan: Kementerian Digital & ASEAN 2025 Financial Literacy Initiative" },
               { label: "Role & Scope", val: "Lead UI/UX Designer & Gamification Architect" },
               { label: "Core Product Suite", val: "Daily Self-Practice Portal · Live Multiplayer Tournament Engine · Team Management System" },
               { label: "Core Stack", val: "Figma · Kahoot Interaction Benchmarking · Gemini AI Audio Generation · TikTok Live Stream Integration" },
@@ -189,8 +194,42 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
               </p>
               <p className="text-sm font-semibold text-white mb-1">World & Malaysia Book of Records Attempt</p>
               <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.6)", lineHeight: 1.75 }}>
-                The platform was engineered to support official record-breaking attempts for the most concurrent live financial literacy tournament players — targeting 100,000 simultaneous participants across Malaysia's universities and general public.
+                The platform was engineered to support official record-breaking attempts for the most concurrent live financial literacy tournament players, targeting 100,000 simultaneous participants across Malaysia's universities and general public.
               </p>
+            </div>
+          </div>
+          {/* UI Screen Showcase Gallery */}
+          <div className="mt-10 p-6 bg-[#0a0f24] rounded-2xl border border-white/10 shadow-2xl">
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <MonoTag accent>[MYSALAM × MYKAWAN UI GALLERY]</MonoTag>
+                <h3 className="font-display text-xl font-bold text-white mt-1">
+                  100K Live Tournament Platform Flow
+                </h3>
+              </div>
+              <span className="font-sans text-[10px] text-white/50 tracking-widest uppercase hidden sm:inline">
+                5 High-Fidelity Views
+              </span>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                { title: "01 · Player Lobby", img: mykawan1, desc: "Interactive welcome screen with Singlish persona mascot and game rule instructions." },
+                { title: "02 · Email Login & Registration", img: mykawan4, desc: "Instant entry verification for student participants before entering live queue." },
+                { title: "03 · Live Quiz Screen", img: mykawan2, desc: "Real-time multiple choice question engine with instant squad leaderboard tracking." },
+                { title: "04 · Voucher & Reward Claim", img: mykawan3, desc: "Sponsor integration popup providing 1 Month Free Learning via ReSkills." },
+                { title: "05 · Live Tournament Leaderboard", img: mykawan5, desc: "Global and state-level real-time leaderboard processing 100,000 active scores." },
+              ].map(({ title, img, desc }) => (
+                <div key={title} className="bg-[#141b36] border border-white/10 rounded-xl p-3 flex flex-col justify-between group hover:border-[#DB3E8C]/50 transition-all duration-300">
+                  <div className="aspect-[4/3] rounded-lg overflow-hidden border border-white/10 mb-3 bg-[#0d142d]">
+                    <img src={img} alt={title} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+                  </div>
+                  <div>
+                    <h4 className="font-sans text-xs font-bold text-white mb-1 tracking-wide">{title}</h4>
+                    <p className="font-sans text-[10px] text-white/60 leading-relaxed">{desc}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -201,7 +240,7 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
         <div>
           <SectionTag num="02" label="The Strategic Challenge" />
           <p className="font-display font-light leading-relaxed mb-10" style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.35rem)", color: N, letterSpacing: "-0.005em", lineHeight: 1.65, maxWidth: "700px" }}>
-            Transforming dry financial education into a viral, high-stakes competition across Malaysian universities — requiring a dual-phase architecture supporting both self-paced learning and ultra-low-latency live broadcast tournament events.
+            Transforming dry financial education into a viral, high-stakes competition across Malaysian universities, requiring a dual-phase architecture supporting both self-paced learning and ultra-low-latency live broadcast tournament events.
           </p>
           <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-5" style={{ color: `${N}99` }}>
             [Key System & Interaction Constraints]
@@ -211,17 +250,17 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
               {
                 Icon: Radio,
                 title: "High-Concurrency Live Multiplayer Execution",
-                desc: "Managing real-time synchronized question distribution and answer locking across thousands of simultaneous live stream players — streamed via TikTok Live and hosted on-site at university events without desync or race conditions.",
+                desc: "Managing real-time synchronized question distribution and answer locking across thousands of simultaneous live stream players, streamed via TikTok Live and hosted on-site at university events without desync or race conditions.",
               },
               {
                 Icon: Users,
-                title: "Flexible Team Matchmaking — Individual vs. 3-Player Squads",
+                title: "Flexible Team Matchmaking: Individual vs. 3-Player Squads",
                 desc: "Designing seamless invitation loops (unique 8-character team codes, email invites, shareable links) so users could compete solo or assemble 3-person university squads before tournament lock-in.",
               },
               {
                 Icon: Volume2,
                 title: "Audience Retention & Audio Immersion",
-                desc: "Enhancing game feedback through contextual soundscapes (lobby waiting rooms, countdown timers, speed bonuses, leaderboard reveals) without heavy media assets — solved via Gemini AI audio generation.",
+                desc: "Enhancing game feedback through contextual soundscapes (lobby waiting rooms, countdown timers, speed bonuses, leaderboard reveals) without heavy media assets, solved via Gemini AI audio generation.",
               },
             ].map(({ Icon, title, desc }) => (
               <div key={title} className="flex gap-5 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
@@ -301,8 +340,8 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
           <div className="space-y-3">
             {[
               { num: "1.", title: "Squad Formation & Team Invitation Engine", desc: "Engineered an intuitive modal workflow allowing team captains to set squad names, generate 8-character join codes (KOD-1234), search player emails, and track pending invitation statuses before locking squad rosters ahead of tournament start." },
-              { num: "2.", title: "Kahoot-Style Speed & Accuracy Scoring Engine", desc: "Synchronized answer-locking interface awarding base points for correct choices (+100 pts) with dynamic speed bonuses (+15 pts). The UI displays real-time answer distribution charts immediately after each question phase — sustaining competitive tension through transparency." },
-              { num: "3.", title: "Contextual Gemini AI Audio Integration", desc: "Used Gemini AI music generation tools to compose lightweight, custom instrumental soundscapes for each game state: relaxed ambient in the waiting lobby, high-tension countdown during answer submission, and triumphant celebratory audio for podium reveals — zero external licensing costs." },
+              { num: "2.", title: "Kahoot-Style Speed & Accuracy Scoring Engine", desc: "Synchronized answer-locking interface awarding base points for correct choices (+100 pts) with dynamic speed bonuses (+15 pts). The UI displays real-time answer distribution charts immediately after each question phase, sustaining competitive tension through transparency." },
+              { num: "3.", title: "Contextual Gemini AI Audio Integration", desc: "Used Gemini AI music generation tools to compose lightweight, custom instrumental soundscapes for each game state: relaxed ambient in the waiting lobby, high-tension countdown during answer submission, and triumphant celebratory audio for podium reveals, zero external licensing costs." },
             ].map(({ num, title, desc }) => (
               <div key={title} className="flex gap-5 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
                 <span className="font-sans text-[10px] font-semibold flex-shrink-0 mt-0.5" style={{ color: C }}>{num}</span>
@@ -332,7 +371,7 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
               </div>
               <div className="px-6 py-5 space-y-5">
                 {[
-                  { title: "Daily Financial Quizzes", desc: "Self-paced modules covering budgeting rules (50/30/20 rule), savings strategies, and insurance literacy — with streak trackers encouraging consistent pre-tournament engagement." },
+                  { title: "Daily Financial Quizzes", desc: "Self-paced modules covering budgeting rules (50/30/20 rule), savings strategies, and insurance literacy, with streak trackers encouraging consistent pre-tournament engagement." },
                   { title: "Solo Practice Leaderboards", desc: "Localized rankings allowing participants to benchmark their financial knowledge against other university students prior to live tournament dates." },
                 ].map(({ title, desc }) => (
                   <div key={title}>
@@ -356,9 +395,9 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
               </div>
               <div className="px-6 py-5 space-y-5">
                 {[
-                  { title: "Lobby & Matchmaking Console", desc: "Interactive waiting rooms displaying live participant counts (e.g., 100 of 100,000 players ready) and host broadcast status — sustaining anticipation before tournament launch." },
-                  { title: "Synchronized Question & Option Display", desc: "High-contrast option cards with timer indicators and an instant [Lock My Answer] confirmation trigger — designed for both mobile and large-screen TikTok Live viewing." },
-                  { title: "Live Leaderboard & Podium Visualizer", desc: "Real-time ranking displays showing top team scores, point breakdowns, and overall tournament progression — updated after every question round." },
+                  { title: "Lobby & Matchmaking Console", desc: "Interactive waiting rooms displaying live participant counts (e.g., 100 of 100,000 players ready) and host broadcast status, sustaining anticipation before tournament launch." },
+                  { title: "Synchronized Question & Option Display", desc: "High-contrast option cards with timer indicators and an instant [Lock My Answer] confirmation trigger, designed for both mobile and large-screen TikTok Live viewing." },
+                  { title: "Live Leaderboard & Podium Visualizer", desc: "Real-time ranking displays showing top team scores, point breakdowns, and overall tournament progression, updated after every question round." },
                 ].map(({ title, desc }) => (
                   <div key={title}>
                     <div className="flex items-start gap-2 mb-1.5">
@@ -386,7 +425,7 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
               </p>
               <p className="text-sm font-semibold text-white mb-1.5">Answer Distribution Charts After Every Question</p>
               <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.6)", lineHeight: 1.75 }}>
-                After each question lock, the platform revealed live answer distribution — showing the percentage split across all choices. This real-time transparency created a social competitive tension that kept thousands of players emotionally invested across the full tournament runtime.
+                After each question lock, the platform revealed live answer distribution, showing the percentage split across all choices. This real-time transparency created a social competitive tension that kept thousands of players emotionally invested across the full tournament runtime.
               </p>
             </div>
           </div>
@@ -402,17 +441,17 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
               {
                 Icon: Globe,
                 title: "National Record-Breaking Scale",
-                desc: "Delivered the gamified platform infrastructure powering official national financial literacy roadshows — including Varsiti Terengganu and Karnival Celik Kewangan Penang — as part of Malaysia's ASEAN 2025 financial literacy initiative.",
+                desc: "Delivered the gamified platform infrastructure powering official national financial literacy roadshows, including Varsiti Terengganu and Karnival Celik Kewangan Penang, as part of Malaysia's ASEAN 2025 financial literacy initiative.",
               },
               {
                 Icon: Star,
                 title: "Multi-Format Engagement",
-                desc: "Supported both individual competitors and 3-player university squads across daily self-practice modules and high-stakes live broadcast events — sustaining engagement across the full pre-tournament and tournament lifecycle.",
+                desc: "Supported both individual competitors and 3-player university squads across daily self-practice modules and high-stakes live broadcast events, sustaining engagement across the full pre-tournament and tournament lifecycle.",
               },
               {
                 Icon: CheckCircle2,
                 title: "AI-First Audio Production",
-                desc: "Leveraged Gemini AI to produce a complete contextual sound system independently — eliminating external audio licensing costs while delivering lobby, countdown, and podium soundscapes that elevated player immersion across all game states.",
+                desc: "Leveraged Gemini AI to produce a complete contextual sound system independently, eliminating external audio licensing costs while delivering lobby, countdown, and podium soundscapes that elevated player immersion across all game states.",
               },
             ].map(({ Icon, title, desc }) => (
               <div key={title} className="flex flex-col gap-4 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>

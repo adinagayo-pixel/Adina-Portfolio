@@ -1,18 +1,33 @@
 import { useState, useRef, useEffect } from "react"
 import { motion, useMotionValue, useSpring, AnimatePresence } from "motion/react"
-import adinaPhotoAbout from "@/imports/ChatGPT_Image_Aug_3__2026__03_31_22_PM.png"
+import adinaPhotoAbout from "@/imports/dina portfo.png"
 import adinaPhotoLife from "@/imports/Foto In Life.jpg"
 import projectThumb1 from "@/imports/image-7.png"
 import projectThumb2 from "@/imports/image-8.png"
 import projectThumb4 from "@/imports/image-7.png"
 import projectThumb5 from "@/imports/image-9.png"
 import projectThumb6 from "@/imports/image-8.png"
+import mykawan1 from "@/imports/mykawan1.png"
+import mykawan2 from "@/imports/mykawan2.png"
+import mykawan3 from "@/imports/mykawan3.png"
+import mykawan4 from "@/imports/mykawan4.png"
+import mykawan5 from "@/imports/mykawan5.png"
+import anlene0 from "@/imports/anlene.png"
+import anlene1 from "@/imports/anlene1.png"
+import anlene2 from "@/imports/anlene2.png"
+import anlene3 from "@/imports/anlene3.png"
+import anlene4 from "@/imports/anlene4.png"
+import anlene5 from "@/imports/anlene5.png"
+import ci1 from "@/imports/CI1.png"
+import ci2 from "@/imports/CI2.png"
+import ci3 from "@/imports/CI3.png"
+import ci4 from "@/imports/CI4.png"
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback"
 import {
   Home, Briefcase, Layers, Archive, Mail,
   ArrowRight, ExternalLink, Globe, Zap,
   Users, CheckCircle, Coins, Bot, LayoutGrid,
-  ArrowUpRight, ChevronRight,
+  ArrowUpRight, ChevronRight, Hand,
 } from "lucide-react"
 import SunwayCase from "./components/SunwayCase"
 import GegiCase from "./components/GegiCase"
@@ -21,6 +36,7 @@ import ProArcheryCase from "./components/ProArcheryCase"
 import ElectionCase from "./components/ElectionCase"
 import AnleneCase from "./components/AnleneCase"
 import BijakWangCase from "./components/BijakWangCase"
+import AboutMe from "./components/AboutMe"
 
 // ─── Design tokens ────────────────────────────────────────────────────────────
 const N = "#19244E"   // Oiler Navy
@@ -45,7 +61,13 @@ const FEATURED = [
     headline: "A rapid-sprint interactive campaign tool combining scroll-based gamified evaluation, localized Singlish persona mechanics, and AEM integration.",
     metrics: [{ val: "2wk", sub: "Sprint Execution" }, { val: "7Q", sub: "Question Matrix" }, { val: "4", sub: "Persona Tiers" }],
     projectId: "gegi",
-    thumb: projectThumb1,
+    thumb: ci1,
+    screens: [
+      { src: ci1, label: "01 · CAMPAIGN HERO" },
+      { src: ci2, label: "02 · SINGLISH PERSONAS" },
+      { src: ci3, label: "03 · EVALUATION MATRIX" },
+      { src: ci4, label: "04 · AEM INTEGRATION" },
+    ],
   },
   {
     num: "02", name: "Seamless Micro-Insurance Integration", client: "Touch 'n Go × GEGM",
@@ -54,6 +76,11 @@ const FEATURED = [
     metrics: [{ val: "V5", sub: "Production Release" }, { val: "3mo", sub: "Timeline" }, { val: "RM0", sub: "PTV Checkout" }],
     projectId: "tng",
     thumb: projectThumb2,
+    screens: [
+      { src: projectThumb2, label: "01 · WALLET DASHBOARD" },
+      { src: projectThumb1, label: "02 · EKYC DATA MAPPING" },
+      { src: projectThumb5, label: "03 · POLICY CHECKOUT" },
+    ],
   },
   {
     num: "03", name: "Digital Transformation & AI Retail", client: "Pro Archery Jakarta",
@@ -62,6 +89,11 @@ const FEATURED = [
     metrics: [{ val: "24h", sub: "POC Delivery" }, { val: "4", sub: "Portals Built" }, { val: "0", sub: "Figma Wireframes" }],
     projectId: "archery",
     thumb: projectThumb4,
+    screens: [
+      { src: projectThumb4, label: "01 · E-COMMERCE PORTAL" },
+      { src: projectThumb2, label: "02 · POS ADMIN DASHBOARD" },
+      { src: projectThumb1, label: "03 · AI PROMPT ARCHITECTURE" },
+    ],
   },
   {
     num: "04", name: "National Quick Count & Monitoring", client: "Indonesian Political Party",
@@ -70,6 +102,11 @@ const FEATURED = [
     metrics: [{ val: "820K+", sub: "TPS Polling Stations" }, { val: "38", sub: "Provinces Tracked" }, { val: "48h", sub: "Critical Window" }],
     projectId: "election",
     thumb: projectThumb5,
+    screens: [
+      { src: projectThumb5, label: "01 · REAL-TIME TABULATION" },
+      { src: projectThumb1, label: "02 · PROVINCIAL MATRIX" },
+      { src: projectThumb2, label: "03 · VERIFICATION CMS" },
+    ],
   },
   {
     num: "05", name: "Medical Diagnostics & Field Sales Revamp", client: "Fonterra × Anlene",
@@ -77,15 +114,29 @@ const FEATURED = [
     headline: "Translating clinical diagnostic data from GE Achilles bone scanners and Omron devices into personalized health passports and automated WhatsApp PDF delivery.",
     metrics: [{ val: "3mo", sub: "Delivery Sprint" }, { val: "2", sub: "Medical Devices" }, { val: "4-tier", sub: "Health Matrix" }],
     projectId: "anlene",
-    thumb: projectThumb6,
+    thumb: anlene0,
+    screens: [
+      { src: anlene0, label: "01 · HEALTH PASSPORT", fitContain: true },
+      { src: anlene1, label: "02 · DIAGNOSTIC MATRIX", fitContain: true },
+      { src: anlene2, label: "03 · BONE SCAN DATA", fitContain: true },
+      { src: anlene3, label: "04 · FIELD SALES INTAKE", fitContain: true },
+      { src: anlene4, label: "05 · CHECKOUT RESULTS", fitContain: true },
+    ],
   },
   {
-    num: "06", name: "100K-Player Live Tournament Platform", client: "mySalam Malaysia × myKawan",
-    location: "MY", year: "2025", tags: ["Gamification", "Multiplayer", "Gemini AI Audio"],
-    headline: "A Kahoot-inspired live multiplayer tournament platform built for mySalam Malaysia's #BijakWang Challenge, supporting 100,000 concurrent players.",
-    metrics: [{ val: "100K", sub: "Live Players" }, { val: "3-Player", sub: "Squad Teams" }, { val: "Gemini", sub: "AI Audio Engine" }],
+    num: "06", name: "100K-Player Live Tournament Platform", client: "mySalam × myKawan",
+    location: "MY", year: "2025", tags: ["Live Tournament", "100K Concurrent", "Gamified Financial Literacy"],
+    headline: "Architected a scalable digital tournament platform delivering real-time financial literacy quizzes to over 100,000 concurrent Malaysian youth players.",
+    metrics: [{ val: "100K", sub: "Live Concurrents" }, { val: "5-sec", sub: "Quiz Round Engine" }, { val: "RM500K", sub: "ReSkills Rewards Pool" }],
     projectId: "bijakwang",
-    thumb: projectThumb1,
+    thumb: mykawan1,
+    screens: [
+      { src: mykawan1, label: "01 · LOBBY & CHALLENGES" },
+      { src: mykawan2, label: "02 · REGISTRATION & ONBOARDING" },
+      { src: mykawan3, label: "03 · LIVE QUIZ INTERACTION" },
+      { src: mykawan4, label: "04 · RESKILLS REWARDS" },
+      { src: mykawan5, label: "05 · LEADERBOARD & RANKINGS" },
+    ],
   },
 ]
 
@@ -238,14 +289,13 @@ function FloatingDock({ activeSection }: { activeSection: string }) {
 const HERO_SPRING = { type: "tween" as const, ease: [0.16, 1, 0.3, 1] as const, duration: 0.7 }
 
 // ─── Hero Section ─────────────────────────────────────────────────────────────
-function HeroSection() {
+function HeroSection({ onReadMore }: { onReadMore: () => void }) {
   const [isAtWork, setIsAtWork] = useState(true)
   const [tick, setTick] = useState(0)
-  const LANGS = ["EN", "ID", "KO"]
-  const HELLOS = ["Hello.", "Halo.", "안녕하세요."]
+  const HELLOS = ["Hello, I'm Dina!", "Halo, aku Dina!", "안녕하세요, 디나입니다!"]
 
   useEffect(() => {
-    const id = setInterval(() => setTick((t) => (t + 1) % LANGS.length), 2800)
+    const id = setInterval(() => setTick((t) => (t + 1) % HELLOS.length), 2800)
     return () => clearInterval(id)
   }, [])
 
@@ -260,13 +310,58 @@ function HeroSection() {
         className="flex items-center justify-between px-5 py-4 lg:px-16 lg:py-6"
         style={{ borderBottom: `1px solid rgba(25, 36, 78, 0.05)` }}
       >
-        <span className="font-sans text-[10px] lg:text-[11px] font-semibold tracking-[0.15em]" style={{ color: N }}>
-          AFG<span style={{ color: C }}> ·</span><span className="hidden sm:inline"> PORTFOLIO 2026</span>
-        </span>
-        <div className="flex items-center gap-2 lg:gap-4">
-          <span className="hidden md:inline font-sans text-[10px] font-semibold tracking-wider text-[#19244E]/60 uppercase">
-            SG / MY / ID
+        <div className="flex items-center gap-4 lg:gap-6">
+          <span className="font-sans text-[10px] lg:text-[11px] font-bold tracking-[0.15em]" style={{ color: N }}>
+            AFG
           </span>
+
+          {/* Toggle Switch */}
+          <div className="flex items-center gap-2">
+            <span
+              className="font-sans text-[9px] lg:text-[10px] font-semibold tracking-widest transition-all duration-150 cursor-pointer select-none animate-fade-in"
+              style={{ color: N, opacity: isAtWork ? 1 : 0.35 }}
+              onClick={() => setIsAtWork(true)}
+            >
+              At Work
+            </span>
+
+            <button
+              onClick={() => setIsAtWork((v) => !v)}
+              aria-label="Toggle between At Work and In Life mode"
+              className="relative flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] rounded-full cursor-pointer"
+              style={{
+                width: "36px",
+                height: "20px",
+                borderRadius: "999px",
+                backgroundColor: isAtWork ? N : C,
+                transition: "background-color 0.3s ease",
+                flexShrink: 0,
+              }}
+            >
+              <motion.span
+                layout
+                transition={HERO_SPRING}
+                className="absolute bg-white rounded-full shadow-sm"
+                style={{
+                  width: "14px",
+                  height: "14px",
+                  left: isAtWork ? "3px" : "19px",
+                }}
+              />
+            </button>
+
+            <span
+              className="font-sans text-[9px] lg:text-[10px] font-semibold tracking-widest transition-all duration-150 cursor-pointer select-none animate-fade-in"
+              style={{ color: C, opacity: !isAtWork ? 1 : 0.35 }}
+              onClick={() => setIsAtWork(false)}
+            >
+              In Life
+            </span>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-2 lg:gap-4">
+
           <a
             href="/resume-adina-fayza-gayo.pdf"
             download
@@ -290,65 +385,6 @@ function HeroSection() {
         </div>
       </div>
 
-      {/* ── Mode toggle bar ── */}
-      <div
-        className="flex items-center justify-between px-5 lg:px-16 py-3.5 gap-4"
-        style={{ borderBottom: `1px solid rgba(25, 36, 78, 0.05)` }}
-      >
-        <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
-          <span className="font-sans text-[10px] tracking-[0.12em] font-medium" style={{ color: `${N}70` }}>
-            Designing systems that think. Living a life that's color-coded.
-          </span>
-          <span className="hidden md:inline font-sans text-[10px] tracking-wider" style={{ color: `${N}35` }}>
-            · Same brain. Different mode. ✦
-          </span>
-        </div>
-
-        {/* Toggle pill */}
-        <div className="flex items-center gap-3 flex-shrink-0">
-          <span
-            className="font-sans text-[10px] font-semibold tracking-widest transition-all duration-300 cursor-pointer select-none"
-            style={{ color: N, opacity: isAtWork ? 1 : 0.35 }}
-            onClick={() => setIsAtWork(true)}
-          >
-            At Work
-          </span>
-
-          <button
-            onClick={() => setIsAtWork((v) => !v)}
-            aria-label="Toggle between At Work and In Life mode"
-            className="relative flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] rounded-full cursor-pointer"
-            style={{
-              width: "44px",
-              height: "24px",
-              borderRadius: "999px",
-              backgroundColor: isAtWork ? N : C,
-              transition: "background-color 0.3s ease",
-              flexShrink: 0,
-            }}
-          >
-            <motion.span
-              layout
-              transition={HERO_SPRING}
-              className="absolute bg-white rounded-full shadow-sm"
-              style={{
-                width: "18px",
-                height: "18px",
-                left: isAtWork ? "3px" : "23px",
-              }}
-            />
-          </button>
-
-          <span
-            className="font-sans text-[10px] font-semibold tracking-widest transition-all duration-300 cursor-pointer select-none"
-            style={{ color: C, opacity: !isAtWork ? 1 : 0.35 }}
-            onClick={() => setIsAtWork(false)}
-          >
-            In Life
-          </span>
-        </div>
-      </div>
-
       {/* ── Sliding viewports wrapper ── */}
       <div className="overflow-hidden relative">
         <motion.div
@@ -359,7 +395,7 @@ function HeroSection() {
           {/* ── PANEL A: AT WORK (Left: Text, Right: Photo) ── */}
           <div className="w-1/2 grid lg:grid-cols-2 flex-shrink-0">
             {/* Left Slot: Professional Bio Text */}
-            <div className="flex items-center justify-center lg:justify-start px-8 lg:px-20 py-10 lg:py-12">
+            <div className="flex items-center justify-center lg:justify-start px-8 lg:px-20 pt-10 pb-24 lg:pt-12 lg:pb-36">
               <div className="max-w-[520px] w-full">
                 <p className="font-sans text-[10px] font-semibold tracking-[0.2em] mb-5" style={{ color: C }}>
                   Product Designer · System Logic Architect · M.MT Candidate
@@ -374,39 +410,9 @@ function HeroSection() {
                   <br />
                   at startup speed.
                 </h1>
-                <p className="text-[15px] leading-[1.7] mb-6 max-w-[460px]" style={{ color: `${N}BB` }}>
-                  I bridge complex product ecosystems — from embedded insurance platforms to B2B enterprise portals. As the sole designer at Friendsure, I architect the logic under the hood: flows, edge cases, and handoffs that developers love.
+                <p className="text-[15px] leading-[1.7] mb-8 max-w-[460px]" style={{ color: `${N}BB` }}>
+                  I bridge complex product ecosystems, ranging from embedded insurance platforms to B2B enterprise portals. As the sole designer at Friendsure, I architect the logic under the hood: flows, edge cases, and handoffs that developers love.
                 </p>
-                
-                {/* Visual Highlights Grid */}
-                <div className="grid grid-cols-2 gap-6 mb-10 max-w-[460px]">
-                  <div className="flex gap-2.5 items-start">
-                    <div className="p-1.5 rounded flex-shrink-0" style={{ backgroundColor: `${N}0D`, color: C }}>
-                      <Zap size={14} />
-                    </div>
-                    <div>
-                      <h4 className="font-sans text-[11px] font-bold tracking-wider uppercase mb-0.5" style={{ color: N }}>
-                        AI-First Workflow
-                      </h4>
-                      <p className="font-sans text-[11px] leading-relaxed" style={{ color: `${N}99` }}>
-                        Figma, Claude, Gemini, VS Code.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex gap-2.5 items-start">
-                    <div className="p-1.5 rounded flex-shrink-0" style={{ backgroundColor: `${N}0D`, color: C }}>
-                      <CheckCircle size={14} />
-                    </div>
-                    <div>
-                      <h4 className="font-sans text-[11px] font-bold tracking-wider uppercase mb-0.5" style={{ color: N }}>
-                        Rapid Delivery
-                      </h4>
-                      <p className="font-sans text-[11px] leading-relaxed" style={{ color: `${N}99` }}>
-                        70% faster sprints, zero-defect handoffs.
-                      </p>
-                    </div>
-                  </div>
-                </div>
                 <div className="flex items-center gap-4 flex-wrap">
                   <button
                     className="flex items-center gap-2 px-6 py-3.5 text-sm font-medium text-white transition-opacity duration-150 hover:opacity-85 cursor-pointer"
@@ -423,14 +429,19 @@ function HeroSection() {
                     <Mail size={14} /> Get In Touch
                   </button>
                 </div>
+                <button
+                  onClick={onReadMore}
+                  className="text-[11px] font-sans font-semibold tracking-wider text-[#DB3E8C] hover:opacity-80 transition-opacity flex items-center gap-1 mt-4 focus:outline-none cursor-pointer"
+                >
+                  Read full profile & philosophy <ChevronRight size={12} />
+                </button>
               </div>
             </div>
 
             {/* Right Slot: Edge-to-edge Photo Column */}
             <div className="relative overflow-hidden w-full h-full min-h-[420px] lg:min-h-0 bg-[#19244E]/5">
               {/* Greeting ticker */}
-              <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 bg-white px-4 py-1.5 rounded-full shadow-md border border-[#19244E]/5 whitespace-nowrap">
-                <span className="font-sans text-[9px] font-semibold tracking-widest text-[#19244E]/60 uppercase">[{LANGS[tick]}]</span>
+              <div className="absolute top-12 lg:top-28 left-1/2 -translate-x-1/2 z-20 whitespace-nowrap text-center">
                 <AnimatePresence mode="wait">
                   <motion.span
                     key={tick}
@@ -438,7 +449,8 @@ function HeroSection() {
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: -8, opacity: 0 }}
                     transition={{ duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] }}
-                    className="font-display text-sm font-light text-[#19244E]"
+                    className="font-display text-xl lg:text-3xl font-light text-white tracking-wide"
+                    style={{ textShadow: "0 2px 8px rgba(25,36,78,0.4)" }}
                   >
                     {HELLOS[tick]}
                   </motion.span>
@@ -471,8 +483,7 @@ function HeroSection() {
             {/* Left Slot: Edge-to-edge Photo Column */}
             <div className="relative overflow-hidden w-full h-full min-h-[420px] lg:min-h-0 bg-[#19244E]/5">
               {/* Greeting ticker */}
-              <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 bg-white px-4 py-1.5 rounded-full shadow-md border border-[#19244E]/5 whitespace-nowrap">
-                <span className="font-sans text-[9px] font-semibold tracking-widest text-[#19244E]/60 uppercase">[{LANGS[tick]}]</span>
+              <div className="absolute top-12 lg:top-28 left-1/2 -translate-x-1/2 z-20 whitespace-nowrap text-center">
                 <AnimatePresence mode="wait">
                   <motion.span
                     key={tick}
@@ -480,7 +491,8 @@ function HeroSection() {
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: -8, opacity: 0 }}
                     transition={{ duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] }}
-                    className="font-display text-sm font-light text-[#19244E]"
+                    className="font-display text-xl lg:text-3xl font-light text-white tracking-wide"
+                    style={{ textShadow: "0 2px 8px rgba(25,36,78,0.4)" }}
                   >
                     {HELLOS[tick]}
                   </motion.span>
@@ -508,7 +520,7 @@ function HeroSection() {
             </div>
 
             {/* Right Slot: Personal Text Column */}
-            <div className="flex items-center justify-center lg:justify-start px-8 lg:px-20 py-10 lg:py-12">
+            <div className="flex items-center justify-center lg:justify-start px-8 lg:px-20 pt-10 pb-24 lg:pt-12 lg:pb-36">
               <div className="max-w-[480px] w-full px-0 lg:px-4">
                 <p className="font-sans text-[10px] font-semibold tracking-[0.2em] mb-5" style={{ color: C }}>
                   Off The Clock · Real Human · Highly Organized Chaos
@@ -521,39 +533,9 @@ function HeroSection() {
                   <em className="not-italic" style={{ color: C }}>with</em> a<br />
                   color-coded plan.
                 </h1>
-                <p className="text-[15px] leading-[1.7] mb-6 max-w-[440px]" style={{ color: `${N}BB` }}>
-                  Off-screen, I'm the friend who sends the group itinerary three weeks early — color-coded by day and cross-referenced by distance. My love language is a well-organized shared folder, a hot bowl of ramen, and optimizing daily life.
+                <p className="text-[15px] leading-[1.7] mb-8 max-w-[440px]" style={{ color: `${N}BB` }}>
+                  Off-screen, I'm the friend who sends the group itinerary three weeks early, color-coded by day and cross-referenced by distance. My love language is a well-organized shared folder, a hot bowl of ramen, and optimizing daily life.
                 </p>
-                
-                {/* Visual Highlights Grid */}
-                <div className="grid grid-cols-2 gap-6 mb-10 max-w-[440px]">
-                  <div className="flex gap-2.5 items-start">
-                    <div className="p-1.5 rounded flex-shrink-0" style={{ backgroundColor: `${N}0D`, color: C }}>
-                      <Globe size={14} />
-                    </div>
-                    <div>
-                      <h4 className="font-sans text-[11px] font-bold tracking-wider uppercase mb-0.5" style={{ color: N }}>
-                        Obsessive Travel
-                      </h4>
-                      <p className="font-sans text-[11px] leading-relaxed" style={{ color: `${N}99` }}>
-                        Color-coded plans, spreadsheet-tracked cafe backups.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex gap-2.5 items-start">
-                    <div className="p-1.5 rounded flex-shrink-0" style={{ backgroundColor: `${N}0D`, color: C }}>
-                      <Bot size={14} />
-                    </div>
-                    <div>
-                      <h4 className="font-sans text-[11px] font-bold tracking-wider uppercase mb-0.5" style={{ color: N }}>
-                        Life Optimization
-                      </h4>
-                      <p className="font-sans text-[11px] leading-relaxed" style={{ color: `${N}99` }}>
-                        AI scripts for bill splitting & travel briefs.
-                      </p>
-                    </div>
-                  </div>
-                </div>
                 <div className="flex items-center gap-4 flex-wrap">
                   <a
                     href="mailto:adinagayo@gmail.com"
@@ -572,6 +554,420 @@ function HeroSection() {
         </motion.div>
       </div>
     </section>
+  )
+}
+
+function ImageLightboxModal({
+  isOpen,
+  onClose,
+  screens,
+  initialIndex = 0,
+}: {
+  isOpen: boolean
+  onClose: () => void
+  screens: { src: string; label: string; fitContain?: boolean }[]
+  initialIndex?: number
+}) {
+  const [currentIndex, setCurrentIndex] = useState(initialIndex)
+
+  useEffect(() => {
+    setCurrentIndex(initialIndex)
+  }, [initialIndex, isOpen])
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!isOpen) return
+      if (e.key === "Escape") onClose()
+      if (e.key === "ArrowRight") {
+        setCurrentIndex((prev) => (prev + 1) % screens.length)
+      }
+      if (e.key === "ArrowLeft") {
+        setCurrentIndex((prev) => (prev - 1 + screens.length) % screens.length)
+      }
+    }
+    window.addEventListener("keydown", handleKeyDown)
+    return () => window.removeEventListener("keydown", handleKeyDown)
+  }, [isOpen, screens.length, onClose])
+
+  if (!isOpen || !screens || screens.length === 0) return null
+
+  const current = screens[currentIndex]
+
+  return (
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0, scale: 0.98 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.98 }}
+        className="fixed inset-0 z-[100] bg-black/92 backdrop-blur-2xl flex flex-col justify-between p-4 lg:p-8 select-none"
+        onClick={onClose}
+      >
+        {/* Top Header */}
+        <div className="flex items-center justify-between text-white z-10" onClick={(e) => e.stopPropagation()}>
+          <div className="flex items-center gap-3">
+            <span className="px-3 py-1 rounded-md bg-[#DB3E8C] text-white text-[10px] font-sans font-bold tracking-widest uppercase shadow-md">
+              Screen {currentIndex + 1} / {screens.length}
+            </span>
+            <span className="text-sm font-sans font-semibold text-white/90">
+              {current.label}
+            </span>
+          </div>
+          <button
+            onClick={onClose}
+            aria-label="Close Lightbox"
+            className="w-10 h-10 rounded-full bg-white/10 border border-white/20 hover:bg-[#DB3E8C] text-white flex items-center justify-center transition-all text-base shadow-lg cursor-pointer"
+          >
+            ✕
+          </button>
+        </div>
+
+        {/* Main Image Stage with Left and Right Arrows */}
+        <div className="relative flex-1 flex items-center justify-center my-4 overflow-hidden" onClick={(e) => e.stopPropagation()}>
+          {/* Left Arrow Button */}
+          <button
+            onClick={() => setCurrentIndex((prev) => (prev - 1 + screens.length) % screens.length)}
+            aria-label="Previous Image"
+            className="absolute left-2 lg:left-8 z-30 w-12 h-12 rounded-full bg-[#19244E]/90 border border-white/20 text-white flex items-center justify-center text-xl hover:bg-[#DB3E8C] hover:scale-110 transition-all shadow-2xl cursor-pointer"
+          >
+            ❮
+          </button>
+
+          {/* Center Image */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -30 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="max-w-[88vw] max-h-[72vh] flex items-center justify-center"
+            >
+              <img
+                src={current.src}
+                alt={current.label}
+                className={`max-w-full max-h-[72vh] rounded-xl shadow-[0_25px_80px_rgba(0,0,0,0.8)] border border-white/15 ${
+                  current.fitContain ? "object-contain bg-[#141b36] p-3" : "object-contain"
+                }`}
+              />
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Right Arrow Button */}
+          <button
+            onClick={() => setCurrentIndex((prev) => (prev + 1) % screens.length)}
+            aria-label="Next Image"
+            className="absolute right-2 lg:right-8 z-30 w-12 h-12 rounded-full bg-[#19244E]/90 border border-white/20 text-white flex items-center justify-center text-xl hover:bg-[#DB3E8C] hover:scale-110 transition-all shadow-2xl cursor-pointer"
+          >
+            ❯
+          </button>
+        </div>
+
+        {/* Bottom Thumbnail Strip Bar */}
+        <div className="flex items-center justify-center gap-3 overflow-x-auto py-2 z-10" onClick={(e) => e.stopPropagation()}>
+          {screens.map((screen, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentIndex(idx)}
+              className={`relative h-14 aspect-[16/10] rounded-lg overflow-hidden border-2 transition-all flex-shrink-0 cursor-pointer ${
+                idx === currentIndex
+                  ? "border-[#DB3E8C] scale-105 shadow-[0_0_20px_rgba(219,62,140,0.6)]"
+                  : "border-white/20 opacity-50 hover:opacity-100"
+              }`}
+            >
+              <img src={screen.src} alt={screen.label} className="w-full h-full object-cover" />
+            </button>
+          ))}
+        </div>
+      </motion.div>
+    </AnimatePresence>
+  )
+}
+
+function StackedFanOutDeck({ screens }: { screens: { src: string; label: string; fitContain?: boolean }[] }) {
+  const [isHovered, setIsHovered] = useState(false)
+  const [deckOrder, setDeckOrder] = useState<number[]>(() => screens.map((_, i) => i))
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
+  const isDraggingRef = useRef(false)
+
+  // Bring a specific card to front or open lightbox ONLY if already top
+  const handleCardClick = (idx: number, e: React.MouseEvent) => {
+    e.stopPropagation()
+    if (isDraggingRef.current) {
+      isDraggingRef.current = false
+      return
+    }
+
+    const currentTopIdx = deckOrder[0]
+    if (currentTopIdx === idx) {
+      // ONLY open pop-up lightbox slider if this card is ALREADY at the very top/front!
+      setLightboxIndex(idx)
+    } else {
+      // Otherwise, bring it to top/front first!
+      setDeckOrder((prev) => [idx, ...prev.filter((i) => i !== idx)])
+    }
+  }
+
+  return (
+    <div
+      className="relative w-full h-full flex items-center justify-center select-none"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="relative w-full h-full flex items-center justify-center">
+        {screens.map((screen, idx) => {
+          const total = screens.length
+          const orderPos = deckOrder.indexOf(idx)
+          const isTop = orderPos === 0
+
+          const stackRotate = [0, 4, -4, 7, -5][idx % 5]
+          const stackX = [0, 6, -6, 12, -12][idx % 5]
+          const stackY = [0, -2, 2, -4, 4][idx % 5]
+
+          const fanXShift = (idx - (total - 1) / 2) * 75
+          const fanRotate = (idx - (total - 1) / 2) * 3
+
+          return (
+            <motion.div
+              key={screen.label + idx}
+              drag
+              dragSnapToOrigin={true}
+              dragConstraints={{ left: -600, right: 600, top: -400, bottom: 400 }}
+              dragElastic={0.2}
+              whileDrag={{ scale: 1.05, zIndex: 99, cursor: "grabbing" }}
+              onDragStart={() => {
+                isDraggingRef.current = false
+              }}
+              onDrag={(_, info) => {
+                if (Math.hypot(info.offset.x, info.offset.y) > 5) {
+                  isDraggingRef.current = true
+                }
+              }}
+              onDragEnd={(_, info) => {
+                if (Math.hypot(info.offset.x, info.offset.y) > 40) {
+                  isDraggingRef.current = true
+                  setDeckOrder((prev) => {
+                    const currentTop = prev[0]
+                    const rest = prev.slice(1)
+                    return [...rest, currentTop]
+                  })
+                }
+                setTimeout(() => {
+                  isDraggingRef.current = false
+                }, 120)
+              }}
+              onClick={(e) => handleCardClick(idx, e)}
+              className={`absolute aspect-[16/10] w-[92%] max-h-[94%] rounded-2xl overflow-hidden border ${
+                isTop ? "border-[#DB3E8C]/80 shadow-[0_25px_60px_rgba(219,62,140,0.35)]" : "border-white/20 shadow-2xl"
+              } bg-[#141b36] cursor-grab transition-shadow duration-200`}
+              style={{
+                zIndex: isHovered ? (total - orderPos) : (total - orderPos),
+                transformOrigin: "bottom center",
+              }}
+              animate={{
+                x: isHovered ? fanXShift : stackX,
+                y: isHovered ? orderPos * -4 : stackY,
+                rotate: isHovered ? fanRotate : stackRotate,
+                scale: isHovered ? (isTop ? 1.03 : 0.95) : 1 - orderPos * 0.018,
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 280,
+                damping: 22,
+              }}
+            >
+              <div className={`w-full h-full ${screen.fitContain ? "bg-[#141b36] p-2 flex items-center justify-center" : ""}`}>
+                <img
+                  src={screen.src}
+                  alt={screen.label}
+                  className={`w-full h-full ${screen.fitContain ? "object-contain p-1" : "object-cover object-top"} pointer-events-none`}
+                />
+              </div>
+
+              {/* Screen Label Tag */}
+              <div className="absolute bottom-3 left-3 right-3 px-3 py-1.5 bg-[#19244E]/90 backdrop-blur-md rounded-lg text-[9px] font-sans font-bold text-white tracking-widest uppercase border border-white/15 truncate text-center shadow-md pointer-events-none">
+                {screen.label}
+              </div>
+            </motion.div>
+          )
+        })}
+      </div>
+
+      {/* Floating Badge Indicator */}
+      <button
+        onClick={(e) => {
+          e.stopPropagation()
+          setLightboxIndex(deckOrder[0])
+        }}
+        className="absolute bottom-3 right-3 px-3 py-1 bg-[#19244E]/95 backdrop-blur-md border border-white/15 rounded-full text-[8px] font-sans font-bold text-white tracking-widest uppercase shadow-md z-40 flex items-center gap-1.5 hover:bg-[#DB3E8C] transition-colors cursor-pointer"
+      >
+        <span className="w-1.5 h-1.5 rounded-full bg-[#DB3E8C] animate-pulse" />
+        {screens.length} Screens
+      </button>
+
+      {/* Full-Screen Pop-up Image Slider Lightbox */}
+      <ImageLightboxModal
+        isOpen={lightboxIndex !== null}
+        onClose={() => setLightboxIndex(null)}
+        screens={screens}
+        initialIndex={lightboxIndex ?? 0}
+      />
+    </div>
+  )
+}
+
+function InfiniteMarqueeDeck({ screens }: { screens: { src: string; label?: string }[] }) {
+  const [isHovered, setIsHovered] = useState(false)
+  const duplicated = [...screens, ...screens, ...screens]
+
+  return (
+    <div
+      className="relative w-full h-full flex items-center cursor-pointer select-none"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Vignette Gradients */}
+      <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-[#111936] to-transparent z-20 pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-[#111936] to-transparent z-20 pointer-events-none" />
+
+      {/* Marquee Motion Track */}
+      <motion.div
+        className="flex items-center gap-4 pr-4 flex-nowrap w-full"
+        animate={{
+          x: ["0%", "-33.333%"],
+        }}
+        transition={{
+          repeat: Infinity,
+          repeatType: "loop",
+          duration: isHovered ? 40 : 16,
+          ease: "linear",
+        }}
+      >
+        {duplicated.map((screen, idx) => (
+          <motion.div
+            key={idx}
+            drag
+            dragSnapToOrigin={true}
+            dragConstraints={{ left: -300, right: 300, top: -200, bottom: 200 }}
+            dragElastic={0.2}
+            whileDrag={{ scale: 1.05, zIndex: 99, cursor: "grabbing" }}
+            className="relative h-[340px] lg:h-[400px] aspect-[16/10] rounded-xl overflow-hidden border border-white/20 shadow-2xl flex-shrink-0 bg-[#141b36] group/item cursor-grab"
+          >
+            <img
+              src={screen.src}
+              alt={`Screen ${idx}`}
+              className="w-full h-full object-cover object-top transition-transform duration-300 group-hover/item:scale-[1.03] pointer-events-none"
+            />
+            {screen.label && (
+              <div className="absolute bottom-3 left-3 right-3 px-2.5 py-1 bg-[#19244E]/90 backdrop-blur-md rounded text-[8px] font-sans font-bold text-white tracking-widest uppercase border border-white/10 truncate text-center opacity-0 group-hover/item:opacity-100 transition-opacity z-10 pointer-events-none">
+                {screen.label}
+              </div>
+            )}
+          </motion.div>
+        ))}
+      </motion.div>
+
+      {/* Floating Badge Indicator */}
+      <div className="absolute -top-2 right-0 px-3 py-1 bg-[#DB3E8C] text-white font-sans text-[8px] font-bold tracking-widest uppercase rounded-full shadow-md z-30 pointer-events-none flex items-center gap-1.5">
+        <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+        Infinite Marquee · Drag Cards
+      </div>
+    </div>
+  )
+}
+
+function AutoCarouselDeck({ screens }: { screens: { src: string; label?: string }[] }) {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isHovered, setIsHovered] = useState(false)
+
+  useEffect(() => {
+    if (isHovered) return
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % screens.length)
+    }, 2500)
+    return () => clearInterval(timer)
+  }, [isHovered, screens.length])
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    setCurrentIndex((prev) => (prev + 1) % screens.length)
+  }
+
+  const handlePrev = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    setCurrentIndex((prev) => (prev - 1 + screens.length) % screens.length)
+  }
+
+  const current = screens[currentIndex]
+
+  return (
+    <div
+      className="relative w-full h-full flex items-center justify-center cursor-pointer select-none group/carousel"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentIndex}
+          drag
+          dragSnapToOrigin={true}
+          dragConstraints={{ left: -500, right: 500, top: -350, bottom: 350 }}
+          dragElastic={0.2}
+          whileDrag={{ scale: 1.05, zIndex: 99, cursor: "grabbing" }}
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 1.02 }}
+          transition={{ duration: 0.35, ease: "easeInOut" }}
+          className="relative w-[95%] aspect-[16/10] max-h-[96%] rounded-2xl overflow-hidden border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.65)] bg-[#141b36] flex items-center justify-center cursor-grab"
+        >
+          <img
+            src={current.src}
+            alt={current.label || `Screen ${currentIndex + 1}`}
+            className="w-full h-full object-cover object-top rounded-2xl pointer-events-none"
+          />
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Nav Buttons on Hover */}
+      <button
+        onClick={handlePrev}
+        aria-label="Previous Screen"
+        className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-[#19244E]/85 backdrop-blur-md border border-white/20 text-white flex items-center justify-center text-xs opacity-0 group-hover/carousel:opacity-100 hover:bg-[#DB3E8C] transition-all z-30 shadow-lg"
+      >
+        ❮
+      </button>
+      <button
+        onClick={handleNext}
+        aria-label="Next Screen"
+        className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-[#19244E]/85 backdrop-blur-md border border-white/20 text-white flex items-center justify-center text-xs opacity-0 group-hover/carousel:opacity-100 hover:bg-[#DB3E8C] transition-all z-30 shadow-lg"
+      >
+        ❯
+      </button>
+
+      {/* Screen Step Label Overlay */}
+      {current.label && (
+        <div className="absolute bottom-4 left-6 px-3 py-1 bg-[#19244E]/90 backdrop-blur-md rounded-lg text-[9px] font-sans font-bold text-white tracking-widest uppercase border border-white/15 z-20 pointer-events-none shadow-md">
+          {current.label}
+        </div>
+      )}
+
+      {/* Progress Dots */}
+      <div className="absolute bottom-4 right-6 flex items-center gap-1.5 z-20 pointer-events-none">
+        {screens.map((_, idx) => (
+          <span
+            key={idx}
+            className={`h-1.5 rounded-full transition-all duration-300 ${
+              idx === currentIndex ? "w-5 bg-[#DB3E8C]" : "w-1.5 bg-white/40"
+            }`}
+          />
+        ))}
+      </div>
+
+      {/* Floating Badge Indicator */}
+      <div className="absolute -top-2 right-0 px-3 py-1 bg-[#DB3E8C] text-white font-sans text-[8px] font-bold tracking-widest uppercase rounded-full shadow-md z-30 pointer-events-none flex items-center gap-1.5">
+        <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+        Auto Carousel · Drag Screen to Inspect
+      </div>
+    </div>
   )
 }
 
@@ -600,18 +996,18 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
         className="px-8 lg:px-16 py-10 flex items-center gap-6"
         style={{ borderBottom: `1px solid rgba(255, 255, 255, 0.08)` }}
       >
-        <span className="font-sans text-[10px] font-semibold tracking-[0.2em] text-white/60">[03 // SELECTED WORK]</span>
+        <span className="font-sans text-[10px] font-semibold tracking-[0.2em] text-white/60">SELECTED WORK</span>
         <div className="flex-1 h-px bg-white/10" />
-        <span className="font-sans text-[10px] font-semibold tracking-[0.15em] text-white/60">ENTERPRISE · B2B · REGIONAL</span>
+        <span className="font-sans text-[10px] text-white/60 font-semibold tracking-[0.15em]">ENTERPRISE · B2B · REGIONAL</span>
       </div>
 
       {/* Section intro */}
       <div className="px-8 lg:px-16 py-16 lg:py-20" style={{ borderBottom: `1px solid rgba(255, 255, 255, 0.08)` }}>
         <h2
           className="font-display font-light leading-tight text-white"
-          style={{ fontSize: "clamp(2.4rem, 4.5vw, 4rem)", letterSpacing: "-0.02em", maxWidth: "680px" }}
+          style={{ fontSize: "clamp(2.4rem, 4.5vw, 4rem)", letterSpacing: "-0.02em", maxWidth: "900px" }}
         >
-          Projects that<br />
+          Projects that <br className="lg:hidden" />
           define{" "}
           <em className="font-normal" style={{ color: C }}>how I think.</em>
         </h2>
@@ -629,22 +1025,24 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
                 <button
                   key={project.projectId}
                   onClick={() => setActiveIndex(i)}
-                  onMouseEnter={() => setActiveIndex(i)}
                   aria-label={`View project: ${project.name}`}
                   aria-pressed={i === activeIndex}
-                  className="group text-left transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] rounded px-1"
+                  className={`group text-left transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] rounded py-1.5 px-2.5 border-l-2 ${
+                    isActive ? "border-[#DB3E8C] bg-white/5 shadow-sm" : "border-transparent hover:bg-white/[0.03]"
+                  }`}
                 >
                   <div className="flex items-start gap-3">
                     <span
-                      className="font-sans text-[10px] tracking-wider transition-colors duration-300 pt-1"
+                      className="font-sans text-[10px] tracking-wider transition-colors duration-300 pt-1 font-bold"
                       style={{ color: isActive ? C : "rgba(255, 255, 255, 0.3)" }}
                     >
                       [{project.num}]
                     </span>
                     <span
-                      className="text-base font-semibold transition-all duration-300"
+                      className="text-base transition-all duration-300"
                       style={{
                         color: isActive ? "#FFFFFF" : "rgba(255, 255, 255, 0.4)",
+                        fontWeight: isActive ? 700 : 500,
                         transform: isActive ? "translateX(4px)" : "translateX(0px)",
                       }}
                     >
@@ -656,29 +1054,24 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
             })}
           </div>
 
-          {/* Center Column: Figma Canvas */}
+          {/* Center Column: Figma Canvas Stage */}
           <div
             ref={canvasRef}
             onMouseMove={handleMouseMove}
             onMouseEnter={() => setIsHoveringCanvas(true)}
             onMouseLeave={() => setIsHoveringCanvas(false)}
-            className="relative flex items-center justify-center p-12 overflow-hidden rounded-2xl bg-[#111936] border border-white/5 cursor-crosshair select-none h-full min-h-[480px]"
+            className="relative flex items-center justify-center p-6 lg:p-8 overflow-hidden rounded-2xl bg-[#111936] cursor-crosshair select-none h-full min-h-[520px]"
             style={{
               backgroundImage: "radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px)",
               backgroundSize: "16px 16px",
             }}
           >
             {/* Figma frame label */}
-            <div className="absolute top-4 left-4 bg-white/5 border border-white/10 px-2 py-0.5 rounded text-[8px] font-sans tracking-wider text-white/50">
-              # Frame // {activeProject.projectId.toUpperCase()} // Zoom 100%
+            <div className="absolute top-4 left-4 bg-white/10 backdrop-blur-md border border-white/15 px-3 py-1 rounded text-[10px] font-sans font-bold tracking-widest text-white/90 z-20 shadow-sm">
+              {activeProject.num} · {activeProject.location} · {activeProject.year}
             </div>
 
-            {/* Canvas Dimensions tag */}
-            <div className="absolute bottom-4 right-4 bg-white/5 border border-white/10 px-2 py-0.5 rounded text-[8px] font-sans tracking-wider text-white/50">
-              W: 1280 px  H: 880 px  X: 240 px  Y: 120 px
-            </div>
-
-            {/* Active Figma Frame Card */}
+            {/* Active Figma Frame Preview Stage (Borderless & Unclipped) */}
             <motion.div
               key={activeProject.projectId}
               initial={{ scale: 0.98, opacity: 0.9 }}
@@ -689,29 +1082,30 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
               role="button"
               tabIndex={0}
               aria-label={`Open case study: ${activeProject.name}`}
-              className="relative w-full aspect-[16/11] max-w-[420px] rounded-xl border border-white/10 shadow-2xl bg-[#1c2446] p-4 flex flex-col justify-between group cursor-pointer transition-all duration-300 hover:scale-[1.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C]"
+              className="relative w-full h-full min-h-[460px] lg:min-h-[500px] flex items-center justify-center cursor-pointer transition-transform duration-300 hover:scale-[1.01] focus:outline-none group"
             >
-              <div className="relative flex-1 rounded-lg overflow-hidden border border-white/5 bg-[#19244E]/40 flex items-center justify-center">
-                <ImageWithFallback
-                  src={activeProject.thumb}
-                  alt={`${activeProject.name} — mockup`}
-                  className="w-full h-full object-cover object-center rounded-lg group-hover:scale-[1.01] transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#19244E]/30" />
-              </div>
-
-              {/* Frame footer bar */}
-              <div className="mt-3 flex items-center justify-between">
-                <span className="font-sans text-[9px] text-white/60 tracking-wider">
-                  {activeProject.num} · {activeProject.location} · {activeProject.year}
-                </span>
-                <span className="font-sans text-[8px] text-white/30 tracking-widest uppercase">
-                  Click to open
-                </span>
-              </div>
-
-              {/* Hover visual highlight */}
-              <div className="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-[#DB3E8C]/40 pointer-events-none transition-all duration-300" />
+              {activeProject.carouselScreens ? (
+                <AutoCarouselDeck screens={activeProject.carouselScreens} />
+              ) : activeProject.screens ? (
+                <StackedFanOutDeck screens={activeProject.screens} />
+              ) : activeProject.marqueeScreens ? (
+                <InfiniteMarqueeDeck screens={activeProject.marqueeScreens} />
+              ) : (
+                <motion.div
+                  drag
+                  dragSnapToOrigin={true}
+                  dragConstraints={{ left: -500, right: 500, top: -350, bottom: 350 }}
+                  dragElastic={0.2}
+                  whileDrag={{ scale: 1.04, zIndex: 99, cursor: "grabbing" }}
+                  className="relative w-[95%] aspect-[16/10] rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.65)] border border-white/20 bg-[#0d142d] cursor-grab"
+                >
+                  <ImageWithFallback
+                    src={activeProject.thumb}
+                    alt={`${activeProject.name} — mockup`}
+                    className="w-full h-full object-cover object-top rounded-2xl group-hover:scale-[1.01] transition-transform duration-700 pointer-events-none"
+                  />
+                </motion.div>
+              )}
             </motion.div>
 
             {/* Custom Figma cursor follower */}
@@ -729,16 +1123,16 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
                     transform: "translate(-2px, -2px)",
                   }}
                 >
-                  {/* Custom mouse cursor shape */}
-                  <svg width="14" height="19" viewBox="0 0 14 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0 0V18.1186L4.76807 13.3506L10.2606 18.8431L13.1119 15.9918L7.65306 10.533H13.1119L0 0Z" fill={C} />
-                  </svg>
-                  {/* User badge label */}
-                  <div
-                    className="ml-4 -mt-1 px-1.5 py-0.5 rounded text-[8px] font-sans font-semibold text-white shadow-md"
-                    style={{ backgroundColor: C }}
-                  >
-                    Adina
+                  {/* Custom Figma Hand cursor */}
+                  <div className="flex items-start gap-1">
+                    <Hand size={22} className="text-[#DB3E8C] fill-[#DB3E8C] stroke-white stroke-[1.5] drop-shadow-md flex-shrink-0 -rotate-12" />
+                    {/* User badge label */}
+                    <div
+                      className="ml-0.5 mt-2.5 px-2 py-0.5 rounded-md text-[9px] font-sans font-bold text-white shadow-lg border border-white/20 whitespace-nowrap"
+                      style={{ backgroundColor: C }}
+                    >
+                      Hi Guest! 👋
+                    </div>
                   </div>
                 </motion.div>
               )}
@@ -795,12 +1189,12 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
 
                   <button
                     onClick={() => onOpenProject(activeProject.projectId)}
-                    className="group flex items-center justify-between w-full px-4 py-2.5 rounded border border-white/10 hover:border-white/30 text-white bg-white/5 transition-all duration-200"
+                    className="group flex items-center justify-between w-full px-4 py-3 rounded-lg border border-white/20 hover:border-[#DB3E8C] hover:bg-[#DB3E8C] text-white bg-white/5 transition-all duration-300 shadow-md hover:shadow-[0_10px_25px_rgba(219,62,140,0.4)] cursor-pointer"
                   >
-                    <span className="font-sans text-[9px] font-semibold tracking-widest uppercase text-white/80 group-hover:text-white">
+                    <span className="font-sans text-[10px] font-bold tracking-widest uppercase text-white">
                       Open Case Study
                     </span>
-                    <ArrowUpRight size={12} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    <ArrowUpRight size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </button>
                 </div>
               </motion.div>
@@ -830,15 +1224,24 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
                 </span>
               </div>
 
-              {/* Image Frame */}
               <div className="relative aspect-[16/11] rounded-xl border border-white/10 bg-[#1c2446] overflow-hidden mb-4 p-2 flex items-center justify-center">
                 <div className="relative w-full h-full rounded-lg overflow-hidden">
-                  <ImageWithFallback
-                    src={project.thumb}
-                    alt={project.name}
-                    className="w-full h-full object-cover object-center rounded-lg"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#19244E]/30" />
+                  {project.carouselScreens ? (
+                    <AutoCarouselDeck screens={project.carouselScreens} />
+                  ) : project.screens ? (
+                    <StackedFanOutDeck screens={project.screens} />
+                  ) : project.marqueeScreens ? (
+                    <InfiniteMarqueeDeck screens={project.marqueeScreens} />
+                  ) : (
+                    <>
+                      <ImageWithFallback
+                        src={project.thumb}
+                        alt={project.name}
+                        className="w-full h-full object-cover object-center rounded-lg"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#19244E]/30" />
+                    </>
+                  )}
                 </div>
               </div>
 
@@ -888,7 +1291,7 @@ const PHASES = [
   {
     num: "01", phase: "Strategic Alignment",
     sub: "Logic Deep-Dive & Business Research",
-    desc: "Every engagement begins with stakeholder mapping, BRS analysis, and user research synthesis. Every pixel is anchored to a measurable business objective — not aesthetic preference.",
+    desc: "Every engagement begins with stakeholder mapping, BRS analysis, and user research synthesis. Every pixel is anchored to a measurable business objective, not aesthetic preference.",
     tools: ["Google Docs", "Stakeholder Maps", "Excel", "BRS Docs", "Design Thinking"],
     Icon: Users,
   },
@@ -919,7 +1322,7 @@ function WorkflowSection() {
         style={{ borderBottom: `1px solid rgba(255,255,255,0.06)` }}
       >
         <span className="font-sans text-[10px] font-semibold tracking-widest uppercase" style={{ color: "rgba(255,255,255,0.3)" }}>
-          [04 // SYSTEM LOGIC]
+          SYSTEM LOGIC
         </span>
         <div className="flex-1 h-px" style={{ backgroundColor: "rgba(255,255,255,0.06)" }} />
         <span className="font-sans text-[10px] font-semibold tracking-widest uppercase" style={{ color: "rgba(255,255,255,0.3)" }}>
@@ -1075,6 +1478,10 @@ const CATEGORIES = [
 
 const DEFAULT_VISIBLE = 5
 
+const getGradient = (id: number) => {
+  return "linear-gradient(135deg, #DB3E8C 0%, #3B82F6 100%)"
+}
+
 function ProjectArchiveSection() {
   const [activeCat, setActiveCat] = useState("all")
   const [showAll, setShowAll] = useState(false)
@@ -1084,6 +1491,9 @@ function ProjectArchiveSection() {
   const visible = showAll ? filtered : filtered.slice(0, DEFAULT_VISIBLE)
   const hasMore = filtered.length > DEFAULT_VISIBLE
 
+  const [hoveredId, setHoveredId] = useState<number | null>(null)
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+
   return (
     <section id="archive" style={{ backgroundColor: S, borderTop: `1px solid ${HAIR}` }}>
       {/* Header */}
@@ -1092,7 +1502,7 @@ function ProjectArchiveSection() {
         className="px-8 lg:px-16 py-10 flex items-center gap-6"
         style={{ borderBottom: `1px solid rgba(25, 36, 78, 0.05)` }}
       >
-        <span className="font-sans text-[10px] font-semibold tracking-[0.2em] text-[#19244E]/60">[05 // CATALOG]</span>
+        <span className="font-sans text-[10px] font-semibold tracking-[0.2em] text-[#19244E]/60">CATALOG</span>
         <div className="flex-1 h-px" style={{ backgroundColor: "rgba(25, 36, 78, 0.05)" }} />
         <span className="font-sans text-[10px] font-semibold tracking-[0.15em] text-[#19244E]/60">Additional Works & Shipped Systems</span>
       </div>
@@ -1135,7 +1545,7 @@ function ProjectArchiveSection() {
         </div>
       </div>
 
-      {/* Index table — list view */}
+      {/* Brand Bento Grid */}
       <AnimatePresence mode="wait">
         <motion.div
           key={activeCat}
@@ -1144,98 +1554,98 @@ function ProjectArchiveSection() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
         >
-          {/* Table header */}
-          <div
-            className="hidden lg:grid px-8 lg:px-16 py-4"
-            style={{
-              gridTemplateColumns: "50px 1.2fr 1fr 140px 60px 140px 1.5fr",
-              borderBottom: `1px solid rgba(25, 36, 78, 0.05)`,
-            }}
-          >
-            {["#", "Project", "Client / System", "Market", "Year", "Status", "Category & Scope"].map((col) => (
-              <span key={col} className="font-sans text-[9px] font-semibold tracking-[0.15em] uppercase" style={{ color: `${N}65` }}>
-                {col}
-              </span>
-            ))}
-          </div>
-
-          {/* Table rows */}
-          <div>
-            {visible.map((project, i) => {
-              const statusColor = STATUS_COLOR[project.status] ?? `${N}80`
-              return (
-                <motion.div
-                  key={project.id}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: Math.min(i * 0.025, 0.3), duration: 0.3 }}
-                  className="group"
-                  style={{ borderBottom: `1px solid rgba(25, 36, 78, 0.04)` }}
-                >
-                  {/* Desktop row */}
-                  <div
-                    className="hidden lg:grid items-start px-8 lg:px-16 py-6 transition-all duration-150 hover:bg-white"
-                    style={{ gridTemplateColumns: "50px 1.2fr 1fr 140px 60px 140px 1.5fr", cursor: "default" }}
+          <div className="px-8 lg:px-16 py-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {visible.map((project) => {
+                const isHovered = hoveredId === project.id
+                const statusColor = STATUS_COLOR[project.status] ?? `${N}80`
+                
+                return (
+                  <motion.div
+                    key={project.id}
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.35, ease: "easeOut" }}
+                    onMouseEnter={() => setHoveredId(project.id)}
+                    onMouseLeave={() => setHoveredId(null)}
+                    onClick={() => setSelectedProject(project)}
+                    className="relative rounded-xl border p-6 flex flex-col justify-between h-[180px] overflow-hidden transition-all duration-300 hover:shadow-[0_12px_30px_rgba(25,36,78,0.12)] hover:-translate-y-1 cursor-pointer select-none"
+                    style={{
+                      borderColor: isHovered ? "transparent" : HAIR,
+                      backgroundColor: isHovered ? "transparent" : "rgba(255, 255, 255, 0.65)",
+                      background: isHovered ? getGradient(project.id) : undefined,
+                      color: isHovered ? W : N,
+                    }}
                   >
-                    <span className="font-sans text-xs pt-0.5" style={{ color: `${N}50` }}>
+                    {/* Background watermarked ID */}
+                    <div 
+                      className="absolute right-6 top-3 font-sans text-7xl font-bold tracking-tight select-none transition-colors duration-200"
+                      style={{ color: isHovered ? "rgba(255,255,255,0.08)" : "rgba(25, 36, 78, 0.03)" }}
+                    >
                       {String(project.id).padStart(2, "0")}
-                    </span>
-                    <p className="text-sm font-semibold pr-4 text-[#19244E]">{project.name}</p>
-                    <p className="text-xs pr-3 text-[#19244E]/80">{project.client}</p>
-                    <span className="font-sans text-[10px] font-semibold text-[#19244E]/70">
-                      [{project.market}]
-                    </span>
-                    <span className="font-sans text-xs text-[#19244E]/60">{project.year}</span>
-                    
-                    {/* Status Badge */}
-                    <div className="flex items-center gap-2">
-                      <span className="relative flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style={{ backgroundColor: statusColor }}></span>
-                        <span className="relative inline-flex rounded-full h-2 w-2" style={{ backgroundColor: statusColor }}></span>
+                    </div>
+
+                    {/* Top Row: Client & Year */}
+                    <div className="relative z-10 flex items-center justify-between">
+                      <span 
+                        className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase transition-colors duration-200"
+                        style={{ color: isHovered ? "rgba(255,255,255,0.7)" : `${N}90` }}
+                      >
+                        {project.client.split(" × ")[0]}
                       </span>
-                      <span className="font-sans text-[9px] font-bold tracking-widest uppercase" style={{ color: statusColor }}>
-                        {project.status}
+                      <span 
+                        className="font-sans text-[10px] font-semibold transition-colors duration-200"
+                        style={{ color: isHovered ? "rgba(255,255,255,0.5)" : `${N}50` }}
+                      >
+                        {project.year}
                       </span>
                     </div>
-                    
-                    <div className="pl-2">
-                      <span
-                        className="font-sans text-[9px] font-bold tracking-widest uppercase px-2.5 py-1 inline-block mb-2 bg-[#19244E]/5 text-[#19244E]/80 rounded"
+
+                    {/* Middle Row: Project Name */}
+                    <div className="relative z-10 my-3">
+                      <h4 
+                        className="font-display text-lg lg:text-xl font-semibold tracking-tight leading-snug transition-colors duration-200"
+                        style={{ color: isHovered ? W : N }}
+                      >
+                        {project.name}
+                      </h4>
+                    </div>
+
+                    {/* Bottom Row: Category & Status */}
+                    <div 
+                      className="relative z-10 flex items-center justify-between pt-3 border-t transition-colors duration-200"
+                      style={{ borderColor: isHovered ? "rgba(255,255,255,0.15)" : "rgba(25, 36, 78, 0.05)" }}
+                    >
+                      <span 
+                        className="font-sans text-[9px] font-bold tracking-wider uppercase truncate max-w-[160px] transition-colors duration-200"
+                        style={{ color: isHovered ? "rgba(255,255,255,0.8)" : `${N}70` }}
                       >
                         {project.category}
                       </span>
-                      <p className="text-xs leading-relaxed text-[#19244E]/70">{project.scope}</p>
-                    </div>
-                  </div>
-
-                  {/* Mobile row */}
-                  <div className="lg:hidden px-6 py-6 transition-colors duration-150 hover:bg-white">
-                    <div className="flex items-start justify-between gap-3 mb-2">
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="font-sans text-[10px]" style={{ color: `${N}50` }}>{String(project.id).padStart(2, "0")}</span>
-                          <span className="font-sans text-[9px] font-semibold" style={{ color: `${N}70` }}>[{project.market}]</span>
-                          <span className="font-sans text-[10px]" style={{ color: `${N}60` }}>{project.year}</span>
-                        </div>
-                        <p className="text-sm font-semibold mb-0.5 text-[#19244E]">{project.name}</p>
-                        <p className="text-xs text-[#19244E]/80">{project.client}</p>
-                      </div>
                       
-                      <div className="flex items-center gap-1.5 flex-shrink-0 mt-1">
-                        <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: statusColor }} />
-                        <span className="font-sans text-[9px] font-semibold uppercase tracking-wider" style={{ color: statusColor }}>{project.status}</span>
+                      <div className="flex items-center gap-1.5 flex-shrink-0">
+                        <span className="relative flex h-1.5 w-1.5">
+                          <span 
+                            className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
+                            style={{ backgroundColor: statusColor }}
+                          />
+                          <span 
+                            className="relative inline-flex rounded-full h-1.5 w-1.5"
+                            style={{ backgroundColor: statusColor }}
+                          />
+                        </span>
+                        <span 
+                          className="font-sans text-[9px] font-bold tracking-widest uppercase transition-colors duration-200"
+                          style={{ color: isHovered ? W : statusColor }}
+                        >
+                          {project.status}
+                        </span>
                       </div>
                     </div>
-                    <span
-                      className="font-sans text-[9px] font-bold tracking-widest uppercase px-2.5 py-1 inline-block mb-2 bg-[#19244E]/5 text-[#19244E]/80 rounded"
-                    >
-                      {project.category}
-                    </span>
-                    <p className="text-xs leading-relaxed text-[#19244E]/70">{project.scope}</p>
-                  </div>
-                </motion.div>
-              )
-            })}
+                  </motion.div>
+                )
+              })}
+            </div>
           </div>
 
           {/* Show all / Show less toggle */}
@@ -1258,7 +1668,7 @@ function ProjectArchiveSection() {
                     setShowAll(true)
                   }
                 }}
-                className="group flex items-center gap-2.5 px-6 py-3 rounded-full font-sans text-[10px] font-semibold tracking-widest uppercase transition-all duration-200 cursor-pointer"
+                className="group flex items-center gap-2.5 px-6 py-3 rounded-lg font-sans text-[10px] font-semibold tracking-widest uppercase transition-all duration-200 cursor-pointer"
                 style={{
                   backgroundColor: showAll ? "transparent" : N,
                   color: showAll ? `${N}80` : "white",
@@ -1280,6 +1690,104 @@ function ProjectArchiveSection() {
           )}
         </motion.div>
       </AnimatePresence>
+
+      {/* iOS-style Bottom Sheet Drawer */}
+      <AnimatePresence>
+        {selectedProject && (
+          <>
+            {/* Backdrop Overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedProject(null)}
+              className="fixed inset-0 bg-[#19244E]/60 z-[200] backdrop-blur-sm cursor-pointer"
+            />
+
+            {/* Bottom Sheet Drawer */}
+            <motion.div
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "100%" }}
+              transition={{ type: "spring", damping: 30, stiffness: 300 }}
+              className="fixed bottom-0 left-0 right-0 z-[201] max-w-[540px] mx-auto rounded-t-2xl bg-white p-6 pb-12 shadow-[0_-12px_40px_rgba(25,36,78,0.2)] border-t border-gray-100 flex flex-col"
+            >
+              {/* Drag Handle */}
+              <div 
+                onClick={() => setSelectedProject(null)}
+                className="w-12 h-1 bg-gray-200 rounded-full mx-auto mb-6 cursor-pointer hover:bg-gray-300 transition-colors"
+              />
+
+              {/* Close header button */}
+              <div className="flex justify-between items-start mb-6">
+                <div>
+                  <span className="font-sans text-[9px] font-bold tracking-[0.25em] uppercase text-[#DB3E8C]">
+                    [{String(selectedProject.id).padStart(2, "0")} // PROJECT DETAILS]
+                  </span>
+                  <h3 className="font-display text-2xl lg:text-3xl font-bold mt-1 text-[#19244E]">
+                    {selectedProject.name}
+                  </h3>
+                </div>
+                <button 
+                  onClick={() => setSelectedProject(null)}
+                  className="font-sans text-[10px] font-bold uppercase tracking-widest text-[#19244E]/50 hover:text-[#19244E] transition-colors cursor-pointer p-1"
+                >
+                  Close
+                </button>
+              </div>
+
+              {/* Metadata Badges */}
+              <div className="grid grid-cols-2 gap-4 py-4 px-4 bg-[#F9FAFB] rounded-lg border border-gray-100 mb-6">
+                {[
+                  { label: "Client Partner", val: selectedProject.client },
+                  { label: "Market / Territory", val: selectedProject.market },
+                  { label: "Project Year", val: selectedProject.year },
+                  { label: "System Status", val: selectedProject.status },
+                  { label: "Category & Core Focus", val: selectedProject.category }
+                ].map((meta, i) => (
+                  <div key={meta.label} className={i === 4 ? "col-span-2" : ""}>
+                    <span className="block font-sans text-[8px] font-bold tracking-widest uppercase text-gray-400 mb-0.5">
+                      {meta.label}
+                    </span>
+                    {meta.label === "System Status" ? (
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: STATUS_COLOR[selectedProject.status] ?? "#19244E" }} />
+                        <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-[#19244E]">
+                          {meta.val}
+                        </span>
+                      </div>
+                    ) : (
+                      <span className="font-sans text-[10px] font-semibold text-[#19244E]">
+                        {meta.val}
+                      </span>
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              {/* Scope/Description */}
+              <div className="mb-8">
+                <span className="block font-sans text-[8px] font-bold tracking-widest uppercase text-gray-400 mb-2">
+                  System Architecture & Scope
+                </span>
+                <p className="font-sans text-xs leading-relaxed text-[#19244E]/80">
+                  {selectedProject.scope}
+                </p>
+              </div>
+
+              {/* Close CTA Button */}
+              <button
+                onClick={() => setSelectedProject(null)}
+                className="w-full py-4 text-xs font-bold tracking-widest uppercase text-white transition-opacity hover:opacity-85 cursor-pointer rounded-lg"
+                style={{ backgroundColor: N }}
+              >
+                Return to Catalog
+              </button>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
     </section>
   )
 }
@@ -1297,7 +1805,7 @@ function ContactSection() {
         className="px-8 lg:px-16 py-8 flex items-center gap-6"
         style={{ borderBottom: `1px solid ${HAIR}` }}
       >
-        <MonoTag>[06 // CONTACT]</MonoTag>
+        <MonoTag>CONTACT</MonoTag>
         <div className="flex-1 h-px" style={{ backgroundColor: HAIR }} />
         <MonoTag>OPEN TO SENIOR IC & LEAD ROLES</MonoTag>
       </div>
@@ -1311,7 +1819,7 @@ function ContactSection() {
           className="flex flex-col justify-center px-8 lg:px-16 py-16"
           style={{ borderRight: `1px solid ${HAIR}` }}
         >
-          <MonoTag>[REGION: SG / MY / REMOTE-FIRST]</MonoTag>
+          <MonoTag>REGION: SG / MY / REMOTE-FIRST</MonoTag>
           <h2
             className="font-display font-light leading-[0.9] my-8"
             style={{ fontSize: "clamp(2.8rem, 5.5vw, 5rem)", color: N, letterSpacing: "-0.025em" }}
@@ -1364,7 +1872,7 @@ function ContactSection() {
               className="px-10 py-8"
               style={{ borderBottom: i < 3 ? `1px solid ${HAIR}` : "none" }}
             >
-              <MonoTag>[{item.label.toUpperCase()}]</MonoTag>
+              <MonoTag>{item.label.toUpperCase()}</MonoTag>
               {item.href ? (
                 <a
                   href={item.href}
@@ -1401,8 +1909,16 @@ function Footer() {
 
 // ─── APP ──────────────────────────────────────────────────────────────────────
 export default function App() {
-  const [currentView, setCurrentView] = useState<"home" | "sunway-case" | "gegi-case" | "tng-case" | "archery-case" | "election-case" | "anlene-case" | "bijakwang-case">("home")
+  const [currentView, setCurrentView] = useState<"home" | "about" | "sunway-case" | "gegi-case" | "tng-case" | "archery-case" | "election-case" | "anlene-case" | "bijakwang-case">("home")
   const activeSection = useScrollSpy(["home", "work", "process", "archive", "contact"])
+
+  if (currentView === "about") {
+    return (
+      <AboutMe
+        onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
+      />
+    )
+  }
 
   if (currentView === "bijakwang-case") {
     return (
@@ -1470,7 +1986,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen overflow-x-hidden" style={{ backgroundColor: S }}>
-      <HeroSection />
+      <HeroSection onReadMore={() => { setCurrentView("about"); window.scrollTo({ top: 0 }) }} />
       <FeaturedWorkSection onOpenProject={(id) => {
         if (id === "gegi") setCurrentView("gegi-case")
         if (id === "tng") setCurrentView("tng-case")

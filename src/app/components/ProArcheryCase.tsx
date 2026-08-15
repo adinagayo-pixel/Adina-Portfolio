@@ -117,7 +117,7 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
             <em className="font-normal" style={{ color: C }}>Indonesia's Premier Archery Retailer.</em>
           </h1>
           <p className="text-sm leading-relaxed max-w-[640px]" style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.8 }}>
-            An end-to-end digital ecosystem scaling a physical archery retailer into an Asia-wide e-commerce platform — featuring AI-accelerated frontend prototyping, interactive scenario testers, serial-number inventory tracking, and integrated B2B dealer loyalty portals.
+            An end-to-end digital ecosystem scaling a physical archery retailer into an Asia-wide e-commerce platform, featuring AI-accelerated frontend prototyping, interactive scenario testers, serial-number inventory tracking, and integrated B2B dealer loyalty portals.
           </p>
         </div>
 
@@ -126,7 +126,7 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
           {[
             { val: "24h", label: "POC Delivery", sub: "Landing page live in 1 day for stakeholder demo" },
             { val: "4", label: "Portals Built", sub: "B2C, Customer, Admin POS & Company Profile" },
-            { val: "0", label: "Figma Wireframes", sub: "AI prompt-to-code — no manual layout phase" },
+            { val: "0", label: "Figma Wireframes", sub: "AI prompt-to-code: no manual layout phase" },
             { val: "AI", label: "First Workflow", sub: "Claude + Gemini + Antigravity + VS Code" },
           ].map((s, i) => (
             <div
@@ -186,8 +186,8 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
           </p>
           <div className="space-y-3">
             {[
-              { Icon: Zap, title: "Ultra-Fast Execution Needed for POC", desc: "Traditional Figma-to-code design cycles were too slow to meet tight partner presentation deadlines — requiring a direct AI prompt-to-code pipeline instead." },
-              { Icon: Package, title: "Complex Inventory Mechanics", desc: "Archery gear requires granular tracking — from compound bow serial numbers (SN) to multi-tier dealer pricing (Guest vs. Silver Dealer)." },
+              { Icon: Zap, title: "Ultra-Fast Execution Needed for POC", desc: "Traditional Figma-to-code design cycles were too slow to meet tight partner presentation deadlines, requiring a direct AI prompt-to-code pipeline instead." },
+              { Icon: Package, title: "Complex Inventory Mechanics", desc: "Archery gear requires granular tracking, from compound bow serial numbers (SN) to multi-tier dealer pricing (Guest vs. Silver Dealer)." },
               { Icon: LayoutGrid, title: "Omnichannel Portal Multiplicity", desc: "Designing 4 interconnected portals (B2C Storefront, Customer Portal, Admin POS/Inventory, Company Profile) under a unified design system." },
             ].map(({ Icon, title, desc }) => (
               <div key={title} className="flex gap-5 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
@@ -244,9 +244,9 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
 
           <div className="space-y-3">
             {[
-              { num: "1.", title: "AI-Driven Prompt-to-Code Pipeline", desc: "Bypassed manual Figma layout creation by utilizing advanced AI prompting (Claude/Gemini) to generate functional frontend code structure directly in VS Code and Antigravity — delivering a live, production-ready landing page POC in just 24 hours." },
+              { num: "1.", title: "AI-Driven Prompt-to-Code Pipeline", desc: "Bypassed manual Figma layout creation by utilizing advanced AI prompting (Claude/Gemini) to generate functional frontend code structure directly in VS Code and Antigravity, delivering a live, production-ready landing page POC in just 24 hours." },
               { num: "2.", title: "Embedded \"Scenario Tester\" Demo Widget", desc: "Engineered an interactive control widget built directly into the client presentation prototype. Stakeholders could toggle live between User Scenarios (Guest User vs. Silver Dealer Pricing) and Grid Layouts (Default, 4-Column, 5-Column) in real time during review meetings, dramatically reducing layout debate cycles." },
-              { num: "3.", title: "Granular Order Lifecycle & Serial Number (SN) Tracking", desc: "Designed a high-density Admin Portal capable of tracking complex archery inventory — including serial number inputs for high-value bows, warranty claim statuses, order fulfillment timelines, and point-of-sale (POS) integration." },
+              { num: "3.", title: "Granular Order Lifecycle & Serial Number (SN) Tracking", desc: "Designed a high-density Admin Portal capable of tracking complex archery inventory, including serial number inputs for high-value bows, warranty claim statuses, order fulfillment timelines, and point-of-sale (POS) integration." },
             ].map(({ num, title, desc }) => (
               <div key={title} className="flex gap-5 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
                 <span className="font-sans text-[10px] font-semibold flex-shrink-0 mt-0.5" style={{ color: C }}>{num}</span>
@@ -328,9 +328,9 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
               <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-2" style={{ color: C }}>
                 [PROTOTYPE FEATURE: LIVE SCENARIO TESTER WIDGET]
               </p>
-              <p className="text-sm font-semibold text-white mb-1.5">Interactive Scenario Tester — Built Into the Prototype</p>
+              <p className="text-sm font-semibold text-white mb-1.5">Interactive Scenario Tester: Built Into the Prototype</p>
               <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.6)", lineHeight: 1.75 }}>
-                Stakeholders toggled live between <strong className="text-white">Guest User</strong> vs. <strong className="text-white">Silver Dealer</strong> pricing and switched grid layouts (3 / 4 / 5 columns) in real time during review meetings — eliminating revision rounds caused by layout ambiguity.
+                Stakeholders toggled live between <strong className="text-white">Guest User</strong> vs. <strong className="text-white">Silver Dealer</strong> pricing and switched grid layouts (3 / 4 / 5 columns) in real time during review meetings, eliminating revision rounds caused by layout ambiguity.
               </p>
             </div>
           </div>
@@ -361,7 +361,7 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
                   phase: "PHASE 02", tag: "BUILD",
                   title: "AI-Accelerated Frontend Build",
                   items: [
-                    { title: "Prompt-to-Code Iteration", desc: "Used Claude and Gemini to generate, review, and refine HTML/CSS frontend components in VS Code and Antigravity — iterating rapidly without traditional layout phases." },
+                    { title: "Prompt-to-Code Iteration", desc: "Used Claude and Gemini to generate, review, and refine HTML/CSS frontend components in VS Code and Antigravity, iterating rapidly without traditional layout phases." },
                     { title: "Scenario Tester Engineering", desc: "Built the live scenario toggle widget directly into the presentation prototype, enabling real-time stakeholder testing of pricing tiers and grid configurations." },
                   ],
                 },
@@ -369,7 +369,7 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
                   phase: "PHASE 03", tag: "HANDOFF",
                   title: "Stakeholder Review & Developer Handoff",
                   items: [
-                    { title: "24-Hour POC Delivery", desc: "Shipped the complete landing page POC for urgent partner presentations within a single working day — demonstrating the compressing power of AI-first design methodology." },
+                    { title: "24-Hour POC Delivery", desc: "Shipped the complete landing page POC for urgent partner presentations within a single working day, demonstrating the compressing power of AI-first design methodology." },
                     { title: "Production-Ready Specification", desc: "Delivered annotated component specs, admin portal interaction flows, and SN tracking logic for development team implementation." },
                   ],
                 },
