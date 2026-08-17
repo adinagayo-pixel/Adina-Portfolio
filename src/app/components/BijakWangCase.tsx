@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import {
   ArrowLeft, ChevronRight, Trophy, Users,
   Zap, Volume2, Radio, BarChart2,
-  Star, CheckCircle2, Globe, Target
+  Star, CheckCircle2, Globe, Target, MessageSquare
 } from "lucide-react"
 import mykawan1 from "@/imports/mykawan1.png"
 import mykawan2 from "@/imports/mykawan2.png"
@@ -514,6 +514,19 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
                 <span className="block font-bold text-xl text-[#DB3E8C] mb-1">Zero Audio Licensing</span>
                 <p className="text-white/80 font-medium">Custom Gemini AI audio generation saving 100% sound licensing fees.</p>
               </div>
+            </div>
+
+            {/* Why This Matters to a Hiring Manager */}
+            <div className="mt-6 p-5 rounded-xl bg-[#DB3E8C]/15 border border-[#DB3E8C]/40 text-white space-y-2">
+              <div className="flex items-center gap-2">
+                <MessageSquare size={14} className="text-[#DB3E8C]" />
+                <span className="text-[9px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+                  WHY THIS MATTERS TO A HIRING MANAGER
+                </span>
+              </div>
+              <p className="text-xs font-sans leading-relaxed text-white/90 italic">
+                "This demonstrates my ability to design gamified, real-time multiplayer systems and leverage AI tools (like Gemini for audio) to ship scalable engagement engines independently without inflating production budgets."
+              </p>
             </div>
           </div>
         </div>

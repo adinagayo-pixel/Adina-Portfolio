@@ -470,6 +470,19 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
                 <p className="text-white/80 font-medium">Automated parliamentary threshold & seat quota calculation.</p>
               </div>
             </div>
+
+            {/* Why This Matters to a Hiring Manager */}
+            <div className="mt-6 p-5 rounded-xl bg-[#DB3E8C]/15 border border-[#DB3E8C]/40 text-white space-y-2">
+              <div className="flex items-center gap-2">
+                <MessageSquare size={14} className="text-[#DB3E8C]" />
+                <span className="text-[9px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+                  WHY THIS MATTERS TO A HIRING MANAGER
+                </span>
+              </div>
+              <p className="text-xs font-sans leading-relaxed text-white/90 italic">
+                "This highlights my capacity to architect ultra-high-stakes national systems—handling massive data concurrency across 820,000+ polling stations with 100% uptime. If you're looking for a designer who understands data integrity, system scale, and high-pressure execution, this is the proof."
+              </p>
+            </div>
           </div>
         </div>
 

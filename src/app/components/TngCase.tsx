@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import {
   ArrowLeft, ChevronRight, CheckCircle2, Globe,
-  FileCode2, Shield, Zap, RefreshCw, GitBranch, Users
+  FileCode2, Shield, Zap, RefreshCw, GitBranch, Users, MessageSquare
 } from "lucide-react"
 
 const N = "#19244E"
@@ -696,6 +696,19 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
                 <span className="block font-bold text-xl text-[#DB3E8C] mb-1">Zero-Friction SSO</span>
                 <p className="text-white/80 font-medium">Auto-filled eKYC data eliminating typing errors.</p>
               </div>
+            </div>
+
+            {/* Why This Matters to a Hiring Manager */}
+            <div className="mt-6 p-5 rounded-xl bg-[#DB3E8C]/15 border border-[#DB3E8C]/40 text-white space-y-2">
+              <div className="flex items-center gap-2">
+                <MessageSquare size={14} className="text-[#DB3E8C]" />
+                <span className="text-[9px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+                  WHY THIS MATTERS TO A HIRING MANAGER
+                </span>
+              </div>
+              <p className="text-xs font-sans leading-relaxed text-white/90 italic">
+                "This demonstrates my ability to navigate enterprise complexity across 20M+ users—balancing strict eKYC compliance and government API constraints while delivering zero-defect specs. It proves I can collaborate seamlessly with engineering squads and refine product logic across multiple live production iterations."
+              </p>
             </div>
           </div>
         </div>

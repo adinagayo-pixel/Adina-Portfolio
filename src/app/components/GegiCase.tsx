@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import {
   ArrowLeft, ChevronRight, CheckCircle2, Globe,
-  FileCode2, LayoutGrid, Zap, Share2, Target, Clock
+  FileCode2, LayoutGrid, Zap, Share2, Target, Clock, MessageSquare
 } from "lucide-react"
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback"
 import persona1 from "@/imports/image-11.png"
@@ -583,6 +583,19 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
                 <span className="block font-bold text-xl text-[#DB3E8C] mb-1">92% Completion</span>
                 <p className="text-white/80 font-medium">Secured GEGI's inaugural Singapore campaign tender.</p>
               </div>
+            </div>
+
+            {/* Why This Matters to a Hiring Manager */}
+            <div className="mt-6 p-5 rounded-xl bg-[#DB3E8C]/15 border border-[#DB3E8C]/40 text-white space-y-2">
+              <div className="flex items-center gap-2">
+                <MessageSquare size={14} className="text-[#DB3E8C]" />
+                <span className="text-[9px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+                  WHY THIS MATTERS TO A HIRING MANAGER
+                </span>
+              </div>
+              <p className="text-xs font-sans leading-relaxed text-white/90 italic">
+                "This project shows I can own end-to-end design under a hard 2-week deadline—from stakeholder alignment to shipped AEM product—without sacrificing system logic or handoff quality. If you need someone who can move fast and leave clean specs behind, this is what that looks like."
+              </p>
             </div>
           </div>
         </div>

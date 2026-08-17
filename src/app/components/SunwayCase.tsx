@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import {
   ArrowLeft, ChevronRight, CheckCircle2, Globe,
-  FileCode2, LayoutGrid, BarChart2, Users, Zap, ArrowRight
+  FileCode2, LayoutGrid, BarChart2, Users, Zap, ArrowRight, MessageSquare
 } from "lucide-react"
 
 const N = "#19244E"
@@ -648,6 +648,19 @@ export default function SunwayCase({ onBack }: Props) {
                 <span className="block font-bold text-xl text-[#DB3E8C] mb-1">Embedded PWA</span>
                 <p className="text-white/80 font-medium">Reusable webview integration framework for GEGM regional partners.</p>
               </div>
+            </div>
+
+            {/* Why This Matters to a Hiring Manager */}
+            <div className="mt-6 p-5 rounded-xl bg-[#DB3E8C]/15 border border-[#DB3E8C]/40 text-white space-y-2">
+              <div className="flex items-center gap-2">
+                <MessageSquare size={14} className="text-[#DB3E8C]" />
+                <span className="text-[9px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+                  WHY THIS MATTERS TO A HIRING MANAGER
+                </span>
+              </div>
+              <p className="text-xs font-sans leading-relaxed text-white/90 italic">
+                "This showcases my ability to embed financial products into third-party loyalty ecosystems with first-pass internal approval. It proves I can balance user advocacy with strict business, legal, and multi-organization requirements."
+              </p>
             </div>
           </div>
         </div>

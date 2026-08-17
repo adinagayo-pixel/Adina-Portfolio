@@ -53,6 +53,13 @@ interface Project {
   market: string; status: StatusKey; category: string; scope: string
 }
 
+const WHATSAPP_PHONE = "6289630441118";
+
+export function getWhatsAppLink(projectName: string) {
+  const message = `Halo Dina, saya lihat portfolio kamu dan tertarik dengan proyek ${projectName}. Boleh kita diskusi lebih lanjut?`;
+  return `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
+}
+
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const FEATURED = [
   {
@@ -1240,15 +1247,23 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
                     ))}
                   </div>
 
-                  <button
-                    onClick={() => onOpenProject(activeProject.projectId)}
-                    className="group flex items-center justify-between w-full px-4 py-3 rounded-lg border border-white/20 hover:border-[#DB3E8C] hover:bg-[#DB3E8C] text-white bg-white/5 transition-all duration-300 shadow-md hover:shadow-[0_10px_25px_rgba(219,62,140,0.4)] cursor-pointer"
-                  >
-                    <span className="font-sans text-[10px] font-bold tracking-widest uppercase text-white">
-                      Open Case Study
-                    </span>
-                    <ArrowUpRight size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                  </button>
+                  <div className="flex flex-col gap-2 mt-1">
+                    <button
+                      onClick={() => onOpenProject(activeProject.projectId)}
+                      className="group flex items-center justify-between w-full px-5 py-3.5 rounded-lg bg-[#DB3E8C] hover:bg-[#DB3E8C]/90 text-white font-sans text-[11px] font-bold tracking-widest uppercase transition-all duration-200 shadow-lg shadow-[#DB3E8C]/25 hover:shadow-[0_10px_25px_rgba(219,62,140,0.4)] cursor-pointer"
+                    >
+                      <span>Open Case Study</span>
+                      <ArrowUpRight size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    </button>
+                    <a
+                      href={getWhatsAppLink(activeProject.name)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-1.5 w-full py-2.5 rounded-lg border border-white/15 hover:border-white/30 bg-white/5 hover:bg-white/10 text-white/60 hover:text-white transition-all text-[10px] font-semibold tracking-wider uppercase cursor-pointer text-center"
+                    >
+                      💬 Ask about this project ↗
+                    </a>
+                  </div>
                 </div>
               </motion.div>
             </AnimatePresence>
@@ -1732,23 +1747,35 @@ function ProjectArchiveSection() {
                         {project.category}
                       </span>
                       
-                      <div className="flex items-center gap-1.5 flex-shrink-0">
-                        <span className="relative flex h-1.5 w-1.5">
-                          <span 
-                            className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
-                            style={{ backgroundColor: statusColor }}
-                          />
-                          <span 
-                            className="relative inline-flex rounded-full h-1.5 w-1.5"
-                            style={{ backgroundColor: statusColor }}
-                          />
-                        </span>
-                        <span 
-                          className="font-sans text-[9px] font-bold tracking-widest uppercase transition-colors duration-200"
-                          style={{ color: isHovered ? W : statusColor }}
+                      <div className="flex items-center gap-2 flex-shrink-0">
+                        <a
+                          href={getWhatsAppLink(project.name)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="font-sans text-[9px] font-bold tracking-wider uppercase transition-colors duration-200 cursor-pointer hover:underline"
+                          style={{ color: isHovered ? "rgba(255,255,255,0.7)" : `${N}50` }}
                         >
-                          {project.status}
-                        </span>
+                          💬 Ask ↗
+                        </a>
+                        <div className="flex items-center gap-1">
+                          <span className="relative flex h-1.5 w-1.5">
+                            <span 
+                              className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
+                              style={{ backgroundColor: statusColor }}
+                            />
+                            <span 
+                              className="relative inline-flex rounded-full h-1.5 w-1.5"
+                              style={{ backgroundColor: statusColor }}
+                            />
+                          </span>
+                          <span 
+                            className="font-sans text-[9px] font-bold tracking-widest uppercase transition-colors duration-200"
+                            style={{ color: isHovered ? W : statusColor }}
+                          >
+                            {project.status}
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </motion.div>
@@ -1884,14 +1911,24 @@ function ProjectArchiveSection() {
                 </p>
               </div>
 
-              {/* Close CTA Button */}
-              <button
-                onClick={() => setSelectedProject(null)}
-                className="w-full py-4 text-xs font-bold tracking-widest uppercase text-white transition-opacity hover:opacity-85 cursor-pointer rounded-lg"
-                style={{ backgroundColor: N }}
-              >
-                Return to Catalog
-              </button>
+              {/* Close CTA & Ask WhatsApp Buttons */}
+              <div className="flex flex-col gap-2.5">
+                <button
+                  onClick={() => setSelectedProject(null)}
+                  className="w-full py-3.5 text-xs font-bold tracking-widest uppercase text-white transition-opacity hover:opacity-85 cursor-pointer rounded-lg text-center shadow"
+                  style={{ backgroundColor: N }}
+                >
+                  Return to Catalog
+                </button>
+                <a
+                  href={getWhatsAppLink(selectedProject.name)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-2.5 text-xs font-semibold tracking-wider uppercase text-[#19244E]/70 hover:text-[#19244E] border border-gray-200 hover:border-gray-300 bg-gray-50 hover:bg-gray-100 transition-all cursor-pointer rounded-lg text-center flex items-center justify-center gap-1.5"
+                >
+                  💬 Ask about this project ↗
+                </a>
+              </div>
             </motion.div>
           </>
         )}

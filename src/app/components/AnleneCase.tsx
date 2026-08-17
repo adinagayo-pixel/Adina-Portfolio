@@ -581,6 +581,19 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
                 <p className="text-white/80 font-medium">Strict Fonterra brand manual compliance across all touchpoints.</p>
               </div>
             </div>
+
+            {/* Why This Matters to a Hiring Manager */}
+            <div className="mt-6 p-5 rounded-xl bg-[#DB3E8C]/15 border border-[#DB3E8C]/40 text-white space-y-2">
+              <div className="flex items-center gap-2">
+                <MessageSquare size={14} className="text-[#DB3E8C]" />
+                <span className="text-[9px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+                  WHY THIS MATTERS TO A HIRING MANAGER
+                </span>
+              </div>
+              <p className="text-xs font-sans leading-relaxed text-white/90 italic">
+                "This proves I can deconstruct complex physical hardware data (GE & Omron diagnostic scanners) into intuitive digital interfaces that directly empower sales reps and drive immediate product conversions at the point of sale."
+              </p>
+            </div>
           </div>
         </div>
 

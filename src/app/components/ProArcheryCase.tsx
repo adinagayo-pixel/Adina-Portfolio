@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import {
   ArrowLeft, ChevronRight, CheckCircle2, Globe,
-  FileCode2, LayoutGrid, Zap, ShoppingCart, Package, Users
+  FileCode2, LayoutGrid, Zap, ShoppingCart, Package, Users, MessageSquare
 } from "lucide-react"
 
 const N = "#19244E"
@@ -490,6 +490,19 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
                 <span className="block font-bold text-xl text-[#DB3E8C] mb-1">Zero Wireframe Delay</span>
                 <p className="text-white/80 font-medium">Direct interactive prototype testing with executive stakeholders.</p>
               </div>
+            </div>
+
+            {/* Why This Matters to a Hiring Manager */}
+            <div className="mt-6 p-5 rounded-xl bg-[#DB3E8C]/15 border border-[#DB3E8C]/40 text-white space-y-2">
+              <div className="flex items-center gap-2">
+                <MessageSquare size={14} className="text-[#DB3E8C]" />
+                <span className="text-[9px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+                  WHY THIS MATTERS TO A HIRING MANAGER
+                </span>
+              </div>
+              <p className="text-xs font-sans leading-relaxed text-white/90 italic">
+                "This proves I can architect multi-portal e-commerce ecosystems and leverage AI-first prototyping to accelerate stakeholder buy-in, turning 24-hour landing page briefs into production-ready platforms."
+              </p>
             </div>
           </div>
         </div>
