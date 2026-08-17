@@ -49,129 +49,7 @@ function SectionTag({ num, label }: { num: string; label: string }) {
   )
 }
 
-function MultiBrandTokenSwitcher() {
-  const [selectedBrand, setSelectedBrand] = useState<"tng" | "gegi" | "anlene" | "proarchery">("tng")
 
-  const brands = {
-    tng: {
-      name: "Touch 'n Go eWallet",
-      tokenColor: "#005baa",
-      tokenAccent: "#fbb040",
-      radius: "16px",
-      market: "FinTech / eWallet PWA (Malaysia)",
-      btnText: "Pay with TNG eWallet",
-    },
-    gegi: {
-      name: "Great Eastern SG",
-      tokenColor: "#e11b22",
-      tokenAccent: "#19244e",
-      radius: "6px",
-      market: "InsurTech / Gamified Evaluation (Singapore)",
-      btnText: "Claim Protection Tier",
-    },
-    anlene: {
-      name: "Fonterra Anlene Health",
-      tokenColor: "#00875a",
-      tokenAccent: "#84cc16",
-      radius: "999px",
-      market: "Health Tech / Diagnostics (Indonesia)",
-      btnText: "Download Health Passport",
-    },
-    proarchery: {
-      name: "Pro Archery Retail",
-      tokenColor: "#19244E",
-      tokenAccent: "#DB3E8C",
-      radius: "8px",
-      market: "E-Commerce / B2B POS System (Asia)",
-      btnText: "Proceed to Checkout",
-    },
-  }
-
-  const b = brands[selectedBrand]
-
-  return (
-    <div className="my-8 rounded-xl border border-white/10 bg-[#0f172a] overflow-hidden shadow-2xl">
-      {/* Header Bar */}
-      <div className="px-6 py-4 bg-[#1e293b] border-b border-white/10 flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <span className="text-[9px] font-bold tracking-widest text-[#DB3E8C] uppercase block">
-            DESIGN TOKENS & MULTI-BRAND ARCHITECTURE
-          </span>
-          <h4 className="text-white font-sans text-sm font-bold mt-0.5">
-            Live Multi-Brand System Token Switcher
-          </h4>
-        </div>
-        {/* Brand Selector Buttons */}
-        <div className="flex flex-wrap bg-[#0f172a] p-1 rounded-lg border border-white/10 gap-1">
-          {(["tng", "gegi", "anlene", "proarchery"] as const).map((brKey) => (
-            <button
-              key={brKey}
-              onClick={() => setSelectedBrand(brKey)}
-              className={`px-3 py-1.5 rounded text-[10px] font-sans font-bold uppercase tracking-wider transition-all cursor-pointer ${
-                selectedBrand === brKey
-                  ? "bg-[#DB3E8C] text-white shadow-md"
-                  : "text-white/60 hover:text-white hover:bg-white/5"
-              }`}
-            >
-              Brand: {brKey.toUpperCase()}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Dynamic Token Preview Stage */}
-      <div className="p-6 md:p-8 bg-[#0a0f1d] grid md:grid-cols-2 gap-6 items-center">
-        {/* Left Token Specs */}
-        <div className="space-y-3">
-          <span className="text-[9px] font-bold tracking-wider text-white/40 uppercase block">ACTIVE DESIGN TOKENS</span>
-          <h3 className="text-white font-display text-xl font-bold">{b.name}</h3>
-          <p className="text-white/60 text-xs font-sans">{b.market}</p>
-
-          <div className="grid grid-cols-2 gap-3 pt-2 text-[10px] font-mono text-white/80">
-            <div className="p-2.5 bg-black/40 rounded border border-white/10">
-              <span className="text-white/40 block">--color-primary</span>
-              <span className="font-bold flex items-center gap-1.5 mt-1" style={{ color: b.tokenColor }}>
-                <span className="w-2.5 h-2.5 rounded-full inline-block" style={{ backgroundColor: b.tokenColor }} />
-                {b.tokenColor}
-              </span>
-            </div>
-            <div className="p-2.5 bg-black/40 rounded border border-white/10">
-              <span className="text-white/40 block">--border-radius</span>
-              <span className="font-bold text-white mt-1 block">{b.radius}</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Right UI Component Mockup adapting instantly to Tokens */}
-        <div
-          className="p-6 bg-white shadow-2xl transition-all duration-300 space-y-4"
-          style={{ borderRadius: b.radius }}
-        >
-          <div className="flex justify-between items-center">
-            <span className="text-xs font-bold uppercase tracking-wider" style={{ color: b.tokenColor }}>
-              {b.name}
-            </span>
-            <span className="text-[9px] px-2 py-0.5 rounded font-bold uppercase text-white" style={{ backgroundColor: b.tokenAccent }}>
-              Token Active
-            </span>
-          </div>
-
-          <div className="p-3 bg-gray-50 border border-gray-200" style={{ borderRadius: `calc(${b.radius} / 2)` }}>
-            <span className="text-[9px] text-gray-400 uppercase tracking-wider block font-sans">Dynamic Form Input</span>
-            <p className="text-xs font-semibold text-gray-800 mt-0.5">user.checkout@partner.org</p>
-          </div>
-
-          <button
-            className="w-full py-3 text-xs font-bold text-white uppercase tracking-wider transition-transform active:scale-95 cursor-pointer shadow-lg"
-            style={{ backgroundColor: b.tokenColor, borderRadius: b.radius }}
-          >
-            {b.btnText}
-          </button>
-        </div>
-      </div>
-    </div>
-  )
-}
 
 interface Props {
   onBack: () => void
@@ -443,9 +321,6 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
               </div>
             ))}
           </div>
-
-          {/* Interactive Multi-Brand System Token Switcher Widget */}
-          <MultiBrandTokenSwitcher />
         </div>
 
         <Hairline />
