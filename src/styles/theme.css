@@ -3,7 +3,7 @@
 :root {
   --font-size: 16px;
   --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
-  --font-serif: 'Newsreader', Georgia, serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-mono: 'JetBrains Mono', 'Menlo', monospace;
   --background: #F9FAFB;
   --foreground: #19244E;
@@ -132,11 +132,23 @@
   .font-mono {
     font-family: var(--font-mono);
   }
+  /* Hand-Drawn Sketch Icon & Line Utilities */
+  .sketch-icon, svg.sketch-icon, .sketch-icon svg {
+    filter: url(#hand-drawn);
+  }
+  .sketch-icon-subtle, svg.sketch-icon-subtle, .sketch-icon-subtle svg {
+    filter: url(#hand-drawn-subtle);
+  }
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
+  }
+
+  /* Give icons inside buttons, links, and badges a hand-drawn sketch stroke quality */
+  button svg, a svg, .sketch-target svg {
+    filter: url(#hand-drawn-subtle);
   }
 
   body {

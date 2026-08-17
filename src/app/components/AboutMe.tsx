@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import {
   ArrowLeft, CheckCircle2, Mail, Linkedin, MapPin, Phone,
   ExternalLink, GraduationCap, Briefcase, Award, Languages,
-  ChevronRight, Calendar, Sparkles
+  ChevronRight, Calendar, Sparkles, Download
 } from "lucide-react"
 
 const N = "#19244E" // Oiler Navy
@@ -79,13 +79,13 @@ export default function AboutMe({ onBack }: Props) {
         
         <div className="max-w-[900px] relative z-10">
           <p className="font-sans text-[10px] font-semibold tracking-[0.25em] mb-4 uppercase" style={{ color: C }}>
-            Senior Product Designer · System Logic Architect
+            Product Designer · System Logic Architect
           </p>
           <h1 className="font-display font-light text-4xl lg:text-6xl leading-[1.05] tracking-tight mb-8">
             Adina Fayza Gayo
           </h1>
           <p className="text-base lg:text-lg font-sans font-light leading-relaxed text-white/80 max-w-[780px] mb-8">
-            Product Designer with 4+ years of experience building user-centered digital products across fintech, insurance, e-commerce, and healthcare. Proven track record shipping 20+ features through user research, design systems, and cross-functional collaboration. Specialized in multi-brand architecture and AI-assisted rapid prototyping.
+            Product Designer with 4+ years of hands-on experience designing complex B2B platforms, embedded insurance flows, and multi-brand design systems across Indonesia and Malaysia. Most of my day is spent untangling messy product logic, covering edge cases, and making sure engineering teams have crystal-clear specs to build from.
           </p>
           
           {/* Metadata Grid */}
@@ -105,6 +105,13 @@ export default function AboutMe({ onBack }: Props) {
             <a href="https://dinaworks.framer.website/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white transition-colors">
               <ExternalLink size={13} className="text-[#DB3E8C]" /> Portfolio Website
             </a>
+            <a
+              href="/resume-adina-fayza-gayo.pdf"
+              download="ADINA FAYZA GAYO Resume 2026.pdf"
+              className="flex items-center gap-1.5 px-3 py-1 bg-[#DB3E8C] hover:bg-[#DB3E8C]/90 text-white rounded text-xs font-bold transition-all shadow ml-auto"
+            >
+              <Download size={13} /> Download Resume PDF
+            </a>
           </div>
         </div>
       </div>
@@ -121,16 +128,25 @@ export default function AboutMe({ onBack }: Props) {
                 company: "Deptech Digital Indonesia",
                 location: "Jakarta",
                 duration: "Jun 2023 - Present",
-                desc: "Led product design for insurance technology platform (since June 2024) and cross-sector digital products as solo designer, balancing user impact with technical feasibility across 3-4 concurrent projects. Product Portfolio: Progressive Web Apps (PWA), mobile apps (iOS/Android), responsive platforms, admin dashboards, POS systems. Technical Integration: Payment APIs (Xendit, Midtrans, OY!, JomPay), insurance systems, and health devices.",
+                scope: "Enterprise Portals · Embedded InsurTech · Multi-Brand Ecosystems · Solo Designer Ownership",
+                desc: "Led product design for insurance technology platforms (since June 2024) and cross-sector enterprise products as solo designer, shipping 26+ digital products across regional SEA markets (Indonesia & Malaysia).",
                 points: [
-                  "Delivered 26+ digital products (~10 projects annually), including 17+ live white-label insurance portals for enterprise B2B partnerships and 6 cross-sector projects spanning FMCG, finance, government, healthcare, and crypto.",
-                  "Built multi-brand design system from scratch serving 16 active implementations, reducing brand adaptation through systematic component architecture while working within Figma Free constraints, enabling consistent user experience and rapid partner onboarding.",
-                  "Designed national-scale election monitoring PWA for 2,000+ users across 38 provinces processing 820,000+ polling stations during critical 48-hour window, optimizing data-entry workflows for non-technical field operators and achieving 90% immediate adoption.",
-                  "Led insurance purchase flow design integrated with leading Malaysian eWallet (20M+ users), partnering with cross-border engineering teams (daily sync) on API integration to ensure seamless user experience and technical feasibility across merged platforms.",
-                  "Redesigned FMCG loyalty platform for global nutrition brand serving 30+ field representatives, identifying critical password reset flow gap and designing digital UI integrated with physical health-measurement hardware for streamlined nationwide event data collection.",
-                  "Enabled rapid partner acquisition through design-first approach, delivering landing pages in 2-3 hours and complex portals in 2-5 days with high-fidelity prototypes using real user data, serving as key competitive differentiator.",
-                  "Collaborated in user research and usability testing to validate design solutions, maintaining 1-3 developer discussion rounds through detailed technical documentation and close engineering partnerships.",
-                  "Collaborated with cross-functional teams of 5-18+ members (13+ developers, 3 QAs, PMs, business analysts, data analysts) serving Indonesian and Malaysian markets, managing concurrent project timelines and stakeholder expectations."
+                  {
+                    lead: "Architected End-to-End B2B & Embedded Platforms:",
+                    text: "Spearheaded user flows, complex logic, and edge cases across web and mobile platforms (17+ live white-label insurance portals, eWallet PWA for Touch 'n Go 20M+ users, and national election PWAs processing 820,000+ data points), translating complex business rules into seamless user interfaces."
+                  },
+                  {
+                    lead: "Engineered Multi-Brand Design Systems:",
+                    text: "Built and maintained comprehensive design systems with modular components and design tokens serving 16 active client implementations from scratch, accelerating team prototyping speed and UI consistency."
+                  },
+                  {
+                    lead: "Pioneered Decision Traceability & Handoff Frameworks:",
+                    text: "Structured clear logic rationale, state-management specs, and developer documentation across 5-18+ cross-functional team members, cutting handoff friction and implementation errors."
+                  },
+                  {
+                    lead: "Rapid Prototyping & High-Velocity Validation:",
+                    text: "Leveraged AI-assisted workflows and interactive high-fidelity prototypes to deliver landing pages in 2-3 hours and complex portals in 2-5 days, validating solutions rapidly with enterprise stakeholders and shortening time-to-market."
+                  }
                 ]
               },
               {
@@ -138,13 +154,25 @@ export default function AboutMe({ onBack }: Props) {
                 company: "Remote anywhere",
                 location: "Remote",
                 duration: "May 2023 - Present",
+                scope: "AI-First Prototyping · Healthcare & Legal Tech · B2C Marketplaces · SMB Digital Transformation",
                 desc: "Partnered with startups and SMBs to design and ship digital products from concept to launch across healthcare, legal, and e-commerce sectors.",
                 points: [
-                  "Reduced project delivery by 70% (from 1-2 weeks to 2-3 days) through AI-assisted workflow integrating Claude/Gemini for research synthesis and Figma Make/Antigravity for rapid prototyping, creating 3 fully functional portals as live interactive prototypes for faster validation.",
-                  "Designed legal consulting marketplace with lawyer discovery, order management, and real-time chat, optimizing user journey through user interviews while collaborating with engineers on technical implementation.",
-                  "Built therapy center management system with staff/student tracking and scheduling, reducing administrative overhead through workflow optimization and user-centered design.",
-                  "Created interactive multi-screen system for LED displays and mobile sync in 2 days, demonstrating rapid adaptation to non-traditional interface design challenges.",
-                  "Optimized e-commerce checkout experiences through iterative testing and conversion funnel analysis, streamlining purchase completion flows."
+                  {
+                    lead: "Architected End-to-End B2C & SaaS Marketplaces:",
+                    text: "Designed user flows, order management, and chat workflows for legal consulting marketplaces, therapy center management consoles, and e-commerce checkout experiences."
+                  },
+                  {
+                    lead: "Engineered Scalable Component Assets:",
+                    text: "Standardized UI components and responsive design assets across multi-device surfaces, including custom interactive LED display systems with mobile synchronization."
+                  },
+                  {
+                    lead: "Pioneered Frictionless Developer Handoff:",
+                    text: "Structured user flows, interactive prototypes, and design rationale documentation for remote engineering teams to ensure precise code implementation."
+                  },
+                  {
+                    lead: "Rapid Prototyping & AI-Assisted Workflows:",
+                    text: "Leveraged AI-assisted workflows (Claude/Gemini and Figma Make/Antigravity) to reduce project delivery timelines by 70% (from 2 weeks to 2-3 days) for live interactive stakeholder validation."
+                  }
                 ]
               },
               {
@@ -152,12 +180,25 @@ export default function AboutMe({ onBack }: Props) {
                 company: "Reka Cipta Digital",
                 location: "Jakarta",
                 duration: "Aug 2021 - May 2023",
-                desc: "Software house specializing in website and application development. Tools: Figma, No-Code Software, Infinity, Taskade, Adobe Suites, WordPress, Google Suites.",
+                scope: "Software House Development · Conversion Optimization · Interactive Prototypes · Responsive Web & Mobile",
+                desc: "Software house specializing in website and application development, crafting custom web and mobile solutions for client products.",
                 points: [
-                  "Led daily standups with product and engineering teams, conducting user research to inform strategy and creating wireframes, user flows, and interactive prototypes through iterative process.",
-                  "Designed and A/B tested landing page variations to optimize conversion rates and user engagement, collaborating with engineers on technical implementation.",
-                  "Produced UX design solutions and mockups through wireframes, visual designs, flow diagrams, and interactive prototypes, with design rationale documentation for front-end implementation.",
-                  "Built responsive design systems in Figma using auto-layout, variants, and components, improving design consistency and development handoff efficiency."
+                  {
+                    lead: "Architected Cross-Industry Web & Mobile Apps:",
+                    text: "Conducted user research, wireframing, and interactive prototyping for diverse client applications from initial user story through production launch."
+                  },
+                  {
+                    lead: "Engineered Modular Responsive UI Kits:",
+                    text: "Built responsive design systems in Figma using auto-layout, variants, and component libraries to maintain cross-platform visual consistency."
+                  },
+                  {
+                    lead: "Structured Design Rationale & Dev Specs:",
+                    text: "Documented UX logic, flow diagrams, and design rationale for front-end engineers, reducing handoff revisions and daily team alignment friction."
+                  },
+                  {
+                    lead: "Rapid Prototyping & Conversion Optimization:",
+                    text: "Designed and A/B tested landing page variations to optimize conversion funnels, user engagement, and client business growth."
+                  }
                 ]
               },
               {
@@ -165,11 +206,25 @@ export default function AboutMe({ onBack }: Props) {
                 company: "Badan Amil Zakat Nasional (BAZNAS)",
                 location: "Jakarta",
                 duration: "Apr 2020 - Dec 2021",
+                scope: "National Brand Governance · Visual Communication Systems · Multi-Branch Coordination · Team Leadership",
                 desc: "National philanthropic organization managing zakat, infaq, and alms (ZIS) at the national level.",
                 points: [
-                  "Led team of 3 designers delivering 20+ design requests weekly for national organization.",
-                  "Coordinated with nationwide branches to maintain brand consistency across channels.",
-                  "Trained and onboarded new team members, establishing workflows and quality standards."
+                  {
+                    lead: "Architected National Visual Campaign Systems:",
+                    text: "Spearheaded visual identity and graphic design operations for national philanthropic campaigns and public sector communication channels."
+                  },
+                  {
+                    lead: "Engineered Brand Standardization Guidelines:",
+                    text: "Coordinated with nationwide regional branches to maintain strict brand consistency across multi-channel digital and print collateral."
+                  },
+                  {
+                    lead: "Established Workflow Quality Standards:",
+                    text: "Led a team of 3 designers managing 20+ weekly design deliverables, establishing efficient review workflows and onboarding standards."
+                  },
+                  {
+                    lead: "Rapid Media Asset Delivery:",
+                    text: "Streamlined multi-channel asset production to ensure rapid campaign rollout across national press and social channels."
+                  }
                 ]
               }
             ].map((work) => (
@@ -192,16 +247,23 @@ export default function AboutMe({ onBack }: Props) {
                 <h4 className="font-display text-xl font-bold" style={{ color: N }}>
                   {work.role} <span className="font-sans text-sm font-normal text-gray-400">at {work.company}</span>
                 </h4>
+
+                <div className="font-sans text-[10px] font-bold tracking-wider uppercase mt-1 mb-3" style={{ color: C }}>
+                  Scope: {work.scope}
+                </div>
                 
-                <p className="font-sans text-xs leading-relaxed my-4 text-[#19244E]/80">
+                <p className="font-sans text-xs leading-relaxed mb-4 text-[#19244E]/80">
                   {work.desc}
                 </p>
                 
                 <ul className="space-y-3 pl-1">
                   {work.points.map((pt, i) => (
-                    <li key={i} className="flex items-start gap-2.5 font-sans text-xs leading-relaxed text-[#19244E]/75">
+                    <li key={i} className="flex items-start gap-2.5 font-sans text-xs leading-relaxed text-[#19244E]/80">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#DB3E8C] flex-shrink-0 mt-1.5" />
-                      <span>{pt}</span>
+                      <span>
+                        <strong className="font-bold text-[#19244E]">{pt.lead} </strong>
+                        {pt.text}
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -223,8 +285,8 @@ export default function AboutMe({ onBack }: Props) {
                 location: "Surabaya (Online learning)",
                 degree: "Master of Technology Management",
                 specialization: "Design Innovation Management",
-                gpa: "3.85/4.00",
-                duration: "Feb 2025 - Jul 2026 (Expected)",
+                gpa: "3.88/4.00",
+                duration: "Feb 2025 - Oct 2026",
                 thesis: "Developing design documentation framework for solo designers managing multi-brand products, focusing on design decision tracking and knowledge transfer.",
                 coursework: ["Design Thinking", "Design Management", "Strategic Brand Management", "UX Design", "Project Management", "Business Statistics"]
               },
@@ -355,28 +417,21 @@ export default function AboutMe({ onBack }: Props) {
 
       {/* ── PERSONAL: IN LIFE ───────────────────────────────────────────── */}
       <div className="py-20 px-8 lg:px-20 bg-white" style={{ borderBottom: `1px solid ${HAIR}` }}>
-        <div className="max-w-[800px] mx-auto text-center">
-          <SectionTag label="In Life" />
+        <div className="max-w-[800px] mx-auto">
+          <div className="text-center">
+            <SectionTag label="In Life" />
+          </div>
           
-          <p className="text-base font-sans font-light leading-relaxed max-w-[620px] mx-auto mt-6" style={{ color: `${N}CC` }}>
-            Off the clock, I am the definition of "chaotic good with a color-coded spreadsheet." I use my design and engineering mindset to organize daily human experiences, eliminating friction wherever possible.
-          </p>
-
-          <div className="grid sm:grid-cols-3 gap-6 mt-10">
-            {[
-              { title: "Matcha Lover", desc: "Searching for the absolute best matcha lattes in every city, logged and rated." },
-              { title: "Spreadsheet Geek", desc: "Crafting color-coded itineraries 3 weeks in advance with cafe backups." },
-              { title: "Ramen Enthusiast", desc: "Obsessed with finding the ultimate hot bowl of ramen at 11 PM." }
-            ].map(({ title, desc }) => (
-              <div key={title} className="p-6 rounded-lg bg-[#F9FAFB] border border-gray-100 text-left">
-                <h4 className="font-sans text-xs font-bold tracking-wider uppercase mb-2" style={{ color: C }}>
-                  {title}
-                </h4>
-                <p className="font-sans text-xs leading-relaxed" style={{ color: `${N}99` }}>
-                  {desc}
-                </p>
-              </div>
-            ))}
+          <div className="space-y-6 text-sm lg:text-base font-sans font-light leading-relaxed mt-8 text-left" style={{ color: `${N}DD`, lineHeight: 1.8 }}>
+            <p>
+              Off the clock, I trade Figma files for live gigs, plot twists, and systematic quirks. I find genuine joy in deconstructing complex narratives—whether that means predicting murderer motifs in thriller K-Dramas, logging my latest book reads with highlighted favorite quotes, or letting an eclectic playlist drift from classical compositions into smooth RnB. There is a special kind of rhythm in catching local indie concerts from the crowd, soaking in the collective energy of a live room.
+            </p>
+            <p>
+              That said, my structural instincts rarely shut down completely. Outside of design sprints, I am the friend who builds color-coded travel itineraries three weeks early, complete with walking-distance calculations, backup cafe options, and dual-currency budgets. In the kitchen, I follow recipes down to the exact gram measurement like a lab experiment—until it comes to fried rice, where pure instinct takes over.
+            </p>
+            <p>
+              Fueled by zero-sugar iced Americanos (and the occasional bowl of properly bitter ceremonial matcha), my downtime revolves around friendly competition: chasing personal bests on Sudoku and Blockblast, assembling oversized jigsaw puzzles, and surviving the chaos of late-night Uno showdowns with friends.
+            </p>
           </div>
         </div>
       </div>

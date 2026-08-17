@@ -43,12 +43,70 @@ function SectionTag({ num, label }: { num: string; label: string }) {
   return (
     <div className="mb-10">
       <div className="text-[10px] font-semibold uppercase tracking-[0.2em] mb-2" style={{ color: C }}>
-        [{num} // {label.toUpperCase()}]
+        {num} // {label.toUpperCase()}
       </div>
       <h2 className="font-display text-2xl lg:text-3xl font-bold" style={{ color: N }}>
         {label}
       </h2>
       <div className="w-12 h-[2px] mt-4" style={{ backgroundColor: C }} />
+    </div>
+  )
+}
+
+function BeforeAfterSlider() {
+  return (
+    <div className="my-8 rounded-xl border border-white/10 bg-[#0f172a] overflow-hidden shadow-2xl">
+      {/* Header Bar */}
+      <div className="px-6 py-4 bg-[#1e293b] border-b border-white/10 flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <span className="text-[9px] font-bold tracking-widest text-[#DB3E8C] uppercase block">
+            VISUAL IMPACT & WORKFLOW SIMPLIFICATION
+          </span>
+          <h4 className="text-white font-sans text-sm font-bold mt-0.5">
+            Before vs. After Workflow Comparison
+          </h4>
+        </div>
+        <div className="flex items-center gap-3 text-xs text-white/60 font-sans">
+          <span className="text-red-400 font-bold">Legacy (Cluttered Paper Intake)</span>
+          <span>vs</span>
+          <span className="text-emerald-400 font-bold">Streamlined Digital UX</span>
+        </div>
+      </div>
+
+      {/* Comparison Grid Stage */}
+      <div className="p-6 md:p-8 bg-[#0a0f1d] grid md:grid-cols-2 gap-6">
+        {/* BEFORE Legacy */}
+        <div className="bg-[#181124] p-5 rounded-xl border border-red-500/30 space-y-3">
+          <div className="flex justify-between items-center pb-2 border-b border-red-500/20">
+            <span className="text-[9px] font-bold text-red-400 tracking-widest uppercase">BEFORE · LEGACY PROCESS</span>
+            <span className="text-[9px] font-bold text-red-400 bg-red-500/10 px-2 py-0.5 rounded">Paper Forms · High Friction</span>
+          </div>
+          <div className="text-xs text-white/70 leading-relaxed font-sans space-y-2">
+            <p className="text-[11px] text-white/60">❌ Multi-page paper diagnostic intake form filled by hand.</p>
+            <p className="text-[11px] text-white/60">❌ Manual data re-entry from GE Achilles scanner printout.</p>
+            <p className="text-[11px] text-white/60">❌ Delayed postal/manual delivery of health passport (3-5 days).</p>
+          </div>
+          <div className="p-3 bg-black/50 rounded border border-red-500/20 text-center">
+            <span className="font-mono text-xs font-bold text-red-400">Total Time: 15–20 Mins / Customer</span>
+          </div>
+        </div>
+
+        {/* AFTER Streamlined */}
+        <div className="bg-[#0f241d] p-5 rounded-xl border border-emerald-500/30 space-y-3">
+          <div className="flex justify-between items-center pb-2 border-b border-emerald-500/20">
+            <span className="text-[9px] font-bold text-emerald-400 tracking-widest uppercase">AFTER · STREAMLINED DIGITAL UX</span>
+            <span className="text-[9px] font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">Digital Intake · Instant PDF</span>
+          </div>
+          <div className="text-xs text-white/70 leading-relaxed font-sans space-y-2">
+            <p className="text-[11px] text-white/90 font-medium">✓ Bluetooth / QR diagnostic data sync directly from GE/Omron scanners.</p>
+            <p className="text-[11px] text-white/90 font-medium">✓ Automated instant 4-tier Health Passport PDF generation.</p>
+            <p className="text-[11px] text-white/90 font-medium">✓ 1-click automated WhatsApp PDF delivery to customer phone.</p>
+          </div>
+          <div className="p-3 bg-black/50 rounded border border-emerald-500/20 text-center">
+            <span className="font-mono text-xs font-bold text-emerald-400">Total Time: ~90 Seconds (92% Time Saved)</span>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
@@ -263,6 +321,9 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
               </div>
             ))}
           </div>
+
+          {/* Interactive Before vs. After Comparison Slider Widget */}
+          <BeforeAfterSlider />
         </div>
 
         <Hairline />

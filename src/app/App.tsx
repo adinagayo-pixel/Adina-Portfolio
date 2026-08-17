@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react"
 import { motion, useMotionValue, useSpring, AnimatePresence } from "motion/react"
-import adinaPhotoAbout from "@/imports/dina portfo.png"
+import adinaPhotoAbout from "@/imports/Foto At Work.png"
 import adinaPhotoLife from "@/imports/Foto In Life.jpg"
 import projectThumb1 from "@/imports/image-7.png"
 import projectThumb2 from "@/imports/image-8.png"
@@ -27,7 +27,7 @@ import {
   Home, Briefcase, Layers, Archive, Mail,
   ArrowRight, ExternalLink, Globe, Zap,
   Users, CheckCircle, Coins, Bot, LayoutGrid,
-  ArrowUpRight, ChevronRight, Hand,
+  ArrowUpRight, ChevronRight, Hand, Linkedin, Download,
 } from "lucide-react"
 import SunwayCase from "./components/SunwayCase"
 import GegiCase from "./components/GegiCase"
@@ -58,6 +58,7 @@ const FEATURED = [
   {
     num: "01", name: "Gamified CI Evaluation Campaign", client: "GEGI Singapore",
     location: "SG", year: "2026", tags: ["Gamified Evaluation", "Singlish Persona", "Campaign"],
+    role: "Sole Product Designer",
     headline: "A rapid-sprint interactive campaign tool combining scroll-based gamified evaluation, localized Singlish persona mechanics, and AEM integration.",
     metrics: [{ val: "2wk", sub: "Sprint Execution" }, { val: "7Q", sub: "Question Matrix" }, { val: "4", sub: "Persona Tiers" }],
     projectId: "gegi",
@@ -72,6 +73,7 @@ const FEATURED = [
   {
     num: "02", name: "Seamless Micro-Insurance Integration", client: "Touch 'n Go × GEGM",
     location: "MY", year: "2024", tags: ["PWA / SSO", "eKYC Data Mapping", "B2C / FinTech"],
+    role: "Lead Product Designer & Logic Architect",
     headline: "An embedded Progressive Web Application (PWA) architecture built inside Malaysia's leading e-wallet ecosystem, integrating native SSO and eKYC.",
     metrics: [{ val: "V5", sub: "Production Release" }, { val: "3mo", sub: "Timeline" }, { val: "RM0", sub: "PTV Checkout" }],
     projectId: "tng",
@@ -85,6 +87,7 @@ const FEATURED = [
   {
     num: "03", name: "Digital Transformation & AI Retail", client: "Pro Archery Jakarta",
     location: "ID", year: "2025", tags: ["AI Prompt-to-Code", "E-Commerce", "Admin POS"],
+    role: "Sole System & UI Designer",
     headline: "An end-to-end digital ecosystem scaling a physical archery retailer into an Asia-wide e-commerce platform featuring AI-accelerated prototyping.",
     metrics: [{ val: "24h", sub: "POC Delivery" }, { val: "4", sub: "Portals Built" }, { val: "0", sub: "Figma Wireframes" }],
     projectId: "archery",
@@ -98,6 +101,7 @@ const FEATURED = [
   {
     num: "04", name: "National Quick Count & Monitoring", client: "Indonesian Political Party",
     location: "ID", year: "2024", tags: ["Public Sector", "Civic Tech", "Real-Time CMS"],
+    role: "Lead UX & Systems Architect",
     headline: "An end-to-end multi-level election monitoring system for Indonesia's 2024 Presidential Election, tracking vote tabulation across 38 provinces in real-time.",
     metrics: [{ val: "820K+", sub: "TPS Polling Stations" }, { val: "38", sub: "Provinces Tracked" }, { val: "48h", sub: "Critical Window" }],
     projectId: "election",
@@ -111,6 +115,7 @@ const FEATURED = [
   {
     num: "05", name: "Medical Diagnostics & Field Sales Revamp", client: "Fonterra × Anlene",
     location: "ID", year: "2023", tags: ["Health Tech", "Field Sales Enablement", "Diagnostic Matrix"],
+    role: "Sole Product Designer",
     headline: "Translating clinical diagnostic data from GE Achilles bone scanners and Omron devices into personalized health passports and automated WhatsApp PDF delivery.",
     metrics: [{ val: "3mo", sub: "Delivery Sprint" }, { val: "2", sub: "Medical Devices" }, { val: "4-tier", sub: "Health Matrix" }],
     projectId: "anlene",
@@ -126,6 +131,7 @@ const FEATURED = [
   {
     num: "06", name: "100K-Player Live Tournament Platform", client: "mySalam × myKawan",
     location: "MY", year: "2025", tags: ["Live Tournament", "100K Concurrent", "Gamified Financial Literacy"],
+    role: "Lead Product Designer",
     headline: "Architected a scalable digital tournament platform delivering real-time financial literacy quizzes to over 100,000 concurrent Malaysian youth players.",
     metrics: [{ val: "100K", sub: "Live Concurrents" }, { val: "5-sec", sub: "Quiz Round Engine" }, { val: "RM500K", sub: "ReSkills Rewards Pool" }],
     projectId: "bijakwang",
@@ -292,7 +298,7 @@ const HERO_SPRING = { type: "tween" as const, ease: [0.16, 1, 0.3, 1] as const, 
 function HeroSection({ onReadMore }: { onReadMore: () => void }) {
   const [isAtWork, setIsAtWork] = useState(true)
   const [tick, setTick] = useState(0)
-  const HELLOS = ["Hello, I'm Dina!", "Halo, aku Dina!", "안녕하세요, 디나입니다!"]
+  const HELLOS = ["Hi, it's Dina!", "Halo, saya Dina!", "안녕하세요, 디나예요!"]
 
   useEffect(() => {
     const id = setInterval(() => setTick((t) => (t + 1) % HELLOS.length), 2800)
@@ -361,16 +367,15 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
         </div>
 
         <div className="flex items-center gap-2 lg:gap-4">
-
           <a
             href="/resume-adina-fayza-gayo.pdf"
-            download
+            download="ADINA FAYZA GAYO Resume 2026.pdf"
             className="flex items-center gap-1.5 font-sans text-[10px] font-semibold tracking-widest transition-all duration-150"
             style={{ border: `1px solid ${HAIR}`, color: `${N}DD`, borderRadius: "6px", padding: "6px 10px" }}
             onMouseEnter={(e) => { ;(e.currentTarget as HTMLElement).style.borderColor = N; ;(e.currentTarget as HTMLElement).style.color = N }}
             onMouseLeave={(e) => { ;(e.currentTarget as HTMLElement).style.borderColor = HAIR; ;(e.currentTarget as HTMLElement).style.color = `${N}DD` }}
           >
-            <ExternalLink size={10} />
+            <Download size={11} />
             <span className="hidden sm:inline">Resume</span>
           </a>
           <a
@@ -392,162 +397,218 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
           transition={HERO_SPRING}
           className="flex w-[200%]"
         >
-          {/* ── PANEL A: AT WORK (Left: Text, Right: Photo) ── */}
-          <div className="w-1/2 grid lg:grid-cols-2 flex-shrink-0">
-            {/* Left Slot: Professional Bio Text */}
-            <div className="flex items-center justify-center lg:justify-start px-8 lg:px-20 pt-10 pb-24 lg:pt-12 lg:pb-36">
-              <div className="max-w-[520px] w-full">
-                <p className="font-sans text-[10px] font-semibold tracking-[0.2em] mb-5" style={{ color: C }}>
-                  Product Designer · System Logic Architect · M.MT Candidate
-                </p>
-                <h1
-                  className="font-display font-light leading-[0.93] mb-8"
-                  style={{ fontSize: "clamp(2.8rem, 5.5vw, 5.6rem)", color: N, letterSpacing: "-0.02em" }}
-                >
-                  Enterprise-grade<br />
-                  design,{" "}
-                  <em className="not-italic" style={{ color: C }}>delivered</em>
-                  <br />
-                  at startup speed.
-                </h1>
-                <p className="text-[15px] leading-[1.7] mb-8 max-w-[460px]" style={{ color: `${N}BB` }}>
-                  I bridge complex product ecosystems, ranging from embedded insurance platforms to B2B enterprise portals. As the sole designer at Friendsure, I architect the logic under the hood: flows, edge cases, and handoffs that developers love.
-                </p>
-                <div className="flex items-center gap-4 flex-wrap">
-                  <button
-                    className="flex items-center gap-2 px-6 py-3.5 text-sm font-medium text-white transition-opacity duration-150 hover:opacity-85 cursor-pointer"
-                    style={{ backgroundColor: N, borderRadius: "6px" }}
-                    onClick={() => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })}
-                  >
-                    View Selected Work <ArrowRight size={14} />
-                  </button>
-                  <button
-                    className="flex items-center gap-2 px-6 py-3.5 text-sm font-medium transition-colors duration-150 cursor-pointer"
-                    style={{ border: `1px solid ${HAIR}`, color: N, borderRadius: "6px" }}
-                    onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-                  >
-                    <Mail size={14} /> Get In Touch
-                  </button>
-                </div>
+          {/* ── PANEL A: AT WORK (Left 65%: Bold Upper Title + CTAs, Right 35%: Avatar + Nav + Bio) ── */}
+          <div className="w-1/2 grid lg:grid-cols-12 gap-8 lg:gap-12 items-start px-8 lg:px-20 pt-10 pb-16 lg:py-16 flex-shrink-0">
+            {/* Left 7 Cols: Massive Headline & Compact Button */}
+            <div className="lg:col-span-7 flex flex-col">
+              <p className="font-sans text-[10px] font-bold tracking-[0.25em] text-[#DB3E8C] uppercase mb-4">
+                Product Designer · System Logic Architect
+              </p>
+              <h1
+                className="font-display font-semibold leading-[0.88] tracking-tight uppercase mb-7"
+                style={{ fontSize: "clamp(3.8rem, 7.5vw, 8rem)", color: N }}
+              >
+                ENTERPRISE<br />
+                DESIGN.<br />
+                <span style={{ color: C }}>STARTUP</span><br />
+                <span style={{ color: C }}>SPEED.</span>
+              </h1>
+
+              {/* Compact Button */}
+              <div className="flex items-center gap-3.5">
                 <button
-                  onClick={onReadMore}
-                  className="text-[11px] font-sans font-semibold tracking-wider text-[#DB3E8C] hover:opacity-80 transition-opacity flex items-center gap-1 mt-4 focus:outline-none cursor-pointer"
+                  onClick={() => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })}
+                  className="px-6 py-3.5 text-xs font-bold tracking-wider uppercase text-white transition-all duration-150 hover:opacity-90 shadow-sm flex items-center gap-2 cursor-pointer"
+                  style={{ backgroundColor: N, borderRadius: "6px" }}
                 >
-                  Read full profile & philosophy <ChevronRight size={12} />
+                  Selected Work <ArrowRight size={13} />
                 </button>
               </div>
             </div>
 
-            {/* Right Slot: Edge-to-edge Photo Column */}
-            <div className="relative overflow-hidden w-full h-full min-h-[420px] lg:min-h-0 bg-[#19244E]/5">
-              {/* Greeting ticker */}
-              <div className="absolute top-12 lg:top-28 left-1/2 -translate-x-1/2 z-20 whitespace-nowrap text-center">
-                <AnimatePresence mode="wait">
-                  <motion.span
-                    key={tick}
-                    initial={{ y: 8, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: -8, opacity: 0 }}
-                    transition={{ duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] }}
-                    className="font-display text-xl lg:text-3xl font-light text-white tracking-wide"
-                    style={{ textShadow: "0 2px 8px rgba(25,36,78,0.4)" }}
+            {/* Right 5 Cols: Photo Avatar, Quick Nav & Bio */}
+            <div className="lg:col-span-5 flex flex-col gap-6 pt-2">
+              <div className="flex items-start gap-6">
+                {/* Photo Avatar Card with Pastel Tint */}
+                <div className="relative w-[190px] sm:w-[220px] aspect-square rounded-2xl overflow-hidden bg-[#E2E8F0] shadow-lg border border-[#19244E]/10 flex-shrink-0 group">
+                  <ImageWithFallback
+                    src={adinaPhotoAbout}
+                    alt="Adina Fayza Gayo - At Work"
+                    className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  />
+                  {/* Handwritten / Script Note Accent with Auto Ticker (EN, ID, KR) */}
+                  <div
+                    className="absolute bottom-2 right-2 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-md shadow-md border border-[#19244E]/10 overflow-hidden"
+                    style={{ transform: "rotate(-3deg)" }}
                   >
-                    {HELLOS[tick]}
-                  </motion.span>
-                </AnimatePresence>
+                    <AnimatePresence mode="wait">
+                      <motion.span
+                        key={tick}
+                        initial={{ y: 5, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: -5, opacity: 0 }}
+                        transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
+                        className="font-serif italic text-xs font-bold text-[#DB3E8C] whitespace-nowrap block"
+                      >
+                        {HELLOS[tick]}
+                      </motion.span>
+                    </AnimatePresence>
+                  </div>
+                </div>
+
+                {/* Live Status / Current Scope Column */}
+                <div className="flex flex-col gap-3 text-xs font-sans tracking-wide text-[#19244E] pt-0.5 max-w-[220px]">
+                  <div>
+                    <span className="text-[9px] font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
+                      CURRENTLY
+                    </span>
+                    <span className="font-semibold text-[11px] leading-snug text-[#19244E]/85 block">
+                      Designing complex fintech & enterprise logic
+                    </span>
+                  </div>
+
+                  <div>
+                    <span className="text-[9px] font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
+                      RESEARCHING
+                    </span>
+                    <span className="font-semibold text-[11px] leading-snug text-[#19244E]/85 block">
+                      Design decision traceability & cross-functional frameworks
+                    </span>
+                  </div>
+
+                  <div>
+                    <span className="text-[9px] font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
+                      OPEN FOR
+                    </span>
+                    <span className="font-semibold text-[11px] leading-snug text-[#19244E]/85 block">
+                      In-House Squads · Jakarta, ID (Remote / Relocation)
+                    </span>
+                  </div>
+                </div>
               </div>
 
-              <ImageWithFallback
-                src={adinaPhotoAbout}
-                alt="Adina Fayza Gayo - At Work"
-                className="absolute inset-0 w-full h-full object-cover object-top"
-              />
-
-              {/* Bottom Info Overlay */}
-              <div
-                className="absolute bottom-0 left-0 right-0 px-8 py-8 z-10"
-                style={{ background: "linear-gradient(to top, rgba(25,36,78,0.92) 0%, rgba(25,36,78,0.4) 60%, transparent 100%)" }}
-              >
-                <p className="font-display font-medium text-lg text-white mb-0.5" style={{ letterSpacing: "-0.01em" }}>
-                  Adina Fayza Gayo
+              {/* Bio Block Underneath Avatar */}
+              <div className="pt-2 border-t border-[#19244E]/10">
+                <h3 className="font-display font-black text-lg tracking-tight uppercase text-[#19244E] mb-2">
+                  ADINA FAYZA GAYO
+                </h3>
+                <p className="font-sans text-xs leading-relaxed text-[#19244E]/80 w-full mb-3">
+                  I design complex B2B platforms and embedded insurance tools. Most of my day is spent untangling messy product logic, covering edge cases, and making sure developers have crystal-clear specs to build from.
                 </p>
-                <span className="font-sans text-[10px] font-semibold tracking-widest text-white/70 block">
-                  Senior Product Designer
-                </span>
+                <button
+                  onClick={onReadMore}
+                  className="text-xs font-sans font-bold tracking-wider uppercase text-[#DB3E8C] hover:underline transition-all flex items-center gap-1.5 focus:outline-none cursor-pointer py-1"
+                >
+                  View Full Profile & CV <ChevronRight size={13} />
+                </button>
               </div>
             </div>
           </div>
 
-          {/* ── PANEL B: IN LIFE (Left: Photo, Right: Text) ── */}
-          <div className="w-1/2 grid lg:grid-cols-2 flex-shrink-0">
-            {/* Left Slot: Edge-to-edge Photo Column */}
-            <div className="relative overflow-hidden w-full h-full min-h-[420px] lg:min-h-0 bg-[#19244E]/5">
-              {/* Greeting ticker */}
-              <div className="absolute top-12 lg:top-28 left-1/2 -translate-x-1/2 z-20 whitespace-nowrap text-center">
-                <AnimatePresence mode="wait">
-                  <motion.span
-                    key={tick}
-                    initial={{ y: 8, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: -8, opacity: 0 }}
-                    transition={{ duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] }}
-                    className="font-display text-xl lg:text-3xl font-light text-white tracking-wide"
-                    style={{ textShadow: "0 2px 8px rgba(25,36,78,0.4)" }}
-                  >
-                    {HELLOS[tick]}
-                  </motion.span>
-                </AnimatePresence>
-              </div>
-
-              <ImageWithFallback
-                src={adinaPhotoLife}
-                alt="Adina Fayza Gayo - In Life"
-                className="absolute inset-0 w-full h-full object-cover object-top"
-              />
-
-              {/* Bottom Info Overlay */}
-              <div
-                className="absolute bottom-0 left-0 right-0 px-8 py-8 z-10"
-                style={{ background: "linear-gradient(to top, rgba(25,36,78,0.92) 0%, rgba(25,36,78,0.4) 60%, transparent 100%)" }}
+          {/* ── PANEL B: IN LIFE (Left 65%: Bold Upper Title + CTAs, Right 35%: Avatar + Nav + Bio) ── */}
+          <div className="w-1/2 grid lg:grid-cols-12 gap-8 lg:gap-12 items-start px-8 lg:px-20 pt-10 pb-16 lg:py-16 flex-shrink-0">
+            {/* Left 7 Cols: Massive Headline & Compact Buttons */}
+            <div className="lg:col-span-7 flex flex-col">
+              <p className="font-sans text-[10px] font-bold tracking-[0.25em] text-[#DB3E8C] uppercase mb-4">
+                Off The Clock · Real Human
+              </p>
+              <h1
+                className="font-display font-semibold leading-[0.88] tracking-tight uppercase mb-7"
+                style={{ fontSize: "clamp(3.8rem, 7.5vw, 8rem)", color: N }}
               >
-                <p className="font-display font-medium text-lg text-white mb-0.5" style={{ letterSpacing: "-0.01em" }}>
-                  Adina Fayza Gayo
-                </p>
-                <span className="font-sans text-[10px] font-semibold tracking-widest text-white/70 block">
-                  Explorer · Matcha Lover · Spreadsheet Nerd
-                </span>
+                PLOT<br />
+                TWISTS.<br />
+                <span style={{ color: C }}>FRONT ROW</span><br />
+                <span style={{ color: C }}>CROWDS.</span>
+              </h1>
+
+              {/* Compact Button */}
+              <div className="flex items-center gap-3.5 flex-wrap">
+                <a
+                  href="mailto:adinagayo@gmail.com"
+                  className="px-6 py-3.5 text-xs font-bold tracking-wider uppercase text-white transition-all duration-150 hover:opacity-90 shadow-sm flex items-center gap-2"
+                  style={{ backgroundColor: C, borderRadius: "6px" }}
+                >
+                  Let's grab coffee <ArrowUpRight size={13} />
+                </a>
               </div>
             </div>
 
-            {/* Right Slot: Personal Text Column */}
-            <div className="flex items-center justify-center lg:justify-start px-8 lg:px-20 pt-10 pb-24 lg:pt-12 lg:pb-36">
-              <div className="max-w-[480px] w-full px-0 lg:px-4">
-                <p className="font-sans text-[10px] font-semibold tracking-[0.2em] mb-5" style={{ color: C }}>
-                  Off The Clock · Real Human · Highly Organized Chaos
-                </p>
-                <h1
-                  className="font-display font-light leading-[0.93] mb-8"
-                  style={{ fontSize: "clamp(2.6rem, 5vw, 5rem)", color: N, letterSpacing: "-0.02em" }}
-                >
-                  Chaotic good,<br />
-                  <em className="not-italic" style={{ color: C }}>with</em> a<br />
-                  color-coded plan.
-                </h1>
-                <p className="text-[15px] leading-[1.7] mb-8 max-w-[440px]" style={{ color: `${N}BB` }}>
-                  Off-screen, I'm the friend who sends the group itinerary three weeks early, color-coded by day and cross-referenced by distance. My love language is a well-organized shared folder, a hot bowl of ramen, and optimizing daily life.
-                </p>
-                <div className="flex items-center gap-4 flex-wrap">
-                  <a
-                    href="mailto:adinagayo@gmail.com"
-                    className="flex items-center gap-2 px-6 py-3.5 text-sm font-medium text-white transition-opacity duration-150 hover:opacity-85"
-                    style={{ backgroundColor: C, borderRadius: "6px" }}
+            {/* Right 5 Cols: Photo Avatar, Quick Nav & Bio */}
+            <div className="lg:col-span-5 flex flex-col gap-6 pt-2">
+              <div className="flex items-start gap-6">
+                {/* Photo Avatar Card with Pastel Tint */}
+                <div className="relative w-[190px] sm:w-[220px] aspect-square rounded-2xl overflow-hidden bg-[#FCE7F3] shadow-lg border border-[#19244E]/10 flex-shrink-0 group">
+                  <ImageWithFallback
+                    src={adinaPhotoLife}
+                    alt="Adina Fayza Gayo - In Life"
+                    className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  />
+                  {/* Handwritten / Script Note Accent */}
+                  <div
+                    className="absolute bottom-2 right-2 bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-md shadow-md border border-[#19244E]/10"
+                    style={{ transform: "rotate(-3deg)" }}
                   >
-                    Let's grab matcha <ArrowUpRight size={14} />
-                  </a>
-                  <span className="font-sans text-[10px] tracking-wider" style={{ color: `${N}50` }}>
-                    adinagayo@gmail.com
-                  </span>
+                    <span className="font-serif italic text-xs font-bold text-[#DB3E8C] whitespace-nowrap block">
+                      Spreadsheet wizard 🍵
+                    </span>
+                  </div>
                 </div>
+
+                {/* Live Status / Personal Focus Column */}
+                <div className="flex flex-col gap-2.5 text-xs font-sans tracking-wide text-[#19244E] pt-0.5 max-w-[240px]">
+                  <div>
+                    <span className="text-[9px] font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
+                      ON ROTATION
+                    </span>
+                    <span className="font-semibold text-[11px] leading-snug text-[#19244E]/85 block">
+                      Detective K-Dramas & local concert gigs
+                    </span>
+                  </div>
+
+                  <div>
+                    <span className="text-[9px] font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
+                      CURRENT OBSESSION
+                    </span>
+                    <span className="font-semibold text-[11px] leading-snug text-[#19244E]/85 block">
+                      Tracking thriller reads & Sudoku records
+                    </span>
+                  </div>
+
+                  <div>
+                    <span className="text-[9px] font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
+                      SUPERPOWER
+                    </span>
+                    <span className="font-semibold text-[11px] leading-snug text-[#19244E]/85 block">
+                      Multi-currency, color-coded travel itineraries
+                    </span>
+                  </div>
+
+                  <div>
+                    <span className="text-[9px] font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
+                      FUEL
+                    </span>
+                    <span className="font-semibold text-[11px] leading-snug text-[#19244E]/85 block">
+                      Zero-sugar iced Americano & bitter matcha
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Bio Block Underneath Avatar */}
+              <div className="pt-2 border-t border-[#19244E]/10">
+                <h3 className="font-display font-black text-lg tracking-tight uppercase text-[#19244E] mb-1">
+                  ADINA FAYZA GAYO
+                </h3>
+                <p className="font-sans text-xs leading-relaxed text-[#19244E]/80 w-full mb-3">
+                  Off-screen, I swap design systems for live gigs, thriller K-Dramas, and genre-hopping playlists. Equal parts concert-goer and spreadsheet enthusiast. I track my books, chase Sudoku high scores, and plan trips down to the exact transit route.
+                </p>
+                <button
+                  onClick={onReadMore}
+                  className="text-xs font-sans font-bold tracking-wider uppercase text-[#DB3E8C] hover:underline transition-all flex items-center gap-1.5 focus:outline-none cursor-pointer py-1"
+                >
+                  View Full Profile & CV <ChevronRight size={13} />
+                </button>
               </div>
             </div>
           </div>
@@ -792,17 +853,11 @@ function StackedFanOutDeck({ screens }: { screens: { src: string; label: string;
         })}
       </div>
 
-      {/* Floating Badge Indicator */}
-      <button
-        onClick={(e) => {
-          e.stopPropagation()
-          setLightboxIndex(deckOrder[0])
-        }}
-        className="absolute bottom-3 right-3 px-3 py-1 bg-[#19244E]/95 backdrop-blur-md border border-white/15 rounded-full text-[8px] font-sans font-bold text-white tracking-widest uppercase shadow-md z-40 flex items-center gap-1.5 hover:bg-[#DB3E8C] transition-colors cursor-pointer"
-      >
+      {/* Interactive Drag & Zoom Helper Badge (Bottom Center) */}
+      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-[#19244E]/95 backdrop-blur-md border border-white/15 rounded-full text-[8px] font-sans font-bold text-white tracking-widest uppercase shadow-md z-40 flex items-center gap-1.5 pointer-events-none whitespace-nowrap">
         <span className="w-1.5 h-1.5 rounded-full bg-[#DB3E8C] animate-pulse" />
-        {screens.length} Screens
-      </button>
+        <span>Drag to shuffle or click to expand screens</span>
+      </div>
 
       {/* Full-Screen Pop-up Image Slider Lightbox */}
       <ImageLightboxModal
@@ -917,12 +972,12 @@ function AutoCarouselDeck({ screens }: { screens: { src: string; label?: string 
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 1.02 }}
           transition={{ duration: 0.35, ease: "easeInOut" }}
-          className="relative w-[95%] aspect-[16/10] max-h-[96%] rounded-2xl overflow-hidden border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.65)] bg-[#141b36] flex items-center justify-center cursor-grab"
+          className="relative w-[95%] aspect-[16/10] max-h-[96%] rounded-md overflow-hidden border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.65)] bg-[#141b36] flex items-center justify-center cursor-grab"
         >
           <img
             src={current.src}
             alt={current.label || `Screen ${currentIndex + 1}`}
-            className="w-full h-full object-cover object-top rounded-2xl pointer-events-none"
+            className="w-full h-full object-cover object-top rounded-md pointer-events-none"
           />
         </motion.div>
       </AnimatePresence>
@@ -1004,7 +1059,7 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
       {/* Section intro */}
       <div className="px-8 lg:px-16 py-16 lg:py-20" style={{ borderBottom: `1px solid rgba(255, 255, 255, 0.08)` }}>
         <h2
-          className="font-display font-light leading-tight text-white"
+          className="font-display font-normal leading-tight text-white"
           style={{ fontSize: "clamp(2.4rem, 4.5vw, 4rem)", letterSpacing: "-0.02em", maxWidth: "900px" }}
         >
           Projects that <br className="lg:hidden" />
@@ -1036,7 +1091,7 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
                       className="font-sans text-[10px] tracking-wider transition-colors duration-300 pt-1 font-bold"
                       style={{ color: isActive ? C : "rgba(255, 255, 255, 0.3)" }}
                     >
-                      [{project.num}]
+                      {project.num}
                     </span>
                     <span
                       className="text-base transition-all duration-300"
@@ -1066,10 +1121,18 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
               backgroundSize: "16px 16px",
             }}
           >
-            {/* Figma frame label */}
+            {/* Figma frame label (Left) */}
             <div className="absolute top-4 left-4 bg-white/10 backdrop-blur-md border border-white/15 px-3 py-1 rounded text-[10px] font-sans font-bold tracking-widest text-white/90 z-20 shadow-sm">
               {activeProject.num} · {activeProject.location} · {activeProject.year}
             </div>
+
+            {/* Screens Count Badge (Right - Exactly Level with Left Tag) */}
+            {activeProject.screens && (
+              <div className="absolute top-4 right-4 bg-white/10 backdrop-blur-md border border-white/15 px-3 py-1 rounded text-[10px] font-sans font-bold tracking-widest text-white/90 z-20 shadow-sm flex items-center gap-1.5 uppercase">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#DB3E8C] animate-pulse" />
+                {activeProject.screens.length} Screens
+              </div>
+            )}
 
             {/* Active Figma Frame Preview Stage (Borderless & Unclipped) */}
             <motion.div
@@ -1084,12 +1147,8 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
               aria-label={`Open case study: ${activeProject.name}`}
               className="relative w-full h-full min-h-[460px] lg:min-h-[500px] flex items-center justify-center cursor-pointer transition-transform duration-300 hover:scale-[1.01] focus:outline-none group"
             >
-              {activeProject.carouselScreens ? (
-                <AutoCarouselDeck screens={activeProject.carouselScreens} />
-              ) : activeProject.screens ? (
+              {activeProject.screens ? (
                 <StackedFanOutDeck screens={activeProject.screens} />
-              ) : activeProject.marqueeScreens ? (
-                <InfiniteMarqueeDeck screens={activeProject.marqueeScreens} />
               ) : (
                 <motion.div
                   drag
@@ -1151,18 +1210,6 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
                 className="flex flex-col justify-between h-full py-4"
               >
                 <div>
-                  {/* Tags */}
-                  <div className="flex flex-wrap items-center gap-1.5 mb-6">
-                    {activeProject.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="font-sans text-[9px] font-semibold tracking-widest uppercase px-1.5 py-0.5 bg-white/10 text-white/70 rounded"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
                   <span className="font-sans text-[9px] font-semibold tracking-wider text-white/50 uppercase block mb-1">
                     CLIENT: {activeProject.client}
                   </span>
@@ -1176,7 +1223,13 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
 
                 {/* Metrics/Stats */}
                 <div>
-                  <div className="flex flex-col gap-4 mb-6">
+                  <div className="flex flex-col gap-3 mb-6">
+                    <div className="flex items-baseline justify-between border-b border-white/10 pb-2">
+                      <span className="font-sans text-[9px] font-bold tracking-widest text-[#DB3E8C] uppercase">OWNERSHIP ROLE</span>
+                      <span className="font-sans font-semibold text-white text-[11px] text-right">
+                        {activeProject.role}
+                      </span>
+                    </div>
                     {activeProject.metrics.map((m) => (
                       <div key={m.sub} className="flex items-baseline justify-between border-b border-white/5 pb-2">
                         <span className="font-sans text-[9px] font-semibold tracking-widest text-white/40 uppercase">{m.sub}</span>
@@ -1216,22 +1269,18 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
             >
               {/* Figma frame label */}
               <div className="flex justify-between items-center mb-4">
-                <span className="font-sans text-[8px] text-white/40 tracking-wider">
-                  # Frame: {project.projectId.toUpperCase()}
+                <span className="font-sans text-[8px] text-white/50 tracking-wider">
+                  # FRAME: {project.projectId.toUpperCase()} · Drag to shuffle or click to expand screens
                 </span>
                 <span className="font-sans text-[8px] text-white/40 tracking-wider">
-                  [{project.num}]
+                  {project.num}
                 </span>
               </div>
 
               <div className="relative aspect-[16/11] rounded-xl border border-white/10 bg-[#1c2446] overflow-hidden mb-4 p-2 flex items-center justify-center">
                 <div className="relative w-full h-full rounded-lg overflow-hidden">
-                  {project.carouselScreens ? (
-                    <AutoCarouselDeck screens={project.carouselScreens} />
-                  ) : project.screens ? (
+                  {project.screens ? (
                     <StackedFanOutDeck screens={project.screens} />
-                  ) : project.marqueeScreens ? (
-                    <InfiniteMarqueeDeck screens={project.marqueeScreens} />
                   ) : (
                     <>
                       <ImageWithFallback
@@ -1247,17 +1296,6 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
 
               {/* Metadata */}
               <div>
-                <div className="flex flex-wrap gap-1.5 mb-3">
-                  {project.tags.slice(0, 3).map((tag) => (
-                    <span
-                      key={tag}
-                      className="font-sans text-[9px] font-semibold tracking-widest uppercase px-2 py-0.5 bg-white/5 text-white/60 rounded"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
                 <p className="font-sans text-[9px] font-semibold text-white/40 uppercase mb-0.5">
                   {project.client}
                 </p>
@@ -1311,6 +1349,40 @@ const PHASES = [
   },
 ]
 
+/* Hand-Drawn / Sketch SVG Icons for How I Work Statement */
+function SketchSearchIcon({ className = "w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 inline-block text-[#F472B6]" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 28 28" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ filter: "url(#hand-drawn)" }}>
+      <circle cx="12" cy="12" r="7.5" />
+      <path d="M17.5 17.5L24 24" strokeWidth="2.8" />
+      <path d="M9 10C9.5 8.8 10.8 8.2 12 8.2" strokeWidth="1.6" strokeOpacity="0.7" />
+    </svg>
+  )
+}
+
+function SketchTargetIcon({ className = "w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 inline-block text-[#F472B6]" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 28 28" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ filter: "url(#hand-drawn)" }}>
+      <circle cx="13" cy="14" r="9" />
+      <circle cx="13" cy="14" r="5" strokeWidth="2" />
+      <circle cx="13" cy="14" r="2" fill="currentColor" />
+      <path d="M19 8L24 3" strokeWidth="2.4" />
+      <path d="M21 3L24 3L24 6" strokeWidth="2" />
+    </svg>
+  )
+}
+
+function SketchClipboardIcon({ className = "w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 inline-block text-[#F472B6]" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 28 28" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ filter: "url(#hand-drawn)" }}>
+      <rect x="6" y="5" width="16" height="19" rx="2" />
+      <path d="M10 3H18V6H10z" fill="currentColor" fillOpacity="0.2" strokeWidth="1.8" />
+      <path d="M10 12L12.5 14.5L17.5 9.5" strokeWidth="2.4" />
+      <path d="M10 18H18" strokeWidth="2" />
+    </svg>
+  )
+}
+
 function WorkflowSection() {
   const { ref, inView } = useInView()
 
@@ -1340,71 +1412,103 @@ function WorkflowSection() {
           How I work
         </p>
         <h2
-          className="font-display font-light leading-[1.25] text-white max-w-4xl"
-          style={{ fontSize: "clamp(2.4rem, 5vw, 4.8rem)", letterSpacing: "-0.025em" }}
+          className="font-display font-light leading-[1.4] text-white max-w-4xl text-center"
+          style={{ fontSize: "clamp(2.2rem, 4.5vw, 4.2rem)", letterSpacing: "-0.025em" }}
         >
-          {/* Line 1 */}
-          <span className="block overflow-hidden py-1">
-            <motion.span
-              initial={{ y: "100%", opacity: 0 }}
-              animate={inView ? { y: 0, opacity: 1 } : {}}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-              className="inline-block"
-            >
-              I start by{" "}
+          <motion.span
+            initial="hidden"
+            animate={inView ? "visible" : "hidden"}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: { staggerChildren: 0.05, delayChildren: 0.1 },
+              },
+            }}
+            className="inline"
+          >
+            {["I", "dig", "into", "the", "real", "problem", "first,"].map((w, idx) => (
               <motion.span
-                animate={inView ? { scale: [0, 1.2, 1], rotate: [0, -10, 0] } : {}}
-                transition={{ type: "spring", stiffness: 260, damping: 15, delay: 0.5 }}
-                className="inline-block origin-center"
-                style={{ fontSize: "0.75em" }}
+                key={idx}
+                variants={{
+                  hidden: { y: 22, opacity: 0 },
+                  visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
+                }}
+                className="inline-block mr-2"
               >
-                🔍
-              </motion.span>{" "}
-              listening,
-            </motion.span>
-          </span>
-
-          {/* Line 2 */}
-          <span className="block overflow-hidden py-1">
+                {w}
+              </motion.span>
+            ))}
             <motion.span
-              initial={{ y: "100%", opacity: 0 }}
-              animate={inView ? { y: 0, opacity: 1 } : {}}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.25 }}
-              className="inline-block"
+              variants={{
+                hidden: { scale: 0, opacity: 0, rotate: -15 },
+                visible: { scale: 1, opacity: 1, rotate: 0, transition: { type: "spring", stiffness: 280, damping: 14 } },
+              }}
+              animate={inView ? { scale: 1, opacity: 1, rotate: [0, -5, 5, 0] } : {}}
+              transition={{ rotate: { repeat: Infinity, duration: 4, ease: "easeInOut" } }}
+              className="inline-block origin-center align-middle mx-1.5"
             >
-              design with{" "}
+              <SketchSearchIcon />
+            </motion.span>{" "}
+            {["design", "the", "system", "logic", "with", "care,"].map((w, idx) => (
               <motion.span
-                animate={inView ? { scale: [0, 1.3, 1], y: [5, -2, 0] } : {}}
-                transition={{ type: "spring", stiffness: 300, damping: 12, delay: 0.7 }}
-                className="inline-block origin-center"
-                style={{ fontSize: "0.75em" }}
+                key={idx}
+                variants={{
+                  hidden: { y: 22, opacity: 0 },
+                  visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
+                }}
+                className={`inline-block mr-2 ${idx >= 3 ? "font-normal not-italic text-[#DB3E8C]" : ""}`}
               >
-                ⚡
-              </motion.span>{" "}
-              <em className="font-normal not-italic" style={{ color: C }}>speed,</em>
-            </motion.span>
-          </span>
-
-          {/* Line 3 */}
-          <span className="block overflow-hidden py-1">
+                {w}
+              </motion.span>
+            ))}
             <motion.span
-              initial={{ y: "100%", opacity: 0 }}
-              animate={inView ? { y: 0, opacity: 1 } : {}}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
-              className="inline-block"
+              variants={{
+                hidden: { scale: 0, opacity: 0, rotate: 15 },
+                visible: { scale: 1, opacity: 1, rotate: 0, transition: { type: "spring", stiffness: 300, damping: 14 } },
+              }}
+              animate={inView ? { scale: 1, opacity: 1, y: [0, -4, 0] } : {}}
+              transition={{ y: { repeat: Infinity, duration: 3.5, ease: "easeInOut" } }}
+              className="inline-block origin-center align-middle mx-1.5"
             >
-              and close with a{" "}
+              <SketchTargetIcon />
+            </motion.span>{" "}
+            {["and", "hand", "off", "specs", "so", "clean"].map((w, idx) => (
               <motion.span
-                animate={inView ? { scale: [0, 1.2, 1], rotate: [0, 5, 0] } : {}}
-                transition={{ type: "spring", stiffness: 240, damping: 16, delay: 0.9 }}
-                className="inline-block origin-center"
-                style={{ fontSize: "0.75em" }}
+                key={idx}
+                variants={{
+                  hidden: { y: 22, opacity: 0 },
+                  visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
+                }}
+                className="inline-block mr-2"
               >
-                📋
-              </motion.span>{" "}
-              clean handoff.
-            </motion.span>
-          </span>
+                {w}
+              </motion.span>
+            ))}
+            <motion.span
+              variants={{
+                hidden: { scale: 0, opacity: 0, rotate: -15 },
+                visible: { scale: 1, opacity: 1, rotate: 0, transition: { type: "spring", stiffness: 260, damping: 14 } },
+              }}
+              animate={inView ? { scale: 1, opacity: 1, rotate: [0, 4, -4, 0] } : {}}
+              transition={{ rotate: { repeat: Infinity, duration: 4.5, ease: "easeInOut" } }}
+              className="inline-block origin-center align-middle mx-1.5"
+            >
+              <SketchClipboardIcon />
+            </motion.span>{" "}
+            {["that", "engineers", "rarely", "have", "to", "ask", "follow-up", "questions."].map((w, idx) => (
+              <motion.span
+                key={idx}
+                variants={{
+                  hidden: { y: 22, opacity: 0 },
+                  visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
+                }}
+                className="inline-block mr-2"
+              >
+                {w}
+              </motion.span>
+            ))}
+          </motion.span>
         </h2>
       </div>
 
@@ -1423,7 +1527,7 @@ function WorkflowSection() {
               <div>
                 <div className="flex items-center justify-between mb-6">
                   <span className="font-sans text-xs font-semibold tracking-widest text-[#DB3E8C]">
-                    [{phase.num}]
+                    {phase.num}
                   </span>
                   <Icon size={16} className="text-white/40" />
                 </div>
@@ -1438,7 +1542,7 @@ function WorkflowSection() {
               
               <div className="mt-auto pt-6 border-t border-white/5">
                 <p className="font-sans text-[9px] font-semibold tracking-widest uppercase text-white/25 mb-3">
-                  [Tools & Artifacts]
+                  Tools & Artifacts
                 </p>
                 <div className="flex flex-wrap gap-1.5">
                   {phase.tools.map((tool) => (
@@ -1479,7 +1583,12 @@ const CATEGORIES = [
 const DEFAULT_VISIBLE = 5
 
 const getGradient = (id: number) => {
-  return "linear-gradient(135deg, #DB3E8C 0%, #3B82F6 100%)"
+  const subtleGradients = [
+    "linear-gradient(135deg, #19244E 0%, #1E2D65 60%, #131B3B 100%)",
+    "linear-gradient(135deg, #111836 0%, #19244E 60%, #1B2A5E 100%)",
+    "linear-gradient(135deg, #162044 0%, #1D2A5C 60%, #101733 100%)",
+  ]
+  return subtleGradients[id % subtleGradients.length]
 }
 
 function ProjectArchiveSection() {
@@ -1569,9 +1678,9 @@ function ProjectArchiveSection() {
                     onMouseEnter={() => setHoveredId(project.id)}
                     onMouseLeave={() => setHoveredId(null)}
                     onClick={() => setSelectedProject(project)}
-                    className="relative rounded-xl border p-6 flex flex-col justify-between h-[180px] overflow-hidden transition-all duration-300 hover:shadow-[0_12px_30px_rgba(25,36,78,0.12)] hover:-translate-y-1 cursor-pointer select-none"
+                    className="relative rounded-xl border p-6 flex flex-col justify-between h-[180px] overflow-hidden transition-all duration-300 hover:shadow-[0_14px_35px_rgba(25,36,78,0.3),0_0_20px_rgba(25,36,78,0.2)] hover:-translate-y-1 cursor-pointer select-none"
                     style={{
-                      borderColor: isHovered ? "transparent" : HAIR,
+                      borderColor: isHovered ? "rgba(41, 67, 138, 0.6)" : HAIR,
                       backgroundColor: isHovered ? "transparent" : "rgba(255, 255, 255, 0.65)",
                       background: isHovered ? getGradient(project.id) : undefined,
                       color: isHovered ? W : N,

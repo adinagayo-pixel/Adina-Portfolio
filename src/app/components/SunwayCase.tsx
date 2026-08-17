@@ -30,7 +30,7 @@ function SectionTag({ num, label }: { num: string; label: string }) {
   return (
     <div className="flex items-center gap-4 mb-8">
       <span className="font-sans text-[10px] font-semibold tracking-widest" style={{ color: C }}>
-        [{num}]
+        {num}
       </span>
       <div className="flex-1 h-px" style={{ backgroundColor: HAIR }} />
       <MonoTag>{label}</MonoTag>

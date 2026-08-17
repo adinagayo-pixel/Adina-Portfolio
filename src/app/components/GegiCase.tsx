@@ -39,12 +39,136 @@ function SectionTag({ num, label }: { num: string; label: string }) {
   return (
     <div className="mb-10">
       <div className="text-[10px] font-semibold uppercase tracking-[0.2em] mb-2" style={{ color: C }}>
-        [{num} // {label.toUpperCase()}]
+        {num} // {label.toUpperCase()}
       </div>
       <h2 className="font-display text-2xl lg:text-3xl font-bold" style={{ color: N }}>
         {label}
       </h2>
       <div className="w-12 h-[2px] mt-4" style={{ backgroundColor: C }} />
+    </div>
+  )
+}
+
+function MultiBrandTokenSwitcher() {
+  const [selectedBrand, setSelectedBrand] = useState<"tng" | "gegi" | "anlene" | "proarchery">("tng")
+
+  const brands = {
+    tng: {
+      name: "Touch 'n Go eWallet",
+      tokenColor: "#005baa",
+      tokenAccent: "#fbb040",
+      radius: "16px",
+      market: "FinTech / eWallet PWA (Malaysia)",
+      btnText: "Pay with TNG eWallet",
+    },
+    gegi: {
+      name: "Great Eastern SG",
+      tokenColor: "#e11b22",
+      tokenAccent: "#19244e",
+      radius: "6px",
+      market: "InsurTech / Gamified Evaluation (Singapore)",
+      btnText: "Claim Protection Tier",
+    },
+    anlene: {
+      name: "Fonterra Anlene Health",
+      tokenColor: "#00875a",
+      tokenAccent: "#84cc16",
+      radius: "999px",
+      market: "Health Tech / Diagnostics (Indonesia)",
+      btnText: "Download Health Passport",
+    },
+    proarchery: {
+      name: "Pro Archery Retail",
+      tokenColor: "#19244E",
+      tokenAccent: "#DB3E8C",
+      radius: "8px",
+      market: "E-Commerce / B2B POS System (Asia)",
+      btnText: "Proceed to Checkout",
+    },
+  }
+
+  const b = brands[selectedBrand]
+
+  return (
+    <div className="my-8 rounded-xl border border-white/10 bg-[#0f172a] overflow-hidden shadow-2xl">
+      {/* Header Bar */}
+      <div className="px-6 py-4 bg-[#1e293b] border-b border-white/10 flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <span className="text-[9px] font-bold tracking-widest text-[#DB3E8C] uppercase block">
+            DESIGN TOKENS & MULTI-BRAND ARCHITECTURE
+          </span>
+          <h4 className="text-white font-sans text-sm font-bold mt-0.5">
+            Live Multi-Brand System Token Switcher
+          </h4>
+        </div>
+        {/* Brand Selector Buttons */}
+        <div className="flex flex-wrap bg-[#0f172a] p-1 rounded-lg border border-white/10 gap-1">
+          {(["tng", "gegi", "anlene", "proarchery"] as const).map((brKey) => (
+            <button
+              key={brKey}
+              onClick={() => setSelectedBrand(brKey)}
+              className={`px-3 py-1.5 rounded text-[10px] font-sans font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                selectedBrand === brKey
+                  ? "bg-[#DB3E8C] text-white shadow-md"
+                  : "text-white/60 hover:text-white hover:bg-white/5"
+              }`}
+            >
+              Brand: {brKey.toUpperCase()}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Dynamic Token Preview Stage */}
+      <div className="p-6 md:p-8 bg-[#0a0f1d] grid md:grid-cols-2 gap-6 items-center">
+        {/* Left Token Specs */}
+        <div className="space-y-3">
+          <span className="text-[9px] font-bold tracking-wider text-white/40 uppercase block">ACTIVE DESIGN TOKENS</span>
+          <h3 className="text-white font-display text-xl font-bold">{b.name}</h3>
+          <p className="text-white/60 text-xs font-sans">{b.market}</p>
+
+          <div className="grid grid-cols-2 gap-3 pt-2 text-[10px] font-mono text-white/80">
+            <div className="p-2.5 bg-black/40 rounded border border-white/10">
+              <span className="text-white/40 block">--color-primary</span>
+              <span className="font-bold flex items-center gap-1.5 mt-1" style={{ color: b.tokenColor }}>
+                <span className="w-2.5 h-2.5 rounded-full inline-block" style={{ backgroundColor: b.tokenColor }} />
+                {b.tokenColor}
+              </span>
+            </div>
+            <div className="p-2.5 bg-black/40 rounded border border-white/10">
+              <span className="text-white/40 block">--border-radius</span>
+              <span className="font-bold text-white mt-1 block">{b.radius}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Right UI Component Mockup adapting instantly to Tokens */}
+        <div
+          className="p-6 bg-white shadow-2xl transition-all duration-300 space-y-4"
+          style={{ borderRadius: b.radius }}
+        >
+          <div className="flex justify-between items-center">
+            <span className="text-xs font-bold uppercase tracking-wider" style={{ color: b.tokenColor }}>
+              {b.name}
+            </span>
+            <span className="text-[9px] px-2 py-0.5 rounded font-bold uppercase text-white" style={{ backgroundColor: b.tokenAccent }}>
+              Token Active
+            </span>
+          </div>
+
+          <div className="p-3 bg-gray-50 border border-gray-200" style={{ borderRadius: `calc(${b.radius} / 2)` }}>
+            <span className="text-[9px] text-gray-400 uppercase tracking-wider block font-sans">Dynamic Form Input</span>
+            <p className="text-xs font-semibold text-gray-800 mt-0.5">user.checkout@partner.org</p>
+          </div>
+
+          <button
+            className="w-full py-3 text-xs font-bold text-white uppercase tracking-wider transition-transform active:scale-95 cursor-pointer shadow-lg"
+            style={{ backgroundColor: b.tokenColor, borderRadius: b.radius }}
+          >
+            {b.btnText}
+          </button>
+        </div>
+      </div>
     </div>
   )
 }
@@ -57,6 +181,7 @@ interface Props {
 
 export default function GegiCase({ onBack, onNext, onPrev }: Props) {
   const [scrolled, setScrolled] = useState(false)
+  const [activeZoomImg, setActiveZoomImg] = useState<{ title: string; img: string; desc: string } | null>(null)
 
   useEffect(() => {
     window.scrollTo({ top: 0 })
@@ -198,6 +323,34 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
             </div>
           ))}
         </div>
+
+        {/* EXECUTIVE SUMMARY & 30-SECOND TAKEAWAYS */}
+        <div className="px-8 lg:px-16 py-8 bg-[#111836] border-t border-b border-white/10">
+          <div className="flex items-center gap-2 mb-4">
+            <span className="w-2 h-2 rounded-full bg-[#DB3E8C] animate-pulse" />
+            <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+              EXECUTIVE SUMMARY & 30-SECOND TAKEAWAYS
+            </span>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-xs font-sans">
+            <div className="bg-white/5 p-4 rounded-lg border border-white/5">
+              <span className="block text-[9px] font-bold tracking-widest text-white/40 uppercase mb-1.5">01 · Problem</span>
+              <p className="text-[11px] leading-relaxed text-white/80">Traditional CI evaluation forms suffered high drop-off rates due to dry financial terms and multi-page fatigue.</p>
+            </div>
+            <div className="bg-white/5 p-4 rounded-lg border border-white/5">
+              <span className="block text-[9px] font-bold tracking-widest text-white/40 uppercase mb-1.5">02 · Core Constraints</span>
+              <p className="text-[11px] leading-relaxed text-white/80">Strict 2-week sprint timeline, AEM CMS integration compatibility, zero-button continuous scroll interaction.</p>
+            </div>
+            <div className="bg-[#DB3E8C]/10 p-4 rounded-lg border border-[#DB3E8C]/30">
+              <span className="block text-[9px] font-bold tracking-widest text-[#DB3E8C] uppercase mb-1.5">03 · Exact Ownership</span>
+              <p className="text-[11px] font-semibold text-white leading-relaxed">Sole Product Designer & System Logic Architect (End-to-End UI, Mechanics & Developer Specs).</p>
+            </div>
+            <div className="bg-white/5 p-4 rounded-lg border border-white/5">
+              <span className="block text-[9px] font-bold tracking-widest text-white/40 uppercase mb-1.5">04 · Key Impact</span>
+              <p className="text-[11px] font-semibold text-white leading-relaxed">Shipped 7-Q matrix & 4 Singlish personas in 2wks; achieved 92% completion rate across SG campaign launch.</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* ── BODY CONTENT ──────────────────────────────────────────────────── */}
@@ -241,9 +394,16 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
                 { title: "03 · Evaluation Question Matrix", img: ci3, desc: "7-question evaluation matrix engineered without traditional Next buttons to prevent fatigue." },
                 { title: "04 · AEM & Analytics Integration", img: ci4, desc: "Seamless Adobe Experience Manager component integration with Google Analytics tracking tags." },
               ].map(({ title, img, desc }) => (
-                <div key={title} className="bg-[#141b36] border border-white/10 rounded-xl p-3 flex flex-col justify-between group hover:border-[#DB3E8C]/50 transition-all duration-300">
-                  <div className="aspect-[16/10] rounded-lg overflow-hidden border border-white/10 mb-3 bg-[#0d142d] p-1">
+                <div
+                  key={title}
+                  onClick={() => setActiveZoomImg({ title, img, desc })}
+                  className="bg-[#141b36] border border-white/10 rounded-xl p-3 flex flex-col justify-between group hover:border-[#DB3E8C] transition-all duration-300 cursor-pointer shadow-lg hover:shadow-[0_10px_30px_rgba(219,62,140,0.2)]"
+                >
+                  <div className="relative aspect-[16/10] rounded-lg overflow-hidden border border-white/10 mb-3 bg-[#0d142d] p-1">
                     <img src={img} alt={title} className="w-full h-full object-contain rounded group-hover:scale-105 transition-transform duration-500" />
+                    <div className="absolute top-2 right-2 bg-black/60 backdrop-blur-md px-2 py-1 rounded text-[9px] font-bold text-white uppercase tracking-wider flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                      Click to Zoom 🔍
+                    </div>
                   </div>
                   <div>
                     <h4 className="font-sans text-xs font-bold text-white mb-1 tracking-wide">{title}</h4>
@@ -283,6 +443,9 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
               </div>
             ))}
           </div>
+
+          {/* Interactive Multi-Brand System Token Switcher Widget */}
+          <MultiBrandTokenSwitcher />
         </div>
 
         <Hairline />
@@ -527,6 +690,36 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
           )}
         </div>
       </div>
+
+      {/* Fullscreen Lightbox Zoom Modal */}
+      {activeZoomImg && (
+        <div
+          className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-xl p-6 lg:p-12 flex flex-col items-center justify-center animate-fade-in"
+          onClick={() => setActiveZoomImg(null)}
+        >
+          <div className="absolute top-6 right-6 flex items-center gap-4">
+            <span className="text-white/60 text-xs font-sans">Click anywhere or press ESC to close</span>
+            <button
+              onClick={() => setActiveZoomImg(null)}
+              className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer"
+            >
+              Close ✕
+            </button>
+          </div>
+          <div
+            className="max-w-5xl w-full max-h-[85vh] flex flex-col items-center justify-center p-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={activeZoomImg.img}
+              alt={activeZoomImg.title}
+              className="max-w-full max-h-[72vh] object-contain rounded-xl shadow-2xl border border-white/10 mb-4"
+            />
+            <h3 className="text-white font-display text-xl font-bold text-center mb-1">{activeZoomImg.title}</h3>
+            <p className="text-white/70 text-xs font-sans text-center max-w-xl">{activeZoomImg.desc}</p>
+          </div>
+        </div>
+      )}
 
     </div>
   )

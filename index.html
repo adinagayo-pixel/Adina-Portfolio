@@ -5,14 +5,27 @@
       
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Adina Fayza Gayo — Senior Product Designer</title>
-      <meta name="description" content="This professional portfolio website showcases Adina Fayza Gayo&#39;s expertise as a Senior Product Designer, highlighting her strategic design skills and regional experience to attract top tech recruiters and decision-makers." />
+      <title>Adina Fayza Gayo — Product Designer</title>
+      <meta name="description" content="This professional portfolio website showcases Adina Fayza Gayo&#39;s expertise as a Product Designer, highlighting her strategic design skills and regional experience to attract top tech recruiters and decision-makers." />
       <meta name="robots" content="noindex, nofollow" />
       <style>html, body { height: 100%; margin: 0; } #root { height: 100%; }</style>
       
     </head>
 
     <body>
+      <!-- SVG Hand-Drawn Sketch Filters -->
+      <svg width="0" height="0" style="position:absolute; width:0; height:0; overflow:hidden;" aria-hidden="true">
+        <defs>
+          <filter id="hand-drawn" x="-20%" y="-20%" width="140%" height="140%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.2" xChannelSelector="R" yChannelSelector="G" />
+          </filter>
+          <filter id="hand-drawn-subtle" x="-20%" y="-20%" width="140%" height="140%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="1" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.4" xChannelSelector="R" yChannelSelector="G" />
+          </filter>
+        </defs>
+      </svg>
       
       <div id="root"></div>
       <script type="module" src="/src/main.tsx"></script>

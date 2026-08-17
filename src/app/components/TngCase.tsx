@@ -31,12 +31,128 @@ function SectionTag({ num, label }: { num: string; label: string }) {
   return (
     <div className="mb-10">
       <div className="text-[10px] font-semibold uppercase tracking-[0.2em] mb-2" style={{ color: C }}>
-        [{num} // {label.toUpperCase()}]
+        {num} // {label.toUpperCase()}
       </div>
       <h2 className="font-display text-2xl lg:text-3xl font-bold" style={{ color: N }}>
         {label}
       </h2>
       <div className="w-12 h-[2px] mt-4" style={{ backgroundColor: C }} />
+    </div>
+  )
+}
+
+function StateEdgeCaseSwitcher() {
+  const [activeState, setActiveState] = useState<"valid" | "error" | "timeout">("valid")
+
+  const states = {
+    valid: {
+      title: "Valid State (SSO Auto-Filled)",
+      badge: "HTTP 200 · SUCCESS",
+      badgeColor: "#22c55e",
+      desc: "Native eKYC parameters auto-populate NRIC & Full Name fields. Zero manual input required from user.",
+      preview: {
+        nric: "920412-14-5821 (Auto-filled)",
+        status: "Eligible for RM75 PTV Voucher Subsidy",
+        buttonText: "Proceed to RM0 Checkout",
+        buttonBg: "#22c55e",
+      }
+    },
+    error: {
+      title: "Validation Error State (Invalid NRIC)",
+      badge: "HTTP 422 · VALIDATION ERROR",
+      badgeColor: "#ef4444",
+      desc: "Invalid NRIC format triggers inline helper text without page reload, keeping user in context with retry prompt.",
+      preview: {
+        nric: "920412-14-XXXX (Format Error)",
+        status: "NRIC number not found in Government PTV registry",
+        buttonText: "Retry NRIC Check",
+        buttonBg: "#ef4444",
+      }
+    },
+    timeout: {
+      title: "Network Timeout / Retry State",
+      badge: "HTTP 504 · GATEWAY TIMEOUT",
+      badgeColor: "#f59e0b",
+      desc: "API handshake latency fallback: caches draft state locally, displays offline status toast with 1-click resend.",
+      preview: {
+        nric: "920412-14-5821 (Pending Sync)",
+        status: "Connection timed out. Local draft saved safely.",
+        buttonText: "Tap to Re-sync Verification",
+        buttonBg: "#f59e0b",
+      }
+    }
+  }
+
+  const cur = states[activeState]
+
+  return (
+    <div className="my-8 rounded-xl border border-white/10 bg-[#0f172a] overflow-hidden shadow-2xl">
+      {/* Header Bar */}
+      <div className="px-6 py-4 bg-[#1e293b] border-b border-white/10 flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <span className="text-[9px] font-bold tracking-widest text-[#DB3E8C] uppercase block">
+            INTERACTIVE EDGE CASE LOGIC ARCHITECTURE
+          </span>
+          <h4 className="text-white font-sans text-sm font-bold mt-0.5">
+            Checkout State & Error Handling Switcher
+          </h4>
+        </div>
+        {/* Toggle Switcher Tabs */}
+        <div className="flex bg-[#0f172a] p-1 rounded-lg border border-white/10 gap-1">
+          {(["valid", "error", "timeout"] as const).map((st) => (
+            <button
+              key={st}
+              onClick={() => setActiveState(st)}
+              className={`px-3 py-1.5 rounded text-[10px] font-sans font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                activeState === st
+                  ? "bg-[#DB3E8C] text-white shadow-md"
+                  : "text-white/60 hover:text-white hover:bg-white/5"
+              }`}
+            >
+              State: {st}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Interactive State Canvas */}
+      <div className="p-6 md:p-8 bg-[#0a0f1d] grid md:grid-cols-2 gap-6 items-center">
+        {/* Left Specs */}
+        <div>
+          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded text-[9px] font-bold tracking-wider uppercase mb-3" style={{ backgroundColor: `${cur.badgeColor}20`, color: cur.badgeColor, border: `1px solid ${cur.badgeColor}40` }}>
+            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: cur.badgeColor }} />
+            {cur.badge}
+          </div>
+          <h3 className="text-white font-display text-lg font-bold mb-2">{cur.title}</h3>
+          <p className="text-white/70 text-xs font-sans leading-relaxed mb-4">{cur.desc}</p>
+          <div className="text-[10px] font-mono text-white/40 bg-black/40 p-3 rounded border border-white/5">
+            // Developer Specs & Fallback Strategy<br />
+            {activeState === "valid" && `state.status = 'READY'; api.sync('SSO_OK');`}
+            {activeState === "error" && `state.error = 'NRIC_NOT_FOUND'; ui.showInlineError();`}
+            {activeState === "timeout" && `state.offline = true; storage.saveDraft(); ui.showRetryToast();`}
+          </div>
+        </div>
+
+        {/* Right UI State Mockup Frame */}
+        <div className="bg-[#1e293b] p-5 rounded-xl border border-white/10 shadow-xl space-y-3">
+          <div className="text-[9px] font-sans font-bold text-white/50 tracking-wider uppercase flex justify-between">
+            <span>Embedded PWA Interface</span>
+            <span>Step 2/3</span>
+          </div>
+          <div className="p-3 bg-black/40 rounded border border-white/10 space-y-1">
+            <span className="text-[8px] text-white/40 uppercase font-sans">Identity NRIC</span>
+            <p className="text-xs font-mono font-semibold text-white">{cur.preview.nric}</p>
+          </div>
+          <div className="p-3 rounded border" style={{ backgroundColor: `${cur.badgeColor}15`, borderColor: `${cur.badgeColor}30` }}>
+            <p className="text-[10px] font-sans font-bold" style={{ color: cur.badgeColor }}>
+              {cur.preview.status}
+            </p>
+          </div>
+          <button className="w-full py-2.5 rounded font-sans text-xs font-bold text-white uppercase tracking-wider shadow" style={{ backgroundColor: cur.preview.buttonBg }}>
+            {cur.preview.buttonText}
+          </button>
+        </div>
+      </div>
     </div>
   )
 }
@@ -155,6 +271,34 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
             </div>
           ))}
         </div>
+
+        {/* EXECUTIVE SUMMARY & 30-SECOND TAKEAWAYS */}
+        <div className="px-8 lg:px-16 py-8 bg-[#111836] border-t border-b border-white/10">
+          <div className="flex items-center gap-2 mb-4">
+            <span className="w-2 h-2 rounded-full bg-[#DB3E8C] animate-pulse" />
+            <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+              EXECUTIVE SUMMARY & 30-SECOND TAKEAWAYS
+            </span>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-xs font-sans">
+            <div className="bg-white/5 p-4 rounded-lg border border-white/5">
+              <span className="block text-[9px] font-bold tracking-widest text-white/40 uppercase mb-1.5">01 · Problem</span>
+              <p className="text-[11px] leading-relaxed text-white/80">Complex multi-party eKYC data mapping & insurance checkout inside Malaysia's top e-wallet (20M+ users).</p>
+            </div>
+            <div className="bg-white/5 p-4 rounded-lg border border-white/5">
+              <span className="block text-[9px] font-bold tracking-widest text-white/40 uppercase mb-1.5">02 · Core Constraints</span>
+              <p className="text-[11px] leading-relaxed text-white/80">3-month deadline, native eWallet webview constraints, PTV government subsidy voucher validation APIs.</p>
+            </div>
+            <div className="bg-[#DB3E8C]/10 p-4 rounded-lg border border-[#DB3E8C]/30">
+              <span className="block text-[9px] font-bold tracking-widest text-[#DB3E8C] uppercase mb-1.5">03 · Exact Ownership</span>
+              <p className="text-[11px] font-semibold text-white leading-relaxed">Lead UI/UX Designer & Systems Integrator (PWA Architecture, Data Flows & Specs).</p>
+            </div>
+            <div className="bg-white/5 p-4 rounded-lg border border-white/5">
+              <span className="block text-[9px] font-bold tracking-widest text-white/40 uppercase mb-1.5">04 · Key Impact</span>
+              <p className="text-[11px] font-semibold text-white leading-relaxed">Shipped 5 production versions with zero-defect UX flows; enabled RM0 automated government voucher checkout.</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* ── BODY ──────────────────────────────────────────────────────────── */}
@@ -250,7 +394,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
             </div>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-3 mb-8">
             {[
               { num: "1.", title: "Zero-Friction Identity Auto-Fill (SSO + eKYC)", desc: "Mapped TNG's native Single Sign-On (SSO) and eKYC data schema (base user profile, NRIC, full name, age parameters) directly into the embedded PWA forms, eliminating manual typing friction and preventing identity spoofing." },
               { num: "2.", title: "Automated PTV Voucher Eligibility Verification", desc: "Engineered an inline identity validation screen where users input/confirm their NRIC to instantly check government subsidy eligibility. The system automatically adjusts premium totals to RM 0 (for eligible PTV recipients) or routes to standard TNG e-wallet debit." },
@@ -265,6 +409,9 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
               </div>
             ))}
           </div>
+
+          {/* Interactive State & Edge Case Switcher Widget */}
+          <StateEdgeCaseSwitcher />
         </div>
 
         <Hairline />

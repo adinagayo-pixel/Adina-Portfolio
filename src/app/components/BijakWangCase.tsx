@@ -37,7 +37,7 @@ function SectionTag({ num, label }: { num: string; label: string }) {
   return (
     <div className="mb-10">
       <div className="text-[10px] font-semibold uppercase tracking-[0.2em] mb-2" style={{ color: C }}>
-        [{num} // {label.toUpperCase()}]
+        {num} // {label.toUpperCase()}
       </div>
       <h2 className="font-display text-2xl lg:text-3xl font-bold" style={{ color: N }}>
         {label}
