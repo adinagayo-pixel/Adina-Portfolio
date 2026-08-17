@@ -36,6 +36,7 @@ import ProArcheryCase from "./components/ProArcheryCase"
 import ElectionCase from "./components/ElectionCase"
 import AnleneCase from "./components/AnleneCase"
 import BijakWangCase from "./components/BijakWangCase"
+import MyArcheryCase from "./components/MyArcheryCase"
 import AboutMe from "./components/AboutMe"
 
 // ─── Design tokens ────────────────────────────────────────────────────────────
@@ -149,6 +150,20 @@ const FEATURED = [
       { src: mykawan3, label: "03 · LIVE QUIZ INTERACTION" },
       { src: mykawan4, label: "04 · RESKILLS REWARDS" },
       { src: mykawan5, label: "05 · LEADERBOARD & RANKINGS" },
+    ],
+  },
+  {
+    num: "07", name: "National Archery Operating System", client: "PERPANI / MyArchery",
+    location: "ID", year: "2023", tags: ["Sports Tech", "Field UX Research", "Tournament Engine"],
+    role: "Lead UX Researcher & Product Designer",
+    headline: "Designing Indonesia's centralized tournament operating system & real-time scoring platform for official PERPANI national championships.",
+    metrics: [{ val: "2yr", sub: "Lifecycle Timeline" }, { val: "7+", sub: "Public Releases" }, { val: "100%", sub: "Manual Flow Automation" }],
+    projectId: "myarchery",
+    thumb: projectThumb4,
+    screens: [
+      { src: projectThumb4, label: "01 · SCORING KEYPAD" },
+      { src: projectThumb2, label: "02 · ADMIN DASHBOARD" },
+      { src: projectThumb1, label: "03 · LIVE SCOREBOARD" },
     ],
   },
 ]
@@ -2069,11 +2084,20 @@ export default function App() {
     )
   }
 
+  if (currentView === "myarchery-case") {
+    return (
+      <MyArcheryCase
+        onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
+        onNext={() => { setCurrentView("gegi-case"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { setCurrentView("bijakwang-case"); window.scrollTo({ top: 0 }) }}
+      />
+    )
+  }
   if (currentView === "bijakwang-case") {
     return (
       <BijakWangCase
         onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
-        onNext={() => { setCurrentView("gegi-case"); window.scrollTo({ top: 0 }) }}
+        onNext={() => { setCurrentView("myarchery-case"); window.scrollTo({ top: 0 }) }}
         onPrev={() => { setCurrentView("anlene-case"); window.scrollTo({ top: 0 }) }}
       />
     )
@@ -2120,7 +2144,7 @@ export default function App() {
       <GegiCase
         onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
         onNext={() => { setCurrentView("tng-case"); window.scrollTo({ top: 0 }) }}
-        onPrev={() => { setCurrentView("bijakwang-case"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { setCurrentView("myarchery-case"); window.scrollTo({ top: 0 }) }}
       />
     )
   }
@@ -2143,6 +2167,7 @@ export default function App() {
         if (id === "election") setCurrentView("election-case")
         if (id === "anlene") setCurrentView("anlene-case")
         if (id === "bijakwang") setCurrentView("bijakwang-case")
+        if (id === "myarchery") setCurrentView("myarchery-case")
       }} />
       <WorkflowSection />
       <ProjectArchiveSection />
