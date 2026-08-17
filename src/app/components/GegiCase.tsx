@@ -155,7 +155,10 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
               Role & Ownership
             </span>
             <span className="font-semibold text-[#19244E]">
-              Sole Product Designer
+              Product Designer
+            </span>
+            <span className="block text-[10px] text-gray-500 font-normal">
+              (Collab with GD for Art Dir.)
             </span>
           </div>
           <div>
@@ -196,19 +199,19 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-xs font-sans">
             <div className="bg-white/5 p-4 rounded-lg border border-white/5">
               <span className="block text-[9px] font-bold tracking-widest text-white/40 uppercase mb-1.5">01 · Problem</span>
-              <p className="text-[11px] leading-relaxed text-white/80">Traditional CI evaluation forms suffered high drop-off rates due to dry financial terms and multi-page fatigue.</p>
+              <p className="text-[11px] leading-relaxed text-white/80">Traditional CI forms suffered drop-off. Initial red concept needed brand alignment and UX interaction overhaul.</p>
             </div>
             <div className="bg-white/5 p-4 rounded-lg border border-white/5">
               <span className="block text-[9px] font-bold tracking-widest text-white/40 uppercase mb-1.5">02 · Core Constraints</span>
-              <p className="text-[11px] leading-relaxed text-white/80">Strict 2-week sprint timeline, AEM CMS integration compatibility, zero-button continuous scroll interaction.</p>
+              <p className="text-[11px] leading-relaxed text-white/80">2-week deadline, single-screen height limits, & 25+ game illustrations delivered in &lt;24h freelance sprint.</p>
             </div>
             <div className="bg-[#DB3E8C]/10 p-4 rounded-lg border border-[#DB3E8C]/30">
               <span className="block text-[9px] font-bold tracking-widest text-[#DB3E8C] uppercase mb-1.5">03 · Exact Ownership</span>
-              <p className="text-[11px] font-semibold text-white leading-relaxed">Sole Product Designer & System Logic Architect (End-to-End UI, Mechanics & Developer Specs).</p>
+              <p className="text-[11px] font-semibold text-white leading-relaxed">Product Designer (UX Flow, Auto-select Interaction, Figma System, Dev SVG Assets & Proactive IG Shareables).</p>
             </div>
             <div className="bg-white/5 p-4 rounded-lg border border-white/5">
               <span className="block text-[9px] font-bold tracking-widest text-white/40 uppercase mb-1.5">04 · Key Impact</span>
-              <p className="text-[11px] font-semibold text-white leading-relaxed">Shipped 7-Q matrix & 4 Singlish personas in 2wks; achieved 92% completion rate across SG campaign launch.</p>
+              <p className="text-[11px] font-semibold text-white leading-relaxed">Shipped 7-Q matrix & 4 Singlish personas in 2wks; achieved 92% completion rate & higher-ups praise.</p>
             </div>
           </div>
         </div>
@@ -222,9 +225,9 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
           <div className="grid lg:grid-cols-2 gap-4">
             {[
               { label: "Client & Market", val: "Great Eastern General Insurance Ltd (GEGI) / Singapore" },
-              { label: "Role & Responsibility", val: "Lead UI/UX Designer (Dedicated Outsourcing)" },
+              { label: "Role & Collaboration", val: "Product Designer (UX, Flow & Prototyping) in collab with in-house Graphic Designer (Art Direction)" },
               { label: "Execution Sprint", val: "2 Weeks Rapid Sprint · March 2026" },
-              { label: "Core Stack", val: "Figma · Adobe Experience Manager · Google Analytics · Custom SVG Engineering" },
+              { label: "Core Stack", val: "Figma · Adobe Experience Manager (AEM Data Capture) · Custom Dev SVGs · 16:9 IG Assets" },
             ].map(({ label, val }) => (
               <div key={label} className="px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
                 <MonoTag>{label}</MonoTag>
@@ -249,10 +252,10 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
 
             <div className="grid md:grid-cols-2 gap-6">
               {[
-                { title: "01 · Campaign Hero Screen", img: ci1, desc: "Interactive landing hero featuring scroll-based gamified evaluation entry." },
-                { title: "02 · Localized Singlish Personas", img: ci2, desc: "Interactive Singaporean Singlish persona mechanics for relatable protection tiering." },
-                { title: "03 · Evaluation Question Matrix", img: ci3, desc: "7-question evaluation matrix engineered without traditional Next buttons to prevent fatigue." },
-                { title: "04 · AEM & Analytics Integration", img: ci4, desc: "Seamless Adobe Experience Manager component integration with Google Analytics tracking tags." },
+                { title: "01 · Campaign Hero Screen", img: ci1, desc: "Light/cream brand-aligned landing hero with zero-friction entry." },
+                { title: "02 · Localized Game & Persona Assets", img: ci2, desc: "~25 custom game illustrations produced with illustrator Revi (<24h turnaround) covering quiz options and 4 personas." },
+                { title: "03 · Auto-Select Question Matrix", img: ci3, desc: "Auto-select interaction UX that immediately advances upon pick, ending with participant lucky draw data form." },
+                { title: "04 · AEM Data Capture & SVG Handoff", img: ci4, desc: "Single-screen viewport optimized SVGs for dev layout state & AEM form backend data capture." },
               ].map(({ title, img, desc }) => (
                 <div
                   key={title}
@@ -279,18 +282,19 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
 
         {/* 02 Strategic Challenge */}
         <div>
-          <SectionTag id="challenge" num="02" label="The Strategic Challenge" />
+          <SectionTag id="challenge" num="02" label="The Strategic Challenge & Project Evolution" />
           <p className="font-display font-light leading-relaxed mb-10" style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.35rem)", color: N, letterSpacing: "-0.005em", lineHeight: 1.65, maxWidth: "680px" }}>
-            Great Eastern Singapore required an engaging digital marketing tool to assess critical illness (CI) protection gaps among prospective Singaporean clients while capturing qualified lead sign-ups.
+            Great Eastern Singapore needed an engaging digital campaign to assess critical illness (CI) protection gaps. Starting from an initial red graphic concept, the project evolved through client reviews, color pivots, illustration crises, and navigation refinements.
           </p>
           <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-5" style={{ color: `${N}99` }}>
-            Key System & Business Constraints
+            Key Decisions & Constraints Solved
           </p>
           <div className="space-y-3">
             {[
-              { Icon: Clock, title: "Ultra-Tight Timeline (2-Week Sprint)", desc: "High-stakes execution to secure GEGI's first interactive campaign tender in the Singapore market." },
-              { Icon: FileCode2, title: "Enterprise Technical Integration", desc: "Must seamlessly embed within Adobe Experience Manager (AEM) with precise Google Analytics tracking events tagged on every question and scroll interaction." },
-              { Icon: LayoutGrid, title: "UX & Content Density Challenge", desc: "Designing a continuous scroll-based evaluation experience for a 7-question matrix without relying on traditional \"Next\" buttons, avoiding user fatigue on high-density pages." },
+              { Icon: Clock, title: "Color Palette Pivot (Red → Cream Light Theme)", desc: "The initial UI proposal was dominant red. Following client presentation feedback, we pivoted to GEGI's light cream brand guideline palette for consistency with their successful gamification campaigns." },
+              { Icon: Target, title: "25+ Game Illustration Sprint (<24h Turnaround)", desc: "When initial illustration concepts didn't click internally, I collaborated with the GD to advocate for bringing in a freelance illustrator. I engaged illustrator Revi, delivering all ~25 game assets (personas, question illustrations, icons) in under 24 hours." },
+              { Icon: LayoutGrid, title: "Navigation UX Evolution: Auto-Select vs. Next Button", desc: "Replaced tedious 'Next' button clicks with an automatic transition on selection (auto-select). Clicking any answer instantly advances to the next question, preserving user momentum until the final result trigger." },
+              { Icon: FileCode2, title: "Single-Screen Viewport SVG Specs & AEM Data Capture", desc: "Engineered exact SVG state assets (default, selected, active) sized precisely to guarantee a single-screen, non-scrollable game frame, while coordinating lead-capture data form specs for AEM integration." },
             ].map(({ Icon, title, desc }) => (
               <div key={title} className="flex gap-5 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
                 <div className="w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5" style={{ border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
@@ -311,7 +315,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
         <div>
           <SectionTag id="personas" num="03" label="Localized Persona System" />
           <p className="text-sm leading-relaxed mb-8 max-w-[600px]" style={{ color: BODY, lineHeight: 1.75 }}>
-            Collaborated with a dedicated illustrator to produce 4 Singapore-centric character personas representing distinct CI Gap tiers, fine-tuned with Singlish terminology for authentic market resonance.
+            Partnered with freelance illustrator <strong>Revi</strong> under a fast &lt;24-hour sprint to craft ~25 custom game assets—including 4 Singapore-centric character personas representing distinct CI Gap tiers, fine-tuned with authentic Singlish tone.
           </p>
 
           {/* 2×2 bento grid */}
@@ -361,9 +365,9 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
             <MonoTag>[Campaign Interaction Flow]</MonoTag>
             <div className="flex items-center mt-5 min-w-max">
               {[
-                { label: "Scroll-Based Evaluation", sub: "7-question matrix, no Next button", icon: LayoutGrid },
-                { label: "Localized Persona Logic", sub: "Dynamic CI Gap + Singlish personas", icon: Target },
-                { label: "Organic Growth Loops", sub: "IG Story cards, lead-capture, AEM", icon: Share2 },
+                { label: "Auto-Select Question Matrix", sub: "Auto-advances on click without Next button", icon: LayoutGrid },
+                { label: "Singlish Persona + AEM Data Form", sub: "Calculates CI Gap & captures lucky draw data", icon: Target },
+                { label: "Organic 16:9 IG Assets", sub: "Proactive IG Story sharing cards for viral loop", icon: Share2 },
               ].map((step, i) => {
                 const Icon = step.icon
                 return (
@@ -391,9 +395,9 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
 
           <div className="space-y-3">
             {[
-              { num: "1.", title: "Scroll-Driven UX Matrix", desc: "Eliminated traditional multi-step wizard buttons in favor of an intuitive, scroll-based question flow. Users navigate financial questions (income ranges, sum insured expectations) alongside visual preference cards (hobbies, food choices) in one continuous, fluid layout." },
-              { num: "2.", title: "Localized Character Personas & Culture Alignment", desc: "Collaborated with a dedicated illustrator to establish brand-compliant, Singapore-centric character personas representing different CI Gap tiers. Fine-tuned visual assets and localized Singlish terminology based on client feedback to ensure authentic market resonance." },
-              { num: "3.", title: "Unprompted Growth Initiative (Instagram Story Assets)", desc: "Proactively designed customized Instagram Story shareable cards for each persona result, going beyond the initial brief to drive organic, word-of-mouth brand awareness across social channels." },
+              { num: "1.", title: "Auto-Select UX Mechanics & Form Entry", desc: "Transitioned from manual 'Next' button pagination to an auto-select mechanism. Selecting an answer immediately advances to the next question, reducing user drop-off. The final screen includes a participant details form for campaign lucky draw incentives." },
+              { num: "2.", title: "Rapid Illustration Turnaround (<24h with Revi)", desc: "Proactively solved an illustration direction roadblock by recommending and onboarding freelance illustrator Revi. Imported all ~25 game vector illustrations directly into Figma for stakeholder review, earning unanimous executive praise." },
+              { num: "3.", title: "Unprompted IG Story Shareable Assets (16:9 Ratio)", desc: "Anticipated that the client had not prepared result-sharing assets. Proactively designed custom 16:9 Instagram Story cards aligned with PM specifications, enabling users to share their Singlish persona outcomes on social media." },
             ].map(({ num, title, desc }) => (
               <div key={title} className="flex gap-5 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
                 <span className="font-sans text-[10px] font-semibold flex-shrink-0 mt-0.5" style={{ color: C }}>{num}</span>
@@ -412,7 +416,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
         <div>
           <SectionTag num="05" label="Design Process & Workflow Pipeline" />
           <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-8" style={{ color: `${N}99` }}>
-            [METHODOLOGY: RAPID SPRINT & GAMIFIED UX] · [TECH STACK: AEM & GA TRACKING]
+            [METHODOLOGY: RAPID SPRINT & GAMIFIED UX] · [TECH STACK: AEM DATA CAPTURE & SVG SPECS]
           </p>
 
           <div className="relative">
@@ -420,27 +424,27 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
             <div className="space-y-6">
               {[
                 {
-                  phase: "PHASE 01", tag: "ALIGNMENT",
-                  title: "Alignment & Asset Direction",
+                  phase: "PHASE 01", tag: "ALIGNMENT & COLOR PIVOT",
+                  title: "Brand Alignment & Initial Concept Pivot",
                   items: [
-                    { title: "Brand & Visual Guidelines Parsing", desc: "Analyzed GEGI Singapore's corporate branding rules and illustration style to select appropriate visual assets and primary color themes." },
-                    { title: "Illustration Collaboration", desc: "Coordinated with a graphic illustrator to produce custom SVG character assets tailored specifically for the 4 financial persona outcomes." },
+                    { title: "Graphic Designer Collaboration & Color Pivot", desc: "Joined internal kick-off after GD created initial red UI draft. Following client review, pivoted theme to GEGI's light cream palette for visual continuity with past campaign games." },
+                    { title: "Figma Desktop & Mobile Build", desc: "Built complete desktop and mobile responsive UI frames in Figma based on the client's calculation spreadsheet and 4 persona outcome tiers." },
                   ],
                 },
                 {
-                  phase: "PHASE 02", tag: "PROTOTYPING",
-                  title: "Interaction Design & Prototyping",
+                  phase: "PHASE 02", tag: "ILLUSTRATION & UX EVOLUTION",
+                  title: "Illustration Sourcing & Navigation Optimization",
                   items: [
-                    { title: "Continuous Scroll Layout", desc: "Built responsive mobile and desktop layouts optimized for vertical scroll interactions, balancing content density with visual breathing space." },
-                    { title: "Interactive Prototyping", desc: "Created rapid Figma prototypes to demonstrate scroll transitions and result-calculation states for Singapore executive approval." },
+                    { title: "24-Hour Freelance Illustrator Sprint (~25 Assets)", desc: "Initiated outreach to illustrator Revi when in-house assets needed pivot. Integrated ~25 game character and option vectors into Figma within 24 hours for internal & executive sign-off." },
+                    { title: "Auto-Select Navigation Flow", desc: "Optimized questionnaire UX from manual 'Next' button clicks to auto-select triggers, preserving friction-free momentum until the final result view." },
                   ],
                 },
                 {
-                  phase: "PHASE 03", tag: "LOCALIZATION",
-                  title: "Localization & Analytics Tagging",
+                  phase: "PHASE 03", tag: "HANDOFF & INITIATIVES",
+                  title: "Developer SVG Engineering & AEM Data Capture",
                   items: [
-                    { title: "Cultural Copywriting Refinement", desc: "Incorporated feedback from the Singapore client team to align localized terms (such as validating the usage of \"Pom Pi Pi\" for the high-readiness tier)." },
-                    { title: "Analytics & Developer Handoff", desc: "Prepared production-ready SVG assets and mapped Google Analytics event triggers across every questionnaire selection point for seamless AEM developer implementation." },
+                    { title: "Single-Screen Viewport SVG Specs & AEM Lead Form", desc: "Engineered pixel-precise SVG state assets (default, hover, selected) sized to guarantee single-screen non-scrollable layouts, while aligning user data capture form specs for AEM backend data collection." },
+                    { title: "Proactive 16:9 IG Story Assets", desc: "Self-initiated 16:9 Instagram Story shareable result graphics, confirming requirements with PM to drive organic social sharing." },
                   ],
                 },
               ].map((phase, pi) => (
@@ -495,10 +499,10 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
           <SectionTag num="06" label="Business Impact & Key Deliverables" />
           <div className="grid lg:grid-cols-2 gap-4">
             {[
-              { Icon: CheckCircle2, title: "Won First Singapore Market Tender", desc: "Successful rapid-sprint delivery led to the acquisition of GEGI's inaugural interactive campaign tender in Singapore, receiving direct commendations from regional management." },
-              { Icon: Zap, title: "First-Round Live Deployment", desc: "Completed design, stakeholder review, developer asset preparation, and AEM integration within the 2-week window." },
-              { Icon: Share2, title: "Organic Shareability", desc: "The unprompted Instagram Story sharing design successfully expanded campaign reach beyond paid channels into user-generated social loops." },
-              { Icon: Globe, title: "Foundation for Regional Gamification", desc: "Established a reusable interactive campaign template for GEGI's future user acquisition initiatives across regional markets." },
+              { Icon: CheckCircle2, title: "Executive & Stakeholder Praise", desc: "Seamless integration of Revi's ~25 game illustrations, cream brand styling, and auto-select UX won high praise from management and client stakeholders." },
+              { Icon: Zap, title: "First-Round Live Deployment", desc: "Completed design iterations, developer asset prep, and AEM integration within the strict 2-week deadline." },
+              { Icon: Share2, title: "Organic Social Virality", desc: "The self-initiated 16:9 Instagram Story sharing cards enabled participants to post results directly, extending campaign reach." },
+              { Icon: Globe, title: "Reusable Regional Framework", desc: "Established a reusable interactive campaign template and AEM data-capture pattern for GEGI's future regional user acquisition." },
             ].map(({ Icon, title, desc }) => (
               <div key={title} className="flex gap-4 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
                 <div className="w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5" style={{ backgroundColor: `${C}08`, border: `1px solid ${C}20`, borderRadius: "4px" }}>
@@ -529,16 +533,16 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
               Shipped in <span className="font-bold text-[#DB3E8C]">2 weeks</span> with a <span className="font-bold text-[#DB3E8C]">92% completion rate</span> across Great Eastern's Singapore campaign launch.
             </h3>
             <p className="font-sans text-xs text-white/70 leading-relaxed max-w-2xl">
-              By replacing dry multi-page forms with a Singlish-localized, 7-question continuous scroll matrix, we eliminated drop-off friction and established a benchmark for interactive campaign execution.
+              By pivoting to brand-aligned cream visuals, implementing auto-select UX, delivering ~25 game illustrations with illustrator Revi in &lt;24h, and preparing precise SVG state assets + proactive 16:9 IG Story shareables, we eliminated user friction and maximized engagement.
             </p>
             <div className="grid md:grid-cols-3 gap-6 pt-6 border-t border-white/10 text-xs">
               <div className="bg-white/5 p-4 rounded-lg border border-white/5">
                 <span className="block font-bold text-xl text-white mb-1">2-Week Sprint</span>
-                <p className="text-white/60">Rapid delivery from brief to live AEM production rollout.</p>
+                <p className="text-white/60">Rapid turnaround from client feedback pivot to live AEM rollout.</p>
               </div>
               <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-                <span className="block font-bold text-xl text-white mb-1">7-Q Matrix</span>
-                <p className="text-white/60">Zero-button scroll interaction eliminating user form fatigue.</p>
+                <span className="block font-bold text-xl text-white mb-1">Auto-Select UX</span>
+                <p className="text-white/60">Zero-button question transitions reducing form drop-off.</p>
               </div>
               <div className="bg-[#DB3E8C]/20 p-4 rounded-lg border border-[#DB3E8C]/40">
                 <span className="block font-bold text-xl text-[#DB3E8C] mb-1">92% Completion</span>
@@ -555,7 +559,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
                 </span>
               </div>
               <p className="text-xs font-sans leading-relaxed text-white/90 italic">
-                "This project shows I can own end-to-end design under a hard 2-week deadline—from stakeholder alignment to shipped AEM product—without sacrificing system logic or handoff quality. If you need someone who can move fast and leave clean specs behind, this is what that looks like."
+                "This project demonstrates my ability to lead product design decisions, adapt swiftly to client feedback (red to cream palette pivot), solve execution bottlenecks under pressure (onboarding illustrator Revi to deliver ~25 game assets in under 24 hours), optimize UX mechanics (auto-select flow), and hand off developer-ready SVG state specs alongside AEM data capture forms."
               </p>
             </div>
           </div>
