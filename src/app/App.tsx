@@ -2073,7 +2073,7 @@ function Footer() {
 
 // ─── APP ──────────────────────────────────────────────────────────────────────
 export default function App() {
-  const [currentView, setCurrentView] = useState<"home" | "about" | "sunway-case" | "gegi-case" | "tng-case" | "archery-case" | "election-case" | "anlene-case" | "bijakwang-case">("home")
+  const [currentView, setCurrentView] = useState<"home" | "about" | "sunway-case" | "gegi-case" | "tng-case" | "archery-case" | "election-case" | "anlene-case" | "bijakwang-case" | "myarchery-case">("home")
   const activeSection = useScrollSpy(["home", "work", "process", "archive", "contact"])
 
   if (currentView === "about") {
