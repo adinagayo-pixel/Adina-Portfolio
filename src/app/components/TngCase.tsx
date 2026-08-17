@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import {
   ArrowLeft, ChevronRight, CheckCircle2, Globe,
-  FileCode2, Shield, Zap, RefreshCw, GitBranch, Users, MessageSquare
+  FileCode2, Shield, Zap, RefreshCw, GitBranch, Users, MessageSquare, Sparkles
 } from "lucide-react"
 
 const N = "#19244E"
@@ -570,9 +570,16 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
                     </span>
                   </div>
                   {/* Content */}
-                  <div className="px-5 py-4 flex-1" style={{ backgroundColor: W }}>
-                    <p className="text-sm font-semibold mb-1.5" style={{ color: N }}>{ver.label}</p>
-                    <p className="text-[11px] leading-relaxed" style={{ color: BODY, lineHeight: 1.65 }}>{ver.desc}</p>
+                  <div className="px-5 py-4 flex-1 flex flex-col justify-between" style={{ backgroundColor: W }}>
+                    <div>
+                      <p className="text-sm font-semibold mb-1.5" style={{ color: N }}>{ver.label}</p>
+                      <p className="text-[11px] leading-relaxed" style={{ color: BODY, lineHeight: 1.65 }}>{ver.desc}</p>
+                    </div>
+                    {ver.v === "V3" && (
+                      <p className="text-[10px] italic mt-3 p-2 rounded bg-amber-50 border border-amber-200 text-amber-900 leading-tight font-sans">
+                        "The trickiest part wasn't the happy path — it was designing for the edge cases TNG's compliance team kept surfacing one by one."
+                      </p>
+                    )}
                   </div>
                   {/* Arrow connector */}
                   {i < 4 && (
@@ -608,7 +615,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
                   title: "API Discovery & Flow Reconstruction",
                   items: [
                     { title: "TNG Mini Program Parsing", desc: "Deconstructed TNG's mini program API documentation to identify accessible data fields (base data vs. eKYC data) and payment modal behaviors." },
-                    { title: "Prototyping Without Official UI Kit", desc: "Built an initial custom UI Kit based on TNG's live app build to secure first-round executive alignment prior to receiving official design assets." },
+                    { title: "Prototyping Without Official UI Kit", desc: "Built an initial custom UI Kit based on TNG's live app build to secure first-round executive alignment prior to receiving official design assets. There was a real risk this reverse-engineered kit wouldn't match TNG's actual system once it arrived — but greenlighting the concept early meant we didn't lose a single week of the 3-month timeline waiting for assets." },
                   ],
                 },
                 {
@@ -723,6 +730,19 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
                 <span className="block font-bold text-xl text-[#DB3E8C] mb-1">Zero-Friction SSO</span>
                 <p className="text-white/80 font-medium">Auto-filled eKYC data eliminating typing errors.</p>
               </div>
+            </div>
+
+            {/* What I Learned */}
+            <div className="mt-6 p-5 rounded-xl bg-white/5 border border-white/10 text-white space-y-2">
+              <div className="flex items-center gap-2">
+                <Sparkles size={14} className="text-[#22c55e]" />
+                <span className="text-[9px] font-bold tracking-[0.2em] uppercase text-[#22c55e]">
+                  WHAT I LEARNED
+                </span>
+              </div>
+              <p className="text-xs font-sans leading-relaxed text-white/90 italic">
+                "Working inside TNG's ecosystem taught me that enterprise design isn't about creative freedom — it's about earning trust fast enough that your team lets you make decisions without them re-checking every pixel. By V5, TNG's design leads stopped asking for revision rounds on layout and only reviewed copy — that shift in trust was the real milestone of this project."
+              </p>
             </div>
 
             {/* Why This Matters to a Hiring Manager */}
