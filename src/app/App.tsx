@@ -37,6 +37,7 @@ import ElectionCase from "./components/ElectionCase"
 import AnleneCase from "./components/AnleneCase"
 import BijakWangCase from "./components/BijakWangCase"
 import MyArcheryCase from "./components/MyArcheryCase"
+import BackofficeCase from "./components/BackofficeCase"
 import AboutMe from "./components/AboutMe"
 
 // ─── Design tokens ────────────────────────────────────────────────────────────
@@ -164,6 +165,20 @@ const FEATURED = [
       { src: projectThumb4, label: "01 · SCORING KEYPAD" },
       { src: projectThumb2, label: "02 · ADMIN DASHBOARD" },
       { src: projectThumb1, label: "03 · LIVE SCOREBOARD" },
+    ],
+  },
+  {
+    num: "08", name: "Multi-Tenant Enterprise Backoffice", client: "Regional SuperApps & FinTech",
+    location: "SG/MY/ID", year: "2025", tags: ["White-Label Engine", "Design System Tokens", "Data Analytics"],
+    role: "Solo Product Designer & System Logic Architect",
+    headline: "Scaling B2B white-label operations and real-time analytical dashboards under lean constraints with a 1–3 hour deployment engine.",
+    metrics: [{ val: "1–3h", sub: "Tenant Setup" }, { val: "Dual", sub: "Track Delivery" }, { val: "0", sub: "BE Query Timeouts" }],
+    projectId: "backoffice",
+    thumb: projectThumb5,
+    screens: [
+      { src: projectThumb5, label: "01 · DUAL-TRACK ARCHITECTURE" },
+      { src: projectThumb2, label: "02 · MULTI-TENANT DASHBOARD" },
+      { src: projectThumb1, label: "03 · ISOLATED FILTER ENGINE" },
     ],
   },
 ]
@@ -2073,7 +2088,7 @@ function Footer() {
 
 // ─── APP ──────────────────────────────────────────────────────────────────────
 export default function App() {
-  const [currentView, setCurrentView] = useState<"home" | "about" | "sunway-case" | "gegi-case" | "tng-case" | "archery-case" | "election-case" | "anlene-case" | "bijakwang-case" | "myarchery-case">("home")
+  const [currentView, setCurrentView] = useState<"home" | "about" | "sunway-case" | "gegi-case" | "tng-case" | "archery-case" | "election-case" | "anlene-case" | "bijakwang-case" | "myarchery-case" | "backoffice-case">("home")
   const activeSection = useScrollSpy(["home", "work", "process", "archive", "contact"])
 
   if (currentView === "about") {
@@ -2084,11 +2099,21 @@ export default function App() {
     )
   }
 
+  if (currentView === "backoffice-case") {
+    return (
+      <BackofficeCase
+        onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
+        onNext={() => { setCurrentView("gegi-case"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { setCurrentView("myarchery-case"); window.scrollTo({ top: 0 }) }}
+      />
+    )
+  }
+
   if (currentView === "myarchery-case") {
     return (
       <MyArcheryCase
         onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
-        onNext={() => { setCurrentView("gegi-case"); window.scrollTo({ top: 0 }) }}
+        onNext={() => { setCurrentView("backoffice-case"); window.scrollTo({ top: 0 }) }}
         onPrev={() => { setCurrentView("bijakwang-case"); window.scrollTo({ top: 0 }) }}
       />
     )
@@ -2144,7 +2169,7 @@ export default function App() {
       <GegiCase
         onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
         onNext={() => { setCurrentView("tng-case"); window.scrollTo({ top: 0 }) }}
-        onPrev={() => { setCurrentView("myarchery-case"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { setCurrentView("backoffice-case"); window.scrollTo({ top: 0 }) }}
       />
     )
   }
@@ -2168,6 +2193,7 @@ export default function App() {
         if (id === "anlene") setCurrentView("anlene-case")
         if (id === "bijakwang") setCurrentView("bijakwang-case")
         if (id === "myarchery") setCurrentView("myarchery-case")
+        if (id === "backoffice") setCurrentView("backoffice-case")
       }} />
       <WorkflowSection />
       <ProjectArchiveSection />
