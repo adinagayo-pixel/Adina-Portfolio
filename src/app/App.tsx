@@ -438,15 +438,15 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
           className="flex w-[200%]"
         >
           {/* ── PANEL A: AT WORK (Left 65%: Bold Upper Title + CTAs, Right 35%: Avatar + Nav + Bio) ── */}
-          <div className="w-1/2 grid lg:grid-cols-12 gap-8 lg:gap-12 items-start px-8 lg:px-20 pt-10 pb-16 lg:py-16 flex-shrink-0">
+          <div className="w-1/2 grid lg:grid-cols-12 gap-8 lg:gap-12 items-start px-4 sm:px-8 lg:px-20 pt-8 pb-16 lg:py-16 flex-shrink-0">
             {/* Left 7 Cols: Massive Headline & Compact Button */}
             <div className="lg:col-span-7 flex flex-col">
-              <p className="font-sans text-[10px] font-bold tracking-[0.25em] text-[#DB3E8C] uppercase mb-4">
+              <p className="font-sans text-[9px] sm:text-[10px] font-bold tracking-[0.2em] sm:tracking-[0.25em] text-[#DB3E8C] uppercase mb-3 sm:mb-4">
                 Product Designer · System Logic Architect
               </p>
               <h1
-                className="font-display font-semibold leading-[0.88] tracking-tight uppercase mb-7"
-                style={{ fontSize: "clamp(3.8rem, 7.5vw, 8rem)", color: N }}
+                className="font-display font-semibold leading-[0.92] sm:leading-[0.88] tracking-tight uppercase mb-6 sm:mb-7"
+                style={{ fontSize: "clamp(2.2rem, 6.5vw, 8rem)", color: N }}
               >
                 ENTERPRISE<br />
                 DESIGN.<br />
@@ -455,10 +455,10 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
               </h1>
 
               {/* Compact Button */}
-              <div className="flex items-center gap-3.5">
+              <div className="flex items-center gap-3.5 mb-6 lg:mb-0">
                 <button
                   onClick={() => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })}
-                  className="px-6 py-3.5 text-xs font-bold tracking-wider uppercase text-white transition-all duration-150 hover:opacity-90 shadow-sm flex items-center gap-2 cursor-pointer"
+                  className="px-5 sm:px-6 py-3 sm:py-3.5 text-xs font-bold tracking-wider uppercase text-white transition-all duration-150 hover:opacity-90 shadow-sm flex items-center gap-2 cursor-pointer"
                   style={{ backgroundColor: N, borderRadius: "6px" }}
                 >
                   Selected Work <ArrowRight size={13} />
@@ -468,9 +468,9 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
 
             {/* Right 5 Cols: Photo Avatar, Quick Nav & Bio */}
             <div className="lg:col-span-5 flex flex-col gap-6 pt-2">
-              <div className="flex items-start gap-6">
+              <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
                 {/* Photo Avatar Card with Pastel Tint */}
-                <div className="relative w-[190px] sm:w-[220px] aspect-square rounded-2xl overflow-hidden bg-[#E2E8F0] shadow-lg border border-[#19244E]/10 flex-shrink-0 group">
+                <div className="relative w-[160px] sm:w-[220px] aspect-square rounded-2xl overflow-hidden bg-[#E2E8F0] shadow-lg border border-[#19244E]/10 flex-shrink-0 group">
                   <ImageWithFallback
                     src={adinaPhotoAbout}
                     alt="Adina Fayza Gayo - At Work"
@@ -478,7 +478,7 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
                   />
                   {/* Handwritten / Script Note Accent with Auto Ticker (EN, ID, KR) */}
                   <div
-                    className="absolute bottom-2 right-2 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-md shadow-md border border-[#19244E]/10 overflow-hidden"
+                    className="absolute bottom-2 right-2 bg-white/95 backdrop-blur-sm px-2.5 sm:px-3 py-1 rounded-md shadow-md border border-[#19244E]/10 overflow-hidden"
                     style={{ transform: "rotate(-3deg)" }}
                   >
                     <AnimatePresence mode="wait">
@@ -497,7 +497,7 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
                 </div>
 
                 {/* Live Status / Current Scope Column */}
-                <div className="flex flex-col gap-3 text-xs font-sans tracking-wide text-[#19244E] pt-0.5 max-w-[220px]">
+                <div className="flex flex-col gap-2.5 sm:gap-3 text-xs font-sans tracking-wide text-[#19244E] pt-0.5 max-w-full sm:max-w-[220px]">
                   <div>
                     <span className="text-[9px] font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
                       CURRENTLY
@@ -546,15 +546,15 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
           </div>
 
           {/* ── PANEL B: IN LIFE (Left 65%: Bold Upper Title + CTAs, Right 35%: Avatar + Nav + Bio) ── */}
-          <div className="w-1/2 grid lg:grid-cols-12 gap-8 lg:gap-12 items-start px-8 lg:px-20 pt-10 pb-16 lg:py-16 flex-shrink-0">
+          <div className="w-1/2 grid lg:grid-cols-12 gap-8 lg:gap-12 items-start px-4 sm:px-8 lg:px-20 pt-8 pb-16 lg:py-16 flex-shrink-0">
             {/* Left 7 Cols: Massive Headline & Compact Buttons */}
             <div className="lg:col-span-7 flex flex-col">
-              <p className="font-sans text-[10px] font-bold tracking-[0.25em] text-[#DB3E8C] uppercase mb-4">
+              <p className="font-sans text-[9px] sm:text-[10px] font-bold tracking-[0.2em] sm:tracking-[0.25em] text-[#DB3E8C] uppercase mb-3 sm:mb-4">
                 Off The Clock · Real Human
               </p>
               <h1
-                className="font-display font-semibold leading-[0.88] tracking-tight uppercase mb-7"
-                style={{ fontSize: "clamp(3.8rem, 7.5vw, 8rem)", color: N }}
+                className="font-display font-semibold leading-[0.92] sm:leading-[0.88] tracking-tight uppercase mb-6 sm:mb-7"
+                style={{ fontSize: "clamp(2.2rem, 6.5vw, 8rem)", color: N }}
               >
                 PLOT<br />
                 TWISTS.<br />
@@ -563,10 +563,10 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
               </h1>
 
               {/* Compact Button */}
-              <div className="flex items-center gap-3.5 flex-wrap">
+              <div className="flex items-center gap-3.5 flex-wrap mb-6 lg:mb-0">
                 <a
                   href="mailto:adinagayo@gmail.com"
-                  className="px-6 py-3.5 text-xs font-bold tracking-wider uppercase text-white transition-all duration-150 hover:opacity-90 shadow-sm flex items-center gap-2"
+                  className="px-5 sm:px-6 py-3 sm:py-3.5 text-xs font-bold tracking-wider uppercase text-white transition-all duration-150 hover:opacity-90 shadow-sm flex items-center gap-2"
                   style={{ backgroundColor: C, borderRadius: "6px" }}
                 >
                   Let's grab coffee <ArrowUpRight size={13} />
@@ -576,9 +576,9 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
 
             {/* Right 5 Cols: Photo Avatar, Quick Nav & Bio */}
             <div className="lg:col-span-5 flex flex-col gap-6 pt-2">
-              <div className="flex items-start gap-6">
+              <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
                 {/* Photo Avatar Card with Pastel Tint */}
-                <div className="relative w-[190px] sm:w-[220px] aspect-square rounded-2xl overflow-hidden bg-[#FCE7F3] shadow-lg border border-[#19244E]/10 flex-shrink-0 group">
+                <div className="relative w-[160px] sm:w-[220px] aspect-square rounded-2xl overflow-hidden bg-[#FCE7F3] shadow-lg border border-[#19244E]/10 flex-shrink-0 group">
                   <ImageWithFallback
                     src={adinaPhotoLife}
                     alt="Adina Fayza Gayo - In Life"
@@ -596,7 +596,7 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
                 </div>
 
                 {/* Live Status / Personal Focus Column */}
-                <div className="flex flex-col gap-2.5 text-xs font-sans tracking-wide text-[#19244E] pt-0.5 max-w-[240px]">
+                <div className="flex flex-col gap-2.5 text-xs font-sans tracking-wide text-[#19244E] pt-0.5 max-w-full sm:max-w-[240px]">
                   <div>
                     <span className="text-[9px] font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
                       ON ROTATION
@@ -1088,19 +1088,19 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
     <section id="work" className="relative transition-all duration-300" style={{ backgroundColor: "#19244E" }}>
       {/* Header */}
       <div
-        className="px-8 lg:px-16 py-10 flex items-center gap-6"
+        className="px-4 sm:px-8 lg:px-16 py-8 sm:py-10 flex items-center gap-6"
         style={{ borderBottom: `1px solid rgba(255, 255, 255, 0.08)` }}
       >
         <span className="font-sans text-[10px] font-semibold tracking-[0.2em] text-white/60">SELECTED WORK</span>
         <div className="flex-1 h-px bg-white/10" />
-        <span className="font-sans text-[10px] text-white/60 font-semibold tracking-[0.15em]">ENTERPRISE · B2B · REGIONAL</span>
+        <span className="font-sans text-[9px] sm:text-[10px] text-white/60 font-semibold tracking-[0.15em]">ENTERPRISE · B2B · REGIONAL</span>
       </div>
 
       {/* Section intro */}
-      <div className="px-8 lg:px-16 py-16 lg:py-20" style={{ borderBottom: `1px solid rgba(255, 255, 255, 0.08)` }}>
+      <div className="px-4 sm:px-8 lg:px-16 py-10 sm:py-16 lg:py-20" style={{ borderBottom: `1px solid rgba(255, 255, 255, 0.08)` }}>
         <h2
           className="font-display font-normal leading-tight text-white"
-          style={{ fontSize: "clamp(2.4rem, 4.5vw, 4rem)", letterSpacing: "-0.02em", maxWidth: "900px" }}
+          style={{ fontSize: "clamp(2rem, 4.5vw, 4rem)", letterSpacing: "-0.02em", maxWidth: "900px" }}
         >
           Projects that <br className="lg:hidden" />
           define{" "}
@@ -1109,7 +1109,7 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
       </div>
 
       {/* Showcase container */}
-      <div className="px-8 lg:px-16">
+      <div className="px-4 sm:px-8 lg:px-16">
         {/* Desktop Showcase */}
         <div className="hidden lg:grid lg:grid-cols-[300px_1fr_320px] gap-10 py-16 min-h-[580px]">
           {/* Left Column: Project Selector */}
@@ -1304,7 +1304,7 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
         </div>
 
         {/* Mobile Showcase */}
-        <div className="block lg:hidden space-y-12 py-12">
+        <div className="block lg:hidden space-y-8 sm:space-y-12 py-8 sm:py-12">
           {FEATURED.map((project) => (
             <div
               key={project.projectId}
@@ -1313,32 +1313,26 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
               role="button"
               tabIndex={0}
               aria-label={`Open case study: ${project.name}`}
-              className="group relative rounded-2xl bg-[#111936] border border-white/5 p-5 cursor-pointer shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C]"
+              className="group relative rounded-2xl bg-[#111936] border border-white/5 p-4 sm:p-5 cursor-pointer shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C]"
             >
               {/* Figma frame label */}
-              <div className="flex justify-between items-center mb-4">
+              <div className="flex justify-between items-center mb-3 sm:mb-4">
                 <span className="font-sans text-[8px] text-white/50 tracking-wider">
-                  # FRAME: {project.projectId.toUpperCase()} · Drag to shuffle or click to expand screens
+                  # {project.num} · {project.location} · {project.year}
                 </span>
-                <span className="font-sans text-[8px] text-white/40 tracking-wider">
-                  {project.num}
+                <span className="font-sans text-[8px] text-[#DB3E8C] font-bold tracking-wider uppercase">
+                  View Case ↗
                 </span>
               </div>
 
-              <div className="relative aspect-[16/11] rounded-xl border border-white/10 bg-[#1c2446] overflow-hidden mb-4 p-2 flex items-center justify-center">
+              <div className="relative aspect-[16/10] rounded-xl border border-white/10 bg-[#1c2446] overflow-hidden mb-4 p-1.5 flex items-center justify-center">
                 <div className="relative w-full h-full rounded-lg overflow-hidden">
-                  {project.screens ? (
-                    <StackedFanOutDeck screens={project.screens} />
-                  ) : (
-                    <>
-                      <ImageWithFallback
-                        src={project.thumb}
-                        alt={project.name}
-                        className="w-full h-full object-cover object-center rounded-lg"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#19244E]/30" />
-                    </>
-                  )}
+                  <ImageWithFallback
+                    src={project.thumb}
+                    alt={project.name}
+                    className="w-full h-full object-cover object-top rounded-lg group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#19244E]/40" />
                 </div>
               </div>
 
@@ -1347,7 +1341,7 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
                 <p className="font-sans text-[9px] font-semibold text-white/40 uppercase mb-0.5">
                   {project.client}
                 </p>
-                <h3 className="font-display font-semibold text-white text-lg mb-2">
+                <h3 className="font-display font-semibold text-white text-base sm:text-lg mb-2">
                   {project.name}
                 </h3>
                 <p className="text-xs leading-relaxed text-white/70 mb-4">
@@ -1359,7 +1353,7 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
                   {project.metrics.map((m) => (
                     <div key={m.sub} className="text-center">
                       <span className="font-display text-sm font-semibold block text-white" style={{ color: C }}>{m.val}</span>
-                      <span className="font-sans text-[9px] text-white/40 uppercase tracking-wider">{m.sub}</span>
+                      <span className="font-sans text-[8px] sm:text-[9px] text-white/40 uppercase tracking-wider">{m.sub}</span>
                     </div>
                   ))}
                 </div>
@@ -1438,14 +1432,14 @@ function WorkflowSection() {
     <section id="process" style={{ backgroundColor: N, borderTop: `1px solid rgba(255,255,255,0.06)` }}>
       {/* Header */}
       <div
-        className="px-8 lg:px-16 py-8 flex items-center gap-6"
+        className="px-4 sm:px-8 lg:px-16 py-6 sm:py-8 flex items-center gap-6"
         style={{ borderBottom: `1px solid rgba(255,255,255,0.06)` }}
       >
         <span className="font-sans text-[10px] font-semibold tracking-widest uppercase" style={{ color: "rgba(255,255,255,0.3)" }}>
           SYSTEM LOGIC
         </span>
         <div className="flex-1 h-px" style={{ backgroundColor: "rgba(255,255,255,0.06)" }} />
-        <span className="font-sans text-[10px] font-semibold tracking-widest uppercase" style={{ color: "rgba(255,255,255,0.3)" }}>
+        <span className="font-sans text-[9px] sm:text-[10px] font-semibold tracking-widest uppercase" style={{ color: "rgba(255,255,255,0.3)" }}>
           3-PHASE ENGINE
         </span>
       </div>
@@ -1453,15 +1447,15 @@ function WorkflowSection() {
       {/* Section headline — editorial inline emoji style */}
       <div
         ref={ref}
-        className="px-8 lg:px-16 py-16 lg:py-24 flex flex-col items-center text-center"
+        className="px-4 sm:px-8 lg:px-16 py-12 sm:py-16 lg:py-24 flex flex-col items-center text-center"
         style={{ borderBottom: `1px solid rgba(255,255,255,0.06)` }}
       >
-        <p className="font-sans text-[10px] font-semibold tracking-[0.2em] uppercase mb-10" style={{ color: "rgba(255,255,255,0.3)" }}>
+        <p className="font-sans text-[10px] font-semibold tracking-[0.2em] uppercase mb-6 sm:mb-10" style={{ color: "rgba(255,255,255,0.3)" }}>
           How I work
         </p>
         <h2
           className="font-display font-light leading-[1.4] text-white max-w-4xl text-center"
-          style={{ fontSize: "clamp(2.2rem, 4.5vw, 4.2rem)", letterSpacing: "-0.025em" }}
+          style={{ fontSize: "clamp(1.75rem, 4.5vw, 4.2rem)", letterSpacing: "-0.025em" }}
         >
           <motion.span
             initial="hidden"
@@ -1482,7 +1476,7 @@ function WorkflowSection() {
                   hidden: { y: 22, opacity: 0 },
                   visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
                 }}
-                className="inline-block mr-2"
+                className="inline-block mr-1.5 sm:mr-2"
               >
                 {w}
               </motion.span>
@@ -1494,9 +1488,9 @@ function WorkflowSection() {
               }}
               animate={inView ? { scale: 1, opacity: 1, rotate: [0, -5, 5, 0] } : {}}
               transition={{ rotate: { repeat: Infinity, duration: 4, ease: "easeInOut" } }}
-              className="inline-block origin-center align-middle mx-1.5"
+              className="inline-block origin-center align-middle mx-1"
             >
-              <SketchSearchIcon />
+              <SketchSearchIcon className="w-8 h-8 sm:w-16 sm:h-16 lg:w-20 lg:h-20 inline-block text-[#F472B6]" />
             </motion.span>{" "}
             {["design", "the", "system", "logic", "with", "care,"].map((w, idx) => (
               <motion.span
@@ -1505,7 +1499,7 @@ function WorkflowSection() {
                   hidden: { y: 22, opacity: 0 },
                   visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
                 }}
-                className={`inline-block mr-2 ${idx >= 3 ? "font-normal not-italic text-[#DB3E8C]" : ""}`}
+                className={`inline-block mr-1.5 sm:mr-2 ${idx >= 3 ? "font-normal not-italic text-[#DB3E8C]" : ""}`}
               >
                 {w}
               </motion.span>
@@ -1517,9 +1511,9 @@ function WorkflowSection() {
               }}
               animate={inView ? { scale: 1, opacity: 1, y: [0, -4, 0] } : {}}
               transition={{ y: { repeat: Infinity, duration: 3.5, ease: "easeInOut" } }}
-              className="inline-block origin-center align-middle mx-1.5"
+              className="inline-block origin-center align-middle mx-1"
             >
-              <SketchTargetIcon />
+              <SketchTargetIcon className="w-8 h-8 sm:w-16 sm:h-16 lg:w-20 lg:h-20 inline-block text-[#F472B6]" />
             </motion.span>{" "}
             {["and", "hand", "off", "specs", "so", "clean"].map((w, idx) => (
               <motion.span
@@ -1528,7 +1522,7 @@ function WorkflowSection() {
                   hidden: { y: 22, opacity: 0 },
                   visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
                 }}
-                className="inline-block mr-2"
+                className="inline-block mr-1.5 sm:mr-2"
               >
                 {w}
               </motion.span>
@@ -1540,9 +1534,9 @@ function WorkflowSection() {
               }}
               animate={inView ? { scale: 1, opacity: 1, rotate: [0, 4, -4, 0] } : {}}
               transition={{ rotate: { repeat: Infinity, duration: 4.5, ease: "easeInOut" } }}
-              className="inline-block origin-center align-middle mx-1.5"
+              className="inline-block origin-center align-middle mx-1"
             >
-              <SketchClipboardIcon />
+              <SketchClipboardIcon className="w-8 h-8 sm:w-16 sm:h-16 lg:w-20 lg:h-20 inline-block text-[#F472B6]" />
             </motion.span>{" "}
             {["that", "engineers", "rarely", "have", "to", "ask", "follow-up", "questions."].map((w, idx) => (
               <motion.span
@@ -1551,7 +1545,7 @@ function WorkflowSection() {
                   hidden: { y: 22, opacity: 0 },
                   visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
                 }}
-                className="inline-block mr-2"
+                className="inline-block mr-1.5 sm:mr-2"
               >
                 {w}
               </motion.span>
@@ -1561,7 +1555,7 @@ function WorkflowSection() {
       </div>
 
       {/* Phase cards — 3-column grid */}
-      <div className="px-8 lg:px-16 py-10 lg:py-14 grid lg:grid-cols-3 gap-8">
+      <div className="px-4 sm:px-8 lg:px-16 py-8 sm:py-10 lg:py-14 grid lg:grid-cols-3 gap-6 sm:gap-8">
         {PHASES.map((phase, i) => {
           const Icon = phase.Icon
           return (
@@ -1570,33 +1564,33 @@ function WorkflowSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: i * 0.1, duration: 0.5 }}
-              className="bg-white/[0.02] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] rounded-2xl p-8 transition-all duration-300 flex flex-col justify-between min-h-[300px]"
+              className="bg-white/[0.02] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] rounded-2xl p-5 sm:p-8 transition-all duration-300 flex flex-col justify-between min-h-[260px] sm:min-h-[300px]"
             >
               <div>
-                <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center justify-between mb-4 sm:mb-6">
                   <span className="font-sans text-xs font-semibold tracking-widest text-[#DB3E8C]">
                     {phase.num}
                   </span>
                   <Icon size={16} className="text-white/40" />
                 </div>
-                <h3 className="text-lg font-medium text-white mb-1.5">{phase.phase}</h3>
-                <p className="font-sans text-[10px] tracking-widest text-white/40 uppercase mb-4">
+                <h3 className="text-base sm:text-lg font-medium text-white mb-1.5">{phase.phase}</h3>
+                <p className="font-sans text-[9px] sm:text-[10px] tracking-widest text-white/40 uppercase mb-3 sm:mb-4">
                   {phase.sub}
                 </p>
-                <p className="text-sm leading-relaxed text-white/60 mb-6 font-sans">
+                <p className="text-xs sm:text-sm leading-relaxed text-white/60 mb-5 sm:mb-6 font-sans">
                   {phase.desc}
                 </p>
               </div>
               
-              <div className="mt-auto pt-6 border-t border-white/5">
-                <p className="font-sans text-[9px] font-semibold tracking-widest uppercase text-white/25 mb-3">
+              <div className="mt-auto pt-4 sm:pt-6 border-t border-white/5">
+                <p className="font-sans text-[8px] sm:text-[9px] font-semibold tracking-widest uppercase text-white/25 mb-2.5">
                   Tools & Artifacts
                 </p>
                 <div className="flex flex-wrap gap-1.5">
                   {phase.tools.map((tool) => (
                     <span
                       key={tool}
-                      className="font-sans text-[9px] font-medium px-2.5 py-1 bg-white/5 text-white/50 border border-white/5 rounded"
+                      className="font-sans text-[8px] sm:text-[9px] font-medium px-2 sm:px-2.5 py-0.5 sm:py-1 bg-white/5 text-white/50 border border-white/5 rounded"
                     >
                       {tool}
                     </span>
@@ -1656,38 +1650,38 @@ function ProjectArchiveSection() {
       {/* Header */}
       <div
         ref={ref}
-        className="px-8 lg:px-16 py-10 flex items-center gap-6"
+        className="px-4 sm:px-8 lg:px-16 py-8 sm:py-10 flex items-center gap-6"
         style={{ borderBottom: `1px solid rgba(25, 36, 78, 0.05)` }}
       >
         <span className="font-sans text-[10px] font-semibold tracking-[0.2em] text-[#19244E]/60">CATALOG</span>
         <div className="flex-1 h-px" style={{ backgroundColor: "rgba(25, 36, 78, 0.05)" }} />
-        <span className="font-sans text-[10px] font-semibold tracking-[0.15em] text-[#19244E]/60">Additional Works & Shipped Systems</span>
+        <span className="font-sans text-[9px] sm:text-[10px] font-semibold tracking-[0.15em] text-[#19244E]/60">Additional Works & Shipped Systems</span>
       </div>
 
       {/* Count + filter row */}
       <div
-        className="px-8 lg:px-16 py-8 flex flex-col lg:flex-row lg:items-center gap-6 justify-between"
+        className="px-4 sm:px-8 lg:px-16 py-6 sm:py-8 flex flex-col lg:flex-row lg:items-center gap-4 sm:gap-6 justify-between"
         style={{ borderBottom: `1px solid rgba(25, 36, 78, 0.05)` }}
       >
         <div className="flex items-baseline gap-3">
           <span
-            className="font-display font-light text-5xl"
+            className="font-display font-light text-4xl sm:text-5xl"
             style={{ color: N, letterSpacing: "-0.03em", lineHeight: 1 }}
           >
             {filtered.length}
           </span>
-          <span className="font-sans text-[10px] font-semibold tracking-widest text-[#19244E]/60 uppercase">
+          <span className="font-sans text-[9px] sm:text-[10px] font-semibold tracking-widest text-[#19244E]/60 uppercase">
             of {PROJECTS.length} projects
           </span>
         </div>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1.5 sm:gap-2">
           {CATEGORIES.map((cat) => {
             const isActive = activeCat === cat.id
             return (
               <button
                 key={cat.id}
                 onClick={() => { setActiveCat(cat.id); setShowAll(false) }}
-                className="flex items-center gap-1.5 px-5 py-2.5 font-sans text-[10px] font-semibold tracking-widest uppercase transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] rounded-full cursor-pointer"
+                className="flex items-center gap-1.5 px-3.5 sm:px-5 py-2 sm:py-2.5 font-sans text-[9px] sm:text-[10px] font-semibold tracking-widest uppercase transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] rounded-full cursor-pointer"
                 style={{
                   backgroundColor: isActive ? N : W,
                   color: isActive ? W : `${N}DD`,
@@ -1711,8 +1705,8 @@ function ProjectArchiveSection() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
         >
-          <div className="px-8 lg:px-16 py-12">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="px-4 sm:px-8 lg:px-16 py-8 sm:py-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {visible.map((project) => {
                 const isHovered = hoveredId === project.id
                 const statusColor = STATUS_COLOR[project.status] ?? `${N}80`
@@ -1726,7 +1720,7 @@ function ProjectArchiveSection() {
                     onMouseEnter={() => setHoveredId(project.id)}
                     onMouseLeave={() => setHoveredId(null)}
                     onClick={() => setSelectedProject(project)}
-                    className="relative rounded-xl border p-6 flex flex-col justify-between h-[180px] overflow-hidden transition-all duration-300 hover:shadow-[0_14px_35px_rgba(25,36,78,0.3),0_0_20px_rgba(25,36,78,0.2)] hover:-translate-y-1 cursor-pointer select-none"
+                    className="relative rounded-xl border p-4 sm:p-6 flex flex-col justify-between min-h-[170px] sm:h-[180px] overflow-hidden transition-all duration-300 hover:shadow-[0_14px_35px_rgba(25,36,78,0.3),0_0_20px_rgba(25,36,78,0.2)] hover:-translate-y-1 cursor-pointer select-none"
                     style={{
                       borderColor: isHovered ? "rgba(41, 67, 138, 0.6)" : HAIR,
                       backgroundColor: isHovered ? "transparent" : "rgba(255, 255, 255, 0.65)",
@@ -1736,7 +1730,7 @@ function ProjectArchiveSection() {
                   >
                     {/* Background watermarked ID */}
                     <div 
-                      className="absolute right-6 top-3 font-sans text-7xl font-bold tracking-tight select-none transition-colors duration-200"
+                      className="absolute right-4 sm:right-6 top-2 sm:top-3 font-sans text-6xl sm:text-7xl font-bold tracking-tight select-none transition-colors duration-200"
                       style={{ color: isHovered ? "rgba(255,255,255,0.08)" : "rgba(25, 36, 78, 0.03)" }}
                     >
                       {String(project.id).padStart(2, "0")}
@@ -1745,13 +1739,13 @@ function ProjectArchiveSection() {
                     {/* Top Row: Client & Year */}
                     <div className="relative z-10 flex items-center justify-between">
                       <span 
-                        className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase transition-colors duration-200"
+                        className="font-sans text-[9px] sm:text-[10px] font-bold tracking-[0.2em] uppercase transition-colors duration-200"
                         style={{ color: isHovered ? "rgba(255,255,255,0.7)" : `${N}90` }}
                       >
                         {project.client.split(" × ")[0]}
                       </span>
                       <span 
-                        className="font-sans text-[10px] font-semibold transition-colors duration-200"
+                        className="font-sans text-[9px] sm:text-[10px] font-semibold transition-colors duration-200"
                         style={{ color: isHovered ? "rgba(255,255,255,0.5)" : `${N}50` }}
                       >
                         {project.year}
@@ -1759,9 +1753,9 @@ function ProjectArchiveSection() {
                     </div>
 
                     {/* Middle Row: Project Name */}
-                    <div className="relative z-10 my-3">
+                    <div className="relative z-10 my-2 sm:my-3">
                       <h4 
-                        className="font-display text-lg lg:text-xl font-semibold tracking-tight leading-snug transition-colors duration-200"
+                        className="font-display text-base sm:text-lg lg:text-xl font-semibold tracking-tight leading-snug transition-colors duration-200"
                         style={{ color: isHovered ? W : N }}
                       >
                         {project.name}
@@ -1770,11 +1764,11 @@ function ProjectArchiveSection() {
 
                     {/* Bottom Row: Category & Status */}
                     <div 
-                      className="relative z-10 flex items-center justify-between pt-3 border-t transition-colors duration-200"
+                      className="relative z-10 flex items-center justify-between pt-2.5 sm:pt-3 border-t transition-colors duration-200"
                       style={{ borderColor: isHovered ? "rgba(255,255,255,0.15)" : "rgba(25, 36, 78, 0.05)" }}
                     >
                       <span 
-                        className="font-sans text-[9px] font-bold tracking-wider uppercase truncate max-w-[160px] transition-colors duration-200"
+                        className="font-sans text-[8px] sm:text-[9px] font-bold tracking-wider uppercase truncate max-w-[130px] sm:max-w-[160px] transition-colors duration-200"
                         style={{ color: isHovered ? "rgba(255,255,255,0.8)" : `${N}70` }}
                       >
                         {project.category}
@@ -1786,7 +1780,7 @@ function ProjectArchiveSection() {
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={(e) => e.stopPropagation()}
-                          className="font-sans text-[9px] font-bold tracking-wider uppercase transition-colors duration-200 cursor-pointer hover:underline"
+                          className="font-sans text-[8px] sm:text-[9px] font-bold tracking-wider uppercase transition-colors duration-200 cursor-pointer hover:underline"
                           style={{ color: isHovered ? "rgba(255,255,255,0.7)" : `${N}50` }}
                         >
                           💬 Ask ↗
@@ -1803,7 +1797,7 @@ function ProjectArchiveSection() {
                             />
                           </span>
                           <span 
-                            className="font-sans text-[9px] font-bold tracking-widest uppercase transition-colors duration-200"
+                            className="font-sans text-[8px] sm:text-[9px] font-bold tracking-widest uppercase transition-colors duration-200"
                             style={{ color: isHovered ? W : statusColor }}
                           >
                             {project.status}
@@ -1820,7 +1814,7 @@ function ProjectArchiveSection() {
           {/* Show all / Show less toggle */}
           {hasMore && (
             <div
-              className="flex flex-col items-center gap-3 py-8 px-8"
+              className="flex flex-col items-center gap-3 py-6 sm:py-8 px-4 sm:px-8"
               style={{ borderTop: `1px solid rgba(25, 36, 78, 0.05)` }}
             >
               {!showAll && (
@@ -1879,12 +1873,12 @@ function ProjectArchiveSection() {
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="fixed bottom-0 left-0 right-0 z-[201] max-w-[540px] mx-auto rounded-t-2xl bg-white p-6 pb-12 shadow-[0_-12px_40px_rgba(25,36,78,0.2)] border-t border-gray-100 flex flex-col"
+              className="fixed bottom-0 left-0 right-0 z-[201] max-w-[540px] mx-auto rounded-t-2xl bg-white p-5 sm:p-6 pb-10 sm:pb-12 shadow-[0_-12px_40px_rgba(25,36,78,0.2)] border-t border-gray-100 flex flex-col max-h-[90vh] overflow-y-auto"
             >
               {/* Drag Handle */}
               <div 
                 onClick={() => setSelectedProject(null)}
-                className="w-12 h-1 bg-gray-200 rounded-full mx-auto mb-6 cursor-pointer hover:bg-gray-300 transition-colors"
+                className="w-12 h-1 bg-gray-200 rounded-full mx-auto mb-5 sm:mb-6 cursor-pointer hover:bg-gray-300 transition-colors shrink-0"
               />
 
               {/* Close header button */}
@@ -1893,7 +1887,7 @@ function ProjectArchiveSection() {
                   <span className="font-sans text-[9px] font-bold tracking-[0.25em] uppercase text-[#DB3E8C]">
                     [{String(selectedProject.id).padStart(2, "0")} // PROJECT DETAILS]
                   </span>
-                  <h3 className="font-display text-2xl lg:text-3xl font-bold mt-1 text-[#19244E]">
+                  <h3 className="font-display text-xl sm:text-2xl lg:text-3xl font-bold mt-1 text-[#19244E]">
                     {selectedProject.name}
                   </h3>
                 </div>
@@ -1906,7 +1900,7 @@ function ProjectArchiveSection() {
               </div>
 
               {/* Metadata Badges */}
-              <div className="grid grid-cols-2 gap-4 py-4 px-4 bg-[#F9FAFB] rounded-lg border border-gray-100 mb-6">
+              <div className="grid grid-cols-2 gap-3 sm:gap-4 py-4 px-4 bg-[#F9FAFB] rounded-lg border border-gray-100 mb-6">
                 {[
                   { label: "Client Partner", val: selectedProject.client },
                   { label: "Market / Territory", val: selectedProject.market },
@@ -1981,7 +1975,7 @@ function ContactSection() {
     >
       {/* Header */}
       <div
-        className="px-8 lg:px-16 py-8 flex items-center gap-6"
+        className="px-4 sm:px-8 lg:px-16 py-6 sm:py-8 flex items-center gap-6"
         style={{ borderBottom: `1px solid ${HAIR}` }}
       >
         <MonoTag>CONTACT</MonoTag>
@@ -1989,30 +1983,30 @@ function ContactSection() {
         <MonoTag>OPEN TO SENIOR IC & LEAD ROLES</MonoTag>
       </div>
 
-      <div ref={ref} className="grid lg:grid-cols-[1fr_1px_480px]" style={{ minHeight: "480px" }}>
+      <div ref={ref} className="grid lg:grid-cols-[1fr_1px_480px]" style={{ minHeight: "440px" }}>
         {/* Left: headline */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.55 }}
-          className="flex flex-col justify-center px-8 lg:px-16 py-16"
+          className="flex flex-col justify-center px-4 sm:px-8 lg:px-16 py-12 sm:py-16"
           style={{ borderRight: `1px solid ${HAIR}` }}
         >
           <MonoTag>REGION: SG / MY / REMOTE-FIRST</MonoTag>
           <h2
-            className="font-display font-light leading-[0.9] my-8"
-            style={{ fontSize: "clamp(2.8rem, 5.5vw, 5rem)", color: N, letterSpacing: "-0.025em" }}
+            className="font-display font-light leading-[0.95] sm:leading-[0.9] my-6 sm:my-8"
+            style={{ fontSize: "clamp(2.1rem, 5.5vw, 5rem)", color: N, letterSpacing: "-0.025em" }}
           >
             Ready to build<br />something<br />
             <em className="font-normal" style={{ color: C }}>significant?</em>
           </h2>
-          <p className="text-sm leading-relaxed mb-10 max-w-[380px]" style={{ color: `${N}EE`, lineHeight: 1.8 }}>
+          <p className="text-xs sm:text-sm leading-relaxed mb-8 sm:mb-10 max-w-[380px]" style={{ color: `${N}EE`, lineHeight: 1.8 }}>
             I'm open to senior IC and lead roles in Singapore, Malaysia, and remote-first regional opportunities. Happy to talk about your design challenges first.
           </p>
           <div className="flex flex-wrap gap-3">
             <a
               href="mailto:adinagayo@gmail.com"
-              className="flex items-center gap-2 px-6 py-3 text-sm font-medium text-white transition-opacity duration-150 hover:opacity-85"
+              className="flex items-center gap-2 px-5 sm:px-6 py-3 text-xs sm:text-sm font-medium text-white transition-opacity duration-150 hover:opacity-85"
               style={{ backgroundColor: N, borderRadius: "4px" }}
             >
               <Mail size={14} /> Say Hello <ArrowRight size={14} />
@@ -2021,7 +2015,7 @@ function ContactSection() {
               href="https://www.linkedin.com/in/adinafayzagayo/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-6 py-3 text-sm font-medium transition-colors duration-150 hover:bg-[#19244E]/5"
+              className="flex items-center gap-2 px-5 sm:px-6 py-3 text-xs sm:text-sm font-medium transition-colors duration-150 hover:bg-[#19244E]/5"
               style={{ border: `1px solid ${HAIR}`, color: N, borderRadius: "4px" }}
             >
               <ExternalLink size={14} /> LinkedIn
@@ -2048,7 +2042,7 @@ function ContactSection() {
           ].map((item, i) => (
             <div
               key={item.label}
-              className="px-10 py-8"
+              className="px-5 sm:px-10 py-6 sm:py-8"
               style={{ borderBottom: i < 3 ? `1px solid ${HAIR}` : "none" }}
             >
               <MonoTag>{item.label.toUpperCase()}</MonoTag>
@@ -2057,13 +2051,13 @@ function ContactSection() {
                   href={item.href}
                   target={item.label === "LinkedIn" ? "_blank" : undefined}
                   rel={item.label === "LinkedIn" ? "noopener noreferrer" : undefined}
-                  className="block text-base font-medium mt-2 mb-0.5 hover:opacity-75 transition-opacity"
+                  className="block text-sm sm:text-base font-medium mt-1.5 sm:mt-2 mb-0.5 hover:opacity-75 transition-opacity"
                   style={{ color: N }}
                 >
                   {item.value}
                 </a>
               ) : (
-                <p className="text-base font-medium mt-2 mb-0.5" style={{ color: N }}>{item.value}</p>
+                <p className="text-sm sm:text-base font-medium mt-1.5 sm:mt-2 mb-0.5" style={{ color: N }}>{item.value}</p>
               )}
               {item.sub && <p className="text-xs" style={{ color: `${N}AA` }}>{item.sub}</p>}
             </div>

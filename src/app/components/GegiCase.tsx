@@ -80,7 +80,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
 
       {/* Sticky nav */}
       <div
-        className="sticky top-0 z-50 flex items-center justify-between px-8 lg:px-16 py-4 transition-all duration-200"
+        className="sticky top-0 z-50 flex items-center justify-between px-4 sm:px-8 lg:px-16 py-4 transition-all duration-200"
         style={{
           backgroundColor: scrolled ? "rgba(255,255,255,0.95)" : W,
           backdropFilter: "blur(16px)",
@@ -98,7 +98,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
       </div>
 
       {/* Quick Jump Navigation Bar */}
-      <div className="sticky top-[53px] z-40 px-8 lg:px-16 py-2.5 bg-[#0e1635] text-white/70 border-b border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs font-sans">
+      <div className="sticky top-[53px] z-40 px-4 sm:px-8 lg:px-16 py-2.5 bg-[#0e1635] text-white/70 border-b border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs font-sans">
         <span className="font-bold tracking-widest text-[#DB3E8C] uppercase text-[9px]">
           QUICK JUMP
         </span>
@@ -119,7 +119,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
       </div>
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
-      <div className="px-8 lg:px-16 pt-16 pb-14" style={{ backgroundColor: W, borderBottom: `1px solid ${HAIR}` }}>
+      <div className="px-4 sm:px-8 lg:px-16 pt-12 sm:pt-16 pb-10 sm:pb-14" style={{ backgroundColor: W, borderBottom: `1px solid ${HAIR}` }}>
         <div className="max-w-4xl space-y-6">
           <div className="flex flex-wrap items-center gap-3">
             <MonoTag accent>CASE STUDY 02</MonoTag>
@@ -131,14 +131,14 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
 
           <h1
             className="font-display font-bold leading-[1.08] tracking-tight"
-            style={{ fontSize: "clamp(2.2rem, 4vw, 3.6rem)", color: N }}
+            style={{ fontSize: "clamp(2rem, 4vw, 3.6rem)", color: N }}
           >
             Gamified CI Evaluation & Interactive Acquisition Campaign
           </h1>
 
           <p
             className="font-display font-light leading-relaxed"
-            style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
+            style={{ fontSize: "clamp(1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
           >
             Combining scroll-based gamified evaluation, localized Singlish persona mechanics, and AEM integration under a strict 2-week deadline.
           </p>
@@ -189,7 +189,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
       </div>
 
       {/* EXECUTIVE SUMMARY & 30-SECOND TAKEAWAYS */}
-        <div className="px-8 lg:px-16 py-8 bg-[#111836] border-t border-b border-white/10">
+        <div className="px-4 sm:px-8 lg:px-16 py-8 bg-[#111836] border-t border-b border-white/10">
           <div className="flex items-center gap-2 mb-4">
             <span className="w-2 h-2 rounded-full bg-[#DB3E8C] animate-pulse" />
             <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
@@ -217,7 +217,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
         </div>
 
       {/* ── BODY CONTENT ──────────────────────────────────────────────────── */}
-      <div className="max-w-5xl mx-auto px-8 lg:px-16 py-16 lg:py-24 space-y-20">
+      <div className="max-w-5xl mx-auto px-4 sm:px-8 lg:px-16 py-12 sm:py-16 lg:py-24 space-y-16 sm:space-y-20">
 
         {/* 01 Executive Summary */}
         <div>
