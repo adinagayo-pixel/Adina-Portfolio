@@ -210,11 +210,14 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
           <a href="#architecture" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-medium">
             03. Edge Cases
           </a>
+          <a href="#ds-adaptation" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-medium text-[#DB3E8C]">
+            04. DS Adaptation
+          </a>
           <a href="#evolution" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-medium">
-            04. V1–V5 Iterations
+            05. V1–V5 Iterations
           </a>
           <a href="#impact" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-bold text-[#DB3E8C]">
-            05. Impact & "So What" ↗
+            06. Impact & "So What" ↗
           </a>
         </div>
       </div>
@@ -223,7 +226,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
       <div className="px-8 lg:px-16 pt-16 pb-14" style={{ backgroundColor: W, borderBottom: `1px solid ${HAIR}` }}>
         <div className="max-w-4xl space-y-6">
           <div className="flex flex-wrap items-center gap-3">
-            <MonoTag accent>CASE STUDY 02</MonoTag>
+            <MonoTag accent>CASE STUDY 01</MonoTag>
             <span style={{ color: HAIR }}>/</span>
             <MonoTag>FINTECH & EMBEDDED MICRO-INSURANCE</MonoTag>
             <span style={{ color: HAIR }}>/</span>
@@ -483,6 +486,41 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
                     <p className="text-sm leading-relaxed" style={{ color: N, lineHeight: 1.7 }}>{step}</p>
                   </div>
                 ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <Hairline />
+
+        {/* 04 Cross-Team Design System Adaptation */}
+        <div id="ds-adaptation" className="scroll-mt-24">
+          <SectionTag num="04" label="Cross-Team Design System Adaptation" />
+          <div className="p-8 bg-[#111836] rounded-2xl border border-white/10 text-white space-y-4 shadow-xl">
+            <div className="flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#DB3E8C] animate-pulse" />
+              <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+                DESIGN SYSTEM GOVERNANCE // CROSS-TEAM ADAPTATION
+              </span>
+            </div>
+            <h3 className="font-display text-xl lg:text-2xl font-bold text-white">
+              Adapting & Extending TNG's Ecosystem for InsurTech Mini-Programs
+            </h3>
+            <p className="font-sans text-xs text-white/80 leading-relaxed max-w-3xl">
+              Worked directly with Touch 'n Go's internal design team to adapt and extend their existing design system for the embedded insurance mini-program — ensuring visual and interaction consistency across a 20M+ user ecosystem while introducing new insurance-specific flows.
+            </p>
+            <div className="grid md:grid-cols-3 gap-4 pt-4 border-t border-white/10 text-xs">
+              <div className="bg-white/5 p-4 rounded-lg border border-white/5">
+                <strong className="text-[#DB3E8C] font-bold block mb-1">Design System Alignment</strong>
+                <p className="text-white/60 text-[11px]">Seamlessly integrated TNG typography, color tokens, and modal primitives.</p>
+              </div>
+              <div className="bg-white/5 p-4 rounded-lg border border-white/5">
+                <strong className="text-white font-bold block mb-1">Insurance Flow Primitives</strong>
+                <p className="text-white/60 text-[11px]">Extended baseline mini-program specs to support multi-product coverage selection.</p>
+              </div>
+              <div className="bg-white/5 p-4 rounded-lg border border-white/5">
+                <strong className="text-[#22c55e] font-bold block mb-1">20M+ User Consistency</strong>
+                <p className="text-white/60 text-[11px]">Zero-friction transition between native eWallet hub & insurance checkout.</p>
               </div>
             </div>
           </div>

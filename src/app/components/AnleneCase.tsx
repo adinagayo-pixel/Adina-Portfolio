@@ -174,7 +174,7 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
       <div className="px-8 lg:px-16 pt-16 pb-14" style={{ backgroundColor: W, borderBottom: `1px solid ${HAIR}` }}>
         <div className="max-w-4xl space-y-6">
           <div className="flex flex-wrap items-center gap-3">
-            <MonoTag accent>CASE STUDY 05</MonoTag>
+            <MonoTag accent>CASE STUDY 06</MonoTag>
             <span style={{ color: HAIR }}>/</span>
             <MonoTag>HEALTH TECH & FIELD SALES ENABLEMENT</MonoTag>
             <span style={{ color: HAIR }}>/</span>

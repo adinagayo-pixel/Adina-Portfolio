@@ -65,7 +65,21 @@ export function getWhatsAppLink(projectName: string) {
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const FEATURED = [
   {
-    num: "01", name: "Gamified CI Evaluation Campaign", client: "GEGI Singapore",
+    num: "01", name: "Seamless Micro-Insurance Integration", client: "Touch 'n Go × GEGM",
+    location: "MY", year: "2024", tags: ["PWA / SSO", "eKYC Data Mapping", "B2C / FinTech"],
+    role: "Lead Product Designer & Logic Architect",
+    headline: "An embedded Progressive Web Application (PWA) architecture built inside Malaysia's leading e-wallet ecosystem, integrating native SSO and eKYC.",
+    metrics: [{ val: "V5", sub: "Production Release" }, { val: "3mo", sub: "Timeline" }, { val: "RM0", sub: "PTV Checkout" }],
+    projectId: "tng",
+    thumb: projectThumb2,
+    screens: [
+      { src: projectThumb2, label: "01 · WALLET DASHBOARD" },
+      { src: projectThumb1, label: "02 · EKYC DATA MAPPING" },
+      { src: projectThumb5, label: "03 · POLICY CHECKOUT" },
+    ],
+  },
+  {
+    num: "02", name: "Gamified CI Evaluation Campaign", client: "GEGI Singapore",
     location: "SG", year: "2026", tags: ["Gamified Evaluation", "Singlish Persona", "Campaign"],
     role: "Sole Product Designer",
     headline: "A rapid-sprint interactive campaign tool combining scroll-based gamified evaluation, localized Singlish persona mechanics, and AEM integration.",
@@ -80,31 +94,19 @@ const FEATURED = [
     ],
   },
   {
-    num: "02", name: "Seamless Micro-Insurance Integration", client: "Touch 'n Go × GEGM",
-    location: "MY", year: "2024", tags: ["PWA / SSO", "eKYC Data Mapping", "B2C / FinTech"],
-    role: "Lead Product Designer & Logic Architect",
-    headline: "An embedded Progressive Web Application (PWA) architecture built inside Malaysia's leading e-wallet ecosystem, integrating native SSO and eKYC.",
-    metrics: [{ val: "V5", sub: "Production Release" }, { val: "3mo", sub: "Timeline" }, { val: "RM0", sub: "PTV Checkout" }],
-    projectId: "tng",
-    thumb: projectThumb2,
+    num: "03", name: "100K-Player Live Tournament Platform", client: "mySalam × myKawan",
+    location: "MY", year: "2025", tags: ["Live Tournament", "100K Concurrent", "Gamified Financial Literacy"],
+    role: "Lead Product Designer",
+    headline: "Architected a scalable digital tournament platform delivering real-time financial literacy quizzes to over 100,000 concurrent Malaysian youth players.",
+    metrics: [{ val: "100K", sub: "Live Concurrents" }, { val: "5-sec", sub: "Quiz Round Engine" }, { val: "RM500K", sub: "ReSkills Rewards Pool" }],
+    projectId: "bijakwang",
+    thumb: mykawan1,
     screens: [
-      { src: projectThumb2, label: "01 · WALLET DASHBOARD" },
-      { src: projectThumb1, label: "02 · EKYC DATA MAPPING" },
-      { src: projectThumb5, label: "03 · POLICY CHECKOUT" },
-    ],
-  },
-  {
-    num: "03", name: "Digital Transformation & AI Retail", client: "Pro Archery Jakarta",
-    location: "ID", year: "2025", tags: ["AI Prompt-to-Code", "E-Commerce", "Admin POS"],
-    role: "Sole System & UI Designer",
-    headline: "An end-to-end digital ecosystem scaling a physical archery retailer into an Asia-wide e-commerce platform featuring AI-accelerated prototyping.",
-    metrics: [{ val: "24h", sub: "POC Delivery" }, { val: "4", sub: "Portals Built" }, { val: "0", sub: "Figma Wireframes" }],
-    projectId: "archery",
-    thumb: projectThumb4,
-    screens: [
-      { src: projectThumb4, label: "01 · E-COMMERCE PORTAL" },
-      { src: projectThumb2, label: "02 · POS ADMIN DASHBOARD" },
-      { src: projectThumb1, label: "03 · AI PROMPT ARCHITECTURE" },
+      { src: mykawan1, label: "01 · LOBBY & CHALLENGES" },
+      { src: mykawan2, label: "02 · REGISTRATION & ONBOARDING" },
+      { src: mykawan3, label: "03 · LIVE QUIZ INTERACTION" },
+      { src: mykawan4, label: "04 · RESKILLS REWARDS" },
+      { src: mykawan5, label: "05 · LEADERBOARD & RANKINGS" },
     ],
   },
   {
@@ -122,7 +124,21 @@ const FEATURED = [
     ],
   },
   {
-    num: "05", name: "Medical Diagnostics & Field Sales Revamp", client: "Fonterra × Anlene",
+    num: "05", name: "Multi-Tenant Enterprise Backoffice", client: "Regional SuperApps & FinTech",
+    location: "SG/MY/ID", year: "2025", tags: ["White-Label Engine", "Design System Tokens", "Data Analytics"],
+    role: "Solo Product Designer & System Logic Architect",
+    headline: "Scaling B2B white-label operations and real-time analytical dashboards under lean constraints with a 1–3 hour deployment engine.",
+    metrics: [{ val: "1–3h", sub: "Tenant Setup" }, { val: "Dual", sub: "Track Delivery" }, { val: "0", sub: "BE Query Timeouts" }],
+    projectId: "backoffice",
+    thumb: projectThumb5,
+    screens: [
+      { src: projectThumb5, label: "01 · DUAL-TRACK ARCHITECTURE" },
+      { src: projectThumb2, label: "02 · MULTI-TENANT DASHBOARD" },
+      { src: projectThumb1, label: "03 · ISOLATED FILTER ENGINE" },
+    ],
+  },
+  {
+    num: "06", name: "Medical Diagnostics & Field Sales Revamp", client: "Fonterra × Anlene",
     location: "ID", year: "2023", tags: ["Health Tech", "Field Sales Enablement", "Diagnostic Matrix"],
     role: "Sole Product Designer",
     headline: "Translating clinical diagnostic data from GE Achilles bone scanners and Omron devices into personalized health passports and automated WhatsApp PDF delivery.",
@@ -138,23 +154,21 @@ const FEATURED = [
     ],
   },
   {
-    num: "06", name: "100K-Player Live Tournament Platform", client: "mySalam × myKawan",
-    location: "MY", year: "2025", tags: ["Live Tournament", "100K Concurrent", "Gamified Financial Literacy"],
-    role: "Lead Product Designer",
-    headline: "Architected a scalable digital tournament platform delivering real-time financial literacy quizzes to over 100,000 concurrent Malaysian youth players.",
-    metrics: [{ val: "100K", sub: "Live Concurrents" }, { val: "5-sec", sub: "Quiz Round Engine" }, { val: "RM500K", sub: "ReSkills Rewards Pool" }],
-    projectId: "bijakwang",
-    thumb: mykawan1,
+    num: "07", name: "Digital Transformation & AI Retail", client: "Pro Archery Jakarta",
+    location: "ID", year: "2025", tags: ["AI Prompt-to-Code", "E-Commerce", "Admin POS"],
+    role: "Sole System & UI Designer",
+    headline: "An end-to-end digital ecosystem scaling a physical archery retailer into an Asia-wide e-commerce platform featuring AI-accelerated prototyping.",
+    metrics: [{ val: "24h", sub: "POC Delivery" }, { val: "4", sub: "Portals Built" }, { val: "0", sub: "Figma Wireframes" }],
+    projectId: "archery",
+    thumb: projectThumb4,
     screens: [
-      { src: mykawan1, label: "01 · LOBBY & CHALLENGES" },
-      { src: mykawan2, label: "02 · REGISTRATION & ONBOARDING" },
-      { src: mykawan3, label: "03 · LIVE QUIZ INTERACTION" },
-      { src: mykawan4, label: "04 · RESKILLS REWARDS" },
-      { src: mykawan5, label: "05 · LEADERBOARD & RANKINGS" },
+      { src: projectThumb4, label: "01 · E-COMMERCE PORTAL" },
+      { src: projectThumb2, label: "02 · POS ADMIN DASHBOARD" },
+      { src: projectThumb1, label: "03 · AI PROMPT ARCHITECTURE" },
     ],
   },
   {
-    num: "07", name: "National Archery Operating System", client: "PERPANI / MyArchery",
+    num: "08", name: "National Archery Operating System", client: "PERPANI / MyArchery",
     location: "ID", year: "2023", tags: ["Sports Tech", "Field UX Research", "Tournament Engine"],
     role: "Lead UX Researcher & Product Designer",
     headline: "Designing Indonesia's centralized tournament operating system & real-time scoring platform for official PERPANI national championships.",
@@ -165,20 +179,6 @@ const FEATURED = [
       { src: projectThumb4, label: "01 · SCORING KEYPAD" },
       { src: projectThumb2, label: "02 · ADMIN DASHBOARD" },
       { src: projectThumb1, label: "03 · LIVE SCOREBOARD" },
-    ],
-  },
-  {
-    num: "08", name: "Multi-Tenant Enterprise Backoffice", client: "Regional SuperApps & FinTech",
-    location: "SG/MY/ID", year: "2025", tags: ["White-Label Engine", "Design System Tokens", "Data Analytics"],
-    role: "Solo Product Designer & System Logic Architect",
-    headline: "Scaling B2B white-label operations and real-time analytical dashboards under lean constraints with a 1–3 hour deployment engine.",
-    metrics: [{ val: "1–3h", sub: "Tenant Setup" }, { val: "Dual", sub: "Track Delivery" }, { val: "0", sub: "BE Query Timeouts" }],
-    projectId: "backoffice",
-    thumb: projectThumb5,
-    screens: [
-      { src: projectThumb5, label: "01 · DUAL-TRACK ARCHITECTURE" },
-      { src: projectThumb2, label: "02 · MULTI-TENANT DASHBOARD" },
-      { src: projectThumb1, label: "03 · ISOLATED FILTER ENGINE" },
     ],
   },
 ]
@@ -2099,22 +2099,21 @@ export default function App() {
     )
   }
 
-  if (currentView === "backoffice-case") {
+  if (currentView === "tng-case") {
     return (
-      <BackofficeCase
+      <TngCase
         onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
         onNext={() => { setCurrentView("gegi-case"); window.scrollTo({ top: 0 }) }}
         onPrev={() => { setCurrentView("myarchery-case"); window.scrollTo({ top: 0 }) }}
       />
     )
   }
-
-  if (currentView === "myarchery-case") {
+  if (currentView === "gegi-case") {
     return (
-      <MyArcheryCase
+      <GegiCase
         onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
-        onNext={() => { setCurrentView("backoffice-case"); window.scrollTo({ top: 0 }) }}
-        onPrev={() => { setCurrentView("bijakwang-case"); window.scrollTo({ top: 0 }) }}
+        onNext={() => { setCurrentView("bijakwang-case"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { setCurrentView("tng-case"); window.scrollTo({ top: 0 }) }}
       />
     )
   }
@@ -2122,17 +2121,8 @@ export default function App() {
     return (
       <BijakWangCase
         onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
-        onNext={() => { setCurrentView("myarchery-case"); window.scrollTo({ top: 0 }) }}
-        onPrev={() => { setCurrentView("anlene-case"); window.scrollTo({ top: 0 }) }}
-      />
-    )
-  }
-  if (currentView === "anlene-case") {
-    return (
-      <AnleneCase
-        onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
-        onNext={() => { setCurrentView("bijakwang-case"); window.scrollTo({ top: 0 }) }}
-        onPrev={() => { setCurrentView("election-case"); window.scrollTo({ top: 0 }) }}
+        onNext={() => { setCurrentView("election-case"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { setCurrentView("gegi-case"); window.scrollTo({ top: 0 }) }}
       />
     )
   }
@@ -2140,8 +2130,26 @@ export default function App() {
     return (
       <ElectionCase
         onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
+        onNext={() => { setCurrentView("backoffice-case"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { setCurrentView("bijakwang-case"); window.scrollTo({ top: 0 }) }}
+      />
+    )
+  }
+  if (currentView === "backoffice-case") {
+    return (
+      <BackofficeCase
+        onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
         onNext={() => { setCurrentView("anlene-case"); window.scrollTo({ top: 0 }) }}
-        onPrev={() => { setCurrentView("archery-case"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { setCurrentView("election-case"); window.scrollTo({ top: 0 }) }}
+      />
+    )
+  }
+  if (currentView === "anlene-case") {
+    return (
+      <AnleneCase
+        onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
+        onNext={() => { setCurrentView("archery-case"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { setCurrentView("backoffice-case"); window.scrollTo({ top: 0 }) }}
       />
     )
   }
@@ -2149,27 +2157,17 @@ export default function App() {
     return (
       <ProArcheryCase
         onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
-        onNext={() => { setCurrentView("election-case"); window.scrollTo({ top: 0 }) }}
-        onPrev={() => { setCurrentView("tng-case"); window.scrollTo({ top: 0 }) }}
+        onNext={() => { setCurrentView("myarchery-case"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { setCurrentView("anlene-case"); window.scrollTo({ top: 0 }) }}
       />
     )
   }
-  if (currentView === "tng-case") {
+  if (currentView === "myarchery-case") {
     return (
-      <TngCase
-        onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
-        onNext={() => { setCurrentView("archery-case"); window.scrollTo({ top: 0 }) }}
-        onPrev={() => { setCurrentView("gegi-case"); window.scrollTo({ top: 0 }) }}
-      />
-    )
-  }
-
-  if (currentView === "gegi-case") {
-    return (
-      <GegiCase
+      <MyArcheryCase
         onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
         onNext={() => { setCurrentView("tng-case"); window.scrollTo({ top: 0 }) }}
-        onPrev={() => { setCurrentView("backoffice-case"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { setCurrentView("archery-case"); window.scrollTo({ top: 0 }) }}
       />
     )
   }
