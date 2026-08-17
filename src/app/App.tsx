@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react"
 import { motion, useMotionValue, useSpring, AnimatePresence } from "motion/react"
 import adinaPhotoAbout from "@/imports/Foto At Work.png"
 import adinaPhotoLife from "@/imports/Foto In Life.jpg"
+import afgLogo from "@/imports/LOGO.png"
 import projectThumb1 from "@/imports/image-7.png"
 import projectThumb2 from "@/imports/image-8.png"
 import projectThumb4 from "@/imports/image-7.png"
@@ -357,9 +358,11 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
         style={{ borderBottom: `1px solid rgba(25, 36, 78, 0.05)` }}
       >
         <div className="flex items-center gap-4 lg:gap-6">
-          <span className="font-sans text-[10px] lg:text-[11px] font-bold tracking-[0.15em]" style={{ color: N }}>
-            AFG
-          </span>
+          <img
+            src={afgLogo}
+            alt="Adina Fayza Gayo (AFG) Logo"
+            className="h-5 lg:h-6 w-auto object-contain"
+          />
 
           {/* Toggle Switch */}
           <div className="flex items-center gap-2">
