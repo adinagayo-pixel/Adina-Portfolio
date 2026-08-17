@@ -39,16 +39,16 @@ function Hairline() {
   return <div className="w-full h-px" style={{ backgroundColor: HAIR }} />
 }
 
-function SectionTag({ num, label }: { num: string; label: string }) {
+function SectionTag({ id, num, label }: { id?: string; num: string; label: string }) {
   return (
-    <div className="mb-10">
-      <div className="text-[10px] font-semibold uppercase tracking-[0.2em] mb-2" style={{ color: C }}>
-        {num} // {label.toUpperCase()}
+    <div id={id} className="mb-10 pt-4 scroll-mt-24">
+      <div className="text-[10px] font-bold uppercase tracking-[0.2em] mb-2 text-[#DB3E8C]">
+        SECTION {num}
       </div>
-      <h2 className="font-display text-2xl lg:text-3xl font-bold" style={{ color: N }}>
+      <h2 className="font-display text-2xl lg:text-3xl font-bold text-[#19244E]">
         {label}
       </h2>
-      <div className="w-12 h-[2px] mt-4" style={{ backgroundColor: C }} />
+      <div className="w-12 h-[2px] mt-4 bg-[#DB3E8C]" />
     </div>
   )
 }
@@ -146,7 +146,28 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
         >
           <ArrowLeft size={12} /> Back
         </button>
-        <MonoTag>[FONTERRA INDONESIA · ANLENE · FIELD DATA ENTRY & PDF GENERATOR]</MonoTag>
+        <MonoTag>Fonterra Anlene · Diagnostics & PDF Health Passport</MonoTag>
+      </div>
+
+      {/* Quick Jump Navigation Bar */}
+      <div className="sticky top-[53px] z-40 px-8 lg:px-16 py-2.5 bg-[#0e1635] text-white/70 border-b border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs font-sans">
+        <span className="font-bold tracking-widest text-[#DB3E8C] uppercase text-[9px]">
+          QUICK JUMP
+        </span>
+        <div className="flex items-center gap-6 overflow-x-auto">
+          <a href="#summary" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-medium">
+            01. Executive Overview
+          </a>
+          <a href="#challenge" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-medium">
+            02. Core Challenge
+          </a>
+          <a href="#pipeline" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-medium">
+            03. Diagnostic Pipeline
+          </a>
+          <a href="#impact" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-bold text-[#DB3E8C]">
+            04. Impact & "So What" ↗
+          </a>
+        </div>
       </div>
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
@@ -229,7 +250,7 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
 
         {/* 01 Executive Summary */}
         <div>
-          <SectionTag num="01" label="Executive Summary" />
+          <SectionTag id="summary" num="01" label="Executive Summary" />
           <div className="grid lg:grid-cols-2 gap-4">
             {[
               { label: "Client & Brand", val: "Fonterra Indonesia × Anlene (Dairy & Nutrition Enterprise)" },
@@ -285,7 +306,7 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
 
         {/* 02 Strategic Challenge */}
         <div>
-          <SectionTag num="02" label="The Strategic Challenge" />
+          <SectionTag id="challenge" num="02" label="The Strategic Challenge" />
           <p className="font-display font-light leading-relaxed mb-10" style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.35rem)", color: N, letterSpacing: "-0.005em", lineHeight: 1.65, maxWidth: "680px" }}>
             On-site brand activations required SPGs to rapidly capture participant health metrics from hardware devices during busy event setups. The legacy app lacked clear data visualization, producing high entry friction for SPGs and confusing health summaries for consumers.
           </p>
@@ -330,7 +351,7 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
 
         {/* 03 Research & Architecture */}
         <div>
-          <SectionTag num="03" label="Research & System Architecture" />
+          <SectionTag id="pipeline" num="03" label="Research & Diagnostic Data Pipeline" />
 
           {/* Pipeline diagram */}
           <div className="mb-8 p-6 overflow-x-auto" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
@@ -487,7 +508,7 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
             </div>
             <div>
               <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-2" style={{ color: C }}>
-                [HEALTH DASHBOARD: OMRON & ACHILLES METRIC VISUALIZATION]
+                HEALTH DASHBOARD: OMRON & ACHILLES METRIC VISUALIZATION
               </p>
               <p className="text-sm font-semibold text-white mb-1.5">Clinical Metrics Made Instantly Legible at the Point of Sale</p>
               <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.6)", lineHeight: 1.75 }}>
@@ -502,7 +523,7 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
         {/* 05 Business Impact */}
         <div>
           <SectionTag num="05" label="Business Impact & Key Deliverables" />
-          <div className="grid lg:grid-cols-3 gap-4">
+          <div className="grid lg:grid-cols-3 gap-4 mb-10">
             {[
               {
                 Icon: Zap,
@@ -520,8 +541,8 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
                 desc: "Successfully unified Anlene's digital app interface, PDF health reports, and physical event marketing materials under Fonterra's strict Graphic Standard Manual, ensuring zero brand deviation across all surfaces.",
               },
             ].map(({ Icon, title, desc }) => (
-              <div key={title} className="flex flex-col gap-4 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
-                <div className="w-8 h-8 flex items-center justify-center flex-shrink-0" style={{ backgroundColor: `${C}08`, border: `1px solid ${C}20`, borderRadius: "4px" }}>
+              <div key={title} className="flex gap-4 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
+                <div className="w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5" style={{ backgroundColor: `${C}08`, border: `1px solid ${C}20`, borderRadius: "4px" }}>
                   <Icon size={13} style={{ color: C }} />
                 </div>
                 <div>
@@ -530,6 +551,36 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* 06 Impact & The "So What" Closing Box */}
+          <div id="impact" className="p-8 bg-[#111836] rounded-2xl border border-white/10 text-white space-y-6 shadow-2xl">
+            <div className="flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#22c55e] animate-pulse" />
+              <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#22c55e]">
+                CLINICAL SYSTEM IMPACT & "SO WHAT"
+              </span>
+            </div>
+            <h3 className="font-display text-2xl lg:text-3xl font-light leading-snug">
+              Reduced customer intake from <span className="font-bold text-[#DB3E8C]">15 minutes to ~90 seconds</span> (92% time saved) with instant WhatsApp Health Passports.
+            </h3>
+            <p className="font-sans text-xs text-white/70 leading-relaxed max-w-2xl">
+              By replacing paper intake forms with Bluetooth scanner sync and automated 4-tier diagnostic PDF generation, field reps converted health consultations into immediate product sales.
+            </p>
+            <div className="grid md:grid-cols-3 gap-6 pt-6 border-t border-white/10 text-xs">
+              <div className="bg-white/5 p-4 rounded-lg border border-white/5">
+                <span className="block font-bold text-xl text-[#22c55e] mb-1">92% Time Saved</span>
+                <p className="text-white/60">From 15-minute paper forms down to ~90-second digital intake.</p>
+              </div>
+              <div className="bg-white/5 p-4 rounded-lg border border-white/5">
+                <span className="block font-bold text-xl text-white mb-1">Instant PDF</span>
+                <p className="text-white/60">Automated 4-tier health passport delivered via WhatsApp API.</p>
+              </div>
+              <div className="bg-[#DB3E8C]/20 p-4 rounded-lg border border-[#DB3E8C]/40">
+                <span className="block font-bold text-xl text-[#DB3E8C] mb-1">Zero GSM Errors</span>
+                <p className="text-white/80 font-medium">Strict Fonterra brand manual compliance across all touchpoints.</p>
+              </div>
+            </div>
           </div>
         </div>
 

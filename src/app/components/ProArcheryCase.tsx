@@ -26,16 +26,16 @@ function Hairline() {
   return <div className="w-full h-px" style={{ backgroundColor: HAIR }} />
 }
 
-function SectionTag({ num, label }: { num: string; label: string }) {
+function SectionTag({ id, num, label }: { id?: string; num: string; label: string }) {
   return (
-    <div className="mb-10">
-      <div className="text-[10px] font-semibold uppercase tracking-[0.2em] mb-2" style={{ color: C }}>
-        {num} // {label.toUpperCase()}
+    <div id={id} className="mb-10 pt-4 scroll-mt-24">
+      <div className="text-[10px] font-bold uppercase tracking-[0.2em] mb-2 text-[#DB3E8C]">
+        SECTION {num}
       </div>
-      <h2 className="font-display text-2xl lg:text-3xl font-bold" style={{ color: N }}>
+      <h2 className="font-display text-2xl lg:text-3xl font-bold text-[#19244E]">
         {label}
       </h2>
-      <div className="w-12 h-[2px] mt-4" style={{ backgroundColor: C }} />
+      <div className="w-12 h-[2px] mt-4 bg-[#DB3E8C]" />
     </div>
   )
 }
@@ -75,7 +75,28 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
         >
           <ArrowLeft size={12} /> Back
         </button>
-        <MonoTag>[PRO ARCHERY · B2C E-COMMERCE & ADMIN POS · AI-FIRST]</MonoTag>
+        <MonoTag>Pro Archery · 4-Portal E-Commerce Architecture</MonoTag>
+      </div>
+
+      {/* Quick Jump Navigation Bar */}
+      <div className="sticky top-[53px] z-40 px-8 lg:px-16 py-2.5 bg-[#0e1635] text-white/70 border-b border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs font-sans">
+        <span className="font-bold tracking-widest text-[#DB3E8C] uppercase text-[9px]">
+          QUICK JUMP
+        </span>
+        <div className="flex items-center gap-6 overflow-x-auto">
+          <a href="#summary" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-medium">
+            01. Executive Summary
+          </a>
+          <a href="#challenge" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-medium">
+            02. Core Challenge
+          </a>
+          <a href="#architecture" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-medium">
+            03. 4-Portal Architecture
+          </a>
+          <a href="#impact" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-bold text-[#DB3E8C]">
+            04. Impact & "So What" ↗
+          </a>
+        </div>
       </div>
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
@@ -157,7 +178,7 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
 
         {/* 01 Executive Summary */}
         <div>
-          <SectionTag num="01" label="Executive Summary" />
+          <SectionTag id="summary" num="01" label="Executive Summary" />
           <div className="grid lg:grid-cols-2 gap-4">
             {[
               { label: "Client & Scope", val: "Pro Archery (Jakarta, Indonesia) × Asian Regional Expansion" },
@@ -177,7 +198,7 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
 
         {/* 02 Strategic Challenge */}
         <div>
-          <SectionTag num="02" label="The Strategic Challenge" />
+          <SectionTag id="challenge" num="02" label="The Strategic Challenge" />
           <p className="font-display font-light leading-relaxed mb-10" style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.35rem)", color: N, letterSpacing: "-0.005em", lineHeight: 1.65, maxWidth: "680px" }}>
             Transitioning a brick-and-mortar archery enterprise into a regional e-commerce power required an ultra-fast Proof of Concept to secure investor and partner alignments while managing complex technical product attributes.
           </p>
@@ -207,7 +228,7 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
 
         {/* 03 System Architecture */}
         <div>
-          <SectionTag num="03" label="System & Interaction Architecture" />
+          <SectionTag id="architecture" num="03" label="System & 4-Portal Ecosystem Architecture" />
 
           {/* Flow diagram */}
           <div className="mb-8 p-6 overflow-x-auto" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
@@ -423,7 +444,7 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
         {/* 06 Business Impact */}
         <div>
           <SectionTag num="06" label="Business Impact & Workflow Efficiency" />
-          <div className="grid lg:grid-cols-2 gap-4">
+          <div className="grid lg:grid-cols-2 gap-4 mb-10">
             {[
               { Icon: Zap, title: "24-Hour Landing Page Deployment", desc: "Leveraged AI-first design workflows to ship a fully functional landing page in 1 day for urgent stakeholder POC presentations." },
               { Icon: CheckCircle2, title: "Streamlined Stakeholder Approvals", desc: "The embedded Scenario Tester widget allowed executive decision-makers to test layout variations instantly without waiting for design revision rounds." },
@@ -440,6 +461,36 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* 07 Impact & The "So What" Closing Box */}
+          <div id="impact" className="p-8 bg-[#111836] rounded-2xl border border-white/10 text-white space-y-6 shadow-2xl">
+            <div className="flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#22c55e] animate-pulse" />
+              <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#22c55e]">
+                AI-FIRST ECOSYSTEM IMPACT & "SO WHAT"
+              </span>
+            </div>
+            <h3 className="font-display text-2xl lg:text-3xl font-light leading-snug">
+              Deployed full 4-portal e-commerce ecosystem with a <span className="font-bold text-[#DB3E8C]">24-hour landing page sprint</span>.
+            </h3>
+            <p className="font-sans text-xs text-white/70 leading-relaxed max-w-2xl">
+              By combining AI-driven component generation with interactive scenario testing widgets, we eliminated wireframing bottlenecks and accelerated executive buy-in.
+            </p>
+            <div className="grid md:grid-cols-3 gap-6 pt-6 border-t border-white/10 text-xs">
+              <div className="bg-white/5 p-4 rounded-lg border border-white/5">
+                <span className="block font-bold text-xl text-[#22c55e] mb-1">24h Deployment</span>
+                <p className="text-white/60">Rapid landing page delivery for high-stakes investor POCs.</p>
+              </div>
+              <div className="bg-white/5 p-4 rounded-lg border border-white/5">
+                <span className="block font-bold text-xl text-white mb-1">4 Interconnected Portals</span>
+                <p className="text-white/60">Consumer e-commerce, B2B wholesale, POS, & Admin CMS.</p>
+              </div>
+              <div className="bg-[#DB3E8C]/20 p-4 rounded-lg border border-[#DB3E8C]/40">
+                <span className="block font-bold text-xl text-[#DB3E8C] mb-1">Zero Wireframe Delay</span>
+                <p className="text-white/80 font-medium">Direct interactive prototype testing with executive stakeholders.</p>
+              </div>
+            </div>
           </div>
         </div>
 
