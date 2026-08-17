@@ -595,16 +595,9 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
                     </span>
                   </div>
                   {/* Content */}
-                  <div className="px-5 py-4 flex-1 flex flex-col justify-between" style={{ backgroundColor: W }}>
-                    <div>
-                      <p className="text-sm font-semibold mb-1.5" style={{ color: N }}>{ver.label}</p>
-                      <p className="text-[11px] leading-relaxed" style={{ color: BODY, lineHeight: 1.65 }}>{ver.desc}</p>
-                    </div>
-                    {ver.v === "V3" && (
-                      <p className="text-[10px] italic mt-3 p-2 rounded bg-amber-50 border border-amber-200 text-amber-900 leading-tight font-sans">
-                        "The trickiest part wasn't the happy path — it was designing for the edge cases TNG's compliance team kept surfacing one by one."
-                      </p>
-                    )}
+                  <div className="px-5 py-4 flex-1" style={{ backgroundColor: W }}>
+                    <p className="text-sm font-semibold mb-1.5" style={{ color: N }}>{ver.label}</p>
+                    <p className="text-[11px] leading-relaxed" style={{ color: BODY, lineHeight: 1.65 }}>{ver.desc}</p>
                   </div>
                   {/* Arrow connector */}
                   {i < 4 && (
