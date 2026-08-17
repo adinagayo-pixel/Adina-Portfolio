@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import {
   ArrowLeft, ChevronRight, CheckCircle2, Globe,
   FileCode2, Shield, Zap, RefreshCw, Users, MessageSquare,
-  Trophy, Smartphone, Target, QrCode, Sun, WifiOff, Calendar, AlertTriangle
+  Trophy, Smartphone, Target, QrCode, Sun, WifiOff, Calendar, AlertTriangle, Clock
 } from "lucide-react"
 
 const N = "#19244E"
