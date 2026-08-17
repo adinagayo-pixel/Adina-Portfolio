@@ -100,76 +100,69 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
       </div>
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
-      <div style={{ backgroundColor: N }}>
-        {/* Meta strip */}
-        <div
-          className="px-8 lg:px-16 py-5 flex flex-wrap items-center gap-6"
-          style={{ borderBottom: `1px solid rgba(255,255,255,0.06)` }}
-        >
-          {[
-            { label: "Client", val: "Pro Archery · Jakarta" },
-            { label: "Region", val: "Indonesia & Asia Expansion" },
-            { label: "Workflow", val: "AI-First Prompt-to-Code" },
-            { label: "System", val: "B2C E-Commerce & Admin POS" },
-            { label: "Role", val: "Lead Freelance Product Designer & AI Systems Integrator" },
-          ].map(({ label, val }) => (
-            <div key={label}>
-              <span className="font-sans text-[9px] tracking-widest uppercase block mb-0.5" style={{ color: "rgba(255,255,255,0.3)" }}>
-                {label}
-              </span>
-              <span className="font-sans text-[10px] font-semibold" style={{ color: "rgba(255,255,255,0.7)" }}>
-                {val}
-              </span>
-            </div>
-          ))}
-        </div>
+      <div className="px-8 lg:px-16 pt-16 pb-14" style={{ backgroundColor: W, borderBottom: `1px solid ${HAIR}` }}>
+        <div className="max-w-4xl space-y-6">
+          <div className="flex flex-wrap items-center gap-3">
+            <MonoTag accent>CASE STUDY 03</MonoTag>
+            <span style={{ color: HAIR }}>/</span>
+            <MonoTag>AI-FIRST DEVELOPMENT & E-COMMERCE SYSTEM</MonoTag>
+            <span style={{ color: HAIR }}>/</span>
+            <MonoTag>PRO ARCHERY JAKARTA · 2024</MonoTag>
+          </div>
 
-        {/* Title block */}
-        <div className="px-8 lg:px-16 py-16 lg:py-24">
-          <p className="font-sans text-[10px] font-semibold tracking-widest uppercase mb-6" style={{ color: C }}>
-            Case Study · 04
-          </p>
           <h1
-            className="font-display font-light text-white leading-[0.92] mb-8"
-            style={{ fontSize: "clamp(2.2rem, 5vw, 4.5rem)", letterSpacing: "-0.025em", maxWidth: "820px" }}
+            className="font-display font-bold leading-[1.08] tracking-tight"
+            style={{ fontSize: "clamp(2.2rem, 4vw, 3.6rem)", color: N }}
           >
-            Digital Transformation &<br />
-            AI-Driven Ecosystem for<br />
-            <em className="font-normal" style={{ color: C }}>Indonesia's Premier Archery Retailer.</em>
+            Digital Transformation & AI-Driven Retail Ecosystem
           </h1>
-          <p className="text-sm leading-relaxed max-w-[640px]" style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.8 }}>
-            An end-to-end digital ecosystem scaling a physical archery retailer into an Asia-wide e-commerce platform, featuring AI-accelerated frontend prototyping, interactive scenario testers, serial-number inventory tracking, and integrated B2B dealer loyalty portals.
+
+          <p
+            className="font-display font-light leading-relaxed"
+            style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
+          >
+            Scaling Indonesia's premier physical archery retailer into an Asia-wide e-commerce platform via AI-assisted prompt-to-code workflows.
+          </p>
+
+          <p className="text-sm leading-relaxed max-w-2xl" style={{ color: BODY, lineHeight: 1.8 }}>
+            An end-to-end digital ecosystem building 4 integrated portal surfaces (B2C Storefront, Customer Hub, Admin POS, and Brand Profile) with serial-number inventory tracking and 24-hour POC delivery.
           </p>
         </div>
 
-        {/* Stat row */}
-        <div className="grid grid-cols-2 lg:grid-cols-4" style={{ borderTop: `1px solid rgba(255,255,255,0.06)` }}>
-          {[
-            { val: "24h", label: "POC Delivery", sub: "Landing page live in 1 day for stakeholder demo" },
-            { val: "4", label: "Portals Built", sub: "B2C, Customer, Admin POS & Company Profile" },
-            { val: "0", label: "Figma Wireframes", sub: "AI prompt-to-code: no manual layout phase" },
-            { val: "AI", label: "First Workflow", sub: "Claude + Gemini + Antigravity + VS Code" },
-          ].map((s, i) => (
-            <div
-              key={s.label}
-              className="px-8 lg:px-10 py-10"
-              style={{
-                borderRight: i < 3 ? `1px solid rgba(255,255,255,0.06)` : "none",
-                borderBottom: i < 2 ? `1px solid rgba(255,255,255,0.06)` : "none",
-              }}
-            >
-              <p
-                className="font-display font-light mb-2"
-                style={{ fontSize: "clamp(2rem, 3.5vw, 3rem)", color: W, lineHeight: 1, letterSpacing: "-0.03em" }}
-              >
-                {s.val}
-              </p>
-              <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-1" style={{ color: C }}>
-                {s.label}
-              </p>
-              <p className="text-[10px] leading-snug" style={{ color: "rgba(255,255,255,0.35)" }}>{s.sub}</p>
-            </div>
-          ))}
+        {/* Hero Metadata Grid Strip */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 mt-12 border-t border-gray-100 text-xs">
+          <div>
+            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+              Role & Ownership
+            </span>
+            <span className="font-semibold text-[#19244E]">
+              Lead Freelance Product Designer & AI Integrator
+            </span>
+          </div>
+          <div>
+            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+              Client & Region
+            </span>
+            <span className="font-semibold text-[#19244E]">
+              Pro Archery Shop (Jakarta & Asia Expansion)
+            </span>
+          </div>
+          <div>
+            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+              Delivery Velocity
+            </span>
+            <span className="font-semibold text-[#19244E]">
+              24-Hour POC · 0 Manual Wireframes
+            </span>
+          </div>
+          <div>
+            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+              Integrated Portals
+            </span>
+            <span className="font-semibold text-[#19244E]">
+              4 Portals (B2C, Customer, Admin POS, Profile)
+            </span>
+          </div>
         </div>
       </div>
 

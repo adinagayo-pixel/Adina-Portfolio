@@ -98,79 +98,69 @@ export default function SunwayCase({ onBack }: Props) {
       </div>
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
-      <div style={{ backgroundColor: N }}>
-        {/* Meta strip */}
-        <div
-          className="px-8 lg:px-16 py-5 flex flex-wrap items-center gap-6"
-          style={{ borderBottom: `1px solid rgba(255,255,255,0.06)` }}
-        >
-          {[
-            { label: "Region", val: "Malaysia" },
-            { label: "Scope", val: "Embedded Insurance & B2B Portal" },
-            { label: "Status", val: "Live / Production" },
-            { label: "Role", val: "Solo Product Designer & System Logic Architect" },
-          ].map(({ label, val }) => (
-            <div key={label}>
-              <span className="font-sans text-[9px] tracking-widest uppercase block mb-0.5" style={{ color: "rgba(255,255,255,0.3)" }}>
-                {label}
-              </span>
-              <span className="font-sans text-[10px] font-semibold" style={{ color: "rgba(255,255,255,0.7)" }}>
-                {val}
-              </span>
-            </div>
-          ))}
-          <div className="ml-auto flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "#22c55e" }} />
-            <MonoTag>Live in Production</MonoTag>
+      <div className="px-8 lg:px-16 pt-16 pb-14" style={{ backgroundColor: W, borderBottom: `1px solid ${HAIR}` }}>
+        <div className="max-w-4xl space-y-6">
+          <div className="flex flex-wrap items-center gap-3">
+            <MonoTag accent>SPECIAL CASE STUDY</MonoTag>
+            <span style={{ color: HAIR }}>/</span>
+            <MonoTag>EMBEDDED INSURTECH & LOYALTY INTEGRATION</MonoTag>
+            <span style={{ color: HAIR }}>/</span>
+            <MonoTag>SUNWAY PALS × GEGM · 2024</MonoTag>
           </div>
-        </div>
 
-        {/* Title block */}
-        <div className="px-8 lg:px-16 py-16 lg:py-24">
-          <p className="font-sans text-[10px] font-semibold tracking-widest uppercase mb-6" style={{ color: C }}>
-            Case Study · 01
-          </p>
           <h1
-            className="font-display font-light text-white leading-[0.92] mb-8"
-            style={{ fontSize: "clamp(2.4rem, 5.5vw, 5rem)", letterSpacing: "-0.025em", maxWidth: "780px" }}
+            className="font-display font-bold leading-[1.08] tracking-tight"
+            style={{ fontSize: "clamp(2.2rem, 4vw, 3.6rem)", color: N }}
           >
-            Integrating Multi-Product<br />
-            Insurance Ecosystem into<br />
-            <em className="font-normal" style={{ color: C }}>Malaysia's Leading Conglomerate App.</em>
+            Multi-Product Insurance Ecosystem in Sunway SuperApp
           </h1>
-          <p className="text-sm leading-relaxed max-w-[640px]" style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.8 }}>
-            An end-to-end integration architecture bridging third-party insurance microsites and back-office management consoles through API data mapping, reverse-engineered design systems, and zero-defect developer handoffs.
+
+          <p
+            className="font-display font-light leading-relaxed"
+            style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
+          >
+            Integrating 5 insurance products into Malaysia's leading conglomerate loyalty app with loyalty points API mapping and B2B back-office portals.
+          </p>
+
+          <p className="text-sm leading-relaxed max-w-2xl" style={{ color: BODY, lineHeight: 1.8 }}>
+            An end-to-end integration architecture bridging third-party insurance microsites (GH360, Great Shield, Easi Care, Travel, Motorcycle) and back-office partner portals through reverse-engineered design systems and first-pass executive approval.
           </p>
         </div>
 
-        {/* Stat row */}
-        <div className="grid grid-cols-2 lg:grid-cols-4" style={{ borderTop: `1px solid rgba(255,255,255,0.06)` }}>
-          {[
-            { val: "5", label: "Insurance Products", sub: "GH360, Great Shield, Easi Care, Travel, Motorcycle" },
-            { val: "3", label: "Rollout Phases", sub: "Phase 1 → 2 → 3 production deployment" },
-            { val: "6mo", label: "Timeline", sub: "Multi-phase end-to-end delivery" },
-            { val: "0", label: "Revision Rounds", sub: "First-round executive approval" },
-          ].map((s, i) => (
-            <div
-              key={s.label}
-              className="px-8 lg:px-10 py-10"
-              style={{
-                borderRight: i < 3 ? `1px solid rgba(255,255,255,0.06)` : "none",
-                borderBottom: i < 2 ? `1px solid rgba(255,255,255,0.06)` : "none",
-              }}
-            >
-              <p
-                className="font-display font-light mb-2"
-                style={{ fontSize: "clamp(2.2rem, 4vw, 3.5rem)", color: W, lineHeight: 1, letterSpacing: "-0.03em" }}
-              >
-                {s.val}
-              </p>
-              <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-1" style={{ color: C }}>
-                {s.label}
-              </p>
-              <p className="text-[10px] leading-snug" style={{ color: "rgba(255,255,255,0.35)" }}>{s.sub}</p>
-            </div>
-          ))}
+        {/* Hero Metadata Grid Strip */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 mt-12 border-t border-gray-100 text-xs">
+          <div>
+            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+              Role & Ownership
+            </span>
+            <span className="font-semibold text-[#19244E]">
+              Solo Product Designer & Logic Architect
+            </span>
+          </div>
+          <div>
+            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+              Client & Partner
+            </span>
+            <span className="font-semibold text-[#19244E]">
+              Sunway Group × Great Eastern Malaysia
+            </span>
+          </div>
+          <div>
+            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+              Products Integrated
+            </span>
+            <span className="font-semibold text-[#19244E]">
+              5 Insurance Lines + B2B Admin Console
+            </span>
+          </div>
+          <div>
+            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+              Approval Velocity
+            </span>
+            <span className="font-semibold text-[#19244E]">
+              1st-Pass Executive Review Approval
+            </span>
+          </div>
         </div>
       </div>
 

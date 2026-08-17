@@ -102,77 +102,69 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
       </div>
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
-      <div style={{ backgroundColor: GOV }}>
+      <div className="px-8 lg:px-16 pt-16 pb-14" style={{ backgroundColor: W, borderBottom: `1px solid ${HAIR}` }}>
+        <div className="max-w-4xl space-y-6">
+          <div className="flex flex-wrap items-center gap-3">
+            <MonoTag accent>CASE STUDY 04</MonoTag>
+            <span style={{ color: HAIR }}>/</span>
+            <MonoTag>CIVIC TECH & NATIONAL DATA CONCURRENCY</MonoTag>
+            <span style={{ color: HAIR }}>/</span>
+            <MonoTag>INDONESIAN ELECTION 2024</MonoTag>
+          </div>
 
-        {/* Meta strip */}
-        <div
-          className="px-8 lg:px-16 py-5 flex flex-wrap items-center gap-6"
-          style={{ borderBottom: `1px solid rgba(255,255,255,0.06)` }}
-        >
-          {[
-            { label: "Client", val: "Indonesian Political Party" },
-            { label: "Sector", val: "Public Sector / Election Services" },
-            { label: "Timeline", val: "June 2023 – February 2024" },
-            { label: "Scale", val: "38 Provinces · 127 PPLN Districts" },
-            { label: "Role", val: "Solo UX/UI Designer & System Logic Architect" },
-          ].map(({ label, val }) => (
-            <div key={label}>
-              <span className="font-sans text-[9px] tracking-widest uppercase block mb-0.5" style={{ color: "rgba(255,255,255,0.3)" }}>
-                {label}
-              </span>
-              <span className="font-sans text-[10px] font-semibold" style={{ color: "rgba(255,255,255,0.7)" }}>
-                {val}
-              </span>
-            </div>
-          ))}
-        </div>
-
-        {/* Title block */}
-        <div className="px-8 lg:px-16 py-16 lg:py-24">
-          <p className="font-sans text-[10px] font-semibold tracking-widest uppercase mb-6" style={{ color: C }}>
-            Case Study · 05
-          </p>
           <h1
-            className="font-display font-light text-white leading-[0.92] mb-8"
-            style={{ fontSize: "clamp(2rem, 4.8vw, 4.2rem)", letterSpacing: "-0.025em", maxWidth: "860px" }}
+            className="font-display font-bold leading-[1.08] tracking-tight"
+            style={{ fontSize: "clamp(2.2rem, 4vw, 3.6rem)", color: N }}
           >
-            National Quick Count &<br />
-            Real-Time Election Monitoring<br />
-            <em className="font-normal" style={{ color: C }}>at the Scale of a Nation.</em>
+            National Quick Count & Real-Time Monitoring System
           </h1>
-          <p className="text-sm leading-relaxed max-w-[640px]" style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.8 }}>
-            An end-to-end multi-level election monitoring system for Indonesia's 2024 Presidential & Legislative Elections, combining a field witness Progressive Web App (PWA), OCR-powered C-Hasil form scanning, WhatsApp verification pipelines, and a real-time executive CMS tracking vote tabulation across 38 provinces and 127 international districts.
+
+          <p
+            className="font-display font-light leading-relaxed"
+            style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
+          >
+            Tracking vote tabulation across 820,000+ polling stations and 38 provinces in real-time with automated Saint-Laguë seat projections.
+          </p>
+
+          <p className="text-sm leading-relaxed max-w-2xl" style={{ color: BODY, lineHeight: 1.8 }}>
+            An end-to-end multi-level election monitoring system for Indonesia's 2024 Presidential & Legislative Elections, combining a field witness Progressive Web App (PWA), OCR C-Hasil form scanning, and an executive CMS for national party leadership.
           </p>
         </div>
 
-        {/* Stat row */}
-        <div className="grid grid-cols-2 lg:grid-cols-4" style={{ borderTop: `1px solid rgba(255,255,255,0.06)` }}>
-          {[
-            { val: "820K+", label: "TPS Data Points", sub: "Polling stations tracked nationwide" },
-            { val: "38", label: "Provinces", sub: "+ 127 overseas PPLN districts" },
-            { val: "2,000+", label: "Core Admins", sub: "Regional party administrators" },
-            { val: "48h", label: "Critical Window", sub: "Feb 14–15 quick count operation" },
-          ].map((s, i) => (
-            <div
-              key={s.label}
-              className="px-8 lg:px-10 py-10"
-              style={{
-                borderRight: i < 3 ? `1px solid rgba(255,255,255,0.06)` : "none",
-                borderBottom: i < 2 ? `1px solid rgba(255,255,255,0.06)` : "none",
-              }}
-            >
-              <p
-                className="font-display font-light mb-2"
-                style={{ fontSize: "clamp(1.8rem, 3.2vw, 2.8rem)", color: W, lineHeight: 1, letterSpacing: "-0.03em" }}
-              >
-                {s.val}
-              </p>
-              <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-1" style={{ color: C }}>
-                {s.label}
-              </p>
-              <p className="text-[10px] leading-snug" style={{ color: "rgba(255,255,255,0.35)" }}>{s.sub}</p>
-            </div>
-          ))}
+        {/* Hero Metadata Grid Strip */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 mt-12 border-t border-gray-100 text-xs">
+          <div>
+            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+              Role & Ownership
+            </span>
+            <span className="font-semibold text-[#19244E]">
+              Solo UX/UI Designer & Systems Architect
+            </span>
+          </div>
+          <div>
+            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+              Client & Territory
+            </span>
+            <span className="font-semibold text-[#19244E]">
+              Indonesian Political Party (National)
+            </span>
+          </div>
+          <div>
+            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+              National Concurrency
+            </span>
+            <span className="font-semibold text-[#19244E]">
+              820,000+ TPS · 38 Provinces · 127 PPLN
+            </span>
+          </div>
+          <div>
+            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+              Critical Execution Window
+            </span>
+            <span className="font-semibold text-[#19244E]">
+              48-Hour Live Tabulation Window
+            </span>
+          </div>
         </div>
       </div>
 

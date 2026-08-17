@@ -107,77 +107,69 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
       </div>
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
-      <div style={{ backgroundColor: GAME }}>
+      <div className="px-8 lg:px-16 pt-16 pb-14" style={{ backgroundColor: W, borderBottom: `1px solid ${HAIR}` }}>
+        <div className="max-w-4xl space-y-6">
+          <div className="flex flex-wrap items-center gap-3">
+            <MonoTag accent>CASE STUDY 06</MonoTag>
+            <span style={{ color: HAIR }}>/</span>
+            <MonoTag>GAMIFIED ESPORTS & REAL-TIME MULTIPLAYER</MonoTag>
+            <span style={{ color: HAIR }}>/</span>
+            <MonoTag>MYSALAM × MYKAWAN · 2025</MonoTag>
+          </div>
 
-        {/* Meta strip */}
-        <div
-          className="px-8 lg:px-16 py-5 flex flex-wrap items-center gap-6"
-          style={{ borderBottom: `1px solid rgba(255,255,255,0.08)` }}
-        >
-          {[
-            { label: "Client", val: "mySalam Malaysia × myKawan" },
-            { label: "Initiative", val: "Kementerian Digital & ASEAN 2025" },
-            { label: "Region", val: "Malaysia · University Roadshows" },
-            { label: "Scale", val: "100,000 Concurrent Live Players" },
-            { label: "Role", val: "Lead UI/UX Designer & Gamification Architect" },
-          ].map(({ label, val }) => (
-            <div key={label}>
-              <span className="font-sans text-[9px] tracking-widest uppercase block mb-0.5" style={{ color: "rgba(255,255,255,0.35)" }}>
-                {label}
-              </span>
-              <span className="font-sans text-[10px] font-semibold" style={{ color: "rgba(255,255,255,0.8)" }}>
-                {val}
-              </span>
-            </div>
-          ))}
-        </div>
-
-        {/* Title block */}
-        <div className="px-8 lg:px-16 py-16 lg:py-24">
-          <p className="font-sans text-[10px] font-semibold tracking-widest uppercase mb-6" style={{ color: C }}>
-            Case Study · 07
-          </p>
           <h1
-            className="font-display font-light text-white leading-[0.92] mb-8"
-            style={{ fontSize: "clamp(2rem, 4.8vw, 4.2rem)", letterSpacing: "-0.025em", maxWidth: "860px" }}
+            className="font-display font-bold leading-[1.08] tracking-tight"
+            style={{ fontSize: "clamp(2.2rem, 4vw, 3.6rem)", color: N }}
           >
-            100,000-Player Live Tournament.<br />
-            AI-Synthesized Audio. Financial Literacy<br />
-            <em className="font-normal" style={{ color: C }}>at National Scale.</em>
+            100,000-Player Live Tournament & AI Audio Engine
           </h1>
-          <p className="text-sm leading-relaxed max-w-[640px]" style={{ color: "rgba(255,255,255,0.6)", lineHeight: 1.8 }}>
-            A Kahoot-inspired live multiplayer gamification platform built for mySalam Malaysia's #BijakWang Challenge, supporting 100,000 concurrent tournament players, 3-player team formation, synchronized question mechanics, and Gemini AI-generated contextual audio across TikTok Live broadcast events.
+
+          <p
+            className="font-display font-light leading-relaxed"
+            style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
+          >
+            Delivering synchronized real-time financial literacy quizzes to over 100,000 concurrent Malaysian youth tournament players.
+          </p>
+
+          <p className="text-sm leading-relaxed max-w-2xl" style={{ color: BODY, lineHeight: 1.8 }}>
+            A Kahoot-inspired live multiplayer gamification platform built for mySalam Malaysia's #BijakWang Challenge, supporting 3-player squad formation, real-time TikTok Live broadcast sync, and Gemini AI-generated contextual audio soundscapes.
           </p>
         </div>
 
-        {/* Stat row */}
-        <div className="grid grid-cols-2 lg:grid-cols-4" style={{ borderTop: `1px solid rgba(255,255,255,0.08)` }}>
-          {[
-            { val: "100K", label: "Live Players", sub: "Target concurrent tournament capacity" },
-            { val: "3", label: "Player Teams", sub: "Squad formation with unique KOD invite codes" },
-            { val: "+115", label: "Max Score/Q", sub: "Base 100 pts + speed bonus 15 pts" },
-            { val: "AI", label: "Audio Engine", sub: "Gemini AI contextual game soundscapes" },
-          ].map((s, i) => (
-            <div
-              key={s.label}
-              className="px-8 lg:px-10 py-10"
-              style={{
-                borderRight: i < 3 ? `1px solid rgba(255,255,255,0.08)` : "none",
-                borderBottom: i < 2 ? `1px solid rgba(255,255,255,0.08)` : "none",
-              }}
-            >
-              <p
-                className="font-display font-light mb-2"
-                style={{ fontSize: "clamp(1.8rem, 3.2vw, 2.8rem)", color: W, lineHeight: 1, letterSpacing: "-0.03em" }}
-              >
-                {s.val}
-              </p>
-              <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-1" style={{ color: C }}>
-                {s.label}
-              </p>
-              <p className="text-[10px] leading-snug" style={{ color: "rgba(255,255,255,0.4)" }}>{s.sub}</p>
-            </div>
-          ))}
+        {/* Hero Metadata Grid Strip */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 mt-12 border-t border-gray-100 text-xs">
+          <div>
+            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+              Role & Ownership
+            </span>
+            <span className="font-semibold text-[#19244E]">
+              Lead Product Designer & Gamification Architect
+            </span>
+          </div>
+          <div>
+            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+              Client & Initiative
+            </span>
+            <span className="font-semibold text-[#19244E]">
+              mySalam Malaysia × ASEAN 2025 Tour
+            </span>
+          </div>
+          <div>
+            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+              Tournament Concurrency
+            </span>
+            <span className="font-semibold text-[#19244E]">
+              100,000 Concurrent Live Players
+            </span>
+          </div>
+          <div>
+            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+              Audio Engine Innovation
+            </span>
+            <span className="font-semibold text-[#19244E]">
+              Gemini AI Soundscapes (100% License Saved)
+            </span>
+          </div>
         </div>
       </div>
 

@@ -171,77 +171,69 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
       </div>
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
-      <div style={{ backgroundColor: N }}>
+      <div className="px-8 lg:px-16 pt-16 pb-14" style={{ backgroundColor: W, borderBottom: `1px solid ${HAIR}` }}>
+        <div className="max-w-4xl space-y-6">
+          <div className="flex flex-wrap items-center gap-3">
+            <MonoTag accent>CASE STUDY 05</MonoTag>
+            <span style={{ color: HAIR }}>/</span>
+            <MonoTag>HEALTH TECH & FIELD SALES ENABLEMENT</MonoTag>
+            <span style={{ color: HAIR }}>/</span>
+            <MonoTag>FONTERRA ANLENE · 2023</MonoTag>
+          </div>
 
-        {/* Meta strip */}
-        <div
-          className="px-8 lg:px-16 py-5 flex flex-wrap items-center gap-6"
-          style={{ borderBottom: `1px solid rgba(255,255,255,0.06)` }}
-        >
-          {[
-            { label: "Client", val: "Fonterra Indonesia × Anlene" },
-            { label: "Sector", val: "Dairy & Nutrition / Health Tech" },
-            { label: "Timeline", val: "August – October 2023 · 3-Month Sprint" },
-            { label: "Scope", val: "Field Sales Enablement & Health Passport" },
-            { label: "Role", val: "Lead UX/UI Designer & Systems Researcher · 1-Person Team" },
-          ].map(({ label, val }) => (
-            <div key={label}>
-              <span className="font-sans text-[9px] tracking-widest uppercase block mb-0.5" style={{ color: "rgba(255,255,255,0.3)" }}>
-                {label}
-              </span>
-              <span className="font-sans text-[10px] font-semibold" style={{ color: "rgba(255,255,255,0.7)" }}>
-                {val}
-              </span>
-            </div>
-          ))}
-        </div>
-
-        {/* Title block */}
-        <div className="px-8 lg:px-16 py-16 lg:py-24">
-          <p className="font-sans text-[10px] font-semibold tracking-widest uppercase mb-6" style={{ color: C }}>
-            Case Study · 06
-          </p>
           <h1
-            className="font-display font-light text-white leading-[0.92] mb-8"
-            style={{ fontSize: "clamp(2rem, 4.8vw, 4.2rem)", letterSpacing: "-0.025em", maxWidth: "860px" }}
+            className="font-display font-bold leading-[1.08] tracking-tight"
+            style={{ fontSize: "clamp(2.2rem, 4vw, 3.6rem)", color: N }}
           >
-            Medical Diagnostics into<br />
-            Field Sales Intelligence —<br />
-            <em className="font-normal" style={{ color: C }}>The Anlene Health Passport.</em>
+            Medical Diagnostics into Field Sales Intelligence
           </h1>
-          <p className="text-sm leading-relaxed max-w-[640px]" style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.8 }}>
-            A complete product revamp of Fonterra's field sales tool, translating clinical data from Achilles bone scanners and Omron body composition devices into personalized health dashboards, automated PDF reports, and WhatsApp delivery pipelines used by SPGs during live event activations across Indonesia.
+
+          <p
+            className="font-display font-light leading-relaxed"
+            style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
+          >
+            Translating clinical data from Achilles bone scanners and Omron devices into personalized health passports and automated WhatsApp PDF delivery.
+          </p>
+
+          <p className="text-sm leading-relaxed max-w-2xl" style={{ color: BODY, lineHeight: 1.8 }}>
+            A complete product revamp of Fonterra's field sales tool, enabling SPGs to conduct 90-second health consultations during live event activations across Indonesia, backed by automated 4-tier diagnostic metrics and instant WhatsApp dispatch.
           </p>
         </div>
 
-        {/* Stat row */}
-        <div className="grid grid-cols-2 lg:grid-cols-4" style={{ borderTop: `1px solid rgba(255,255,255,0.06)` }}>
-          {[
-            { val: "3mo", label: "Delivery Sprint", sub: "Aug – Oct 2023 fast-paced timeline" },
-            { val: "2", label: "Medical Devices", sub: "GE Achilles Ultrasonometer + Omron HBF-375" },
-            { val: "4-tier", label: "Health Matrix", sub: "Blue / Green / Yellow / Red diagnostic bands" },
-            { val: "2", label: "Portal Surfaces", sub: "SPG field console + Customer health passport" },
-          ].map((s, i) => (
-            <div
-              key={s.label}
-              className="px-8 lg:px-10 py-10"
-              style={{
-                borderRight: i < 3 ? `1px solid rgba(255,255,255,0.06)` : "none",
-                borderBottom: i < 2 ? `1px solid rgba(255,255,255,0.06)` : "none",
-              }}
-            >
-              <p
-                className="font-display font-light mb-2"
-                style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)", color: W, lineHeight: 1, letterSpacing: "-0.03em" }}
-              >
-                {s.val}
-              </p>
-              <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-1" style={{ color: C }}>
-                {s.label}
-              </p>
-              <p className="text-[10px] leading-snug" style={{ color: "rgba(255,255,255,0.35)" }}>{s.sub}</p>
-            </div>
-          ))}
+        {/* Hero Metadata Grid Strip */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 mt-12 border-t border-gray-100 text-xs">
+          <div>
+            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+              Role & Ownership
+            </span>
+            <span className="font-semibold text-[#19244E]">
+              Sole Product Designer & UX Researcher
+            </span>
+          </div>
+          <div>
+            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+              Client & Territory
+            </span>
+            <span className="font-semibold text-[#19244E]">
+              Fonterra Indonesia × Anlene
+            </span>
+          </div>
+          <div>
+            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+              Sprint Timeline
+            </span>
+            <span className="font-semibold text-[#19244E]">
+              3 Months (Aug – Oct 2023)
+            </span>
+          </div>
+          <div>
+            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+              Hardware Integrations
+            </span>
+            <span className="font-semibold text-[#19244E]">
+              GE Achilles Scanner + Omron Body Scan
+            </span>
+          </div>
         </div>
       </div>
 

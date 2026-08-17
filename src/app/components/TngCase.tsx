@@ -220,81 +220,71 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
       </div>
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
-      <div style={{ backgroundColor: N }}>
-        {/* Meta strip */}
-        <div
-          className="px-8 lg:px-16 py-5 flex flex-wrap items-center gap-6"
-          style={{ borderBottom: `1px solid rgba(255,255,255,0.06)` }}
-        >
-          {[
-            { label: "Client", val: "Touch 'n Go × GEGM" },
-            { label: "Tech", val: "PWA / SSO / eKYC" },
-            { label: "Gov. Program", val: "PTV Voucher" },
-            { label: "Timeline", val: "3 Months · 5 Versions" },
-            { label: "Role", val: "Lead UI/UX Designer & Systems Integrator" },
-          ].map(({ label, val }) => (
-            <div key={label}>
-              <span className="font-sans text-[9px] tracking-widest uppercase block mb-0.5" style={{ color: "rgba(255,255,255,0.3)" }}>
-                {label}
-              </span>
-              <span className="font-sans text-[10px] font-semibold" style={{ color: "rgba(255,255,255,0.7)" }}>
-                {val}
-              </span>
-            </div>
-          ))}
-          <div className="ml-auto flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "#22c55e" }} />
-            <MonoTag>Released V5 · Production</MonoTag>
+      <div className="px-8 lg:px-16 pt-16 pb-14" style={{ backgroundColor: W, borderBottom: `1px solid ${HAIR}` }}>
+        <div className="max-w-4xl space-y-6">
+          <div className="flex flex-wrap items-center gap-3">
+            <MonoTag accent>CASE STUDY 02</MonoTag>
+            <span style={{ color: HAIR }}>/</span>
+            <MonoTag>FINTECH & EMBEDDED MICRO-INSURANCE</MonoTag>
+            <span style={{ color: HAIR }}>/</span>
+            <MonoTag>TOUCH 'N GO × GEGM · 2024</MonoTag>
+          </div>
+
+          <h1
+            className="font-display font-bold leading-[1.08] tracking-tight"
+            style={{ fontSize: "clamp(2.2rem, 4vw, 3.6rem)", color: N }}
+          >
+            Seamless Micro-Insurance & Government Subsidy Integration
+          </h1>
+
+          <p
+            className="font-display font-light leading-relaxed"
+            style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
+          >
+            An embedded PWA architecture built inside Malaysia's leading e-wallet ecosystem (20M+ users), leveraging native SSO and eKYC data pipelines.
+          </p>
+
+          <p className="text-sm leading-relaxed max-w-2xl" style={{ color: BODY, lineHeight: 1.8 }}>
+            Designing and shipping 5 live production releases of Great Tenang Madani within Touch 'n Go eWallet, integrating automated Perlindungan Tenang Voucher (PTV) government subsidy checks and zero-friction eKYC auto-population.
+          </p>
+        </div>
+
+        {/* Hero Metadata Grid Strip */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 mt-12 border-t border-gray-100 text-xs">
+          <div>
+            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+              Role & Ownership
+            </span>
+            <span className="font-semibold text-[#19244E]">
+              Lead Product Designer & Systems Architect
+            </span>
+          </div>
+          <div>
+            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+              Client & Partners
+            </span>
+            <span className="font-semibold text-[#19244E]">
+              Touch 'n Go × Great Eastern (MY Market)
+            </span>
+          </div>
+          <div>
+            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+              Timeline & Releases
+            </span>
+            <span className="font-semibold text-[#19244E]">
+              3 Months · 5 Shipped V1–V5 Releases
+            </span>
+          </div>
+          <div>
+            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+              Platforms & Architecture
+            </span>
+            <span className="font-semibold text-[#19244E]">
+              Embedded PWA / Native SSO / eKYC
+            </span>
           </div>
         </div>
-
-        {/* Title block */}
-        <div className="px-8 lg:px-16 py-16 lg:py-24">
-          <p className="font-sans text-[10px] font-semibold tracking-widest uppercase mb-6" style={{ color: C }}>
-            Case Study · 03
-          </p>
-          <h1
-            className="font-display font-light text-white leading-[0.92] mb-8"
-            style={{ fontSize: "clamp(2.2rem, 5vw, 4.5rem)", letterSpacing: "-0.025em", maxWidth: "820px" }}
-          >
-            Seamless Micro-Insurance Integration<br />
-            & Government Subsidy Flow for<br />
-            <em className="font-normal" style={{ color: C }}>Touch 'n Go E-Wallet.</em>
-          </h1>
-          <p className="text-sm leading-relaxed max-w-[640px]" style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.8 }}>
-            An embedded Progressive Web Application (PWA) architecture built inside Malaysia's leading e-wallet ecosystem, leveraging TNG native SSO + eKYC data pipelines, automated Government Voucher (PTV) eligibility checks, and 5-version iterative design system alignments.
-          </p>
-        </div>
-
-        {/* Stat row */}
-        <div className="grid grid-cols-2 lg:grid-cols-4" style={{ borderTop: `1px solid rgba(255,255,255,0.06)` }}>
-          {[
-            { val: "V5", label: "Production Release", sub: "5 iterated versions shipped to live" },
-            { val: "3mo", label: "Timeline", sub: "End-to-end design & governance" },
-            { val: "RM0", label: "PTV Eligible Flow", sub: "Zero-cost checkout for gov. voucher users" },
-            { val: "0", label: "Defect UX Flows", sub: "Zero-defect through all 5 versions" },
-          ].map((s, i) => (
-            <div
-              key={s.label}
-              className="px-8 lg:px-10 py-10"
-              style={{
-                borderRight: i < 3 ? `1px solid rgba(255,255,255,0.06)` : "none",
-                borderBottom: i < 2 ? `1px solid rgba(255,255,255,0.06)` : "none",
-              }}
-            >
-              <p
-                className="font-display font-light mb-2"
-                style={{ fontSize: "clamp(2rem, 3.5vw, 3rem)", color: W, lineHeight: 1, letterSpacing: "-0.03em" }}
-              >
-                {s.val}
-              </p>
-              <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-1" style={{ color: C }}>
-                {s.label}
-              </p>
-              <p className="text-[10px] leading-snug" style={{ color: "rgba(255,255,255,0.35)" }}>{s.sub}</p>
-            </div>
-          ))}
-        </div>
+      </div>
 
         {/* EXECUTIVE SUMMARY & 30-SECOND TAKEAWAYS */}
         <div className="px-8 lg:px-16 py-8 bg-[#111836] border-t border-b border-white/10">
@@ -323,7 +313,6 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
             </div>
           </div>
         </div>
-      </div>
 
       {/* ── BODY ──────────────────────────────────────────────────────────── */}
       <div className="max-w-5xl mx-auto px-8 lg:px-16 py-16 lg:py-24 space-y-20">

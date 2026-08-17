@@ -119,111 +119,73 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
       </div>
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
-      <div style={{ backgroundColor: N }}>
-        {/* Meta strip */}
-        <div
-          className="px-8 lg:px-16 py-5 flex flex-wrap items-center gap-6"
-          style={{ borderBottom: `1px solid rgba(255,255,255,0.06)` }}
-        >
-          {[
-            { label: "Client", val: "GEGI Singapore" },
-            { label: "Tech", val: "Adobe Experience Manager" },
-            { label: "Timeline", val: "2-Week Sprint" },
-            { label: "Launch", val: "March 2026" },
-            { label: "Role", val: "Lead UI/UX Designer" },
-          ].map(({ label, val }) => (
-            <div key={label}>
-              <span className="font-sans text-[9px] tracking-widest uppercase block mb-0.5" style={{ color: "rgba(255,255,255,0.3)" }}>
-                {label}
-              </span>
-              <span className="font-sans text-[10px] font-semibold" style={{ color: "rgba(255,255,255,0.7)" }}>
-                {val}
-              </span>
-            </div>
-          ))}
-          <div className="ml-auto flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "#22c55e" }} />
-            <MonoTag>Live · Singapore</MonoTag>
-          </div>
-        </div>
-
-        {/* Title block */}
-        <div className="grid lg:grid-cols-[1fr_1px_480px]">
-          <div className="px-8 lg:px-16 py-16 lg:py-24">
-            <p className="font-sans text-[10px] font-semibold tracking-widest uppercase mb-6" style={{ color: C }}>
-              Case Study · 02
-            </p>
-            <h1
-              className="font-display font-light text-white leading-[0.92] mb-8"
-              style={{ fontSize: "clamp(2.2rem, 5vw, 4.5rem)", letterSpacing: "-0.025em" }}
-            >
-              Gamified Financial<br />
-              Evaluation & Interactive<br />
-              <em className="font-normal" style={{ color: C }}>Acquisition Campaign.</em>
-            </h1>
-            <p className="text-sm leading-relaxed max-w-[560px]" style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.8 }}>
-              A rapid-sprint interactive campaign tool for Great Eastern General Insurance Singapore, combining scroll-based gamified evaluation, localized Singlish persona mechanics, AEM integration, and organic social-sharing loops under a strict 2-week execution timeline.
-            </p>
+      <div className="px-8 lg:px-16 pt-16 pb-14" style={{ backgroundColor: W, borderBottom: `1px solid ${HAIR}` }}>
+        <div className="max-w-4xl space-y-6">
+          <div className="flex flex-wrap items-center gap-3">
+            <MonoTag accent>CASE STUDY 01</MonoTag>
+            <span style={{ color: HAIR }}>/</span>
+            <MonoTag>GAMIFIED CAMPAIGN & AEM INTEGRATION</MonoTag>
+            <span style={{ color: HAIR }}>/</span>
+            <MonoTag>GEGI SINGAPORE · 2026</MonoTag>
           </div>
 
-          {/* Hairline */}
-          <div className="hidden lg:block" style={{ backgroundColor: "rgba(255,255,255,0.06)" }} />
+          <h1
+            className="font-display font-bold leading-[1.08] tracking-tight"
+            style={{ fontSize: "clamp(2.2rem, 4vw, 3.6rem)", color: N }}
+          >
+            Gamified CI Evaluation & Interactive Acquisition Campaign
+          </h1>
 
-          {/* Persona preview — right panel */}
-          <div className="hidden lg:grid grid-cols-2" style={{ borderLeft: "none" }}>
-            {PERSONAS.map((p, i) => (
-              <div
-                key={p.name}
-                className="relative flex items-center justify-center overflow-hidden"
-                style={{
-                  backgroundColor: "rgba(255,255,255,0.04)",
-                  borderRight: i % 2 === 0 ? `1px solid rgba(255,255,255,0.06)` : "none",
-                  borderBottom: i < 2 ? `1px solid rgba(255,255,255,0.06)` : "none",
-                  minHeight: "160px",
-                }}
-              >
-                <ImageWithFallback
-                  src={p.img}
-                  alt={p.name}
-                  className="w-full h-full object-contain p-4"
-                  style={{ maxHeight: "140px" }}
-                />
-              </div>
-            ))}
+          <p
+            className="font-display font-light leading-relaxed"
+            style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
+          >
+            Combining scroll-based gamified evaluation, localized Singlish persona mechanics, and AEM integration under a strict 2-week deadline.
+          </p>
+
+          <p className="text-sm leading-relaxed max-w-2xl" style={{ color: BODY, lineHeight: 1.8 }}>
+            A rapid-sprint interactive campaign tool for Great Eastern General Insurance Singapore, combining zero-button scroll interactions, localized Singlish persona mechanics, and organic social-sharing loops to eliminate acquisition drop-off friction.
+          </p>
+        </div>
+
+        {/* Hero Metadata Grid Strip */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 mt-12 border-t border-gray-100 text-xs">
+          <div>
+            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+              Role & Ownership
+            </span>
+            <span className="font-semibold text-[#19244E]">
+              Sole Product Designer
+            </span>
+          </div>
+          <div>
+            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+              Client & Territory
+            </span>
+            <span className="font-semibold text-[#19244E]">
+              GEGI Singapore (SG Market)
+            </span>
+          </div>
+          <div>
+            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+              Sprint Timeline
+            </span>
+            <span className="font-semibold text-[#19244E]">
+              2-Week Rapid Sprint
+            </span>
+          </div>
+          <div>
+            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+              Tech Stack
+            </span>
+            <span className="font-semibold text-[#19244E]">
+              Adobe Experience Manager (AEM)
+            </span>
           </div>
         </div>
+      </div>
 
-        {/* Stat row */}
-        <div className="grid grid-cols-2 lg:grid-cols-4" style={{ borderTop: `1px solid rgba(255,255,255,0.06)` }}>
-          {[
-            { val: "2wk", label: "Sprint Execution", sub: "From brief to live deployment" },
-            { val: "7Q", label: "Question Matrix", sub: "Scroll-based, no Next button" },
-            { val: "4", label: "Persona Outcomes", sub: "Singlish-localized CI gap tiers" },
-            { val: "1st", label: "SG Market Tender", sub: "Won GEGI's inaugural SG campaign" },
-          ].map((s, i) => (
-            <div
-              key={s.label}
-              className="px-8 lg:px-10 py-10"
-              style={{
-                borderRight: i < 3 ? `1px solid rgba(255,255,255,0.06)` : "none",
-                borderBottom: i < 2 ? `1px solid rgba(255,255,255,0.06)` : "none",
-              }}
-            >
-              <p
-                className="font-display font-light mb-2"
-                style={{ fontSize: "clamp(2rem, 3.5vw, 3rem)", color: W, lineHeight: 1, letterSpacing: "-0.03em" }}
-              >
-                {s.val}
-              </p>
-              <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-1" style={{ color: C }}>
-                {s.label}
-              </p>
-              <p className="text-[10px] leading-snug" style={{ color: "rgba(255,255,255,0.35)" }}>{s.sub}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* EXECUTIVE SUMMARY & 30-SECOND TAKEAWAYS */}
+      {/* EXECUTIVE SUMMARY & 30-SECOND TAKEAWAYS */}
         <div className="px-8 lg:px-16 py-8 bg-[#111836] border-t border-b border-white/10">
           <div className="flex items-center gap-2 mb-4">
             <span className="w-2 h-2 rounded-full bg-[#DB3E8C] animate-pulse" />
@@ -250,7 +212,6 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
             </div>
           </div>
         </div>
-      </div>
 
       {/* ── BODY CONTENT ──────────────────────────────────────────────────── */}
       <div className="max-w-5xl mx-auto px-8 lg:px-16 py-16 lg:py-24 space-y-20">
