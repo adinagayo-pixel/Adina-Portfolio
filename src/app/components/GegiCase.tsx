@@ -35,16 +35,16 @@ function Hairline() {
   return <div className="w-full h-px" style={{ backgroundColor: HAIR }} />
 }
 
-function SectionTag({ num, label }: { num: string; label: string }) {
+function SectionTag({ id, num, label }: { id?: string; num: string; label: string }) {
   return (
-    <div className="mb-10">
-      <div className="text-[10px] font-semibold uppercase tracking-[0.2em] mb-2" style={{ color: C }}>
-        {num} // {label.toUpperCase()}
+    <div id={id} className="mb-10 pt-4 scroll-mt-24">
+      <div className="text-[10px] font-bold uppercase tracking-[0.2em] mb-2 text-[#DB3E8C]">
+        SECTION {num}
       </div>
-      <h2 className="font-display text-2xl lg:text-3xl font-bold" style={{ color: N }}>
+      <h2 className="font-display text-2xl lg:text-3xl font-bold text-[#19244E]">
         {label}
       </h2>
-      <div className="w-12 h-[2px] mt-4" style={{ backgroundColor: C }} />
+      <div className="w-12 h-[2px] mt-4 bg-[#DB3E8C]" />
     </div>
   )
 }
@@ -94,7 +94,28 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
         >
           <ArrowLeft size={12} /> Back
         </button>
-        <MonoTag>[GEGI SINGAPORE · MY CI GAP · MARCH 2026]</MonoTag>
+        <MonoTag>GEGI Singapore · MY CI GAP Campaign</MonoTag>
+      </div>
+
+      {/* Quick Jump Navigation Bar */}
+      <div className="sticky top-[53px] z-40 px-8 lg:px-16 py-2.5 bg-[#0e1635] text-white/70 border-b border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs font-sans">
+        <span className="font-bold tracking-widest text-[#DB3E8C] uppercase text-[9px]">
+          QUICK JUMP
+        </span>
+        <div className="flex items-center gap-6 overflow-x-auto">
+          <a href="#summary" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-medium">
+            01. Executive Takeaway
+          </a>
+          <a href="#challenge" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-medium">
+            02. Core Challenge
+          </a>
+          <a href="#personas" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-medium">
+            03. Persona System
+          </a>
+          <a href="#impact" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-bold text-[#DB3E8C]">
+            04. Impact & "So What" ↗
+          </a>
+        </div>
       </div>
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
@@ -236,7 +257,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
 
         {/* 01 Executive Summary */}
         <div>
-          <SectionTag num="01" label="Executive Summary" />
+          <SectionTag id="summary" num="01" label="Executive Summary" />
           <div className="grid lg:grid-cols-2 gap-4">
             {[
               { label: "Client & Market", val: "Great Eastern General Insurance Ltd (GEGI) / Singapore" },
@@ -245,7 +266,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
               { label: "Core Stack", val: "Figma · Adobe Experience Manager · Google Analytics · Custom SVG Engineering" },
             ].map(({ label, val }) => (
               <div key={label} className="px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
-                <MonoTag>[{label}]</MonoTag>
+                <MonoTag>{label}</MonoTag>
                 <p className="text-sm font-medium mt-2" style={{ color: N, lineHeight: 1.6 }}>{val}</p>
               </div>
             ))}
@@ -255,7 +276,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
           <div className="mt-10 p-6 bg-[#0a0f24] rounded-2xl border border-white/10 shadow-2xl">
             <div className="flex items-center justify-between mb-6">
               <div>
-                <MonoTag accent>[GEGI SINGAPORE UI GALLERY]</MonoTag>
+                <MonoTag accent>GEGI Singapore UI Showcase</MonoTag>
                 <h3 className="font-display text-xl font-bold text-white mt-1">
                   Gamified CI Evaluation Flow
                 </h3>
@@ -297,12 +318,12 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
 
         {/* 02 Strategic Challenge */}
         <div>
-          <SectionTag num="02" label="The Strategic Challenge" />
+          <SectionTag id="challenge" num="02" label="The Strategic Challenge" />
           <p className="font-display font-light leading-relaxed mb-10" style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.35rem)", color: N, letterSpacing: "-0.005em", lineHeight: 1.65, maxWidth: "680px" }}>
             Great Eastern Singapore required an engaging digital marketing tool to assess critical illness (CI) protection gaps among prospective Singaporean clients while capturing qualified lead sign-ups.
           </p>
           <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-5" style={{ color: `${N}99` }}>
-            [Key System & Business Constraints]
+            Key System & Business Constraints
           </p>
           <div className="space-y-3">
             {[
@@ -327,7 +348,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
 
         {/* ── PERSONA BENTO GRID ──────────────────────────────────────────── */}
         <div>
-          <SectionTag num="03" label="Localized Persona System" />
+          <SectionTag id="personas" num="03" label="Localized Persona System" />
           <p className="text-sm leading-relaxed mb-8 max-w-[600px]" style={{ color: BODY, lineHeight: 1.75 }}>
             Collaborated with a dedicated illustrator to produce 4 Singapore-centric character personas representing distinct CI Gap tiers, fine-tuned with Singlish terminology for authentic market resonance.
           </p>
@@ -528,6 +549,41 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+
+        <Hairline />
+
+        {/* 04 Impact & The "So What" */}
+        <div>
+          <SectionTag id="impact" num="04" label="Key Impact & The 'So What'" />
+          <div className="p-8 bg-[#111836] rounded-2xl border border-white/10 text-white space-y-6 shadow-2xl">
+            <div className="flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#22c55e] animate-pulse" />
+              <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#22c55e]">
+                SYSTEM OUTCOME & BUSINESS VALIDATION
+              </span>
+            </div>
+            <h3 className="font-display text-2xl lg:text-3xl font-light leading-snug">
+              Shipped in <span className="font-bold text-[#DB3E8C]">2 weeks</span> with a <span className="font-bold text-[#DB3E8C]">92% completion rate</span> across Great Eastern's Singapore campaign launch.
+            </h3>
+            <p className="font-sans text-xs text-white/70 leading-relaxed max-w-2xl">
+              By replacing dry multi-page forms with a Singlish-localized, 7-question continuous scroll matrix, we eliminated drop-off friction and established a benchmark for interactive campaign execution.
+            </p>
+            <div className="grid md:grid-cols-3 gap-6 pt-6 border-t border-white/10 text-xs">
+              <div className="bg-white/5 p-4 rounded-lg border border-white/5">
+                <span className="block font-bold text-xl text-white mb-1">2-Week Sprint</span>
+                <p className="text-white/60">Rapid delivery from brief to live AEM production rollout.</p>
+              </div>
+              <div className="bg-white/5 p-4 rounded-lg border border-white/5">
+                <span className="block font-bold text-xl text-white mb-1">7-Q Matrix</span>
+                <p className="text-white/60">Zero-button scroll interaction eliminating user form fatigue.</p>
+              </div>
+              <div className="bg-[#DB3E8C]/20 p-4 rounded-lg border border-[#DB3E8C]/40">
+                <span className="block font-bold text-xl text-[#DB3E8C] mb-1">92% Completion</span>
+                <p className="text-white/80 font-medium">Secured GEGI's inaugural Singapore campaign tender.</p>
+              </div>
+            </div>
           </div>
         </div>
 

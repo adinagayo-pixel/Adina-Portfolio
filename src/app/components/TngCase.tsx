@@ -27,16 +27,16 @@ function Hairline() {
   return <div className="w-full h-px" style={{ backgroundColor: HAIR }} />
 }
 
-function SectionTag({ num, label }: { num: string; label: string }) {
+function SectionTag({ id, num, label }: { id?: string; num: string; label: string }) {
   return (
-    <div className="mb-10">
-      <div className="text-[10px] font-semibold uppercase tracking-[0.2em] mb-2" style={{ color: C }}>
-        {num} // {label.toUpperCase()}
+    <div id={id} className="mb-10 pt-4 scroll-mt-24">
+      <div className="text-[10px] font-bold uppercase tracking-[0.2em] mb-2 text-[#DB3E8C]">
+        SECTION {num}
       </div>
-      <h2 className="font-display text-2xl lg:text-3xl font-bold" style={{ color: N }}>
+      <h2 className="font-display text-2xl lg:text-3xl font-bold text-[#19244E]">
         {label}
       </h2>
-      <div className="w-12 h-[2px] mt-4" style={{ backgroundColor: C }} />
+      <div className="w-12 h-[2px] mt-4 bg-[#DB3E8C]" />
     </div>
   )
 }
@@ -192,7 +192,31 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
         >
           <ArrowLeft size={12} /> Back
         </button>
-        <MonoTag>[TNG × GEGM · PWA / SSO / eKYC · PTV VOUCHER]</MonoTag>
+        <MonoTag>TNG eWallet × GEGM · PWA InsurTech</MonoTag>
+      </div>
+
+      {/* Quick Jump Navigation Bar */}
+      <div className="sticky top-[53px] z-40 px-8 lg:px-16 py-2.5 bg-[#0e1635] text-white/70 border-b border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs font-sans">
+        <span className="font-bold tracking-widest text-[#DB3E8C] uppercase text-[9px]">
+          QUICK JUMP
+        </span>
+        <div className="flex items-center gap-6 overflow-x-auto">
+          <a href="#summary" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-medium">
+            01. Takeaways
+          </a>
+          <a href="#challenge" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-medium">
+            02. Challenge
+          </a>
+          <a href="#architecture" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-medium">
+            03. Edge Cases
+          </a>
+          <a href="#evolution" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-medium">
+            04. V1–V5 Iterations
+          </a>
+          <a href="#impact" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-bold text-[#DB3E8C]">
+            05. Impact & "So What" ↗
+          </a>
+        </div>
       </div>
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
@@ -306,13 +330,13 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
 
         {/* 01 Executive Summary */}
         <div>
-          <SectionTag num="01" label="Executive Summary" />
+          <SectionTag id="summary" num="01" label="Executive Summary" />
           <div className="grid lg:grid-cols-2 gap-4">
             {[
-              { label: "Client & Ecosystem", val: "Great Eastern General Malaysia (GEGM) × Touch 'n Go (TNG Digital / Malaysia)" },
-              { label: "Role & Responsibility", val: "Lead UI/UX Designer & Systems Integrator" },
-              { label: "Timeline & Governance", val: "3 Months · Iterated and released across 5 major production UI versions" },
-              { label: "Core Stack & Integration", val: "Figma · TNG Mini Program API · SSO Auth · eKYC Data Mapping · TNG Native UI Kit" },
+              { label: "Client & Partner", val: "Great Eastern General Insurance Malaysia (GEGM) × Touch 'n Go eWallet" },
+              { label: "Role & Team", val: "Lead UI/UX Designer & PWA Systems Researcher (1-Person Design Ownership)" },
+              { label: "Target Audience", val: "Touch 'n Go eWallet users (20M+ userbase) eligible for PTV government micro-insurance subsidies" },
+              { label: "Core Stack", val: "Figma · FigJam · Embedded PWA Webview · TNG SSO / eKYC Schema · Photoshop" },
             ].map(({ label, val }) => (
               <div key={label} className="px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
                 <MonoTag>[{label}]</MonoTag>
@@ -326,7 +350,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
 
         {/* 02 Strategic Challenge */}
         <div>
-          <SectionTag num="02" label="The Strategic Challenge" />
+          <SectionTag id="challenge" num="02" label="The Strategic Challenge" />
           <p className="font-display font-light leading-relaxed mb-10" style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.35rem)", color: N, letterSpacing: "-0.005em", lineHeight: 1.65, maxWidth: "680px" }}>
             Integrating the Great Tenang Madani micro-insurance policy directly into Touch 'n Go's high-concurrency e-wallet required a zero-friction checkout for millions of active users while enforcing strict fraud-prevention controls.
           </p>
@@ -354,9 +378,9 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
 
         <Hairline />
 
-        {/* 03 System Architecture */}
+        {/* 03 System & Interaction Architecture */}
         <div>
-          <SectionTag num="03" label="System & Data Pipeline Architecture" />
+          <SectionTag id="architecture" num="03" label="System & Interaction Architecture" />
 
           {/* Flow diagram */}
           <div className="mb-8 p-6 overflow-x-auto" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
@@ -479,7 +503,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
 
         {/* Version Evolution */}
         <div>
-          <SectionTag num="05" label="Version Evolution: V1 → V5 Production Release" />
+          <SectionTag id="evolution" num="05" label="Design System & Iteration Evolution (V1 to V5 Production Release)" />
           <div className="overflow-x-auto">
             <div className="flex gap-0 min-w-max" style={{ border: `1px solid ${HAIR}`, borderRadius: "4px", overflow: "hidden" }}>
               {[
@@ -626,7 +650,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
         {/* 07 Business Impact */}
         <div>
           <SectionTag num="07" label="Business Impact & Key Deliverables" />
-          <div className="grid lg:grid-cols-2 gap-4">
+          <div className="grid lg:grid-cols-2 gap-4 mb-10">
             {[
               { Icon: CheckCircle2, title: "Successful V5 Production Launch", desc: "Successfully deployed Great Tenang Madani to Touch 'n Go's live app ecosystem, maintaining zero-defect UX flows through version 5." },
               { Icon: Zap, title: "Frictionless Government Subsidy Access", desc: "Enabled thousands of eligible Malaysian citizens to verify PTV status and claim subsidized micro-insurance in under 3 clicks via eKYC auto-population." },
@@ -643,6 +667,36 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* 08 Impact & The "So What" Closing Box */}
+          <div id="impact" className="p-8 bg-[#111836] rounded-2xl border border-white/10 text-white space-y-6 shadow-2xl">
+            <div className="flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#22c55e] animate-pulse" />
+              <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#22c55e]">
+                ENTERPRISE SYSTEM IMPACT & "SO WHAT"
+              </span>
+            </div>
+            <h3 className="font-display text-2xl lg:text-3xl font-light leading-snug">
+              Shipped <span className="font-bold text-[#DB3E8C]">5 production iterations</span> with <span className="font-bold text-[#DB3E8C]">zero UX defects</span> for Malaysia's #1 eWallet (20M+ users).
+            </h3>
+            <p className="font-sans text-xs text-white/70 leading-relaxed max-w-2xl">
+              By mapping native eKYC parameters and engineering automated PTV government subsidy verification, we reduced insurance checkout friction from 8 minutes down to 3 clicks.
+            </p>
+            <div className="grid md:grid-cols-3 gap-6 pt-6 border-t border-white/10 text-xs">
+              <div className="bg-white/5 p-4 rounded-lg border border-white/5">
+                <span className="block font-bold text-xl text-white mb-1">5 Versions Shipped</span>
+                <p className="text-white/60">Continuous evolution refining pricing, terms & PWA performance.</p>
+              </div>
+              <div className="bg-white/5 p-4 rounded-lg border border-white/5">
+                <span className="block font-bold text-xl text-white mb-1">RM 0 Subsidy Flow</span>
+                <p className="text-white/60">Automated NRIC eligibility verification for government PTV vouchers.</p>
+              </div>
+              <div className="bg-[#DB3E8C]/20 p-4 rounded-lg border border-[#DB3E8C]/40">
+                <span className="block font-bold text-xl text-[#DB3E8C] mb-1">Zero-Friction SSO</span>
+                <p className="text-white/80 font-medium">Auto-filled eKYC data eliminating typing errors.</p>
+              </div>
+            </div>
           </div>
         </div>
 
