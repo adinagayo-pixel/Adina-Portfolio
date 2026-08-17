@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import {
   ArrowLeft, ChevronRight, CheckCircle2, Globe,
-  FileCode2, Shield, Zap, RefreshCw, GitBranch, Users, MessageSquare, Sparkles
+  FileCode2, Shield, Zap, RefreshCw, GitBranch, Users, MessageSquare, Sparkles, AlertTriangle
 } from "lucide-react"
 
 const N = "#19244E"
@@ -272,10 +272,10 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
           </div>
           <div>
             <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
-              Timeline & Releases
+              Timeline & Delivery
             </span>
             <span className="font-semibold text-[#19244E]">
-              3 Months · 5 Shipped V1–V5 Releases
+              3 Months · 5 Design Iterations → 1 Production Release (V5)
             </span>
           </div>
           <div>
@@ -312,7 +312,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
             </div>
             <div className="bg-white/5 p-4 rounded-lg border border-white/5">
               <span className="block text-[9px] font-bold tracking-widest text-white/40 uppercase mb-1.5">04 · Key Impact</span>
-              <p className="text-[11px] font-semibold text-white leading-relaxed">Shipped 5 production versions with zero-defect UX flows; enabled RM0 automated government voucher checkout.</p>
+              <p className="text-[11px] font-semibold text-white leading-relaxed">Refined through 5 iterative versions before shipping the final zero-defect release live to 20M+ TNG users.</p>
             </div>
           </div>
         </div>
@@ -524,13 +524,38 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
               </div>
             </div>
           </div>
+
+          {/* The Trickiest Decision: Exit Flow After Payment */}
+          <div className="mt-8 p-6 bg-amber-500/10 border border-amber-500/30 rounded-2xl text-amber-950 space-y-4">
+            <div className="flex items-center gap-2">
+              <AlertTriangle size={16} className="text-amber-700" />
+              <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-amber-800">
+                THE TRICKIEST DECISION // EXIT FLOW AFTER PAYMENT
+              </span>
+            </div>
+            <h3 className="font-display text-lg font-bold text-amber-950">
+              Balancing Client Intent Against Platform-Native Webview Behavior
+            </h3>
+            <p className="text-xs leading-relaxed text-amber-900">
+              One design conflict didn't come from technical constraints — it came from balancing client intent against platform-native behavior.
+            </p>
+            <p className="text-xs leading-relaxed text-amber-900">
+              After a successful payment, our web view (embedded inside TNG's mini program) had a hard technical limitation: once a user exited, they couldn't be routed back into the purchase flow — the transaction was already closed. GEGM wanted an explicit "Back to App" or "Close" button on the success screen to make the exit path obvious for users.
+            </p>
+            <p className="text-xs leading-relaxed text-amber-900">
+              <strong>The problem:</strong> TNG's mini program already had a native X icon in the header by default — but it was subtle enough that users might miss it. Adding a custom "Back" button risked a worse outcome: users assuming they could return to an earlier step (like re-selecting a product) when the transaction was already final. That mismatch between expectation and reality would create confusion, not clarity.
+            </p>
+            <p className="text-xs leading-relaxed text-amber-950 font-semibold p-3 rounded bg-amber-500/15 border border-amber-500/20">
+              <strong>The Consensus:</strong> After discussion with TNG's team, we decided against introducing a custom exit element and relied on the platform's existing X icon instead — trusting the native pattern users already recognized from other TNG mini programs, rather than adding a new element that could contradict it.
+            </p>
+          </div>
         </div>
 
         <Hairline />
 
         {/* Version Evolution */}
         <div>
-          <SectionTag id="evolution" num="05" label="Design System & Iteration Evolution (V1 to V5 Production Release)" />
+          <SectionTag id="evolution" num="05" label="5 Design Iterations → 1 Final Production Release (V5)" />
           <div className="overflow-x-auto">
             <div className="flex gap-0 min-w-max" style={{ border: `1px solid ${HAIR}`, borderRadius: "4px", overflow: "hidden" }}>
               {[
@@ -593,7 +618,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
             </div>
           </div>
           <p className="font-sans text-[9px] tracking-widest mt-3" style={{ color: `${N}80` }}>
-            [VERSION EVOLUTION: V1 ──► V5 PRODUCTION RELEASE] · 5 MAJOR ITERATIONS ACROSS 3 MONTHS
+            [DESIGN ITERATIONS: V1 ──► V5 FINAL PRODUCTION RELEASE] · 5 ITERATIVE VERSIONS BEFORE LIVE RELEASE
           </p>
         </div>
 
@@ -712,14 +737,14 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
               </span>
             </div>
             <h3 className="font-display text-2xl lg:text-3xl font-light leading-snug">
-              Shipped <span className="font-bold text-[#DB3E8C]">5 production iterations</span> with <span className="font-bold text-[#DB3E8C]">zero UX defects</span> for Malaysia's #1 eWallet (20M+ users).
+              Refined through <span className="font-bold text-[#DB3E8C]">5 design iterations</span> before shipping the final <span className="font-bold text-[#DB3E8C]">zero-defect release</span> live to 20M+ TNG users.
             </h3>
             <p className="font-sans text-xs text-white/70 leading-relaxed max-w-2xl">
               By mapping native eKYC parameters and engineering automated PTV government subsidy verification, we reduced insurance checkout friction from 8 minutes down to 3 clicks.
             </p>
             <div className="grid md:grid-cols-3 gap-6 pt-6 border-t border-white/10 text-xs">
               <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-                <span className="block font-bold text-xl text-white mb-1">5 Versions Shipped</span>
+                <span className="block font-bold text-xl text-white mb-1">5 Iterations → 1 Release</span>
                 <p className="text-white/60">Continuous evolution refining pricing, terms & PWA performance.</p>
               </div>
               <div className="bg-white/5 p-4 rounded-lg border border-white/5">

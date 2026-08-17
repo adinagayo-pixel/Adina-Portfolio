@@ -69,7 +69,7 @@ const FEATURED = [
     location: "MY", year: "2024", tags: ["PWA / SSO", "eKYC Data Mapping", "B2C / FinTech"],
     role: "Lead Product Designer & Logic Architect",
     headline: "An embedded Progressive Web Application (PWA) architecture built inside Malaysia's leading e-wallet ecosystem, integrating native SSO and eKYC.",
-    metrics: [{ val: "V5", sub: "Production Release" }, { val: "3mo", sub: "Timeline" }, { val: "RM0", sub: "PTV Checkout" }],
+    metrics: [{ val: "V5", sub: "1 Final Release" }, { val: "3mo", sub: "Timeline" }, { val: "RM0", sub: "PTV Checkout" }],
     projectId: "tng",
     thumb: projectThumb2,
     screens: [
