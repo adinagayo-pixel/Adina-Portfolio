@@ -253,18 +253,18 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 mt-12 border-t border-gray-100 text-xs">
           <div>
             <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
-              Role & Team Size
+              Role & Leadership
             </span>
             <span className="font-semibold text-[#19244E]">
-              Lead UX Researcher & Product Designer (Team of 3)
+              Hands-On Designer & Daily Standup Facilitator
             </span>
           </div>
           <div>
             <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
-              Client & Federation
+              Team Structure & Dynamic
             </span>
             <span className="font-semibold text-[#19244E]">
-              Indonesian Archery Association (PERPANI)
+              3-Designer Team (Led daily standups during WFA)
             </span>
           </div>
           <div>
@@ -301,17 +301,17 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
               </p>
             </div>
             <div className="p-6 bg-white rounded-xl border border-gray-100 shadow-sm space-y-2">
-              <span className="text-2xl font-bold text-[#DB3E8C] block font-display">7+ Public</span>
-              <h4 className="font-semibold text-[#19244E] text-sm">Release Iterations</h4>
+              <span className="text-2xl font-bold text-[#DB3E8C] block font-display">3-Person Team</span>
+              <h4 className="font-semibold text-[#19244E] text-sm">WFA Standup Leadership</h4>
               <p className="text-xs text-gray-500 leading-relaxed">
-                Shipped live field iterations from local Jakarta trials to Sumbawa Barat & Purwakarta Open national championships.
+                Led daily stand-up meetings and hands-on field testing during remote (WFA) team execution across a 3-designer team.
               </p>
             </div>
             <div className="p-6 bg-white rounded-xl border border-gray-100 shadow-sm space-y-2">
-              <span className="text-2xl font-bold text-[#19244E] block font-display">Instant</span>
-              <h4 className="font-semibold text-[#19244E] text-sm">Live Standings & Brackets</h4>
+              <span className="text-2xl font-bold text-[#19244E] block font-display">7+ Public</span>
+              <h4 className="font-semibold text-[#19244E] text-sm">Release Iterations</h4>
               <p className="text-xs text-gray-500 leading-relaxed">
-                Replaced delayed paper score re-entry with real-time bracket calculation and public live scoreboards.
+                Shipped live field iterations from local Jakarta trials to Sumbawa Barat & Purwakarta Open national championships.
               </p>
             </div>
           </div>
@@ -547,7 +547,7 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
                 </span>
               </div>
               <p className="text-xs font-sans leading-relaxed text-white/90 italic">
-                "This project proves I don't just design behind a desk—I conduct grounded field research in high-stress outdoor environments and translate complex federation rules into resilient, high-velocity digital systems. If you need a designer who can handle multi-surface enterprise complexity and real-world edge cases, this is what that looks like."
+                "This project highlights my initiative to step up and lead team syncs under remote WFA conditions. Operating in a 3-designer team with senior peers, I stepped up as the hands-on lead, facilitated daily standup meetings, conducted grounded field research under direct sunlight, and delivered resilient multi-surface software across 7+ live releases. If you need a proactive designer who naturally takes ownership and drives team alignment, this is what that looks like."
               </p>
             </div>
           </div>
