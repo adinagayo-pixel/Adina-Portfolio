@@ -358,11 +358,9 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
         style={{ borderBottom: `1px solid rgba(25, 36, 78, 0.05)` }}
       >
         <div className="flex items-center gap-4 lg:gap-6">
-          <img
-            src={afgLogo}
-            alt="Adina Fayza Gayo (AFG) Logo"
-            className="h-7 sm:h-8 lg:h-10 w-auto object-contain rounded-md"
-          />
+          <span className="font-sans text-xs sm:text-sm lg:text-base font-black tracking-[0.22em] text-[#19244E] select-none">
+            AFG
+          </span>
 
           {/* Toggle Switch */}
           <div className="flex items-center gap-2">
