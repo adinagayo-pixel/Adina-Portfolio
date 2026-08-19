@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import {
   ArrowLeft, ChevronRight, FileText, Smartphone,
   Activity, Heart, MessageSquare, Clipboard,
-  CheckCircle2, Users, Zap, AlertTriangle, GitBranch, Search, Sparkles, Layers
+  CheckCircle2, Users, Zap, AlertTriangle, GitBranch, Search, Sparkles, Layers, ChevronDown
 } from "lucide-react"
 import anlene0 from "@/imports/anlene.png"
 import anlene1 from "@/imports/anlene1.png"
@@ -59,8 +59,22 @@ interface Props {
   onPrev?: () => void
 }
 
+const QUICK_SECTIONS = [
+  { id: "summary", num: "01", label: "Executive Overview" },
+  { id: "challenge", num: "02", label: "The Strategic Challenge" },
+  { id: "research", num: "03", label: "Research Under Constraint" },
+  { id: "logic", num: "04", label: "Decision Logic" },
+  { id: "flow", num: "05", label: "Full Flow" },
+  { id: "evolution", num: "06", label: "Design Evolution" },
+  { id: "process", num: "07", label: "Design Process" },
+  { id: "deliverables", num: "08", label: "Deliverables" },
+  { id: "impact", num: "09", label: 'Key Impact & "So What"' },
+]
+
 export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
   const [scrolled, setScrolled] = useState(false)
+  const [activeQuickId, setActiveQuickId] = useState<string>("summary")
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     window.scrollTo({ top: 0 })
@@ -69,12 +83,44 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
-  return (
-    <div className="min-h-screen" style={{ backgroundColor: S, fontFamily: "var(--font-sans)" }}>
+  // ScrollSpy for Quick Jump active state
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveQuickId(entry.target.id)
+          }
+        })
+      },
+      { rootMargin: "-25% 0px -55% 0px" }
+    )
 
-      {/* Sticky nav */}
+    QUICK_SECTIONS.forEach(({ id }) => {
+      const el = document.getElementById(id)
+      if (el) observer.observe(el)
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault()
+    const target = document.getElementById(id)
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" })
+      setMobileMenuOpen(false)
+    }
+  }
+
+  const activeSectionObj = QUICK_SECTIONS.find((s) => s.id === activeQuickId) || QUICK_SECTIONS[0]
+
+  return (
+    <div className="min-h-screen scroll-smooth" style={{ backgroundColor: S, fontFamily: "var(--font-sans)" }}>
+
+      {/* Sticky top nav */}
       <div
-        className="sticky top-0 z-50 flex items-center justify-between px-8 lg:px-16 py-4 transition-all duration-200"
+        className="sticky top-0 z-50 flex items-center justify-between px-6 lg:px-16 py-4 transition-all duration-200"
         style={{
           backgroundColor: scrolled ? "rgba(255,255,255,0.95)" : W,
           backdropFilter: "blur(16px)",
@@ -83,7 +129,7 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
       >
         <button
           onClick={onBack}
-          className="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
+          className="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60 cursor-pointer"
           style={{ color: N }}
         >
           <ArrowLeft size={12} /> Back
@@ -91,40 +137,50 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
         <MonoTag>Fonterra Anlene · Digital Health Check Platform</MonoTag>
       </div>
 
-      {/* Quick Jump Navigation Bar */}
-      <div className="sticky top-[53px] z-40 px-6 lg:px-16 py-2.5 bg-[#0e1635] text-white/80 border-b border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs sm:text-sm font-sans">
-        <span className="font-bold tracking-widest text-[#DB3E8C] uppercase text-xs">
-          QUICK JUMP
-        </span>
-        <div className="flex items-center gap-4 lg:gap-6 overflow-x-auto py-1 max-w-full">
-          <a href="#summary" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
-            01. Executive Overview
-          </a>
-          <a href="#challenge" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
-            02. The Strategic Challenge
-          </a>
-          <a href="#research" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
-            03. Research Under Constraint
-          </a>
-          <a href="#logic" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
-            04. Decision Logic
-          </a>
-          <a href="#flow" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
-            05. Full Flow
-          </a>
-          <a href="#evolution" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
-            06. Design Evolution
-          </a>
-          <a href="#process" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
-            07. Design Process
-          </a>
-          <a href="#deliverables" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
-            08. Deliverables
-          </a>
-          <a href="#impact" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-bold text-[#DB3E8C]">
-            09. Key Impact & "So What" ↗
-          </a>
-        </div>
+      {/* Mobile Collapsible Quick Jump Bar */}
+      <div className="block lg:hidden sticky top-[53px] z-40 bg-[#0e1635] text-white border-b border-white/10 shadow-lg">
+        <button
+          onClick={() => setMobileMenuOpen((v) => !v)}
+          className="w-full px-6 py-3 flex items-center justify-between text-xs font-sans cursor-pointer focus:outline-none"
+        >
+          <div className="flex items-center gap-2.5 min-w-0">
+            <span className="w-2 h-2 rounded-full bg-[#DB3E8C] animate-pulse shrink-0" />
+            <span className="font-bold text-[#DB3E8C] uppercase tracking-wider shrink-0">QUICK JUMP:</span>
+            <span className="font-semibold text-white/90 truncate">
+              {activeSectionObj.num}. {activeSectionObj.label}
+            </span>
+          </div>
+          <ChevronDown
+            size={14}
+            className={`text-white/70 transition-transform duration-200 shrink-0 ml-2 ${mobileMenuOpen ? "rotate-180" : ""}`}
+          />
+        </button>
+
+        {/* Expanded Vertical Menu for Mobile */}
+        {mobileMenuOpen && (
+          <div className="px-6 py-3 bg-[#080d21] border-t border-white/10 space-y-1 max-h-[60vh] overflow-y-auto">
+            {QUICK_SECTIONS.map((sec) => {
+              const isActive = activeQuickId === sec.id
+              return (
+                <a
+                  key={sec.id}
+                  href={`#${sec.id}`}
+                  onClick={(e) => scrollToSection(e, sec.id)}
+                  className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs transition-colors cursor-pointer ${
+                    isActive
+                      ? "bg-[#DB3E8C] text-white font-bold"
+                      : "text-white/75 hover:bg-white/10 hover:text-white font-medium"
+                  }`}
+                >
+                  <span className={`font-mono text-[10px] ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
+                    {sec.num}
+                  </span>
+                  <span>{sec.label}</span>
+                </a>
+              )
+            })}
+          </div>
+        )}
       </div>
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
@@ -190,8 +246,46 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
         </div>
       </div>
 
-      {/* ── BODY ──────────────────────────────────────────────────────────── */}
-      <div className="max-w-5xl mx-auto px-8 lg:px-16 py-16 lg:py-24 space-y-20">
+      {/* ── MAIN BODY WITH STICKY LEFT SIDEBAR TOC (DESKTOP) ──────────────── */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-12 lg:py-20">
+        <div className="grid lg:grid-cols-[260px_1fr] gap-12 lg:gap-16 items-start">
+
+          {/* Left Column: Sticky Desktop Table of Contents (TOC) Sidebar */}
+          <aside className="hidden lg:block sticky top-24 space-y-6 self-start pr-4">
+            <div className="p-5 rounded-2xl bg-[#0e1635] text-white shadow-xl border border-white/10">
+              <div className="flex items-center gap-2 mb-4 pb-3 border-b border-white/10">
+                <span className="w-2 h-2 rounded-full bg-[#DB3E8C] animate-pulse" />
+                <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+                  QUICK JUMP
+                </span>
+              </div>
+              <nav className="space-y-1.5" aria-label="Table of Contents">
+                {QUICK_SECTIONS.map((sec) => {
+                  const isActive = activeQuickId === sec.id
+                  return (
+                    <a
+                      key={sec.id}
+                      href={`#${sec.id}`}
+                      onClick={(e) => scrollToSection(e, sec.id)}
+                      className={`group flex items-start gap-2.5 p-2 rounded-lg text-xs transition-all duration-150 cursor-pointer ${
+                        isActive
+                          ? "bg-[#DB3E8C] text-white font-bold shadow-md"
+                          : "text-white/65 hover:bg-white/10 hover:text-white font-medium"
+                      }`}
+                    >
+                      <span className={`font-mono text-[10px] shrink-0 pt-0.5 ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
+                        {sec.num}
+                      </span>
+                      <span className="leading-snug">{sec.label}</span>
+                    </a>
+                  )
+                })}
+              </nav>
+            </div>
+          </aside>
+
+          {/* Right Column: Case Study Main Content Sections */}
+          <div className="space-y-16 lg:space-y-20 min-w-0">
 
         {/* SECTION 01 · Executive Summary */}
         <div>
@@ -567,6 +661,8 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
           </div>
         </div>
 
+          </div>
+        </div>
       </div>
 
       {/* Back CTA */}

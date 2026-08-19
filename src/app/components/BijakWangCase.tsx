@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import {
   ArrowLeft, ChevronRight, Trophy, Users,
   Zap, Volume2, Radio, BarChart2,
-  CheckCircle2, Globe, Target, MessageSquare, Clock, LayoutGrid, FileCode2, Share2
+  CheckCircle2, Globe, Target, MessageSquare, Clock, LayoutGrid, FileCode2, Share2, ChevronDown
 } from "lucide-react"
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback"
 import mykawan1 from "@/imports/mykawan1.png"
@@ -54,9 +54,23 @@ interface Props {
   onPrev?: () => void
 }
 
+const QUICK_SECTIONS = [
+  { id: "summary", num: "01", label: "Executive Overview" },
+  { id: "lineage", num: "02", label: "Project Lineage & Why We Built This" },
+  { id: "challenge", num: "03", label: "The Strategic Challenge" },
+  { id: "mechanics", num: "04", label: "Gamification Mechanics" },
+  { id: "evolution", num: "05", label: "Game Rules Evolution" },
+  { id: "iteration", num: "06", label: "Post Launch Iteration" },
+  { id: "process", num: "07", label: "Design Process & Pipeline" },
+  { id: "impact-business", num: "08", label: "Business Impact & Deliverables" },
+  { id: "impact", num: "09", label: 'Key Impact & "So What"' },
+]
+
 export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
   const [scrolled, setScrolled] = useState(false)
   const [activeZoomImg, setActiveZoomImg] = useState<{ title: string; img: string; desc: string } | null>(null)
+  const [activeQuickId, setActiveQuickId] = useState<string>("summary")
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     window.scrollTo({ top: 0 })
@@ -65,10 +79,42 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
-  return (
-    <div className="min-h-screen" style={{ backgroundColor: S, fontFamily: "var(--font-sans)" }}>
+  // ScrollSpy for Quick Jump active state
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveQuickId(entry.target.id)
+          }
+        })
+      },
+      { rootMargin: "-25% 0px -55% 0px" }
+    )
 
-      {/* Sticky nav */}
+    QUICK_SECTIONS.forEach(({ id }) => {
+      const el = document.getElementById(id)
+      if (el) observer.observe(el)
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault()
+    const target = document.getElementById(id)
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" })
+      setMobileMenuOpen(false)
+    }
+  }
+
+  const activeSectionObj = QUICK_SECTIONS.find((s) => s.id === activeQuickId) || QUICK_SECTIONS[0]
+
+  return (
+    <div className="min-h-screen scroll-smooth" style={{ backgroundColor: S, fontFamily: "var(--font-sans)" }}>
+
+      {/* Sticky top nav */}
       <div
         className="sticky top-0 z-50 flex items-center justify-between px-4 sm:px-8 lg:px-16 py-4 transition-all duration-200"
         style={{
@@ -87,40 +133,50 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
         <MonoTag>Cabaran Bijak Wang · National Gamified Platform</MonoTag>
       </div>
 
-      {/* Quick Jump Navigation Bar */}
-      <div className="sticky top-[53px] z-40 px-4 sm:px-8 lg:px-16 py-2.5 bg-[#0e1635] text-white/80 border-b border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs sm:text-sm font-sans">
-        <span className="font-bold tracking-widest text-[#DB3E8C] uppercase text-xs">
-          QUICK JUMP
-        </span>
-        <div className="flex items-center gap-6 overflow-x-auto">
-          <a href="#summary" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
-            01. Executive Overview
-          </a>
-          <a href="#lineage" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
-            02. Project Lineage
-          </a>
-          <a href="#challenge" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
-            03. Core Challenge
-          </a>
-          <a href="#mechanics" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
-            04. Gamification Mechanics
-          </a>
-          <a href="#evolution" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
-            05. Game Rules Evolution
-          </a>
-          <a href="#iteration" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
-            06. Post Launch Iteration
-          </a>
-          <a href="#process" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
-            07. Design Process
-          </a>
-          <a href="#impact-business" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
-            08. Business Impact
-          </a>
-          <a href="#impact" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-bold text-[#DB3E8C]">
-            09. Impact & "So What" ↗
-          </a>
-        </div>
+      {/* Mobile Collapsible Quick Jump Bar */}
+      <div className="block lg:hidden sticky top-[53px] z-40 bg-[#0e1635] text-white border-b border-white/10 shadow-lg">
+        <button
+          onClick={() => setMobileMenuOpen((v) => !v)}
+          className="w-full px-6 py-3 flex items-center justify-between text-xs font-sans cursor-pointer focus:outline-none"
+        >
+          <div className="flex items-center gap-2.5 min-w-0">
+            <span className="w-2 h-2 rounded-full bg-[#DB3E8C] animate-pulse shrink-0" />
+            <span className="font-bold text-[#DB3E8C] uppercase tracking-wider shrink-0">QUICK JUMP:</span>
+            <span className="font-semibold text-white/90 truncate">
+              {activeSectionObj.num}. {activeSectionObj.label}
+            </span>
+          </div>
+          <ChevronDown
+            size={14}
+            className={`text-white/70 transition-transform duration-200 shrink-0 ml-2 ${mobileMenuOpen ? "rotate-180" : ""}`}
+          />
+        </button>
+
+        {/* Expanded Vertical Menu for Mobile */}
+        {mobileMenuOpen && (
+          <div className="px-6 py-3 bg-[#080d21] border-t border-white/10 space-y-1 max-h-[60vh] overflow-y-auto">
+            {QUICK_SECTIONS.map((sec) => {
+              const isActive = activeQuickId === sec.id
+              return (
+                <a
+                  key={sec.id}
+                  href={`#${sec.id}`}
+                  onClick={(e) => scrollToSection(e, sec.id)}
+                  className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs transition-colors cursor-pointer ${
+                    isActive
+                      ? "bg-[#DB3E8C] text-white font-bold"
+                      : "text-white/75 hover:bg-white/10 hover:text-white font-medium"
+                  }`}
+                >
+                  <span className={`font-mono text-[10px] ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
+                    {sec.num}
+                  </span>
+                  <span>{sec.label}</span>
+                </a>
+              )
+            })}
+          </div>
+        )}
       </div>
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
@@ -221,8 +277,46 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
         </div>
       </div>
 
-      {/* ── BODY CONTENT ──────────────────────────────────────────────────── */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-8 lg:px-16 py-12 sm:py-16 lg:py-24 space-y-16 sm:space-y-20">
+      {/* ── MAIN BODY WITH STICKY LEFT SIDEBAR TOC (DESKTOP) ──────────────── */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-12 lg:py-20">
+        <div className="grid lg:grid-cols-[260px_1fr] gap-12 lg:gap-16 items-start">
+
+          {/* Left Column: Sticky Desktop Table of Contents (TOC) Sidebar */}
+          <aside className="hidden lg:block sticky top-24 space-y-6 self-start pr-4">
+            <div className="p-5 rounded-2xl bg-[#0e1635] text-white shadow-xl border border-white/10">
+              <div className="flex items-center gap-2 mb-4 pb-3 border-b border-white/10">
+                <span className="w-2 h-2 rounded-full bg-[#DB3E8C] animate-pulse" />
+                <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+                  QUICK JUMP
+                </span>
+              </div>
+              <nav className="space-y-1.5" aria-label="Table of Contents">
+                {QUICK_SECTIONS.map((sec) => {
+                  const isActive = activeQuickId === sec.id
+                  return (
+                    <a
+                      key={sec.id}
+                      href={`#${sec.id}`}
+                      onClick={(e) => scrollToSection(e, sec.id)}
+                      className={`group flex items-start gap-2.5 p-2 rounded-lg text-xs transition-all duration-150 cursor-pointer ${
+                        isActive
+                          ? "bg-[#DB3E8C] text-white font-bold shadow-md"
+                          : "text-white/65 hover:bg-white/10 hover:text-white font-medium"
+                      }`}
+                    >
+                      <span className={`font-mono text-[10px] shrink-0 pt-0.5 ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
+                        {sec.num}
+                      </span>
+                      <span className="leading-snug">{sec.label}</span>
+                    </a>
+                  )
+                })}
+              </nav>
+            </div>
+          </aside>
+
+          {/* Right Column: Case Study Main Content Sections */}
+          <div className="space-y-16 lg:space-y-20 min-w-0">
 
         {/* 01 Executive Summary */}
         <div>
@@ -676,6 +770,8 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
           </div>
         </div>
 
+          </div>
+        </div>
       </div>
 
       {/* Back CTA */}

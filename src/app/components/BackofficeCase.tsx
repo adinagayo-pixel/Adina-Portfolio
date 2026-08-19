@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import {
   ArrowLeft, ChevronRight, CheckCircle2, Globe,
   FileCode2, Shield, Zap, RefreshCw, Users, MessageSquare,
-  Lock, Sliders, Database, Layers, ArrowRight, Activity, Filter, BarChart3
+  Lock, Sliders, Database, Layers, ArrowRight, Activity, Filter, BarChart3, ChevronDown
 } from "lucide-react"
 
 const N = "#19244E"
@@ -99,10 +99,8 @@ function MultiTenantTokenSandbox() {
             <button
               key={tKey}
               onClick={() => setTenant(tKey)}
-              className={`px-3 py-1.5 rounded-md text-[10px] font-bold uppercase tracking-wider transition-all cursor-pointer ${
-                tenant === tKey
-                  ? "bg-white text-black shadow-md"
-                  : "text-white/60 hover:text-white"
+              className={`px-3 py-1.5 rounded-md text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer ${
+                tenant === tKey ? "bg-[#DB3E8C] text-white shadow-lg" : "text-white/60 hover:text-white"
               }`}
             >
               {tKey}
@@ -111,85 +109,92 @@ function MultiTenantTokenSandbox() {
         </div>
       </div>
 
-      {/* Simulated Backoffice Dashboard Shell */}
-      <div className="p-6 rounded-xl bg-[#19244E] border border-white/10 space-y-6 transition-all duration-300">
-        {/* Top Navbar */}
-        <div className="flex items-center justify-between border-b border-white/10 pb-4">
-          <div className="flex items-center gap-3">
-            <span className="w-3 h-3 rounded-full" style={{ backgroundColor: active.accent }} />
-            <span className="font-bold text-sm text-white">{active.name}</span>
+      {/* Simulator Display */}
+      <div className="grid lg:grid-cols-2 gap-6">
+        {/* Token Swapper Output */}
+        <div className="p-5 rounded-xl bg-white/5 border border-white/10 space-y-4">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-mono text-gray-400">1. SEMANTIC TOKEN SWAPPER</span>
             <span
-              className="text-[9px] font-bold px-2 py-0.5 rounded uppercase tracking-wider text-white/90"
-              style={{ backgroundColor: `${active.accent}33`, border: `1px solid ${active.accent}66` }}
+              className="text-[10px] font-bold px-2 py-0.5 rounded-full uppercase"
+              style={{ backgroundColor: `${active.accent}20`, color: active.accent }}
             >
               {active.badge}
             </span>
           </div>
 
-          {/* Filter Mode Switcher */}
-          <div className="flex items-center gap-2">
-            <span className="text-[10px] text-white/40 uppercase tracking-widest">Filter Strategy:</span>
-            <button
-              onClick={() => setFilterMode(filterMode === "global" ? "isolated" : "global")}
-              className={`px-2.5 py-1 rounded text-[10px] font-bold uppercase tracking-wider transition-all cursor-pointer flex items-center gap-1 ${
-                filterMode === "isolated"
-                  ? "bg-[#22c55e]/20 border border-[#22c55e]/50 text-[#22c55e]"
-                  : "bg-red-500/20 border border-red-500/50 text-red-400"
-              }`}
-            >
-              <Filter size={10} /> {filterMode === "isolated" ? "Isolated Scoped Filter (Safe)" : "Global Date Filter (Risk)"}
-            </button>
+          <div className="space-y-3">
+            <div>
+              <span className="text-[10px] text-gray-400 uppercase tracking-widest block">Tenant Entity Identity</span>
+              <span className="text-sm font-bold text-white">{active.name}</span>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3 pt-2">
+              <div className="p-3 rounded-lg bg-black/30 border border-white/5">
+                <span className="text-[9px] text-gray-400 uppercase block font-mono">User Taxonomy Token</span>
+                <span className="text-xs font-bold text-[#DB3E8C] mt-0.5 block">{active.termUser}</span>
+              </div>
+              <div className="p-3 rounded-lg bg-black/30 border border-white/5">
+                <span className="text-[9px] text-gray-400 uppercase block font-mono">KPI Metric Token</span>
+                <span className="text-xs font-bold text-[#22c55e] mt-0.5 block">{active.metricVal}</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Dashboard Metric Cards */}
-        <div className="grid md:grid-cols-3 gap-4">
-          <div className="p-4 rounded-lg bg-white/5 border border-white/10 space-y-1">
-            <span className="text-[9px] text-white/50 uppercase tracking-widest block">Entity Focus</span>
-            <span className="text-sm font-bold text-white block">{active.termUser}</span>
-            <span className="text-[10px] text-white/40 block">Mapped Taxonomy</span>
+        {/* Dynamic Query & Filter Constraint */}
+        <div className="p-5 rounded-xl bg-white/5 border border-white/10 space-y-4">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-mono text-gray-400">2. COMPOSABLE FILTER ENGINE</span>
+            <div className="flex items-center gap-1.5 bg-black/40 p-1 rounded-md text-[10px] font-mono">
+              <button
+                onClick={() => setFilterMode("global")}
+                className={`px-2 py-0.5 rounded cursor-pointer ${filterMode === "global" ? "bg-red-500/30 text-red-300 font-bold" : "text-gray-400"}`}
+              >
+                Global Heavy
+              </button>
+              <button
+                onClick={() => setFilterMode("isolated")}
+                className={`px-2 py-0.5 rounded cursor-pointer ${filterMode === "isolated" ? "bg-emerald-500/30 text-emerald-300 font-bold" : "text-gray-400"}`}
+              >
+                Scoped Isolated
+              </button>
+            </div>
           </div>
 
-          <div className="p-4 rounded-lg bg-white/5 border border-white/10 space-y-1">
-            <span className="text-[9px] text-white/50 uppercase tracking-widest block">{active.termMetric}</span>
-            <span className="text-base font-bold block" style={{ color: active.accent }}>{active.metricVal}</span>
-            <span className="text-[10px] text-white/40 block">Dynamic Semantic Token</span>
-          </div>
-
-          <div className="p-4 rounded-lg bg-white/5 border border-white/10 space-y-1">
-            <span className="text-[9px] text-white/50 uppercase tracking-widest block">Backend Query Performance</span>
-            <span className={`text-xs font-bold block ${filterMode === "isolated" ? "text-[#22c55e]" : "text-red-400"}`}>
-              {filterMode === "isolated" ? "⚡ < 80ms Latency (Pass)" : "⚠️ High Latency / Timeout Risk"}
-            </span>
-            <span className="text-[10px] text-white/40 block">{active.queryImpact}</span>
-          </div>
-        </div>
-
-        {/* Filter Impact Status Banner */}
-        <div className={`p-4 rounded-lg text-xs leading-relaxed flex items-start gap-3 ${
-          filterMode === "isolated"
-            ? "bg-[#22c55e]/10 border border-[#22c55e]/30 text-white/90"
-            : "bg-red-500/10 border border-red-500/30 text-white/90"
-        }`}>
-          <Database size={16} className={`shrink-0 mt-0.5 ${filterMode === "isolated" ? "text-[#22c55e]" : "text-red-400"}`} />
-          <div>
-            <span className="font-bold block mb-0.5">
-              {filterMode === "isolated"
-                ? "Track B Architecture: Scoped Chart Date Picker Enabled"
-                : "Unscoped Global Filter Friction Risk"}
-            </span>
-            <p className="text-white/70">
-              {filterMode === "isolated"
-                ? "Binding chart metrics to an isolated weekly/monthly bucket prevents full historical database table scans while delivering instant analytical fidelity for enterprise decision makers."
-                : "Binding page-wide global date ranges directly to heavy multi-product sales aggregations risks database query timeouts across historical multi-tenant logs."}
+          <div className="p-3 rounded-lg bg-black/50 font-mono text-[11px] space-y-2 border border-white/10">
+            <div className="flex items-center justify-between text-gray-400">
+              <span>SQL Execution Preview:</span>
+              <span className={filterMode === "isolated" ? "text-emerald-400" : "text-red-400"}>
+                {filterMode === "isolated" ? "Fast (<180ms)" : "Timeout Risk (>4.2s)"}
+              </span>
+            </div>
+            <p className="text-gray-300 leading-snug">
+              <span className="text-purple-400">SELECT</span> * <span className="text-purple-400">FROM</span> {tenant}_ledger
+              <br />
+              <span className="text-purple-400">WHERE</span> tenant_id = <span className="text-amber-300">"{tenant}_prod_01"</span>
+              {filterMode === "isolated" ? (
+                <>
+                  <br />
+                  <span className="text-emerald-400">  AND event_date BETWEEN :start AND :end</span>
+                  <br />
+                  <span className="text-emerald-400 font-bold">  LIMIT 500; -- Indexed Date Filter</span>
+                </>
+              ) : (
+                <>
+                  <br />
+                  <span className="text-red-400">  -- Unbounded global scan across all history</span>
+                </>
+              )}
             </p>
+          </div>
+
+          <div className="text-[10px] text-gray-400 flex items-center gap-2">
+            <Filter size={12} className="text-[#DB3E8C]" />
+            <span>Targeting query: <strong className="text-white">{active.queryImpact}</strong></span>
           </div>
         </div>
       </div>
-
-      <p className="font-sans text-[10px] text-white/50 text-center italic">
-        * Demonstrating Track A semantic token swapping (emerald, crimson, cobalt) and Track B isolated filtering logic negotiation with backend squads.
-      </p>
     </div>
   )
 }
@@ -200,8 +205,18 @@ interface Props {
   onPrev?: () => void
 }
 
+const QUICK_SECTIONS = [
+  { id: "summary", num: "01", label: "Executive Summary & Dual-Track Model" },
+  { id: "challenge", num: "02", label: "Operational Diversity Across Tenants" },
+  { id: "solution", num: "03", label: "Dual-Track Delivery Engine" },
+  { id: "deepdive", num: "04", label: "Key Architectural Decisions" },
+  { id: "impact", num: "05", label: 'Key Impact & The "So What"' },
+]
+
 export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
   const [scrolled, setScrolled] = useState(false)
+  const [activeQuickId, setActiveQuickId] = useState<string>("summary")
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     window.scrollTo({ top: 0 })
@@ -210,12 +225,44 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
-  return (
-    <div className="min-h-screen" style={{ backgroundColor: S, fontFamily: "var(--font-sans)" }}>
+  // ScrollSpy for Quick Jump active state
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveQuickId(entry.target.id)
+          }
+        })
+      },
+      { rootMargin: "-25% 0px -55% 0px" }
+    )
 
-      {/* Sticky Top Bar */}
+    QUICK_SECTIONS.forEach(({ id }) => {
+      const el = document.getElementById(id)
+      if (el) observer.observe(el)
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault()
+    const target = document.getElementById(id)
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" })
+      setMobileMenuOpen(false)
+    }
+  }
+
+  const activeSectionObj = QUICK_SECTIONS.find((s) => s.id === activeQuickId) || QUICK_SECTIONS[0]
+
+  return (
+    <div className="min-h-screen scroll-smooth" style={{ backgroundColor: S, fontFamily: "var(--font-sans)" }}>
+
+      {/* Sticky nav */}
       <div
-        className="sticky top-0 z-50 flex items-center justify-between px-8 lg:px-16 py-4 transition-all duration-200"
+        className="sticky top-0 z-50 flex items-center justify-between px-6 lg:px-16 py-4 transition-all duration-200"
         style={{
           backgroundColor: scrolled ? "rgba(255,255,255,0.95)" : W,
           backdropFilter: "blur(16px)",
@@ -232,28 +279,50 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
         <MonoTag>Multi-Tenant Enterprise Backoffice Architecture</MonoTag>
       </div>
 
-      {/* Quick Jump Navigation Bar */}
-      <div className="sticky top-[53px] z-40 px-8 lg:px-16 py-2.5 bg-[#0e1635] text-white/80 border-b border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs sm:text-sm font-sans">
-        <span className="font-bold tracking-widest text-[#DB3E8C] uppercase text-xs">
-          QUICK JUMP
-        </span>
-        <div className="flex items-center gap-6 overflow-x-auto">
-          <a href="#summary" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
-            01. Executive Summary
-          </a>
-          <a href="#challenge" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
-            02. Tenant Diversity
-          </a>
-          <a href="#solution" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
-            03. Dual-Track Engine
-          </a>
-          <a href="#deepdive" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
-            04. Architectural Decisions
-          </a>
-          <a href="#impact" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-bold text-[#DB3E8C]">
-            05. Impact & "So What" ↗
-          </a>
-        </div>
+      {/* Mobile Collapsible Quick Jump Bar */}
+      <div className="block lg:hidden sticky top-[53px] z-40 bg-[#0e1635] text-white border-b border-white/10 shadow-lg">
+        <button
+          onClick={() => setMobileMenuOpen((v) => !v)}
+          className="w-full px-6 py-3 flex items-center justify-between text-xs font-sans cursor-pointer focus:outline-none"
+        >
+          <div className="flex items-center gap-2.5 min-w-0">
+            <span className="w-2 h-2 rounded-full bg-[#DB3E8C] animate-pulse shrink-0" />
+            <span className="font-bold text-[#DB3E8C] uppercase tracking-wider shrink-0">QUICK JUMP:</span>
+            <span className="font-semibold text-white/90 truncate">
+              {activeSectionObj.num}. {activeSectionObj.label}
+            </span>
+          </div>
+          <ChevronDown
+            size={14}
+            className={`text-white/70 transition-transform duration-200 shrink-0 ml-2 ${mobileMenuOpen ? "rotate-180" : ""}`}
+          />
+        </button>
+
+        {/* Expanded Vertical Menu for Mobile */}
+        {mobileMenuOpen && (
+          <div className="px-6 py-3 bg-[#080d21] border-t border-white/10 space-y-1 max-h-[60vh] overflow-y-auto">
+            {QUICK_SECTIONS.map((sec) => {
+              const isActive = activeQuickId === sec.id
+              return (
+                <a
+                  key={sec.id}
+                  href={`#${sec.id}`}
+                  onClick={(e) => scrollToSection(e, sec.id)}
+                  className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs transition-colors cursor-pointer ${
+                    isActive
+                      ? "bg-[#DB3E8C] text-white font-bold"
+                      : "text-white/75 hover:bg-white/10 hover:text-white font-medium"
+                  }`}
+                >
+                  <span className={`font-mono text-[10px] ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
+                    {sec.num}
+                  </span>
+                  <span>{sec.label}</span>
+                </a>
+              )
+            })}
+          </div>
+        )}
       </div>
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
@@ -328,8 +397,46 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
         </div>
       </div>
 
-      {/* MAIN CONTENT AREA */}
-      <div className="px-8 lg:px-16 py-16 max-w-6xl mx-auto space-y-20">
+      {/* ── MAIN BODY WITH STICKY LEFT SIDEBAR TOC (DESKTOP) ──────────────── */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-12 lg:py-20">
+        <div className="grid lg:grid-cols-[260px_1fr] gap-12 lg:gap-16 items-start">
+
+          {/* Left Column: Sticky Desktop Table of Contents (TOC) Sidebar */}
+          <aside className="hidden lg:block sticky top-24 space-y-6 self-start pr-4">
+            <div className="p-5 rounded-2xl bg-[#0e1635] text-white shadow-xl border border-white/10">
+              <div className="flex items-center gap-2 mb-4 pb-3 border-b border-white/10">
+                <span className="w-2 h-2 rounded-full bg-[#DB3E8C] animate-pulse" />
+                <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+                  QUICK JUMP
+                </span>
+              </div>
+              <nav className="space-y-1.5" aria-label="Table of Contents">
+                {QUICK_SECTIONS.map((sec) => {
+                  const isActive = activeQuickId === sec.id
+                  return (
+                    <a
+                      key={sec.id}
+                      href={`#${sec.id}`}
+                      onClick={(e) => scrollToSection(e, sec.id)}
+                      className={`group flex items-start gap-2.5 p-2 rounded-lg text-xs transition-all duration-150 cursor-pointer ${
+                        isActive
+                          ? "bg-[#DB3E8C] text-white font-bold shadow-md"
+                          : "text-white/65 hover:bg-white/10 hover:text-white font-medium"
+                      }`}
+                    >
+                      <span className={`font-mono text-[10px] shrink-0 pt-0.5 ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
+                        {sec.num}
+                      </span>
+                      <span className="leading-snug">{sec.label}</span>
+                    </a>
+                  )
+                })}
+              </nav>
+            </div>
+          </aside>
+
+          {/* Right Column: Case Study Main Content Sections */}
+          <div className="space-y-16 lg:space-y-20 min-w-0">
 
         {/* 01 Executive Summary */}
         <div>
@@ -549,6 +656,8 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
           </div>
         </div>
 
+          </div>
+        </div>
       </div>
 
       {/* Back CTA Bar */}

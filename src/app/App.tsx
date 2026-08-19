@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react"
-import { motion, useMotionValue, useSpring, AnimatePresence } from "motion/react"
+import { motion, useMotionValue, useSpring, AnimatePresence, useScroll, useTransform } from "motion/react"
 import adinaPhotoAbout from "@/imports/Foto At Work.png"
 import adinaPhotoLife from "@/imports/Foto In Life.jpg"
 import afgLogo from "@/imports/LOGO.png"
@@ -61,6 +61,11 @@ const WHATSAPP_PHONE = "6289630441118";
 
 export function getWhatsAppLink(projectName: string) {
   const message = `Halo Dina, saya lihat portfolio kamu dan tertarik dengan proyek ${projectName}. Boleh kita diskusi lebih lanjut?`;
+  return `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
+}
+
+export function getGeneralWhatsAppLink() {
+  const message = `Halo Dina, saya lihat portofolio kamu dan tertarik untuk berdiskusi lebih lanjut.`;
   return `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
 }
 
@@ -199,11 +204,11 @@ const PROJECTS: Project[] = [
   // ── 2024 ──────────────────────────────────────────────────────────────────────
   { id: 9,  name: "Family Moo",            client: "Fonterra Indonesia",               market: "Indonesia",   year: 2024, status: "LIVE",          category: "FMCG & Loyalty Portal",       scope: "Customer loyalty management and points redemption portal for Fonterra's consumer ecosystem." },
   { id: 10, name: "Telescope Indonesia",   client: "Telescope Indonesia",              market: "Indonesia",   year: 2024, status: "LIVE",          category: "B2B Industrial Catalog",      scope: "Digital product catalog and technical specification showcase for specialized equipment." },
-  { id: 13, name: "ASEAN Project Management System", client: "ASEAN Secretariat", market: "ASEAN / Regional", year: 2024, status: "LIVE INTERNAL", category: "Regional / Multi-Gov", scope: "Manajemen siklus proyek multilateral, pelaporan anggaran lintas negara, dan alur persetujuan multi-level antar delegasi." },
-  { id: 14, name: "Distrik Navigasi Portal", client: "Maritime Operations", market: "Indonesia", year: 2024, status: "PRODUCTION", category: "Internal Enterprise", scope: "Digitalisasi alur operasional sarana bantu navigasi pelayaran, pemantauan aset maritim, dan koordinasi staf teknis lapangan." },
+  { id: 11, name: "ASEAN Project Management System", client: "ASEAN Secretariat", market: "ASEAN / Regional", year: 2024, status: "LIVE INTERNAL", category: "Regional / Multi-Gov", scope: "Manajemen siklus proyek multilateral, pelaporan anggaran lintas negara, dan alur persetujuan multi-level antar delegasi." },
+  { id: 12, name: "Distrik Navigasi Portal", client: "Maritime Operations", market: "Indonesia", year: 2024, status: "PRODUCTION", category: "Internal Enterprise", scope: "Digitalisasi alur operasional sarana bantu navigasi pelayaran, pemantauan aset maritim, dan koordinasi staf teknis lapangan." },
   // ── 2022 ──────────────────────────────────────────────────────────────────────
-  { id: 11, name: "YAMET Center",          client: "YAMET Child Development",          market: "Indonesia",   year: 2022, status: "LIVE",          category: "Healthcare Portal",           scope: "Corporate website and service directory for child development clinics across Indonesia." },
-  { id: 12, name: "Ada Polisi",            client: "Internal Public Sector",           market: "Indonesia",   year: 2022, status: "ARCHIVED",      category: "Public Sector Mobile App",    scope: "Internal mobile system for law enforcement data entry and reporting." },
+  { id: 13, name: "YAMET Center",          client: "YAMET Child Development",          market: "Indonesia",   year: 2022, status: "LIVE",          category: "Healthcare Portal",           scope: "Corporate website and service directory for child development clinics across Indonesia." },
+  { id: 14, name: "Ada Polisi",            client: "Internal Public Sector",           market: "Indonesia",   year: 2022, status: "ARCHIVED",      category: "Public Sector Mobile App",    scope: "Internal mobile system for law enforcement data entry and reporting." },
   { id: 15, name: "Forum TJSL Portal", client: "BUMN Ecosystem", market: "Indonesia", year: 2022, status: "LIVE", category: "CSR Governance", scope: "Standardisasi pelaporan CSR terpusat, aggregasi metrik dampak sosial lintas perusahaan pelat merah, dan transparansi tata kelola audit." },
 ]
 
@@ -287,17 +292,16 @@ function FloatingDock({ activeSection }: { activeSection: string }) {
       transition={{ type: "spring", stiffness: 300, damping: 28 }}
       aria-label="Page navigation"
       className={[
-        "fixed z-50 flex items-center gap-0",
+        "fixed z-50 flex items-center gap-0 shadow-xl",
         // Mobile: full-width bottom tab bar
-        "bottom-0 left-0 right-0 w-full rounded-none border-t",
+        "bottom-0 left-0 right-0 w-full rounded-none border-t border-slate-200/80",
         // Tablet/Desktop: floating centered pill
-        "md:bottom-6 md:left-1/2 md:right-auto md:-translate-x-1/2 md:w-auto md:rounded-[8px] md:border",
+        "md:bottom-6 md:left-1/2 md:right-auto md:-translate-x-1/2 md:w-auto md:rounded-xl md:border md:border-slate-200/80",
       ].join(" ")}
       style={{
-        backgroundColor: "rgba(255,255,255,0.96)",
+        backgroundColor: "rgba(255, 255, 255, 0.92)",
         backdropFilter: "blur(18px)",
-        borderColor: HAIR,
-        boxShadow: "0 -2px 16px rgba(25,36,78,0.05), 0 4px 24px rgba(25,36,78,0.08)",
+        boxShadow: "0 10px 30px rgba(25, 36, 78, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04)",
         paddingBottom: "env(safe-area-inset-bottom, 0px)",
       }}
     >
@@ -309,20 +313,22 @@ function FloatingDock({ activeSection }: { activeSection: string }) {
             onClick={() => scrollTo(entry.id)}
             aria-label={entry.label}
             aria-current={isActive ? "page" : undefined}
-            className="relative flex flex-col items-center justify-center gap-1 py-2.5 flex-1 px-1.5 md:flex-none md:px-6 md:py-3 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] focus-visible:ring-inset rounded cursor-pointer"
+            className={`relative flex flex-col items-center justify-center gap-1 py-2.5 flex-1 px-1.5 md:flex-none md:px-6 md:py-3 transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] rounded-lg cursor-pointer group ${
+              isActive ? "bg-slate-100/70" : "hover:bg-slate-50/60"
+            }`}
             style={{
-              borderRight: i < DOCK.length - 1 ? `1px solid ${HAIR}` : "none",
-              color: isActive ? N : `${N}A0`,
+              borderRight: i < DOCK.length - 1 ? `1px solid rgba(25, 36, 78, 0.08)` : "none",
+              color: isActive ? N : `${N}B3`,
             }}
           >
-            <entry.Icon size={20} strokeWidth={isActive ? 2.1 : 1.6} />
-            <span className="font-sans text-[8.5px] sm:text-[9.5px] font-semibold tracking-wider uppercase">
+            <entry.Icon size={19} strokeWidth={isActive ? 2.2 : 1.6} className="group-hover:text-[#19244E] transition-colors" />
+            <span className={`font-sans text-[8.5px] sm:text-[9.5px] tracking-wider uppercase transition-colors ${isActive ? "font-bold text-[#19244E]" : "font-semibold text-[#19244E]/70 group-hover:text-[#19244E]"}`}>
               {entry.label}
             </span>
             {isActive && (
               <motion.span
                 layoutId="dock-active"
-                className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-[2.5px] rounded-full"
+                className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-[2.5px] rounded-full"
                 style={{ backgroundColor: C }}
               />
             )}
@@ -408,26 +414,29 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
           </div>
         </div>
 
-        <div className="flex items-center gap-2 lg:gap-4">
+        <div className="flex items-center gap-2.5 sm:gap-4">
           <a
             href="/resume-adina-fayza-gayo.pdf"
             download="ADINA FAYZA GAYO Resume 2026.pdf"
-            className="flex items-center gap-1.5 font-sans text-xs font-semibold tracking-widest transition-all duration-150"
-            style={{ border: `1px solid ${HAIR}`, color: `${N}DD`, borderRadius: "6px", padding: "6px 10px" }}
+            className="flex items-center gap-2 font-sans text-xs sm:text-sm font-semibold tracking-wider transition-all duration-150 rounded-xl px-4 py-2 sm:px-5 sm:py-2.5 cursor-pointer shadow-sm"
+            style={{ border: `1px solid ${HAIR}`, color: `${N}DD` }}
             onMouseEnter={(e) => { ;(e.currentTarget as HTMLElement).style.borderColor = N; ;(e.currentTarget as HTMLElement).style.color = N }}
             onMouseLeave={(e) => { ;(e.currentTarget as HTMLElement).style.borderColor = HAIR; ;(e.currentTarget as HTMLElement).style.color = `${N}DD` }}
           >
-            <Download size={12} />
-            <span className="hidden sm:inline">Resume</span>
+            <Download size={15} />
+            <span>Resume</span>
           </a>
           <a
-            href="mailto:adinagayo@gmail.com"
-            className="font-sans text-xs font-semibold tracking-widest transition-all duration-150"
-            style={{ border: `1px solid ${N}`, color: N, borderRadius: "6px", padding: "6px 10px", whiteSpace: "nowrap" }}
+            href={getGeneralWhatsAppLink()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-sans text-xs sm:text-sm font-semibold tracking-wider transition-all duration-150 rounded-xl px-4 py-2 sm:px-5 sm:py-2.5 whitespace-nowrap cursor-pointer shadow-sm flex items-center gap-1.5"
+            style={{ border: `1px solid ${N}`, color: N }}
             onMouseEnter={(e) => { ;(e.currentTarget as HTMLElement).style.backgroundColor = N; ;(e.currentTarget as HTMLElement).style.color = W }}
             onMouseLeave={(e) => { ;(e.currentTarget as HTMLElement).style.backgroundColor = "transparent"; ;(e.currentTarget as HTMLElement).style.color = N }}
           >
-            Hire Me
+            <span>Let's Chat</span>
+            <span className="text-xs">↗</span>
           </a>
         </div>
       </div>
@@ -440,7 +449,7 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
           className="flex w-[200%]"
         >
           {/* ── PANEL A: AT WORK (Left 65%: Bold Upper Title + CTAs, Right 35%: Avatar + Nav + Bio) ── */}
-          <div className="w-1/2 grid lg:grid-cols-12 gap-8 lg:gap-12 items-start px-4 sm:px-8 lg:px-20 pt-8 pb-16 lg:py-16 flex-shrink-0">
+          <div className="w-1/2 grid lg:grid-cols-12 gap-8 lg:gap-12 items-center px-4 sm:px-8 lg:px-20 pt-10 lg:pt-20 pb-16 lg:pb-24 min-h-[calc(100vh-140px)] flex-shrink-0">
             {/* Left 7 Cols: Massive Headline & Compact Button */}
             <div className="lg:col-span-7 flex flex-col">
               <p className="font-sans text-xs sm:text-sm font-bold tracking-[0.2em] sm:tracking-[0.25em] text-[#DB3E8C] uppercase mb-3 sm:mb-4">
@@ -548,7 +557,7 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
           </div>
 
           {/* ── PANEL B: IN LIFE (Left 65%: Bold Upper Title + CTAs, Right 35%: Avatar + Nav + Bio) ── */}
-          <div className="w-1/2 grid lg:grid-cols-12 gap-8 lg:gap-12 items-start px-4 sm:px-8 lg:px-20 pt-8 pb-16 lg:py-16 flex-shrink-0">
+          <div className="w-1/2 grid lg:grid-cols-12 gap-8 lg:gap-12 items-center px-4 sm:px-8 lg:px-20 pt-10 lg:pt-20 pb-16 lg:pb-24 min-h-[calc(100vh-140px)] flex-shrink-0">
             {/* Left 7 Cols: Massive Headline & Compact Buttons */}
             <div className="lg:col-span-7 flex flex-col">
               <p className="font-sans text-xs sm:text-sm font-bold tracking-[0.2em] sm:tracking-[0.25em] text-[#DB3E8C] uppercase mb-3 sm:mb-4">
@@ -1068,14 +1077,34 @@ function AutoCarouselDeck({ screens }: { screens: { src: string; label?: string 
   )
 }
 
-// ─── FEATURED WORK ─────────────────────────────────────────────────────────────
-function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) => void }) {
-  const [activeIndex, setActiveIndex] = useState(0)
+function FeaturedWorkSection({
+  onOpenProject,
+  activeIndex,
+  onActiveIndexChange,
+}: {
+  onOpenProject: (id: string) => void
+  activeIndex: number
+  onActiveIndexChange: (index: number) => void
+}) {
+  const sectionRef = useRef<HTMLDivElement>(null)
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "start 25%"]
+  })
+
+  // GPU-Accelerated "Aperture / Viewport Box" Expansion Transition
+  const clipPath = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["inset(15% 15% 15% 15% round 24px)", "inset(0% 0% 0% 0% round 0px)"]
+  )
+
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
   const [isHoveringCanvas, setIsHoveringCanvas] = useState(false)
   const canvasRef = useRef<HTMLDivElement>(null)
 
-  const activeProject = FEATURED[activeIndex]
+  const activeProject = FEATURED[activeIndex] || FEATURED[0]
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!canvasRef.current) return
@@ -1087,12 +1116,12 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
   }
 
   return (
-    <section
-      id="work"
-      className="relative transition-all duration-300"
-      style={{ backgroundColor: "#19244E" }}
-    >
-      {/* Header */}
+    <section ref={sectionRef} id="work" className="relative overflow-hidden bg-white">
+      <motion.div
+        style={{ clipPath }}
+        className="w-full h-full bg-[#19244E]"
+      >
+        {/* Header */}
       <div
         className="px-4 sm:px-8 lg:px-16 py-8 sm:py-10 flex items-center gap-6"
         style={{ borderBottom: `1px solid rgba(255, 255, 255, 0.08)` }}
@@ -1125,11 +1154,11 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
               return (
                 <button
                   key={project.projectId}
-                  onClick={() => setActiveIndex(i)}
+                  onClick={() => onActiveIndexChange(i)}
                   aria-label={`View project: ${project.name}`}
                   aria-pressed={i === activeIndex}
-                  className={`group text-left transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] rounded py-1.5 px-2.5 border-l-2 ${
-                    isActive ? "border-[#DB3E8C] bg-white/5 shadow-sm" : "border-transparent hover:bg-white/[0.03]"
+                  className={`group text-left transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] rounded-lg py-2.5 px-3 border-l-2 ${
+                    isActive ? "border-[#DB3E8C] bg-white/[0.08] shadow-sm" : "border-transparent hover:bg-white/[0.04]"
                   }`}
                 >
                   <div className="flex items-start gap-3">
@@ -1286,7 +1315,7 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
                     ))}
                   </div>
 
-                  <div className="flex flex-col gap-2 mt-1">
+                  <div className="flex flex-col gap-2.5 sm:gap-3 mt-1">
                     <button
                       onClick={() => onOpenProject(activeProject.projectId)}
                       className="group flex items-center justify-between w-full px-5 py-3.5 rounded-lg bg-[#DB3E8C] hover:bg-[#DB3E8C]/90 text-white font-sans text-xs sm:text-sm font-bold tracking-widest uppercase transition-all duration-200 shadow-lg shadow-[#DB3E8C]/25 hover:shadow-[0_10px_25px_rgba(219,62,140,0.4)] cursor-pointer"
@@ -1298,7 +1327,7 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
                       href={getWhatsAppLink(activeProject.name)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-1.5 w-full py-3 rounded-lg border border-white/15 hover:border-white/30 bg-white/5 hover:bg-white/10 text-white/70 hover:text-white transition-all text-xs font-semibold tracking-wider uppercase cursor-pointer text-center"
+                      className="flex items-center justify-center gap-1.5 w-full py-3 rounded-lg border border-white/20 hover:border-white/40 bg-white/5 hover:bg-white/10 text-white font-semibold tracking-wider text-xs uppercase transition-all cursor-pointer text-center shadow-sm"
                     >
                       💬 Ask about this project ↗
                     </a>
@@ -1368,7 +1397,8 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
           ))}
         </div>
       </div>
-    </section>
+    </motion.div>
+  </section>
   )
 }
 
@@ -1495,66 +1525,111 @@ function WorkflowSection() {
         </div>
       </section>
 
-      {/* ── BLOCK 2: SEPARATED 3-PHASE EXECUTION CARDS SECTION (NO MOTION TRANSITION, GRADIENT BG) ── */}
+      {/* ── BLOCK 2: 3-PHASE EXECUTION CARDS SECTION (STAGGERED STEP ENTRY + FROSTED NAVY + PIPELINE PULSE) ── */}
       <section
-        className="py-14 sm:py-18 lg:py-24 px-4 sm:px-8 lg:px-16 relative z-20"
+        className="py-14 sm:py-18 lg:py-24 px-4 sm:px-8 lg:px-16 relative z-20 overflow-hidden"
         style={{
-          background: "linear-gradient(180deg, #121a38 0%, #0e152e 100%)",
+          background: "linear-gradient(180deg, #0A1128 0%, #101936 100%)",
           borderTop: `1px solid rgba(255,255,255,0.08)`,
         }}
       >
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto relative">
           {/* Cards Section Header */}
-          <div className="flex items-center justify-between mb-8 sm:mb-12 border-b border-white/10 pb-4">
-            <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-white/50">
-              3-PHASE EXECUTION ENGINE
-            </span>
+          <div className="flex items-center justify-between mb-10 sm:mb-14 border-b border-white/10 pb-4">
+            <div className="flex items-center gap-3">
+              <span className="w-2 h-2 rounded-full bg-[#DB3E8C] animate-pulse" />
+              <span className="font-sans text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase text-white/70">
+                3-PHASE EXECUTION ENGINE
+              </span>
+            </div>
             <span className="font-sans text-[9px] sm:text-[10px] font-bold tracking-widest uppercase text-[#DB3E8C]">
-              DESIGN TO HANDOFF PROCESS
+              DESIGN TO HANDOFF PIPELINE
             </span>
           </div>
 
-          {/* Phase cards — 3-column grid */}
-          <div className="grid lg:grid-cols-3 gap-6 sm:gap-8">
-            {PHASES.map((phase) => {
+          {/* Connecting Pipeline Line (Desktop) */}
+          <div className="hidden lg:block absolute top-[180px] left-[15%] right-[15%] h-[2px] z-0 pointer-events-none">
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.55, ease: "easeInOut" }}
+              className="w-full h-full origin-left bg-gradient-to-r from-[#DB3E8C]/20 via-[#DB3E8C] to-[#DB3E8C]/20"
+              style={{
+                boxShadow: "0 0 12px rgba(219,62,140,0.6)",
+              }}
+            />
+          </div>
+
+          {/* Phase cards — 3-column grid with staggered step entry */}
+          <div className="grid lg:grid-cols-3 gap-6 sm:gap-8 relative z-10">
+            {PHASES.map((phase, idx) => {
               const Icon = phase.Icon
+              const delays = [0, 0.15, 0.3]
+              const currentDelay = delays[idx] || 0
+
               return (
-                <div
+                <motion.div
                   key={phase.num}
-                  className="bg-white/[0.03] border border-white/10 hover:border-[#DB3E8C]/40 hover:bg-white/[0.06] rounded-2xl p-6 sm:p-8 transition-all duration-300 flex flex-col justify-between min-h-[280px] sm:min-h-[320px] shadow-lg"
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.55, delay: currentDelay, ease: [0.21, 0.47, 0.32, 0.98] }}
+                  whileHover={{ y: -6 }}
+                  className="bg-[#16203D]/90 backdrop-blur-md border border-white/10 hover:border-[#DB3E8C] rounded-2xl p-6 sm:p-8 transition-colors duration-300 flex flex-col justify-between min-h-[300px] sm:min-h-[340px] shadow-xl hover:shadow-[0_16px_36px_rgba(219,62,140,0.18)] group relative overflow-hidden cursor-default"
                 >
+                  {/* Subtle Card Top Accent Glow on Hover */}
+                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#DB3E8C] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
                   <div>
-                    <div className="flex items-center justify-between mb-4 sm:mb-6">
-                      <span className="font-sans text-xs font-semibold tracking-widest text-[#DB3E8C]">
-                        {phase.num}
-                      </span>
-                      <Icon size={16} className="text-white/40" />
+                    {/* Header: Animated Step Index & Icon */}
+                    <div className="flex items-center justify-between mb-5 sm:mb-6">
+                      <div className="flex items-center gap-2.5">
+                        <motion.span
+                          initial={{ opacity: 0, y: -12 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.4, delay: currentDelay + 0.2 }}
+                          className="font-mono text-base sm:text-lg font-bold tracking-wider text-[#DB3E8C] px-2.5 py-1 rounded-md bg-[#DB3E8C]/15 border border-[#DB3E8C]/30 shadow-sm"
+                        >
+                          {phase.num}
+                        </motion.span>
+                        <span className="font-sans text-[9px] font-bold tracking-widest uppercase text-white/40">
+                          PHASE {phase.num}
+                        </span>
+                      </div>
+                      <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-[#DB3E8C]/40 group-hover:bg-[#DB3E8C]/10 transition-colors">
+                        <Icon size={16} className="text-white/70 group-hover:text-[#DB3E8C] transition-colors" />
+                      </div>
                     </div>
-                    <h3 className="text-base sm:text-lg font-semibold text-white mb-1.5">{phase.phase}</h3>
-                    <p className="font-sans text-xs sm:text-sm tracking-widest text-white/50 uppercase mb-3 sm:mb-4">
+
+                    <h3 className="text-lg sm:text-xl font-bold text-white mb-1.5 group-hover:text-white transition-colors">
+                      {phase.phase}
+                    </h3>
+                    <p className="font-sans text-xs tracking-widest text-[#DB3E8C]/90 font-semibold uppercase mb-4">
                       {phase.sub}
                     </p>
-                    <p className="text-sm sm:text-base leading-relaxed text-white/80 mb-5 sm:mb-6 font-sans">
+                    <p className="text-xs sm:text-sm leading-relaxed text-white/80 mb-6 font-sans">
                       {phase.desc}
                     </p>
                   </div>
                   
-                  <div className="mt-auto pt-4 sm:pt-6 border-t border-white/10">
-                    <p className="font-sans text-[10px] sm:text-xs font-semibold tracking-widest uppercase text-white/40 mb-2.5">
+                  <div className="mt-auto pt-4 sm:pt-5 border-t border-white/10">
+                    <p className="font-sans text-[9.5px] sm:text-[10px] font-bold tracking-widest uppercase text-white/40 mb-2.5">
                       Tools & Artifacts
                     </p>
                     <div className="flex flex-wrap gap-1.5">
                       {phase.tools.map((tool) => (
                         <span
                           key={tool}
-                          className="font-sans text-[8px] sm:text-[9px] font-medium px-2 sm:px-2.5 py-0.5 sm:py-1 bg-white/10 text-white/80 border border-white/10 rounded"
+                          className="font-sans text-[8.5px] sm:text-[9.5px] font-semibold px-2.5 py-1 bg-white/5 text-white/80 border border-white/10 rounded-md group-hover:border-white/20 transition-colors"
                         >
                           {tool}
                         </span>
                       ))}
                     </div>
                   </div>
-                </div>
+                </motion.div>
               )
             })}
           </div>
@@ -1585,9 +1660,9 @@ const DEFAULT_VISIBLE = 5
 
 const getGradient = (id: number) => {
   const subtleGradients = [
-    "linear-gradient(135deg, #19244E 0%, #1E2D65 60%, #131B3B 100%)",
-    "linear-gradient(135deg, #111836 0%, #19244E 60%, #1B2A5E 100%)",
-    "linear-gradient(135deg, #162044 0%, #1D2A5C 60%, #101733 100%)",
+    "linear-gradient(135deg, #19244E 0%, #141D3B 60%, #0D1530 100%)",
+    "linear-gradient(135deg, #19244E 0%, #162247 60%, #101835 100%)",
+    "linear-gradient(135deg, #141D3B 0%, #19244E 60%, #0F1633 100%)",
   ]
   return subtleGradients[id % subtleGradients.length]
 }
@@ -1643,7 +1718,7 @@ function ProjectArchiveSection() {
               <button
                 key={cat.id}
                 onClick={() => { setActiveCat(cat.id); setShowAll(false) }}
-                className="flex items-center gap-1.5 px-3.5 sm:px-5 py-2 sm:py-2.5 font-sans text-[9px] sm:text-[10px] font-semibold tracking-widest uppercase transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] rounded-full cursor-pointer"
+                className="flex items-center gap-1.5 px-4 sm:px-5 py-2 sm:py-2.5 font-sans text-[9px] sm:text-[10px] font-semibold tracking-widest uppercase transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] rounded-xl cursor-pointer"
                 style={{
                   backgroundColor: isActive ? N : W,
                   color: isActive ? W : `${N}DD`,
@@ -1682,18 +1757,18 @@ function ProjectArchiveSection() {
                     onMouseEnter={() => setHoveredId(project.id)}
                     onMouseLeave={() => setHoveredId(null)}
                     onClick={() => setSelectedProject(project)}
-                    className="relative rounded-xl border p-4 sm:p-6 flex flex-col justify-between min-h-[170px] sm:h-[180px] overflow-hidden transition-all duration-300 hover:shadow-[0_14px_35px_rgba(25,36,78,0.3),0_0_20px_rgba(25,36,78,0.2)] hover:-translate-y-1 cursor-pointer select-none"
+                    className="relative rounded-xl border p-4 sm:p-6 flex flex-col justify-between min-h-[170px] sm:h-[180px] overflow-hidden transition-all duration-300 hover:shadow-[0_14px_35px_rgba(25,36,78,0.2)] hover:-translate-y-1 cursor-pointer select-none"
                     style={{
-                      borderColor: isHovered ? "rgba(41, 67, 138, 0.6)" : HAIR,
-                      backgroundColor: isHovered ? "transparent" : "rgba(255, 255, 255, 0.65)",
+                      borderColor: isHovered ? "rgba(219, 62, 140, 0.4)" : HAIR,
+                      backgroundColor: isHovered ? "transparent" : "rgba(255, 255, 255, 0.85)",
                       background: isHovered ? getGradient(project.id) : undefined,
                       color: isHovered ? W : N,
                     }}
                   >
                     {/* Background watermarked ID */}
                     <div 
-                      className="absolute right-4 sm:right-6 top-2 sm:top-3 font-sans text-6xl sm:text-7xl font-bold tracking-tight select-none transition-colors duration-200"
-                      style={{ color: isHovered ? "rgba(255,255,255,0.08)" : "rgba(25, 36, 78, 0.03)" }}
+                      className="absolute right-4 sm:right-6 top-6 sm:top-7 font-sans text-5xl sm:text-6xl font-bold tracking-tight select-none transition-colors duration-200 pointer-events-none z-0"
+                      style={{ color: isHovered ? "rgba(255,255,255,0.08)" : "rgba(25, 36, 78, 0.04)" }}
                     >
                       {String(project.id).padStart(2, "0")}
                     </div>
@@ -1793,7 +1868,7 @@ function ProjectArchiveSection() {
                     setShowAll(true)
                   }
                 }}
-                className="group flex items-center gap-2.5 px-6 py-3 rounded-lg font-sans text-xs sm:text-sm font-semibold tracking-widest uppercase transition-all duration-200 cursor-pointer"
+                className="group flex items-center gap-2.5 px-6 py-3 rounded-xl font-sans text-xs sm:text-sm font-semibold tracking-widest uppercase transition-all duration-200 cursor-pointer"
                 style={{
                   backgroundColor: showAll ? "transparent" : N,
                   color: showAll ? `${N}80` : "white",
@@ -1933,16 +2008,16 @@ function ContactSection() {
   return (
     <section
       id="contact"
-      style={{ backgroundColor: W, borderTop: `1px solid ${HAIR}` }}
+      style={{ backgroundColor: "#0d142d", borderTop: `1px solid rgba(255, 255, 255, 0.08)` }}
     >
       {/* Header */}
       <div
         className="px-4 sm:px-8 lg:px-16 py-6 sm:py-8 flex items-center gap-6"
-        style={{ borderBottom: `1px solid ${HAIR}` }}
+        style={{ borderBottom: `1px solid rgba(255, 255, 255, 0.08)` }}
       >
-        <MonoTag>CONTACT</MonoTag>
-        <div className="flex-1 h-px" style={{ backgroundColor: HAIR }} />
-        <MonoTag>OPEN TO SENIOR IC & LEAD ROLES</MonoTag>
+        <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-white/50">CONTACT</span>
+        <div className="flex-1 h-px bg-white/10" />
+        <span className="font-sans text-[9px] sm:text-[10px] font-semibold tracking-[0.15em] text-[#DB3E8C]">OPEN TO SENIOR IC & LEAD ROLES</span>
       </div>
 
       <div ref={ref} className="grid lg:grid-cols-[1fr_1px_480px]" style={{ minHeight: "440px" }}>
@@ -1952,24 +2027,24 @@ function ContactSection() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.55 }}
           className="flex flex-col justify-center px-4 sm:px-8 lg:px-16 py-12 sm:py-16"
-          style={{ borderRight: `1px solid ${HAIR}` }}
+          style={{ borderRight: `1px solid rgba(255, 255, 255, 0.08)` }}
         >
-          <MonoTag>REGION: SG / MY / REMOTE-FIRST</MonoTag>
+          <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C] mb-2">REGION: SG / MY / REMOTE-FIRST</span>
           <h2
-            className="font-display font-light leading-[0.95] sm:leading-[0.9] my-6 sm:my-8"
-            style={{ fontSize: "clamp(2.1rem, 5.5vw, 5rem)", color: N, letterSpacing: "-0.025em" }}
+            className="font-display font-light leading-[0.95] sm:leading-[0.9] my-6 sm:my-8 text-white"
+            style={{ fontSize: "clamp(2.1rem, 5.5vw, 5rem)", letterSpacing: "-0.025em" }}
           >
             Ready to build<br />something<br />
-            <em className="font-normal" style={{ color: C }}>significant?</em>
+            <em className="font-normal not-italic text-[#DB3E8C]">significant?</em>
           </h2>
-          <p className="text-sm sm:text-base leading-relaxed mb-8 sm:mb-10 max-w-[380px]" style={{ color: `${N}EE`, lineHeight: 1.8 }}>
+          <p className="text-sm sm:text-base leading-relaxed mb-8 sm:mb-10 max-w-[380px] text-white/80 font-sans" style={{ lineHeight: 1.8 }}>
             I'm open to senior IC and lead roles in Singapore, Malaysia, and remote-first regional opportunities. Happy to talk about your design challenges first.
           </p>
           <div className="flex flex-wrap gap-3">
             <a
               href="mailto:adinagayo@gmail.com"
-              className="flex items-center gap-2 px-5 sm:px-6 py-3 text-sm font-medium text-white transition-opacity duration-150 hover:opacity-85"
-              style={{ backgroundColor: N, borderRadius: "4px" }}
+              className="flex items-center gap-2 px-5 sm:px-6 py-3 text-sm font-medium text-white transition-all duration-150 hover:opacity-90 rounded-xl shadow-lg cursor-pointer"
+              style={{ backgroundColor: C }}
             >
               <Mail size={14} /> Say Hello <ArrowRight size={14} />
             </a>
@@ -1977,8 +2052,8 @@ function ContactSection() {
               href="https://www.linkedin.com/in/adinafayzagayo/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-5 sm:px-6 py-3 text-sm font-medium transition-colors duration-150 hover:bg-[#19244E]/5"
-              style={{ border: `1px solid ${HAIR}`, color: N, borderRadius: "4px" }}
+              className="flex items-center gap-2 px-5 sm:px-6 py-3 text-sm font-medium text-white transition-all duration-150 hover:bg-white/10 rounded-xl cursor-pointer"
+              style={{ border: `1px solid rgba(255, 255, 255, 0.2)` }}
             >
               <ExternalLink size={14} /> LinkedIn
             </a>
@@ -1986,7 +2061,7 @@ function ContactSection() {
         </motion.div>
 
         {/* Vertical divider */}
-        <div className="hidden lg:block" style={{ backgroundColor: HAIR }} />
+        <div className="hidden lg:block bg-white/10" />
 
         {/* Right: contact details */}
         <motion.div
@@ -1994,7 +2069,7 @@ function ContactSection() {
           animate={inView ? { opacity: 1 } : {}}
           transition={{ delay: 0.1, duration: 0.55 }}
           className="flex flex-col justify-center"
-          style={{ backgroundColor: S }}
+          style={{ backgroundColor: "#090d1f" }}
         >
           {[
             { label: "Email", value: "adinagayo@gmail.com", sub: "Primary contact", href: "mailto:adinagayo@gmail.com" },
@@ -2005,23 +2080,22 @@ function ContactSection() {
             <div
               key={item.label}
               className="px-5 sm:px-10 py-6 sm:py-8"
-              style={{ borderBottom: i < 3 ? `1px solid ${HAIR}` : "none" }}
+              style={{ borderBottom: i < 3 ? `1px solid rgba(255, 255, 255, 0.08)` : "none" }}
             >
-              <MonoTag>{item.label.toUpperCase()}</MonoTag>
+              <span className="font-sans text-[9px] font-bold tracking-[0.2em] uppercase text-white/40 block mb-1">{item.label}</span>
               {item.href ? (
                 <a
                   href={item.href}
                   target={item.label === "LinkedIn" ? "_blank" : undefined}
                   rel={item.label === "LinkedIn" ? "noopener noreferrer" : undefined}
-                  className="block text-sm sm:text-base font-medium mt-1.5 sm:mt-2 mb-0.5 hover:opacity-75 transition-opacity"
-                  style={{ color: N }}
+                  className="block text-sm sm:text-base font-semibold mt-1.5 sm:mt-2 mb-0.5 hover:text-[#DB3E8C] transition-colors text-white"
                 >
                   {item.value}
                 </a>
               ) : (
-                <p className="text-sm sm:text-base font-medium mt-1.5 sm:mt-2 mb-0.5" style={{ color: N }}>{item.value}</p>
+                <p className="text-sm sm:text-base font-semibold mt-1.5 sm:mt-2 mb-0.5 text-white">{item.value}</p>
               )}
-              {item.sub && <p className="text-xs sm:text-sm" style={{ color: `${N}AA` }}>{item.sub}</p>}
+              {item.sub && <p className="text-xs sm:text-sm text-white/50">{item.sub}</p>}
             </div>
           ))}
         </motion.div>
@@ -2035,17 +2109,51 @@ function Footer() {
   return (
     <footer
       className="px-8 lg:px-16 py-6 flex items-center justify-center"
-      style={{ borderTop: `1px solid ${HAIR}`, backgroundColor: W }}
+      style={{ borderTop: `1px solid rgba(255, 255, 255, 0.08)`, backgroundColor: "#060914" }}
     >
-      <MonoTag>© 2026 Adina Fayza Gayo</MonoTag>
+      <span className="font-sans text-[10px] font-semibold tracking-widest uppercase text-white/40">© 2026 Adina Fayza Gayo</span>
     </footer>
   )
+}
+
+const FEATURED_INDEX_MAP: Record<string, number> = {
+  tng: 0,
+  gegi: 1,
+  bijakwang: 2,
+  election: 3,
+  backoffice: 4,
+  anlene: 5,
+  archery: 6,
+  myarchery: 7,
 }
 
 // ─── APP ──────────────────────────────────────────────────────────────────────
 export default function App() {
   const [currentView, setCurrentView] = useState<"home" | "about" | "sunway-case" | "gegi-case" | "tng-case" | "archery-case" | "election-case" | "anlene-case" | "bijakwang-case" | "myarchery-case" | "backoffice-case">("home")
+  const [activeFeaturedIndex, setActiveFeaturedIndex] = useState<number>(0)
   const activeSection = useScrollSpy(["home", "work", "process", "archive", "contact"])
+
+  const handleOpenProject = (id: string) => {
+    if (FEATURED_INDEX_MAP[id] !== undefined) {
+      setActiveFeaturedIndex(FEATURED_INDEX_MAP[id])
+    }
+    if (id === "gegi") setCurrentView("gegi-case")
+    if (id === "tng") setCurrentView("tng-case")
+    if (id === "archery") setCurrentView("archery-case")
+    if (id === "election") setCurrentView("election-case")
+    if (id === "anlene") setCurrentView("anlene-case")
+    if (id === "bijakwang") setCurrentView("bijakwang-case")
+    if (id === "myarchery") setCurrentView("myarchery-case")
+    if (id === "backoffice") setCurrentView("backoffice-case")
+    if (id === "sunway") setCurrentView("sunway-case")
+  }
+
+  const handleBackToWork = () => {
+    setCurrentView("home")
+    setTimeout(() => {
+      document.getElementById("work")?.scrollIntoView({ behavior: "instant", block: "start" })
+    }, 20)
+  }
 
   if (currentView === "about") {
     return (
@@ -2058,72 +2166,72 @@ export default function App() {
   if (currentView === "tng-case") {
     return (
       <TngCase
-        onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
-        onNext={() => { setCurrentView("gegi-case"); window.scrollTo({ top: 0 }) }}
-        onPrev={() => { setCurrentView("myarchery-case"); window.scrollTo({ top: 0 }) }}
+        onBack={handleBackToWork}
+        onNext={() => { handleOpenProject("gegi"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { handleOpenProject("myarchery"); window.scrollTo({ top: 0 }) }}
       />
     )
   }
   if (currentView === "gegi-case") {
     return (
       <GegiCase
-        onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
-        onNext={() => { setCurrentView("bijakwang-case"); window.scrollTo({ top: 0 }) }}
-        onPrev={() => { setCurrentView("tng-case"); window.scrollTo({ top: 0 }) }}
+        onBack={handleBackToWork}
+        onNext={() => { handleOpenProject("bijakwang"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { handleOpenProject("tng"); window.scrollTo({ top: 0 }) }}
       />
     )
   }
   if (currentView === "bijakwang-case") {
     return (
       <BijakWangCase
-        onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
-        onNext={() => { setCurrentView("election-case"); window.scrollTo({ top: 0 }) }}
-        onPrev={() => { setCurrentView("gegi-case"); window.scrollTo({ top: 0 }) }}
+        onBack={handleBackToWork}
+        onNext={() => { handleOpenProject("election"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { handleOpenProject("gegi"); window.scrollTo({ top: 0 }) }}
       />
     )
   }
   if (currentView === "election-case") {
     return (
       <ElectionCase
-        onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
-        onNext={() => { setCurrentView("backoffice-case"); window.scrollTo({ top: 0 }) }}
-        onPrev={() => { setCurrentView("bijakwang-case"); window.scrollTo({ top: 0 }) }}
+        onBack={handleBackToWork}
+        onNext={() => { handleOpenProject("backoffice"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { handleOpenProject("bijakwang"); window.scrollTo({ top: 0 }) }}
       />
     )
   }
   if (currentView === "backoffice-case") {
     return (
       <BackofficeCase
-        onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
-        onNext={() => { setCurrentView("anlene-case"); window.scrollTo({ top: 0 }) }}
-        onPrev={() => { setCurrentView("election-case"); window.scrollTo({ top: 0 }) }}
+        onBack={handleBackToWork}
+        onNext={() => { handleOpenProject("anlene"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { handleOpenProject("election"); window.scrollTo({ top: 0 }) }}
       />
     )
   }
   if (currentView === "anlene-case") {
     return (
       <AnleneCase
-        onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
-        onNext={() => { setCurrentView("archery-case"); window.scrollTo({ top: 0 }) }}
-        onPrev={() => { setCurrentView("backoffice-case"); window.scrollTo({ top: 0 }) }}
+        onBack={handleBackToWork}
+        onNext={() => { handleOpenProject("archery"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { handleOpenProject("backoffice"); window.scrollTo({ top: 0 }) }}
       />
     )
   }
   if (currentView === "archery-case") {
     return (
       <ProArcheryCase
-        onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
-        onNext={() => { setCurrentView("myarchery-case"); window.scrollTo({ top: 0 }) }}
-        onPrev={() => { setCurrentView("anlene-case"); window.scrollTo({ top: 0 }) }}
+        onBack={handleBackToWork}
+        onNext={() => { handleOpenProject("myarchery"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { handleOpenProject("anlene"); window.scrollTo({ top: 0 }) }}
       />
     )
   }
   if (currentView === "myarchery-case") {
     return (
       <MyArcheryCase
-        onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
-        onNext={() => { setCurrentView("tng-case"); window.scrollTo({ top: 0 }) }}
-        onPrev={() => { setCurrentView("archery-case"); window.scrollTo({ top: 0 }) }}
+        onBack={handleBackToWork}
+        onNext={() => { handleOpenProject("tng"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { handleOpenProject("archery"); window.scrollTo({ top: 0 }) }}
       />
     )
   }
@@ -2131,7 +2239,7 @@ export default function App() {
   if (currentView === "sunway-case") {
     return (
       <SunwayCase
-        onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
+        onBack={handleBackToWork}
       />
     )
   }
@@ -2139,16 +2247,11 @@ export default function App() {
   return (
     <div className="min-h-screen overflow-x-hidden" style={{ backgroundColor: S }}>
       <HeroSection onReadMore={() => { setCurrentView("about"); window.scrollTo({ top: 0 }) }} />
-      <FeaturedWorkSection onOpenProject={(id) => {
-        if (id === "gegi") setCurrentView("gegi-case")
-        if (id === "tng") setCurrentView("tng-case")
-        if (id === "archery") setCurrentView("archery-case")
-        if (id === "election") setCurrentView("election-case")
-        if (id === "anlene") setCurrentView("anlene-case")
-        if (id === "bijakwang") setCurrentView("bijakwang-case")
-        if (id === "myarchery") setCurrentView("myarchery-case")
-        if (id === "backoffice") setCurrentView("backoffice-case")
-      }} />
+      <FeaturedWorkSection
+        activeIndex={activeFeaturedIndex}
+        onActiveIndexChange={setActiveFeaturedIndex}
+        onOpenProject={handleOpenProject}
+      />
       <WorkflowSection />
       <ProjectArchiveSection />
       <ContactSection />

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import {
   ArrowLeft, ChevronRight, CheckCircle2, Globe,
   FileCode2, Shield, Zap, RefreshCw, Users, MessageSquare,
-  Trophy, Smartphone, Target, QrCode, Sun, WifiOff, Calendar, AlertTriangle, Clock
+  Trophy, Smartphone, Target, QrCode, Sun, WifiOff, Calendar, AlertTriangle, Clock, ChevronDown
 } from "lucide-react"
 
 const N = "#19244E"
@@ -99,57 +99,54 @@ function TargetScoringKeypad() {
           { label: "3", val: "3", bg: "bg-[#334155] text-white font-bold border border-white/20" },
           { label: "2", val: "2", bg: "bg-white text-black font-bold" },
           { label: "1", val: "1", bg: "bg-gray-200 text-black font-bold" },
-          { label: "M", val: "M", bg: "bg-gray-800 text-red-400 font-bold border border-red-500/30" },
+          { label: "M", val: "M", bg: "bg-gray-700 text-white font-bold" },
         ].map((btn) => (
           <button
             key={btn.label}
             onClick={() => addScore(btn.val)}
             disabled={scores.length >= 6}
-            className={`h-12 rounded-lg text-sm transition-all duration-150 active:scale-95 shadow-md flex items-center justify-center cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed ${btn.bg}`}
+            className={`py-3 rounded-lg text-sm transition-transform active:scale-95 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed ${btn.bg}`}
           >
             {btn.label}
           </button>
         ))}
       </div>
 
-      {/* Live Scoresheet Output Bar */}
-      <div className="p-4 rounded-xl bg-white/5 border border-white/10 flex flex-wrap items-center justify-between gap-4">
-        <div className="flex items-center gap-2 overflow-x-auto">
-          <span className="font-sans text-[10px] text-white/50 uppercase tracking-widest mr-2">
-            Arrow Scores:
-          </span>
-          {[0, 1, 2, 3, 4, 5].map((idx) => (
-            <div
-              key={idx}
-              className="w-9 h-9 rounded-lg border border-white/15 bg-[#19244E] flex items-center justify-center font-display font-bold text-sm text-white"
-            >
-              {scores[idx] || "-"}
-            </div>
-          ))}
-        </div>
-
-        <div className="flex items-center gap-6">
-          <div className="text-right">
-            <span className="block font-sans text-[9px] text-white/40 uppercase tracking-widest">
-              10s / Xs
-            </span>
-            <span className="font-display font-bold text-base text-[#DB3E8C]">
-              {countTens()}
-            </span>
+      {/* Live Arrow Matrix Display */}
+      <div className="grid grid-cols-6 gap-2 pt-2">
+        {Array.from({ length: 6 }).map((_, idx) => (
+          <div
+            key={idx}
+            className="h-12 rounded-lg bg-black/40 border border-white/10 flex items-center justify-center font-mono text-base font-bold text-white"
+          >
+            {scores[idx] ? (
+              <span className={scores[idx] === "X" || scores[idx] === "10" ? "text-yellow-400" : ""}>
+                {scores[idx]}
+              </span>
+            ) : (
+              <span className="text-white/20 text-xs">—</span>
+            )}
           </div>
-          <div className="text-right pl-6 border-l border-white/10">
-            <span className="block font-sans text-[9px] text-white/40 uppercase tracking-widest">
-              End Total
-            </span>
-            <span className="font-display font-bold text-xl text-[#22c55e]">
-              {calculateTotal()} <span className="text-xs text-white/40 font-normal">/ 60</span>
-            </span>
-          </div>
-        </div>
+        ))}
       </div>
-      <p className="font-sans text-[10px] text-white/50 text-center italic">
-        * Designed with high-contrast target ring colors for maximum outdoor visibility under direct sunlight.
-      </p>
+
+      {/* Calculated End Totals */}
+      <div className="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10">
+        <div className="flex items-center gap-4">
+          <div>
+            <span className="text-[9px] text-gray-400 uppercase tracking-widest block font-mono">End Total</span>
+            <span className="text-xl font-bold text-white font-mono">{calculateTotal()} / 60</span>
+          </div>
+          <div className="h-6 w-px bg-white/10" />
+          <div>
+            <span className="text-[9px] text-gray-400 uppercase tracking-widest block font-mono">10 + X Count</span>
+            <span className="text-sm font-bold text-yellow-400 font-mono">{countTens()} Hits</span>
+          </div>
+        </div>
+        <span className="text-[10px] text-emerald-400 font-mono flex items-center gap-1">
+          <WifiOff size={10} /> Local Queue Ready
+        </span>
+      </div>
     </div>
   )
 }
@@ -160,8 +157,19 @@ interface Props {
   onPrev?: () => void
 }
 
+const QUICK_SECTIONS = [
+  { id: "summary", num: "01", label: "Executive Overview" },
+  { id: "problem", num: "02", label: "The Strategic Problem" },
+  { id: "field", num: "03", label: "Field Discovery & Inquiry" },
+  { id: "architecture", num: "04", label: "System Architecture" },
+  { id: "deployment", num: "05", label: "Iterative Deployment" },
+  { id: "impact", num: "06", label: 'Key Impact & "So What"' },
+]
+
 export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
   const [scrolled, setScrolled] = useState(false)
+  const [activeQuickId, setActiveQuickId] = useState<string>("summary")
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     window.scrollTo({ top: 0 })
@@ -170,12 +178,44 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
-  return (
-    <div className="min-h-screen" style={{ backgroundColor: S, fontFamily: "var(--font-sans)" }}>
+  // ScrollSpy for Quick Jump active state
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveQuickId(entry.target.id)
+          }
+        })
+      },
+      { rootMargin: "-25% 0px -55% 0px" }
+    )
 
-      {/* Sticky Top Bar */}
+    QUICK_SECTIONS.forEach(({ id }) => {
+      const el = document.getElementById(id)
+      if (el) observer.observe(el)
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault()
+    const target = document.getElementById(id)
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" })
+      setMobileMenuOpen(false)
+    }
+  }
+
+  const activeSectionObj = QUICK_SECTIONS.find((s) => s.id === activeQuickId) || QUICK_SECTIONS[0]
+
+  return (
+    <div className="min-h-screen scroll-smooth" style={{ backgroundColor: S, fontFamily: "var(--font-sans)" }}>
+
+      {/* Sticky top nav */}
       <div
-        className="sticky top-0 z-50 flex items-center justify-between px-8 lg:px-16 py-4 transition-all duration-200"
+        className="sticky top-0 z-50 flex items-center justify-between px-6 lg:px-16 py-4 transition-all duration-200"
         style={{
           backgroundColor: scrolled ? "rgba(255,255,255,0.95)" : W,
           backdropFilter: "blur(16px)",
@@ -192,25 +232,50 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
         <MonoTag>MyArchery · PERPANI National Operating System</MonoTag>
       </div>
 
-      {/* Quick Jump Navigation Bar */}
-      <div className="sticky top-[53px] z-40 px-8 lg:px-16 py-2.5 bg-[#0e1635] text-white/80 border-b border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs sm:text-sm font-sans">
-        <span className="font-bold tracking-widest text-[#DB3E8C] uppercase text-xs">
-          QUICK JUMP
-        </span>
-        <div className="flex items-center gap-6 overflow-x-auto">
-          <a href="#summary" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
-            01. Executive Overview
-          </a>
-          <a href="#challenge" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
-            02. Core Challenge
-          </a>
-          <a href="#matrix" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
-            03. Feature Matrix
-          </a>
-          <a href="#impact" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-bold text-[#DB3E8C]">
-            04. Impact & "So What" ↗
-          </a>
-        </div>
+      {/* Mobile Collapsible Quick Jump Bar */}
+      <div className="block lg:hidden sticky top-[53px] z-40 bg-[#0e1635] text-white border-b border-white/10 shadow-lg">
+        <button
+          onClick={() => setMobileMenuOpen((v) => !v)}
+          className="w-full px-6 py-3 flex items-center justify-between text-xs font-sans cursor-pointer focus:outline-none"
+        >
+          <div className="flex items-center gap-2.5 min-w-0">
+            <span className="w-2 h-2 rounded-full bg-[#DB3E8C] animate-pulse shrink-0" />
+            <span className="font-bold text-[#DB3E8C] uppercase tracking-wider shrink-0">QUICK JUMP:</span>
+            <span className="font-semibold text-white/90 truncate">
+              {activeSectionObj.num}. {activeSectionObj.label}
+            </span>
+          </div>
+          <ChevronDown
+            size={14}
+            className={`text-white/70 transition-transform duration-200 shrink-0 ml-2 ${mobileMenuOpen ? "rotate-180" : ""}`}
+          />
+        </button>
+
+        {/* Expanded Vertical Menu for Mobile */}
+        {mobileMenuOpen && (
+          <div className="px-6 py-3 bg-[#080d21] border-t border-white/10 space-y-1 max-h-[60vh] overflow-y-auto">
+            {QUICK_SECTIONS.map((sec) => {
+              const isActive = activeQuickId === sec.id
+              return (
+                <a
+                  key={sec.id}
+                  href={`#${sec.id}`}
+                  onClick={(e) => scrollToSection(e, sec.id)}
+                  className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs transition-colors cursor-pointer ${
+                    isActive
+                      ? "bg-[#DB3E8C] text-white font-bold"
+                      : "text-white/75 hover:bg-white/10 hover:text-white font-medium"
+                  }`}
+                >
+                  <span className={`font-mono text-[10px] ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
+                    {sec.num}
+                  </span>
+                  <span>{sec.label}</span>
+                </a>
+              )
+            })}
+          </div>
+        )}
       </div>
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
@@ -280,8 +345,46 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
         </div>
       </div>
 
-      {/* MAIN CONTENT AREA */}
-      <div className="px-8 lg:px-16 py-16 max-w-6xl mx-auto space-y-20">
+      {/* ── MAIN BODY WITH STICKY LEFT SIDEBAR TOC (DESKTOP) ──────────────── */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-12 lg:py-20">
+        <div className="grid lg:grid-cols-[260px_1fr] gap-12 lg:gap-16 items-start">
+
+          {/* Left Column: Sticky Desktop Table of Contents (TOC) Sidebar */}
+          <aside className="hidden lg:block sticky top-24 space-y-6 self-start pr-4">
+            <div className="p-5 rounded-2xl bg-[#0e1635] text-white shadow-xl border border-white/10">
+              <div className="flex items-center gap-2 mb-4 pb-3 border-b border-white/10">
+                <span className="w-2 h-2 rounded-full bg-[#DB3E8C] animate-pulse" />
+                <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+                  QUICK JUMP
+                </span>
+              </div>
+              <nav className="space-y-1.5" aria-label="Table of Contents">
+                {QUICK_SECTIONS.map((sec) => {
+                  const isActive = activeQuickId === sec.id
+                  return (
+                    <a
+                      key={sec.id}
+                      href={`#${sec.id}`}
+                      onClick={(e) => scrollToSection(e, sec.id)}
+                      className={`group flex items-start gap-2.5 p-2 rounded-lg text-xs transition-all duration-150 cursor-pointer ${
+                        isActive
+                          ? "bg-[#DB3E8C] text-white font-bold shadow-md"
+                          : "text-white/65 hover:bg-white/10 hover:text-white font-medium"
+                      }`}
+                    >
+                      <span className={`font-mono text-[10px] shrink-0 pt-0.5 ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
+                        {sec.num}
+                      </span>
+                      <span className="leading-snug">{sec.label}</span>
+                    </a>
+                  )
+                })}
+              </nav>
+            </div>
+          </aside>
+
+          {/* Right Column: Case Study Main Content Sections */}
+          <div className="space-y-16 lg:space-y-20 min-w-0">
 
         {/* 01 Executive Summary */}
         <div>
@@ -547,6 +650,8 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
           </div>
         </div>
 
+          </div>
+        </div>
       </div>
 
       {/* Back CTA Bar */}
