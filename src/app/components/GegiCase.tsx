@@ -23,7 +23,7 @@ const BODY = "#2E3A5C"
 function MonoTag({ children, accent = false }: { children: React.ReactNode; accent?: boolean }) {
   return (
     <span
-      className="font-sans text-[10px] font-semibold tracking-wider uppercase"
+      className="font-sans text-xs font-semibold tracking-wider uppercase"
       style={{ color: accent ? C : `${N}CC` }}
     >
       {children}
@@ -38,7 +38,7 @@ function Hairline() {
 function SectionTag({ id, num, label }: { id?: string; num: string; label: string }) {
   return (
     <div id={id} className="mb-10 pt-4 scroll-mt-24">
-      <div className="text-[10px] font-bold uppercase tracking-[0.2em] mb-2 text-[#DB3E8C]">
+      <div className="text-xs font-bold uppercase tracking-[0.2em] mb-2 text-[#DB3E8C]">
         SECTION {num}
       </div>
       <h2 className="font-display text-2xl lg:text-3xl font-bold text-[#19244E]">
@@ -48,8 +48,6 @@ function SectionTag({ id, num, label }: { id?: string; num: string; label: strin
     </div>
   )
 }
-
-
 
 interface Props {
   onBack: () => void
@@ -89,31 +87,43 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
       >
         <button
           onClick={onBack}
-          className="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
+          className="flex items-center gap-2 font-sans text-xs sm:text-sm font-semibold tracking-widest uppercase transition-opacity hover:opacity-60 cursor-pointer"
           style={{ color: N }}
         >
-          <ArrowLeft size={12} /> Back
+          <ArrowLeft size={13} /> Back
         </button>
         <MonoTag>GEGI Singapore · MY CI GAP Campaign</MonoTag>
       </div>
 
       {/* Quick Jump Navigation Bar */}
-      <div className="sticky top-[53px] z-40 px-4 sm:px-8 lg:px-16 py-2.5 bg-[#0e1635] text-white/70 border-b border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs font-sans">
-        <span className="font-bold tracking-widest text-[#DB3E8C] uppercase text-[9px]">
+      <div className="sticky top-[53px] z-40 px-4 sm:px-8 lg:px-16 py-2.5 bg-[#0e1635] text-white/80 border-b border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs sm:text-sm font-sans">
+        <span className="font-bold tracking-widest text-[#DB3E8C] uppercase text-xs">
           QUICK JUMP
         </span>
         <div className="flex items-center gap-6 overflow-x-auto">
-          <a href="#summary" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-medium">
+          <a href="#summary" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
             01. Executive Takeaway
           </a>
-          <a href="#challenge" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-medium">
+          <a href="#challenge" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
             02. Core Challenge
           </a>
-          <a href="#personas" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-medium">
-            03. Persona System
+          <a href="#personas" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
+            03. Personas
           </a>
-          <a href="#impact" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-bold text-[#DB3E8C]">
-            04. Impact & "So What" ↗
+          <a href="#evolution" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
+            03B. Design Evolution
+          </a>
+          <a href="#architecture" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
+            04. System Architecture & Developer Handoff
+          </a>
+          <a href="#process" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
+            05. Design Process & Workflow Pipeline
+          </a>
+          <a href="#deliverables" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
+            06. Business Impact & Key Deliverables
+          </a>
+          <a href="#impact" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-bold text-[#DB3E8C]">
+            07. Impact & "So What" ↗
           </a>
         </div>
       </div>
@@ -143,26 +153,26 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
             Combining scroll-based gamified evaluation, localized Singlish persona mechanics, and AEM integration under a strict 2-week deadline.
           </p>
 
-          <p className="text-sm leading-relaxed max-w-2xl" style={{ color: BODY, lineHeight: 1.8 }}>
+          <p className="text-sm sm:text-base leading-relaxed max-w-2xl" style={{ color: BODY, lineHeight: 1.8 }}>
             A rapid-sprint interactive campaign tool for Great Eastern General Insurance Singapore, combining zero-button scroll interactions, localized Singlish persona mechanics, and organic social-sharing loops to eliminate acquisition drop-off friction.
           </p>
         </div>
 
         {/* Hero Metadata Grid Strip */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 mt-12 border-t border-gray-100 text-xs">
-          <div>
-            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 mt-12 border-t border-gray-100 text-sm">
+          <div className="col-span-2 md:col-span-1">
+            <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
               Role & Ownership
             </span>
-            <span className="font-semibold text-[#19244E]">
-              Product Designer
+            <span className="font-semibold text-[#19244E] text-xs sm:text-sm block leading-snug">
+              Product Designer, UX, Interaction Logic & Developer Handoff
             </span>
-            <span className="block text-[10px] text-gray-500 font-normal">
-              (Collab with GD for Art Dir.)
+            <span className="block text-xs text-gray-500 font-normal mt-1">
+              (in collaboration with in-house Graphic Designer for art direction & illustration)
             </span>
           </div>
           <div>
-            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+            <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
               Client & Territory
             </span>
             <span className="font-semibold text-[#19244E]">
@@ -170,7 +180,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
             </span>
           </div>
           <div>
-            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+            <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
               Sprint Timeline
             </span>
             <span className="font-semibold text-[#19244E]">
@@ -178,43 +188,43 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
             </span>
           </div>
           <div>
-            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+            <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
               Tech Stack
             </span>
             <span className="font-semibold text-[#19244E]">
-              Adobe Experience Manager (AEM)
+              Figma · Custom Dev SVGs · 16:9 IG Assets
             </span>
           </div>
         </div>
       </div>
 
       {/* EXECUTIVE SUMMARY & 30-SECOND TAKEAWAYS */}
-        <div className="px-4 sm:px-8 lg:px-16 py-8 bg-[#111836] border-t border-b border-white/10">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="w-2 h-2 rounded-full bg-[#DB3E8C] animate-pulse" />
-            <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
-              EXECUTIVE SUMMARY & 30-SECOND TAKEAWAYS
-            </span>
+      <div className="px-4 sm:px-8 lg:px-16 py-8 bg-[#111836] border-t border-b border-white/10">
+        <div className="flex items-center gap-2 mb-4">
+          <span className="w-2 h-2 rounded-full bg-[#DB3E8C] animate-pulse" />
+          <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+            EXECUTIVE SUMMARY & 30-SECOND TAKEAWAYS
+          </span>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-xs sm:text-sm font-sans">
+          <div className="bg-white/5 p-4 rounded-lg border border-white/5">
+            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">01 · Problem</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-white/85">Traditional CI forms suffered drop-off. Initial red concept needed brand alignment and UX interaction overhaul.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-xs font-sans">
-            <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-              <span className="block text-[9px] font-bold tracking-widest text-white/40 uppercase mb-1.5">01 · Problem</span>
-              <p className="text-[11px] leading-relaxed text-white/80">Traditional CI forms suffered drop-off. Initial red concept needed brand alignment and UX interaction overhaul.</p>
-            </div>
-            <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-              <span className="block text-[9px] font-bold tracking-widest text-white/40 uppercase mb-1.5">02 · Core Constraints</span>
-              <p className="text-[11px] leading-relaxed text-white/80">2-week deadline, single-screen height limits, & 25+ game illustrations delivered in &lt;24h freelance sprint.</p>
-            </div>
-            <div className="bg-[#DB3E8C]/10 p-4 rounded-lg border border-[#DB3E8C]/30">
-              <span className="block text-[9px] font-bold tracking-widest text-[#DB3E8C] uppercase mb-1.5">03 · Exact Ownership</span>
-              <p className="text-[11px] font-semibold text-white leading-relaxed">Product Designer (UX Flow, Auto-select Interaction, Figma System, Dev SVG Assets & Proactive IG Shareables).</p>
-            </div>
-            <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-              <span className="block text-[9px] font-bold tracking-widest text-white/40 uppercase mb-1.5">04 · Key Impact</span>
-              <p className="text-[11px] font-semibold text-white leading-relaxed">Shipped 7-Q matrix & 4 Singlish personas in 2wks; achieved 92% completion rate & higher-ups praise.</p>
-            </div>
+          <div className="bg-white/5 p-4 rounded-lg border border-white/5">
+            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">02 · Core Constraints</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-white/85">2-week deadline, single-screen viewport limits, and a full set of ~25 game illustrations delivered in a &lt;24h freelance sprint.</p>
+          </div>
+          <div className="bg-[#DB3E8C]/10 p-4 rounded-lg border border-[#DB3E8C]/30">
+            <span className="block text-xs font-bold tracking-widest text-[#DB3E8C] uppercase mb-1.5">03 · Exact Ownership</span>
+            <p className="text-xs sm:text-sm font-semibold text-white leading-relaxed">Product Designer, UX, Interaction Logic & Developer Handoff (in collaboration with in-house Graphic Designer).</p>
+          </div>
+          <div className="bg-white/5 p-4 rounded-lg border border-white/5">
+            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">04 · Key Impact</span>
+            <p className="text-xs sm:text-sm font-semibold text-white leading-relaxed">Shipped 7-Q matrix & 4 Singlish personas in 2wks; achieved 92% completion rate & stakeholder praise.</p>
           </div>
         </div>
+      </div>
 
       {/* ── BODY CONTENT ──────────────────────────────────────────────────── */}
       <div className="max-w-5xl mx-auto px-4 sm:px-8 lg:px-16 py-12 sm:py-16 lg:py-24 space-y-16 sm:space-y-20">
@@ -225,9 +235,9 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
           <div className="grid lg:grid-cols-2 gap-4">
             {[
               { label: "Client & Market", val: "Great Eastern General Insurance Ltd (GEGI) / Singapore" },
-              { label: "Role & Collaboration", val: "Product Designer (UX, Flow & Prototyping) in collab with in-house Graphic Designer (Art Direction)" },
+              { label: "Role & Ownership", val: "Product Designer, UX, Interaction Logic & Developer Handoff (in collaboration with in-house Graphic Designer for art direction & illustration)" },
               { label: "Execution Sprint", val: "2 Weeks Rapid Sprint · March 2026" },
-              { label: "Core Stack", val: "Figma · Adobe Experience Manager (AEM Data Capture) · Custom Dev SVGs · 16:9 IG Assets" },
+              { label: "Core Stack", val: "Figma · Custom Dev SVGs · 16:9 IG Assets" },
             ].map(({ label, val }) => (
               <div key={label} className="px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
                 <MonoTag>{label}</MonoTag>
@@ -245,7 +255,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
                   Gamified CI Evaluation Flow
                 </h3>
               </div>
-              <span className="font-sans text-[10px] text-white/50 tracking-widest uppercase hidden sm:inline">
+              <span className="font-sans text-xs text-white/50 tracking-widest uppercase hidden sm:inline">
                 4 High-Fidelity Views
               </span>
             </div>
@@ -253,9 +263,9 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
             <div className="grid md:grid-cols-2 gap-6">
               {[
                 { title: "01 · Campaign Hero Screen", img: ci1, desc: "Light/cream brand-aligned landing hero with zero-friction entry." },
-                { title: "02 · Localized Game & Persona Assets", img: ci2, desc: "~25 custom game illustrations produced with illustrator Revi (<24h turnaround) covering quiz options and 4 personas." },
-                { title: "03 · Auto-Select Question Matrix", img: ci3, desc: "Auto-select interaction UX that immediately advances upon pick, ending with participant lucky draw data form." },
-                { title: "04 · AEM Data Capture & SVG Handoff", img: ci4, desc: "Single-screen viewport optimized SVGs for dev layout state & AEM form backend data capture." },
+                { title: "02 · Localized Game & Persona Assets", img: ci2, desc: "~25 custom game illustrations produced with illustrator Revi (<24h turnaround), covering quiz options and 4 personas." },
+                { title: "03 · Auto-Select Question Matrix", img: ci3, desc: "Auto-select interaction that immediately advances upon pick, ending with a participant lucky draw data form." },
+                { title: "04 · Developer SVG Handoff", img: ci4, desc: "Single-screen viewport optimized SVG states prepared for dev implementation." },
               ].map(({ title, img, desc }) => (
                 <div
                   key={title}
@@ -270,7 +280,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
                   </div>
                   <div>
                     <h4 className="font-sans text-xs font-bold text-white mb-1 tracking-wide">{title}</h4>
-                    <p className="font-sans text-[10px] text-white/60 leading-relaxed">{desc}</p>
+                    <p className="font-sans text-xs text-white/60 leading-relaxed">{desc}</p>
                   </div>
                 </div>
               ))}
@@ -283,22 +293,22 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
         {/* 02 Strategic Challenge */}
         <div>
           <SectionTag id="challenge" num="02" label="The Strategic Challenge & Project Evolution" />
-          <p className="font-display font-light leading-relaxed mb-10" style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.35rem)", color: N, letterSpacing: "-0.005em", lineHeight: 1.65, maxWidth: "680px" }}>
-            Great Eastern Singapore needed an engaging digital campaign to assess critical illness (CI) protection gaps. Starting from an initial red graphic concept, the project evolved through client reviews, color pivots, illustration crises, and navigation refinements.
+          <p className="font-display font-light leading-relaxed mb-10 text-base sm:text-lg" style={{ color: N, lineHeight: 1.65, maxWidth: "720px" }}>
+            Great Eastern Singapore needed an engaging digital campaign to assess critical illness (CI) protection gaps. Starting from an initial red graphic concept, the project evolved through client reviews, a color pivot, an illustration crisis, and navigation refinements.
           </p>
-          <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-5" style={{ color: `${N}99` }}>
+          <p className="font-sans text-xs font-semibold tracking-widest uppercase mb-5" style={{ color: `${N}99` }}>
             Key Decisions & Constraints Solved
           </p>
           <div className="space-y-3">
             {[
-              { Icon: Clock, title: "Color Palette Pivot (Red → Cream Light Theme)", desc: "The initial UI proposal was dominant red. Following client presentation feedback, we pivoted to GEGI's light cream brand guideline palette for consistency with their successful gamification campaigns." },
-              { Icon: Target, title: "25+ Game Illustration Sprint (<24h Turnaround)", desc: "When initial illustration concepts didn't click internally, I collaborated with the GD to advocate for bringing in a freelance illustrator. I engaged illustrator Revi, delivering all ~25 game assets (personas, question illustrations, icons) in under 24 hours." },
-              { Icon: LayoutGrid, title: "Navigation UX Evolution: Auto-Select vs. Next Button", desc: "Replaced tedious 'Next' button clicks with an automatic transition on selection (auto-select). Clicking any answer instantly advances to the next question, preserving user momentum until the final result trigger." },
-              { Icon: FileCode2, title: "Single-Screen Viewport SVG Specs & AEM Data Capture", desc: "Engineered exact SVG state assets (default, selected, active) sized precisely to guarantee a single-screen, non-scrollable game frame, while coordinating lead-capture data form specs for AEM integration." },
+              { Icon: Clock, title: "Color Palette Pivot (Red → Cream Light Theme)", desc: "The initial UI proposal was dominant red. Following client presentation feedback, the palette shifted to GEGI's light cream brand guideline for consistency with their previous gamification campaigns." },
+              { Icon: Target, title: "~25 Game Illustration Sprint (<24h Turnaround)", desc: "When initial illustration concepts didn't land internally, I proposed bringing in a freelance illustrator. I engaged illustrator Revi, who delivered all ~25 game assets (personas, question illustrations, icons) in under 24 hours." },
+              { Icon: LayoutGrid, title: "Navigation UX Evolution: Auto-Select vs. Next Button", desc: "Replaced click-to-advance with an auto-select interaction. Selecting an answer instantly moves to the next question, preserving momentum until the final result step." },
+              { Icon: FileCode2, title: "Single-Screen Viewport SVG Specs", desc: "Engineered exact SVG state assets (default, selected, hover) sized precisely to keep the game frame single-screen and non-scrollable across devices." },
             ].map(({ Icon, title, desc }) => (
               <div key={title} className="flex gap-5 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
                 <div className="w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5" style={{ border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
-                  <Icon size={13} style={{ color: C }} />
+                  <Icon size={14} style={{ color: C }} />
                 </div>
                 <div>
                   <p className="text-sm font-semibold mb-1" style={{ color: N }}>{title}</p>
@@ -314,8 +324,8 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
         {/* ── PERSONA BENTO GRID ──────────────────────────────────────────── */}
         <div>
           <SectionTag id="personas" num="03" label="Localized Persona System" />
-          <p className="text-sm leading-relaxed mb-8 max-w-[600px]" style={{ color: BODY, lineHeight: 1.75 }}>
-            Partnered with freelance illustrator <strong>Revi</strong> under a fast &lt;24-hour sprint to craft ~25 custom game assets—including 4 Singapore-centric character personas representing distinct CI Gap tiers, fine-tuned with authentic Singlish tone.
+          <p className="text-sm sm:text-base leading-relaxed mb-8 max-w-[680px]" style={{ color: BODY, lineHeight: 1.75 }}>
+            Partnered with freelance illustrator Revi under a &lt;24-hour sprint to craft ~25 custom game assets, including 4 Singapore-centric character personas representing distinct CI Gap tiers, fine-tuned with authentic Singlish tone.
           </p>
 
           {/* 2×2 bento grid */}
@@ -343,12 +353,58 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
                 </div>
                 {/* Label */}
                 <div className="px-5 py-4" style={{ backgroundColor: W }}>
-                  <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-1" style={{ color: C }}>
+                  <p className="font-sans text-xs font-semibold tracking-widest uppercase mb-1" style={{ color: C }}>
                     [{String(i + 1).padStart(2, "0")}]
                   </p>
-                  <p className="text-sm font-semibold mb-1" style={{ color: N }}>{p.name}</p>
-                  <p className="text-sm" style={{ color: BODY, lineHeight: 1.6 }}>{p.desc}</p>
+                  <p className="text-sm sm:text-base font-semibold mb-1" style={{ color: N }}>{p.name}</p>
+                  <p className="text-xs sm:text-sm" style={{ color: BODY, lineHeight: 1.6 }}>{p.desc}</p>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <Hairline />
+
+        {/* ── SECTION 03B: DESIGN EVOLUTION ────────────────────────────────── */}
+        <div>
+          <SectionTag id="evolution" num="03B" label="Design Evolution: From Concept to Client-Ready" />
+          
+          <p className="font-display font-light leading-relaxed mb-10 text-base sm:text-lg" style={{ color: N, lineHeight: 1.7, maxWidth: "780px" }}>
+            This project began with an internal graphic designer's initial UI concept, already presented to leadership, establishing an early direction with a dominant red palette. From there, I took ownership of translating that concept into a fully built product: structuring the UX flow, building responsive desktop and mobile layouts in Figma, and preparing the interaction logic based on GEGI's existing calculation spreadsheet for the 4-persona outcome system.
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {[
+              {
+                num: "01",
+                title: "Color Pivot: Red to Brand Cream",
+                desc: "After the first client presentation, GEGI requested a shift from the initial red-dominant palette to their signature cream and light tone, referencing visual language from a previous game they had developed. I requested their full brand guideline to realign typography and color tokens accordingly, making sure the final product matched their established digital identity instead of feeling like a one-off campaign look."
+              },
+              {
+                num: "02",
+                title: "Navigation: From Click to Next to Auto Advance",
+                desc: "The interaction model also evolved through discussion. What started as a traditional click-Next flow was refined into an auto-advance system, where selecting an answer immediately moves the user to the next question, removing an unnecessary tap at every step. The one exception is the final question, which requires an explicit View My Result click, giving users a clear and intentional moment before submission."
+              },
+              {
+                num: "03",
+                title: "The Illustration Gap",
+                desc: "Midway through the project, none of the illustration drafts from the internal graphic designer were landing the way the concept needed. Rather than settle, I raised the idea of bringing in a dedicated illustrator, and reached out to a freelance illustrator I'd worked with before, Revi, who delivered the full set of ~25 game assets in under 24 hours. Those assets became the 4 personas featured in the final product."
+              },
+              {
+                num: "04",
+                title: "Beyond the Brief: Result Sharing Assets",
+                desc: "Anticipating that a dedicated results-sharing design might not be prioritized before launch, I took the initiative to design Instagram-ready result cards for each persona, confirming exact dimensions with the PM and recommending a 16:9 ratio suited for Instagram Story sharing. This became part of the campaign's organic growth loop, letting users share their persona result beyond the quiz itself."
+              }
+            ].map(({ num, title, desc }) => (
+              <div key={title} className="p-6 bg-white border border-gray-100 rounded-xl shadow-xs hover:border-[#DB3E8C]/30 transition-all duration-200">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="font-sans text-xs font-bold tracking-widest uppercase text-[#DB3E8C]">[{num}]</span>
+                  <h3 className="font-display font-bold text-base sm:text-lg text-[#19244E]">{title}</h3>
+                </div>
+                <p className="font-sans text-sm leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.75 }}>
+                  {desc}
+                </p>
               </div>
             ))}
           </div>
@@ -358,55 +414,31 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
 
         {/* 04 System Architecture */}
         <div>
-          <SectionTag num="04" label="System & Interaction Architecture" />
+          <SectionTag id="architecture" num="04" label="System Architecture & Developer Handoff" />
+          <p className="font-sans text-xs text-gray-400 italic mb-6">
+            (Technical reference only — process narrative lives in Section 03B above)
+          </p>
 
-          {/* Flow diagram */}
-          <div className="mb-8 p-6 overflow-x-auto" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
-            <MonoTag>[Campaign Interaction Flow]</MonoTag>
-            <div className="flex items-center mt-5 min-w-max">
-              {[
-                { label: "Auto-Select Question Matrix", sub: "Auto-advances on click without Next button", icon: LayoutGrid },
-                { label: "Singlish Persona + AEM Data Form", sub: "Calculates CI Gap & captures lucky draw data", icon: Target },
-                { label: "Organic 16:9 IG Assets", sub: "Proactive IG Story sharing cards for viral loop", icon: Share2 },
-              ].map((step, i) => {
-                const Icon = step.icon
-                return (
-                  <div key={step.label} className="flex items-center">
-                    <div className="flex flex-col items-start gap-3 min-w-[180px]">
-                      <div className="w-10 h-10 flex items-center justify-center" style={{ backgroundColor: i === 1 ? `${C}10` : `${N}06`, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
-                        <Icon size={14} style={{ color: i === 1 ? C : N }} />
-                      </div>
-                      <div>
-                        <p className="text-xs font-semibold" style={{ color: N }}>{step.label}</p>
-                        <p className="font-sans text-[9px] mt-0.5" style={{ color: `${N}AA` }}>{step.sub}</p>
-                      </div>
-                    </div>
-                    {i < 2 && (
-                      <div className="flex items-center mx-4 pb-5">
-                        <div className="h-px w-10" style={{ backgroundColor: HAIR }} />
-                        <ChevronRight size={11} style={{ color: `${N}DD`, marginLeft: "-4px" }} />
-                      </div>
-                    )}
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-
-          <div className="space-y-3">
-            {[
-              { num: "1.", title: "Auto-Select UX Mechanics & Form Entry", desc: "Transitioned from manual 'Next' button pagination to an auto-select mechanism. Selecting an answer immediately advances to the next question, reducing user drop-off. The final screen includes a participant details form for campaign lucky draw incentives." },
-              { num: "2.", title: "Rapid Illustration Turnaround (<24h with Revi)", desc: "Proactively solved an illustration direction roadblock by recommending and onboarding freelance illustrator Revi. Imported all ~25 game vector illustrations directly into Figma for stakeholder review, earning unanimous executive praise." },
-              { num: "3.", title: "Unprompted IG Story Shareable Assets (16:9 Ratio)", desc: "Anticipated that the client had not prepared result-sharing assets. Proactively designed custom 16:9 Instagram Story cards aligned with PM specifications, enabling users to share their Singlish persona outcomes on social media." },
-            ].map(({ num, title, desc }) => (
-              <div key={title} className="flex gap-5 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
-                <span className="font-sans text-[10px] font-semibold flex-shrink-0 mt-0.5" style={{ color: C }}>{num}</span>
-                <div>
-                  <p className="text-sm font-semibold mb-1.5" style={{ color: N }}>{title}</p>
-                  <p className="text-sm leading-relaxed" style={{ color: BODY, lineHeight: 1.75 }}>{desc}</p>
-                </div>
+          <div className="space-y-4">
+            <div className="p-6 bg-white border border-gray-100 rounded-xl shadow-xs">
+              <div className="flex items-center gap-2 mb-2">
+                <FileCode2 size={16} className="text-[#DB3E8C]" />
+                <h3 className="font-display font-bold text-base sm:text-lg text-[#19244E]">Developer Handoff: SVG Asset System</h3>
               </div>
-            ))}
+              <p className="font-sans text-sm leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.75 }}>
+                Prepared a complete SVG asset library, including default, selected, and hover states, sized precisely to preserve a single-screen experience across devices. Where scrolling was unavoidable, interactions were contained within the card frame itself rather than the full page, keeping the visual rhythm consistent throughout the flow.
+              </p>
+            </div>
+
+            <div className="p-6 bg-white border border-gray-100 rounded-xl shadow-xs">
+              <div className="flex items-center gap-2 mb-2">
+                <Target size={16} className="text-[#DB3E8C]" />
+                <h3 className="font-display font-bold text-base sm:text-lg text-[#19244E]">Data Flow (Lead Capture Form)</h3>
+              </div>
+              <p className="font-sans text-sm leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.75 }}>
+                Defined the required form fields (Full Name, Email, WhatsApp Number, NRIC, Agent IAC) for the lucky-draw submission step, handed off as spec for the development team to implement. <span className="text-gray-500 italic">(AEM component integration and backend data handling were owned entirely by the development team.)</span>
+              </p>
+            </div>
           </div>
         </div>
 
@@ -414,9 +446,9 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
 
         {/* 05 Design Process */}
         <div>
-          <SectionTag num="05" label="Design Process & Workflow Pipeline" />
-          <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-8" style={{ color: `${N}99` }}>
-            [METHODOLOGY: RAPID SPRINT & GAMIFIED UX] · [TECH STACK: AEM DATA CAPTURE & SVG SPECS]
+          <SectionTag id="process" num="05" label="Design Process & Workflow Pipeline" />
+          <p className="font-sans text-xs font-semibold tracking-widest uppercase mb-8" style={{ color: `${N}99` }}>
+            [METHODOLOGY: RAPID SPRINT & GAMIFIED UX] · [TECH STACK: FIGMA & DEV SVG SPECS]
           </p>
 
           <div className="relative">
@@ -425,26 +457,26 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
               {[
                 {
                   phase: "PHASE 01", tag: "ALIGNMENT & COLOR PIVOT",
-                  title: "Brand Alignment & Initial Concept Pivot",
+                  title: "Graphic Designer Collaboration & Color Pivot",
                   items: [
-                    { title: "Graphic Designer Collaboration & Color Pivot", desc: "Joined internal kick-off after GD created initial red UI draft. Following client review, pivoted theme to GEGI's light cream palette for visual continuity with past campaign games." },
-                    { title: "Figma Desktop & Mobile Build", desc: "Built complete desktop and mobile responsive UI frames in Figma based on the client's calculation spreadsheet and 4 persona outcome tiers." },
+                    { title: "Graphic Designer Collaboration & Color Pivot", desc: "Joined internal kick-off after the GD created an initial red UI draft. Following client review, pivoted the theme to GEGI's light cream palette for visual continuity with past campaign games." },
+                    { title: "Figma Desktop & Mobile Build", desc: "Built complete desktop and mobile responsive UI frames in Figma based on the client's calculation spreadsheet and 4-persona outcome tiers." },
                   ],
                 },
                 {
                   phase: "PHASE 02", tag: "ILLUSTRATION & UX EVOLUTION",
-                  title: "Illustration Sourcing & Navigation Optimization",
+                  title: "24-Hour Freelance Illustrator Sprint (~25 Assets)",
                   items: [
-                    { title: "24-Hour Freelance Illustrator Sprint (~25 Assets)", desc: "Initiated outreach to illustrator Revi when in-house assets needed pivot. Integrated ~25 game character and option vectors into Figma within 24 hours for internal & executive sign-off." },
-                    { title: "Auto-Select Navigation Flow", desc: "Optimized questionnaire UX from manual 'Next' button clicks to auto-select triggers, preserving friction-free momentum until the final result view." },
+                    { title: "24-Hour Freelance Illustrator Sprint (~25 Assets)", desc: "Initiated outreach to illustrator Revi when in-house assets needed a pivot. Integrated ~25 game character and option vectors into Figma within 24 hours for internal and executive sign-off." },
+                    { title: "Auto-Select Navigation Flow", desc: "Optimized questionnaire UX from manual \"Next\" button clicks to auto-select triggers, preserving friction-free momentum until the final result view." },
                   ],
                 },
                 {
                   phase: "PHASE 03", tag: "HANDOFF & INITIATIVES",
-                  title: "Developer SVG Engineering & AEM Data Capture",
+                  title: "Developer SVG Engineering & Proactive Assets",
                   items: [
-                    { title: "Single-Screen Viewport SVG Specs & AEM Lead Form", desc: "Engineered pixel-precise SVG state assets (default, hover, selected) sized to guarantee single-screen non-scrollable layouts, while aligning user data capture form specs for AEM backend data collection." },
-                    { title: "Proactive 16:9 IG Story Assets", desc: "Self-initiated 16:9 Instagram Story shareable result graphics, confirming requirements with PM to drive organic social sharing." },
+                    { title: "Developer SVG Engineering", desc: "Engineered pixel-precise SVG state assets (default, hover, selected) sized to guarantee single-screen, non-scrollable layouts, and handed off lead-capture form field specs for the dev team's AEM implementation." },
+                    { title: "Proactive 16:9 IG Story Assets", desc: "Self-initiated 16:9 Instagram Story shareable result graphics, confirming requirements with the PM to drive organic social sharing." },
                   ],
                 },
               ].map((phase, pi) => (
@@ -457,14 +489,14 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
                     >
                       {String(pi + 1).padStart(2, "0")}
                     </div>
-                    <div className="text-[9px] font-bold uppercase tracking-widest text-[#19244E]/30 text-center leading-tight">
+                    <div className="text-xs font-bold uppercase tracking-widest text-[#19244E]/40 text-center leading-tight">
                       {phase.tag}
                     </div>
                   </div>
 
                   {/* Left Column: Details */}
                   <div>
-                    <div className="text-[10px] font-semibold uppercase tracking-[0.2em] mb-2" style={{ color: C }}>
+                    <div className="text-xs font-semibold uppercase tracking-[0.2em] mb-2" style={{ color: C }}>
                       {phase.phase}
                     </div>
                     <h3 className="font-display text-xl font-bold text-[#19244E] mb-4 leading-tight">
@@ -478,9 +510,9 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
                       <div key={title} className="rounded-xl border border-[#19244E]/8 bg-[#F8F8F6] p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
                         <div className="flex items-center gap-2 mb-1.5">
                           <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: C }} />
-                          <span className="text-xs font-bold text-[#19244E]">{title}</span>
+                          <span className="text-xs sm:text-sm font-bold text-[#19244E]">{title}</span>
                         </div>
-                        <p className="text-xs text-[#19244E]/65 leading-relaxed pl-3.5">
+                        <p className="text-xs sm:text-sm text-[#19244E]/70 leading-relaxed pl-3.5">
                           {desc}
                         </p>
                       </div>
@@ -496,17 +528,17 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
 
         {/* 06 Business Impact */}
         <div>
-          <SectionTag num="06" label="Business Impact & Key Deliverables" />
+          <SectionTag id="deliverables" num="06" label="Business Impact & Key Deliverables" />
           <div className="grid lg:grid-cols-2 gap-4">
             {[
-              { Icon: CheckCircle2, title: "Executive & Stakeholder Praise", desc: "Seamless integration of Revi's ~25 game illustrations, cream brand styling, and auto-select UX won high praise from management and client stakeholders." },
-              { Icon: Zap, title: "First-Round Live Deployment", desc: "Completed design iterations, developer asset prep, and AEM integration within the strict 2-week deadline." },
+              { Icon: CheckCircle2, title: "Executive & Stakeholder Praise", desc: "Seamless integration of Revi's ~25 game illustrations, cream brand styling, and auto-select UX won praise from management and client stakeholders." },
+              { Icon: Zap, title: "First-Round Live Deployment", desc: "Completed design iterations and developer asset prep within the strict 2-week deadline." },
               { Icon: Share2, title: "Organic Social Virality", desc: "The self-initiated 16:9 Instagram Story sharing cards enabled participants to post results directly, extending campaign reach." },
-              { Icon: Globe, title: "Reusable Regional Framework", desc: "Established a reusable interactive campaign template and AEM data-capture pattern for GEGI's future regional user acquisition." },
+              { Icon: Globe, title: "Reusable Regional Framework", desc: "Established a reusable interactive campaign template for GEGI's future regional user acquisition initiatives." },
             ].map(({ Icon, title, desc }) => (
               <div key={title} className="flex gap-4 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
                 <div className="w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5" style={{ backgroundColor: `${C}08`, border: `1px solid ${C}20`, borderRadius: "4px" }}>
-                  <Icon size={13} style={{ color: C }} />
+                  <Icon size={14} style={{ color: C }} />
                 </div>
                 <div>
                   <p className="text-sm font-semibold mb-1.5" style={{ color: N }}>{title}</p>
@@ -519,26 +551,26 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
 
         <Hairline />
 
-        {/* 04 Impact & The "So What" */}
+        {/* 07 Impact & The "So What" */}
         <div>
-          <SectionTag id="impact" num="04" label="Key Impact & The 'So What'" />
+          <SectionTag id="impact" num="07" label="Key Impact & The 'So What'" />
           <div className="p-8 bg-[#111836] rounded-2xl border border-white/10 text-white space-y-6 shadow-2xl">
             <div className="flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-[#22c55e] animate-pulse" />
-              <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#22c55e]">
+              <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase text-[#22c55e]">
                 SYSTEM OUTCOME & BUSINESS VALIDATION
               </span>
             </div>
             <h3 className="font-display text-2xl lg:text-3xl font-light leading-snug">
               Shipped in <span className="font-bold text-[#DB3E8C]">2 weeks</span> with a <span className="font-bold text-[#DB3E8C]">92% completion rate</span> across Great Eastern's Singapore campaign launch.
             </h3>
-            <p className="font-sans text-xs text-white/70 leading-relaxed max-w-2xl">
-              By pivoting to brand-aligned cream visuals, implementing auto-select UX, delivering ~25 game illustrations with illustrator Revi in &lt;24h, and preparing precise SVG state assets + proactive 16:9 IG Story shareables, we eliminated user friction and maximized engagement.
+            <p className="font-sans text-xs sm:text-sm text-white/80 leading-relaxed max-w-2xl">
+              By pivoting to brand-aligned cream visuals, implementing auto-select UX, delivering ~25 game illustrations with illustrator Revi in under 24 hours, and preparing precise SVG state assets plus proactive 16:9 IG Story shareables, the team eliminated user friction and maximized engagement.
             </p>
-            <div className="grid md:grid-cols-3 gap-6 pt-6 border-t border-white/10 text-xs">
+            <div className="grid md:grid-cols-3 gap-6 pt-6 border-t border-white/10 text-xs sm:text-sm">
               <div className="bg-white/5 p-4 rounded-lg border border-white/5">
                 <span className="block font-bold text-xl text-white mb-1">2-Week Sprint</span>
-                <p className="text-white/60">Rapid turnaround from client feedback pivot to live AEM rollout.</p>
+                <p className="text-white/60">Rapid turnaround from client feedback pivot to live rollout.</p>
               </div>
               <div className="bg-white/5 p-4 rounded-lg border border-white/5">
                 <span className="block font-bold text-xl text-white mb-1">Auto-Select UX</span>
@@ -551,15 +583,15 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
             </div>
 
             {/* Why This Matters to a Hiring Manager */}
-            <div className="mt-6 p-5 rounded-xl bg-[#DB3E8C]/15 border border-[#DB3E8C]/40 text-white space-y-2">
+            <div className="mt-6 p-6 rounded-xl bg-[#DB3E8C]/15 border border-[#DB3E8C]/40 text-white space-y-3">
               <div className="flex items-center gap-2">
-                <MessageSquare size={14} className="text-[#DB3E8C]" />
-                <span className="text-[9px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+                <MessageSquare size={16} className="text-[#DB3E8C]" />
+                <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
                   WHY THIS MATTERS TO A HIRING MANAGER
                 </span>
               </div>
-              <p className="text-xs font-sans leading-relaxed text-white/90 italic">
-                "This project demonstrates my ability to lead product design decisions, adapt swiftly to client feedback (red to cream palette pivot), solve execution bottlenecks under pressure (onboarding illustrator Revi to deliver ~25 game assets in under 24 hours), optimize UX mechanics (auto-select flow), and hand off developer-ready SVG state specs alongside AEM data capture forms."
+              <p className="text-xs sm:text-sm font-sans leading-relaxed text-white/95 italic" style={{ lineHeight: 1.8 }}>
+                "This project shows I can pick up an in-progress concept from another team member and carry it through to a polished, client-approved product, navigating brand pivots, stakeholder feedback, and a mid-project illustration crisis without losing the 2-week deadline. If you need someone who can adapt fast and still ship clean, that's what this demonstrates."
               </p>
             </div>
           </div>
@@ -574,15 +606,15 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
             {onPrev && (
               <button
                 onClick={onPrev}
-                className="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
+                className="flex items-center gap-2 font-sans text-xs sm:text-sm font-semibold tracking-widest uppercase transition-opacity hover:opacity-60 cursor-pointer"
                 style={{ color: N }}
               >
-                <ArrowLeft size={12} /> Previous Case
+                <ArrowLeft size={13} /> Previous Case
               </button>
             )}
             <button
               onClick={onBack}
-              className="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
+              className="flex items-center gap-2 font-sans text-xs sm:text-sm font-semibold tracking-widest uppercase transition-opacity hover:opacity-60 cursor-pointer"
               style={{ color: N }}
             >
               Back to Portfolio
@@ -591,10 +623,10 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
           {onNext && (
             <button
               onClick={onNext}
-              className="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
+              className="flex items-center gap-2 font-sans text-xs sm:text-sm font-semibold tracking-widest uppercase transition-opacity hover:opacity-60 cursor-pointer"
               style={{ color: N }}
             >
-              Next Case <ChevronRight size={12} />
+              Next Case <ChevronRight size={13} />
             </button>
           )}
         </div>
@@ -625,7 +657,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
               className="max-w-full max-h-[72vh] object-contain rounded-xl shadow-2xl border border-white/10 mb-4"
             />
             <h3 className="text-white font-display text-xl font-bold text-center mb-1">{activeZoomImg.title}</h3>
-            <p className="text-white/70 text-xs font-sans text-center max-w-xl">{activeZoomImg.desc}</p>
+            <p className="text-white/70 text-xs sm:text-sm font-sans text-center max-w-xl">{activeZoomImg.desc}</p>
           </div>
         </div>
       )}

@@ -233,24 +233,24 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
       </div>
 
       {/* Quick Jump Navigation Bar */}
-      <div className="sticky top-[53px] z-40 px-8 lg:px-16 py-2.5 bg-[#0e1635] text-white/70 border-b border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs font-sans">
-        <span className="font-bold tracking-widest text-[#DB3E8C] uppercase text-[9px]">
+      <div className="sticky top-[53px] z-40 px-8 lg:px-16 py-2.5 bg-[#0e1635] text-white/80 border-b border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs sm:text-sm font-sans">
+        <span className="font-bold tracking-widest text-[#DB3E8C] uppercase text-xs">
           QUICK JUMP
         </span>
         <div className="flex items-center gap-6 overflow-x-auto">
-          <a href="#summary" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-medium">
+          <a href="#summary" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
             01. Executive Summary
           </a>
-          <a href="#challenge" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-medium">
+          <a href="#challenge" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
             02. Tenant Diversity
           </a>
-          <a href="#solution" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-medium">
+          <a href="#solution" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
             03. Dual-Track Engine
           </a>
-          <a href="#deepdive" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-medium">
+          <a href="#deepdive" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
             04. Architectural Decisions
           </a>
-          <a href="#impact" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-bold text-[#DB3E8C]">
+          <a href="#impact" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-bold text-[#DB3E8C]">
             05. Impact & "So What" ↗
           </a>
         </div>

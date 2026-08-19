@@ -34,6 +34,12 @@
   --chart-4: #0060AF;
   --chart-5: #E31B23;
   --radius: 6px;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
   --sidebar: #F8F8F6;
   --sidebar-foreground: #152055;
   --sidebar-primary: #152055;
@@ -154,6 +160,8 @@
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   /**
@@ -163,6 +171,8 @@
 
   html {
     font-size: var(--font-size);
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 
   h1 {

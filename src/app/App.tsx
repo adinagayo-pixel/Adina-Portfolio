@@ -3,6 +3,7 @@ import { motion, useMotionValue, useSpring, AnimatePresence } from "motion/react
 import adinaPhotoAbout from "@/imports/Foto At Work.png"
 import adinaPhotoLife from "@/imports/Foto In Life.jpg"
 import afgLogo from "@/imports/LOGO.png"
+import gettyBgVideo from "@/imports/GettyImages-1152749158.mp4"
 import projectThumb1 from "@/imports/image-7.png"
 import projectThumb2 from "@/imports/image-8.png"
 import projectThumb4 from "@/imports/image-7.png"
@@ -237,7 +238,7 @@ function useScrollSpy(ids: string[]) {
 function MonoTag({ children, accent = false }: { children: React.ReactNode; accent?: boolean }) {
   return (
     <span
-      className="font-sans text-[10px] font-semibold tracking-wider uppercase"
+      className="font-sans text-xs font-semibold tracking-wider uppercase"
       style={{ color: accent ? C : `${N}CC` }}
     >
       {children}
@@ -290,13 +291,13 @@ function FloatingDock({ activeSection }: { activeSection: string }) {
         // Mobile: full-width bottom tab bar
         "bottom-0 left-0 right-0 w-full rounded-none border-t",
         // Tablet/Desktop: floating centered pill
-        "md:bottom-6 md:left-1/2 md:right-auto md:-translate-x-1/2 md:w-auto md:rounded-[6px] md:border",
+        "md:bottom-6 md:left-1/2 md:right-auto md:-translate-x-1/2 md:w-auto md:rounded-[8px] md:border",
       ].join(" ")}
       style={{
         backgroundColor: "rgba(255,255,255,0.96)",
         backdropFilter: "blur(18px)",
         borderColor: HAIR,
-        boxShadow: "0 -2px 16px rgba(25,36,78,0.05), 0 4px 24px rgba(25,36,78,0.07)",
+        boxShadow: "0 -2px 16px rgba(25,36,78,0.05), 0 4px 24px rgba(25,36,78,0.08)",
         paddingBottom: "env(safe-area-inset-bottom, 0px)",
       }}
     >
@@ -308,20 +309,20 @@ function FloatingDock({ activeSection }: { activeSection: string }) {
             onClick={() => scrollTo(entry.id)}
             aria-label={entry.label}
             aria-current={isActive ? "page" : undefined}
-            className="relative flex flex-col items-center gap-1.5 py-2 flex-1 px-1 md:flex-none md:px-5 md:py-3 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] focus-visible:ring-inset rounded"
+            className="relative flex flex-col items-center justify-center gap-1 py-2.5 flex-1 px-1.5 md:flex-none md:px-6 md:py-3 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] focus-visible:ring-inset rounded cursor-pointer"
             style={{
               borderRight: i < DOCK.length - 1 ? `1px solid ${HAIR}` : "none",
-              color: isActive ? N : `${N}BB`,
+              color: isActive ? N : `${N}A0`,
             }}
           >
-            <entry.Icon size={13} strokeWidth={isActive ? 2.2 : 1.6} />
-            <span className="font-sans text-[8px] font-semibold tracking-widest">
+            <entry.Icon size={20} strokeWidth={isActive ? 2.1 : 1.6} />
+            <span className="font-sans text-[8.5px] sm:text-[9.5px] font-semibold tracking-wider uppercase">
               {entry.label}
             </span>
             {isActive && (
               <motion.span
                 layoutId="dock-active"
-                className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3 h-[2px]"
+                className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-[2.5px] rounded-full"
                 style={{ backgroundColor: C }}
               />
             )}
@@ -365,7 +366,7 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
           {/* Toggle Switch */}
           <div className="flex items-center gap-2">
             <span
-              className="font-sans text-[9px] lg:text-[10px] font-semibold tracking-widest transition-all duration-150 cursor-pointer select-none animate-fade-in"
+              className="font-sans text-[10px] lg:text-xs font-semibold tracking-widest transition-all duration-150 cursor-pointer select-none animate-fade-in"
               style={{ color: N, opacity: isAtWork ? 1 : 0.35 }}
               onClick={() => setIsAtWork(true)}
             >
@@ -398,7 +399,7 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
             </button>
 
             <span
-              className="font-sans text-[9px] lg:text-[10px] font-semibold tracking-widest transition-all duration-150 cursor-pointer select-none animate-fade-in"
+              className="font-sans text-[10px] lg:text-xs font-semibold tracking-widest transition-all duration-150 cursor-pointer select-none animate-fade-in"
               style={{ color: C, opacity: !isAtWork ? 1 : 0.35 }}
               onClick={() => setIsAtWork(false)}
             >
@@ -411,17 +412,17 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
           <a
             href="/resume-adina-fayza-gayo.pdf"
             download="ADINA FAYZA GAYO Resume 2026.pdf"
-            className="flex items-center gap-1.5 font-sans text-[10px] font-semibold tracking-widest transition-all duration-150"
+            className="flex items-center gap-1.5 font-sans text-xs font-semibold tracking-widest transition-all duration-150"
             style={{ border: `1px solid ${HAIR}`, color: `${N}DD`, borderRadius: "6px", padding: "6px 10px" }}
             onMouseEnter={(e) => { ;(e.currentTarget as HTMLElement).style.borderColor = N; ;(e.currentTarget as HTMLElement).style.color = N }}
             onMouseLeave={(e) => { ;(e.currentTarget as HTMLElement).style.borderColor = HAIR; ;(e.currentTarget as HTMLElement).style.color = `${N}DD` }}
           >
-            <Download size={11} />
+            <Download size={12} />
             <span className="hidden sm:inline">Resume</span>
           </a>
           <a
             href="mailto:adinagayo@gmail.com"
-            className="font-sans text-[10px] font-semibold tracking-widest transition-all duration-150"
+            className="font-sans text-xs font-semibold tracking-widest transition-all duration-150"
             style={{ border: `1px solid ${N}`, color: N, borderRadius: "6px", padding: "6px 10px", whiteSpace: "nowrap" }}
             onMouseEnter={(e) => { ;(e.currentTarget as HTMLElement).style.backgroundColor = N; ;(e.currentTarget as HTMLElement).style.color = W }}
             onMouseLeave={(e) => { ;(e.currentTarget as HTMLElement).style.backgroundColor = "transparent"; ;(e.currentTarget as HTMLElement).style.color = N }}
@@ -442,7 +443,7 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
           <div className="w-1/2 grid lg:grid-cols-12 gap-8 lg:gap-12 items-start px-4 sm:px-8 lg:px-20 pt-8 pb-16 lg:py-16 flex-shrink-0">
             {/* Left 7 Cols: Massive Headline & Compact Button */}
             <div className="lg:col-span-7 flex flex-col">
-              <p className="font-sans text-[9px] sm:text-[10px] font-bold tracking-[0.2em] sm:tracking-[0.25em] text-[#DB3E8C] uppercase mb-3 sm:mb-4">
+              <p className="font-sans text-xs sm:text-sm font-bold tracking-[0.2em] sm:tracking-[0.25em] text-[#DB3E8C] uppercase mb-3 sm:mb-4">
                 Product Designer · System Logic Architect
               </p>
               <h1
@@ -498,30 +499,30 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
                 </div>
 
                 {/* Live Status / Current Scope Column */}
-                <div className="flex flex-col gap-2.5 sm:gap-3 text-xs font-sans tracking-wide text-[#19244E] pt-0.5 max-w-full sm:max-w-[220px]">
+                <div className="flex flex-col gap-2.5 sm:gap-3 text-xs sm:text-sm font-sans tracking-wide text-[#19244E] pt-0.5 max-w-full sm:max-w-[240px]">
                   <div>
-                    <span className="text-[9px] font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
+                    <span className="text-xs font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
                       CURRENTLY
                     </span>
-                    <span className="font-semibold text-[11px] leading-snug text-[#19244E]/85 block">
+                    <span className="font-semibold text-xs sm:text-sm leading-snug text-[#19244E]/85 block">
                       Designing complex fintech & enterprise logic
                     </span>
                   </div>
 
                   <div>
-                    <span className="text-[9px] font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
+                    <span className="text-xs font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
                       RESEARCHING
                     </span>
-                    <span className="font-semibold text-[11px] leading-snug text-[#19244E]/85 block">
+                    <span className="font-semibold text-xs sm:text-sm leading-snug text-[#19244E]/85 block">
                       Design decision traceability & cross-functional frameworks
                     </span>
                   </div>
 
                   <div>
-                    <span className="text-[9px] font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
+                    <span className="text-xs font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
                       OPEN FOR
                     </span>
-                    <span className="font-semibold text-[11px] leading-snug text-[#19244E]/85 block">
+                    <span className="font-semibold text-xs sm:text-sm leading-snug text-[#19244E]/85 block">
                       In-House Squads · Jakarta, ID (Remote / Relocation)
                     </span>
                   </div>
@@ -530,17 +531,17 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
 
               {/* Bio Block Underneath Avatar */}
               <div className="pt-2 border-t border-[#19244E]/10">
-                <h3 className="font-display font-black text-lg tracking-tight uppercase text-[#19244E] mb-2">
+                <h3 className="font-display font-black text-lg sm:text-xl tracking-tight uppercase text-[#19244E] mb-2">
                   ADINA FAYZA GAYO
                 </h3>
-                <p className="font-sans text-xs leading-relaxed text-[#19244E]/80 w-full mb-3">
+                <p className="font-sans text-sm sm:text-base leading-relaxed text-[#19244E]/85 w-full mb-3">
                   I design complex B2B platforms and embedded insurance tools. Most of my day is spent untangling messy product logic, covering edge cases, and making sure developers have crystal-clear specs to build from.
                 </p>
                 <button
                   onClick={onReadMore}
-                  className="text-xs font-sans font-bold tracking-wider uppercase text-[#DB3E8C] hover:underline transition-all flex items-center gap-1.5 focus:outline-none cursor-pointer py-1"
+                  className="text-xs sm:text-sm font-sans font-bold tracking-wider uppercase text-[#DB3E8C] hover:underline transition-all flex items-center gap-1.5 focus:outline-none cursor-pointer py-1"
                 >
-                  View Full Profile & CV <ChevronRight size={13} />
+                  View Full Profile & CV <ChevronRight size={14} />
                 </button>
               </div>
             </div>
@@ -550,7 +551,7 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
           <div className="w-1/2 grid lg:grid-cols-12 gap-8 lg:gap-12 items-start px-4 sm:px-8 lg:px-20 pt-8 pb-16 lg:py-16 flex-shrink-0">
             {/* Left 7 Cols: Massive Headline & Compact Buttons */}
             <div className="lg:col-span-7 flex flex-col">
-              <p className="font-sans text-[9px] sm:text-[10px] font-bold tracking-[0.2em] sm:tracking-[0.25em] text-[#DB3E8C] uppercase mb-3 sm:mb-4">
+              <p className="font-sans text-xs sm:text-sm font-bold tracking-[0.2em] sm:tracking-[0.25em] text-[#DB3E8C] uppercase mb-3 sm:mb-4">
                 Off The Clock · Real Human
               </p>
               <h1
@@ -597,39 +598,39 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
                 </div>
 
                 {/* Live Status / Personal Focus Column */}
-                <div className="flex flex-col gap-2.5 text-xs font-sans tracking-wide text-[#19244E] pt-0.5 max-w-full sm:max-w-[240px]">
+                <div className="flex flex-col gap-2.5 text-xs sm:text-sm font-sans tracking-wide text-[#19244E] pt-0.5 max-w-full sm:max-w-[260px]">
                   <div>
-                    <span className="text-[9px] font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
+                    <span className="text-xs font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
                       ON ROTATION
                     </span>
-                    <span className="font-semibold text-[11px] leading-snug text-[#19244E]/85 block">
+                    <span className="font-semibold text-xs sm:text-sm leading-snug text-[#19244E]/85 block">
                       Detective K-Dramas & local concert gigs
                     </span>
                   </div>
 
                   <div>
-                    <span className="text-[9px] font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
+                    <span className="text-xs font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
                       CURRENT OBSESSION
                     </span>
-                    <span className="font-semibold text-[11px] leading-snug text-[#19244E]/85 block">
+                    <span className="font-semibold text-xs sm:text-sm leading-snug text-[#19244E]/85 block">
                       Tracking thriller reads & Sudoku records
                     </span>
                   </div>
 
                   <div>
-                    <span className="text-[9px] font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
+                    <span className="text-xs font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
                       SUPERPOWER
                     </span>
-                    <span className="font-semibold text-[11px] leading-snug text-[#19244E]/85 block">
+                    <span className="font-semibold text-xs sm:text-sm leading-snug text-[#19244E]/85 block">
                       Multi-currency, color-coded travel itineraries
                     </span>
                   </div>
 
                   <div>
-                    <span className="text-[9px] font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
+                    <span className="text-xs font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
                       FUEL
                     </span>
-                    <span className="font-semibold text-[11px] leading-snug text-[#19244E]/85 block">
+                    <span className="font-semibold text-xs sm:text-sm leading-snug text-[#19244E]/85 block">
                       Zero-sugar iced Americano & bitter matcha
                     </span>
                   </div>
@@ -638,17 +639,17 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
 
               {/* Bio Block Underneath Avatar */}
               <div className="pt-2 border-t border-[#19244E]/10">
-                <h3 className="font-display font-black text-lg tracking-tight uppercase text-[#19244E] mb-1">
+                <h3 className="font-display font-black text-lg sm:text-xl tracking-tight uppercase text-[#19244E] mb-1">
                   ADINA FAYZA GAYO
                 </h3>
-                <p className="font-sans text-xs leading-relaxed text-[#19244E]/80 w-full mb-3">
+                <p className="font-sans text-sm sm:text-base leading-relaxed text-[#19244E]/85 w-full mb-3">
                   Off-screen, I swap design systems for live gigs, thriller K-Dramas, and genre-hopping playlists. Equal parts concert-goer and spreadsheet enthusiast. I track my books, chase Sudoku high scores, and plan trips down to the exact transit route.
                 </p>
                 <button
                   onClick={onReadMore}
-                  className="text-xs font-sans font-bold tracking-wider uppercase text-[#DB3E8C] hover:underline transition-all flex items-center gap-1.5 focus:outline-none cursor-pointer py-1"
+                  className="text-xs sm:text-sm font-sans font-bold tracking-wider uppercase text-[#DB3E8C] hover:underline transition-all flex items-center gap-1.5 focus:outline-none cursor-pointer py-1"
                 >
-                  View Full Profile & CV <ChevronRight size={13} />
+                  View Full Profile & CV <ChevronRight size={14} />
                 </button>
               </div>
             </div>
@@ -859,7 +860,7 @@ function StackedFanOutDeck({ screens }: { screens: { src: string; label: string;
               }}
               onClick={(e) => handleCardClick(idx, e)}
               className={`absolute aspect-[16/10] w-[92%] max-h-[94%] rounded-2xl overflow-hidden border ${
-                isTop ? "border-[#DB3E8C]/80 shadow-[0_25px_60px_rgba(219,62,140,0.35)]" : "border-white/20 shadow-2xl"
+                isTop ? "border-white/30 shadow-[0_25px_60px_rgba(0,0,0,0.65)]" : "border-white/20 shadow-2xl"
               } bg-[#141b36] cursor-grab transition-shadow duration-200`}
               style={{
                 zIndex: isHovered ? (total - orderPos) : (total - orderPos),
@@ -1086,7 +1087,11 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
   }
 
   return (
-    <section id="work" className="relative transition-all duration-300" style={{ backgroundColor: "#19244E" }}>
+    <section
+      id="work"
+      className="relative transition-all duration-300"
+      style={{ backgroundColor: "#19244E" }}
+    >
       {/* Header */}
       <div
         className="px-4 sm:px-8 lg:px-16 py-8 sm:py-10 flex items-center gap-6"
@@ -1251,30 +1256,30 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
                 className="flex flex-col justify-between h-full py-4"
               >
                 <div>
-                  <span className="font-sans text-[9px] font-semibold tracking-wider text-white/50 uppercase block mb-1">
+                  <span className="font-sans text-xs font-semibold tracking-wider text-white/60 uppercase block mb-1">
                     CLIENT: {activeProject.client}
                   </span>
-                  <h3 className="font-display font-semibold mb-4 leading-snug text-white" style={{ fontSize: "1.6rem", letterSpacing: "-0.01em" }}>
+                  <h3 className="font-display font-semibold mb-4 leading-snug text-white" style={{ fontSize: "1.75rem", letterSpacing: "-0.01em" }}>
                     {activeProject.name}
                   </h3>
-                  <p className="text-[12px] leading-relaxed mb-6 font-sans text-white/70">
+                  <p className="text-sm sm:text-base leading-relaxed mb-6 font-sans text-white/85">
                     {activeProject.headline}
                   </p>
                 </div>
 
                 {/* Metrics/Stats */}
                 <div>
-                  <div className="flex flex-col gap-3 mb-6">
-                    <div className="flex items-baseline justify-between border-b border-white/10 pb-2">
-                      <span className="font-sans text-[9px] font-bold tracking-widest text-[#DB3E8C] uppercase">OWNERSHIP ROLE</span>
-                      <span className="font-sans font-semibold text-white text-[11px] text-right">
+                  <div className="flex flex-col gap-3.5 mb-6">
+                    <div className="flex items-baseline justify-between border-b border-white/10 pb-2.5">
+                      <span className="font-sans text-xs font-bold tracking-widest text-[#DB3E8C] uppercase">OWNERSHIP ROLE</span>
+                      <span className="font-sans font-semibold text-white text-xs sm:text-sm text-right">
                         {activeProject.role}
                       </span>
                     </div>
                     {activeProject.metrics.map((m) => (
-                      <div key={m.sub} className="flex items-baseline justify-between border-b border-white/5 pb-2">
-                        <span className="font-sans text-[9px] font-semibold tracking-widest text-white/40 uppercase">{m.sub}</span>
-                        <span className="font-display font-medium text-white text-base" style={{ color: C }}>
+                      <div key={m.sub} className="flex items-baseline justify-between border-b border-white/5 pb-2.5">
+                        <span className="font-sans text-xs font-semibold tracking-widest text-white/60 uppercase">{m.sub}</span>
+                        <span className="font-display font-semibold text-white text-lg sm:text-xl" style={{ color: C }}>
                           {m.val}
                         </span>
                       </div>
@@ -1284,16 +1289,16 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
                   <div className="flex flex-col gap-2 mt-1">
                     <button
                       onClick={() => onOpenProject(activeProject.projectId)}
-                      className="group flex items-center justify-between w-full px-5 py-3.5 rounded-lg bg-[#DB3E8C] hover:bg-[#DB3E8C]/90 text-white font-sans text-[11px] font-bold tracking-widest uppercase transition-all duration-200 shadow-lg shadow-[#DB3E8C]/25 hover:shadow-[0_10px_25px_rgba(219,62,140,0.4)] cursor-pointer"
+                      className="group flex items-center justify-between w-full px-5 py-3.5 rounded-lg bg-[#DB3E8C] hover:bg-[#DB3E8C]/90 text-white font-sans text-xs sm:text-sm font-bold tracking-widest uppercase transition-all duration-200 shadow-lg shadow-[#DB3E8C]/25 hover:shadow-[0_10px_25px_rgba(219,62,140,0.4)] cursor-pointer"
                     >
                       <span>Open Case Study</span>
-                      <ArrowUpRight size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                      <ArrowUpRight size={15} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                     </button>
                     <a
                       href={getWhatsAppLink(activeProject.name)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-1.5 w-full py-2.5 rounded-lg border border-white/15 hover:border-white/30 bg-white/5 hover:bg-white/10 text-white/60 hover:text-white transition-all text-[10px] font-semibold tracking-wider uppercase cursor-pointer text-center"
+                      className="flex items-center justify-center gap-1.5 w-full py-3 rounded-lg border border-white/15 hover:border-white/30 bg-white/5 hover:bg-white/10 text-white/70 hover:text-white transition-all text-xs font-semibold tracking-wider uppercase cursor-pointer text-center"
                     >
                       💬 Ask about this project ↗
                     </a>
@@ -1318,10 +1323,10 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
             >
               {/* Figma frame label */}
               <div className="flex justify-between items-center mb-3 sm:mb-4">
-                <span className="font-sans text-[8px] text-white/50 tracking-wider">
+                <span className="font-sans text-[10px] sm:text-xs text-white/60 tracking-wider">
                   # {project.num} · {project.location} · {project.year}
                 </span>
-                <span className="font-sans text-[8px] text-[#DB3E8C] font-bold tracking-wider uppercase">
+                <span className="font-sans text-[10px] sm:text-xs text-[#DB3E8C] font-bold tracking-wider uppercase">
                   View Case ↗
                 </span>
               </div>
@@ -1339,13 +1344,13 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
 
               {/* Metadata */}
               <div>
-                <p className="font-sans text-[9px] font-semibold text-white/40 uppercase mb-0.5">
+                <p className="font-sans text-xs font-semibold text-white/60 uppercase mb-0.5">
                   {project.client}
                 </p>
                 <h3 className="font-display font-semibold text-white text-base sm:text-lg mb-2">
                   {project.name}
                 </h3>
-                <p className="text-xs leading-relaxed text-white/70 mb-4">
+                <p className="text-sm leading-relaxed text-white/80 mb-4">
                   {project.headline}
                 </p>
 
@@ -1354,7 +1359,7 @@ function FeaturedWorkSection({ onOpenProject }: { onOpenProject: (id: string) =>
                   {project.metrics.map((m) => (
                     <div key={m.sub} className="text-center">
                       <span className="font-display text-sm font-semibold block text-white" style={{ color: C }}>{m.val}</span>
-                      <span className="font-sans text-[8px] sm:text-[9px] text-white/40 uppercase tracking-wider">{m.sub}</span>
+                      <span className="font-sans text-[10px] sm:text-[11px] text-white/60 uppercase tracking-wider">{m.sub}</span>
                     </div>
                   ))}
                 </div>
@@ -1427,182 +1432,135 @@ function SketchClipboardIcon({ className = "w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg
 }
 
 function WorkflowSection() {
-  const { ref, inView } = useInView()
-
   return (
-    <section id="process" style={{ backgroundColor: N, borderTop: `1px solid rgba(255,255,255,0.06)` }}>
-      {/* Header */}
-      <div
-        className="px-4 sm:px-8 lg:px-16 py-6 sm:py-8 flex items-center gap-6"
-        style={{ borderBottom: `1px solid rgba(255,255,255,0.06)` }}
+    <div id="process" className="relative">
+      {/* ── BLOCK 1: HOW I WORK STATEMENT HERO WITH SUBTLE VIDEO BACKGROUND ── */}
+      <section
+        className="relative overflow-hidden flex flex-col justify-center min-h-[460px] lg:min-h-[520px]"
+        style={{ backgroundColor: N }}
       >
-        <span className="font-sans text-[10px] font-semibold tracking-widest uppercase" style={{ color: "rgba(255,255,255,0.3)" }}>
-          SYSTEM LOGIC
-        </span>
-        <div className="flex-1 h-px" style={{ backgroundColor: "rgba(255,255,255,0.06)" }} />
-        <span className="font-sans text-[9px] sm:text-[10px] font-semibold tracking-widest uppercase" style={{ color: "rgba(255,255,255,0.3)" }}>
-          3-PHASE ENGINE
-        </span>
-      </div>
-
-      {/* Section headline — editorial inline emoji style */}
-      <div
-        ref={ref}
-        className="px-4 sm:px-8 lg:px-16 py-12 sm:py-16 lg:py-24 flex flex-col items-center text-center"
-        style={{ borderBottom: `1px solid rgba(255,255,255,0.06)` }}
-      >
-        <p className="font-sans text-[10px] font-semibold tracking-[0.2em] uppercase mb-6 sm:mb-10" style={{ color: "rgba(255,255,255,0.3)" }}>
-          How I work
-        </p>
-        <h2
-          className="font-display font-light leading-[1.4] text-white max-w-4xl text-center"
-          style={{ fontSize: "clamp(1.75rem, 4.5vw, 4.2rem)", letterSpacing: "-0.025em" }}
+        {/* Subtle Video Background */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-45 mix-blend-screen pointer-events-none"
         >
-          <motion.span
-            initial="hidden"
-            animate={inView ? "visible" : "hidden"}
-            variants={{
-              hidden: { opacity: 0 },
-              visible: {
-                opacity: 1,
-                transition: { staggerChildren: 0.05, delayChildren: 0.1 },
-              },
-            }}
-            className="inline"
-          >
-            {["I", "dig", "into", "the", "real", "problem", "first,"].map((w, idx) => (
-              <motion.span
-                key={idx}
-                variants={{
-                  hidden: { y: 22, opacity: 0 },
-                  visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
-                }}
-                className="inline-block mr-1.5 sm:mr-2"
-              >
-                {w}
-              </motion.span>
-            ))}
-            <motion.span
-              variants={{
-                hidden: { scale: 0, opacity: 0, rotate: -15 },
-                visible: { scale: 1, opacity: 1, rotate: 0, transition: { type: "spring", stiffness: 280, damping: 14 } },
-              }}
-              animate={inView ? { scale: 1, opacity: 1, rotate: [0, -5, 5, 0] } : {}}
-              transition={{ rotate: { repeat: Infinity, duration: 4, ease: "easeInOut" } }}
-              className="inline-block origin-center align-middle mx-1"
-            >
-              <SketchSearchIcon className="w-8 h-8 sm:w-16 sm:h-16 lg:w-20 lg:h-20 inline-block text-[#F472B6]" />
-            </motion.span>{" "}
-            {["design", "the", "system", "logic", "with", "care,"].map((w, idx) => (
-              <motion.span
-                key={idx}
-                variants={{
-                  hidden: { y: 22, opacity: 0 },
-                  visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
-                }}
-                className={`inline-block mr-1.5 sm:mr-2 ${idx >= 3 ? "font-normal not-italic text-[#DB3E8C]" : ""}`}
-              >
-                {w}
-              </motion.span>
-            ))}
-            <motion.span
-              variants={{
-                hidden: { scale: 0, opacity: 0, rotate: 15 },
-                visible: { scale: 1, opacity: 1, rotate: 0, transition: { type: "spring", stiffness: 300, damping: 14 } },
-              }}
-              animate={inView ? { scale: 1, opacity: 1, y: [0, -4, 0] } : {}}
-              transition={{ y: { repeat: Infinity, duration: 3.5, ease: "easeInOut" } }}
-              className="inline-block origin-center align-middle mx-1"
-            >
-              <SketchTargetIcon className="w-8 h-8 sm:w-16 sm:h-16 lg:w-20 lg:h-20 inline-block text-[#F472B6]" />
-            </motion.span>{" "}
-            {["and", "hand", "off", "specs", "so", "clean"].map((w, idx) => (
-              <motion.span
-                key={idx}
-                variants={{
-                  hidden: { y: 22, opacity: 0 },
-                  visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
-                }}
-                className="inline-block mr-1.5 sm:mr-2"
-              >
-                {w}
-              </motion.span>
-            ))}
-            <motion.span
-              variants={{
-                hidden: { scale: 0, opacity: 0, rotate: -15 },
-                visible: { scale: 1, opacity: 1, rotate: 0, transition: { type: "spring", stiffness: 260, damping: 14 } },
-              }}
-              animate={inView ? { scale: 1, opacity: 1, rotate: [0, 4, -4, 0] } : {}}
-              transition={{ rotate: { repeat: Infinity, duration: 4.5, ease: "easeInOut" } }}
-              className="inline-block origin-center align-middle mx-1"
-            >
-              <SketchClipboardIcon className="w-8 h-8 sm:w-16 sm:h-16 lg:w-20 lg:h-20 inline-block text-[#F472B6]" />
-            </motion.span>{" "}
-            {["that", "engineers", "rarely", "have", "to", "ask", "follow-up", "questions."].map((w, idx) => (
-              <motion.span
-                key={idx}
-                variants={{
-                  hidden: { y: 22, opacity: 0 },
-                  visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
-                }}
-                className="inline-block mr-1.5 sm:mr-2"
-              >
-                {w}
-              </motion.span>
-            ))}
-          </motion.span>
-        </h2>
-      </div>
+          <source src={gettyBgVideo} type="video/mp4" />
+        </video>
 
-      {/* Phase cards — 3-column grid */}
-      <div className="px-4 sm:px-8 lg:px-16 py-8 sm:py-10 lg:py-14 grid lg:grid-cols-3 gap-6 sm:gap-8">
-        {PHASES.map((phase, i) => {
-          const Icon = phase.Icon
-          return (
-            <motion.div
-              key={phase.num}
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
-              className="bg-white/[0.02] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] rounded-2xl p-5 sm:p-8 transition-all duration-300 flex flex-col justify-between min-h-[260px] sm:min-h-[300px]"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-4 sm:mb-6">
-                  <span className="font-sans text-xs font-semibold tracking-widest text-[#DB3E8C]">
-                    {phase.num}
-                  </span>
-                  <Icon size={16} className="text-white/40" />
+        {/* Gradient Overlay for Text Contrast */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#19244E]/60 via-[#19244E]/30 to-[#19244E]/80 pointer-events-none" />
+
+        {/* Header */}
+        <div
+          className="relative z-20 px-4 sm:px-8 lg:px-16 py-6 sm:py-8 flex items-center gap-6"
+          style={{ borderBottom: `1px solid rgba(255,255,255,0.08)` }}
+        >
+          <span className="font-sans text-[10px] font-semibold tracking-widest uppercase" style={{ color: "rgba(255,255,255,0.4)" }}>
+            SYSTEM LOGIC
+          </span>
+          <div className="flex-1 h-px" style={{ backgroundColor: "rgba(255,255,255,0.08)" }} />
+          <span className="font-sans text-[9px] sm:text-[10px] font-semibold tracking-widest uppercase text-[#DB3E8C]">
+            DESIGN PHILOSOPHY
+          </span>
+        </div>
+
+        {/* Section headline — static, clean, no entrance animation */}
+        <div
+          className="relative z-20 px-4 sm:px-8 lg:px-16 py-14 sm:py-20 lg:py-24 flex flex-col items-center text-center"
+        >
+          <p className="font-sans text-[10px] font-semibold tracking-[0.25em] uppercase mb-6 sm:mb-10 text-[#DB3E8C]">
+            [ HOW I WORK ]
+          </p>
+          <h2
+            className="font-display font-light leading-[1.4] text-white max-w-4xl text-center drop-shadow-lg"
+            style={{ fontSize: "clamp(1.75rem, 4.5vw, 4.2rem)", letterSpacing: "-0.025em" }}
+          >
+            I dig into the real problem first,{" "}
+            <span className="inline-block origin-center align-middle mx-1">
+              <SketchSearchIcon className="w-8 h-8 sm:w-16 sm:h-16 lg:w-20 lg:h-20 inline-block text-[#F472B6]" />
+            </span>{" "}
+            design the system <span className="text-[#DB3E8C]">logic with care,</span>{" "}
+            <span className="inline-block origin-center align-middle mx-1">
+              <SketchTargetIcon className="w-8 h-8 sm:w-16 sm:h-16 lg:w-20 lg:h-20 inline-block text-[#F472B6]" />
+            </span>{" "}
+            and hand off specs so clean{" "}
+            <span className="inline-block origin-center align-middle mx-1">
+              <SketchClipboardIcon className="w-8 h-8 sm:w-16 sm:h-16 lg:w-20 lg:h-20 inline-block text-[#F472B6]" />
+            </span>{" "}
+            that engineers rarely have to ask follow-up questions.
+          </h2>
+        </div>
+      </section>
+
+      {/* ── BLOCK 2: SEPARATED 3-PHASE EXECUTION CARDS SECTION (NO MOTION TRANSITION, GRADIENT BG) ── */}
+      <section
+        className="py-14 sm:py-18 lg:py-24 px-4 sm:px-8 lg:px-16 relative z-20"
+        style={{
+          background: "linear-gradient(180deg, #121a38 0%, #0e152e 100%)",
+          borderTop: `1px solid rgba(255,255,255,0.08)`,
+        }}
+      >
+        <div className="max-w-7xl mx-auto">
+          {/* Cards Section Header */}
+          <div className="flex items-center justify-between mb-8 sm:mb-12 border-b border-white/10 pb-4">
+            <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-white/50">
+              3-PHASE EXECUTION ENGINE
+            </span>
+            <span className="font-sans text-[9px] sm:text-[10px] font-bold tracking-widest uppercase text-[#DB3E8C]">
+              DESIGN TO HANDOFF PROCESS
+            </span>
+          </div>
+
+          {/* Phase cards — 3-column grid */}
+          <div className="grid lg:grid-cols-3 gap-6 sm:gap-8">
+            {PHASES.map((phase) => {
+              const Icon = phase.Icon
+              return (
+                <div
+                  key={phase.num}
+                  className="bg-white/[0.03] border border-white/10 hover:border-[#DB3E8C]/40 hover:bg-white/[0.06] rounded-2xl p-6 sm:p-8 transition-all duration-300 flex flex-col justify-between min-h-[280px] sm:min-h-[320px] shadow-lg"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-4 sm:mb-6">
+                      <span className="font-sans text-xs font-semibold tracking-widest text-[#DB3E8C]">
+                        {phase.num}
+                      </span>
+                      <Icon size={16} className="text-white/40" />
+                    </div>
+                    <h3 className="text-base sm:text-lg font-semibold text-white mb-1.5">{phase.phase}</h3>
+                    <p className="font-sans text-xs sm:text-sm tracking-widest text-white/50 uppercase mb-3 sm:mb-4">
+                      {phase.sub}
+                    </p>
+                    <p className="text-sm sm:text-base leading-relaxed text-white/80 mb-5 sm:mb-6 font-sans">
+                      {phase.desc}
+                    </p>
+                  </div>
+                  
+                  <div className="mt-auto pt-4 sm:pt-6 border-t border-white/10">
+                    <p className="font-sans text-[10px] sm:text-xs font-semibold tracking-widest uppercase text-white/40 mb-2.5">
+                      Tools & Artifacts
+                    </p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {phase.tools.map((tool) => (
+                        <span
+                          key={tool}
+                          className="font-sans text-[8px] sm:text-[9px] font-medium px-2 sm:px-2.5 py-0.5 sm:py-1 bg-white/10 text-white/80 border border-white/10 rounded"
+                        >
+                          {tool}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-base sm:text-lg font-medium text-white mb-1.5">{phase.phase}</h3>
-                <p className="font-sans text-[9px] sm:text-[10px] tracking-widest text-white/40 uppercase mb-3 sm:mb-4">
-                  {phase.sub}
-                </p>
-                <p className="text-xs sm:text-sm leading-relaxed text-white/60 mb-5 sm:mb-6 font-sans">
-                  {phase.desc}
-                </p>
-              </div>
-              
-              <div className="mt-auto pt-4 sm:pt-6 border-t border-white/5">
-                <p className="font-sans text-[8px] sm:text-[9px] font-semibold tracking-widest uppercase text-white/25 mb-2.5">
-                  Tools & Artifacts
-                </p>
-                <div className="flex flex-wrap gap-1.5">
-                  {phase.tools.map((tool) => (
-                    <span
-                      key={tool}
-                      className="font-sans text-[8px] sm:text-[9px] font-medium px-2 sm:px-2.5 py-0.5 sm:py-1 bg-white/5 text-white/50 border border-white/5 rounded"
-                    >
-                      {tool}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          )
-        })}
-      </div>
-    </section>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+    </div>
   )
 }
 
@@ -1647,7 +1605,10 @@ function ProjectArchiveSection() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
 
   return (
-    <section id="archive" style={{ backgroundColor: S, borderTop: `1px solid ${HAIR}` }}>
+    <section
+      id="archive"
+      style={{ backgroundColor: S, borderTop: `1px solid ${HAIR}` }}
+    >
       {/* Header */}
       <div
         ref={ref}
@@ -1740,13 +1701,13 @@ function ProjectArchiveSection() {
                     {/* Top Row: Client & Year */}
                     <div className="relative z-10 flex items-center justify-between">
                       <span 
-                        className="font-sans text-[9px] sm:text-[10px] font-bold tracking-[0.2em] uppercase transition-colors duration-200"
+                        className="font-sans text-xs font-bold tracking-[0.2em] uppercase transition-colors duration-200"
                         style={{ color: isHovered ? "rgba(255,255,255,0.7)" : `${N}90` }}
                       >
                         {project.client.split(" × ")[0]}
                       </span>
                       <span 
-                        className="font-sans text-[9px] sm:text-[10px] font-semibold transition-colors duration-200"
+                        className="font-sans text-xs font-semibold transition-colors duration-200"
                         style={{ color: isHovered ? "rgba(255,255,255,0.5)" : `${N}50` }}
                       >
                         {project.year}
@@ -1769,7 +1730,7 @@ function ProjectArchiveSection() {
                       style={{ borderColor: isHovered ? "rgba(255,255,255,0.15)" : "rgba(25, 36, 78, 0.05)" }}
                     >
                       <span 
-                        className="font-sans text-[8px] sm:text-[9px] font-bold tracking-wider uppercase truncate max-w-[130px] sm:max-w-[160px] transition-colors duration-200"
+                        className="font-sans text-[10px] sm:text-xs font-bold tracking-wider uppercase truncate max-w-[130px] sm:max-w-[160px] transition-colors duration-200"
                         style={{ color: isHovered ? "rgba(255,255,255,0.8)" : `${N}70` }}
                       >
                         {project.category}
@@ -1781,7 +1742,7 @@ function ProjectArchiveSection() {
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={(e) => e.stopPropagation()}
-                          className="font-sans text-[8px] sm:text-[9px] font-bold tracking-wider uppercase transition-colors duration-200 cursor-pointer hover:underline"
+                          className="font-sans text-[10px] sm:text-xs font-bold tracking-wider uppercase transition-colors duration-200 cursor-pointer hover:underline"
                           style={{ color: isHovered ? "rgba(255,255,255,0.7)" : `${N}50` }}
                         >
                           💬 Ask ↗
@@ -1798,7 +1759,7 @@ function ProjectArchiveSection() {
                             />
                           </span>
                           <span 
-                            className="font-sans text-[8px] sm:text-[9px] font-bold tracking-widest uppercase transition-colors duration-200"
+                            className="font-sans text-[10px] sm:text-xs font-bold tracking-widest uppercase transition-colors duration-200"
                             style={{ color: isHovered ? W : statusColor }}
                           >
                             {project.status}
@@ -1819,7 +1780,7 @@ function ProjectArchiveSection() {
               style={{ borderTop: `1px solid rgba(25, 36, 78, 0.05)` }}
             >
               {!showAll && (
-                <p className="font-sans text-[10px] tracking-widest text-[#19244E]/40 uppercase">
+                <p className="font-sans text-xs tracking-widest text-[#19244E]/50 uppercase">
                   Showing {DEFAULT_VISIBLE} of {filtered.length} projects
                 </p>
               )}
@@ -1832,7 +1793,7 @@ function ProjectArchiveSection() {
                     setShowAll(true)
                   }
                 }}
-                className="group flex items-center gap-2.5 px-6 py-3 rounded-lg font-sans text-[10px] font-semibold tracking-widest uppercase transition-all duration-200 cursor-pointer"
+                className="group flex items-center gap-2.5 px-6 py-3 rounded-lg font-sans text-xs sm:text-sm font-semibold tracking-widest uppercase transition-all duration-200 cursor-pointer"
                 style={{
                   backgroundColor: showAll ? "transparent" : N,
                   color: showAll ? `${N}80` : "white",
@@ -1885,7 +1846,7 @@ function ProjectArchiveSection() {
               {/* Close header button */}
               <div className="flex justify-between items-start mb-6">
                 <div>
-                  <span className="font-sans text-[9px] font-bold tracking-[0.25em] uppercase text-[#DB3E8C]">
+                  <span className="font-sans text-xs sm:text-sm font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
                     [{String(selectedProject.id).padStart(2, "0")} // PROJECT DETAILS]
                   </span>
                   <h3 className="font-display text-xl sm:text-2xl lg:text-3xl font-bold mt-1 text-[#19244E]">
@@ -1894,7 +1855,7 @@ function ProjectArchiveSection() {
                 </div>
                 <button 
                   onClick={() => setSelectedProject(null)}
-                  className="font-sans text-[10px] font-bold uppercase tracking-widest text-[#19244E]/50 hover:text-[#19244E] transition-colors cursor-pointer p-1"
+                  className="font-sans text-xs font-bold uppercase tracking-widest text-[#19244E]/60 hover:text-[#19244E] transition-colors cursor-pointer p-1"
                 >
                   Close
                 </button>
@@ -1910,18 +1871,18 @@ function ProjectArchiveSection() {
                   { label: "Category & Core Focus", val: selectedProject.category }
                 ].map((meta, i) => (
                   <div key={meta.label} className={i === 4 ? "col-span-2" : ""}>
-                    <span className="block font-sans text-[8px] font-bold tracking-widest uppercase text-gray-400 mb-0.5">
+                    <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-500 mb-1">
                       {meta.label}
                     </span>
                     {meta.label === "System Status" ? (
                       <div className="flex items-center gap-1.5">
                         <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: STATUS_COLOR[selectedProject.status] ?? "#19244E" }} />
-                        <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-[#19244E]">
+                        <span className="font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-[#19244E]">
                           {meta.val}
                         </span>
                       </div>
                     ) : (
-                      <span className="font-sans text-[10px] font-semibold text-[#19244E]">
+                      <span className="font-sans text-xs sm:text-sm font-semibold text-[#19244E]">
                         {meta.val}
                       </span>
                     )}
@@ -1931,10 +1892,10 @@ function ProjectArchiveSection() {
 
               {/* Scope/Description */}
               <div className="mb-8">
-                <span className="block font-sans text-[8px] font-bold tracking-widest uppercase text-gray-400 mb-2">
+                <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-500 mb-2">
                   System Architecture & Scope
                 </span>
-                <p className="font-sans text-xs leading-relaxed text-[#19244E]/80">
+                <p className="font-sans text-sm sm:text-base leading-relaxed text-[#19244E]/90">
                   {selectedProject.scope}
                 </p>
               </div>
@@ -1943,7 +1904,7 @@ function ProjectArchiveSection() {
               <div className="flex flex-col gap-2.5">
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="w-full py-3.5 text-xs font-bold tracking-widest uppercase text-white transition-opacity hover:opacity-85 cursor-pointer rounded-lg text-center shadow"
+                  className="w-full py-3.5 text-sm font-bold tracking-widest uppercase text-white transition-opacity hover:opacity-85 cursor-pointer rounded-lg text-center shadow"
                   style={{ backgroundColor: N }}
                 >
                   Return to Catalog
@@ -1952,7 +1913,7 @@ function ProjectArchiveSection() {
                   href={getWhatsAppLink(selectedProject.name)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-2.5 text-xs font-semibold tracking-wider uppercase text-[#19244E]/70 hover:text-[#19244E] border border-gray-200 hover:border-gray-300 bg-gray-50 hover:bg-gray-100 transition-all cursor-pointer rounded-lg text-center flex items-center justify-center gap-1.5"
+                  className="w-full py-2.5 text-sm font-semibold tracking-wider uppercase text-[#19244E]/70 hover:text-[#19244E] border border-gray-200 hover:border-gray-300 bg-gray-50 hover:bg-gray-100 transition-all cursor-pointer rounded-lg text-center flex items-center justify-center gap-1.5"
                 >
                   💬 Ask about this project ↗
                 </a>
@@ -2001,13 +1962,13 @@ function ContactSection() {
             Ready to build<br />something<br />
             <em className="font-normal" style={{ color: C }}>significant?</em>
           </h2>
-          <p className="text-xs sm:text-sm leading-relaxed mb-8 sm:mb-10 max-w-[380px]" style={{ color: `${N}EE`, lineHeight: 1.8 }}>
+          <p className="text-sm sm:text-base leading-relaxed mb-8 sm:mb-10 max-w-[380px]" style={{ color: `${N}EE`, lineHeight: 1.8 }}>
             I'm open to senior IC and lead roles in Singapore, Malaysia, and remote-first regional opportunities. Happy to talk about your design challenges first.
           </p>
           <div className="flex flex-wrap gap-3">
             <a
               href="mailto:adinagayo@gmail.com"
-              className="flex items-center gap-2 px-5 sm:px-6 py-3 text-xs sm:text-sm font-medium text-white transition-opacity duration-150 hover:opacity-85"
+              className="flex items-center gap-2 px-5 sm:px-6 py-3 text-sm font-medium text-white transition-opacity duration-150 hover:opacity-85"
               style={{ backgroundColor: N, borderRadius: "4px" }}
             >
               <Mail size={14} /> Say Hello <ArrowRight size={14} />
@@ -2016,7 +1977,7 @@ function ContactSection() {
               href="https://www.linkedin.com/in/adinafayzagayo/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-5 sm:px-6 py-3 text-xs sm:text-sm font-medium transition-colors duration-150 hover:bg-[#19244E]/5"
+              className="flex items-center gap-2 px-5 sm:px-6 py-3 text-sm font-medium transition-colors duration-150 hover:bg-[#19244E]/5"
               style={{ border: `1px solid ${HAIR}`, color: N, borderRadius: "4px" }}
             >
               <ExternalLink size={14} /> LinkedIn
@@ -2060,7 +2021,7 @@ function ContactSection() {
               ) : (
                 <p className="text-sm sm:text-base font-medium mt-1.5 sm:mt-2 mb-0.5" style={{ color: N }}>{item.value}</p>
               )}
-              {item.sub && <p className="text-xs" style={{ color: `${N}AA` }}>{item.sub}</p>}
+              {item.sub && <p className="text-xs sm:text-sm" style={{ color: `${N}AA` }}>{item.sub}</p>}
             </div>
           ))}
         </motion.div>

@@ -196,27 +196,27 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
       </div>
 
       {/* Quick Jump Navigation Bar */}
-      <div className="sticky top-[53px] z-40 px-8 lg:px-16 py-2.5 bg-[#0e1635] text-white/70 border-b border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs font-sans">
-        <span className="font-bold tracking-widest text-[#DB3E8C] uppercase text-[9px]">
+      <div className="sticky top-[53px] z-40 px-8 lg:px-16 py-2.5 bg-[#0e1635] text-white/80 border-b border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs sm:text-sm font-sans">
+        <span className="font-bold tracking-widest text-[#DB3E8C] uppercase text-xs">
           QUICK JUMP
         </span>
         <div className="flex items-center gap-6 overflow-x-auto">
-          <a href="#summary" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-medium">
+          <a href="#summary" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
             01. Takeaways
           </a>
-          <a href="#challenge" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-medium">
+          <a href="#challenge" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
             02. Challenge
           </a>
-          <a href="#architecture" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-medium">
+          <a href="#architecture" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
             03. Edge Cases
           </a>
-          <a href="#ds-adaptation" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-medium text-[#DB3E8C]">
+          <a href="#ds-adaptation" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium text-[#DB3E8C]">
             04. DS Adaptation
           </a>
-          <a href="#evolution" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-medium">
+          <a href="#evolution" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
             05. V1–V5 Iterations
           </a>
-          <a href="#impact" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-bold text-[#DB3E8C]">
+          <a href="#impact" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-bold text-[#DB3E8C]">
             06. Impact & "So What" ↗
           </a>
         </div>
@@ -247,15 +247,15 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
             An embedded PWA architecture built inside Malaysia's leading e-wallet ecosystem (20M+ users), leveraging native SSO and eKYC data pipelines.
           </p>
 
-          <p className="text-sm leading-relaxed max-w-2xl" style={{ color: BODY, lineHeight: 1.8 }}>
+          <p className="text-sm sm:text-base leading-relaxed max-w-2xl" style={{ color: BODY, lineHeight: 1.8 }}>
             Designing and shipping 5 live production releases of Great Tenang Madani within Touch 'n Go eWallet, integrating automated Perlindungan Tenang Voucher (PTV) government subsidy checks and zero-friction eKYC auto-population.
           </p>
         </div>
 
         {/* Hero Metadata Grid Strip */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 mt-12 border-t border-gray-100 text-xs">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 mt-12 border-t border-gray-100 text-sm">
           <div>
-            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+            <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
               Role & Ownership
             </span>
             <span className="font-semibold text-[#19244E]">
@@ -263,7 +263,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
             </span>
           </div>
           <div>
-            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+            <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
               Client & Partners
             </span>
             <span className="font-semibold text-[#19244E]">
@@ -271,7 +271,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
             </span>
           </div>
           <div>
-            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+            <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
               Timeline & Delivery
             </span>
             <span className="font-semibold text-[#19244E]">
@@ -279,7 +279,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
             </span>
           </div>
           <div>
-            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+            <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
               Platforms & Architecture
             </span>
             <span className="font-semibold text-[#19244E]">
@@ -293,26 +293,26 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
         <div className="px-8 lg:px-16 py-8 bg-[#111836] border-t border-b border-white/10">
           <div className="flex items-center gap-2 mb-4">
             <span className="w-2 h-2 rounded-full bg-[#DB3E8C] animate-pulse" />
-            <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+            <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
               EXECUTIVE SUMMARY & 30-SECOND TAKEAWAYS
             </span>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-xs font-sans">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-xs sm:text-sm font-sans">
             <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-              <span className="block text-[9px] font-bold tracking-widest text-white/40 uppercase mb-1.5">01 · Problem</span>
-              <p className="text-[11px] leading-relaxed text-white/80">Complex multi-party eKYC data mapping & insurance checkout inside Malaysia's top e-wallet (20M+ users).</p>
+              <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">01 · Problem</span>
+              <p className="text-xs sm:text-sm leading-relaxed text-white/85">Complex multi-party eKYC data mapping & insurance checkout inside Malaysia's top e-wallet (20M+ users).</p>
             </div>
             <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-              <span className="block text-[9px] font-bold tracking-widest text-white/40 uppercase mb-1.5">02 · Core Constraints</span>
-              <p className="text-[11px] leading-relaxed text-white/80">3-month deadline, native eWallet webview constraints, PTV government subsidy voucher validation APIs.</p>
+              <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">02 · Core Constraints</span>
+              <p className="text-xs sm:text-sm leading-relaxed text-white/85">3-month deadline, native eWallet webview constraints, PTV government subsidy voucher validation APIs.</p>
             </div>
             <div className="bg-[#DB3E8C]/10 p-4 rounded-lg border border-[#DB3E8C]/30">
-              <span className="block text-[9px] font-bold tracking-widest text-[#DB3E8C] uppercase mb-1.5">03 · Exact Ownership</span>
-              <p className="text-[11px] font-semibold text-white leading-relaxed">Lead UI/UX Designer & Systems Integrator (PWA Architecture, Data Flows & Specs).</p>
+              <span className="block text-xs font-bold tracking-widest text-[#DB3E8C] uppercase mb-1.5">03 · Exact Ownership</span>
+              <p className="text-xs sm:text-sm font-semibold text-white leading-relaxed">Lead UI/UX Designer & Systems Integrator (PWA Architecture, Data Flows & Specs).</p>
             </div>
             <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-              <span className="block text-[9px] font-bold tracking-widest text-white/40 uppercase mb-1.5">04 · Key Impact</span>
-              <p className="text-[11px] font-semibold text-white leading-relaxed">Refined through 5 iterative versions before shipping the final zero-defect release live to 20M+ TNG users.</p>
+              <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">04 · Key Impact</span>
+              <p className="text-xs sm:text-sm font-semibold text-white leading-relaxed">Refined through 5 iterative versions before shipping the final zero-defect release live to 20M+ TNG users.</p>
             </div>
           </div>
         </div>

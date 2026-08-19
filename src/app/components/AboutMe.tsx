@@ -14,7 +14,7 @@ const HAIR = `rgba(25,36,78,0.10)` // hairline border
 function MonoTag({ children, accent = false }: { children: React.ReactNode; accent?: boolean }) {
   return (
     <span
-      className="font-sans text-[10px] font-semibold tracking-wider uppercase"
+      className="font-sans text-xs font-semibold tracking-wider uppercase"
       style={{ color: accent ? C : `${N}CC` }}
     >
       {children}
@@ -25,7 +25,7 @@ function MonoTag({ children, accent = false }: { children: React.ReactNode; acce
 function SectionTag({ label }: { num?: string; label: string }) {
   return (
     <div className="mb-8">
-      <div className="text-[10px] font-semibold uppercase tracking-[0.2em] mb-2" style={{ color: C }}>
+      <div className="text-xs font-semibold uppercase tracking-[0.2em] mb-2" style={{ color: C }}>
         {label.toUpperCase()}
       </div>
       <h3 className="font-display text-2xl lg:text-3xl font-bold" style={{ color: N }}>
@@ -64,10 +64,10 @@ export default function AboutMe({ onBack }: Props) {
       >
         <button
           onClick={onBack}
-          className="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60 cursor-pointer"
+          className="flex items-center gap-2 font-sans text-xs sm:text-sm font-semibold tracking-widest uppercase transition-opacity hover:opacity-60 cursor-pointer"
           style={{ color: N }}
         >
-          <ArrowLeft size={12} /> Back to Home
+          <ArrowLeft size={13} /> Back to Home
         </button>
         <MonoTag>ADINA FAYZA GAYO · FULL PROFILE & RESUME</MonoTag>
       </div>
@@ -78,39 +78,39 @@ export default function AboutMe({ onBack }: Props) {
         <div className="absolute right-0 top-0 w-96 h-96 rounded-full filter blur-[120px] opacity-15 pointer-events-none" style={{ background: `linear-gradient(135deg, ${C} 0%, #3B82F6 100%)` }} />
         
         <div className="max-w-[900px] relative z-10">
-          <p className="font-sans text-[10px] font-semibold tracking-[0.25em] mb-4 uppercase" style={{ color: C }}>
+          <p className="font-sans text-xs sm:text-sm font-semibold tracking-[0.25em] mb-4 uppercase" style={{ color: C }}>
             Product Designer · System Logic Architect
           </p>
           <h1 className="font-display font-light text-4xl lg:text-6xl leading-[1.05] tracking-tight mb-8">
             Adina Fayza Gayo
           </h1>
-          <p className="text-base lg:text-lg font-sans font-light leading-relaxed text-white/80 max-w-[780px] mb-8">
+          <p className="text-base lg:text-lg font-sans font-light leading-relaxed text-white/90 max-w-[780px] mb-8">
             Product Designer with 4+ years of hands-on experience designing complex B2B platforms, embedded insurance flows, and multi-brand design systems across Indonesia and Malaysia. Most of my day is spent untangling messy product logic, covering edge cases, and making sure engineering teams have crystal-clear specs to build from.
           </p>
           
           {/* Metadata Grid */}
-          <div className="flex flex-wrap gap-y-3 gap-x-6 pt-6 border-t border-white/10 text-xs font-sans text-white/70">
+          <div className="flex flex-wrap gap-y-3.5 gap-x-6 pt-6 border-t border-white/10 text-xs sm:text-sm font-sans text-white/85">
             <span className="flex items-center gap-1.5">
-              <MapPin size={13} className="text-[#DB3E8C]" /> Jakarta, Indonesia
+              <MapPin size={14} className="text-[#DB3E8C]" /> Jakarta, Indonesia
             </span>
             <a href="tel:+6289630441118" className="flex items-center gap-1.5 hover:text-white transition-colors">
-              <Phone size={13} className="text-[#DB3E8C]" /> +62 896 3044 1118
+              <Phone size={14} className="text-[#DB3E8C]" /> +62 896 3044 1118
             </a>
             <a href="mailto:adinagayo@gmail.com" className="flex items-center gap-1.5 hover:text-white transition-colors">
-              <Mail size={13} className="text-[#DB3E8C]" /> adinagayo@gmail.com
+              <Mail size={14} className="text-[#DB3E8C]" /> adinagayo@gmail.com
             </a>
             <a href="https://www.linkedin.com/in/adinafayzagayo/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white transition-colors">
-              <Linkedin size={13} className="text-[#DB3E8C]" /> LinkedIn
+              <Linkedin size={14} className="text-[#DB3E8C]" /> LinkedIn
             </a>
             <a href="https://dinaworks.framer.website/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white transition-colors">
-              <ExternalLink size={13} className="text-[#DB3E8C]" /> Portfolio Website
+              <ExternalLink size={14} className="text-[#DB3E8C]" /> Portfolio Website
             </a>
             <a
               href="/resume-adina-fayza-gayo.pdf"
               download="ADINA FAYZA GAYO Resume 2026.pdf"
-              className="flex items-center gap-1.5 px-3 py-1 bg-[#DB3E8C] hover:bg-[#DB3E8C]/90 text-white rounded text-xs font-bold transition-all shadow ml-auto"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 bg-[#DB3E8C] hover:bg-[#DB3E8C]/90 text-white rounded text-xs sm:text-sm font-bold transition-all shadow ml-auto"
             >
-              <Download size={13} /> Download Resume PDF
+              <Download size={14} /> Download Resume PDF
             </a>
           </div>
         </div>
@@ -236,10 +236,10 @@ export default function AboutMe({ onBack }: Props) {
                 />
                 
                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-2">
-                  <span className="font-sans text-[10px] font-semibold tracking-wider uppercase" style={{ color: C }}>
+                  <span className="font-sans text-xs sm:text-sm font-semibold tracking-wider uppercase" style={{ color: C }}>
                     {work.duration}
                   </span>
-                  <span className="font-sans text-[10px] text-gray-400 font-medium">
+                  <span className="font-sans text-xs text-gray-400 font-medium">
                     {work.location}
                   </span>
                 </div>
@@ -248,18 +248,18 @@ export default function AboutMe({ onBack }: Props) {
                   {work.role} <span className="font-sans text-sm font-normal text-gray-400">at {work.company}</span>
                 </h4>
 
-                <div className="font-sans text-[10px] font-bold tracking-wider uppercase mt-1 mb-3" style={{ color: C }}>
+                <div className="font-sans text-xs font-bold tracking-wider uppercase mt-1 mb-3" style={{ color: C }}>
                   Scope: {work.scope}
                 </div>
                 
-                <p className="font-sans text-xs leading-relaxed mb-4 text-[#19244E]/80">
+                <p className="font-sans text-sm sm:text-base leading-relaxed mb-4 text-[#19244E]/85">
                   {work.desc}
                 </p>
                 
                 <ul className="space-y-3 pl-1">
                   {work.points.map((pt, i) => (
-                    <li key={i} className="flex items-start gap-2.5 font-sans text-xs leading-relaxed text-[#19244E]/80">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#DB3E8C] flex-shrink-0 mt-1.5" />
+                    <li key={i} className="flex items-start gap-2.5 font-sans text-sm leading-relaxed text-[#19244E]/85">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#DB3E8C] flex-shrink-0 mt-2" />
                       <span>
                         <strong className="font-bold text-[#19244E]">{pt.lead} </strong>
                         {pt.text}
@@ -303,32 +303,32 @@ export default function AboutMe({ onBack }: Props) {
             ].map((edu) => (
               <div key={edu.school} className="p-6 rounded-xl border border-gray-100 flex flex-col justify-between" style={{ backgroundColor: S }}>
                 <div>
-                  <div className="flex items-center justify-between text-[10px] font-semibold text-[#DB3E8C] mb-3">
+                  <div className="flex items-center justify-between text-xs sm:text-sm font-semibold text-[#DB3E8C] mb-3">
                     <span>{edu.duration}</span>
                     <span>GPA: {edu.gpa}</span>
                   </div>
-                  <h4 className="font-display text-lg font-bold mb-1" style={{ color: N }}>
+                  <h4 className="font-display text-lg sm:text-xl font-bold mb-1" style={{ color: N }}>
                     {edu.school}
                   </h4>
-                  <p className="font-sans text-[11px] text-gray-500 mb-4">{edu.location}</p>
+                  <p className="font-sans text-xs sm:text-sm text-gray-500 mb-4">{edu.location}</p>
                   
                   <div className="space-y-3 mb-6">
                     <div>
-                      <span className="block font-sans text-[8px] font-bold tracking-wider uppercase text-gray-400">Degree & Focus</span>
-                      <span className="font-sans text-xs font-semibold text-[#19244E]">{edu.degree} — {edu.specialization}</span>
+                      <span className="block font-sans text-xs font-bold tracking-wider uppercase text-gray-400">Degree & Focus</span>
+                      <span className="font-sans text-sm sm:text-base font-semibold text-[#19244E]">{edu.degree} — {edu.specialization}</span>
                     </div>
                     <div>
-                      <span className="block font-sans text-[8px] font-bold tracking-wider uppercase text-gray-400">Final Thesis / Project Focus</span>
-                      <p className="font-sans text-[11px] leading-relaxed text-[#19244E]/80 mt-0.5">{edu.thesis}</p>
+                      <span className="block font-sans text-xs font-bold tracking-wider uppercase text-gray-400">Final Thesis / Project Focus</span>
+                      <p className="font-sans text-xs sm:text-sm leading-relaxed text-[#19244E]/85 mt-0.5">{edu.thesis}</p>
                     </div>
                   </div>
                 </div>
 
                 <div className="pt-4 border-t border-gray-200/50">
-                  <span className="block font-sans text-[8px] font-bold tracking-wider uppercase text-gray-400 mb-2">Key Coursework</span>
+                  <span className="block font-sans text-xs font-bold tracking-wider uppercase text-gray-400 mb-2">Key Coursework</span>
                   <div className="flex flex-wrap gap-1.5">
                     {edu.coursework.map((course) => (
-                      <span key={course} className="font-sans text-[9px] px-2 py-0.5 rounded bg-white text-[#19244E]/80 border border-gray-100">
+                      <span key={course} className="font-sans text-xs sm:text-sm px-2.5 py-1 rounded bg-white text-[#19244E]/85 border border-gray-200 shadow-xs">
                         {course}
                       </span>
                     ))}
@@ -345,7 +345,7 @@ export default function AboutMe({ onBack }: Props) {
         <div className="max-w-[900px] mx-auto grid lg:grid-cols-[280px_1fr] gap-12">
           <div>
             <SectionTag label="Skills & Toolkit" />
-            <p className="font-sans text-xs leading-relaxed mt-4" style={{ color: `${N}99` }}>
+            <p className="font-sans text-sm sm:text-base leading-relaxed mt-4" style={{ color: `${N}AA` }}>
               Synthesizing UX design frameworks, technical engineering constraints, and rapid prototyping workflows to build scalable digital ecosystems.
             </p>
           </div>
@@ -399,13 +399,13 @@ export default function AboutMe({ onBack }: Props) {
               }
             ].map(({ title, skills }) => (
               <div key={title} className="p-6 rounded-lg bg-white border border-gray-100">
-                <h4 className="font-sans text-xs font-bold tracking-wider uppercase mb-4" style={{ color: C }}>
+                <h4 className="font-sans text-xs sm:text-sm font-bold tracking-wider uppercase mb-4" style={{ color: C }}>
                   {title}
                 </h4>
                 <ul className="space-y-2">
                   {skills.map((skill) => (
-                    <li key={skill} className="flex items-center gap-2 font-sans text-xs" style={{ color: `${N}CC` }}>
-                      <CheckCircle2 size={12} style={{ color: C }} /> {skill}
+                    <li key={skill} className="flex items-center gap-2 font-sans text-xs sm:text-sm" style={{ color: `${N}CC` }}>
+                      <CheckCircle2 size={13} style={{ color: C }} /> {skill}
                     </li>
                   ))}
                 </ul>
@@ -438,7 +438,7 @@ export default function AboutMe({ onBack }: Props) {
 
       {/* ── FOOTER CTA ────────────────────────────────────────────────── */}
       <div className="py-16 px-8 lg:px-20 text-center" style={{ backgroundColor: N, borderTop: `1px solid rgba(255,255,255,0.06)` }}>
-        <p className="font-sans text-[10px] font-semibold tracking-[0.2em] text-white/50 uppercase mb-4">
+        <p className="font-sans text-xs sm:text-sm font-semibold tracking-[0.2em] text-white/60 uppercase mb-4">
           Want to design something together?
         </p>
         <a
@@ -451,9 +451,9 @@ export default function AboutMe({ onBack }: Props) {
         <div className="mt-8 flex justify-center">
           <button
             onClick={onBack}
-            className="flex items-center gap-2 px-5 py-2.5 text-xs font-semibold tracking-widest text-white/80 border border-white/10 hover:border-white/30 rounded uppercase transition-colors cursor-pointer"
+            className="flex items-center gap-2 px-5 py-2.5 text-xs sm:text-sm font-semibold tracking-widest text-white/80 border border-white/10 hover:border-white/30 rounded uppercase transition-colors cursor-pointer"
           >
-            <ArrowLeft size={12} /> Back to Home
+            <ArrowLeft size={13} /> Back to Home
           </button>
         </div>
       </div>

@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react"
 import {
   ArrowLeft, ChevronRight, CheckCircle2, Globe,
-  FileCode2, LayoutGrid, Zap, ShoppingCart, Package, Users, MessageSquare
+  FileCode2, LayoutGrid, Zap, ShoppingCart, Package, Users, MessageSquare,
+  RefreshCw, FileText, ShieldCheck, GitBranch, ChevronDown, ListFilter
 } from "lucide-react"
 
 const N = "#19244E"
@@ -28,7 +29,7 @@ function Hairline() {
 
 function SectionTag({ id, num, label }: { id?: string; num: string; label: string }) {
   return (
-    <div id={id} className="mb-10 pt-4 scroll-mt-24">
+    <div id={id} className="mb-8 pt-4 scroll-mt-24">
       <div className="text-[10px] font-bold uppercase tracking-[0.2em] mb-2 text-[#DB3E8C]">
         SECTION {num}
       </div>
@@ -46,8 +47,21 @@ interface Props {
   onPrev?: () => void
 }
 
+const QUICK_SECTIONS = [
+  { id: "summary", num: "01", label: "Executive Summary" },
+  { id: "challenge", num: "02", label: "The Strategic Challenge" },
+  { id: "pipeline", num: "03", label: "AI-First Pipeline & System Architecture" },
+  { id: "suite", num: "04", label: "The Dual-Portal Suite" },
+  { id: "process", num: "05", label: "AI-First Design Process" },
+  { id: "sustaining", num: "06", label: "Sustaining an Evolving System" },
+  { id: "impact-metrics", num: "07", label: "Business Impact & Workflow Efficiency" },
+  { id: "so-what", num: "08", label: "Impact & \"So What\"" },
+]
+
 export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
   const [scrolled, setScrolled] = useState(false)
+  const [activeQuickId, setActiveQuickId] = useState<string>("summary")
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     window.scrollTo({ top: 0 })
@@ -56,12 +70,44 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
-  return (
-    <div className="min-h-screen" style={{ backgroundColor: S, fontFamily: "var(--font-sans)" }}>
+  // ScrollSpy for Quick Jump active state
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveQuickId(entry.target.id)
+          }
+        })
+      },
+      { rootMargin: "-25% 0px -55% 0px" }
+    )
 
-      {/* Sticky nav */}
+    QUICK_SECTIONS.forEach(({ id }) => {
+      const el = document.getElementById(id)
+      if (el) observer.observe(el)
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault()
+    const target = document.getElementById(id)
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" })
+      setMobileMenuOpen(false)
+    }
+  }
+
+  const activeSectionObj = QUICK_SECTIONS.find((s) => s.id === activeQuickId) || QUICK_SECTIONS[0]
+
+  return (
+    <div className="min-h-screen scroll-smooth" style={{ backgroundColor: S, fontFamily: "var(--font-sans)" }}>
+
+      {/* Sticky top nav */}
       <div
-        className="sticky top-0 z-50 flex items-center justify-between px-8 lg:px-16 py-4 transition-all duration-200"
+        className="sticky top-0 z-50 flex items-center justify-between px-6 lg:px-16 py-4 transition-all duration-200"
         style={{
           backgroundColor: scrolled ? "rgba(255,255,255,0.95)" : W,
           backdropFilter: "blur(16px)",
@@ -70,44 +116,69 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
       >
         <button
           onClick={onBack}
-          className="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60"
+          className="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-widest uppercase transition-opacity hover:opacity-60 cursor-pointer"
           style={{ color: N }}
         >
           <ArrowLeft size={12} /> Back
         </button>
-        <MonoTag>Pro Archery · 4-Portal E-Commerce Architecture</MonoTag>
+        <MonoTag>Pro Archery · 4-Portal Digital Ecosystem</MonoTag>
       </div>
 
-      {/* Quick Jump Navigation Bar */}
-      <div className="sticky top-[53px] z-40 px-8 lg:px-16 py-2.5 bg-[#0e1635] text-white/70 border-b border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs font-sans">
-        <span className="font-bold tracking-widest text-[#DB3E8C] uppercase text-[9px]">
-          QUICK JUMP
-        </span>
-        <div className="flex items-center gap-6 overflow-x-auto">
-          <a href="#summary" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-medium">
-            01. Executive Summary
-          </a>
-          <a href="#challenge" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-medium">
-            02. Core Challenge
-          </a>
-          <a href="#architecture" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-medium">
-            03. 4-Portal Architecture
-          </a>
-          <a href="#impact" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-bold text-[#DB3E8C]">
-            04. Impact & "So What" ↗
-          </a>
-        </div>
+      {/* Mobile Collapsible Quick Jump Bar */}
+      <div className="block lg:hidden sticky top-[53px] z-40 bg-[#0e1635] text-white border-b border-white/10 shadow-lg">
+        <button
+          onClick={() => setMobileMenuOpen((v) => !v)}
+          className="w-full px-6 py-3 flex items-center justify-between text-xs font-sans cursor-pointer focus:outline-none"
+        >
+          <div className="flex items-center gap-2.5 min-w-0">
+            <span className="w-2 h-2 rounded-full bg-[#DB3E8C] animate-pulse shrink-0" />
+            <span className="font-bold text-[#DB3E8C] uppercase tracking-wider shrink-0">QUICK JUMP:</span>
+            <span className="font-semibold text-white/90 truncate">
+              {activeSectionObj.num}. {activeSectionObj.label}
+            </span>
+          </div>
+          <ChevronDown
+            size={14}
+            className={`text-white/70 transition-transform duration-200 shrink-0 ml-2 ${mobileMenuOpen ? "rotate-180" : ""}`}
+          />
+        </button>
+
+        {/* Expanded Vertical Menu for Mobile */}
+        {mobileMenuOpen && (
+          <div className="px-6 py-3 bg-[#080d21] border-t border-white/10 space-y-1 max-h-[60vh] overflow-y-auto">
+            {QUICK_SECTIONS.map((sec) => {
+              const isActive = activeQuickId === sec.id
+              return (
+                <a
+                  key={sec.id}
+                  href={`#${sec.id}`}
+                  onClick={(e) => scrollToSection(e, sec.id)}
+                  className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs transition-colors cursor-pointer ${
+                    isActive
+                      ? "bg-[#DB3E8C] text-white font-bold"
+                      : "text-white/75 hover:bg-white/10 hover:text-white font-medium"
+                  }`}
+                >
+                  <span className={`font-mono text-[10px] ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
+                    {sec.num}
+                  </span>
+                  <span>{sec.label}</span>
+                </a>
+              )
+            })}
+          </div>
+        )}
       </div>
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
-      <div className="px-8 lg:px-16 pt-16 pb-14" style={{ backgroundColor: W, borderBottom: `1px solid ${HAIR}` }}>
+      <div className="px-6 lg:px-16 pt-16 pb-14" style={{ backgroundColor: W, borderBottom: `1px solid ${HAIR}` }}>
         <div className="max-w-4xl space-y-6">
           <div className="flex flex-wrap items-center gap-3">
             <MonoTag accent>CASE STUDY 07</MonoTag>
             <span style={{ color: HAIR }}>/</span>
             <MonoTag>AI-FIRST DEVELOPMENT & E-COMMERCE SYSTEM</MonoTag>
             <span style={{ color: HAIR }}>/</span>
-            <MonoTag>PRO ARCHERY JAKARTA · 2024</MonoTag>
+            <MonoTag>PRO ARCHERY JAKARTA · NOV 2025 – PRESENT</MonoTag>
           </div>
 
           <h1
@@ -121,63 +192,97 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
             className="font-display font-light leading-relaxed"
             style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
           >
-            Scaling Indonesia's premier physical archery retailer into an Asia-wide e-commerce platform via AI-assisted prompt-to-code workflows.
-          </p>
-
-          <p className="text-sm leading-relaxed max-w-2xl" style={{ color: BODY, lineHeight: 1.8 }}>
-            An end-to-end digital ecosystem building 4 integrated portal surfaces (B2C Storefront, Customer Hub, Admin POS, and Brand Profile) with serial-number inventory tracking and 24-hour POC delivery.
+            An ongoing, sole-designer engagement turning Indonesia's premier physical archery retailer into a 4-portal digital ecosystem, starting with a 24-hour AI-built landing page and evolving through real business pivots ever since.
           </p>
         </div>
 
         {/* Hero Metadata Grid Strip */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 mt-12 border-t border-gray-100 text-xs">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 mt-12 border-t border-gray-100 text-sm">
           <div>
-            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+            <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
               Role & Ownership
             </span>
             <span className="font-semibold text-[#19244E]">
-              Lead Freelance Product Designer & AI Integrator
+              Sole Freelance Product Designer & AI Systems Integrator
             </span>
           </div>
           <div>
-            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+            <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
               Client & Region
             </span>
             <span className="font-semibold text-[#19244E]">
-              Pro Archery Shop (Jakarta & Asia Expansion)
+              Pro Archery Shop (Jakarta, Indonesia) · SG & MY Support
             </span>
           </div>
           <div>
-            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
-              Delivery Velocity
+            <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
+              Timeline
             </span>
             <span className="font-semibold text-[#19244E]">
-              24-Hour POC · 0 Manual Wireframes
+              Nov 2025 – Present (Ongoing Engagement)
             </span>
           </div>
           <div>
-            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+            <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
               Integrated Portals
             </span>
             <span className="font-semibold text-[#19244E]">
-              4 Portals (B2C, Customer, Admin POS, Profile)
+              4 Portals (B2C, Warranty, Admin POS, Profile)
             </span>
           </div>
         </div>
       </div>
 
-      {/* ── BODY ──────────────────────────────────────────────────────────── */}
-      <div className="max-w-5xl mx-auto px-8 lg:px-16 py-16 lg:py-24 space-y-20">
+      {/* ── MAIN BODY WITH STICKY LEFT SIDEBAR TOC (DESKTOP) ──────────────── */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-12 lg:py-20">
+        <div className="grid lg:grid-cols-[260px_1fr] gap-12 lg:gap-16 items-start">
+
+          {/* Left Column: Sticky Desktop Table of Contents (TOC) Sidebar */}
+          <aside className="hidden lg:block sticky top-24 space-y-6 self-start pr-4">
+            <div className="p-5 rounded-2xl bg-[#0e1635] text-white shadow-xl border border-white/10">
+              <div className="flex items-center gap-2 mb-4 pb-3 border-b border-white/10">
+                <span className="w-2 h-2 rounded-full bg-[#DB3E8C] animate-pulse" />
+                <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+                  QUICK JUMP
+                </span>
+              </div>
+              <nav className="space-y-1.5" aria-label="Table of Contents">
+                {QUICK_SECTIONS.map((sec) => {
+                  const isActive = activeQuickId === sec.id
+                  return (
+                    <a
+                      key={sec.id}
+                      href={`#${sec.id}`}
+                      onClick={(e) => scrollToSection(e, sec.id)}
+                      className={`group flex items-start gap-2.5 p-2 rounded-lg text-xs transition-all duration-150 cursor-pointer ${
+                        isActive
+                          ? "bg-[#DB3E8C] text-white font-bold shadow-md"
+                          : "text-white/65 hover:bg-white/10 hover:text-white font-medium"
+                      }`}
+                    >
+                      <span className={`font-mono text-[10px] shrink-0 pt-0.5 ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
+                        {sec.num}
+                      </span>
+                      <span className="leading-snug">{sec.label}</span>
+                    </a>
+                  )
+                })}
+              </nav>
+            </div>
+          </aside>
+
+          {/* Right Column: Case Study Main Content Sections */}
+          <div className="space-y-16 lg:space-y-20 min-w-0">
 
         {/* 01 Executive Summary */}
         <div>
           <SectionTag id="summary" num="01" label="Executive Summary" />
           <div className="grid lg:grid-cols-2 gap-4">
             {[
-              { label: "Client & Scope", val: "Pro Archery (Jakarta, Indonesia) × Asian Regional Expansion" },
-              { label: "Role & Responsibility", val: "Lead Freelance Product Designer & AI Systems Integrator" },
+              { label: "Client & Scope", val: "Pro Archery (Jakarta, Indonesia), with storefront support built for their existing Singapore and Malaysia clientele" },
+              { label: "Role & Responsibility", val: "Sole Freelance Product Designer & AI Systems Integrator, the only designer on the project since it began" },
               { label: "Core Product Suite", val: "B2C E-Commerce Storefront · Customer Warranty Portal · Admin POS & Inventory · Corporate Landing Page" },
-              { label: "Core Stack", val: "Claude AI · Gemini · VS Code · Antigravity · HTML/CSS Code-Driven Prototyping" },
+              { label: "Core Stack", val: "Claude AI · Gemini · VS Code · Antigravity · HTML/CSS Code-Driven Prototyping (no Figma)" },
             ].map(({ label, val }) => (
               <div key={label} className="px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
                 <MonoTag>[{label}]</MonoTag>
@@ -192,17 +297,17 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
         {/* 02 Strategic Challenge */}
         <div>
           <SectionTag id="challenge" num="02" label="The Strategic Challenge" />
-          <p className="font-display font-light leading-relaxed mb-10" style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.35rem)", color: N, letterSpacing: "-0.005em", lineHeight: 1.65, maxWidth: "680px" }}>
-            Transitioning a brick-and-mortar archery enterprise into a regional e-commerce power required an ultra-fast Proof of Concept to secure investor and partner alignments while managing complex technical product attributes.
+          <p className="font-display font-light leading-relaxed mb-10" style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.35rem)", color: N, letterSpacing: "-0.005em", lineHeight: 1.65, maxWidth: "780px" }}>
+            Transitioning a brick-and-mortar archery retailer into a regional e-commerce operation meant designing four interconnected portals under real business complexity, starting with an urgent partner presentation deadline that a traditional Figma-to-code cycle wouldn't fit.
           </p>
           <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-5" style={{ color: `${N}99` }}>
             [Key System & Business Constraints]
           </p>
           <div className="space-y-3">
             {[
-              { Icon: Zap, title: "Ultra-Fast Execution Needed for POC", desc: "Traditional Figma-to-code design cycles were too slow to meet tight partner presentation deadlines, requiring a direct AI prompt-to-code pipeline instead." },
-              { Icon: Package, title: "Complex Inventory Mechanics", desc: "Archery gear requires granular tracking, from compound bow serial numbers (SN) to multi-tier dealer pricing (Guest vs. Silver Dealer)." },
-              { Icon: LayoutGrid, title: "Omnichannel Portal Multiplicity", desc: "Designing 4 interconnected portals (B2C Storefront, Customer Portal, Admin POS/Inventory, Company Profile) under a unified design system." },
+              { Icon: Zap, title: "Ultra-Fast Landing Page Needed for Partner POC", desc: "An investor and partner presentation deadline required a working landing page fast enough that a traditional Figma design cycle wouldn't fit the timeline, prompting a direct AI prompt-to-code approach instead." },
+              { Icon: Package, title: "Complex Inventory Mechanics", desc: "Archery gear needed granular tracking, from individual serial numbers on high-value compound bows to multi-tier member pricing, with the pricing logic itself needing to function correctly in the prototype, not just look right." },
+              { Icon: RefreshCw, title: "A Business That Kept Changing Underneath the Design", desc: "This wasn't a fixed-scope project. Over the course of the engagement, Pro Archery simplified its business model from a multi-role system (Customer, Dealer, Reseller, Distributor, Dropshipper) to Customer-only, restructured how warranty and pricing worked, and cut the Admin Portal's dependency on scattered, siloed screens, all of which meant the design had to keep pace with a business still figuring itself out." },
             ].map(({ Icon, title, desc }) => (
               <div key={title} className="flex gap-5 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
                 <div className="w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5" style={{ border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
@@ -219,23 +324,23 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
 
         <Hairline />
 
-        {/* 03 System Architecture */}
+        {/* 03 AI-First Pipeline & System Architecture */}
         <div>
-          <SectionTag id="architecture" num="03" label="System & 4-Portal Ecosystem Architecture" />
+          <SectionTag id="pipeline" num="03" label="AI-First Pipeline & System Architecture" />
 
           {/* Flow diagram */}
           <div className="mb-8 p-6 overflow-x-auto" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
             <MonoTag>[AI-First Product Pipeline]</MonoTag>
             <div className="flex items-center mt-5 min-w-max">
               {[
-                { label: "AI-First Prompt-to-Code", sub: "Claude/Gemini → VS Code direct output", icon: Zap },
-                { label: "Interactive Scenario Tester", sub: "Live grid & user-state toggle widget", icon: LayoutGrid },
-                { label: "Omnichannel B2C & Admin", sub: "POS, SN tracking & warranty portal", icon: ShoppingCart },
+                { label: "AI-First Prompt-to-Code", sub: "Claude/Gemini → VS Code & Antigravity direct output", icon: Zap },
+                { label: "Embedded Scenario Tester", sub: "Live grid & user-state toggle widget in prototype", icon: LayoutGrid },
+                { label: "Working Lifecycle Tracking", sub: "Serial numbers, order fulfillment & POS sync", icon: ShoppingCart },
               ].map((step, i) => {
                 const Icon = step.icon
                 return (
                   <div key={step.label} className="flex items-center">
-                    <div className="flex flex-col items-start gap-3 min-w-[200px]">
+                    <div className="flex flex-col items-start gap-3 min-w-[220px]">
                       <div className="w-10 h-10 flex items-center justify-center" style={{ backgroundColor: i === 1 ? `${C}10` : `${N}06`, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
                         <Icon size={14} style={{ color: i === 1 ? C : N }} />
                       </div>
@@ -258,9 +363,9 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
 
           <div className="space-y-3">
             {[
-              { num: "1.", title: "AI-Driven Prompt-to-Code Pipeline", desc: "Bypassed manual Figma layout creation by utilizing advanced AI prompting (Claude/Gemini) to generate functional frontend code structure directly in VS Code and Antigravity, delivering a live, production-ready landing page POC in just 24 hours." },
-              { num: "2.", title: "Embedded \"Scenario Tester\" Demo Widget", desc: "Engineered an interactive control widget built directly into the client presentation prototype. Stakeholders could toggle live between User Scenarios (Guest User vs. Silver Dealer Pricing) and Grid Layouts (Default, 4-Column, 5-Column) in real time during review meetings, dramatically reducing layout debate cycles." },
-              { num: "3.", title: "Granular Order Lifecycle & Serial Number (SN) Tracking", desc: "Designed a high-density Admin Portal capable of tracking complex archery inventory, including serial number inputs for high-value bows, warranty claim statuses, order fulfillment timelines, and point-of-sale (POS) integration." },
+              { num: "1.", title: "AI-First Prompt-to-Code Pipeline", desc: "Bypassed manual Figma layout work entirely, using AI prompting (Claude/Gemini) to generate functional frontend code directly in VS Code and Antigravity. The landing page specifically was taken from prompt to a live, working POC in a single working day, ahead of an urgent partner presentation, the origin point for the rest of the engagement. The other three portals followed the same no-wireframe, code-first approach, but on a longer timeline that included analyzing the existing business flow and identifying where it needed to improve before building." },
+              { num: "2.", title: "Embedded \"Scenario Tester\" Widget", desc: "This wasn't planned from the start. During an internal review, the PM asked to compare 3, 4, and 5-column product grid layouts. Because an HTML prototype doesn't have Figma's frame-based states, jumping to a specific screen (like a logged-in checkout flow) meant restarting the whole user journey from scratch every time. Building a toggle widget directly into the prototype solved that: the PM could switch between Guest and Silver Member pricing views, or jump straight into any staged screen across the Customer and Admin portals, without walking the full flow each time." },
+              { num: "3.", title: "Working Serial Number & Order Lifecycle Tracking", desc: "Designed a complete flow for the Admin Portal covering serial number input for high-value bows, warranty claim status, order fulfillment timelines, and point-of-sale integration, fully mapped out rather than left as a described requirement." },
             ].map(({ num, title, desc }) => (
               <div key={title} className="flex gap-5 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
                 <span className="font-sans text-[10px] font-semibold flex-shrink-0 mt-0.5" style={{ color: C }}>{num}</span>
@@ -275,9 +380,9 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
 
         <Hairline />
 
-        {/* 04 Dual-Portal Suite */}
+        {/* 04 The Dual-Portal Suite */}
         <div>
-          <SectionTag num="04" label="The Dual-Portal Suite" />
+          <SectionTag id="suite" num="04" label="The Dual-Portal Suite" />
           <div className="grid lg:grid-cols-2 gap-6">
 
             {/* B2C */}
@@ -288,17 +393,18 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
                   <MonoTag accent>[A] B2C E-Commerce & Customer Self-Service Portal</MonoTag>
                 </div>
               </div>
-              <div className="px-6 py-5 space-y-4">
+              <div className="px-6 py-5 space-y-5">
                 {[
-                  { title: "Custom Bow & Gear Builder", desc: "Interactive product catalog supporting customized archery equipment configurations and integrated payment gateways." },
-                  { title: "Customer Warranty & Order Tracking", desc: "Dedicated portal for users to track order timelines, view serial number certificates, manage loyalty points, and lodge warranty claims." },
+                  { title: "Custom Bow & Gear Builder", desc: "Interactive product catalog supporting customized archery equipment configurations with integrated payment gateways, and international address, phone number, and shipping fields built in to support Pro Archery's existing Singapore and Malaysia customers." },
+                  { title: "Customer Warranty & Order Tracking", desc: "Dedicated portal for tracking order timelines, viewing serial number certificates, managing loyalty points, and lodging warranty claims." },
+                  { title: "Warranty Claims: From a Simple Flow to Four Resolution Paths", desc: "The claim review flow didn't stay simple for long. After presenting an initial straightforward version (submit → review → resolve), client feedback revealed the reality was more complex: a claim could end in four different ways depending on store conditions at the time, rejected, resolved by swapping in store stock, held pending a factory restock, or a hybrid resolution using both store stock and a pending factory claim together. Each path needed its own resolution UI and its own audit trail, including tracking the original serial number against any replacement one issued during the swap." },
                 ].map(({ title, desc }) => (
                   <div key={title}>
                     <div className="flex items-start gap-2 mb-1.5">
-                      <div className="w-1 h-1 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: C }} />
+                      <div className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: C }} />
                       <p className="text-sm font-semibold" style={{ color: N }}>{title}</p>
                     </div>
-                    <p className="text-sm leading-relaxed pl-3" style={{ color: BODY, lineHeight: 1.75 }}>{desc}</p>
+                    <p className="text-sm leading-relaxed pl-3.5" style={{ color: BODY, lineHeight: 1.75 }}>{desc}</p>
                   </div>
                 ))}
               </div>
@@ -312,51 +418,34 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
                   <MonoTag accent>[B] Back-Office Admin & POS Management Console</MonoTag>
                 </div>
               </div>
-              <div className="px-6 py-5 space-y-4">
+              <div className="px-6 py-5 space-y-5">
                 {[
-                  { title: "Inventory & Serial Number Management", desc: "Precise tracking of high-tier archery stock requiring individual serial numbers (e.g., Hoyt Altus Compound Bows)." },
-                  { title: "Multi-Tier Member & Discount Rules", desc: "Automated pricing engines adjusting storefront rates based on member tiers (Gold Member, Silver Dealer)." },
-                  { title: "Unified POS & Sales Analytics", desc: "Integrated Point-of-Sale system synchronizing offline physical store transactions with online e-commerce inventory." },
+                  { title: "Inventory & Serial Number Management", desc: "Individual serial number tracking for high-tier stock, such as Hoyt Altus compound bows, with real-time sync events (create, update, delete) designed to propagate product, pricing, and stock changes across both POS and e-commerce." },
+                  { title: "Working Multi-Tier Pricing Logic", desc: "Real pricing logic, not just a visual mockup, was implemented for the two most significant tiers (Guest and Silver Member), automatically adjusting storefront rates based on which tier was active." },
+                  { title: "Scenario Tester: Built Into the Prototype", desc: "Stakeholders could switch live between Guest and Silver Member pricing views, and toggle grid layouts (3/4/5 columns), directly inside the prototype during review meetings, instead of waiting for separate design revisions to see each variation." },
+                  { title: "A Second Scenario Tester, Built the Same Way", desc: "The same pattern from the e-commerce prototype showed up again here. A \"Demo Controller\" widget was built directly into the claim review screen, letting stakeholders jump straight to any claim state, New, Under Review, Rejected, Store Stock Swap, Awaiting Factory, Hybrid, Resolved, without walking through the full claim lifecycle each time. It solved the same problem the original Scenario Tester did: reviewing every branch of a multi-state flow without restarting from the beginning in an HTML prototype." },
+                  { title: "Manual Claims for Walk-In Customers", desc: "Not every claim starts online. A separate manual claim flow was designed for staff to search a purchase by SO number or serial number and generate a claim on the spot for walk-in or direct-contact customers, without requiring them to go through the customer portal first." },
                 ].map(({ title, desc }) => (
                   <div key={title}>
                     <div className="flex items-start gap-2 mb-1.5">
-                      <div className="w-1 h-1 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: C }} />
+                      <div className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: C }} />
                       <p className="text-sm font-semibold" style={{ color: N }}>{title}</p>
                     </div>
-                    <p className="text-sm leading-relaxed pl-3" style={{ color: BODY, lineHeight: 1.75 }}>{desc}</p>
+                    <p className="text-sm leading-relaxed pl-3.5" style={{ color: BODY, lineHeight: 1.75 }}>{desc}</p>
                   </div>
                 ))}
               </div>
-            </div>
-          </div>
-
-          {/* Scenario Tester callout */}
-          <div
-            className="mt-5 px-6 py-5 flex gap-5"
-            style={{ backgroundColor: N, border: `1px solid ${N}`, borderRadius: "4px" }}
-          >
-            <div className="w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5" style={{ backgroundColor: `${C}20`, border: `1px solid ${C}40`, borderRadius: "4px" }}>
-              <LayoutGrid size={13} style={{ color: C }} />
-            </div>
-            <div>
-              <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-2" style={{ color: C }}>
-                [PROTOTYPE FEATURE: LIVE SCENARIO TESTER WIDGET]
-              </p>
-              <p className="text-sm font-semibold text-white mb-1.5">Interactive Scenario Tester: Built Into the Prototype</p>
-              <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.6)", lineHeight: 1.75 }}>
-                Stakeholders toggled live between <strong className="text-white">Guest User</strong> vs. <strong className="text-white">Silver Dealer</strong> pricing and switched grid layouts (3 / 4 / 5 columns) in real time during review meetings, eliminating revision rounds caused by layout ambiguity.
-              </p>
             </div>
           </div>
         </div>
 
         <Hairline />
 
-        {/* 05 Design Process */}
+        {/* 05 AI-First Design Process */}
         <div>
-          <SectionTag num="05" label="AI-First Design Process" />
+          <SectionTag id="process" num="05" label="AI-First Design Process" />
           <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-8" style={{ color: `${N}99` }}>
-            [WORKFLOW: AI-FIRST PROMPT-TO-CODE] · [NO TRADITIONAL WIREFRAME PHASE]
+            [WORKFLOW: RESEARCH → PROTOTYPE → REVISE → CONSOLIDATE] · [NO TRADITIONAL WIREFRAME PHASE]
           </p>
 
           <div className="relative">
@@ -364,27 +453,25 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
             <div className="space-y-6">
               {[
                 {
-                  phase: "PHASE 01", tag: "BRIEF & PROMPT",
-                  title: "Requirement Parsing & AI Prompt Engineering",
+                  phase: "PHASE 01", tag: "RESEARCH & DOCS",
+                  title: "Research & Requirement Documentation",
                   items: [
-                    { title: "Business Requirement Synthesis", desc: "Extracted core system requirements (inventory logic, member tiers, portal hierarchy) and translated them into structured AI prompts for immediate code generation." },
-                    { title: "Design System Token Setup", desc: "Established shared design tokens (color palette, typography, spacing) as prompt context to ensure visual consistency across all 4 portals from the first output." },
+                    { title: "Formal Spec & Business Analysis", desc: "Before any prototyping started, business requirements were researched and written up as a formal document in the team's repo, the same starting point a Figma-based project would have, just skipping the wireframe stage that would normally follow it." },
                   ],
                 },
                 {
-                  phase: "PHASE 02", tag: "BUILD",
-                  title: "AI-Accelerated Frontend Build",
+                  phase: "PHASE 02", tag: "AI BUILD & REVISE",
+                  title: "AI-Accelerated Prototype Build",
                   items: [
-                    { title: "Prompt-to-Code Iteration", desc: "Used Claude and Gemini to generate, review, and refine HTML/CSS frontend components in VS Code and Antigravity, iterating rapidly without traditional layout phases." },
-                    { title: "Scenario Tester Engineering", desc: "Built the live scenario toggle widget directly into the presentation prototype, enabling real-time stakeholder testing of pricing tiers and grid configurations." },
+                    { title: "Prompt-to-Code Execution", desc: "Built the prototype directly from the requirement doc using Claude and Gemini for prompt-to-code generation in VS Code and Antigravity." },
+                    { title: "Direct Prototype Revisions", desc: "Revisions during this phase were made directly in the prototype, bypassing the original doc for speed, with a consolidated document written up afterward summarizing the finalized flow for that module." },
                   ],
                 },
                 {
-                  phase: "PHASE 03", tag: "HANDOFF",
-                  title: "Stakeholder Review & Developer Handoff",
+                  phase: "PHASE 03", tag: "HANDOFF & GAP",
+                  title: "Handoff & The Annotation Gap",
                   items: [
-                    { title: "24-Hour POC Delivery", desc: "Shipped the complete landing page POC for urgent partner presentations within a single working day, demonstrating the compressing power of AI-first design methodology." },
-                    { title: "Production-Ready Specification", desc: "Delivered annotated component specs, admin portal interaction flows, and SN tracking logic for development team implementation." },
+                    { title: "Navigating Handoff Friction", desc: "This was the one part of the AI-first workflow that didn't fully match Figma's convenience. In Figma, notes and annotations sit directly on each screen. With a code prototype meant to be pulled directly by developers, there wasn't yet a clear system for that kind of inline annotation, so developers often had to read through the prototype itself to understand intent, even with supporting documentation provided alongside it." },
                   ],
                 },
               ].map((phase, pi) => (
@@ -434,15 +521,54 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
 
         <Hairline />
 
-        {/* 06 Business Impact */}
+        {/* 06 Sustaining an Evolving System */}
         <div>
-          <SectionTag num="06" label="Business Impact & Workflow Efficiency" />
+          <SectionTag id="sustaining" num="06" label="Sustaining an Evolving System" />
+          <p className="font-display font-light leading-relaxed mb-8" style={{ fontSize: "clamp(1.05rem, 1.6vw, 1.25rem)", color: N, lineHeight: 1.6, maxWidth: "780px" }}>
+            This engagement didn't end after the initial build. As the sole designer, staying on meant designing through changes that reshaped the product's foundations, not just adding features on top of a settled system.
+          </p>
+          <div className="space-y-4">
+            {[
+              {
+                title: "A Mid-Engagement Business Model Pivot",
+                desc: "Partway through, Pro Archery simplified its business model, moving away from a multi-role system (Customer, Dealer, Reseller, Distributor, Dropshipper) to a Customer-only model built around simple membership tiers (Regular, Silver, Gold, Platinum). Dealer status stopped affecting anything in the system; it became just a label. Pricing was decoupled from it entirely and now depends purely on membership tier, work that meant revisiting warranty activation rules, pricing logic, and catalog access that had been designed around the old model.",
+                icon: GitBranch
+              },
+              {
+                title: "Requirements That Grew More Complex After Being Seen",
+                desc: "The warranty claim flow is one clear example of this pattern: what started as a simple submit-review-resolve flow became a four-path resolution system once the client saw the initial version and recognized the real operational complexity behind it, different store stock conditions meant different outcomes needed different handling. That kind of requirement growth, driven by seeing something concrete rather than speaking in the abstract, showed up more than once over the course of the engagement.",
+                icon: ShieldCheck
+              },
+              {
+                title: "Living Documentation",
+                desc: "Every module carries a version history (v1.0, v2.0, sometimes v3.0) with explicit changelogs recording what changed, why, and what broke as a result, a habit that came out of necessity: a system evolving this much needed a paper trail development could follow without re-litigating old decisions.",
+                icon: FileText
+              },
+            ].map(({ title, desc, icon: Icon }) => (
+              <div key={title} className="flex gap-5 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
+                <div className="w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5" style={{ backgroundColor: `${C}08`, border: `1px solid ${C}20`, borderRadius: "4px" }}>
+                  <Icon size={14} style={{ color: C }} />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold mb-1.5" style={{ color: N }}>{title}</p>
+                  <p className="text-sm leading-relaxed" style={{ color: BODY, lineHeight: 1.75 }}>{desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <Hairline />
+
+        {/* 07 Business Impact & Workflow Efficiency */}
+        <div>
+          <SectionTag id="impact-metrics" num="07" label="Business Impact & Workflow Efficiency" />
           <div className="grid lg:grid-cols-2 gap-4 mb-10">
             {[
-              { Icon: Zap, title: "24-Hour Landing Page Deployment", desc: "Leveraged AI-first design workflows to ship a fully functional landing page in 1 day for urgent stakeholder POC presentations." },
-              { Icon: CheckCircle2, title: "Streamlined Stakeholder Approvals", desc: "The embedded Scenario Tester widget allowed executive decision-makers to test layout variations instantly without waiting for design revision rounds." },
-              { Icon: Globe, title: "Regional Market Readiness", desc: "Delivered a complete 4-portal digital infrastructure enabling Pro Archery to validate its business model and expand retail operations across Asian markets." },
-              { Icon: Users, title: "AI-First Methodology Proof", desc: "Demonstrated that a production-ready multi-portal system can be designed, prototyped, and handed off without a single traditional wireframe session." },
+              { Icon: Zap, title: "24-Hour Landing Page Deployment", desc: "Used the AI-first pipeline to ship a fully functional landing page in one day for an urgent partner presentation, the starting point for what became a long-running engagement." },
+              { Icon: CheckCircle2, title: "A Working Prototype, Not Just a Mockup", desc: "The landing page prototype was solid enough that when the development team's implementation wasn't ready ahead of a fee disbursement milestone, the HTML prototype was deployed live in its place, invisible to end users. That was a one-off, specific to the landing page rather than the customer or admin portals, but a real signal of how production-ready the AI-first output actually was." },
+              { Icon: Globe, title: "Regional-Ready Storefront", desc: "Built the B2C storefront to support Pro Archery's existing regional clientele in Singapore and Malaysia from day one, with international address formats, phone fields, and cross-border shipping options." },
+              { Icon: RefreshCw, title: "Designed to Survive a Changing Business", desc: "When the business model pivoted mid-engagement, the warranty, pricing, and catalog systems already in place could be revised rather than rebuilt, work made possible by documentation that tracked why each decision was made in the first place." },
             ].map(({ Icon, title, desc }) => (
               <div key={title} className="flex gap-4 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
                 <div className="w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5" style={{ backgroundColor: `${C}08`, border: `1px solid ${C}20`, borderRadius: "4px" }}>
@@ -456,32 +582,32 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
             ))}
           </div>
 
-          {/* 07 Impact & The "So What" Closing Box */}
-          <div id="impact" className="p-8 bg-[#111836] rounded-2xl border border-white/10 text-white space-y-6 shadow-2xl">
+          {/* 08 Impact & The "So What" Closing Box */}
+          <div id="so-what" className="p-8 bg-[#111836] rounded-2xl border border-white/10 text-white space-y-6 shadow-2xl scroll-mt-24">
             <div className="flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-[#22c55e] animate-pulse" />
               <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#22c55e]">
-                AI-FIRST ECOSYSTEM IMPACT & "SO WHAT"
+                SECTION 08 · AI-FIRST ECOSYSTEM IMPACT & "SO WHAT"
               </span>
             </div>
-            <h3 className="font-display text-2xl lg:text-3xl font-light leading-snug">
-              Deployed full 4-portal e-commerce ecosystem with a <span className="font-bold text-[#DB3E8C]">24-hour landing page sprint</span>.
+            <h3 className="font-display text-xl lg:text-2xl font-semibold leading-relaxed">
+              What started as a 24-hour landing page sprint has become a 4-portal e-commerce ecosystem sustained solo for close to a year, through a business model pivot, evolving warranty logic, and a pricing system that had to keep working while its foundations changed underneath it.
             </h3>
-            <p className="font-sans text-xs text-white/70 leading-relaxed max-w-2xl">
-              By combining AI-driven component generation with interactive scenario testing widgets, we eliminated wireframing bottlenecks and accelerated executive buy-in.
+            <p className="font-sans text-xs text-white/70 leading-relaxed max-w-3xl">
+              By combining AI-driven, code-first prototyping with disciplined changelog documentation, the system could absorb real business change without losing its design logic, while staying honest about where the workflow still has friction, particularly at developer handoff.
             </p>
-            <div className="grid md:grid-cols-3 gap-6 pt-6 border-t border-white/10 text-xs">
+            <div className="grid md:grid-cols-3 gap-4 pt-4 border-t border-white/10 text-xs">
               <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-                <span className="block font-bold text-xl text-[#22c55e] mb-1">24h Deployment</span>
-                <p className="text-white/60">Rapid landing page delivery for high-stakes investor POCs.</p>
+                <span className="block font-bold text-sm text-[#22c55e] mb-1">24h Landing Page</span>
+                <p className="text-white/60">Delivered for an urgent partner presentation, later deployed live as a stand-in for the dev build.</p>
               </div>
               <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-                <span className="block font-bold text-xl text-white mb-1">4 Interconnected Portals</span>
-                <p className="text-white/60">Consumer e-commerce, B2B wholesale, POS, & Admin CMS.</p>
+                <span className="block font-bold text-sm text-white mb-1">Nov 2025 – Present</span>
+                <p className="text-white/60">An ongoing solo engagement, not a single sprint.</p>
               </div>
               <div className="bg-[#DB3E8C]/20 p-4 rounded-lg border border-[#DB3E8C]/40">
-                <span className="block font-bold text-xl text-[#DB3E8C] mb-1">Zero Wireframe Delay</span>
-                <p className="text-white/80 font-medium">Direct interactive prototype testing with executive stakeholders.</p>
+                <span className="block font-bold text-sm text-[#DB3E8C] mb-1">Survived a Business Pivot</span>
+                <p className="text-white/80 font-medium">Warranty, pricing, and catalog logic revised, not rebuilt, when the business model changed.</p>
               </div>
             </div>
 
@@ -494,13 +620,14 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
                 </span>
               </div>
               <p className="text-xs font-sans leading-relaxed text-white/90 italic">
-                "This proves I can architect multi-portal e-commerce ecosystems and leverage AI-first prototyping to accelerate stakeholder buy-in, turning 24-hour landing page briefs into production-ready platforms."
+                "This project shows I can move fast with AI-assisted, code-first prototyping when a deadline demands it, and that the output can be solid enough to stand in for a live build in a pinch. It also shows I can sustain a system as the sole designer over close to a year, including through a business model pivot that touched pricing, warranty, and catalog logic, and that I document decisions well enough for that kind of change to be manageable instead of a rebuild."
               </p>
             </div>
           </div>
         </div>
-
       </div>
+    </div>
+  </div>
 
       {/* Back CTA */}
       <div style={{ borderTop: `1px solid ${HAIR}`, backgroundColor: W }}>

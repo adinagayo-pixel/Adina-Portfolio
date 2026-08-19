@@ -77,21 +77,21 @@ export default function SunwayCase({ onBack }: Props) {
       </div>
 
       {/* Quick Jump Navigation Bar */}
-      <div className="sticky top-[53px] z-40 px-8 lg:px-16 py-2.5 bg-[#0e1635] text-white/70 border-b border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs font-sans">
-        <span className="font-bold tracking-widest text-[#DB3E8C] uppercase text-[9px]">
+      <div className="sticky top-[53px] z-40 px-8 lg:px-16 py-2.5 bg-[#0e1635] text-white/80 border-b border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs sm:text-sm font-sans">
+        <span className="font-bold tracking-widest text-[#DB3E8C] uppercase text-xs">
           QUICK JUMP
         </span>
         <div className="flex items-center gap-6 overflow-x-auto">
-          <a href="#summary" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-medium">
+          <a href="#summary" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
             01. Executive Overview
           </a>
-          <a href="#challenge" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-medium">
+          <a href="#challenge" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
             02. Core Challenge
           </a>
-          <a href="#architecture" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-medium">
+          <a href="#architecture" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-medium">
             03. Portal Architecture
           </a>
-          <a href="#impact" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-[11px] font-bold text-[#DB3E8C]">
+          <a href="#impact" className="hover:text-white transition-colors cursor-pointer whitespace-nowrap text-xs font-bold text-[#DB3E8C]">
             04. Impact & "So What" ↗
           </a>
         </div>
@@ -122,15 +122,15 @@ export default function SunwayCase({ onBack }: Props) {
             Integrating 5 insurance products into Malaysia's leading conglomerate loyalty app with loyalty points API mapping and B2B back-office portals.
           </p>
 
-          <p className="text-sm leading-relaxed max-w-2xl" style={{ color: BODY, lineHeight: 1.8 }}>
+          <p className="text-sm sm:text-base leading-relaxed max-w-2xl" style={{ color: BODY, lineHeight: 1.8 }}>
             An end-to-end integration architecture bridging third-party insurance microsites (GH360, Great Shield, Easi Care, Travel, Motorcycle) and back-office partner portals through reverse-engineered design systems and first-pass executive approval.
           </p>
         </div>
 
         {/* Hero Metadata Grid Strip */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 mt-12 border-t border-gray-100 text-xs">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 mt-12 border-t border-gray-100 text-sm">
           <div>
-            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+            <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
               Role & Ownership
             </span>
             <span className="font-semibold text-[#19244E]">
@@ -138,7 +138,7 @@ export default function SunwayCase({ onBack }: Props) {
             </span>
           </div>
           <div>
-            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+            <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
               Client & Partner
             </span>
             <span className="font-semibold text-[#19244E]">
@@ -146,7 +146,7 @@ export default function SunwayCase({ onBack }: Props) {
             </span>
           </div>
           <div>
-            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+            <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
               Products Integrated
             </span>
             <span className="font-semibold text-[#19244E]">
@@ -154,7 +154,7 @@ export default function SunwayCase({ onBack }: Props) {
             </span>
           </div>
           <div>
-            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
+            <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
               Approval Velocity
             </span>
             <span className="font-semibold text-[#19244E]">
