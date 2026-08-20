@@ -379,7 +379,7 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
                 <div
                   key={title}
                   onClick={() => setActiveZoomImg({ title, img, desc })}
-                  className="bg-[#141b36] border border-white/10 rounded-xl p-3 flex flex-col justify-between group hover:border-[#DB3E8C]/50 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-[0_10px_30px_rgba(219,62,140,0.2)]"
+                  className="bg-[#141b36] border border-white/10 rounded-xl p-3 flex flex-col justify-between group hover:border-[#DB3E8C]/50 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-2xl"
                 >
                   <div className="aspect-[4/3] rounded-lg overflow-hidden border border-white/10 mb-3 bg-[#0d142d] p-1 relative">
                     <img src={img} alt={title} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 rounded" />

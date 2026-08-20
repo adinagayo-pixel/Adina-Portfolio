@@ -29,7 +29,7 @@ import {
   Home, Briefcase, Layers, Archive, Mail,
   ArrowRight, ExternalLink, Globe, Zap,
   Users, CheckCircle, Coins, Bot, LayoutGrid,
-  ArrowUpRight, ChevronRight, Hand, Linkedin, Download,
+  ArrowUpRight, ChevronRight, MousePointer2, Plus, Linkedin, Download,
 } from "lucide-react"
 import SunwayCase from "./components/SunwayCase"
 import GegiCase from "./components/GegiCase"
@@ -1257,9 +1257,9 @@ function FeaturedWorkSection({
                     transform: "translate(-2px, -2px)",
                   }}
                 >
-                  {/* Custom Figma Hand cursor */}
+                  {/* Custom Figma Triangle cursor */}
                   <div className="flex items-start gap-1">
-                    <Hand size={22} className="text-[#DB3E8C] fill-[#DB3E8C] stroke-white stroke-[1.5] drop-shadow-md flex-shrink-0 -rotate-12" />
+                    <MousePointer2 size={20} className="text-[#DB3E8C] fill-[#DB3E8C] stroke-white stroke-[1.5] drop-shadow-md flex-shrink-0" />
                     {/* User badge label */}
                     <div
                       className="ml-0.5 mt-2.5 px-2 py-0.5 rounded-md text-[9px] font-sans font-bold text-white shadow-lg border border-white/20 whitespace-nowrap"
@@ -1462,10 +1462,21 @@ function SketchClipboardIcon({ className = "w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg
 }
 
 function WorkflowSection() {
+  const heroRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end 20%"],
+  })
+
+  // Smooth scroll-driven opacity fade out & parallax lift as user scrolls past
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.4, 0.85], [1, 0.4, 0])
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, -60])
+
   return (
     <div id="process" className="relative">
       {/* ── BLOCK 1: HOW I WORK STATEMENT HERO WITH SUBTLE VIDEO BACKGROUND ── */}
       <section
+        ref={heroRef}
         className="relative overflow-hidden flex flex-col justify-center min-h-[460px] lg:min-h-[520px]"
         style={{ backgroundColor: N }}
       >
@@ -1497,8 +1508,9 @@ function WorkflowSection() {
           </span>
         </div>
 
-        {/* Section headline — static, clean, no entrance animation */}
-        <div
+        {/* Section headline — scroll-driven smooth fade out */}
+        <motion.div
+          style={{ opacity: heroOpacity, y: heroY }}
           className="relative z-20 px-4 sm:px-8 lg:px-16 py-14 sm:py-20 lg:py-24 flex flex-col items-center text-center"
         >
           <p className="font-sans text-[10px] font-semibold tracking-[0.25em] uppercase mb-6 sm:mb-10 text-[#DB3E8C]">
@@ -1522,10 +1534,10 @@ function WorkflowSection() {
             </span>{" "}
             that engineers rarely have to ask follow-up questions.
           </h2>
-        </div>
+        </motion.div>
       </section>
 
-      {/* ── BLOCK 2: 3-PHASE EXECUTION CARDS SECTION (STAGGERED STEP ENTRY + FROSTED NAVY + PIPELINE PULSE) ── */}
+      {/* ── BLOCK 2: 3-PHASE EXECUTION ENGINE (DARK MINIMALIST LIST VERSION) ── */}
       <section
         className="py-14 sm:py-18 lg:py-24 px-4 sm:px-8 lg:px-16 relative z-20 overflow-hidden"
         style={{
@@ -1533,8 +1545,8 @@ function WorkflowSection() {
           borderTop: `1px solid rgba(255,255,255,0.08)`,
         }}
       >
-        <div className="max-w-7xl mx-auto relative">
-          {/* Cards Section Header */}
+        <div className="max-w-6xl mx-auto relative">
+          {/* Section Header */}
           <div className="flex items-center justify-between mb-10 sm:mb-14 border-b border-white/10 pb-4">
             <div className="flex items-center gap-3">
               <span className="w-2 h-2 rounded-full bg-[#DB3E8C] animate-pulse" />
@@ -1547,77 +1559,57 @@ function WorkflowSection() {
             </span>
           </div>
 
-          {/* Connecting Pipeline Line (Desktop) */}
-          <div className="hidden lg:block absolute top-[180px] left-[15%] right-[15%] h-[2px] z-0 pointer-events-none">
-            <motion.div
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.55, ease: "easeInOut" }}
-              className="w-full h-full origin-left bg-gradient-to-r from-[#DB3E8C]/20 via-[#DB3E8C] to-[#DB3E8C]/20"
-              style={{
-                boxShadow: "0 0 12px rgba(219,62,140,0.6)",
-              }}
-            />
-          </div>
-
-          {/* Phase cards — 3-column grid with staggered step entry */}
-          <div className="grid lg:grid-cols-3 gap-6 sm:gap-8 relative z-10">
+          {/* 3-Column Minimalist Grid with Hairline Dividers (No Heavy Cards) */}
+          <div className="grid grid-cols-1 md:grid-cols-3 border-t border-b border-white/10 divide-y md:divide-y-0 md:divide-x divide-white/10">
             {PHASES.map((phase, idx) => {
               const Icon = phase.Icon
-              const delays = [0, 0.15, 0.3]
-              const currentDelay = delays[idx] || 0
+              const currentDelay = idx * 0.15
 
               return (
                 <motion.div
                   key={phase.num}
-                  initial={{ opacity: 0, y: 40 }}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.55, delay: currentDelay, ease: [0.21, 0.47, 0.32, 0.98] }}
-                  whileHover={{ y: -6 }}
-                  className="bg-[#16203D]/90 backdrop-blur-md border border-white/10 hover:border-[#DB3E8C] rounded-2xl p-6 sm:p-8 transition-colors duration-300 flex flex-col justify-between min-h-[300px] sm:min-h-[340px] shadow-xl hover:shadow-[0_16px_36px_rgba(219,62,140,0.18)] group relative overflow-hidden cursor-default"
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.5, delay: currentDelay, ease: [0.21, 0.47, 0.32, 0.98] }}
+                  className="group p-6 sm:p-8 flex flex-col justify-between transition-colors duration-300 hover:bg-white/[0.02] relative cursor-default"
                 >
-                  {/* Subtle Card Top Accent Glow on Hover */}
-                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#DB3E8C] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  {/* Subtle Accent Highlight Line on Top Hover */}
+                  <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#DB3E8C] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                   <div>
-                    {/* Header: Animated Step Index & Icon */}
-                    <div className="flex items-center justify-between mb-5 sm:mb-6">
+                    {/* Header: Step Number & Icon */}
+                    <div className="flex items-center justify-between mb-6">
                       <div className="flex items-center gap-2.5">
-                        <motion.span
-                          initial={{ opacity: 0, y: -12 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.4, delay: currentDelay + 0.2 }}
-                          className="font-mono text-base sm:text-lg font-bold tracking-wider text-[#DB3E8C] px-2.5 py-1 rounded-md bg-[#DB3E8C]/15 border border-[#DB3E8C]/30 shadow-sm"
-                        >
+                        <span className="font-sans text-sm sm:text-base font-bold tracking-wider text-[#DB3E8C] px-2.5 py-1 rounded-md bg-[#DB3E8C]/15 border border-[#DB3E8C]/30 shadow-sm">
                           {phase.num}
-                        </motion.span>
+                        </span>
                         <span className="font-sans text-[9px] font-bold tracking-widest uppercase text-white/40">
                           PHASE {phase.num}
                         </span>
                       </div>
-                      <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-[#DB3E8C]/40 group-hover:bg-[#DB3E8C]/10 transition-colors">
-                        <Icon size={16} className="text-white/70 group-hover:text-[#DB3E8C] transition-colors" />
+                      <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-[#DB3E8C]/40 group-hover:bg-[#DB3E8C]/10 transition-colors">
+                        <Icon size={15} className="text-white/70 group-hover:text-[#DB3E8C] transition-colors" />
                       </div>
                     </div>
 
-                    <h3 className="text-lg sm:text-xl font-bold text-white mb-1.5 group-hover:text-white transition-colors">
+                    {/* Phase Title & Subtitle */}
+                    <h3 className="text-lg sm:text-xl font-bold text-white mb-1.5 group-hover:text-[#DB3E8C] transition-colors duration-200">
                       {phase.phase}
                     </h3>
-                    <p className="font-sans text-xs tracking-widest text-[#DB3E8C]/90 font-semibold uppercase mb-4">
+                    <p className="font-sans text-[11px] tracking-widest text-[#DB3E8C]/90 font-semibold uppercase mb-4">
                       {phase.sub}
                     </p>
-                    <p className="text-xs sm:text-sm leading-relaxed text-white/80 mb-6 font-sans">
+                    <p className="text-xs sm:text-sm leading-relaxed text-white/75 font-sans mb-6">
                       {phase.desc}
                     </p>
                   </div>
-                  
-                  <div className="mt-auto pt-4 sm:pt-5 border-t border-white/10">
-                    <p className="font-sans text-[9.5px] sm:text-[10px] font-bold tracking-widest uppercase text-white/40 mb-2.5">
-                      Tools & Artifacts
-                    </p>
+
+                  {/* Tools & Artifacts Section */}
+                  <div className="pt-4 border-t border-white/10">
+                    <span className="font-sans text-[9px] sm:text-[10px] font-bold tracking-widest uppercase text-white/40 mb-2.5 block">
+                      TOOLS & ARTIFACTS
+                    </span>
                     <div className="flex flex-wrap gap-1.5">
                       {phase.tools.map((tool) => (
                         <span
@@ -1640,6 +1632,24 @@ function WorkflowSection() {
 }
 
 // ─── PROJECT ARCHIVE ───────────────────────────────────────────────────────────
+const PROJECT_PREVIEWS: Record<number, string> = {
+  1: ci1,
+  2: ci2,
+  3: ci3,
+  4: ci4,
+  5: projectThumb1,
+  6: mykawan1,
+  7: projectThumb5,
+  8: projectThumb2,
+  9: anlene1,
+  10: anlene2,
+  11: anlene3,
+  12: anlene4,
+  13: mykawan3,
+  14: mykawan4,
+  15: ci4,
+}
+
 const STATUS_COLOR: Record<string, string> = {
   "LIVE":          "#22c55e",
   "LIVE INTERNAL": "#3b82f6",
@@ -1677,6 +1687,7 @@ function ProjectArchiveSection() {
   const hasMore = filtered.length > DEFAULT_VISIBLE
 
   const [hoveredId, setHoveredId] = useState<number | null>(null)
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
 
   return (
@@ -1733,7 +1744,7 @@ function ProjectArchiveSection() {
         </div>
       </div>
 
-      {/* Brand Bento Grid */}
+      {/* Catalog List View */}
       <AnimatePresence mode="wait">
         <motion.div
           key={activeCat}
@@ -1742,87 +1753,99 @@ function ProjectArchiveSection() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
         >
-          <div className="px-4 sm:px-8 lg:px-16 py-8 sm:py-12">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-              {visible.map((project) => {
+          <div className="px-4 sm:px-8 lg:px-16 py-6 sm:py-10">
+            <div className="divide-y divide-[#19244E]/10 border-t border-b border-[#19244E]/10">
+              {visible.map((project, idx) => {
                 const isHovered = hoveredId === project.id
                 const statusColor = STATUS_COLOR[project.status] ?? `${N}80`
-                
+                const formattedNum = String(project.id).padStart(2, "0")
+                const previewImg = PROJECT_PREVIEWS[project.id]
+
                 return (
                   <motion.div
                     key={project.id}
-                    initial={{ opacity: 0, y: 15 }}
+                    initial={{ opacity: 0, y: 10 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.35, ease: "easeOut" }}
-                    onMouseEnter={() => setHoveredId(project.id)}
+                    transition={{ duration: 0.25, delay: idx * 0.03 }}
+                    onMouseEnter={(e) => {
+                      setHoveredId(project.id)
+                      const rect = e.currentTarget.getBoundingClientRect()
+                      setMousePos({
+                        x: e.clientX - rect.left,
+                        y: e.clientY - rect.top,
+                      })
+                    }}
+                    onMouseMove={(e) => {
+                      const rect = e.currentTarget.getBoundingClientRect()
+                      setMousePos({
+                        x: e.clientX - rect.left,
+                        y: e.clientY - rect.top,
+                      })
+                    }}
                     onMouseLeave={() => setHoveredId(null)}
                     onClick={() => setSelectedProject(project)}
-                    className="relative rounded-xl border p-4 sm:p-6 flex flex-col justify-between min-h-[170px] sm:h-[180px] overflow-hidden transition-all duration-300 hover:shadow-[0_14px_35px_rgba(25,36,78,0.2)] hover:-translate-y-1 cursor-pointer select-none"
-                    style={{
-                      borderColor: isHovered ? "rgba(219, 62, 140, 0.4)" : HAIR,
-                      backgroundColor: isHovered ? "transparent" : "rgba(255, 255, 255, 0.85)",
-                      background: isHovered ? getGradient(project.id) : undefined,
-                      color: isHovered ? W : N,
-                    }}
+                    className="group relative py-4 sm:py-5 px-3 sm:px-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-6 transition-all duration-200 cursor-pointer select-none hover:bg-[#19244E]/[0.03] rounded-xl"
                   >
-                    {/* Background watermarked ID */}
-                    <div 
-                      className="absolute right-4 sm:right-6 top-6 sm:top-7 font-sans text-5xl sm:text-6xl font-bold tracking-tight select-none transition-colors duration-200 pointer-events-none z-0"
-                      style={{ color: isHovered ? "rgba(255,255,255,0.08)" : "rgba(25, 36, 78, 0.04)" }}
-                    >
-                      {String(project.id).padStart(2, "0")}
-                    </div>
-
-                    {/* Top Row: Client & Year */}
-                    <div className="relative z-10 flex items-center justify-between">
-                      <span 
-                        className="font-sans text-xs font-bold tracking-[0.2em] uppercase transition-colors duration-200"
-                        style={{ color: isHovered ? "rgba(255,255,255,0.7)" : `${N}90` }}
-                      >
-                        {project.client.split(" × ")[0]}
-                      </span>
-                      <span 
-                        className="font-sans text-xs font-semibold transition-colors duration-200"
-                        style={{ color: isHovered ? "rgba(255,255,255,0.5)" : `${N}50` }}
-                      >
-                        {project.year}
-                      </span>
-                    </div>
-
-                    {/* Middle Row: Project Name */}
-                    <div className="relative z-10 my-2 sm:my-3">
-                      <h4 
-                        className="font-display text-base sm:text-lg lg:text-xl font-semibold tracking-tight leading-snug transition-colors duration-200"
-                        style={{ color: isHovered ? W : N }}
-                      >
-                        {project.name}
-                      </h4>
-                    </div>
-
-                    {/* Bottom Row: Category & Status */}
-                    <div 
-                      className="relative z-10 flex items-center justify-between pt-2.5 sm:pt-3 border-t transition-colors duration-200"
-                      style={{ borderColor: isHovered ? "rgba(255,255,255,0.15)" : "rgba(25, 36, 78, 0.05)" }}
-                    >
-                      <span 
-                        className="font-sans text-[10px] sm:text-xs font-bold tracking-wider uppercase truncate max-w-[130px] sm:max-w-[160px] transition-colors duration-200"
-                        style={{ color: isHovered ? "rgba(255,255,255,0.8)" : `${N}70` }}
-                      >
-                        {project.category}
-                      </span>
-                      
-                      <div className="flex items-center gap-2 flex-shrink-0">
-                        <a
-                          href={getWhatsAppLink(project.name)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          className="font-sans text-[10px] sm:text-xs font-bold tracking-wider uppercase transition-colors duration-200 cursor-pointer hover:underline"
-                          style={{ color: isHovered ? "rgba(255,255,255,0.7)" : `${N}50` }}
+                    {/* Hover Image Preview Overlay following mouse pointer */}
+                    <AnimatePresence>
+                      {isHovered && previewImg && (
+                        <motion.div
+                          initial={{ opacity: 0, scale: 0.8, x: mousePos.x, y: mousePos.y - 140 }}
+                          animate={{
+                            opacity: 1,
+                            scale: 1,
+                            x: mousePos.x,
+                            y: mousePos.y - 140,
+                          }}
+                          exit={{ opacity: 0, scale: 0.8, x: mousePos.x, y: mousePos.y - 140 }}
+                          transition={{
+                            type: "spring",
+                            stiffness: 220,
+                            damping: 20,
+                            mass: 0.4,
+                          }}
+                          className="hidden md:block absolute left-0 top-0 z-40 pointer-events-none -translate-x-1/2"
                         >
-                          💬 Ask ↗
-                        </a>
-                        <div className="flex items-center gap-1">
+                          <div className="w-44 sm:w-52 aspect-[3/4] rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(25,36,78,0.45)] bg-[#141b36]">
+                            <img
+                              src={previewImg}
+                              alt={project.name}
+                              className="w-full h-full object-cover rounded-2xl"
+                            />
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                    {/* Left: Number + Project Name + Client/Category */}
+                    <div className="flex items-center gap-4 sm:gap-8 flex-1 min-w-0">
+                      <span className="font-sans text-sm sm:text-base font-bold tracking-wider text-[#19244E]/40 group-hover:text-[#DB3E8C] transition-colors duration-200 shrink-0">
+                        {formattedNum}
+                      </span>
+                      <div className="min-w-0 flex-1">
+                        <h4 className="font-display text-base sm:text-lg lg:text-xl font-semibold text-[#19244E] group-hover:text-[#DB3E8C] transition-colors duration-200 truncate">
+                          {project.name}
+                        </h4>
+                        <div className="flex items-center gap-2 mt-0.5 sm:mt-1">
+                          <span className="font-sans text-[11px] sm:text-xs text-[#19244E]/60 font-medium truncate">
+                            {project.client}
+                          </span>
+                          <span className="text-[#19244E]/30 hidden sm:inline">•</span>
+                          <span className="font-sans text-[11px] sm:text-xs text-[#19244E]/50 hidden sm:inline truncate">
+                            {project.category}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Right: Year, Status Badge, WhatsApp link & Plus (+) icon */}
+                    <div className="flex items-center justify-between sm:justify-end gap-3 sm:gap-6 shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-[#19244E]/5">
+                      <div className="flex items-center gap-3">
+                        <span className="font-sans text-xs text-[#19244E]/50 font-medium hidden md:inline">
+                          {project.year}
+                        </span>
+                        
+                        {/* Status Badge */}
+                        <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#19244E]/[0.04] border border-[#19244E]/10">
                           <span className="relative flex h-1.5 w-1.5">
                             <span 
                               className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
@@ -1833,13 +1856,31 @@ function ProjectArchiveSection() {
                               style={{ backgroundColor: statusColor }}
                             />
                           </span>
-                          <span 
-                            className="font-sans text-[10px] sm:text-xs font-bold tracking-widest uppercase transition-colors duration-200"
-                            style={{ color: isHovered ? W : statusColor }}
-                          >
+                          <span className="font-sans text-[9px] sm:text-[10px] font-bold tracking-widest uppercase text-[#19244E]/80">
                             {project.status}
                           </span>
                         </div>
+
+                        {/* WhatsApp Quick Link */}
+                        <a
+                          href={getWhatsAppLink(project.name)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="font-sans text-[10px] sm:text-xs font-bold tracking-wider uppercase text-[#19244E]/50 hover:text-[#DB3E8C] transition-colors p-1"
+                          title="Ask via WhatsApp"
+                        >
+                          💬 Ask ↗
+                        </a>
+                      </div>
+
+                      {/* Plus Icon (+) - Hides preview image when hovered */}
+                      <div 
+                        onMouseEnter={(e) => { e.stopPropagation(); setHoveredId(null); }}
+                        onMouseMove={(e) => { e.stopPropagation(); setHoveredId(null); }}
+                        className="w-8 h-8 rounded-full border border-[#19244E]/15 group-hover:border-[#DB3E8C] group-hover:bg-[#DB3E8C] flex items-center justify-center transition-all duration-200 text-[#19244E]/70 group-hover:text-white shrink-0"
+                      >
+                        <Plus size={16} className="group-hover:rotate-90 transition-transform duration-300" />
                       </div>
                     </div>
                   </motion.div>
