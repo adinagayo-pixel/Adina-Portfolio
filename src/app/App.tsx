@@ -339,6 +339,71 @@ function FloatingDock({ activeSection }: { activeSection: string }) {
   )
 }
 
+// ─── Proximity Letter Wave Component (Fast & Smooth Top Studio Micro-Interaction) ─────────
+const ProximityLetter = ({
+  char,
+  color,
+  mouseX,
+}: {
+  char: string
+  color: string
+  mouseX: number | null
+}) => {
+  const letterRef = useRef<HTMLSpanElement>(null)
+  const [offsetY, setOffsetY] = useState(0)
+  const [rotate, setRotate] = useState(0)
+
+  useEffect(() => {
+    if (mouseX === null || !letterRef.current) {
+      setOffsetY(0)
+      setRotate(0)
+      return
+    }
+
+    const rect = letterRef.current.getBoundingClientRect()
+    const letterCenterX = rect.left + rect.width / 2
+    const dist = Math.abs(mouseX - letterCenterX)
+    const maxRadius = 90
+
+    if (dist < maxRadius) {
+      const factor = Math.cos((dist / maxRadius) * (Math.PI / 2))
+      setOffsetY(-15 * factor)
+      setRotate(-4.5 * factor * (mouseX < letterCenterX ? -1 : 1))
+    } else {
+      setOffsetY(0)
+      setRotate(0)
+    }
+  }, [mouseX])
+
+  return (
+    <motion.span
+      ref={letterRef}
+      className="inline-block"
+      style={{ color }}
+      animate={{ y: offsetY, rotate }}
+      transition={{ type: "spring", stiffness: 520, damping: 26, mass: 0.55 }}
+    >
+      {char === " " ? "\u00A0" : char}
+    </motion.span>
+  )
+}
+
+const WavyHeadlineText = ({ text, color }: { text: string; color: string }) => {
+  const [mouseX, setMouseX] = useState<number | null>(null)
+
+  return (
+    <div
+      onMouseMove={(e) => setMouseX(e.clientX)}
+      onMouseLeave={() => setMouseX(null)}
+      className="block cursor-pointer select-none py-1"
+    >
+      {text.split("").map((char, index) => (
+        <ProximityLetter key={index} char={char} color={color} mouseX={mouseX} />
+      ))}
+    </div>
+  )
+}
+
 // ─── Hero Spring Config ───────────────────────────────────────────────────────
 const HERO_SPRING = { type: "tween" as const, ease: [0.16, 1, 0.3, 1] as const, duration: 0.7 }
 
@@ -349,16 +414,12 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
   const HELLOS = ["Hi, it's Dina!", "Halo, saya Dina!", "안녕하세요, 디나예요!"]
 
   useEffect(() => {
-    const id = setInterval(() => setTick((t) => (t + 1) % HELLOS.length), 2800)
+    const id = setInterval(() => setTick((t) => (t + 1) % HELLOS.length), 3200)
     return () => clearInterval(id)
   }, [])
 
   return (
-    <section
-      id="home"
-      className="relative flex flex-col"
-      style={{ backgroundColor: W }}
-    >
+    <section className="relative w-full overflow-hidden bg-white">
       {/* ── Top nav bar ── */}
       <div
         className="flex items-center justify-between px-5 py-4 lg:px-16 lg:py-6"
@@ -415,6 +476,34 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
         </div>
 
         <div className="flex items-center gap-2.5 sm:gap-4">
+          {/* Email Icon Button with Hover Email Tooltip & Click-to-Mailto */}
+          <div className="relative group">
+            <a
+              href="mailto:adinagayo@gmail.com"
+              aria-label="Email Adina Fayza Gayo"
+              className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-xl transition-all duration-150 cursor-pointer shadow-sm"
+              style={{ border: `1px solid ${HAIR}`, color: N, backgroundColor: "transparent" }}
+              onMouseEnter={(e) => {
+                ;(e.currentTarget as HTMLElement).style.borderColor = N
+                ;(e.currentTarget as HTMLElement).style.backgroundColor = N
+                ;(e.currentTarget as HTMLElement).style.color = W
+              }}
+              onMouseLeave={(e) => {
+                ;(e.currentTarget as HTMLElement).style.borderColor = HAIR
+                ;(e.currentTarget as HTMLElement).style.backgroundColor = "transparent"
+                ;(e.currentTarget as HTMLElement).style.color = N
+              }}
+            >
+              <Mail size={16} />
+            </a>
+
+            {/* Hover Tooltip showing email address */}
+            <div className="absolute right-0 top-full mt-2 hidden group-hover:flex items-center gap-2 bg-[#19244E] text-white px-3 py-1.5 rounded-lg shadow-xl text-xs font-mono font-medium whitespace-nowrap z-50 pointer-events-none transition-all duration-200">
+              <span className="w-2 h-2 rounded-full bg-[#DB3E8C]" />
+              <span>adinagayo@gmail.com</span>
+            </div>
+          </div>
+
           <a
             href="/resume-adina-fayza-gayo.pdf"
             download="ADINA FAYZA GAYO Resume 2026.pdf"
@@ -442,224 +531,304 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
       </div>
 
       {/* ── Sliding viewports wrapper ── */}
-      <div className="overflow-hidden relative">
+      <div className="overflow-hidden relative bg-gradient-to-b from-[#F8FAFC] via-[#F8FAFC]/50 to-white">
+
         <motion.div
           animate={{ x: isAtWork ? "0%" : "-50%" }}
           transition={HERO_SPRING}
-          className="flex w-[200%]"
+          className="flex w-[200%] relative z-10"
         >
-          {/* ── PANEL A: AT WORK (Left 65%: Bold Upper Title + CTAs, Right 35%: Avatar + Nav + Bio) ── */}
-          <div className="w-1/2 grid lg:grid-cols-12 gap-8 lg:gap-12 items-center px-4 sm:px-8 lg:px-20 pt-10 lg:pt-20 pb-16 lg:pb-24 min-h-[calc(100vh-140px)] flex-shrink-0">
-            {/* Left 7 Cols: Massive Headline & Compact Button */}
-            <div className="lg:col-span-7 flex flex-col">
-              <p className="font-sans text-xs sm:text-sm font-bold tracking-[0.2em] sm:tracking-[0.25em] text-[#DB3E8C] uppercase mb-3 sm:mb-4">
-                Product Designer · System Logic Architect
-              </p>
-              <h1
-                className="font-display font-semibold leading-[0.92] sm:leading-[0.88] tracking-tight uppercase mb-6 sm:mb-7"
-                style={{ fontSize: "clamp(2.2rem, 6.5vw, 8rem)", color: N }}
+          {/* ── PANEL A: AT WORK ── */}
+          <div className="w-1/2 flex flex-col justify-between px-4 sm:px-8 lg:px-20 pt-4 sm:pt-6 lg:pt-8 pb-20 sm:pb-24 lg:pb-28 min-h-[calc(100vh-140px)] flex-shrink-0">
+            {/* Centered Editorial Headline */}
+            <div className="flex flex-col items-center max-w-5xl mx-auto my-auto w-full">
+              <motion.h1
+                initial={{ opacity: 0, y: 22 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+                className="font-normal leading-[0.96] sm:leading-[0.90] tracking-tight text-center group select-none cursor-default"
+                style={{
+                  fontSize: "clamp(2.8rem, 7vw, 7.8rem)",
+                  fontFamily: "'Instrument Serif', Georgia, serif",
+                }}
               >
-                ENTERPRISE<br />
-                DESIGN.<br />
-                <span style={{ color: C }}>STARTUP</span><br />
-                <span style={{ color: C }}>SPEED.</span>
-              </h1>
+                <WavyHeadlineText text="Smart Systems." color="#0F172A" />
+                <WavyHeadlineText text="Thoughtful Interfaces." color="#DB2777" />
+              </motion.h1>
 
-              {/* Compact Button */}
-              <div className="flex items-center gap-3.5 mb-6 lg:mb-0">
-                <button
-                  onClick={() => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })}
-                  className="px-5 sm:px-6 py-3 sm:py-3.5 text-xs font-bold tracking-wider uppercase text-white transition-all duration-150 hover:opacity-90 shadow-sm flex items-center gap-2 cursor-pointer"
-                  style={{ backgroundColor: N, borderRadius: "6px" }}
+              {/* Bio Block with Photo on Left & Bio Text + Greeting on Right */}
+              <div className="mt-6 sm:mt-8 max-w-3xl mx-auto flex flex-col sm:flex-row items-center sm:items-start gap-5 sm:gap-7 text-center sm:text-left">
+                {/* Small Photo on Left (Rotate -3deg, No Border Frame) */}
+                <div
+                  className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden shadow-md shrink-0 transition-transform duration-300 hover:rotate-0 hover:scale-105"
+                  style={{ transform: "rotate(-3deg)" }}
                 >
-                  Selected Work <ArrowRight size={13} />
-                </button>
-              </div>
-            </div>
-
-            {/* Right 5 Cols: Photo Avatar, Quick Nav & Bio */}
-            <div className="lg:col-span-5 flex flex-col gap-6 pt-2">
-              <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                {/* Photo Avatar Card with Pastel Tint */}
-                <div className="relative w-[160px] sm:w-[220px] aspect-square rounded-2xl overflow-hidden bg-[#E2E8F0] shadow-lg border border-[#19244E]/10 flex-shrink-0 group">
                   <ImageWithFallback
                     src={adinaPhotoAbout}
                     alt="Adina Fayza Gayo - At Work"
-                    className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-full object-cover object-top rounded-2xl"
                   />
-                  {/* Handwritten / Script Note Accent with Auto Ticker (EN, ID, KR) */}
-                  <div
-                    className="absolute bottom-2 right-2 bg-white/95 backdrop-blur-sm px-2.5 sm:px-3 py-1 rounded-md shadow-md border border-[#19244E]/10 overflow-hidden"
-                    style={{ transform: "rotate(-3deg)" }}
-                  >
-                    <AnimatePresence mode="wait">
-                      <motion.span
-                        key={tick}
-                        initial={{ y: 5, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        exit={{ y: -5, opacity: 0 }}
-                        transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
-                        className="font-serif italic text-xs font-bold text-[#DB3E8C] whitespace-nowrap block"
-                      >
-                        {HELLOS[tick]}
-                      </motion.span>
-                    </AnimatePresence>
-                  </div>
                 </div>
 
-                {/* Live Status / Current Scope Column */}
-                <div className="flex flex-col gap-2.5 sm:gap-3 text-xs sm:text-sm font-sans tracking-wide text-[#19244E] pt-0.5 max-w-full sm:max-w-[240px]">
-                  <div>
-                    <span className="text-xs font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
-                      CURRENTLY
+                {/* Bio Text & Greeting merged */}
+                <div className="flex-1">
+                  <p className="font-sans text-sm sm:text-base leading-relaxed text-[#19244E]/85 mb-5">
+                    <span className="font-bold text-[#DB3E8C] inline-flex items-center gap-1 mr-1.5">
+                      <AnimatePresence mode="wait">
+                        <motion.span
+                          key={tick}
+                          initial={{ y: 2, opacity: 0 }}
+                          animate={{ y: 0, opacity: 1 }}
+                          exit={{ y: -2, opacity: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="inline-block"
+                        >
+                          {HELLOS[tick]}
+                        </motion.span>
+                      </AnimatePresence>
                     </span>
-                    <span className="font-semibold text-xs sm:text-sm leading-snug text-[#19244E]/85 block">
-                      Designing complex fintech & enterprise logic
-                    </span>
-                  </div>
+                    I’m a product designer focused on complex B2B platforms and embedded fintech. Most of my time goes into making messy product logic simple, mapping out edge cases, and giving developers specs they can build without second-guessing.
+                  </p>
 
-                  <div>
-                    <span className="text-xs font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
-                      RESEARCHING
-                    </span>
-                    <span className="font-semibold text-xs sm:text-sm leading-snug text-[#19244E]/85 block">
-                      Design decision traceability & cross-functional frameworks
-                    </span>
-                  </div>
-
-                  <div>
-                    <span className="text-xs font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
-                      OPEN FOR
-                    </span>
-                    <span className="font-semibold text-xs sm:text-sm leading-snug text-[#19244E]/85 block">
-                      In-House Squads · Jakarta, ID (Remote / Relocation)
-                    </span>
+                  {/* Action Buttons Row */}
+                  <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 sm:gap-6">
+                    <button
+                      onClick={() => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })}
+                      className="px-7 py-3.5 text-xs font-bold tracking-wider uppercase text-white transition-all duration-150 hover:opacity-90 shadow-sm flex items-center gap-2 cursor-pointer"
+                      style={{ backgroundColor: N, borderRadius: "6px" }}
+                    >
+                      Selected Work <ArrowRight size={13} />
+                    </button>
+                    <button
+                      onClick={onReadMore}
+                      className="text-xs sm:text-sm font-sans font-bold tracking-wider uppercase text-[#DB3E8C] hover:underline transition-all flex items-center gap-1.5 focus:outline-none cursor-pointer py-1"
+                    >
+                      View Full Profile & CV <ChevronRight size={14} />
+                    </button>
                   </div>
                 </div>
               </div>
+            </div>
 
-              {/* Bio Block Underneath Avatar */}
-              <div className="pt-2 border-t border-[#19244E]/10">
-                <h3 className="font-display font-black text-lg sm:text-xl tracking-tight uppercase text-[#19244E] mb-2">
-                  ADINA FAYZA GAYO
-                </h3>
-                <p className="font-sans text-sm sm:text-base leading-relaxed text-[#19244E]/85 w-full mb-3">
-                  I design complex B2B platforms and embedded insurance tools. Most of my day is spent untangling messy product logic, covering edge cases, and making sure developers have crystal-clear specs to build from.
-                </p>
-                <button
-                  onClick={onReadMore}
-                  className="text-xs sm:text-sm font-sans font-bold tracking-wider uppercase text-[#DB3E8C] hover:underline transition-all flex items-center gap-1.5 focus:outline-none cursor-pointer py-1"
-                >
-                  View Full Profile & CV <ChevronRight size={14} />
-                </button>
+            {/* Hairline Divider & Bottom Metadata Strip */}
+            <div className="w-full pt-5 border-t border-[#19244E]/10">
+              <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+                <div className="flex items-center gap-2.5">
+                  <span className="w-2 h-2 rounded-full bg-[#DB3E8C] shrink-0" />
+                  <div>
+                    <span className="text-[9.5px] font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
+                      CURRENTLY
+                    </span>
+                    <span className="font-semibold text-xs sm:text-sm text-[#19244E]/85">
+                      Designing complex fintech & enterprise logic
+                    </span>
+                  </div>
+                </div>
+
+                <div className="hidden sm:block h-6 w-px bg-[#19244E]/10" />
+
+                <div className="flex items-center gap-2.5">
+                  <span className="w-2 h-2 rounded-full bg-[#3b82f6] shrink-0" />
+                  <div>
+                    <span className="text-[9.5px] font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
+                      OPEN FOR
+                    </span>
+                    <span className="font-semibold text-xs sm:text-sm text-[#19244E]/85">
+                      In-House Squads · Jakarta (Remote / Relocation)
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* ── PANEL B: IN LIFE (Left 65%: Bold Upper Title + CTAs, Right 35%: Avatar + Nav + Bio) ── */}
-          <div className="w-1/2 grid lg:grid-cols-12 gap-8 lg:gap-12 items-center px-4 sm:px-8 lg:px-20 pt-10 lg:pt-20 pb-16 lg:pb-24 min-h-[calc(100vh-140px)] flex-shrink-0">
-            {/* Left 7 Cols: Massive Headline & Compact Buttons */}
-            <div className="lg:col-span-7 flex flex-col">
-              <p className="font-sans text-xs sm:text-sm font-bold tracking-[0.2em] sm:tracking-[0.25em] text-[#DB3E8C] uppercase mb-3 sm:mb-4">
-                Off The Clock · Real Human
-              </p>
-              <h1
-                className="font-display font-semibold leading-[0.92] sm:leading-[0.88] tracking-tight uppercase mb-6 sm:mb-7"
-                style={{ fontSize: "clamp(2.2rem, 6.5vw, 8rem)", color: N }}
+          {/* ── PANEL B: IN LIFE ── */}
+          <div className="w-1/2 flex flex-col justify-between px-4 sm:px-8 lg:px-20 pt-4 sm:pt-6 lg:pt-8 pb-20 sm:pb-24 lg:pb-28 min-h-[calc(100vh-140px)] flex-shrink-0">
+            {/* Centered Editorial Headline */}
+            <div className="flex flex-col items-center max-w-5xl mx-auto my-auto w-full">
+              <motion.h1
+                initial={{ opacity: 0, y: 22 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+                className="font-normal leading-[0.96] sm:leading-[0.90] tracking-tight text-center group select-none cursor-default"
+                style={{
+                  fontSize: "clamp(2.8rem, 7vw, 7.8rem)",
+                  fontFamily: "'Instrument Serif', Georgia, serif",
+                }}
               >
-                PLOT<br />
-                TWISTS.<br />
-                <span style={{ color: C }}>FRONT ROW</span><br />
-                <span style={{ color: C }}>CROWDS.</span>
-              </h1>
+                <WavyHeadlineText text="Plot Twists. Live Acoustics." color="#0F172A" />
+                <WavyHeadlineText text="Front Row Crowds" color="#DB2777" />
+              </motion.h1>
 
-              {/* Compact Button */}
-              <div className="flex items-center gap-3.5 flex-wrap mb-6 lg:mb-0">
-                <a
-                  href="mailto:adinagayo@gmail.com"
-                  className="px-5 sm:px-6 py-3 sm:py-3.5 text-xs font-bold tracking-wider uppercase text-white transition-all duration-150 hover:opacity-90 shadow-sm flex items-center gap-2"
-                  style={{ backgroundColor: C, borderRadius: "6px" }}
+              {/* Bio Block with Photo on Left & Bio Text + Greeting on Right */}
+              <div className="mt-8 sm:mt-10 max-w-3xl mx-auto flex flex-col sm:flex-row items-center sm:items-start gap-5 sm:gap-7 text-center sm:text-left">
+                {/* Small Photo on Left (Rotate -3deg, No Border Frame) */}
+                <div
+                  className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden shadow-md shrink-0 transition-transform duration-300 hover:rotate-0 hover:scale-105"
+                  style={{ transform: "rotate(-3deg)" }}
                 >
-                  Let's grab coffee <ArrowUpRight size={13} />
-                </a>
+                  <ImageWithFallback
+                    src={adinaPhotoAbout}
+                    alt="Adina Fayza Gayo - At Work"
+                    className="w-full h-full object-cover object-top rounded-2xl"
+                  />
+                </div>
+
+                {/* Bio Text & Greeting merged */}
+                <div className="flex-1">
+                  <p className="font-sans text-sm sm:text-base leading-relaxed text-[#19244E]/85 mb-6">
+                    <span className="font-bold text-[#DB3E8C] inline-flex items-center gap-1 mr-1.5">
+                      <AnimatePresence mode="wait">
+                        <motion.span
+                          key={tick}
+                          initial={{ y: 2, opacity: 0 }}
+                          animate={{ y: 0, opacity: 1 }}
+                          exit={{ y: -2, opacity: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="inline-block"
+                        >
+                          {HELLOS[tick]}
+                        </motion.span>
+                      </AnimatePresence>
+                    </span>
+                    I’m a product designer focused on complex B2B platforms and embedded fintech. Most of my time goes into making messy product logic simple, mapping out edge cases, and giving developers specs they can build without second-guessing.
+                  </p>
+
+                  {/* Action Buttons Row */}
+                  <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 sm:gap-6">
+                    <button
+                      onClick={() => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })}
+                      className="px-7 py-3.5 text-xs font-bold tracking-wider uppercase text-white transition-all duration-150 hover:opacity-90 shadow-sm flex items-center gap-2 cursor-pointer"
+                      style={{ backgroundColor: N, borderRadius: "6px" }}
+                    >
+                      Selected Work <ArrowRight size={13} />
+                    </button>
+                    <button
+                      onClick={onReadMore}
+                      className="text-xs sm:text-sm font-sans font-bold tracking-wider uppercase text-[#DB3E8C] hover:underline transition-all flex items-center gap-1.5 focus:outline-none cursor-pointer py-1"
+                    >
+                      View Full Profile & CV <ChevronRight size={14} />
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Right 5 Cols: Photo Avatar, Quick Nav & Bio */}
-            <div className="lg:col-span-5 flex flex-col gap-6 pt-2">
-              <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                {/* Photo Avatar Card with Pastel Tint */}
-                <div className="relative w-[160px] sm:w-[220px] aspect-square rounded-2xl overflow-hidden bg-[#FCE7F3] shadow-lg border border-[#19244E]/10 flex-shrink-0 group">
-                  <ImageWithFallback
-                    src={adinaPhotoLife}
-                    alt="Adina Fayza Gayo - In Life"
-                    className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                  />
-                  {/* Handwritten / Script Note Accent */}
-                  <div
-                    className="absolute bottom-2 right-2 bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-md shadow-md border border-[#19244E]/10"
-                    style={{ transform: "rotate(-3deg)" }}
-                  >
-                    <span className="font-serif italic text-xs font-bold text-[#DB3E8C] whitespace-nowrap block">
-                      Spreadsheet wizard 🍵
+            {/* Hairline Divider & Bottom Metadata Strip */}
+            <div className="w-full pt-6 border-t border-[#19244E]/10">
+              <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+                <div className="flex items-center gap-2.5">
+                  <span className="w-2 h-2 rounded-full bg-[#DB3E8C] shrink-0" />
+                  <div>
+                    <span className="text-[9.5px] font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
+                      CURRENTLY
+                    </span>
+                    <span className="font-semibold text-xs sm:text-sm text-[#19244E]/85">
+                      Designing complex fintech & enterprise logic
                     </span>
                   </div>
                 </div>
 
-                {/* Live Status / Personal Focus Column */}
-                <div className="flex flex-col gap-2.5 text-xs sm:text-sm font-sans tracking-wide text-[#19244E] pt-0.5 max-w-full sm:max-w-[260px]">
-                  <div>
-                    <span className="text-xs font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
-                      ON ROTATION
-                    </span>
-                    <span className="font-semibold text-xs sm:text-sm leading-snug text-[#19244E]/85 block">
-                      Detective K-Dramas & local concert gigs
-                    </span>
-                  </div>
+                <div className="hidden sm:block h-6 w-px bg-[#19244E]/10" />
 
+                <div className="flex items-center gap-2.5">
+                  <span className="w-2 h-2 rounded-full bg-[#3b82f6] shrink-0" />
                   <div>
-                    <span className="text-xs font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
-                      CURRENT OBSESSION
+                    <span className="text-[9.5px] font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
+                      OPEN FOR
                     </span>
-                    <span className="font-semibold text-xs sm:text-sm leading-snug text-[#19244E]/85 block">
-                      Tracking thriller reads & Sudoku records
-                    </span>
-                  </div>
-
-                  <div>
-                    <span className="text-xs font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
-                      SUPERPOWER
-                    </span>
-                    <span className="font-semibold text-xs sm:text-sm leading-snug text-[#19244E]/85 block">
-                      Multi-currency, color-coded travel itineraries
-                    </span>
-                  </div>
-
-                  <div>
-                    <span className="text-xs font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
-                      FUEL
-                    </span>
-                    <span className="font-semibold text-xs sm:text-sm leading-snug text-[#19244E]/85 block">
-                      Zero-sugar iced Americano & bitter matcha
+                    <span className="font-semibold text-xs sm:text-sm text-[#19244E]/85">
+                      In-House Squads · Jakarta (Remote / Relocation)
                     </span>
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
 
-              {/* Bio Block Underneath Avatar */}
-              <div className="pt-2 border-t border-[#19244E]/10">
-                <h3 className="font-display font-black text-lg sm:text-xl tracking-tight uppercase text-[#19244E] mb-1">
-                  ADINA FAYZA GAYO
-                </h3>
-                <p className="font-sans text-sm sm:text-base leading-relaxed text-[#19244E]/85 w-full mb-3">
-                  Off-screen, I swap design systems for live gigs, thriller K-Dramas, and genre-hopping playlists. Equal parts concert-goer and spreadsheet enthusiast. I track my books, chase Sudoku high scores, and plan trips down to the exact transit route.
-                </p>
-                <button
-                  onClick={onReadMore}
-                  className="text-xs sm:text-sm font-sans font-bold tracking-wider uppercase text-[#DB3E8C] hover:underline transition-all flex items-center gap-1.5 focus:outline-none cursor-pointer py-1"
+          {/* ── PANEL B: IN LIFE ── */}
+          <div className="w-1/2 flex flex-col justify-between px-4 sm:px-8 lg:px-20 pt-6 sm:pt-10 lg:pt-12 pb-8 sm:pb-12 min-h-[calc(100vh-140px)] flex-shrink-0">
+            {/* Centered Editorial Headline */}
+            <div className="flex flex-col items-center max-w-5xl mx-auto my-auto w-full">
+              <h1
+                className="font-display font-semibold leading-[0.94] sm:leading-[0.88] tracking-tight uppercase text-center"
+                style={{ fontSize: "clamp(2.4rem, 6vw, 6.6rem)", color: N }}
+              >
+                PLOT TWISTS. LIVE ACOUSTICS.<br />
+                <span style={{ color: C }}>FRONT ROW CROWDS</span>
+              </h1>
+
+              {/* Bio Block with Photo on Left & Bio Text + Greeting on Right */}
+              <div className="mt-8 sm:mt-10 max-w-3xl mx-auto flex flex-col sm:flex-row items-center sm:items-start gap-5 sm:gap-7 text-center sm:text-left">
+                {/* Small Photo on Left (Rotate +3deg) */}
+                <div
+                  className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden bg-white p-1 shadow-lg border border-[#19244E]/15 shrink-0 transition-transform duration-300 hover:rotate-0 hover:scale-105"
+                  style={{ transform: "rotate(3deg)" }}
                 >
-                  View Full Profile & CV <ChevronRight size={14} />
-                </button>
+                  <ImageWithFallback
+                    src={adinaPhotoLife}
+                    alt="Adina Fayza Gayo - In Life"
+                    className="w-full h-full object-cover object-top rounded-xl"
+                  />
+                </div>
+
+                {/* Bio Text & Greeting merged */}
+                <div className="flex-1">
+                  <p className="font-sans text-sm sm:text-base leading-relaxed text-[#19244E]/85 mb-6">
+                    <span className="font-bold text-[#DB3E8C] inline-block mr-1.5">
+                      Life in motion ✨
+                    </span>
+                    Off-screen, I swap design systems for live gigs, thriller K-Dramas, and genre-hopping playlists. Equal parts concert-goer and spreadsheet enthusiast. I track my books, chase Sudoku high scores, and plan trips down to the exact transit route.
+                  </p>
+
+                  {/* Action Buttons Row */}
+                  <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 sm:gap-6">
+                    <a
+                      href="mailto:adinagayo@gmail.com"
+                      className="px-7 py-3.5 text-xs font-bold tracking-wider uppercase text-white transition-all duration-150 hover:opacity-90 shadow-sm flex items-center gap-2 cursor-pointer"
+                      style={{ backgroundColor: C, borderRadius: "6px" }}
+                    >
+                      Let's grab coffee <ArrowUpRight size={13} />
+                    </a>
+                    <button
+                      onClick={onReadMore}
+                      className="text-xs sm:text-sm font-sans font-bold tracking-wider uppercase text-[#DB3E8C] hover:underline transition-all flex items-center gap-1.5 focus:outline-none cursor-pointer py-1"
+                    >
+                      View Full Profile & CV <ChevronRight size={14} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Hairline Divider & Bottom Metadata Strip */}
+            <div className="w-full pt-6 border-t border-[#19244E]/10">
+              <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+                <div className="flex items-center gap-2.5">
+                  <span className="w-2 h-2 rounded-full bg-[#DB3E8C] shrink-0" />
+                  <div>
+                    <span className="text-[9.5px] font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
+                      ON ROTATION
+                    </span>
+                    <span className="font-semibold text-xs sm:text-sm text-[#19244E]/85">
+                      Detective K-Dramas & local concert gigs
+                    </span>
+                  </div>
+                </div>
+
+                <div className="hidden sm:block h-6 w-px bg-[#19244E]/10" />
+
+                <div className="flex items-center gap-2.5">
+                  <span className="w-2 h-2 rounded-full bg-[#10b981] shrink-0" />
+                  <div>
+                    <span className="text-[9.5px] font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
+                      SUPERPOWER
+                    </span>
+                    <span className="font-semibold text-xs sm:text-sm text-[#19244E]/85">
+                      Multi-currency travel itineraries
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -1578,28 +1747,20 @@ function WorkflowSection() {
                   <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#DB3E8C] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                   <div>
-                    {/* Header: Step Number & Icon */}
-                    <div className="flex items-center justify-between mb-6">
-                      <div className="flex items-center gap-2.5">
-                        <span className="font-sans text-sm sm:text-base font-bold tracking-wider text-[#DB3E8C] px-2.5 py-1 rounded-md bg-[#DB3E8C]/15 border border-[#DB3E8C]/30 shadow-sm">
-                          {phase.num}
-                        </span>
-                        <span className="font-sans text-[9px] font-bold tracking-widest uppercase text-white/40">
-                          PHASE {phase.num}
-                        </span>
-                      </div>
-                      <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-[#DB3E8C]/40 group-hover:bg-[#DB3E8C]/10 transition-colors">
-                        <Icon size={15} className="text-white/70 group-hover:text-[#DB3E8C] transition-colors" />
-                      </div>
+                    {/* Header: Number Badge (01/02/03) & Category Label (No Icon) */}
+                    <div className="flex items-center gap-2.5 mb-5">
+                      <span className="font-sans text-xs sm:text-sm font-bold tracking-wider text-[#DB3E8C] px-2.5 py-1 rounded-md bg-[#DB3E8C]/15 border border-[#DB3E8C]/30 shadow-sm">
+                        {phase.num}
+                      </span>
+                      <span className="font-sans text-[10.5px] font-bold tracking-widest uppercase text-[#DB3E8C]">
+                        {phase.phase}
+                      </span>
                     </div>
 
-                    {/* Phase Title & Subtitle */}
-                    <h3 className="text-lg sm:text-xl font-bold text-white mb-1.5 group-hover:text-[#DB3E8C] transition-colors duration-200">
-                      {phase.phase}
-                    </h3>
-                    <p className="font-sans text-[11px] tracking-widest text-[#DB3E8C]/90 font-semibold uppercase mb-4">
+                    {/* Main Phase Title (LARGE Serif) */}
+                    <h3 className="font-serif text-xl sm:text-2xl lg:text-[1.7rem] font-normal italic text-white group-hover:text-[#DB3E8C] transition-colors duration-200 leading-snug mb-4">
                       {phase.sub}
-                    </p>
+                    </h3>
                     <p className="text-xs sm:text-sm leading-relaxed text-white/75 font-sans mb-6">
                       {phase.desc}
                     </p>

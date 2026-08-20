@@ -85,7 +85,7 @@ export default function AboutMe({ onBack }: Props) {
             Adina Fayza Gayo
           </h1>
           <p className="text-base lg:text-lg font-sans font-light leading-relaxed text-white/90 max-w-[780px] mb-8">
-            Product Designer with 4+ years of hands-on experience designing complex B2B platforms, embedded insurance flows, and multi-brand design systems across Indonesia and Malaysia. Most of my day is spent untangling messy product logic, covering edge cases, and making sure engineering teams have crystal-clear specs to build from.
+            Product Designer with 4+ years of hands-on experience focused on complex B2B platforms and embedded fintech. Most of my time goes into making messy product logic simple, mapping out edge cases, and giving developers specs they can build without second-guessing.
           </p>
           
           {/* Metadata Grid */}
