@@ -656,12 +656,15 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
                     </div>
 
                     {/* Technical Radar Specs Table */}
-                    <div className="grid grid-cols-[60px_1fr] gap-y-1.5 gap-x-3 text-[11px] tracking-wide text-[#19244E]/85 pt-2 border-t border-[#19244E]/12 max-w-xs">
+                    <div className="grid grid-cols-[60px_1fr] gap-y-1.5 gap-x-3 text-[11px] tracking-wide text-[#19244E]/85 pt-2 border-t border-[#19244E]/12 max-w-xs sm:max-w-sm">
                       <div className="font-bold text-[#DB3E8C] uppercase">ROLE</div>
                       <div className="font-medium text-[#19244E]">Product Designer</div>
 
                       <div className="font-bold text-[#DB3E8C] uppercase">BASE</div>
                       <div className="font-medium text-[#19244E]">Jakarta, ID</div>
+
+                      <div className="font-bold text-[#DB3E8C] uppercase">MODE</div>
+                      <div className="font-medium text-[#19244E]">Remote, hybrid, or on-site with global relocation</div>
 
                       <div className="font-bold text-[#DB3E8C] uppercase">STATUS</div>
                       <div className="font-bold text-[#19244E] flex items-center gap-1.5">
