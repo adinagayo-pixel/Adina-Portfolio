@@ -795,6 +795,11 @@ function ImageLightboxModal({
   }, [initialIndex, isOpen])
 
   useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!isOpen) return
       if (e.key === "Escape") onClose()
@@ -806,7 +811,10 @@ function ImageLightboxModal({
       }
     }
     window.addEventListener("keydown", handleKeyDown)
-    return () => window.removeEventListener("keydown", handleKeyDown)
+    return () => {
+      document.body.style.overflow = ""
+      window.removeEventListener("keydown", handleKeyDown)
+    }
   }, [isOpen, screens.length, onClose])
 
   if (!isOpen || !screens || screens.length === 0) return null
@@ -1789,6 +1797,22 @@ function ProjectArchiveSection() {
   const [hoveredId, setHoveredId] = useState<number | null>(null)
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+
+  useEffect(() => {
+    if (selectedProject) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSelectedProject(null)
+    }
+    window.addEventListener("keydown", handleKeyDown)
+    return () => {
+      document.body.style.overflow = ""
+      window.removeEventListener("keydown", handleKeyDown)
+    }
+  }, [selectedProject])
 
   return (
     <section
