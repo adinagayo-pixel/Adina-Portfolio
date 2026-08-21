@@ -1630,25 +1630,25 @@ function WorkflowSection() {
           className="relative z-20 px-4 sm:px-8 lg:px-16 py-14 sm:py-20 lg:py-24 flex flex-col items-center text-center"
         >
           <p className="font-sans text-[10px] font-bold tracking-[0.25em] uppercase mb-6 sm:mb-10 text-[#F472B6]">
-            HOW I WORK
+            THE LOGIC BEHIND IT
           </p>
           <h2
-            className="font-display font-light leading-[1.4] text-white max-w-4xl text-center drop-shadow-lg"
+            className="font-display font-light leading-[1.45] text-white max-w-4xl text-center drop-shadow-lg"
             style={{ fontSize: "clamp(1.75rem, 4.5vw, 4.2rem)", letterSpacing: "-0.025em" }}
           >
-            I dig into the real problem first{" "}
+            I dig into complex problems first{" "}
             <span className="inline-block align-middle mx-1 sm:mx-1.5 hover:scale-110 transition-transform duration-300">
               <StandaloneSearchIcon className="w-8 h-8 sm:w-11 sm:h-11 lg:w-14 lg:h-14 inline-block text-[#F472B6]" />
             </span>,{" "}
-            design the system <span className="text-[#F472B6] font-bold">logic with care</span>{" "}
+            craft intuitive web & app interfaces with <span className="text-[#F472B6] font-bold">solid logic</span>{" "}
             <span className="inline-block align-middle mx-1 sm:mx-1.5 hover:scale-110 transition-transform duration-300">
               <StandaloneTargetIcon className="w-8 h-8 sm:w-11 sm:h-11 lg:w-14 lg:h-14 inline-block text-[#F472B6]" />
             </span>,{" "}
-            and hand off specs so clean{" "}
+            and hand off design files so clear that{" "}
             <span className="inline-block align-middle mx-1 sm:mx-1.5 hover:scale-110 transition-transform duration-300">
               <StandaloneClipboardIcon className="w-8 h-8 sm:w-11 sm:h-11 lg:w-14 lg:h-14 inline-block text-[#F472B6]" />
             </span>{" "}
-            that engineers rarely have to ask follow-up questions.
+            engineers rarely have to second-guess.
           </h2>
         </motion.div>
       </section>
