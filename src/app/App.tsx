@@ -31,7 +31,7 @@ import {
   ArrowRight, ExternalLink, Globe, Zap,
   Users, CheckCircle, Coins, Bot, LayoutGrid,
   ArrowUpRight, ChevronRight, MousePointer2, Plus, Linkedin, Download,
-  Search, Target, FileCheck,
+  Search, Target, FileCheck, FileText, X, Eye,
 } from "lucide-react"
 import SunwayCase from "./components/SunwayCase"
 import GegiCase from "./components/GegiCase"
@@ -426,11 +426,112 @@ const WavyHeadlineText = ({ text, color }: { text: string; color: string }) => {
   )
 }
 
+// ─── PDF PREVIEW MODAL COMPONENT ───────────────────────────────────────────────
+function PdfPreviewModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose()
+    }
+    if (isOpen) {
+      document.body.style.overflow = "hidden"
+      window.addEventListener("keydown", handleKeyDown)
+    }
+    return () => {
+      document.body.style.overflow = "unset"
+      window.removeEventListener("keydown", handleKeyDown)
+    }
+  }, [isOpen, onClose])
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6 bg-black/75 backdrop-blur-md"
+          onClick={onClose}
+        >
+          <motion.div
+            initial={{ scale: 0.94, opacity: 0, y: 16 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.94, opacity: 0, y: 16 }}
+            transition={{ type: "spring", damping: 28, stiffness: 350 }}
+            className="w-full max-w-5xl h-[88vh] bg-[#0F172A] text-white rounded-2xl overflow-hidden flex flex-col shadow-2xl border border-white/10 relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Dark Custom Header Bar */}
+            <div className="px-4 sm:px-6 py-3.5 bg-[#090D16] border-b border-white/10 flex items-center justify-between gap-4 shrink-0">
+              {/* Title & Document Badge */}
+              <div className="flex items-center gap-3 overflow-hidden">
+                <div className="w-9 h-9 rounded-xl bg-[#DB3E8C]/20 border border-[#DB3E8C]/30 text-[#DB3E8C] flex items-center justify-center shrink-0">
+                  <FileText size={18} />
+                </div>
+                <div className="flex flex-col min-w-0">
+                  <span className="font-sans text-xs sm:text-sm font-bold tracking-tight text-white truncate">
+                    ADINA FAYZA GAYO
+                  </span>
+                  <span className="font-mono text-[10px] sm:text-xs text-white/60 truncate">
+                    Product Designer · Technical Resume (PDF)
+                  </span>
+                </div>
+              </div>
+
+              {/* Action Controls */}
+              <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+                {/* Open in Tab */}
+                <a
+                  href="/resume-adina-fayza-gayo.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-sans font-medium bg-white/10 text-white hover:bg-white/20 transition-all border border-white/10 cursor-pointer"
+                >
+                  <span>Open in Tab</span>
+                  <ExternalLink size={13} />
+                </a>
+
+                {/* Download PDF */}
+                <a
+                  href="/resume-adina-fayza-gayo.pdf"
+                  download="ADINA FAYZA GAYO Resume 2026.pdf"
+                  className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-sans font-semibold bg-[#DB3E8C] text-white hover:bg-[#c2337b] transition-all shadow-sm cursor-pointer"
+                >
+                  <Download size={13} />
+                  <span>Download PDF</span>
+                </a>
+
+                {/* Close Button */}
+                <button
+                  onClick={onClose}
+                  aria-label="Close PDF Preview"
+                  className="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 text-white/80 hover:text-white flex items-center justify-center transition-all cursor-pointer border border-white/10"
+                >
+                  <X size={16} />
+                </button>
+              </div>
+            </div>
+
+            {/* Embedded PDF iframe */}
+            <div className="flex-1 w-full h-full bg-[#1E293B] relative">
+              <iframe
+                src="/resume-adina-fayza-gayo.pdf#toolbar=1"
+                className="w-full h-full border-none"
+                title="Adina Fayza Gayo Resume PDF"
+              />
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  )
+}
+
 // ─── Hero Spring Config ───────────────────────────────────────────────────────
 const HERO_SPRING = { type: "tween" as const, ease: [0.16, 1, 0.3, 1] as const, duration: 0.7 }
 
 // ─── Hero Section ─────────────────────────────────────────────────────────────
-function HeroSection({ onReadMore }: { onReadMore: () => void }) {
+function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void; onOpenPdfPreview?: () => void }) {
   const [isAtWork, setIsAtWork] = useState(true)
   const [tick, setTick] = useState(0)
   const HELLOS = ["Hi, it's Dina!", "Halo, saya Dina!", "안녕하세요, 디나예요!"]
@@ -466,239 +567,265 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
           className="w-full h-full object-cover object-center scale-105 filter blur-[1.5px]"
         />
       </div>
-      {/* ── Top nav bar (Transparent Child) ── */}
-      <div className="flex items-center justify-between px-5 py-4 lg:px-16 lg:py-6 bg-transparent shrink-0">
-        <div className="flex items-center gap-4 lg:gap-6">
-          <span className="font-sans text-xs sm:text-sm lg:text-base font-black tracking-[0.22em] text-[#19244E] select-none">
-            AFG
-          </span>
 
-          {/* Toggle Switch */}
-          <div className="flex items-center gap-2">
-            <span
-              className="font-sans text-[10px] lg:text-xs font-semibold tracking-widest transition-all duration-150 cursor-pointer select-none animate-fade-in"
-              style={{ color: N, opacity: isAtWork ? 1 : 0.35 }}
-              onClick={() => setIsAtWork(true)}
-            >
-              At Work
-            </span>
-
-            <button
-              onClick={() => setIsAtWork((v) => !v)}
-              aria-label="Toggle between At Work and In Life mode"
-              className="relative flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] rounded-full cursor-pointer"
-              style={{
-                width: "36px",
-                height: "20px",
-                borderRadius: "999px",
-                backgroundColor: isAtWork ? N : C,
-                transition: "background-color 0.3s ease",
-                flexShrink: 0,
-              }}
-            >
-              <motion.span
-                layout
-                transition={HERO_SPRING}
-                className="absolute bg-white rounded-full shadow-sm"
-                style={{
-                  width: "14px",
-                  height: "14px",
-                  left: isAtWork ? "3px" : "19px",
-                }}
-              />
-            </button>
-
-            <span
-              className="font-sans text-[10px] lg:text-xs font-semibold tracking-widest transition-all duration-150 cursor-pointer select-none animate-fade-in"
-              style={{ color: C, opacity: !isAtWork ? 1 : 0.35 }}
-              onClick={() => setIsAtWork(false)}
-            >
-              In Life
-            </span>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-2.5 sm:gap-4">
-          {/* Email Icon Button with Hover Email Tooltip & Click-to-Mailto */}
-          <div className="relative group">
-            <a
-              href="mailto:adinagayo@gmail.com"
-              aria-label="Email Adina Fayza Gayo"
-              className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-xl transition-all duration-150 cursor-pointer shadow-sm"
-              style={{ border: `1px solid ${HAIR}`, color: N, backgroundColor: "transparent" }}
-              onMouseEnter={(e) => {
-                ;(e.currentTarget as HTMLElement).style.borderColor = N
-                ;(e.currentTarget as HTMLElement).style.backgroundColor = N
-                ;(e.currentTarget as HTMLElement).style.color = W
-              }}
-              onMouseLeave={(e) => {
-                ;(e.currentTarget as HTMLElement).style.borderColor = HAIR
-                ;(e.currentTarget as HTMLElement).style.backgroundColor = "transparent"
-                ;(e.currentTarget as HTMLElement).style.color = N
-              }}
-            >
-              <Mail size={16} />
-            </a>
-
-            {/* Hover Tooltip showing email address */}
-            <div className="absolute right-0 top-full mt-2 hidden group-hover:flex items-center gap-2 bg-[#19244E] text-white px-3 py-1.5 rounded-lg shadow-xl text-xs font-mono font-medium whitespace-nowrap z-50 pointer-events-none transition-all duration-200">
-              <span className="w-2 h-2 rounded-full bg-[#DB3E8C]" />
-              <span>adinagayo@gmail.com</span>
-            </div>
-          </div>
-
-          <a
-            href="/resume-adina-fayza-gayo.pdf"
-            download="ADINA FAYZA GAYO Resume 2026.pdf"
-            className="flex items-center gap-2 font-sans text-xs sm:text-sm font-semibold tracking-wider transition-all duration-150 rounded-xl px-4 py-2 sm:px-5 sm:py-2.5 cursor-pointer shadow-sm"
-            style={{ border: `1px solid ${HAIR}`, color: `${N}DD`, backgroundColor: "transparent" }}
-            onMouseEnter={(e) => {
-              ;(e.currentTarget as HTMLElement).style.backgroundColor = N
-              ;(e.currentTarget as HTMLElement).style.color = W
-              ;(e.currentTarget as HTMLElement).style.borderColor = N
-            }}
-            onMouseLeave={(e) => {
-              ;(e.currentTarget as HTMLElement).style.backgroundColor = "transparent"
-              ;(e.currentTarget as HTMLElement).style.color = `${N}DD`
-              ;(e.currentTarget as HTMLElement).style.borderColor = HAIR
-            }}
-          >
-            <span>Resume</span>
-            <Download size={15} />
-          </a>
-          <a
-            href={getGeneralWhatsAppLink()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-sans text-xs sm:text-sm font-semibold tracking-wider transition-all duration-150 rounded-xl px-4 py-2 sm:px-5 sm:py-2.5 whitespace-nowrap cursor-pointer shadow-sm flex items-center gap-1.5"
-            style={{ border: `1px solid ${N}`, color: N }}
-            onMouseEnter={(e) => { ;(e.currentTarget as HTMLElement).style.backgroundColor = N; ;(e.currentTarget as HTMLElement).style.color = W }}
-            onMouseLeave={(e) => { ;(e.currentTarget as HTMLElement).style.backgroundColor = "transparent"; ;(e.currentTarget as HTMLElement).style.color = N }}
-          >
-            <span>Let's Chat</span>
-            <span className="text-xs">↗</span>
-          </a>
-        </div>
-      </div>
-
-      {/* ── Sliding viewports wrapper (Transparent Child - Continuous Root Gradient) ── */}
+      {/* ── Sliding viewports wrapper (Parallax Fade & Scale on Scroll) ── */}
       <motion.div
         style={{
           scale: heroScale,
           opacity: heroOpacity,
         }}
-        className="flex-1 flex flex-col justify-between relative bg-transparent origin-top"
+        className="relative z-10 flex-1 flex flex-col justify-between bg-transparent origin-top"
       >
-        <motion.div
-          animate={{ x: isAtWork ? "0%" : "-50%" }}
-          transition={HERO_SPRING}
-          className="flex w-[200%] flex-1 relative z-10 bg-transparent"
-        >
-          {/* ── PANEL A: AT WORK ── */}
-          <div className="w-1/2 flex flex-col justify-between px-4 sm:px-8 lg:px-20 pt-4 sm:pt-6 lg:pt-8 pb-16 sm:pb-20 min-h-[calc(100vh-140px)] flex-shrink-0 bg-transparent">
-            {/* Centered Editorial Headline & Bio */}
-            <div className="flex flex-col items-center max-w-5xl mx-auto my-auto w-full bg-transparent">
-              {/* Top Role Badge */}
-              <motion.p
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="font-mono text-[10px] sm:text-xs font-bold tracking-[0.25em] text-[#DB3E8C] uppercase mb-4 sm:mb-6 select-none cursor-default"
-              >
-                PRODUCT DESIGNER · CROSS-INDUSTRY B2B · 5+ YRS
-              </motion.p>
+        {/* ── Top nav bar (Transparent Child) ── */}
+        <div className="flex items-center justify-between px-4 sm:px-8 lg:px-16 py-4 lg:py-6 bg-transparent shrink-0 relative z-30">
+        <div className="flex items-center gap-4 lg:gap-6">
+          <div className="flex items-center gap-2">
+            <span className="font-mono text-xs sm:text-sm lg:text-base font-black tracking-[0.22em] text-[#19244E] select-none">
+              AFG / PORTFOLIO
+            </span>
+          </div>
 
-              <motion.h1
-                initial={{ opacity: 0, y: 22 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-                className="font-normal leading-[0.96] sm:leading-[0.90] tracking-tight text-center group select-none cursor-default bg-transparent"
-                style={{
-                  fontSize: "clamp(2.8rem, 7vw, 7.8rem)",
-                  fontFamily: "'Instrument Serif', Georgia, serif",
-                }}
-              >
-                <WavyHeadlineText text="Smart Systems." color="#0F172A" />
-                <WavyHeadlineText text="Thoughtful Interfaces." color="#DB2777" />
-              </motion.h1>
+          {/* Mode Switcher (At Work / In Life) */}
+          <div className="flex items-center gap-2 bg-[#0F172A]/5 backdrop-blur-md p-1 rounded-full border border-[#0F172A]/10">
+            <button
+              onClick={() => setIsAtWork(true)}
+              className={`px-3 py-1 rounded-full font-mono text-[11px] font-semibold transition-all duration-200 cursor-pointer ${
+                isAtWork ? "bg-[#0F172A] text-white shadow-sm" : "text-[#0F172A]/60 hover:text-[#0F172A]"
+              }`}
+            >
+              At Work
+            </button>
+            <button
+              onClick={() => setIsAtWork(false)}
+              className={`px-3 py-1 rounded-full font-mono text-[11px] font-semibold transition-all duration-200 cursor-pointer ${
+                !isAtWork ? "bg-[#DB3E8C] text-white shadow-sm" : "text-[#0F172A]/60 hover:text-[#0F172A]"
+              }`}
+            >
+              In Life
+            </button>
+          </div>
+        </div>
+      </div>
 
-              {/* Bio Block with Photo on Left & Bio Text + Greeting on Right */}
-              <div className="mt-6 sm:mt-8 max-w-3xl mx-auto flex flex-col sm:flex-row items-center sm:items-start gap-5 sm:gap-7 text-center sm:text-left bg-transparent">
-                {/* Small Photo on Left */}
-                <div
-                  className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden shadow-md shrink-0 transition-transform duration-300 hover:rotate-0 hover:scale-105"
-                  style={{ transform: "rotate(-3deg)" }}
-                >
-                  <ImageWithFallback
-                    src={adinaPhotoAbout}
-                    alt="Adina Fayza Gayo - At Work"
-                    className="w-full h-full object-cover object-top rounded-2xl"
-                  />
-                </div>
-
-                {/* Bio Text & Greeting merged */}
-                <div className="flex-1 bg-transparent">
-                  <p className="font-sans text-sm sm:text-base leading-relaxed text-[#19244E]/85 mb-5">
-                    <span className="font-bold text-[#DB3E8C] inline-flex items-center gap-1 mr-1.5">
-                      <AnimatePresence mode="wait">
-                        <motion.span
-                          key={tick}
-                          initial={{ y: 2, opacity: 0 }}
-                          animate={{ y: 0, opacity: 1 }}
-                          exit={{ y: -2, opacity: 0 }}
-                          transition={{ duration: 0.2 }}
-                          className="inline-block"
-                        >
-                          {HELLOS[tick]}
-                        </motion.span>
-                      </AnimatePresence>
+        {/* Sliding Dual Panels Container */}
+        <div className="relative w-full flex-1 overflow-hidden">
+          <motion.div
+            animate={{ x: isAtWork ? "0%" : "-50%" }}
+            transition={HERO_SPRING}
+            className="flex relative z-10 bg-transparent w-[200%] min-w-[200%]"
+            style={{ width: "200%" }}
+          >
+            {/* ── PANEL A: AT WORK ── */}
+            <div className="w-1/2 min-w-[50%] flex flex-col justify-between px-4 sm:px-8 lg:px-16 pt-2 sm:pt-4 pb-32 sm:pb-40 min-h-[calc(100vh-100px)] shrink-0 bg-transparent">
+              {/* Top Oversized Asymmetrical Headline & Floating Bio Container */}
+              <div className="w-full mt-3 sm:mt-5 lg:mt-7 mb-auto flex flex-col justify-between bg-transparent">
+                {/* 1. Full-Width Jumbo Headline Stack (Top) */}
+                <div className="w-full flex flex-col items-start select-none cursor-default bg-transparent relative z-0">
+                  <motion.h1
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+                    className="font-normal leading-[0.86] tracking-tight text-left select-none cursor-default bg-transparent w-full"
+                    style={{
+                      fontSize: "clamp(3.8rem, 11.5vw, 12.5rem)",
+                      fontFamily: "'Instrument Serif', Georgia, serif",
+                    }}
+                  >
+                    <span className="block text-[#0F172A] font-normal">
+                      Smart Systems.
                     </span>
-                    I’m a product designer driving end-to-end design lifecycles for B2B platforms across fintech, e-commerce, and enterprise systems. Most of my time goes into turning messy requirements into simple product logic, mapping out edge cases, and delivering developer-ready Figma specs engineers can build without second-guessing.
-                  </p>
+                    <span
+                      className="block font-normal transition-all duration-300 mt-2 sm:mt-3 lg:mt-4 ml-2 sm:ml-6 lg:ml-12 text-[#DB3E8C]"
+                      style={{
+                        fontFamily: "'Instrument Serif', Georgia, serif",
+                      }}
+                    >
+                      Thoughtful Interfaces.
+                    </span>
+                  </motion.h1>
+                </div>
 
-                  {/* Action Buttons Row */}
-                  <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 sm:gap-6 bg-transparent">
-                    <button
-                      onClick={() => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })}
-                      className="px-7 py-3.5 text-xs font-bold tracking-wider uppercase text-white transition-all duration-150 hover:opacity-90 shadow-sm flex items-center gap-2 cursor-pointer rounded-xl"
-                      style={{ backgroundColor: N }}
-                    >
-                      Selected Work <ArrowRight size={13} />
-                    </button>
-                    <button
-                      onClick={onReadMore}
-                      className="text-xs sm:text-sm font-sans font-bold tracking-wider uppercase text-[#DB3E8C] hover:underline transition-all flex items-center gap-1.5 focus:outline-none cursor-pointer py-1"
-                    >
-                      View Full Profile & CV <ChevronRight size={14} />
-                    </button>
+                {/* 2. Bottom Stack (2-Column Parallel Layout directly under Headline) */}
+                <div className="w-full mt-8 sm:mt-10 lg:mt-12 flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 sm:gap-8 bg-transparent relative z-10">
+                  {/* Left Column Technical Specs & Metrics under Headline */}
+                  <div className="flex flex-col gap-3 font-mono text-xs text-[#19244E] text-left shrink-0 mb-1 relative z-20">
+                    {/* Shipped Systems Counter */}
+                    <div className="flex items-center gap-2 font-bold tracking-wider text-[#DB3E8C]">
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#DB3E8C] animate-pulse" />
+                      <span className="text-[#19244E]">15+ SHIPPED SYSTEMS · 5+ YRS INDUSTRIAL EXP</span>
+                    </div>
+
+                    {/* Technical Radar Specs Table */}
+                    <div className="grid grid-cols-[60px_1fr] gap-y-1.5 gap-x-3 text-[11px] tracking-wide text-[#19244E]/85 pt-2 border-t border-[#19244E]/12 max-w-xs">
+                      <div className="font-bold text-[#DB3E8C] uppercase">ROLE</div>
+                      <div className="font-medium text-[#19244E]">Product Designer</div>
+
+                      <div className="font-bold text-[#DB3E8C] uppercase">BASE</div>
+                      <div className="font-medium text-[#19244E]">Jakarta, ID</div>
+
+                      <div className="font-bold text-[#DB3E8C] uppercase">STATUS</div>
+                      <div className="font-bold text-[#19244E] flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6] animate-pulse" />
+                        Open to Squads
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
 
-              {/* Industry Domain Pills & Systems Shipped Counter */}
-              <div className="mt-8 pt-6 border-t border-[#19244E]/10 flex flex-col items-center gap-2 text-center bg-transparent w-full max-w-3xl">
-                <div className="flex flex-wrap items-center justify-center gap-2 font-sans text-xs sm:text-sm font-semibold text-[#19244E]/80">
-                  <span>Banking</span>
-                  <span className="text-[#DB3E8C]">•</span>
-                  <span>InsurTech</span>
-                  <span className="text-[#DB3E8C]">•</span>
-                  <span>FMCG</span>
-                  <span className="text-[#DB3E8C]">•</span>
-                  <span>E-Commerce</span>
-                  <span className="text-[#DB3E8C]">•</span>
-                  <span>Public Transit</span>
-                  <span className="text-[#DB3E8C]">•</span>
-                  <span>Enterprise Systems</span>
-                </div>
-                <div className="font-sans text-xs sm:text-sm text-[#19244E]/75">
-                  <span className="font-bold text-[#19244E]">15 shipped systems</span> · Open for In-House Squads · Jakarta (Remote/Relocation)
+                  {/* Floating Bio Card with Subtle Soft Shadow */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    className="max-w-xl bg-white/50 sm:bg-white/60 backdrop-blur-sm p-5 sm:p-6 rounded-3xl shadow-sm sm:shadow-[0_4px_24px_rgba(25,36,78,0.06)] relative z-20 ml-auto"
+                  >
+                    <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-5">
+                      {/* Small Avatar Photo */}
+                      <div
+                        className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden shadow-md shrink-0 transition-transform duration-300 hover:rotate-0 hover:scale-105"
+                        style={{ transform: "rotate(-3deg)" }}
+                      >
+                        <ImageWithFallback
+                          src={adinaPhotoAbout}
+                          alt="Adina Fayza Gayo - At Work"
+                          className="w-full h-full object-cover object-top rounded-2xl"
+                        />
+                      </div>
+
+                      {/* Bio Paragraph & Conversion CTAs */}
+                      <div className="flex-1 text-center sm:text-left">
+                        <p className="font-sans text-xs sm:text-sm leading-relaxed text-[#19244E]/90">
+                          <span className="font-bold text-[#DB3E8C] inline-flex items-center gap-1 mr-1.5">
+                            <AnimatePresence mode="wait">
+                              <motion.span
+                                key={tick}
+                                initial={{ y: 2, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                exit={{ y: -2, opacity: 0 }}
+                                transition={{ duration: 0.2 }}
+                                className="inline-block"
+                              >
+                                {HELLOS[tick]}
+                              </motion.span>
+                            </AnimatePresence>
+                          </span>
+                          I design end-to-end B2B platforms across fintech, e-commerce, and enterprise systems. I turn messy logic into clear edge cases and developer-ready Figma specs.
+                        </p>
+
+                        {/* Thin Divider Line */}
+                        <div className="w-full h-[1px] bg-[#19244E]/10 my-3.5" />
+
+                        {/* Action Buttons Row (Order: Resume -> Let's Chat -> Email) */}
+                        <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-2.5 mb-2.5">
+                          {/* 1. Resume Download & In-App PDF Preview Button */}
+                          <button
+                            onClick={onOpenPdfPreview}
+                            className="flex items-center gap-1.5 font-sans text-xs font-semibold tracking-wider transition-all duration-150 rounded-xl px-3.5 py-2 cursor-pointer shadow-sm bg-white"
+                            style={{ border: `1px solid ${HAIR}`, color: `${N}DD` }}
+                            onMouseEnter={(e) => {
+                              ;(e.currentTarget as HTMLElement).style.backgroundColor = N
+                              ;(e.currentTarget as HTMLElement).style.color = W
+                              ;(e.currentTarget as HTMLElement).style.borderColor = N
+                            }}
+                            onMouseLeave={(e) => {
+                              ;(e.currentTarget as HTMLElement).style.backgroundColor = W
+                              ;(e.currentTarget as HTMLElement).style.color = `${N}DD`
+                              ;(e.currentTarget as HTMLElement).style.borderColor = HAIR
+                            }}
+                          >
+                            <span>Resume</span>
+                            <Eye size={14} />
+                          </button>
+
+                          {/* 2. Let's Chat WhatsApp Button */}
+                          <a
+                            href={getGeneralWhatsAppLink()}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-sans text-xs font-semibold tracking-wider transition-all duration-150 rounded-xl px-3.5 py-2 whitespace-nowrap cursor-pointer shadow-sm flex items-center gap-1.5"
+                            style={{ border: `1px solid ${N}`, color: N, backgroundColor: "transparent" }}
+                            onMouseEnter={(e) => { ;(e.currentTarget as HTMLElement).style.backgroundColor = N; ;(e.currentTarget as HTMLElement).style.color = W }}
+                            onMouseLeave={(e) => { ;(e.currentTarget as HTMLElement).style.backgroundColor = "transparent"; ;(e.currentTarget as HTMLElement).style.color = N }}
+                          >
+                            <span>Let's Chat</span>
+                            <svg className="w-3.5 h-3.5 fill-current shrink-0" viewBox="0 0 24 24">
+                              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
+                            </svg>
+                          </a>
+
+                          {/* 3. Email Icon Button */}
+                          <div className="relative group">
+                            <a
+                              href="mailto:adinagayo@gmail.com"
+                              aria-label="Email Adina Fayza Gayo"
+                              className="flex items-center justify-center w-9 h-9 rounded-xl transition-all duration-150 cursor-pointer shadow-sm bg-white"
+                              style={{ border: `1px solid ${HAIR}`, color: N }}
+                              onMouseEnter={(e) => {
+                                ;(e.currentTarget as HTMLElement).style.borderColor = N
+                                ;(e.currentTarget as HTMLElement).style.backgroundColor = N
+                                ;(e.currentTarget as HTMLElement).style.color = W
+                              }}
+                              onMouseLeave={(e) => {
+                                ;(e.currentTarget as HTMLElement).style.borderColor = HAIR
+                                ;(e.currentTarget as HTMLElement).style.backgroundColor = W
+                                ;(e.currentTarget as HTMLElement).style.color = N
+                              }}
+                            >
+                              <Mail size={15} />
+                            </a>
+
+                            <div className="absolute left-0 sm:left-auto sm:right-0 top-full mt-2 hidden group-hover:flex items-center gap-2 bg-[#19244E] text-white px-3 py-1.5 rounded-lg shadow-xl text-xs font-mono font-medium whitespace-nowrap z-50 pointer-events-none transition-all duration-200">
+                              <span className="w-2 h-2 rounded-full bg-[#DB3E8C]" />
+                              <span>adinagayo@gmail.com</span>
+                            </div>
+                          </div>
+
+                          {/* 4. LinkedIn Icon Button */}
+                          <div className="relative group">
+                            <a
+                              href="https://www.linkedin.com/in/adinafayzagayo/"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label="LinkedIn Adina Fayza Gayo"
+                              className="flex items-center justify-center w-9 h-9 rounded-xl transition-all duration-150 cursor-pointer shadow-sm bg-white"
+                              style={{ border: `1px solid ${HAIR}`, color: N }}
+                              onMouseEnter={(e) => {
+                                ;(e.currentTarget as HTMLElement).style.borderColor = N
+                                ;(e.currentTarget as HTMLElement).style.backgroundColor = N
+                                ;(e.currentTarget as HTMLElement).style.color = W
+                              }}
+                              onMouseLeave={(e) => {
+                                ;(e.currentTarget as HTMLElement).style.borderColor = HAIR
+                                ;(e.currentTarget as HTMLElement).style.backgroundColor = W
+                                ;(e.currentTarget as HTMLElement).style.color = N
+                              }}
+                            >
+                              <Linkedin size={15} />
+                            </a>
+
+                            <div className="absolute left-0 sm:left-auto sm:right-0 top-full mt-2 hidden group-hover:flex items-center gap-2 bg-[#19244E] text-white px-3 py-1.5 rounded-lg shadow-xl text-xs font-mono font-medium whitespace-nowrap z-50 pointer-events-none transition-all duration-200">
+                              <span className="w-2 h-2 rounded-full bg-[#0077B5]" />
+                              <span>/in/adinafayzagayo</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Link: VIEW FULL PROFILE › */}
+                        <button
+                          onClick={onReadMore}
+                          className="font-sans text-xs font-bold tracking-wider uppercase text-[#DB3E8C] hover:underline transition-all flex items-center gap-1 focus:outline-none cursor-pointer py-0.5"
+                        >
+                          <span>VIEW FULL PROFILE</span>
+                          <ChevronRight size={13} />
+                        </button>
+                      </div>
+                    </div>
+                  </motion.div>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* ── PANEL B: IN LIFE ── */}
-          <div className="w-1/2 flex flex-col justify-between px-4 sm:px-8 lg:px-20 pt-4 sm:pt-6 lg:pt-8 pb-16 sm:pb-20 min-h-[calc(100vh-140px)] flex-shrink-0 bg-transparent">
+            {/* ── PANEL B: IN LIFE ── */}
+            <div className="w-1/2 min-w-[50%] flex flex-col justify-between px-4 sm:px-8 lg:px-20 pt-4 sm:pt-6 lg:pt-8 pb-16 sm:pb-20 min-h-[calc(100vh-140px)] shrink-0 bg-transparent">
             {/* Centered Editorial Headline & Bio */}
             <div className="flex flex-col items-center max-w-5xl mx-auto my-auto w-full bg-transparent">
               <motion.h1
@@ -751,7 +878,7 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
                       onClick={onReadMore}
                       className="text-xs sm:text-sm font-sans font-bold tracking-wider uppercase text-[#DB3E8C] hover:underline transition-all flex items-center gap-1.5 focus:outline-none cursor-pointer py-1"
                     >
-                      View Full Profile & CV <ChevronRight size={14} />
+                      View Full Profile <ChevronRight size={14} />
                     </button>
                   </div>
                 </div>
@@ -788,8 +915,9 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
             </div>
           </div>
         </motion.div>
-      </motion.div>
-    </section>
+      </div>
+    </motion.div>
+  </section>
   )
 }
 
@@ -2181,7 +2309,6 @@ function ProjectArchiveSection() {
           </>
         )}
       </AnimatePresence>
-
     </section>
   )
 }
@@ -2222,8 +2349,8 @@ function TypingWordEffect({ words }: { words: string[] }) {
   )
 }
 
-// ─── CONTACT ──────────────────────────────────────────────────────────────────
-function ContactSection() {
+// ─── CONTACT SECTION ─────────────────────────────────────────────────────────
+function ContactSection({ onOpenPdfPreview }: { onOpenPdfPreview?: () => void }) {
   const { ref, inView } = useInView()
   const WORDS = ["significant?", "scalable?", "impactful?", "thoughtful?", "intuitive?"]
 
@@ -2269,15 +2396,13 @@ function ContactSection() {
             >
               <Mail size={14} /> Say Hello <ArrowRight size={14} />
             </a>
-            <a
-              href="https://www.linkedin.com/in/adinafayzagayo/"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={onOpenPdfPreview}
               className="flex items-center gap-2 px-5 sm:px-6 py-3 text-sm font-medium text-white transition-all duration-150 hover:bg-white/10 rounded-xl cursor-pointer"
               style={{ border: `1px solid rgba(255, 255, 255, 0.2)` }}
             >
-              <ExternalLink size={14} /> LinkedIn
-            </a>
+              Resume <Eye size={14} />
+            </button>
           </div>
         </motion.div>
 
@@ -2352,6 +2477,7 @@ const FEATURED_INDEX_MAP: Record<string, number> = {
 export default function App() {
   const [currentView, setCurrentView] = useState<"home" | "about" | "sunway-case" | "gegi-case" | "tng-case" | "archery-case" | "election-case" | "anlene-case" | "bijakwang-case" | "myarchery-case" | "backoffice-case">("home")
   const [activeFeaturedIndex, setActiveFeaturedIndex] = useState<number>(0)
+  const [isPdfModalOpen, setIsPdfModalOpen] = useState(false)
   const activeSection = useScrollSpy(["home", "work", "process", "archive", "contact"])
 
   const handleOpenProject = (id: string) => {
@@ -2467,7 +2593,10 @@ export default function App() {
 
   return (
     <div className="min-h-screen overflow-x-hidden" style={{ backgroundColor: S }}>
-      <HeroSection onReadMore={() => { setCurrentView("about"); window.scrollTo({ top: 0 }) }} />
+      <HeroSection
+        onReadMore={() => { setCurrentView("about"); window.scrollTo({ top: 0 }) }}
+        onOpenPdfPreview={() => setIsPdfModalOpen(true)}
+      />
       <FeaturedWorkSection
         activeIndex={activeFeaturedIndex}
         onActiveIndexChange={setActiveFeaturedIndex}
@@ -2475,9 +2604,10 @@ export default function App() {
       />
       <WorkflowSection />
       <ProjectArchiveSection />
-      <ContactSection />
+      <ContactSection onOpenPdfPreview={() => setIsPdfModalOpen(true)} />
       <Footer />
       <FloatingDock activeSection={activeSection} />
+      <PdfPreviewModal isOpen={isPdfModalOpen} onClose={() => setIsPdfModalOpen(false)} />
     </div>
   )
 }
