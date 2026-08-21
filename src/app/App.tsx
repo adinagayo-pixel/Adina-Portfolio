@@ -30,6 +30,7 @@ import {
   ArrowRight, ExternalLink, Globe, Zap,
   Users, CheckCircle, Coins, Bot, LayoutGrid,
   ArrowUpRight, ChevronRight, MousePointer2, Plus, Linkedin, Download,
+  Search, Target, FileCheck,
 } from "lucide-react"
 import SunwayCase from "./components/SunwayCase"
 import GegiCase from "./components/GegiCase"
@@ -228,12 +229,32 @@ function useInView(threshold = 0.12) {
 function useScrollSpy(ids: string[]) {
   const [active, setActive] = useState(ids[0])
   useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY < 150) {
+        setActive("home")
+      }
+    }
+    window.addEventListener("scroll", handleScroll, { passive: true })
+
     const obs = new IntersectionObserver(
-      (entries) => { entries.forEach((e) => { if (e.isIntersecting) setActive(e.target.id) }) },
-      { rootMargin: "-45% 0px -55% 0px" }
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting && window.scrollY >= 150) {
+            setActive(e.target.id)
+          }
+        })
+      },
+      { rootMargin: "-30% 0px -40% 0px" }
     )
-    ids.forEach((id) => { const el = document.getElementById(id); if (el) obs.observe(el) })
-    return () => obs.disconnect()
+    ids.forEach((id) => {
+      const el = document.getElementById(id)
+      if (el) obs.observe(el)
+    })
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      obs.disconnect()
+    }
   }, [ids])
   return active
 }
@@ -413,18 +434,25 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
   const [tick, setTick] = useState(0)
   const HELLOS = ["Hi, it's Dina!", "Halo, saya Dina!", "안녕하세요, 디나예요!"]
 
+  const { scrollY } = useScroll()
+
+  // Subtle Scale & Dim Transition (Cinematic Fade) on Scroll (0px -> 360px)
+  const heroScale = useTransform(scrollY, [0, 360], [1, 0.96])
+  const heroOpacity = useTransform(scrollY, [0, 350], [1, 0.05])
+
   useEffect(() => {
     const id = setInterval(() => setTick((t) => (t + 1) % HELLOS.length), 3200)
     return () => clearInterval(id)
   }, [])
 
   return (
-    <section className="relative w-full overflow-hidden bg-white">
-      {/* ── Top nav bar ── */}
-      <div
-        className="flex items-center justify-between px-5 py-4 lg:px-16 lg:py-6"
-        style={{ borderBottom: `1px solid rgba(25, 36, 78, 0.05)` }}
-      >
+    <section
+      id="home"
+      className="relative w-full min-h-screen flex flex-col justify-between overflow-hidden"
+      style={{ background: "linear-gradient(180deg, #FDF2F8 0%, #FAF5FF 30%, #FFFFFF 85%, #FFFFFF 100%)" }}
+    >
+      {/* ── Top nav bar (Transparent Child) ── */}
+      <div className="flex items-center justify-between px-5 py-4 lg:px-16 lg:py-6 bg-transparent shrink-0">
         <div className="flex items-center gap-4 lg:gap-6">
           <span className="font-sans text-xs sm:text-sm lg:text-base font-black tracking-[0.22em] text-[#19244E] select-none">
             AFG
@@ -508,12 +536,20 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
             href="/resume-adina-fayza-gayo.pdf"
             download="ADINA FAYZA GAYO Resume 2026.pdf"
             className="flex items-center gap-2 font-sans text-xs sm:text-sm font-semibold tracking-wider transition-all duration-150 rounded-xl px-4 py-2 sm:px-5 sm:py-2.5 cursor-pointer shadow-sm"
-            style={{ border: `1px solid ${HAIR}`, color: `${N}DD` }}
-            onMouseEnter={(e) => { ;(e.currentTarget as HTMLElement).style.borderColor = N; ;(e.currentTarget as HTMLElement).style.color = N }}
-            onMouseLeave={(e) => { ;(e.currentTarget as HTMLElement).style.borderColor = HAIR; ;(e.currentTarget as HTMLElement).style.color = `${N}DD` }}
+            style={{ border: `1px solid ${HAIR}`, color: `${N}DD`, backgroundColor: "transparent" }}
+            onMouseEnter={(e) => {
+              ;(e.currentTarget as HTMLElement).style.backgroundColor = N
+              ;(e.currentTarget as HTMLElement).style.color = W
+              ;(e.currentTarget as HTMLElement).style.borderColor = N
+            }}
+            onMouseLeave={(e) => {
+              ;(e.currentTarget as HTMLElement).style.backgroundColor = "transparent"
+              ;(e.currentTarget as HTMLElement).style.color = `${N}DD`
+              ;(e.currentTarget as HTMLElement).style.borderColor = HAIR
+            }}
           >
-            <Download size={15} />
             <span>Resume</span>
+            <Download size={15} />
           </a>
           <a
             href={getGeneralWhatsAppLink()}
@@ -530,23 +566,28 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
         </div>
       </div>
 
-      {/* ── Sliding viewports wrapper ── */}
-      <div className="overflow-hidden relative bg-gradient-to-b from-[#F8FAFC] via-[#F8FAFC]/50 to-white">
-
+      {/* ── Sliding viewports wrapper (Transparent Child - Continuous Root Gradient) ── */}
+      <motion.div
+        style={{
+          scale: heroScale,
+          opacity: heroOpacity,
+        }}
+        className="flex-1 flex flex-col justify-between relative bg-transparent origin-top"
+      >
         <motion.div
           animate={{ x: isAtWork ? "0%" : "-50%" }}
           transition={HERO_SPRING}
-          className="flex w-[200%] relative z-10"
+          className="flex w-[200%] flex-1 relative z-10 bg-transparent"
         >
           {/* ── PANEL A: AT WORK ── */}
-          <div className="w-1/2 flex flex-col justify-between px-4 sm:px-8 lg:px-20 pt-4 sm:pt-6 lg:pt-8 pb-20 sm:pb-24 lg:pb-28 min-h-[calc(100vh-140px)] flex-shrink-0">
-            {/* Centered Editorial Headline */}
-            <div className="flex flex-col items-center max-w-5xl mx-auto my-auto w-full">
+          <div className="w-1/2 flex flex-col justify-between px-4 sm:px-8 lg:px-20 pt-4 sm:pt-6 lg:pt-8 pb-16 sm:pb-20 min-h-[calc(100vh-140px)] flex-shrink-0 bg-transparent">
+            {/* Centered Editorial Headline & Bio */}
+            <div className="flex flex-col items-center max-w-5xl mx-auto my-auto w-full bg-transparent">
               <motion.h1
                 initial={{ opacity: 0, y: 22 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-                className="font-normal leading-[0.96] sm:leading-[0.90] tracking-tight text-center group select-none cursor-default"
+                className="font-normal leading-[0.96] sm:leading-[0.90] tracking-tight text-center group select-none cursor-default bg-transparent"
                 style={{
                   fontSize: "clamp(2.8rem, 7vw, 7.8rem)",
                   fontFamily: "'Instrument Serif', Georgia, serif",
@@ -557,8 +598,8 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
               </motion.h1>
 
               {/* Bio Block with Photo on Left & Bio Text + Greeting on Right */}
-              <div className="mt-6 sm:mt-8 max-w-3xl mx-auto flex flex-col sm:flex-row items-center sm:items-start gap-5 sm:gap-7 text-center sm:text-left">
-                {/* Small Photo on Left (Rotate -3deg, No Border Frame) */}
+              <div className="mt-6 sm:mt-8 max-w-3xl mx-auto flex flex-col sm:flex-row items-center sm:items-start gap-5 sm:gap-7 text-center sm:text-left bg-transparent">
+                {/* Small Photo on Left */}
                 <div
                   className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden shadow-md shrink-0 transition-transform duration-300 hover:rotate-0 hover:scale-105"
                   style={{ transform: "rotate(-3deg)" }}
@@ -571,7 +612,7 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
                 </div>
 
                 {/* Bio Text & Greeting merged */}
-                <div className="flex-1">
+                <div className="flex-1 bg-transparent">
                   <p className="font-sans text-sm sm:text-base leading-relaxed text-[#19244E]/85 mb-5">
                     <span className="font-bold text-[#DB3E8C] inline-flex items-center gap-1 mr-1.5">
                       <AnimatePresence mode="wait">
@@ -591,11 +632,11 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
                   </p>
 
                   {/* Action Buttons Row */}
-                  <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 sm:gap-6">
+                  <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 sm:gap-6 bg-transparent">
                     <button
                       onClick={() => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })}
-                      className="px-7 py-3.5 text-xs font-bold tracking-wider uppercase text-white transition-all duration-150 hover:opacity-90 shadow-sm flex items-center gap-2 cursor-pointer"
-                      style={{ backgroundColor: N, borderRadius: "6px" }}
+                      className="px-7 py-3.5 text-xs font-bold tracking-wider uppercase text-white transition-all duration-150 hover:opacity-90 shadow-sm flex items-center gap-2 cursor-pointer rounded-xl"
+                      style={{ backgroundColor: N }}
                     >
                       Selected Work <ArrowRight size={13} />
                     </button>
@@ -610,10 +651,10 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
               </div>
             </div>
 
-            {/* Hairline Divider & Bottom Metadata Strip */}
-            <div className="w-full pt-5 border-t border-[#19244E]/10">
-              <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-                <div className="flex items-center gap-2.5">
+            {/* Bottom Metadata Strip (Transparent & No Vertical/Horizontal Stroke Lines) */}
+            <div className="w-full pt-10 pb-16 sm:pb-20 bg-transparent">
+              <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left bg-transparent">
+                <div className="flex items-center gap-2.5 bg-transparent">
                   <span className="w-2 h-2 rounded-full bg-[#DB3E8C] shrink-0" />
                   <div>
                     <span className="text-[9.5px] font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
@@ -625,9 +666,7 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
                   </div>
                 </div>
 
-                <div className="hidden sm:block h-6 w-px bg-[#19244E]/10" />
-
-                <div className="flex items-center gap-2.5">
+                <div className="flex items-center gap-2.5 bg-transparent">
                   <span className="w-2 h-2 rounded-full bg-[#3b82f6] shrink-0" />
                   <div>
                     <span className="text-[9.5px] font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
@@ -643,14 +682,14 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
           </div>
 
           {/* ── PANEL B: IN LIFE ── */}
-          <div className="w-1/2 flex flex-col justify-between px-4 sm:px-8 lg:px-20 pt-4 sm:pt-6 lg:pt-8 pb-20 sm:pb-24 lg:pb-28 min-h-[calc(100vh-140px)] flex-shrink-0">
-            {/* Centered Editorial Headline */}
-            <div className="flex flex-col items-center max-w-5xl mx-auto my-auto w-full">
+          <div className="w-1/2 flex flex-col justify-between px-4 sm:px-8 lg:px-20 pt-4 sm:pt-6 lg:pt-8 pb-16 sm:pb-20 min-h-[calc(100vh-140px)] flex-shrink-0 bg-transparent">
+            {/* Centered Editorial Headline & Bio */}
+            <div className="flex flex-col items-center max-w-5xl mx-auto my-auto w-full bg-transparent">
               <motion.h1
                 initial={{ opacity: 0, y: 22 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-                className="font-normal leading-[0.96] sm:leading-[0.90] tracking-tight text-center group select-none cursor-default"
+                className="font-normal leading-[0.96] sm:leading-[0.90] tracking-tight text-center group select-none cursor-default bg-transparent"
                 style={{
                   fontSize: "clamp(2.8rem, 7vw, 7.8rem)",
                   fontFamily: "'Instrument Serif', Georgia, serif",
@@ -661,120 +700,22 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
               </motion.h1>
 
               {/* Bio Block with Photo on Left & Bio Text + Greeting on Right */}
-              <div className="mt-8 sm:mt-10 max-w-3xl mx-auto flex flex-col sm:flex-row items-center sm:items-start gap-5 sm:gap-7 text-center sm:text-left">
-                {/* Small Photo on Left (Rotate -3deg, No Border Frame) */}
+              <div className="mt-6 sm:mt-8 max-w-3xl mx-auto flex flex-col sm:flex-row items-center sm:items-start gap-5 sm:gap-7 text-center sm:text-left bg-transparent">
+                {/* Small Photo on Left */}
                 <div
                   className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden shadow-md shrink-0 transition-transform duration-300 hover:rotate-0 hover:scale-105"
-                  style={{ transform: "rotate(-3deg)" }}
-                >
-                  <ImageWithFallback
-                    src={adinaPhotoAbout}
-                    alt="Adina Fayza Gayo - At Work"
-                    className="w-full h-full object-cover object-top rounded-2xl"
-                  />
-                </div>
-
-                {/* Bio Text & Greeting merged */}
-                <div className="flex-1">
-                  <p className="font-sans text-sm sm:text-base leading-relaxed text-[#19244E]/85 mb-6">
-                    <span className="font-bold text-[#DB3E8C] inline-flex items-center gap-1 mr-1.5">
-                      <AnimatePresence mode="wait">
-                        <motion.span
-                          key={tick}
-                          initial={{ y: 2, opacity: 0 }}
-                          animate={{ y: 0, opacity: 1 }}
-                          exit={{ y: -2, opacity: 0 }}
-                          transition={{ duration: 0.2 }}
-                          className="inline-block"
-                        >
-                          {HELLOS[tick]}
-                        </motion.span>
-                      </AnimatePresence>
-                    </span>
-                    I’m a product designer focused on complex B2B platforms and embedded fintech. Most of my time goes into making messy product logic simple, mapping out edge cases, and giving developers specs they can build without second-guessing.
-                  </p>
-
-                  {/* Action Buttons Row */}
-                  <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 sm:gap-6">
-                    <button
-                      onClick={() => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })}
-                      className="px-7 py-3.5 text-xs font-bold tracking-wider uppercase text-white transition-all duration-150 hover:opacity-90 shadow-sm flex items-center gap-2 cursor-pointer"
-                      style={{ backgroundColor: N, borderRadius: "6px" }}
-                    >
-                      Selected Work <ArrowRight size={13} />
-                    </button>
-                    <button
-                      onClick={onReadMore}
-                      className="text-xs sm:text-sm font-sans font-bold tracking-wider uppercase text-[#DB3E8C] hover:underline transition-all flex items-center gap-1.5 focus:outline-none cursor-pointer py-1"
-                    >
-                      View Full Profile & CV <ChevronRight size={14} />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Hairline Divider & Bottom Metadata Strip */}
-            <div className="w-full pt-6 border-t border-[#19244E]/10">
-              <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-                <div className="flex items-center gap-2.5">
-                  <span className="w-2 h-2 rounded-full bg-[#DB3E8C] shrink-0" />
-                  <div>
-                    <span className="text-[9.5px] font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
-                      CURRENTLY
-                    </span>
-                    <span className="font-semibold text-xs sm:text-sm text-[#19244E]/85">
-                      Designing complex fintech & enterprise logic
-                    </span>
-                  </div>
-                </div>
-
-                <div className="hidden sm:block h-6 w-px bg-[#19244E]/10" />
-
-                <div className="flex items-center gap-2.5">
-                  <span className="w-2 h-2 rounded-full bg-[#3b82f6] shrink-0" />
-                  <div>
-                    <span className="text-[9.5px] font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
-                      OPEN FOR
-                    </span>
-                    <span className="font-semibold text-xs sm:text-sm text-[#19244E]/85">
-                      In-House Squads · Jakarta (Remote / Relocation)
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* ── PANEL B: IN LIFE ── */}
-          <div className="w-1/2 flex flex-col justify-between px-4 sm:px-8 lg:px-20 pt-6 sm:pt-10 lg:pt-12 pb-8 sm:pb-12 min-h-[calc(100vh-140px)] flex-shrink-0">
-            {/* Centered Editorial Headline */}
-            <div className="flex flex-col items-center max-w-5xl mx-auto my-auto w-full">
-              <h1
-                className="font-display font-semibold leading-[0.94] sm:leading-[0.88] tracking-tight uppercase text-center"
-                style={{ fontSize: "clamp(2.4rem, 6vw, 6.6rem)", color: N }}
-              >
-                PLOT TWISTS. LIVE ACOUSTICS.<br />
-                <span style={{ color: C }}>FRONT ROW CROWDS</span>
-              </h1>
-
-              {/* Bio Block with Photo on Left & Bio Text + Greeting on Right */}
-              <div className="mt-8 sm:mt-10 max-w-3xl mx-auto flex flex-col sm:flex-row items-center sm:items-start gap-5 sm:gap-7 text-center sm:text-left">
-                {/* Small Photo on Left (Rotate +3deg) */}
-                <div
-                  className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden bg-white p-1 shadow-lg border border-[#19244E]/15 shrink-0 transition-transform duration-300 hover:rotate-0 hover:scale-105"
                   style={{ transform: "rotate(3deg)" }}
                 >
                   <ImageWithFallback
                     src={adinaPhotoLife}
                     alt="Adina Fayza Gayo - In Life"
-                    className="w-full h-full object-cover object-top rounded-xl"
+                    className="w-full h-full object-cover object-top rounded-2xl"
                   />
                 </div>
 
                 {/* Bio Text & Greeting merged */}
-                <div className="flex-1">
-                  <p className="font-sans text-sm sm:text-base leading-relaxed text-[#19244E]/85 mb-6">
+                <div className="flex-1 bg-transparent">
+                  <p className="font-sans text-sm sm:text-base leading-relaxed text-[#19244E]/85 mb-5">
                     <span className="font-bold text-[#DB3E8C] inline-block mr-1.5">
                       Life in motion ✨
                     </span>
@@ -782,11 +723,11 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
                   </p>
 
                   {/* Action Buttons Row */}
-                  <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 sm:gap-6">
+                  <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 sm:gap-6 bg-transparent">
                     <a
                       href="mailto:adinagayo@gmail.com"
-                      className="px-7 py-3.5 text-xs font-bold tracking-wider uppercase text-white transition-all duration-150 hover:opacity-90 shadow-sm flex items-center gap-2 cursor-pointer"
-                      style={{ backgroundColor: C, borderRadius: "6px" }}
+                      className="px-7 py-3.5 text-xs font-bold tracking-wider uppercase text-white transition-all duration-150 hover:opacity-90 shadow-sm flex items-center gap-2 cursor-pointer rounded-xl"
+                      style={{ backgroundColor: C }}
                     >
                       Let's grab coffee <ArrowUpRight size={13} />
                     </a>
@@ -801,10 +742,10 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
               </div>
             </div>
 
-            {/* Hairline Divider & Bottom Metadata Strip */}
-            <div className="w-full pt-6 border-t border-[#19244E]/10">
-              <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-                <div className="flex items-center gap-2.5">
+            {/* Bottom Metadata Strip (Transparent & No Vertical/Horizontal Stroke Lines) */}
+            <div className="w-full pt-10 pb-16 sm:pb-20 bg-transparent">
+              <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left bg-transparent">
+                <div className="flex items-center gap-2.5 bg-transparent">
                   <span className="w-2 h-2 rounded-full bg-[#DB3E8C] shrink-0" />
                   <div>
                     <span className="text-[9.5px] font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
@@ -816,9 +757,7 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
                   </div>
                 </div>
 
-                <div className="hidden sm:block h-6 w-px bg-[#19244E]/10" />
-
-                <div className="flex items-center gap-2.5">
+                <div className="flex items-center gap-2.5 bg-transparent">
                   <span className="w-2 h-2 rounded-full bg-[#10b981] shrink-0" />
                   <div>
                     <span className="text-[9.5px] font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
@@ -833,7 +772,7 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
             </div>
           </div>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   )
 }
@@ -1285,7 +1224,7 @@ function FeaturedWorkSection({
   }
 
   return (
-    <section ref={sectionRef} id="work" className="relative overflow-hidden bg-white">
+    <section ref={sectionRef} id="work" className="relative z-20 overflow-hidden bg-white">
       <motion.div
         style={{ clipPath }}
         className="w-full h-full bg-[#19244E]"
@@ -1596,36 +1535,36 @@ const PHASES = [
   },
 ]
 
-/* Hand-Drawn / Sketch SVG Icons for How I Work Statement */
-function SketchSearchIcon({ className = "w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 inline-block text-[#F472B6]" }: { className?: string }) {
+/* Standalone Duo-Tone Vector Icons for How I Work Statement */
+function StandaloneSearchIcon({ className = "w-8 h-8 sm:w-11 sm:h-11 lg:w-14 lg:h-14 inline-block text-[#F472B6]" }: { className?: string }) {
   return (
-    <svg className={className} viewBox="0 0 28 28" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ filter: "url(#hand-drawn)" }}>
-      <circle cx="12" cy="12" r="7.5" />
-      <path d="M17.5 17.5L24 24" strokeWidth="2.8" />
-      <path d="M9 10C9.5 8.8 10.8 8.2 12 8.2" strokeWidth="1.6" strokeOpacity="0.7" />
+    <svg className={className} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="13" cy="13" r="8.5" stroke="currentColor" strokeWidth="3.2" strokeLinecap="round" />
+      <path d="M19.5 19.5L27 27" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
+      <circle cx="13" cy="13" r="4" fill="currentColor" fillOpacity="0.35" />
+      <path d="M10 10C10.8 8.8 12.2 8.2 13.5 8.2" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
     </svg>
   )
 }
 
-function SketchTargetIcon({ className = "w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 inline-block text-[#F472B6]" }: { className?: string }) {
+function StandaloneTargetIcon({ className = "w-8 h-8 sm:w-11 sm:h-11 lg:w-14 lg:h-14 inline-block text-[#F472B6]" }: { className?: string }) {
   return (
-    <svg className={className} viewBox="0 0 28 28" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ filter: "url(#hand-drawn)" }}>
-      <circle cx="13" cy="14" r="9" />
-      <circle cx="13" cy="14" r="5" strokeWidth="2" />
-      <circle cx="13" cy="14" r="2" fill="currentColor" />
-      <path d="M19 8L24 3" strokeWidth="2.4" />
-      <path d="M21 3L24 3L24 6" strokeWidth="2" />
+    <svg className={className} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="16" cy="16" r="11.5" stroke="currentColor" strokeWidth="3" strokeDasharray="3 3" />
+      <circle cx="16" cy="16" r="6.5" stroke="currentColor" strokeWidth="3" />
+      <circle cx="16" cy="16" r="3.5" fill="currentColor" />
+      <path d="M16 2V5.5M16 26.5V30M2 16H5.5M26.5 16H30" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
     </svg>
   )
 }
 
-function SketchClipboardIcon({ className = "w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 inline-block text-[#F472B6]" }: { className?: string }) {
+function StandaloneClipboardIcon({ className = "w-8 h-8 sm:w-11 sm:h-11 lg:w-14 lg:h-14 inline-block text-[#F472B6]" }: { className?: string }) {
   return (
-    <svg className={className} viewBox="0 0 28 28" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ filter: "url(#hand-drawn)" }}>
-      <rect x="6" y="5" width="16" height="19" rx="2" />
-      <path d="M10 3H18V6H10z" fill="currentColor" fillOpacity="0.2" strokeWidth="1.8" />
-      <path d="M10 12L12.5 14.5L17.5 9.5" strokeWidth="2.4" />
-      <path d="M10 18H18" strokeWidth="2" />
+    <svg className={className} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="7" y="6" width="18" height="22" rx="3" stroke="currentColor" strokeWidth="3.2" />
+      <rect x="11" y="3" width="10" height="5" rx="1.5" fill="currentColor" fillOpacity="0.35" stroke="currentColor" strokeWidth="2.4" />
+      <path d="M11 16L14.5 19.5L21.5 12.5" stroke="currentColor" strokeWidth="3.6" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M11 23H21" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeDasharray="2 2" />
     </svg>
   )
 }
@@ -1672,7 +1611,7 @@ function WorkflowSection() {
             SYSTEM LOGIC
           </span>
           <div className="flex-1 h-px" style={{ backgroundColor: "rgba(255,255,255,0.08)" }} />
-          <span className="font-sans text-[9px] sm:text-[10px] font-semibold tracking-widest uppercase text-[#DB3E8C]">
+          <span className="font-sans text-[9px] sm:text-[10px] font-semibold tracking-widest uppercase text-[#F472B6]">
             DESIGN PHILOSOPHY
           </span>
         </div>
@@ -1682,24 +1621,24 @@ function WorkflowSection() {
           style={{ opacity: heroOpacity, y: heroY }}
           className="relative z-20 px-4 sm:px-8 lg:px-16 py-14 sm:py-20 lg:py-24 flex flex-col items-center text-center"
         >
-          <p className="font-sans text-[10px] font-semibold tracking-[0.25em] uppercase mb-6 sm:mb-10 text-[#DB3E8C]">
-            [ HOW I WORK ]
+          <p className="font-sans text-[10px] font-bold tracking-[0.25em] uppercase mb-6 sm:mb-10 text-[#F472B6]">
+            HOW I WORK
           </p>
           <h2
             className="font-display font-light leading-[1.4] text-white max-w-4xl text-center drop-shadow-lg"
             style={{ fontSize: "clamp(1.75rem, 4.5vw, 4.2rem)", letterSpacing: "-0.025em" }}
           >
-            I dig into the real problem first,{" "}
-            <span className="inline-block origin-center align-middle mx-1">
-              <SketchSearchIcon className="w-8 h-8 sm:w-16 sm:h-16 lg:w-20 lg:h-20 inline-block text-[#F472B6]" />
-            </span>{" "}
-            design the system <span className="text-[#DB3E8C]">logic with care,</span>{" "}
-            <span className="inline-block origin-center align-middle mx-1">
-              <SketchTargetIcon className="w-8 h-8 sm:w-16 sm:h-16 lg:w-20 lg:h-20 inline-block text-[#F472B6]" />
-            </span>{" "}
+            I dig into the real problem first{" "}
+            <span className="inline-block align-middle mx-1 sm:mx-1.5 hover:scale-110 transition-transform duration-300">
+              <StandaloneSearchIcon className="w-8 h-8 sm:w-11 sm:h-11 lg:w-14 lg:h-14 inline-block text-[#F472B6]" />
+            </span>,{" "}
+            design the system <span className="text-[#F472B6] font-bold">logic with care</span>{" "}
+            <span className="inline-block align-middle mx-1 sm:mx-1.5 hover:scale-110 transition-transform duration-300">
+              <StandaloneTargetIcon className="w-8 h-8 sm:w-11 sm:h-11 lg:w-14 lg:h-14 inline-block text-[#F472B6]" />
+            </span>,{" "}
             and hand off specs so clean{" "}
-            <span className="inline-block origin-center align-middle mx-1">
-              <SketchClipboardIcon className="w-8 h-8 sm:w-16 sm:h-16 lg:w-20 lg:h-20 inline-block text-[#F472B6]" />
+            <span className="inline-block align-middle mx-1 sm:mx-1.5 hover:scale-110 transition-transform duration-300">
+              <StandaloneClipboardIcon className="w-8 h-8 sm:w-11 sm:h-11 lg:w-14 lg:h-14 inline-block text-[#F472B6]" />
             </span>{" "}
             that engineers rarely have to ask follow-up questions.
           </h2>
@@ -2204,9 +2143,47 @@ function ProjectArchiveSection() {
   )
 }
 
+function TypingWordEffect({ words }: { words: string[] }) {
+  const [wordIdx, setWordIdx] = useState(0)
+  const [currentText, setCurrentText] = useState("")
+  const [isDeleting, setIsDeleting] = useState(false)
+
+  useEffect(() => {
+    const fullWord = words[wordIdx]
+    let timer: ReturnType<typeof setTimeout>
+
+    if (!isDeleting && currentText !== fullWord) {
+      timer = setTimeout(() => {
+        setCurrentText(fullWord.slice(0, currentText.length + 1))
+      }, 70)
+    } else if (!isDeleting && currentText === fullWord) {
+      timer = setTimeout(() => {
+        setIsDeleting(true)
+      }, 2000)
+    } else if (isDeleting && currentText !== "") {
+      timer = setTimeout(() => {
+        setCurrentText(fullWord.slice(0, currentText.length - 1))
+      }, 40)
+    } else if (isDeleting && currentText === "") {
+      setIsDeleting(false)
+      setWordIdx((prev) => (prev + 1) % words.length)
+    }
+
+    return () => clearTimeout(timer)
+  }, [currentText, isDeleting, wordIdx, words])
+
+  return (
+    <span className="font-normal not-italic text-[#DB3E8C] border-r-2 border-[#DB3E8C] pr-1 inline-block min-w-[1ch]">
+      {currentText}
+    </span>
+  )
+}
+
 // ─── CONTACT ──────────────────────────────────────────────────────────────────
 function ContactSection() {
   const { ref, inView } = useInView()
+  const WORDS = ["significant?", "scalable?", "impactful?", "thoughtful?", "intuitive?"]
+
   return (
     <section
       id="contact"
@@ -2219,7 +2196,7 @@ function ContactSection() {
       >
         <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-white/50">CONTACT</span>
         <div className="flex-1 h-px bg-white/10" />
-        <span className="font-sans text-[9px] sm:text-[10px] font-semibold tracking-[0.15em] text-[#DB3E8C]">OPEN TO SENIOR IC & LEAD ROLES</span>
+        <span className="font-sans text-[9px] sm:text-[10px] font-semibold tracking-[0.15em] text-[#DB3E8C]">OPEN TO MID – SENIOR PRODUCT DESIGNER ROLES</span>
       </div>
 
       <div ref={ref} className="grid lg:grid-cols-[1fr_1px_480px]" style={{ minHeight: "440px" }}>
@@ -2231,16 +2208,15 @@ function ContactSection() {
           className="flex flex-col justify-center px-4 sm:px-8 lg:px-16 py-12 sm:py-16"
           style={{ borderRight: `1px solid rgba(255, 255, 255, 0.08)` }}
         >
-          <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C] mb-2">REGION: SG / MY / REMOTE-FIRST</span>
           <h2
-            className="font-display font-light leading-[0.95] sm:leading-[0.9] my-6 sm:my-8 text-white"
+            className="font-display font-light leading-[0.95] sm:leading-[0.9] my-4 sm:my-6 text-white"
             style={{ fontSize: "clamp(2.1rem, 5.5vw, 5rem)", letterSpacing: "-0.025em" }}
           >
             Ready to build<br />something<br />
-            <em className="font-normal not-italic text-[#DB3E8C]">significant?</em>
+            <TypingWordEffect words={WORDS} />
           </h2>
-          <p className="text-sm sm:text-base leading-relaxed mb-8 sm:mb-10 max-w-[380px] text-white/80 font-sans" style={{ lineHeight: 1.8 }}>
-            I'm open to senior IC and lead roles in Singapore, Malaysia, and remote-first regional opportunities. Happy to talk about your design challenges first.
+          <p className="text-sm sm:text-base leading-relaxed mb-8 sm:mb-10 max-w-[440px] text-white/80 font-sans" style={{ lineHeight: 1.75 }}>
+            I'm open to Product Designer (Mid to Senior) roles whether remote, hybrid, or on-site with global relocation. Always excited to tackle complex systems and chat about your product challenges.
           </p>
           <div className="flex flex-wrap gap-3">
             <a
