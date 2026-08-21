@@ -3,6 +3,7 @@ import { motion, useMotionValue, useSpring, AnimatePresence, useScroll, useTrans
 import adinaPhotoAbout from "@/imports/Foto At Work.png"
 import adinaPhotoLife from "@/imports/Foto In Life.jpg"
 import afgLogo from "@/imports/LOGO.png"
+import heroBgImage from "@/imports/smooth-abstract-space-with-flowing-lines-curves-monochromatic-palette.jpg"
 import gettyBgVideo from "@/imports/GettyImages-1152749158.mp4"
 import projectThumb1 from "@/imports/image-7.png"
 import projectThumb2 from "@/imports/image-8.png"
@@ -449,8 +450,22 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
     <section
       id="home"
       className="relative w-full min-h-screen flex flex-col justify-between overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #FDF2F8 0%, #FAF5FF 30%, #FFFFFF 85%, #FFFFFF 100%)" }}
+      style={{ background: "#FFFFFF" }}
     >
+      {/* Ultra-Subtle 3D Organic Architectural Waves BG Image with Mask Fade */}
+      <div
+        className="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-[0.09] mix-blend-multiply"
+        style={{
+          WebkitMaskImage: "linear-gradient(to bottom, black 40%, transparent 92%)",
+          maskImage: "linear-gradient(to bottom, black 40%, transparent 92%)",
+        }}
+      >
+        <img
+          src={heroBgImage}
+          alt=""
+          className="w-full h-full object-cover object-center scale-105 filter blur-[1.5px]"
+        />
+      </div>
       {/* ── Top nav bar (Transparent Child) ── */}
       <div className="flex items-center justify-between px-5 py-4 lg:px-16 lg:py-6 bg-transparent shrink-0">
         <div className="flex items-center gap-4 lg:gap-6">
@@ -583,6 +598,16 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
           <div className="w-1/2 flex flex-col justify-between px-4 sm:px-8 lg:px-20 pt-4 sm:pt-6 lg:pt-8 pb-16 sm:pb-20 min-h-[calc(100vh-140px)] flex-shrink-0 bg-transparent">
             {/* Centered Editorial Headline & Bio */}
             <div className="flex flex-col items-center max-w-5xl mx-auto my-auto w-full bg-transparent">
+              {/* Top Role Badge */}
+              <motion.p
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="font-mono text-[10px] sm:text-xs font-bold tracking-[0.25em] text-[#DB3E8C] uppercase mb-4 sm:mb-6 select-none cursor-default"
+              >
+                PRODUCT DESIGNER · CROSS-INDUSTRY B2B · 5+ YRS
+              </motion.p>
+
               <motion.h1
                 initial={{ opacity: 0, y: 22 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -628,7 +653,7 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
                         </motion.span>
                       </AnimatePresence>
                     </span>
-                    I’m a product designer driving end-to-end design lifecycles for complex B2B and fintech platforms. Most of my time goes into turning messy requirements into simple product logic, mapping out edge cases, and delivering developer-ready Figma specs engineers can build without second-guessing.
+                    I’m a product designer driving end-to-end design lifecycles for B2B platforms across fintech, e-commerce, and enterprise systems. Most of my time goes into turning messy requirements into simple product logic, mapping out edge cases, and delivering developer-ready Figma specs engineers can build without second-guessing.
                   </p>
 
                   {/* Action Buttons Row */}
@@ -649,33 +674,24 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Bottom Metadata Strip (Transparent & No Vertical/Horizontal Stroke Lines) */}
-            <div className="w-full pt-10 pb-16 sm:pb-20 bg-transparent">
-              <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left bg-transparent">
-                <div className="flex items-center gap-2.5 bg-transparent">
-                  <span className="w-2 h-2 rounded-full bg-[#DB3E8C] shrink-0" />
-                  <div>
-                    <span className="text-[9.5px] font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
-                      CURRENTLY
-                    </span>
-                    <span className="font-semibold text-xs sm:text-sm text-[#19244E]/85">
-                      Designing complex fintech & enterprise logic
-                    </span>
-                  </div>
+              {/* Industry Domain Pills & Systems Shipped Counter */}
+              <div className="mt-8 pt-6 border-t border-[#19244E]/10 flex flex-col items-center gap-2 text-center bg-transparent w-full max-w-3xl">
+                <div className="flex flex-wrap items-center justify-center gap-2 font-sans text-xs sm:text-sm font-semibold text-[#19244E]/80">
+                  <span>Banking</span>
+                  <span className="text-[#DB3E8C]">•</span>
+                  <span>InsurTech</span>
+                  <span className="text-[#DB3E8C]">•</span>
+                  <span>FMCG</span>
+                  <span className="text-[#DB3E8C]">•</span>
+                  <span>E-Commerce</span>
+                  <span className="text-[#DB3E8C]">•</span>
+                  <span>Public Transit</span>
+                  <span className="text-[#DB3E8C]">•</span>
+                  <span>Enterprise Systems</span>
                 </div>
-
-                <div className="flex items-center gap-2.5 bg-transparent">
-                  <span className="w-2 h-2 rounded-full bg-[#3b82f6] shrink-0" />
-                  <div>
-                    <span className="text-[9.5px] font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
-                      OPEN FOR
-                    </span>
-                    <span className="font-semibold text-xs sm:text-sm text-[#19244E]/85">
-                      In-House Squads · Jakarta (Remote / Relocation)
-                    </span>
-                  </div>
+                <div className="font-sans text-xs sm:text-sm text-[#19244E]/75">
+                  <span className="font-bold text-[#19244E]">15 shipped systems</span> · Open for In-House Squads · Jakarta (Remote/Relocation)
                 </div>
               </div>
             </div>
