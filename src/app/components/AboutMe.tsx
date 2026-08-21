@@ -355,7 +355,8 @@ export default function AboutMe({ onBack }: Props) {
               {
                 title: "Design Tools & Prototyping",
                 skills: [
-                  "Figma, Framer",
+                  "Figma (Auto Layout, Design Systems, Tokens & Variables, Component Variants)",
+                  "Framer, VS Code Prototyping",
                   "Adobe Illustrator, Photoshop",
                   "Adobe Premiere, After Effects",
                   "Canva, Capcut",

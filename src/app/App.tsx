@@ -628,7 +628,7 @@ function HeroSection({ onReadMore }: { onReadMore: () => void }) {
                         </motion.span>
                       </AnimatePresence>
                     </span>
-                    I’m a product designer focused on complex B2B platforms and embedded fintech. Most of my time goes into making messy product logic simple, mapping out edge cases, and giving developers specs they can build without second-guessing.
+                    I’m a product designer driving end-to-end design lifecycles for complex B2B and fintech platforms. Most of my time goes into turning messy requirements into simple product logic, mapping out edge cases, and delivering developer-ready Figma specs engineers can build without second-guessing.
                   </p>
 
                   {/* Action Buttons Row */}
@@ -1521,24 +1521,27 @@ function FeaturedWorkSection({
 // ─── HOW I WORK ─────────────────────────────────────────────────────────────────
 const PHASES = [
   {
-    num: "01", phase: "Strategic Alignment",
-    sub: "Logic Deep-Dive & Business Research",
-    desc: "Every engagement begins with stakeholder mapping, BRS analysis, and user research synthesis. Every pixel is anchored to a measurable business objective, not aesthetic preference.",
-    tools: ["Google Docs", "Stakeholder Maps", "Excel", "BRS Docs", "Design Thinking"],
+    num: "01",
+    phase: "RESEARCH & ALIGNMENT",
+    sub: "Requirement Deep-Dive & Flow Mapping",
+    desc: "Every project starts with understanding the real problem. I dig into requirements with PMs, test existing apps hands-on, and benchmark proven design patterns from mature platforms. I also align early with Backend engineers so edge cases and data logic are solid before designing screens.",
+    tools: ["Stakeholder Q&A", "App Walkthroughs", "UI Benchmarking", "Backend Alignment", "User Flows & Sitemaps"],
     Icon: Users,
   },
   {
-    num: "02", phase: "AI-Assisted Rapid Prototyping",
-    sub: "Logic Exploration & High-Fidelity Sprint",
-    desc: "Using Claude AI, Gemini, and Figma Make I prototype at a pace traditional workflows cannot match. A complete design system component takes minutes, not days.",
-    tools: ["Claude AI", "Gemini", "Figma Make", "VS Code", "Antigravity"],
+    num: "02",
+    phase: "BENCHMARK, AI IDEATION & CRAFT",
+    sub: "Industry Benchmarking, AI & Figma Craft",
+    desc: "I balance speed and quality by adapting proven patterns from mature apps and Dribbble, combined with AI ideation (Sketch AI, Claude, Gemini). I craft pixel-perfect screens and edge-case states in Figma, collaborate with graphic designers for custom visual assets, and build code prototypes when needed.",
+    tools: ["Design Systems", "Figma Variables & Components", "Claude & Gemini", "Prototyping"],
     Icon: Zap,
   },
   {
-    num: "03", phase: "Structured Handoff",
-    sub: "Technical Bridge & Developer Documentation",
-    desc: "I close the designer-developer gap with annotated specs, design tokens, and production-ready assets. Developers ship from my handoffs with zero clarification rounds.",
-    tools: ["Figma", "Design Tokens", "Storybook", "Code Specs", "Zeroheight"],
+    num: "03",
+    phase: "TRACEABLE HANDOFF & QA",
+    sub: "3-Tier Architecture & Jira-Linked Changelogs",
+    desc: "Inside Figma, I organize every portal into a 3-page structure: Masterflow, Changelog, and Archive. When revisions happen, I create numbered before-and-after frames in Figma linked directly to Jira tickets, making every change easy to track and keeping the live app logic safe.",
+    tools: ["Masterflow & Archive", "Jira Changelog Sync", "Numbered Notes", "Design QA", "Live App Auditing"],
     Icon: CheckCircle,
   },
 ]
@@ -1661,7 +1664,7 @@ function WorkflowSection() {
           borderTop: `1px solid rgba(255,255,255,0.08)`,
         }}
       >
-        <div className="max-w-6xl mx-auto relative">
+        <div className="w-full relative">
           {/* Section Header */}
           <div className="flex items-center justify-between mb-10 sm:mb-14 border-b border-white/10 pb-4">
             <div className="flex items-center gap-3">
