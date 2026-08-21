@@ -1533,7 +1533,7 @@ const PHASES = [
     phase: "BENCHMARK, AI IDEATION & CRAFT",
     sub: "Industry Benchmarking, AI & Figma Craft",
     desc: "I balance speed and quality by adapting proven patterns from mature apps and Dribbble, combined with AI ideation (Sketch AI, Claude, Gemini). I craft pixel-perfect screens and edge-case states in Figma, collaborate with graphic designers for custom visual assets, and build code prototypes when needed.",
-    tools: ["Design Systems", "Figma Variables & Components", "Claude & Gemini", "Prototyping"],
+    tools: ["Design Systems", "Figma Variables & Components", "Claude & Gemini", "VS Code", "Antigravity", "Prototyping"],
     Icon: Zap,
   },
   {
