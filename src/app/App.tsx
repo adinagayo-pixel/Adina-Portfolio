@@ -661,10 +661,10 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
                       <div className="font-medium text-[#19244E]">Product Designer</div>
 
                       <div className="font-bold text-[#DB3E8C] uppercase">BASE</div>
-                      <div className="font-medium text-[#19244E]">Jakarta, ID</div>
+                      <div className="font-medium text-[#19244E]">Jakarta, ID (Open for Global Relocation)</div>
 
                       <div className="font-bold text-[#DB3E8C] uppercase">MODE</div>
-                      <div className="font-medium text-[#19244E]">Remote, hybrid, or on-site with global relocation</div>
+                      <div className="font-medium text-[#19244E]">Remote, hybrid, or on-site</div>
 
                       <div className="font-bold text-[#DB3E8C] uppercase">STATUS</div>
                       <div className="font-bold text-[#19244E] flex items-center gap-1.5">
