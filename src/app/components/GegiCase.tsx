@@ -187,67 +187,43 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
       <div className="px-4 sm:px-8 lg:px-16 pt-12 sm:pt-16 pb-10 sm:pb-14" style={{ backgroundColor: W, borderBottom: `1px solid ${HAIR}` }}>
-        <div className="max-w-4xl space-y-6">
-          <div className="flex flex-wrap items-center gap-3">
-            <MonoTag accent>CASE STUDY 02</MonoTag>
-            <span style={{ color: HAIR }}>/</span>
-            <MonoTag>FINTECH & GAMIFIED CAMPAIGN</MonoTag>
-            <span style={{ color: HAIR }}>/</span>
-            <MonoTag>GREAT EASTERN SINGAPORE · 2026</MonoTag>
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-center">
+          <div className="space-y-6">
+            <div className="flex flex-wrap items-center gap-3">
+              <MonoTag accent>CASE STUDY 02</MonoTag>
+              <span style={{ color: HAIR }}>/</span>
+              <MonoTag>FINTECH & GAMIFIED CAMPAIGN</MonoTag>
+              <span style={{ color: HAIR }}>/</span>
+              <MonoTag>GREAT EASTERN SINGAPORE · 2026</MonoTag>
+            </div>
+
+            <h1
+              className="font-display font-bold leading-[1.08] tracking-tight"
+              style={{ fontSize: "clamp(2rem, 4vw, 3.6rem)", color: N }}
+            >
+              Gamified CI Evaluation & Interactive Acquisition Campaign
+            </h1>
+
+            <p
+              className="font-display font-light leading-relaxed"
+              style={{ fontSize: "clamp(1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
+            >
+              Great Eastern Singapore needed an engaging digital campaign to assess critical illness protection gaps among its users.
+            </p>
+
+            <p className="text-sm sm:text-base leading-relaxed" style={{ color: BODY, lineHeight: 1.8 }}>
+              I stepped in with a tight 2 week sprint deadline, taking over an existing initial concept and driving it to a fully client approved product.
+            </p>
           </div>
 
-          <h1
-            className="font-display font-bold leading-[1.08] tracking-tight"
-            style={{ fontSize: "clamp(2rem, 4vw, 3.6rem)", color: N }}
-          >
-            Gamified CI Evaluation & Interactive Acquisition Campaign
-          </h1>
-
-          <p
-            className="font-display font-light leading-relaxed"
-            style={{ fontSize: "clamp(1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
-          >
-            Great Eastern Singapore needed an engaging digital campaign to assess critical illness protection gaps among its users.
-          </p>
-
-          <p className="text-sm sm:text-base leading-relaxed max-w-3xl" style={{ color: BODY, lineHeight: 1.8 }}>
-            I stepped in with a tight 2 week sprint deadline, taking over an existing initial concept and driving it to a fully client approved product.
-          </p>
-        </div>
-
-        {/* Hero Metadata Grid Strip */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 mt-12 border-t border-gray-100 text-sm">
-          <div className="col-span-2 md:col-span-1">
-            <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
-              Role & Ownership
-            </span>
-            <span className="font-semibold text-[#19244E] block leading-snug">
-              Lead Product Designer & UX Architect
-            </span>
-          </div>
-          <div>
-            <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
-              Client & Target Market
-            </span>
-            <span className="font-semibold text-[#19244E]">
-              Great Eastern Insurance (SG Market)
-            </span>
-          </div>
-          <div>
-            <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
-              Timeline & Turnaround
-            </span>
-            <span className="font-semibold text-[#19244E]">
-              2 Week Sprint · 2026 Release
-            </span>
-          </div>
-          <div>
-            <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
-              Deliverables
-            </span>
-            <span className="font-semibold text-[#19244E]">
-              Interactive Web App / 25 Custom Assets
-            </span>
+          {/* Right Column: Hero Image */}
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200/80 bg-[#111836] group">
+            <img
+              src={ci1}
+              alt="GEGI Campaign Preview"
+              className="w-full h-auto object-cover max-h-[380px] lg:max-h-[420px] rounded-2xl transform group-hover:scale-105 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#111836]/40 via-transparent to-transparent pointer-events-none" />
           </div>
         </div>
       </div>

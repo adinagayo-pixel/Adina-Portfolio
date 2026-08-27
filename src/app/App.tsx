@@ -76,9 +76,9 @@ const FEATURED = [
   {
     num: "01", name: "Seamless Micro Insurance Integration", client: "Touch 'n Go × GEGM",
     location: "MY", year: "2025", tags: ["PWA / SSO", "eKYC Data Mapping", "B2C / FinTech"],
-    role: "Lead Product Designer & Logic Architect",
-    headline: "An embedded Progressive Web Application (PWA) architecture built inside Malaysia's leading e-wallet ecosystem, integrating native SSO and eKYC.",
-    metrics: [{ val: "V5", sub: "1 Final Release" }, { val: "3mo", sub: "Timeline" }, { val: "RM0", sub: "PTV Checkout" }],
+    role: "Sole Product Designer",
+    headline: "Great Tenang Madani micro insurance product integrated directly into Touch 'n Go eWallet ecosystem across 5 design iterations.",
+    metrics: [{ val: "V5", sub: "Final Release" }, { val: "3mo", sub: "Sprint Timeline" }, { val: "RM0", sub: "PTV Checkout" }],
     projectId: "tng",
     thumb: coverTng,
     screens: [
@@ -88,10 +88,10 @@ const FEATURED = [
     ],
   },
   {
-    num: "02", name: "Gamified CI Evaluation Campaign", client: "GEGI Singapore",
+    num: "02", name: "Gamified CI Evaluation & Acquisition", client: "GEGI Singapore",
     location: "SG", year: "2026", tags: ["Gamified Evaluation", "Singlish Persona", "Campaign"],
     role: "Sole Product Designer",
-    headline: "A rapid sprint interactive campaign tool combining scroll based gamified evaluation, localized Singlish persona mechanics, and AEM integration.",
+    headline: "An interactive digital acquisition campaign assessing critical illness protection gaps for Great Eastern Singapore.",
     metrics: [{ val: "2wk", sub: "Sprint Execution" }, { val: "7Q", sub: "Question Matrix" }, { val: "4", sub: "Persona Tiers" }],
     projectId: "gegi",
     thumb: ci1,
@@ -103,11 +103,11 @@ const FEATURED = [
     ],
   },
   {
-    num: "03", name: "100K Player Live Tournament Platform", client: "mySalam × myKawan",
+    num: "03", name: "Kahoot to In House: Roadshow Tournament Platform", client: "mySalam × myKawan",
     location: "MY", year: "2025", tags: ["Live Tournament", "100K Concurrent", "Gamified Financial Literacy"],
-    role: "Lead Product Designer",
-    headline: "Architected a scalable digital tournament platform delivering real time financial literacy quizzes to over 100,000 concurrent Malaysian youth players.",
-    metrics: [{ val: "100K", sub: "Live Concurrents" }, { val: "5 Sec", sub: "Quiz Round Engine" }, { val: "RM500K", sub: "ReSkills Rewards Pool" }],
+    role: "Sole Product Designer",
+    headline: "Evolving My Money Sense into a dual mode live tournament platform for mySalam regional roadshows.",
+    metrics: [{ val: "2 Mode", sub: "Practice & Tournament" }, { val: "2wk", sub: "First Release Sprint" }, { val: "3 People", sub: "Lean Product Team" }],
     projectId: "bijakwang",
     thumb: mykawan1,
     screens: [
@@ -119,25 +119,25 @@ const FEATURED = [
     ],
   },
   {
-    num: "04", name: "National Quick Count & Monitoring", client: "Indonesian Political Party",
+    num: "04", name: "38 Province Real Time Election Monitoring", client: "Indonesian Political Party",
     location: "ID", year: "2024", tags: ["Public Sector", "Civic Tech", "Real Time CMS"],
-    role: "Solo UX UI Designer & Systems Architect",
-    headline: "An end to end multi level election monitoring system for Indonesia's 2024 Presidential Election, tracking vote tabulation across 38 provinces in real time.",
-    metrics: [{ val: "820K+", sub: "TPS Polling Stations" }, { val: "38", sub: "Provinces Tracked" }, { val: "48h", sub: "Critical Window" }],
+    role: "Sole Product Designer",
+    headline: "A multi platform system for real time vote monitoring across 38 provinces and 820,000+ TPS within a 48 hour window.",
+    metrics: [{ val: "38", sub: "Provinces Monitored" }, { val: "820K+", sub: "TPS Polling Stations" }, { val: "48h", sub: "Tabulation Window" }],
     projectId: "election",
     thumb: projectThumb5,
     screens: [
-      { src: projectThumb5, label: "01 · REAL-TIME TABULATION" },
+      { src: projectThumb5, label: "01 · REAL TIME TABULATION" },
       { src: projectThumb1, label: "02 · PROVINCIAL MATRIX" },
       { src: projectThumb2, label: "03 · VERIFICATION CMS" },
     ],
   },
   {
-    num: "05", name: "Multi Tenant Enterprise Backoffice", client: "Regional SuperApps & FinTech",
+    num: "05", name: "Multi Tenant White Label Backoffice Architecture", client: "Regional SuperApps & FinTech",
     location: "SG/MY/ID", year: "2024 to 2025", tags: ["White Label Engine", "Design System Tokens", "Data Analytics"],
-    role: "Solo Product Designer & System Logic Architect",
-    headline: "Scaling B2B white label operations and real time analytical dashboards under lean constraints with a 1 to 3 hour deployment engine.",
-    metrics: [{ val: "1 to 3h", sub: "Tenant Setup" }, { val: "Dual", sub: "Track Delivery" }, { val: "0", sub: "BE Query Timeouts" }],
+    role: "Sole Product Designer",
+    headline: "Building a reusable two track white label and analytics pattern to serve enterprise tenants with different operational needs.",
+    metrics: [{ val: "2 Track", sub: "Delivery Model" }, { val: "1 to 3h", sub: "Tenant Setup" }, { val: "0", sub: "BE Query Timeouts" }],
     projectId: "backoffice",
     thumb: projectThumb5,
     screens: [
@@ -147,11 +147,11 @@ const FEATURED = [
     ],
   },
   {
-    num: "06", name: "Medical Diagnostics & Field Sales Revamp", client: "Fonterra × Anlene",
+    num: "06", name: "Bone Density & Health Check Passport Redesign", client: "Fonterra × Anlene",
     location: "ID", year: "2023", tags: ["Health Tech", "Field Sales Enablement", "Diagnostic Matrix"],
     role: "Sole Product Designer",
-    headline: "Translating clinical diagnostic data from GE Achilles bone scanners and Omron devices into personalized health passports and automated WhatsApp PDF delivery.",
-    metrics: [{ val: "3mo", sub: "Delivery Sprint" }, { val: "2", sub: "Medical Devices" }, { val: "4-tier", sub: "Health Matrix" }],
+    headline: "Redesigning Anlene's field health check experience end to end, turning diagnostic scanner data into personalized health reports.",
+    metrics: [{ val: "5", sub: "Health Metrics Logic" }, { val: "2", sub: "Diagnostic Scanners" }, { val: "2 Phase", sub: "Multi Year Sprint" }],
     projectId: "anlene",
     thumb: anlene0,
     screens: [
@@ -163,11 +163,11 @@ const FEATURED = [
     ],
   },
   {
-    num: "07", name: "Digital Transformation & AI Retail", client: "Pro Archery Jakarta",
+    num: "07", name: "Pro Archery 4 Surface Digital Ecosystem", client: "Pro Archery Jakarta",
     location: "ID", year: "2025", tags: ["AI Prompt to Code", "E Commerce", "Admin POS"],
     role: "Sole System & UI Designer",
-    headline: "An end to end digital ecosystem scaling a physical archery retailer into an Asia wide e commerce platform featuring AI accelerated prototyping.",
-    metrics: [{ val: "24h", sub: "POC Delivery" }, { val: "4", sub: "Surfaces Built" }, { val: "0", sub: "Figma Wireframes" }],
+    headline: "Turning Indonesia's premier physical archery retailer into a 4 surface digital ecosystem starting with a 24 hour AI built landing page.",
+    metrics: [{ val: "24h", sub: "POC Delivery" }, { val: "4", sub: "Surfaces Built" }, { val: "1yr", sub: "Ongoing Engagement" }],
     projectId: "archery",
     thumb: projectThumb4,
     screens: [
@@ -177,11 +177,11 @@ const FEATURED = [
     ],
   },
   {
-    num: "08", name: "National Archery Operating System", client: "PERPANI / MyArchery",
+    num: "08", name: "MyArchery PERPANI National Operating System", client: "PERPANI / MyArchery",
     location: "ID", year: "2021 to 2023", tags: ["Sports Tech", "Field UX Research", "Tournament Engine"],
     role: "Lead UX Researcher & Product Designer",
     headline: "Designing Indonesia's tournament operating system and real time scoring platform for official PERPANI national championships.",
-    metrics: [{ val: "2yr", sub: "Lifecycle Timeline" }, { val: "7+", sub: "Public Releases" }, { val: "Pre Event", sub: "Flow Automation" }],
+    metrics: [{ val: "7+", sub: "Public Releases" }, { val: "2yr", sub: "Field Research Lifecycle" }, { val: "3 People", sub: "Remote WFA Team" }],
     projectId: "myarchery",
     thumb: projectThumb4,
     screens: [
@@ -194,19 +194,19 @@ const FEATURED = [
 
 const PROJECTS: Project[] = [
   // ── 2026 ──────────────────────────────────────────────────────────────────────
-  { id: 1,  name: "OCBC Insurance",        client: "Great Eastern Indonesia (GEGI) × OCBC", market: "Indonesia", year: 2026, status: "LIVE",          category: "Banking & InsurTech",         scope: "End-to-end insurance acquisition flow built with a custom standalone banking UI Kit from scratch." },
+  { id: 1,  name: "OCBC Insurance",        client: "Great Eastern Indonesia (GEGI) × OCBC", market: "Indonesia", year: 2026, status: "LIVE",          category: "Banking & InsurTech",         scope: "End to end insurance acquisition flow built with a custom standalone banking UI Kit from scratch." },
   { id: 2,  name: "KCIC × Jasindo",        client: "Kereta Cepat Indonesia China",     market: "Indonesia",   year: 2026, status: "ON HOLD",       category: "Public Transit InsurTech",    scope: "Integrated passenger travel insurance purchasing flow with Jasindo." },
-  { id: 3,  name: "GE × Shopee Insurance", client: "Great Eastern Malaysia × Shopee",  market: "Malaysia",    year: 2026, status: "LIVE",          category: "InsurTech & E-Commerce",      scope: "Insurance product integration and purchase flow embedded within Shopee Malaysia's ecosystem." },
+  { id: 3,  name: "GE × Shopee Insurance", client: "Great Eastern Malaysia × Shopee",  market: "Malaysia",    year: 2026, status: "LIVE",          category: "InsurTech & E Commerce",      scope: "Insurance product integration and purchase flow embedded within Shopee Malaysia's ecosystem." },
   { id: 4,  name: "Haruuz Internal System",client: "Mikrosayang",                      market: "Malaysia",    year: 2026, status: "PRODUCTION",    category: "Internal System",             scope: "Internal management system for Mikrosayang's operational workflows and data tracking." },
   // ── 2025 ──────────────────────────────────────────────────────────────────────
   { id: 5,  name: "Grab Data Pipeline",    client: "Grab",                             market: "Indonesia",   year: 2025, status: "LIVE INTERNAL", category: "Enterprise B2B / FinTech",    scope: "Tri-party data exchange flow & middleware logic mapping across Grab, insurance, and FTI." },
-  { id: 6,  name: "myKawan AI Engine",     client: "myKawan",                          market: "Malaysia",    year: 2025, status: "PRODUCTION",    category: "AI / Marketing Automation",   scope: "Internal AI-powered CMS tool for automated marketing copy, articles, images, and media generation." },
-  { id: 7,  name: "Teman E-Commerce",      client: "Teman",                            market: "Indonesia",   year: 2025, status: "PROTOTYPE",     category: "AI & Retail E-Commerce",      scope: "AI-driven product recommendation engine and personalized purchase flow integration." },
+  { id: 6,  name: "myKawan AI Engine",     client: "myKawan",                          market: "Malaysia",    year: 2025, status: "PRODUCTION",    category: "AI / Marketing Automation",   scope: "Internal AI powered CMS tool for automated marketing copy, articles, images, and media generation." },
+  { id: 7,  name: "Teman E Commerce",      client: "Teman",                            market: "Indonesia",   year: 2025, status: "PROTOTYPE",     category: "AI & Retail E Commerce",      scope: "AI driven product recommendation engine and personalized purchase flow integration." },
   { id: 8,  name: "Samaloop",              client: "Samaloop",                         market: "Indonesia",   year: 2025, status: "LIVE",          category: "EdTech & Marketplace",        scope: "Corporate website and public speaking coach directory booking platform." },
   // ── 2024 ──────────────────────────────────────────────────────────────────────
   { id: 9,  name: "Family Moo",            client: "Fonterra Indonesia",               market: "Indonesia",   year: 2024, status: "LIVE",          category: "FMCG & Loyalty Portal",       scope: "Customer loyalty management and points redemption portal for Fonterra's consumer ecosystem." },
   { id: 10, name: "Telescope Indonesia",   client: "Telescope Indonesia",              market: "Indonesia",   year: 2024, status: "LIVE",          category: "B2B Industrial Catalog",      scope: "Digital product catalog and technical specification showcase for specialized equipment." },
-  { id: 11, name: "ASEAN Project Management System", client: "ASEAN Secretariat", market: "ASEAN / Regional", year: 2024, status: "LIVE INTERNAL", category: "Regional / Multi-Gov", scope: "Manajemen siklus proyek multilateral, pelaporan anggaran lintas negara, dan alur persetujuan multi-level antar delegasi." },
+  { id: 11, name: "ASEAN Project Management System", client: "ASEAN Secretariat", market: "ASEAN / Regional", year: 2024, status: "LIVE INTERNAL", category: "Regional / Multi-Gov", scope: "Manajemen siklus proyek multilateral, pelaporan anggaran lintas negara, dan alur persetujuan multi level antar delegasi." },
   { id: 12, name: "Distrik Navigasi Portal", client: "Maritime Operations", market: "Indonesia", year: 2024, status: "PRODUCTION", category: "Internal Enterprise", scope: "Digitalisasi alur operasional sarana bantu navigasi pelayaran, pemantauan aset maritim, dan koordinasi staf teknis lapangan." },
   // ── 2022 ──────────────────────────────────────────────────────────────────────
   { id: 13, name: "YAMET Center",          client: "YAMET Child Development",          market: "Indonesia",   year: 2022, status: "LIVE",          category: "Healthcare Portal",           scope: "Corporate website and service directory for child development clinics across Indonesia." },
@@ -1161,11 +1161,6 @@ function StackedFanOutDeck({ screens }: { screens: { src: string; label: string;
                   className={`w-full h-full ${screen.fitContain ? "object-contain p-1" : "object-cover object-top"} pointer-events-none`}
                 />
               </div>
-
-              {/* Screen Label Tag */}
-              <div className="absolute bottom-3 left-3 right-3 px-3 py-1.5 bg-[#19244E]/90 backdrop-blur-md rounded-lg text-[9px] font-sans font-bold text-white tracking-widest uppercase border border-white/15 truncate text-center shadow-md pointer-events-none">
-                {screen.label}
-              </div>
             </motion.div>
           )
         })}
@@ -1300,95 +1295,95 @@ function AutoCarouselDeck({ screens }: { screens: { src: string; label?: string 
         </motion.div>
       </AnimatePresence>
 
-      {/* Nav Buttons on Hover */}
-      <button
-        onClick={handlePrev}
-        aria-label="Previous Screen"
-        className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-[#19244E]/85 backdrop-blur-md border border-white/20 text-white flex items-center justify-center text-xs opacity-0 group-hover/carousel:opacity-100 hover:bg-[#DB3E8C] transition-all z-30 shadow-lg"
-      >
-        ❮
-      </button>
-      <button
-        onClick={handleNext}
-        aria-label="Next Screen"
-        className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-[#19244E]/85 backdrop-blur-md border border-white/20 text-white flex items-center justify-center text-xs opacity-0 group-hover/carousel:opacity-100 hover:bg-[#DB3E8C] transition-all z-30 shadow-lg"
-      >
-        ❯
-      </button>
+    {/* Nav Buttons on Hover */}
+    <button
+      onClick={handlePrev}
+      aria-label="Previous Screen"
+      className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-[#19244E]/85 backdrop-blur-md border border-white/20 text-white flex items-center justify-center text-xs opacity-0 group-hover/carousel:opacity-100 hover:bg-[#DB3E8C] transition-all z-30 shadow-lg"
+    >
+      ❮
+    </button>
+    <button
+      onClick={handleNext}
+      aria-label="Next Screen"
+      className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-[#19244E]/85 backdrop-blur-md border border-white/20 text-white flex items-center justify-center text-xs opacity-0 group-hover/carousel:opacity-100 hover:bg-[#DB3E8C] transition-all z-30 shadow-lg"
+    >
+      ❯
+    </button>
 
-      {/* Screen Step Label Overlay */}
-      {current.label && (
-        <div className="absolute bottom-4 left-6 px-3 py-1 bg-[#19244E]/90 backdrop-blur-md rounded-lg text-[9px] font-sans font-bold text-white tracking-widest uppercase border border-white/15 z-20 pointer-events-none shadow-md">
-          {current.label}
-        </div>
-      )}
-
-      {/* Progress Dots */}
-      <div className="absolute bottom-4 right-6 flex items-center gap-1.5 z-20 pointer-events-none">
-        {screens.map((_, idx) => (
-          <span
-            key={idx}
-            className={`h-1.5 rounded-full transition-all duration-300 ${
-              idx === currentIndex ? "w-5 bg-[#DB3E8C]" : "w-1.5 bg-white/40"
-            }`}
-          />
-        ))}
+    {/* Screen Step Label Overlay */}
+    {current.label && (
+      <div className="absolute bottom-4 left-6 px-3 py-1 bg-[#19244E]/90 backdrop-blur-md rounded-lg text-[9px] font-sans font-bold text-white tracking-widest uppercase border border-white/15 z-20 pointer-events-none shadow-md">
+        {current.label}
       </div>
+    )}
 
-      {/* Floating Badge Indicator */}
-      <div className="absolute -top-2 right-0 px-3 py-1 bg-[#DB3E8C] text-white font-sans text-[8px] font-bold tracking-widest uppercase rounded-full shadow-md z-30 pointer-events-none flex items-center gap-1.5">
-        <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-        Auto Carousel · Drag Screen to Inspect
-      </div>
+    {/* Progress Dots */}
+    <div className="absolute bottom-4 right-6 flex items-center gap-1.5 z-20 pointer-events-none">
+      {screens.map((_, idx) => (
+        <span
+          key={idx}
+          className={`h-1.5 rounded-full transition-all duration-300 ${
+            idx === currentIndex ? "w-5 bg-[#DB3E8C]" : "w-1.5 bg-white/40"
+          }`}
+        />
+      ))}
     </div>
-  )
+
+    {/* Floating Badge Indicator */}
+    <div className="absolute -top-2 right-0 px-3 py-1 bg-[#DB3E8C] text-white font-sans text-[8px] font-bold tracking-widest uppercase rounded-full shadow-md z-30 pointer-events-none flex items-center gap-1.5">
+      <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+      Auto Carousel · Drag Screen to Inspect
+    </div>
+  </div>
+)
 }
 
 function FeaturedWorkSection({
-  onOpenProject,
-  activeIndex,
-  onActiveIndexChange,
+activeIndex,
+onActiveIndexChange,
+onOpenProject,
 }: {
-  onOpenProject: (id: string) => void
-  activeIndex: number
-  onActiveIndexChange: (index: number) => void
+activeIndex: number
+onActiveIndexChange: (index: number) => void
+onOpenProject: (projectId: string) => void
 }) {
-  const sectionRef = useRef<HTMLDivElement>(null)
+const sectionRef = useRef<HTMLDivElement>(null)
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "start 25%"]
+const { scrollYProgress } = useScroll({
+  target: sectionRef,
+  offset: ["start end", "start 25%"]
+})
+
+// GPU-Accelerated "Aperture / Viewport Box" Expansion Transition
+const clipPath = useTransform(
+  scrollYProgress,
+  [0, 1],
+  ["inset(15% 15% 15% 15% round 24px)", "inset(0% 0% 0% 0% round 0px)"]
+)
+
+const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
+const [isHoveringCanvas, setIsHoveringCanvas] = useState(false)
+const canvasRef = useRef<HTMLDivElement>(null)
+
+const activeProject = FEATURED[activeIndex] || FEATURED[0]
+
+const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  if (!canvasRef.current) return
+  const rect = canvasRef.current.getBoundingClientRect()
+  setMousePos({
+    x: e.clientX - rect.left,
+    y: e.clientY - rect.top,
   })
+}
 
-  // GPU-Accelerated "Aperture / Viewport Box" Expansion Transition
-  const clipPath = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ["inset(15% 15% 15% 15% round 24px)", "inset(0% 0% 0% 0% round 0px)"]
-  )
-
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
-  const [isHoveringCanvas, setIsHoveringCanvas] = useState(false)
-  const canvasRef = useRef<HTMLDivElement>(null)
-
-  const activeProject = FEATURED[activeIndex] || FEATURED[0]
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!canvasRef.current) return
-    const rect = canvasRef.current.getBoundingClientRect()
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    })
-  }
-
-  return (
-    <section ref={sectionRef} id="work" className="relative z-20 overflow-hidden bg-white">
-      <motion.div
-        style={{ clipPath }}
-        className="w-full h-full bg-[#19244E]"
-      >
-        {/* Header */}
+return (
+  <section ref={sectionRef} id="work" className="relative z-20 overflow-hidden bg-white">
+    <motion.div
+      style={{ clipPath }}
+      className="w-full h-full bg-[#19244E]"
+    >
+      {/* Header */}
       <div
         className="px-4 sm:px-8 lg:px-16 py-8 sm:py-10 flex items-center gap-6"
         style={{ borderBottom: `1px solid rgba(255, 255, 255, 0.08)` }}
@@ -1399,10 +1394,10 @@ function FeaturedWorkSection({
       </div>
 
       {/* Section intro */}
-      <div className="px-4 sm:px-8 lg:px-16 py-10 sm:py-16 lg:py-20" style={{ borderBottom: `1px solid rgba(255, 255, 255, 0.08)` }}>
+      <div className="px-4 sm:px-8 lg:px-16 py-5 sm:py-7 lg:py-8" style={{ borderBottom: `1px solid rgba(255, 255, 255, 0.08)` }}>
         <h2
           className="font-display font-normal leading-tight text-white"
-          style={{ fontSize: "clamp(2rem, 4.5vw, 4rem)", letterSpacing: "-0.02em", maxWidth: "900px" }}
+          style={{ fontSize: "clamp(1.8rem, 3.5vw, 3rem)", letterSpacing: "-0.02em", maxWidth: "900px" }}
         >
           Projects that <br className="lg:hidden" />
           define{" "}
@@ -1413,9 +1408,9 @@ function FeaturedWorkSection({
       {/* Showcase container */}
       <div className="px-4 sm:px-8 lg:px-16">
         {/* Desktop Showcase */}
-        <div className="hidden lg:grid lg:grid-cols-[300px_1fr_320px] gap-10 py-16 min-h-[580px]">
+        <div className="hidden lg:grid lg:grid-cols-[300px_1fr_320px] gap-8 py-10 min-h-[540px]">
           {/* Left Column: Project Selector */}
-          <div className="flex flex-col gap-6 justify-center pr-6 border-r border-white/10">
+          <div className="flex flex-col gap-2.5 justify-center pr-4 border-r border-white/10">
             {FEATURED.map((project, i) => {
               const isActive = i === activeIndex
               return (
@@ -1424,23 +1419,23 @@ function FeaturedWorkSection({
                   onClick={() => onActiveIndexChange(i)}
                   aria-label={`View project: ${project.name}`}
                   aria-pressed={i === activeIndex}
-                  className={`group text-left transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] rounded-lg py-2.5 px-3 border-l-2 ${
+                  className={`group text-left transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] rounded-lg py-2 px-3 border-l-2 ${
                     isActive ? "border-[#DB3E8C] bg-white/[0.08] shadow-sm" : "border-transparent hover:bg-white/[0.04]"
                   }`}
                 >
-                  <div className="flex items-start gap-3">
+                  <div className="flex items-start gap-2.5">
                     <span
-                      className="font-sans text-[10px] tracking-wider transition-colors duration-300 pt-1 font-bold"
+                      className="font-sans text-[10px] tracking-wider transition-colors duration-300 pt-0.5 font-bold shrink-0"
                       style={{ color: isActive ? C : "rgba(255, 255, 255, 0.3)" }}
                     >
                       {project.num}
                     </span>
                     <span
-                      className="text-base transition-all duration-300"
+                      className="text-xs sm:text-sm leading-snug transition-all duration-300"
                       style={{
                         color: isActive ? "#FFFFFF" : "rgba(255, 255, 255, 0.4)",
                         fontWeight: isActive ? 700 : 500,
-                        transform: isActive ? "translateX(4px)" : "translateX(0px)",
+                        transform: isActive ? "translateX(3px)" : "translateX(0px)",
                       }}
                     >
                       {project.name}
@@ -1457,7 +1452,7 @@ function FeaturedWorkSection({
             onMouseMove={handleMouseMove}
             onMouseEnter={() => setIsHoveringCanvas(true)}
             onMouseLeave={() => setIsHoveringCanvas(false)}
-            className="relative flex items-center justify-center p-6 lg:p-8 overflow-hidden rounded-2xl bg-[#111936] cursor-crosshair select-none h-full min-h-[520px]"
+            className="relative flex items-center justify-center p-6 lg:p-8 overflow-hidden rounded-2xl bg-[#111936] cursor-crosshair select-none h-full min-h-[500px]"
             style={{
               backgroundImage: "radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px)",
               backgroundSize: "16px 16px",
@@ -1467,14 +1462,6 @@ function FeaturedWorkSection({
             <div className="absolute top-4 left-4 bg-white/10 backdrop-blur-md border border-white/15 px-3 py-1 rounded text-[10px] font-sans font-bold tracking-widest text-white/90 z-20 shadow-sm">
               {activeProject.num} · {activeProject.location} · {activeProject.year}
             </div>
-
-            {/* Screens Count Badge (Right - Exactly Level with Left Tag) */}
-            {activeProject.screens && (
-              <div className="absolute top-4 right-4 bg-white/10 backdrop-blur-md border border-white/15 px-3 py-1 rounded text-[10px] font-sans font-bold tracking-widest text-white/90 z-20 shadow-sm flex items-center gap-1.5 uppercase">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#DB3E8C] animate-pulse" />
-                {activeProject.screens.length} Screens
-              </div>
-            )}
 
             {/* Active Figma Frame Preview Stage (Borderless & Unclipped) */}
             <motion.div
@@ -1487,7 +1474,7 @@ function FeaturedWorkSection({
               role="button"
               tabIndex={0}
               aria-label={`Open case study: ${activeProject.name}`}
-              className="relative w-full h-full min-h-[460px] lg:min-h-[500px] flex items-center justify-center cursor-pointer transition-transform duration-300 hover:scale-[1.01] focus:outline-none group"
+              className="relative w-full h-full min-h-[460px] lg:min-h-[480px] flex items-center justify-center cursor-pointer transition-transform duration-300 hover:scale-[1.01] focus:outline-none group"
             >
               {activeProject.screens ? (
                 <StackedFanOutDeck screens={activeProject.screens} />
@@ -1541,7 +1528,7 @@ function FeaturedWorkSection({
           </div>
 
           {/* Right Column: Project Specs */}
-          <div className="flex flex-col justify-center pl-6 border-l border-white/10 min-h-[480px]">
+          <div className="flex flex-col justify-center pl-6 border-l border-white/10">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeProject.projectId}
@@ -1549,52 +1536,52 @@ function FeaturedWorkSection({
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -10 }}
                 transition={{ duration: 0.25 }}
-                className="flex flex-col justify-between h-full py-4"
+                className="flex flex-col justify-center space-y-4 py-1"
               >
                 <div>
-                  <span className="font-sans text-xs font-semibold tracking-wider text-white/60 uppercase block mb-1">
+                  <span className="font-sans text-[11px] font-semibold tracking-wider text-white/60 uppercase block mb-1">
                     CLIENT: {activeProject.client}
                   </span>
-                  <h3 className="font-display font-semibold mb-4 leading-snug text-white" style={{ fontSize: "1.75rem", letterSpacing: "-0.01em" }}>
+                  <h3 className="font-display font-semibold mb-2 leading-tight text-white text-xl sm:text-2xl" style={{ letterSpacing: "-0.01em" }}>
                     {activeProject.name}
                   </h3>
-                  <p className="text-sm sm:text-base leading-relaxed mb-6 font-sans text-white/85">
+                  <p className="text-xs sm:text-sm leading-relaxed mb-3 font-sans text-white/80">
                     {activeProject.headline}
                   </p>
                 </div>
 
                 {/* Metrics/Stats */}
-                <div>
-                  <div className="flex flex-col gap-3.5 mb-6">
-                    <div className="flex items-baseline justify-between border-b border-white/10 pb-2.5">
-                      <span className="font-sans text-xs font-bold tracking-widest text-[#DB3E8C] uppercase">OWNERSHIP ROLE</span>
-                      <span className="font-sans font-semibold text-white text-xs sm:text-sm text-right">
+                <div className="space-y-3">
+                  <div className="flex flex-col gap-2 border-t border-[#DB3E8C]/20 pt-3">
+                    <div className="flex items-baseline justify-between border-b border-white/10 pb-1.5">
+                      <span className="font-sans text-[11px] font-bold tracking-widest text-[#DB3E8C] uppercase">OWNERSHIP ROLE</span>
+                      <span className="font-sans font-semibold text-white text-xs text-right">
                         {activeProject.role}
                       </span>
                     </div>
                     {activeProject.metrics.map((m) => (
-                      <div key={m.sub} className="flex items-baseline justify-between border-b border-white/5 pb-2.5">
-                        <span className="font-sans text-xs font-semibold tracking-widest text-white/60 uppercase">{m.sub}</span>
-                        <span className="font-display font-semibold text-white text-lg sm:text-xl" style={{ color: C }}>
+                      <div key={m.sub} className="flex items-baseline justify-between border-b border-white/5 pb-1.5">
+                        <span className="font-sans text-[10px] font-semibold tracking-widest text-white/60 uppercase">{m.sub}</span>
+                        <span className="font-display font-semibold text-white text-base sm:text-lg" style={{ color: C }}>
                           {m.val}
                         </span>
                       </div>
                     ))}
                   </div>
 
-                  <div className="flex flex-col gap-2.5 sm:gap-3 mt-1">
+                  <div className="flex flex-col gap-2 pt-1">
                     <button
                       onClick={() => onOpenProject(activeProject.projectId)}
-                      className="group flex items-center justify-between w-full px-5 py-3.5 rounded-lg bg-[#DB3E8C] hover:bg-[#DB3E8C]/90 text-white font-sans text-xs sm:text-sm font-bold tracking-widest uppercase transition-all duration-200 shadow-lg shadow-[#DB3E8C]/25 hover:shadow-[0_10px_25px_rgba(219,62,140,0.4)] cursor-pointer"
+                      className="group flex items-center justify-between w-full px-4 py-3 rounded-lg bg-[#DB3E8C] hover:bg-[#DB3E8C]/90 text-white font-sans text-xs font-bold tracking-widest uppercase transition-all duration-200 shadow-lg shadow-[#DB3E8C]/25 hover:shadow-[0_8px_20px_rgba(219,62,140,0.4)] cursor-pointer"
                     >
                       <span>Open Case Study</span>
-                      <ArrowUpRight size={15} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                      <ArrowUpRight size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                     </button>
                     <a
                       href={getWhatsAppLink(activeProject.name)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-1.5 w-full py-3 rounded-lg border border-white/20 hover:border-white/40 bg-white/5 hover:bg-white/10 text-white font-semibold tracking-wider text-xs uppercase transition-all cursor-pointer text-center shadow-sm"
+                      className="flex items-center justify-center gap-1.5 w-full py-2.5 rounded-lg border border-white/20 hover:border-white/40 bg-white/5 hover:bg-white/10 text-white font-semibold tracking-wider text-xs uppercase transition-all cursor-pointer text-center shadow-sm"
                     >
                       💬 Ask about this project ↗
                     </a>

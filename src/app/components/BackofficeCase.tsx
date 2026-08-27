@@ -4,6 +4,7 @@ import {
   FileCode2, Shield, Zap, RefreshCw, Users, MessageSquare,
   Lock, Sliders, Database, Layers, ArrowRight, Activity, Filter, BarChart3, ChevronDown, Sparkles
 } from "lucide-react"
+import heroImg from "@/imports/image-8.png"
 
 const N = "#19244E"
 const C = "#DB3E8C"
@@ -327,72 +328,48 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
       <div className="px-8 lg:px-16 pt-16 pb-14" style={{ backgroundColor: W, borderBottom: `1px solid ${HAIR}` }}>
-        <div className="max-w-4xl space-y-6">
-          <div className="flex flex-wrap items-center gap-3">
-            <MonoTag accent>CASE STUDY 05</MonoTag>
-            <span style={{ color: HAIR }}>/</span>
-            <MonoTag>WHITE LABEL & ANALYTICS ARCHITECTURE</MonoTag>
-            <span style={{ color: HAIR }}>/</span>
-            <MonoTag>MULTIPLE ENTERPRISE PARTNERSHIPS · 2024 to 2025</MonoTag>
-          </div>
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-center">
+          <div className="space-y-6">
+            <div className="flex flex-wrap items-center gap-3">
+              <MonoTag accent>CASE STUDY 05</MonoTag>
+              <span style={{ color: HAIR }}>/</span>
+              <MonoTag>WHITE LABEL & ANALYTICS ARCHITECTURE</MonoTag>
+              <span style={{ color: HAIR }}>/</span>
+              <MonoTag>MULTIPLE ENTERPRISE PARTNERSHIPS · 2024 to 2025</MonoTag>
+            </div>
 
-          <h1
-            className="font-display font-bold leading-[1.08] tracking-tight"
-            style={{ fontSize: "clamp(2rem, 3.8vw, 3.4rem)", color: N }}
-          >
-            Multi Tenant Backoffice Architecture: A Reusable Pattern Across White Label Partners
-          </h1>
+            <h1
+              className="font-display font-bold leading-[1.08] tracking-tight"
+              style={{ fontSize: "clamp(2rem, 3.8vw, 3.4rem)", color: N }}
+            >
+              Multi Tenant Backoffice Architecture: A Reusable Pattern Across White Label Partners
+            </h1>
 
-          <p
-            className="font-display font-light leading-relaxed"
-            style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
-          >
-            Building one scalable white label and analytics pattern to serve tenants with fundamentally different operational needs.
-          </p>
+            <p
+              className="font-display font-light leading-relaxed"
+              style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
+            >
+              Building one scalable white label and analytics pattern to serve tenants with fundamentally different operational needs.
+            </p>
 
-          {/* Confidentiality Notice */}
-          <div className="p-4 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-900 flex items-start gap-3 text-xs leading-relaxed">
-            <Lock size={15} className="shrink-0 mt-0.5 text-amber-700" />
-            <div>
-              <strong className="font-bold text-amber-950 block">Confidentiality Note:</strong>
-              Client names, logos, and specific metrics have been sanitized to respect NDAs. What is shown here reflects the real process, not real production data.
+            {/* Confidentiality Notice */}
+            <div className="p-4 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-900 flex items-start gap-3 text-xs leading-relaxed">
+              <Lock size={15} className="shrink-0 mt-0.5 text-amber-700" />
+              <div>
+                <strong className="font-bold text-amber-950 block">Confidentiality Note:</strong>
+                Client names, logos, and specific metrics have been sanitized to respect NDAs. What is shown here reflects the real process, not real production data.
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Hero Metadata Strip */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 mt-12 border-t border-gray-100 text-xs">
-          <div>
-            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
-              Role
-            </span>
-            <span className="font-semibold text-[#19244E]">
-              Solo Product Designer & System Logic Architect
-            </span>
-          </div>
-          <div>
-            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
-              Ecosystem
-            </span>
-            <span className="font-semibold text-[#19244E]">
-              SuperApp Platforms, InsurTech & B2B Affiliates
-            </span>
-          </div>
-          <div>
-            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
-              Focus Areas
-            </span>
-            <span className="font-semibold text-[#19244E]">
-              White Label Engine, Dynamic Tokens & Analytics
-            </span>
-          </div>
-          <div>
-            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
-              Working Method
-            </span>
-            <span className="font-semibold text-[#19244E]">
-              Two Track Execution: Rapid Skinning + Case by Case Data Architecture
-            </span>
+          {/* Right Column: Hero Image */}
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200/80 bg-[#111836] group">
+            <img
+              src={heroImg}
+              alt="Backoffice Architecture Preview"
+              className="w-full h-auto object-cover max-h-[380px] lg:max-h-[420px] rounded-2xl transform group-hover:scale-105 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#111836]/40 via-transparent to-transparent pointer-events-none" />
           </div>
         </div>
       </div>

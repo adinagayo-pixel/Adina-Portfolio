@@ -185,63 +185,38 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
       <div className="px-8 lg:px-16 pt-16 pb-14" style={{ backgroundColor: W, borderBottom: `1px solid ${HAIR}` }}>
-        <div className="max-w-4xl space-y-6">
-          <div className="flex flex-wrap items-center gap-3">
-            <MonoTag accent>CASE STUDY 05</MonoTag>
-            <span style={{ color: HAIR }}>/</span>
-            <MonoTag>DIGITAL HEALTH CHECK PLATFORM</MonoTag>
-            <span style={{ color: HAIR }}>/</span>
-            <MonoTag>FONTERRA × ANLENE INDONESIA · 2023–2024</MonoTag>
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-center">
+          <div className="space-y-6">
+            <div className="flex flex-wrap items-center gap-3">
+              <MonoTag accent>CASE STUDY 05</MonoTag>
+              <span style={{ color: HAIR }}>/</span>
+              <MonoTag>DIGITAL HEALTH CHECK PLATFORM</MonoTag>
+              <span style={{ color: HAIR }}>/</span>
+              <MonoTag>FONTERRA × ANLENE INDONESIA · 2023–2024</MonoTag>
+            </div>
+
+            <h1
+              className="font-display font-bold leading-[1.08] tracking-tight"
+              style={{ fontSize: "clamp(2.2rem, 4vw, 3.6rem)", color: N }}
+            >
+              Turning a Bone Density Scanner Into a Personalized Health Report
+            </h1>
+
+            <p
+              className="font-display font-light leading-relaxed"
+              style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
+            >
+              Redesigning Anlene's field health check experience end to end, from decision logic to PDF report, after the client identified their existing tool as too generic and lacking real insight.
+            </p>
           </div>
 
-          <h1
-            className="font-display font-bold leading-[1.08] tracking-tight"
-            style={{ fontSize: "clamp(2.2rem, 4vw, 3.6rem)", color: N }}
-          >
-            Turning a Bone Density Scanner Into a Personalized Health Report
-          </h1>
-
-          <p
-            className="font-display font-light leading-relaxed"
-            style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
-          >
-            Redesigning Anlene's field health check experience end to end, from decision logic to PDF report, after the client identified their existing tool as too generic and lacking real insight.
-          </p>
-        </div>
-
-        {/* Hero Metadata Grid Strip */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 mt-12 border-t border-gray-100 text-sm">
-          <div>
-            <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
-              Role & Ownership
-            </span>
-            <span className="font-semibold text-[#19244E]">
-              Sole Product Designer & UX Researcher
-            </span>
-          </div>
-          <div>
-            <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
-              Client & Territory
-            </span>
-            <span className="font-semibold text-[#19244E]">
-              Fonterra Indonesia × Anlene
-            </span>
-          </div>
-          <div>
-            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
-              Timeline
-            </span>
-            <span className="font-semibold text-[#19244E]">
-              Initial Sprint: Aug–Oct 2023 · Visual Refresh: Nov 2024
-            </span>
-          </div>
-          <div>
-            <span className="block font-sans text-[9px] font-bold tracking-widest uppercase text-gray-400 mb-1">
-              Hardware Integrations
-            </span>
-            <span className="font-semibold text-[#19244E]">
-              GE Achilles Bone Scanner · Omron Body Composition Scanner
-            </span>
+          {/* Right Column: Hero Image */}
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200/80 bg-[#111836] p-2 group">
+            <img
+              src={anlene0}
+              alt="Anlene Health Passport Preview"
+              className="w-full h-auto object-contain max-h-[380px] lg:max-h-[420px] rounded-xl transform group-hover:scale-105 transition-transform duration-500"
+            />
           </div>
         </div>
       </div>
@@ -321,7 +296,7 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
           <div className="grid lg:grid-cols-2 gap-4">
             {[
               { label: "Client & Market", val: "Fonterra Indonesia, for the Anlene brand" },
-              { label: "Role & Ownership", val: "Sole Product Designer & UX Researcher, working closely with a nutritionist on health content" },
+              { label: "Role & Ownership", val: "Sole Product Designer, working closely with a nutritionist on health content" },
               { label: "Core Problem", val: "Anlene's existing health check app only surfaced a few data points from the Omron scan, gave overly general results, and lacked any real breakdown of what those results meant for the person standing in front of it" },
               { label: "Core Stack", val: "Figma, manual PDF report design (no auto-generation), field documentation research via Instagram and YouTube" },
             ].map(({ label, val }) => (

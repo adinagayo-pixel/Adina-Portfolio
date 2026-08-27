@@ -173,73 +173,44 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
       <div className="px-8 lg:px-16 pt-16 pb-14" style={{ backgroundColor: W, borderBottom: `1px solid ${HAIR}` }}>
-        <div className="max-w-4xl space-y-6">
-          <div className="flex flex-wrap items-center gap-3">
-            <MonoTag accent>CASE STUDY 01</MonoTag>
-            <span style={{ color: HAIR }}>/</span>
-            <MonoTag>FINTECH & EMBEDDED MICRO INSURANCE</MonoTag>
-            <span style={{ color: HAIR }}>/</span>
-            <MonoTag>TOUCH 'N GO x GEGM · 2025</MonoTag>
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-center">
+          <div className="space-y-6">
+            <div className="flex flex-wrap items-center gap-3">
+              <MonoTag accent>CASE STUDY 01</MonoTag>
+              <span style={{ color: HAIR }}>/</span>
+              <MonoTag>FINTECH & EMBEDDED MICRO INSURANCE</MonoTag>
+              <span style={{ color: HAIR }}>/</span>
+              <MonoTag>TOUCH 'N GO x GEGM · 2025</MonoTag>
+            </div>
+
+            <h1
+              className="font-display font-bold leading-[1.08] tracking-tight"
+              style={{ fontSize: "clamp(2.2rem, 4vw, 3.6rem)", color: N }}
+            >
+              Seamless Micro Insurance & Government Subsidy Integration
+            </h1>
+
+            <p
+              className="font-display font-light leading-relaxed"
+              style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
+            >
+              Great Tenang Madani is a micro insurance product integrated directly into Touch 'n Go eWallet: an ecosystem with over 20 million users: via an embedded PWA leveraging native TNG SSO and eKYC data.
+            </p>
+
+            <p className="text-sm sm:text-base leading-relaxed" style={{ color: BODY, lineHeight: 1.8 }}>
+              I served as the sole UI UX Designer on this project under a 3 month deadline. This project progressed through 5 design iterations before its final release: and each version tells its own story about what changed and why.
+            </p>
           </div>
 
-          <h1
-            className="font-display font-bold leading-[1.08] tracking-tight"
-            style={{ fontSize: "clamp(2.2rem, 4vw, 3.6rem)", color: N }}
-          >
-            Seamless Micro Insurance & Government Subsidy Integration
-          </h1>
-
-          <p
-            className="font-display font-light leading-relaxed"
-            style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
-          >
-            Great Tenang Madani is a micro insurance product integrated directly into Touch 'n Go eWallet: an ecosystem with over 20 million users: via an embedded PWA leveraging native TNG SSO and eKYC data.
-          </p>
-
-          <p className="text-sm sm:text-base leading-relaxed max-w-3xl" style={{ color: BODY, lineHeight: 1.8 }}>
-            I served as the sole UI UX Designer on this project under a 3 month deadline. This project progressed through 5 design iterations before its final release: and each version tells its own story about what changed and why.
-          </p>
-        </div>
-
-        {/* Hero Metadata Grid Strip */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 mt-12 border-t border-gray-100 text-sm">
-          <div>
-            <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
-              Role & Ownership
-            </span>
-            <span className="font-semibold text-[#19244E]">
-              Sole UI UX Designer & Systems Architect
-            </span>
+          {/* Right Column: Hero Cover Image */}
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200/80 bg-[#111836] group">
+            <img
+              src={coverTng}
+              alt="Touch 'n Go x GEGM Cover"
+              className="w-full h-auto object-cover max-h-[380px] lg:max-h-[420px] rounded-2xl transform group-hover:scale-105 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#111836]/40 via-transparent to-transparent pointer-events-none" />
           </div>
-          <div>
-            <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
-              Client & Partners
-            </span>
-            <span className="font-semibold text-[#19244E]">
-              Touch 'n Go x Great Eastern (MY Market)
-            </span>
-          </div>
-          <div>
-            <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
-              Timeline & Delivery
-            </span>
-            <span className="font-semibold text-[#19244E]">
-              3 Months · 5 Design Iterations to 1 Production Release (V5) · 2025
-            </span>
-          </div>
-          <div>
-            <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
-              Platforms & Architecture
-            </span>
-            <span className="font-semibold text-[#19244E]">
-              Embedded PWA / Native SSO / eKYC
-            </span>
-          </div>
-        </div>
-
-        {/* Hero Cover Image Banner */}
-        <div className="mt-10 rounded-2xl overflow-hidden shadow-xl border border-slate-200/80 bg-[#111836]">
-          <img src={coverTng} alt="Touch 'n Go x GEGM Cover" className="w-full h-auto object-cover max-h-[500px]" />
         </div>
       </div>
 
@@ -318,7 +289,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
           <div className="grid lg:grid-cols-2 gap-4">
             {[
               { label: "Client & Initiative", val: "Touch 'n Go eWallet x Great Eastern Life (GEGM) · 2025" },
-              { label: "Role & Scope", val: "Sole UI UX Designer & Systems Architect" },
+              { label: "Role & Scope", val: "Sole Product Designer" },
               { label: "Core Product Suite", val: "Embedded PWA Insurance Checkout · Native SSO & eKYC Data Pipeline · PTV Subsidy Verification" },
               { label: "Core Stack", val: "Figma · FigJam · Embedded PWA Webview · TNG SSO & eKYC Schema" },
             ].map(({ label, val }) => (

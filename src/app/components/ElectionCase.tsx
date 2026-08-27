@@ -4,6 +4,7 @@ import {
   Smartphone, BarChart2, Camera, MessageSquare,
   Shield, Database, MapPin, AlertCircle, Users, WifiOff, RefreshCw, Layers, CheckSquare, ChevronDown, Sparkles
 } from "lucide-react"
+import heroImg from "@/imports/image-9.png"
 
 const N = "#19244E"
 const C = "#DB3E8C"
@@ -174,67 +175,43 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
       <div className="px-4 sm:px-8 lg:px-16 pt-12 sm:pt-16 pb-10 sm:pb-14" style={{ backgroundColor: W, borderBottom: `1px solid ${HAIR}` }}>
-        <div className="max-w-4xl space-y-6">
-          <div className="flex flex-wrap items-center gap-3">
-            <MonoTag accent>CASE STUDY 04</MonoTag>
-            <span style={{ color: HAIR }}>/</span>
-            <MonoTag>CIVIC TECH & ELECTION SYSTEMS</MonoTag>
-            <span style={{ color: HAIR }}>/</span>
-            <MonoTag>NATIONAL POLITICAL PARTY · 2024</MonoTag>
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-center">
+          <div className="space-y-6">
+            <div className="flex flex-wrap items-center gap-3">
+              <MonoTag accent>CASE STUDY 04</MonoTag>
+              <span style={{ color: HAIR }}>/</span>
+              <MonoTag>CIVIC TECH & ELECTION SYSTEMS</MonoTag>
+              <span style={{ color: HAIR }}>/</span>
+              <MonoTag>NATIONAL POLITICAL PARTY · 2024</MonoTag>
+            </div>
+
+            <h1
+              className="font-display font-bold leading-[1.08] tracking-tight"
+              style={{ fontSize: "clamp(2rem, 4vw, 3.6rem)", color: N }}
+            >
+              Designing for the Unpredictable: Election Monitoring System for 38 Provinces
+            </h1>
+
+            <p
+              className="font-display font-light leading-relaxed"
+              style={{ fontSize: "clamp(1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
+            >
+              Indonesian Political Party (National) · 2024 Presidential & Legislative Elections
+            </p>
+
+            <p className="text-sm sm:text-base leading-relaxed" style={{ color: BODY, lineHeight: 1.8 }}>
+              A multi platform system for real time vote monitoring, designed for the party's national witness network: 820,000 plus TPS across 38 provinces where the party had registered witnesses, each submitting through the same monitoring system: built to hold up under the exact conditions a national election guarantees: unreliable signal, tight time windows, and data that has to be right the first time. I worked as solo UX UI Designer & Systems Architect across four connected platforms: a web admin dashboard, a web verification portal, a mobile app for TPS witnesses, and a web data entry tool, all within a fixed 48 hour live tabulation window.
+            </p>
           </div>
 
-          <h1
-            className="font-display font-bold leading-[1.08] tracking-tight"
-            style={{ fontSize: "clamp(2rem, 4vw, 3.6rem)", color: N }}
-          >
-            Designing for the Unpredictable: Election Monitoring System for 38 Provinces
-          </h1>
-
-          <p
-            className="font-display font-light leading-relaxed"
-            style={{ fontSize: "clamp(1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
-          >
-            Indonesian Political Party (National) · 2024 Presidential & Legislative Elections
-          </p>
-
-          <p className="text-sm sm:text-base leading-relaxed max-w-3xl" style={{ color: BODY, lineHeight: 1.8 }}>
-            A multi platform system for real time vote monitoring, designed for the party's national witness network: 820,000 plus TPS across 38 provinces where the party had registered witnesses, each submitting through the same monitoring system: built to hold up under the exact conditions a national election guarantees: unreliable signal, tight time windows, and data that has to be right the first time. I worked as solo UX UI Designer & Systems Architect across four connected platforms: a web admin dashboard, a web verification portal, a mobile app for TPS witnesses, and a web data entry tool, all within a fixed 48 hour live tabulation window.
-          </p>
-        </div>
-
-        {/* Hero Metadata Grid Strip */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 mt-12 border-t border-gray-100 text-sm">
-          <div className="col-span-2 md:col-span-1">
-            <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
-              Role & Ownership
-            </span>
-            <span className="font-semibold text-[#19244E] block leading-snug">
-              Solo UX UI Designer & Systems Architect
-            </span>
-          </div>
-          <div>
-            <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
-              Client & Initiative
-            </span>
-            <span className="font-semibold text-[#19244E]">
-              National Political Party (ID Market)
-            </span>
-          </div>
-          <div>
-            <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
-              Scope & Scale
-            </span>
-            <span className="font-semibold text-[#19244E]">
-              38 Provinces · 820,000+ Polling Stations (TPS)
-            </span>
-          </div>
-          <div>
-            <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
-              Live Window
-            </span>
-            <span className="font-semibold text-[#19244E]">
-              Fixed 48 Hour Live Tabulation Window · 2024
-            </span>
+          {/* Right Column: Hero Dummy Image */}
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200/80 bg-[#111836] group">
+            <img
+              src={heroImg}
+              alt="Election System Preview"
+              className="w-full h-auto object-cover max-h-[380px] lg:max-h-[420px] rounded-2xl transform group-hover:scale-105 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#111836]/40 via-transparent to-transparent pointer-events-none" />
           </div>
         </div>
       </div>
@@ -314,7 +291,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
           <div className="grid lg:grid-cols-2 gap-4">
             {[
               { label: "Client & Scale", val: "Indonesian National Political Party · 38 Provinces · 820,000+ Polling Stations (TPS)" },
-              { label: "Role & Ownership", val: "Solo UX UI Designer & Systems Architect" },
+              { label: "Role & Ownership", val: "Sole Product Designer" },
               { label: "Product Ecosystem", val: "Mobile Witness App · Web AI Verification Portal · Web Data Entry Tool · Web Admin Dashboard" },
               { label: "Core Stack", val: "Figma Live Co Design · Offline Sync Engine · Sainte Laguë Alert Matrix · Emergency Backup App" },
             ].map(({ label, val }) => (

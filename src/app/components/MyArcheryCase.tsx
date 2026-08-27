@@ -4,6 +4,7 @@ import {
   FileCode2, Shield, Zap, RefreshCw, Users, MessageSquare,
   Trophy, Smartphone, Target, QrCode, Sun, WifiOff, Calendar, AlertTriangle, Clock, ChevronDown, Sparkles
 } from "lucide-react"
+import heroImg from "@/imports/image-7.png"
 
 const N = "#19244E"
 const C = "#DB3E8C"
@@ -281,59 +282,43 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
       <div className="px-8 lg:px-16 pt-16 pb-14" style={{ backgroundColor: W, borderBottom: `1px solid ${HAIR}` }}>
-        <div className="max-w-4xl space-y-6">
-          <div className="flex flex-wrap items-center gap-3">
-            <MonoTag accent>CASE STUDY 08</MonoTag>
-            <span style={{ color: HAIR }}>/</span>
-            <MonoTag>SPORTS TECH & FIELD RESEARCH</MonoTag>
-            <span style={{ color: HAIR }}>/</span>
-            <MonoTag>PERPANI · 2021 to 2023</MonoTag>
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-center">
+          <div className="space-y-6">
+            <div className="flex flex-wrap items-center gap-3">
+              <MonoTag accent>CASE STUDY 08</MonoTag>
+              <span style={{ color: HAIR }}>/</span>
+              <MonoTag>SPORTS TECH & FIELD RESEARCH</MonoTag>
+              <span style={{ color: HAIR }}>/</span>
+              <MonoTag>PERPANI · 2021 to 2023</MonoTag>
+            </div>
+
+            <h1
+              className="font-display font-bold leading-[1.08] tracking-tight"
+              style={{ fontSize: "clamp(2rem, 3.8vw, 3.4rem)", color: N }}
+            >
+              MyArchery · PERPANI National Operating System
+            </h1>
+
+            <p
+              className="font-display font-light leading-relaxed"
+              style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
+            >
+              National Archery Operating System & Tournament Platform
+            </p>
+
+            <p className="text-sm sm:text-base leading-relaxed" style={{ color: BODY, lineHeight: 1.8 }}>
+              Designing Indonesia's tournament operating system and real time scoring platform for official PERPANI national championships: the one project in this portfolio built entirely from field research, not a desk.
+            </p>
           </div>
 
-          <h1
-            className="font-display font-bold leading-[1.08] tracking-tight"
-            style={{ fontSize: "clamp(2rem, 3.8vw, 3.4rem)", color: N }}
-          >
-            MyArchery · PERPANI National Operating System
-          </h1>
-
-          <p
-            className="font-display font-light leading-relaxed"
-            style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
-          >
-            National Archery Operating System & Tournament Platform
-          </p>
-
-          <p className="text-sm sm:text-base leading-relaxed max-w-2xl" style={{ color: BODY, lineHeight: 1.8 }}>
-            Designing Indonesia's tournament operating system and real time scoring platform for official PERPANI national championships: the one project in this portfolio built entirely from field research, not a desk.
-          </p>
-        </div>
-
-        {/* Hero Metadata Grid Strip */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 pt-12 mt-12 border-t border-gray-100 text-sm">
-          <div>
-            <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
-              Role
-            </span>
-            <span className="font-semibold text-[#19244E]">
-              Lead UX Researcher & Product Designer
-            </span>
-          </div>
-          <div>
-            <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
-              Client
-            </span>
-            <span className="font-semibold text-[#19244E]">
-              PERPANI / MyArchery Indonesia
-            </span>
-          </div>
-          <div>
-            <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
-              Timeline
-            </span>
-            <span className="font-semibold text-[#19244E]">
-              2021 to 2023 · 7+ Public Releases
-            </span>
+          {/* Right Column: Hero Image */}
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200/80 bg-[#111836] group">
+            <img
+              src={heroImg}
+              alt="MyArchery System Preview"
+              className="w-full h-auto object-cover max-h-[380px] lg:max-h-[420px] rounded-2xl transform group-hover:scale-105 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#111836]/40 via-transparent to-transparent pointer-events-none" />
           </div>
         </div>
       </div>
