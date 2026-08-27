@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import {
   ArrowLeft, ChevronRight, CheckCircle2, Globe,
   FileCode2, Shield, Zap, RefreshCw, Users, MessageSquare,
-  Trophy, Smartphone, Target, QrCode, Sun, WifiOff, Calendar, AlertTriangle, Clock, ChevronDown
+  Trophy, Smartphone, Target, QrCode, Sun, WifiOff, Calendar, AlertTriangle, Clock, ChevronDown, Sparkles
 } from "lucide-react"
 
 const N = "#19244E"
@@ -74,7 +74,7 @@ function TargetScoringKeypad() {
             </span>
           </div>
           <h3 className="font-display text-lg lg:text-xl font-bold mt-1 text-white">
-            High-Velocity Outdoor Target Scoring Interface
+            High Velocity Outdoor Target Scoring Interface
           </h3>
         </div>
         <button
@@ -158,12 +158,13 @@ interface Props {
 }
 
 const QUICK_SECTIONS = [
-  { id: "summary", num: "01", label: "Executive Overview" },
-  { id: "problem", num: "02", label: "The Strategic Problem" },
-  { id: "field", num: "03", label: "Field Discovery & Inquiry" },
-  { id: "architecture", num: "04", label: "System Architecture" },
-  { id: "deployment", num: "05", label: "Iterative Deployment" },
-  { id: "impact", num: "06", label: 'Key Impact & "So What"' },
+  { id: "summary", num: "01", label: "Executive Summary" },
+  { id: "problem", num: "02", label: "The Problem" },
+  { id: "field", num: "03", label: "Field Research, Literally Under the Sun" },
+  { id: "built", num: "04", label: "What I Built" },
+  { id: "shipped", num: "05", label: "Shipped Iteratively, Not All at Once" },
+  { id: "leadership", num: "06", label: "Leading Under Remote Conditions" },
+  { id: "impact", num: "07", label: "Impact & So What" },
 ]
 
 export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
@@ -286,33 +287,33 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
             <span style={{ color: HAIR }}>/</span>
             <MonoTag>SPORTS TECH & FIELD RESEARCH</MonoTag>
             <span style={{ color: HAIR }}>/</span>
-            <MonoTag>PERPANI / MYARCHERY · 2023</MonoTag>
+            <MonoTag>PERPANI · 2021 to 2023</MonoTag>
           </div>
 
           <h1
             className="font-display font-bold leading-[1.08] tracking-tight"
-            style={{ fontSize: "clamp(2.2rem, 4vw, 3.6rem)", color: N }}
+            style={{ fontSize: "clamp(2rem, 3.8vw, 3.4rem)", color: N }}
           >
-            National Archery Operating System & Tournament Platform
+            MyArchery · PERPANI National Operating System
           </h1>
 
           <p
             className="font-display font-light leading-relaxed"
             style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
           >
-            Designing Indonesia's centralized tournament operating system & real-time scoring platform for official PERPANI national championships.
+            National Archery Operating System & Tournament Platform
           </p>
 
           <p className="text-sm sm:text-base leading-relaxed max-w-2xl" style={{ color: BODY, lineHeight: 1.8 }}>
-            A comprehensive sports tech platform that digitized 100% of manual paper scoring workflows, managed athlete registrations, and provided real-time field keypad scoring for national archers.
+            Designing Indonesia's tournament operating system and real time scoring platform for official PERPANI national championships: the one project in this portfolio built entirely from field research, not a desk.
           </p>
         </div>
 
         {/* Hero Metadata Grid Strip */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 mt-12 border-t border-gray-100 text-sm">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 pt-12 mt-12 border-t border-gray-100 text-sm">
           <div>
             <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
-              Role & Ownership
+              Role
             </span>
             <span className="font-semibold text-[#19244E]">
               Lead UX Researcher & Product Designer
@@ -320,7 +321,7 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
           </div>
           <div>
             <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
-              Client & Organization
+              Client
             </span>
             <span className="font-semibold text-[#19244E]">
               PERPANI / MyArchery Indonesia
@@ -328,19 +329,39 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
           </div>
           <div>
             <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
-              Lifecycle & Scale
+              Timeline
             </span>
             <span className="font-semibold text-[#19244E]">
-              2 Years · 7+ Public Releases
+              2021 to 2023 · 7+ Public Releases
             </span>
           </div>
-          <div>
-            <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-400 mb-1">
-              Field Automation
-            </span>
-            <span className="font-semibold text-[#19244E]">
-              100% Manual Flow Automation
-            </span>
+        </div>
+      </div>
+
+      {/* EXECUTIVE SUMMARY & 30 SECOND TAKEAWAYS */}
+      <div className="px-8 lg:px-16 py-8 bg-[#111836] border-t border-b border-white/10">
+        <div className="flex items-center gap-2 mb-4">
+          <span className="w-2 h-2 rounded-full bg-[#DB3E8C] animate-pulse" />
+          <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+            EXECUTIVE SUMMARY & 30 SECOND TAKEAWAYS
+          </span>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-xs sm:text-sm font-sans">
+          <div className="bg-white/5 p-4 rounded-lg border border-white/5">
+            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">01 · Problem</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-white/85">Tournament operations across Indonesia ran on fragmented manual tools and a legacy desktop scoring system prone to error under field pressure.</p>
+          </div>
+          <div className="bg-white/5 p-4 rounded-lg border border-white/5">
+            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">02 · Core Constraints</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-white/85">No prior digital infrastructure to build on; outdoor field conditions (glare, patchy signal, time pressure) that a desk based design process could not anticipate.</p>
+          </div>
+          <div className="bg-[#DB3E8C]/10 p-4 rounded-lg border border-[#DB3E8C]/30">
+            <span className="block text-xs font-bold tracking-widest text-[#DB3E8C] uppercase mb-1.5">03 · Exact Ownership</span>
+            <p className="text-xs sm:text-sm font-semibold text-white leading-relaxed">Lead UX Researcher & Product Designer: ran contextual inquiry directly in judges' tents, designed the full tournament lifecycle platform, and led a 3 designer team remotely.</p>
+          </div>
+          <div className="bg-white/5 p-4 rounded-lg border border-white/5">
+            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">04 · Key Impact</span>
+            <p className="text-xs sm:text-sm font-semibold text-white leading-relaxed">Shipped and refined the system across 7+ live tournament releases over roughly two years, from local trials to national championships.</p>
           </div>
         </div>
       </div>
@@ -388,27 +409,27 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
 
         {/* 01 Executive Summary */}
         <div>
-          <SectionTag id="summary" num="01" label="Executive Overview & Impact Snapshot" />
+          <SectionTag id="summary" num="01" label="Executive Summary" />
           <div className="grid lg:grid-cols-3 gap-6 mb-10">
-            <div className="p-6 bg-white rounded-xl border border-gray-100 shadow-sm space-y-2">
-              <span className="text-2xl font-bold text-[#22c55e] block font-display">100%</span>
-              <h4 className="font-semibold text-[#19244E] text-sm">Manual Flow Automation</h4>
+            <div className="p-6 bg-white rounded-xl border border-gray-100 shadow-xs space-y-2">
+              <span className="text-2xl font-bold text-[#22c55e] block font-display">Field Research</span>
+              <h4 className="font-semibold text-[#19244E] text-sm">Judges' Tents Inquiry</h4>
               <p className="text-xs text-gray-500 leading-relaxed">
-                Eliminated manual Google Form signups and bank transfer WhatsApp checks with integrated athlete registration & payment gateways.
+                Designed directly inside live tournament tents to solve outdoor sunlight glare and high pressure score input friction.
               </p>
             </div>
-            <div className="p-6 bg-white rounded-xl border border-gray-100 shadow-sm space-y-2">
-              <span className="text-2xl font-bold text-[#DB3E8C] block font-display">3-Person Team</span>
-              <h4 className="font-semibold text-[#19244E] text-sm">WFA Standup Leadership</h4>
+            <div className="p-6 bg-white rounded-xl border border-gray-100 shadow-xs space-y-2">
+              <span className="text-2xl font-bold text-[#DB3E8C] block font-display">7+ Releases</span>
+              <h4 className="font-semibold text-[#19244E] text-sm">Public Tournament Iterations</h4>
               <p className="text-xs text-gray-500 leading-relaxed">
-                Led daily stand-up meetings and hands-on field testing during remote (WFA) team execution across a 3-designer team.
+                Tested and shipped across two years of national events from Jakarta trials to Sumbawa Barat and Purwakarta Open.
               </p>
             </div>
-            <div className="p-6 bg-white rounded-xl border border-gray-100 shadow-sm space-y-2">
-              <span className="text-2xl font-bold text-[#19244E] block font-display">7+ Public</span>
-              <h4 className="font-semibold text-[#19244E] text-sm">Release Iterations</h4>
+            <div className="p-6 bg-white rounded-xl border border-gray-100 shadow-xs space-y-2">
+              <span className="text-2xl font-bold text-[#19244E] block font-display">3 Designer Team</span>
+              <h4 className="font-semibold text-[#19244E] text-sm">WFA Remote Leadership</h4>
               <p className="text-xs text-gray-500 leading-relaxed">
-                Shipped live field iterations from local Jakarta trials to Sumbawa Barat & Purwakarta Open national championships.
+                Led daily standups for a 3 designer team while staying hands on with physical field validation on site.
               </p>
             </div>
           </div>
@@ -418,30 +439,31 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
 
         {/* 02 The Problem */}
         <div>
-          <SectionTag id="problem" num="02" label="The Problem: High-Stakes Chaos of Archery Tournaments" />
-          <p className="font-display font-light leading-relaxed mb-10 text-xl text-[#19244E]">
-            Before MyArchery, over 80% of tournament operations in Indonesia were managed manually across fragmented tools, creating high administrative burnout and scoring delays.
+          <SectionTag id="problem" num="02" label="The Problem" />
+          
+          <p className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C] mb-8" style={{ lineHeight: 1.8 }}>
+            Before MyArchery, tournament operations ran on fragmented manual tools: Google Form signups, WhatsApp bank transfer checks, spreadsheet rosters, and Ianseo, a legacy desktop scoring tool prone to input error under field pressure. Paper scoresheets had to be physically collected and reentered before standings could update, which meant delays every round.
           </p>
 
           <div className="grid md:grid-cols-3 gap-6">
             {[
               {
                 Icon: Users,
-                title: "Administrative Overload",
-                desc: "Tournament committees spent days manually processing Google Form entries, verifying bank transfers over WhatsApp, and typing athlete rosters into spreadsheets.",
+                title: "Fragmented Registrations",
+                desc: "Manual Google Form signups and bank transfer validation via WhatsApp created heavy operational overhead.",
               },
               {
                 Icon: FileCode2,
-                title: "Scoring Friction & Legacy Ianseo Dependency",
-                desc: "Committees relied on Ianseo—a complex desktop legacy software requiring specialized technical training that was highly prone to human input errors under field pressure.",
+                title: "Legacy Ianseo Software",
+                desc: "Fragile desktop software prone to human input errors under fast outdoor field pressure.",
               },
               {
                 Icon: Clock,
-                title: "Delayed Elimination Standings",
-                desc: "Qualification brackets and live standings suffered long delays because officials had to wait for physical paper scoresheets to be manually collected, audited, and re-entered.",
+                title: "Paper Re-Entry Delays",
+                desc: "Standings delayed every round while physical paper scoresheets were collected and typed in by hand.",
               },
             ].map(({ Icon, title, desc }) => (
-              <div key={title} className="p-6 bg-white rounded-xl border border-gray-200/80 shadow-sm space-y-3">
+              <div key={title} className="p-6 bg-white rounded-xl border border-gray-200/80 shadow-xs space-y-3">
                 <div className="w-10 h-10 rounded-lg bg-[#DB3E8C]/10 border border-[#DB3E8C]/20 flex items-center justify-center text-[#DB3E8C]">
                   <Icon size={18} />
                 </div>
@@ -454,148 +476,108 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
 
         <Hairline />
 
-        {/* 03 Field Discovery */}
+        {/* 03 Field Research */}
         <div>
-          <SectionTag id="field" num="03" label="Field Discovery: Contextual Inquiry Under the Sun" />
-          <p className="font-display font-light leading-relaxed mb-8 text-xl text-[#19244E]">
-            Rather than designing from behind a comfortable office desk, our design team conducted contextual inquiries and live usability testing directly inside judges' tents at official tournaments.
+          <SectionTag id="field" num="03" label="Field Research, Literally Under the Sun" />
+          
+          <p className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C] mb-6" style={{ lineHeight: 1.8 }}>
+            Rather than design from behind a desk, I ran contextual inquiry directly inside judges' tents at live tournaments: The HUB Cibubur Trials (2021) and Jakarta Open (2022): observing how judges and scorekeepers actually worked under outdoor glare, patchy signal, and tight time pressure between scoring ends. That is what shaped the high contrast, color coded outdoor scoring keypad (Yellow X 10 9, Red 8 7, Blue 6 5, Black 4 3, White 2 1): designed for fast, accurate taps outdoors, not a studio screen.
           </p>
 
-          <div className="grid lg:grid-cols-2 gap-6 mb-8">
+          <div className="grid lg:grid-cols-2 gap-6 mb-6">
             <div className="p-6 bg-[#111836] text-white rounded-2xl space-y-4">
               <div className="flex items-center gap-2 text-[#EAB308]">
                 <Sun size={18} />
-                <span className="text-xs font-bold tracking-widest uppercase">ENVIRONMENTAL CONSTRAINTS</span>
+                <span className="text-xs font-bold tracking-widest uppercase">FIELD CONSTRAINTS</span>
               </div>
-              <h4 className="text-lg font-bold text-white">Direct Outdoor Heat & Sunlight Glare</h4>
+              <h4 className="text-lg font-bold text-white">Outdoor Heat & Sunlight Glare</h4>
               <p className="text-xs text-white/70 leading-relaxed">
-                Field judges and scorekeepers operate under blazing outdoor sunlight with direct screen glare, spotty field Wi-Fi/cellular connectivity, and severe time pressure between scoring ends.
+                Field judges operate under direct outdoor glare with spotty field Wi-Fi and severe time pressure between scoring ends.
               </p>
-              <div className="pt-4 border-t border-white/10 flex items-center gap-4 text-xs text-white/60">
-                <span className="flex items-center gap-1"><Sun size={12} className="text-[#EAB308]" /> High Screen Contrast</span>
-                <span className="flex items-center gap-1"><WifiOff size={12} className="text-red-400" /> Offline Draft State</span>
-              </div>
             </div>
 
             <div className="p-6 bg-white border border-gray-200 rounded-2xl space-y-4">
               <div className="flex items-center gap-2 text-[#DB3E8C]">
-                <QrCode size={18} />
-                <span className="text-xs font-bold tracking-widest uppercase text-[#DB3E8C]">PHYSICAL-TO-DIGITAL TRANSITION</span>
+                <Target size={18} />
+                <span className="text-xs font-bold tracking-widest uppercase text-[#DB3E8C]">KEYPAD COLOR SYSTEM</span>
               </div>
-              <h4 className="text-lg font-bold text-[#19244E]">Legal Scoresheet Auditability</h4>
+              <h4 className="text-lg font-bold text-[#19244E]">Official Target Palette</h4>
               <p className="text-xs text-gray-600 leading-relaxed">
-                Physical paper scoresheets remain the legal audit standard in official PERPANI regulations. Our digital flow had to seamlessly complement paper score verification with instant QR Code target board validation.
+                Keypad colors map directly to target ring values (Yellow X 10 9, Red 8 7, Blue 6 5, Black 4 3, White 2 1) for muscle memory accuracy.
               </p>
-              <div className="pt-4 border-t border-gray-100 flex items-center gap-4 text-xs text-gray-500">
-                <span className="flex items-center gap-1"><QrCode size={12} className="text-[#DB3E8C]" /> QR Target Scan</span>
-                <span className="flex items-center gap-1"><CheckCircle2 size={12} className="text-[#22c55e]" /> Official Signature Sync</span>
-              </div>
             </div>
           </div>
 
-          {/* Key Field Notes Card */}
-          <div className="p-6 bg-[#F9FAFB] border border-gray-200 rounded-xl space-y-3">
-            <span className="text-[10px] font-bold tracking-widest uppercase text-[#DB3E8C]">
-              RESEARCH DISCOVERY INSIGHT // FIELD TRIAL LOCATIONS
-            </span>
-            <p className="text-xs text-[#19244E] font-medium leading-relaxed">
-              Field observations were conducted live during <strong className="text-[#DB3E8C]">The HUB Scoring Games 2021 (Cibubur)</strong> and <strong className="text-[#DB3E8C]">Jakarta Open 2022</strong>, directly informing the design of the high-contrast outdoor scoring keypad.
-            </p>
-          </div>
-
-          {/* Interactive Demo Keypad */}
+          {/* Interactive Scoring Keypad */}
           <TargetScoringKeypad />
         </div>
 
         <Hairline />
 
-        {/* 04 Architecture */}
+        {/* 04 What I Built */}
         <div>
-          <SectionTag id="architecture" num="04" label="System Architecture: End-to-End Tournament Lifecycle" />
-          <p className="font-display font-light leading-relaxed mb-10 text-xl text-[#19244E]">
-            We architected a modular platform based on Feature-Driven Development (FDD) spanning all 3 stages of a sports tournament lifecycle.
+          <SectionTag id="built" num="04" label="What I Built" />
+          
+          <p className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C] mb-8" style={{ lineHeight: 1.8 }}>
+            A modular platform covering the full tournament lifecycle:
           </p>
 
           <div className="space-y-6">
-            {[
-              {
-                phase: "01. PRE-EVENT (Setup & Monetization)",
-                title: "Athlete Self-Registration & Target Allocation",
-                color: "#DB3E8C",
-                items: [
-                  { t: "Automated Payment Gateway Integration", d: "Self-service registration portal with instant payment processing, eliminating manual bank transfer checks via WhatsApp." },
-                  { t: "Category Rules & Target Board Engine", d: "Automated configuration dashboard for Barebow, Compound, Recurve, and National categories with auto-target allocation." },
-                ]
-              },
-              {
-                phase: "02. ON-EVENT (High-Velocity Scoring)",
-                title: "Ergonomic Mobile Keypad & Real-Time Brackets",
-                color: "#3B82F6",
-                items: [
-                  { t: "Target-Colored Mobile Keypad", d: "Ergonomic color-coded keypad (Yellow X-10-9, Red 8-7, Blue 6-5, Black 4-3, White 2-1) designed for touch accuracy in outdoor conditions." },
-                  { t: "Instant Elimination Bracket Engine", d: "Real-time calculation of qualification rounds and instant bracket seeding without waiting for manual paper tabulation." },
-                ]
-              },
-              {
-                phase: "03. POST-EVENT (Data & Governance)",
-                title: "Public Live Scoreboards & Financial Reconciliation",
-                color: "#22c55e",
-                items: [
-                  { t: "Public Live Standings & E-Certificates", d: "Real-time public scoreboard view for spectators and automated e-certificate generation for all participants." },
-                  { t: "Financial Reconciliation Dashboard", d: "Automated revenue audit and financial summary reports for tournament organizing committees." },
-                ]
-              },
-            ].map((p) => (
-              <div key={p.phase} className="p-6 bg-white border border-gray-200 rounded-xl space-y-4">
-                <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: p.color }} />
-                  <span className="text-xs font-bold tracking-widest uppercase" style={{ color: p.color }}>
-                    {p.phase}
-                  </span>
-                </div>
-                <h4 className="text-lg font-bold text-[#19244E]">{p.title}</h4>
-                <div className="grid md:grid-cols-2 gap-4 pt-2">
-                  {p.items.map((it) => (
-                    <div key={it.t} className="p-4 bg-[#F9FAFB] rounded-lg border border-gray-100 space-y-1">
-                      <span className="block font-bold text-xs text-[#19244E]">{it.t}</span>
-                      <p className="text-xs text-gray-600 leading-relaxed">{it.d}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
+            <div className="p-6 bg-white border border-gray-200 rounded-xl space-y-3">
+              <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">PRE EVENT</span>
+              <h4 className="font-bold text-lg text-[#19244E]">Athlete Registration & Allocations</h4>
+              <p className="text-xs text-gray-600 leading-relaxed">
+                Self service athlete registration with integrated payment, replacing manual bank transfer checks; category and target allocation for Barebow, Compound, Recurve, and National classes.
+              </p>
+            </div>
+
+            <div className="p-6 bg-white border border-gray-200 rounded-xl space-y-3">
+              <span className="text-xs font-bold text-[#3B82F6] uppercase tracking-wider block">ON EVENT</span>
+              <h4 className="font-bold text-lg text-[#19244E]">Field Keypad & Real Time Brackets</h4>
+              <p className="text-xs text-gray-600 leading-relaxed">
+                The field tested scoring keypad, plus real time bracket calculation so standings updated without waiting on manual tabulation.
+              </p>
+            </div>
+
+            <div className="p-6 bg-white border border-gray-200 rounded-xl space-y-3">
+              <span className="text-xs font-bold text-[#22c55e] uppercase tracking-wider block">POST EVENT</span>
+              <h4 className="font-bold text-lg text-[#19244E]">Scoreboards & Financial Reconciliation</h4>
+              <p className="text-xs text-gray-600 leading-relaxed">
+                Public live scoreboards, e certificate generation, and a financial reconciliation dashboard for organizing committees.
+              </p>
+            </div>
           </div>
         </div>
 
         <Hairline />
 
-        {/* 05 Iterative Deployment */}
+        {/* 05 Shipped Iteratively */}
         <div>
-          <SectionTag id="deployment" num="05" label="Iterative Deployment: 7+ Release Public Lifecycle" />
-          <p className="font-display font-light leading-relaxed mb-8 text-xl text-[#19244E]">
-            MyArchery was not delivered as a static desktop prototype; it was iteratively tested and deployed across 7+ live public tournament releases over 2 years.
+          <SectionTag id="shipped" num="05" label="Shipped Iteratively, Not All at Once" />
+          
+          <p className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C] mb-8" style={{ lineHeight: 1.8 }}>
+            I tested and shipped this across 7+ live tournament releases over roughly two years: starting with local Jakarta trials in 2021 and scaling up to national events like Sumbawa Barat and Purwakarta Open by late 2022, refining the scoring and bracket logic with each round of real field use.
           </p>
 
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="p-6 bg-white border border-gray-200 rounded-xl space-y-2">
-              <span className="text-xs font-bold text-[#DB3E8C]">OCT 2021 // ALPHA</span>
-              <h5 className="font-bold text-[#19244E] text-sm">The HUB Cibubur Trials</h5>
+            <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
+              <span className="text-xs font-bold text-[#DB3E8C] block">2021 // Local Trials</span>
               <p className="text-xs text-gray-600 leading-relaxed">
-                Initial field validation of the mobile scoring keypad and basic end calculation logic under live outdoor match conditions.
+                The HUB Cibubur Trials: initial field validation of keypad scoring under outdoor conditions.
               </p>
             </div>
-            <div className="p-6 bg-white border border-gray-200 rounded-xl space-y-2">
-              <span className="text-xs font-bold text-[#3B82F6]">JUL – NOV 2022 // V2.0–V2.2</span>
-              <h5 className="font-bold text-[#19244E] text-sm">Jakarta Series & Pangkoarmada</h5>
+
+            <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
+              <span className="text-xs font-bold text-[#3B82F6] block">2022 // Regional Open</span>
               <p className="text-xs text-gray-600 leading-relaxed">
-                Multi-category scaling (Recurve, Compound, Barebow) across high-volume regional championships with QR target scanning.
+                Jakarta Open: expanding multi category support for Barebow, Compound, and Recurve classes.
               </p>
             </div>
-            <div className="p-6 bg-white border border-gray-200 rounded-xl space-y-2">
-              <span className="text-xs font-bold text-[#22c55e]">DEC 2022 // V2.3–V2.4</span>
-              <h5 className="font-bold text-[#19244E] text-sm">Sumbawa & Purwakarta Open</h5>
+
+            <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
+              <span className="text-xs font-bold text-[#22c55e] block">Late 2022 // National Championships</span>
               <p className="text-xs text-gray-600 leading-relaxed">
-                National tournament expansion supporting multi-stage elimination brackets and automated financial reconciliation.
+                Sumbawa Barat & Purwakarta Open: full scale bracket engines and financial dashboards.
               </p>
             </div>
           </div>
@@ -603,36 +585,43 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
 
         <Hairline />
 
-        {/* 06 Impact & The So What */}
+        {/* 06 Leading Under Remote Conditions */}
         <div>
-          <SectionTag id="impact" num="06" label="Key Impact & The 'So What'" />
+          <SectionTag id="leadership" num="06" label="Leading Under Remote Conditions" />
+          
+          <p className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
+            I led daily standups for a 3 designer team working WFA (remote), alongside hands on field testing at each tournament: meaning I was not just designing the system, but personally validating it on site.
+          </p>
+        </div>
+
+        <Hairline />
+
+        {/* 07 Impact & So What */}
+        <div>
+          <SectionTag id="impact" num="07" label="Impact & 'So What'" />
+
           <div className="p-8 bg-[#111836] rounded-2xl border border-white/10 text-white space-y-6 shadow-2xl">
             <div className="flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-[#22c55e] animate-pulse" />
               <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#22c55e]">
-                NATIONAL SPORTS TECH IMPACT & "SO WHAT"
+                NATIONAL PERPANI ECOSYSTEM IMPACT
               </span>
             </div>
             <h3 className="font-display text-2xl lg:text-3xl font-light leading-snug">
-              Unified Indonesia's archery ecosystem with a <span className="font-bold text-[#DB3E8C]">7+ release operating system</span>.
+              Transformed manual archery tournament ops into Indonesia's national digital platform.
             </h3>
-            <p className="font-sans text-xs text-white/70 leading-relaxed max-w-2xl">
-              By replacing paper re-entry and legacy desktop software with mobile outdoor scoring keypads and instant bracket engines, MyArchery became the official digital infrastructure for PERPANI tournaments nationwide.
-            </p>
 
-            <div className="grid md:grid-cols-3 gap-6 pt-6 border-t border-white/10 text-xs">
-              <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-                <span className="block font-bold text-xl text-[#22c55e] mb-1">2 Years Lifecycle</span>
-                <p className="text-white/60">Multi-release product evolution from August 2021 to April 2023.</p>
+            {/* WHAT I LEARNED Box */}
+            <div className="p-5 rounded-xl bg-white/5 border border-white/10 text-white space-y-2 mt-6">
+              <div className="flex items-center gap-2">
+                <Sparkles size={14} className="text-[#DB3E8C]" />
+                <span className="text-[9px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+                  WHAT I LEARNED
+                </span>
               </div>
-              <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-                <span className="block font-bold text-xl text-white mb-1">7+ Live Releases</span>
-                <p className="text-white/60">Tested and validated across major national archery championships.</p>
-              </div>
-              <div className="bg-[#DB3E8C]/20 p-4 rounded-lg border border-[#DB3E8C]/40">
-                <span className="block font-bold text-xl text-[#DB3E8C] mb-1">100% Digital Flow</span>
-                <p className="text-white/80 font-medium">Replaced Ianseo desktop legacy dependency across official events.</p>
-              </div>
+              <p className="text-xs sm:text-sm font-sans leading-relaxed text-white/90 italic" style={{ lineHeight: 1.8 }}>
+                "Sitting in judges' tents under direct sun taught me things no brief could have told me, like why a color coded keypad matters more than a clever layout when someone's scoring under time pressure and glare. Field conditions are not an edge case to design around after the fact; they have to shape the design from the start."
+              </p>
             </div>
 
             {/* Why This Matters to a Hiring Manager */}
@@ -643,8 +632,8 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
                   WHY THIS MATTERS TO A HIRING MANAGER
                 </span>
               </div>
-              <p className="text-xs font-sans leading-relaxed text-white/90 italic">
-                "This project highlights my initiative to step up and lead team syncs under remote WFA conditions. Operating in a 3-designer team with senior peers, I stepped up as the hands-on lead, facilitated daily standup meetings, conducted grounded field research under direct sunlight, and delivered resilient multi-surface software across 7+ live releases. If you need a proactive designer who naturally takes ownership and drives team alignment, this is what that looks like."
+              <p className="text-xs sm:text-sm font-sans leading-relaxed text-white/90 italic" style={{ lineHeight: 1.8 }}>
+                "This project shows I can design from real field conditions, not just assumptions: sitting in judges' tents under direct sun to understand the actual constraints before touching a screen. It also shows I can lead a small remote team while staying hands on with field validation myself."
               </p>
             </div>
           </div>

@@ -246,6 +246,34 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
         </div>
       </div>
 
+      {/* EXECUTIVE SUMMARY & 30 SECOND TAKEAWAYS */}
+      <div className="px-8 lg:px-16 py-8 bg-[#111836] border-t border-b border-white/10">
+        <div className="flex items-center gap-2 mb-4">
+          <span className="w-2 h-2 rounded-full bg-[#DB3E8C] animate-pulse" />
+          <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+            EXECUTIVE SUMMARY & 30 SECOND TAKEAWAYS
+          </span>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-xs sm:text-sm font-sans">
+          <div className="bg-white/5 p-4 rounded-lg border border-white/5">
+            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">01 · Problem</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-white/85">Anlene's field health check app only surfaced a few data points, gave generic results, and lacked any real breakdown connecting metrics to recommendations.</p>
+          </div>
+          <div className="bg-white/5 p-4 rounded-lg border border-white/5">
+            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">02 · Core Constraints</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-white/85">No direct field access for research, no hardware to app integration for the two scanners, no system to auto generate result reports.</p>
+          </div>
+          <div className="bg-[#DB3E8C]/10 p-4 rounded-lg border border-[#DB3E8C]/30">
+            <span className="block text-xs font-bold tracking-widest text-[#DB3E8C] uppercase mb-1.5">03 · Exact Ownership</span>
+            <p className="text-xs sm:text-sm font-semibold text-white leading-relaxed">Sole Designer: built the full decision tree logic across five health metrics, designed every result combination report manually, and translated a later brand refresh into Figma.</p>
+          </div>
+          <div className="bg-white/5 p-4 rounded-lg border border-white/5">
+            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">04 · Key Impact</span>
+            <p className="text-xs sm:text-sm font-semibold text-white leading-relaxed">Directly resolved all three complaints the client raised about the prior tool, and the engagement returned for a second phase over a year later.</p>
+          </div>
+        </div>
+      </div>
+
       {/* ── MAIN BODY WITH STICKY LEFT SIDEBAR TOC (DESKTOP) ──────────────── */}
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-12 lg:py-20">
         <div className="grid lg:grid-cols-[260px_1fr] gap-12 lg:gap-16 items-start">
@@ -644,6 +672,19 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
                 <span className="font-bold text-[#DB3E8C]">•</span>
                 <span><strong className="text-white">Cross-Functional Content</strong> — Health recommendations developed with a nutritionist, not assumed.</span>
               </div>
+            </div>
+
+            {/* WHAT I LEARNED Box */}
+            <div className="p-6 rounded-xl bg-white/5 border border-white/10 text-white space-y-2 mt-6">
+              <div className="flex items-center gap-2">
+                <Sparkles size={16} className="text-[#DB3E8C]" />
+                <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+                  WHAT I LEARNED
+                </span>
+              </div>
+              <p className="text-xs sm:text-sm font-sans leading-relaxed text-white/90 italic" style={{ lineHeight: 1.8 }}>
+                "Designing without direct field access taught me that secondhand research, done thoroughly, can still produce a defensible design system. Building the decision tree before touching any screen meant every downstream choice had a clear basis I could explain to both the client and the dev team."
+              </p>
             </div>
 
             {/* Why This Matters to a Hiring Manager */}

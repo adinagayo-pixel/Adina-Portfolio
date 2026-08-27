@@ -5,6 +5,7 @@ import adinaPhotoLife from "@/imports/Foto In Life.jpg"
 import afgLogo from "@/imports/LOGO.png"
 import heroBgImage from "@/imports/smooth-abstract-space-with-flowing-lines-curves-monochromatic-palette.jpg"
 import gettyBgVideo from "@/imports/GettyImages-1152749158.mp4"
+import coverTng from "@/imports/Cover TNG.jpg"
 import projectThumb1 from "@/imports/image-7.png"
 import projectThumb2 from "@/imports/image-8.png"
 import projectThumb4 from "@/imports/image-7.png"
@@ -28,12 +29,11 @@ import ci4 from "@/imports/CI4.png"
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback"
 import {
   Home, Briefcase, Layers, Archive, Mail,
-  ArrowRight, ExternalLink, Globe, Zap,
+  ArrowRight, ArrowDown, ExternalLink, Globe, Zap,
   Users, CheckCircle, Coins, Bot, LayoutGrid,
   ArrowUpRight, ChevronRight, MousePointer2, Plus, Linkedin, Download,
   Search, Target, FileCheck, FileText, X, Eye,
 } from "lucide-react"
-import SunwayCase from "./components/SunwayCase"
 import GegiCase from "./components/GegiCase"
 import TngCase from "./components/TngCase"
 import ProArcheryCase from "./components/ProArcheryCase"
@@ -74,15 +74,15 @@ export function getGeneralWhatsAppLink() {
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const FEATURED = [
   {
-    num: "01", name: "Seamless Micro-Insurance Integration", client: "Touch 'n Go × GEGM",
-    location: "MY", year: "2024", tags: ["PWA / SSO", "eKYC Data Mapping", "B2C / FinTech"],
+    num: "01", name: "Seamless Micro Insurance Integration", client: "Touch 'n Go × GEGM",
+    location: "MY", year: "2025", tags: ["PWA / SSO", "eKYC Data Mapping", "B2C / FinTech"],
     role: "Lead Product Designer & Logic Architect",
     headline: "An embedded Progressive Web Application (PWA) architecture built inside Malaysia's leading e-wallet ecosystem, integrating native SSO and eKYC.",
     metrics: [{ val: "V5", sub: "1 Final Release" }, { val: "3mo", sub: "Timeline" }, { val: "RM0", sub: "PTV Checkout" }],
     projectId: "tng",
-    thumb: projectThumb2,
+    thumb: coverTng,
     screens: [
-      { src: projectThumb2, label: "01 · WALLET DASHBOARD" },
+      { src: coverTng, label: "01 · WALLET DASHBOARD" },
       { src: projectThumb1, label: "02 · EKYC DATA MAPPING" },
       { src: projectThumb5, label: "03 · POLICY CHECKOUT" },
     ],
@@ -91,7 +91,7 @@ const FEATURED = [
     num: "02", name: "Gamified CI Evaluation Campaign", client: "GEGI Singapore",
     location: "SG", year: "2026", tags: ["Gamified Evaluation", "Singlish Persona", "Campaign"],
     role: "Sole Product Designer",
-    headline: "A rapid-sprint interactive campaign tool combining scroll-based gamified evaluation, localized Singlish persona mechanics, and AEM integration.",
+    headline: "A rapid sprint interactive campaign tool combining scroll based gamified evaluation, localized Singlish persona mechanics, and AEM integration.",
     metrics: [{ val: "2wk", sub: "Sprint Execution" }, { val: "7Q", sub: "Question Matrix" }, { val: "4", sub: "Persona Tiers" }],
     projectId: "gegi",
     thumb: ci1,
@@ -103,11 +103,11 @@ const FEATURED = [
     ],
   },
   {
-    num: "03", name: "100K-Player Live Tournament Platform", client: "mySalam × myKawan",
+    num: "03", name: "100K Player Live Tournament Platform", client: "mySalam × myKawan",
     location: "MY", year: "2025", tags: ["Live Tournament", "100K Concurrent", "Gamified Financial Literacy"],
     role: "Lead Product Designer",
-    headline: "Architected a scalable digital tournament platform delivering real-time financial literacy quizzes to over 100,000 concurrent Malaysian youth players.",
-    metrics: [{ val: "100K", sub: "Live Concurrents" }, { val: "5-sec", sub: "Quiz Round Engine" }, { val: "RM500K", sub: "ReSkills Rewards Pool" }],
+    headline: "Architected a scalable digital tournament platform delivering real time financial literacy quizzes to over 100,000 concurrent Malaysian youth players.",
+    metrics: [{ val: "100K", sub: "Live Concurrents" }, { val: "5 Sec", sub: "Quiz Round Engine" }, { val: "RM500K", sub: "ReSkills Rewards Pool" }],
     projectId: "bijakwang",
     thumb: mykawan1,
     screens: [
@@ -120,9 +120,9 @@ const FEATURED = [
   },
   {
     num: "04", name: "National Quick Count & Monitoring", client: "Indonesian Political Party",
-    location: "ID", year: "2024", tags: ["Public Sector", "Civic Tech", "Real-Time CMS"],
-    role: "Lead UX & Systems Architect",
-    headline: "An end-to-end multi-level election monitoring system for Indonesia's 2024 Presidential Election, tracking vote tabulation across 38 provinces in real-time.",
+    location: "ID", year: "2024", tags: ["Public Sector", "Civic Tech", "Real Time CMS"],
+    role: "Solo UX UI Designer & Systems Architect",
+    headline: "An end to end multi level election monitoring system for Indonesia's 2024 Presidential Election, tracking vote tabulation across 38 provinces in real time.",
     metrics: [{ val: "820K+", sub: "TPS Polling Stations" }, { val: "38", sub: "Provinces Tracked" }, { val: "48h", sub: "Critical Window" }],
     projectId: "election",
     thumb: projectThumb5,
@@ -133,16 +133,16 @@ const FEATURED = [
     ],
   },
   {
-    num: "05", name: "Multi-Tenant Enterprise Backoffice", client: "Regional SuperApps & FinTech",
-    location: "SG/MY/ID", year: "2025", tags: ["White-Label Engine", "Design System Tokens", "Data Analytics"],
+    num: "05", name: "Multi Tenant Enterprise Backoffice", client: "Regional SuperApps & FinTech",
+    location: "SG/MY/ID", year: "2024 to 2025", tags: ["White Label Engine", "Design System Tokens", "Data Analytics"],
     role: "Solo Product Designer & System Logic Architect",
-    headline: "Scaling B2B white-label operations and real-time analytical dashboards under lean constraints with a 1–3 hour deployment engine.",
-    metrics: [{ val: "1–3h", sub: "Tenant Setup" }, { val: "Dual", sub: "Track Delivery" }, { val: "0", sub: "BE Query Timeouts" }],
+    headline: "Scaling B2B white label operations and real time analytical dashboards under lean constraints with a 1 to 3 hour deployment engine.",
+    metrics: [{ val: "1 to 3h", sub: "Tenant Setup" }, { val: "Dual", sub: "Track Delivery" }, { val: "0", sub: "BE Query Timeouts" }],
     projectId: "backoffice",
     thumb: projectThumb5,
     screens: [
-      { src: projectThumb5, label: "01 · DUAL-TRACK ARCHITECTURE" },
-      { src: projectThumb2, label: "02 · MULTI-TENANT DASHBOARD" },
+      { src: projectThumb5, label: "01 · DUAL TRACK ARCHITECTURE" },
+      { src: projectThumb2, label: "02 · MULTI TENANT DASHBOARD" },
       { src: projectThumb1, label: "03 · ISOLATED FILTER ENGINE" },
     ],
   },
@@ -164,24 +164,24 @@ const FEATURED = [
   },
   {
     num: "07", name: "Digital Transformation & AI Retail", client: "Pro Archery Jakarta",
-    location: "ID", year: "2025", tags: ["AI Prompt-to-Code", "E-Commerce", "Admin POS"],
+    location: "ID", year: "2025", tags: ["AI Prompt to Code", "E Commerce", "Admin POS"],
     role: "Sole System & UI Designer",
-    headline: "An end-to-end digital ecosystem scaling a physical archery retailer into an Asia-wide e-commerce platform featuring AI-accelerated prototyping.",
-    metrics: [{ val: "24h", sub: "POC Delivery" }, { val: "4", sub: "Portals Built" }, { val: "0", sub: "Figma Wireframes" }],
+    headline: "An end to end digital ecosystem scaling a physical archery retailer into an Asia wide e commerce platform featuring AI accelerated prototyping.",
+    metrics: [{ val: "24h", sub: "POC Delivery" }, { val: "4", sub: "Surfaces Built" }, { val: "0", sub: "Figma Wireframes" }],
     projectId: "archery",
     thumb: projectThumb4,
     screens: [
-      { src: projectThumb4, label: "01 · E-COMMERCE PORTAL" },
+      { src: projectThumb4, label: "01 · E COMMERCE PORTAL" },
       { src: projectThumb2, label: "02 · POS ADMIN DASHBOARD" },
       { src: projectThumb1, label: "03 · AI PROMPT ARCHITECTURE" },
     ],
   },
   {
     num: "08", name: "National Archery Operating System", client: "PERPANI / MyArchery",
-    location: "ID", year: "2023", tags: ["Sports Tech", "Field UX Research", "Tournament Engine"],
+    location: "ID", year: "2021 to 2023", tags: ["Sports Tech", "Field UX Research", "Tournament Engine"],
     role: "Lead UX Researcher & Product Designer",
-    headline: "Designing Indonesia's centralized tournament operating system & real-time scoring platform for official PERPANI national championships.",
-    metrics: [{ val: "2yr", sub: "Lifecycle Timeline" }, { val: "7+", sub: "Public Releases" }, { val: "100%", sub: "Manual Flow Automation" }],
+    headline: "Designing Indonesia's tournament operating system and real time scoring platform for official PERPANI national championships.",
+    metrics: [{ val: "2yr", sub: "Lifecycle Timeline" }, { val: "7+", sub: "Public Releases" }, { val: "Pre Event", sub: "Flow Automation" }],
     projectId: "myarchery",
     thumb: projectThumb4,
     screens: [
@@ -555,7 +555,7 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
     >
       {/* Ultra-Subtle 3D Organic Architectural Waves BG Image with Mask Fade */}
       <div
-        className="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-[0.09] mix-blend-multiply"
+        className="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-[0.14] mix-blend-multiply"
         style={{
           WebkitMaskImage: "linear-gradient(to bottom, black 40%, transparent 92%)",
           maskImage: "linear-gradient(to bottom, black 40%, transparent 92%)",
@@ -577,19 +577,19 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
         className="relative z-10 flex-1 flex flex-col justify-between bg-transparent origin-top"
       >
         {/* ── Top nav bar (Transparent Child) ── */}
-        <div className="flex items-center justify-between px-4 sm:px-8 lg:px-16 py-4 lg:py-6 bg-transparent shrink-0 relative z-30">
-        <div className="flex items-center gap-4 lg:gap-6">
+        <div className="flex items-center justify-between px-4 sm:px-8 lg:px-16 py-4 lg:py-6 bg-transparent shrink-0 relative z-30 flex-wrap gap-3 sm:gap-6">
+        <div className="flex items-center justify-between w-full sm:w-auto gap-4 lg:gap-6 flex-wrap sm:flex-nowrap">
           <div className="flex items-center gap-2">
-            <span className="font-mono text-xs sm:text-sm lg:text-base font-black tracking-[0.22em] text-[#19244E] select-none">
-              AFG / PORTFOLIO
+            <span className="font-mono text-xs sm:text-sm lg:text-base font-black tracking-[0.16em] text-[#19244E] select-none uppercase whitespace-nowrap">
+              ADINA GAYO PORTFOLIO
             </span>
           </div>
 
           {/* Mode Switcher (At Work / In Life) */}
-          <div className="flex items-center gap-2 bg-[#0F172A]/5 backdrop-blur-md p-1 rounded-full border border-[#0F172A]/10">
+          <div className="flex items-center gap-1.5 sm:gap-2 bg-[#0F172A]/5 backdrop-blur-md p-1 rounded-full border border-[#0F172A]/10 shrink-0">
             <button
               onClick={() => setIsAtWork(true)}
-              className={`px-3 py-1 rounded-full font-mono text-[11px] font-semibold transition-all duration-200 cursor-pointer ${
+              className={`px-3 py-1 rounded-full font-mono text-[11px] font-semibold transition-all duration-200 cursor-pointer whitespace-nowrap ${
                 isAtWork ? "bg-[#0F172A] text-white shadow-sm" : "text-[#0F172A]/60 hover:text-[#0F172A]"
               }`}
             >
@@ -597,7 +597,7 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
             </button>
             <button
               onClick={() => setIsAtWork(false)}
-              className={`px-3 py-1 rounded-full font-mono text-[11px] font-semibold transition-all duration-200 cursor-pointer ${
+              className={`px-3 py-1 rounded-full font-mono text-[11px] font-semibold transition-all duration-200 cursor-pointer whitespace-nowrap ${
                 !isAtWork ? "bg-[#DB3E8C] text-white shadow-sm" : "text-[#0F172A]/60 hover:text-[#0F172A]"
               }`}
             >
@@ -620,12 +620,12 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
               {/* Top Oversized Asymmetrical Headline & Floating Bio Container */}
               <div className="w-full mt-3 sm:mt-5 lg:mt-7 mb-auto flex flex-col justify-between bg-transparent">
                 {/* 1. Full-Width Jumbo Headline Stack (Top) */}
-                <div className="w-full flex flex-col items-start select-none cursor-default bg-transparent relative z-0">
+                <div className="w-full flex flex-col items-center sm:items-start select-none cursor-default bg-transparent relative z-0">
                   <motion.h1
                     initial={{ opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-                    className="font-normal leading-[0.86] tracking-tight text-left select-none cursor-default bg-transparent w-full"
+                    className="font-normal leading-[0.86] tracking-tight text-center sm:text-left select-none cursor-default bg-transparent w-full"
                     style={{
                       fontSize: "clamp(3.8rem, 11.5vw, 12.5rem)",
                       fontFamily: "'Instrument Serif', Georgia, serif",
@@ -635,7 +635,7 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
                       Smart Systems.
                     </span>
                     <span
-                      className="block font-normal transition-all duration-300 mt-2 sm:mt-3 lg:mt-4 ml-2 sm:ml-6 lg:ml-12 text-[#DB3E8C]"
+                      className="block font-normal transition-all duration-300 mt-2 sm:mt-3 lg:mt-4 ml-0 sm:ml-6 lg:ml-12 text-[#DB3E8C]"
                       style={{
                         fontFamily: "'Instrument Serif', Georgia, serif",
                       }}
@@ -646,17 +646,21 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
                 </div>
 
                 {/* 2. Bottom Stack (2-Column Parallel Layout directly under Headline) */}
-                <div className="w-full mt-8 sm:mt-10 lg:mt-12 flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 sm:gap-8 bg-transparent relative z-10">
+                <div className="w-full mt-8 sm:mt-10 lg:mt-12 flex flex-col lg:flex-row items-center lg:items-end justify-between gap-6 sm:gap-8 bg-transparent relative z-10">
                   {/* Left Column Technical Specs & Metrics under Headline */}
-                  <div className="flex flex-col gap-3 font-mono text-xs text-[#19244E] text-left shrink-0 mb-1 relative z-20">
-                    {/* Shipped Systems Counter */}
-                    <div className="flex items-center gap-2 font-bold tracking-wider text-[#DB3E8C]">
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#DB3E8C] animate-pulse" />
-                      <span className="text-[#19244E]">15+ SHIPPED SYSTEMS · 5+ YRS INDUSTRIAL EXP</span>
+                  <div className="flex flex-col items-center sm:items-start gap-3 font-mono text-xs text-[#19244E] text-center sm:text-left shrink-0 mb-1 relative z-20 w-full lg:w-auto">
+                    {/* Shipped Systems Counter (2 lines on mobile, 1 line on desktop) */}
+                    <div className="flex items-center sm:items-start justify-center sm:justify-start gap-2 font-bold tracking-wider text-[#DB3E8C]">
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#DB3E8C] animate-pulse shrink-0 sm:mt-1" />
+                      <div className="text-[#19244E] flex flex-col sm:flex-row sm:items-center sm:gap-1.5 text-center sm:text-left leading-tight sm:leading-normal">
+                        <span className="whitespace-nowrap">15+ SHIPPED SYSTEMS</span>
+                        <span className="hidden sm:inline text-[#DB3E8C]">·</span>
+                        <span className="whitespace-nowrap">5+ YRS INDUSTRIAL EXP</span>
+                      </div>
                     </div>
 
                     {/* Technical Radar Specs Table */}
-                    <div className="grid grid-cols-[60px_1fr] gap-y-1.5 gap-x-3 text-[11px] tracking-wide text-[#19244E]/85 pt-2 border-t border-[#19244E]/12 max-w-xs sm:max-w-sm">
+                    <div className="grid grid-cols-[60px_1fr] gap-y-1.5 gap-x-3 text-[11px] tracking-wide text-[#19244E]/85 pt-2 border-t border-[#19244E]/12 max-w-xs sm:max-w-sm text-left mx-auto sm:mx-0">
                       <div className="font-bold text-[#DB3E8C] uppercase">ROLE</div>
                       <div className="font-medium text-[#19244E]">Product Designer</div>
 
@@ -815,7 +819,7 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
                         {/* Link: VIEW FULL PROFILE › */}
                         <button
                           onClick={onReadMore}
-                          className="font-sans text-xs font-bold tracking-wider uppercase text-[#DB3E8C] hover:underline transition-all flex items-center gap-1 focus:outline-none cursor-pointer py-0.5"
+                          className="font-sans text-xs font-bold tracking-wider uppercase text-[#DB3E8C] hover:underline transition-all flex items-center justify-center sm:justify-start gap-1 focus:outline-none cursor-pointer py-0.5 mx-auto sm:mx-0"
                         >
                           <span>VIEW FULL PROFILE</span>
                           <ChevronRight size={13} />
@@ -1815,7 +1819,6 @@ function WorkflowSection() {
           {/* Section Header */}
           <div className="flex items-center justify-between mb-10 sm:mb-14 border-b border-white/10 pb-4">
             <div className="flex items-center gap-3">
-              <span className="w-2 h-2 rounded-full bg-[#DB3E8C] animate-pulse" />
               <span className="font-sans text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase text-white/70">
                 3-PHASE EXECUTION ENGINE
               </span>
@@ -1825,63 +1828,79 @@ function WorkflowSection() {
             </span>
           </div>
 
-          {/* 3-Column Minimalist Grid with Hairline Dividers (No Heavy Cards) */}
-          <div className="grid grid-cols-1 md:grid-cols-3 border-t border-b border-white/10 divide-y md:divide-y-0 md:divide-x divide-white/10">
-            {PHASES.map((phase, idx) => {
-              const Icon = phase.Icon
-              const currentDelay = idx * 0.15
+          {/* 3-Column Spaced Cards Flow with Connecting Lines & Step Arrows */}
+          <div className="relative">
+            {/* Desktop Horizontal Connecting Line Behind Cards */}
+            <div className="hidden md:block absolute top-1/2 left-[12%] right-[12%] h-[2px] bg-[#DB3E8C]/35 pointer-events-none z-0 -translate-y-1/2" />
 
-              return (
-                <motion.div
-                  key={phase.num}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.5, delay: currentDelay, ease: [0.21, 0.47, 0.32, 0.98] }}
-                  className="group p-6 sm:p-8 flex flex-col justify-between transition-colors duration-300 hover:bg-white/[0.02] relative cursor-default"
-                >
-                  {/* Subtle Accent Highlight Line on Top Hover */}
-                  <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#DB3E8C] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 relative z-10">
+              {PHASES.map((phase, idx) => {
+                const currentDelay = idx * 0.15
+                const isLast = idx === PHASES.length - 1
 
-                  <div>
-                    {/* Header: Number Badge (01/02/03) & Category Label (No Icon) */}
-                    <div className="flex items-center gap-2.5 mb-5">
-                      <span className="font-sans text-xs sm:text-sm font-bold tracking-wider text-[#DB3E8C] px-2.5 py-1 rounded-md bg-[#DB3E8C]/15 border border-[#DB3E8C]/30 shadow-sm">
-                        {phase.num}
-                      </span>
-                      <span className="font-sans text-[10.5px] font-bold tracking-widest uppercase text-[#DB3E8C]">
-                        {phase.phase}
-                      </span>
-                    </div>
+                return (
+                  <div key={phase.num} className="relative flex flex-col">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: "-40px" }}
+                      transition={{ duration: 0.5, delay: currentDelay, ease: [0.21, 0.47, 0.32, 0.98] }}
+                      className="group flex-1 flex flex-col justify-between bg-white/[0.03] backdrop-blur-sm border border-white/12 hover:border-[#DB3E8C]/50 rounded-2xl p-6 sm:p-8 transition-all duration-300 relative z-10 shadow-xl cursor-default hover:-translate-y-1"
+                    >
+                      {/* Subtle Accent Highlight Line on Top Hover */}
+                      <div className="absolute top-0 left-6 right-6 h-0.5 bg-[#DB3E8C] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
 
-                    {/* Main Phase Title (LARGE Serif) */}
-                    <h3 className="font-serif text-xl sm:text-2xl lg:text-[1.7rem] font-normal italic text-white group-hover:text-[#DB3E8C] transition-colors duration-200 leading-snug mb-4">
-                      {phase.sub}
-                    </h3>
-                    <p className="text-xs sm:text-sm leading-relaxed text-white/75 font-sans mb-6">
-                      {phase.desc}
-                    </p>
-                  </div>
+                      <div>
+                        {/* Header: Number Badge (01/02/03) & Category Label */}
+                        <div className="flex items-center gap-2.5 mb-5">
+                          <span className="font-sans text-xs sm:text-sm font-bold tracking-wider text-[#DB3E8C]">
+                            {phase.num}
+                          </span>
+                          <span className="font-sans text-[10.5px] font-bold tracking-widest uppercase text-[#DB3E8C]">
+                            {phase.phase}
+                          </span>
+                        </div>
 
-                  {/* Tools & Artifacts Section */}
-                  <div className="pt-4 border-t border-white/10">
-                    <span className="font-sans text-[9px] sm:text-[10px] font-bold tracking-widest uppercase text-white/40 mb-2.5 block">
-                      TOOLS & ARTIFACTS
-                    </span>
-                    <div className="flex flex-wrap gap-1.5">
-                      {phase.tools.map((tool) => (
-                        <span
-                          key={tool}
-                          className="font-sans text-[8.5px] sm:text-[9.5px] font-semibold px-2.5 py-1 bg-white/5 text-white/80 border border-white/10 rounded-md group-hover:border-white/20 transition-colors"
-                        >
-                          {tool}
+                        {/* Main Phase Title (LARGE Serif) */}
+                        <h3 className="font-serif text-xl sm:text-2xl lg:text-[1.7rem] font-normal italic text-white group-hover:text-[#DB3E8C] transition-colors duration-200 leading-snug mb-4">
+                          {phase.sub}
+                        </h3>
+                        <p className="text-xs sm:text-sm leading-relaxed text-white/75 font-sans mb-6">
+                          {phase.desc}
+                        </p>
+                      </div>
+
+                      {/* Tools & Artifacts Section (Clean Editorial Text) */}
+                      <div className="pt-4 border-t border-white/10">
+                        <span className="font-sans text-[9px] sm:text-[10px] font-bold tracking-widest uppercase text-[#DB3E8C]/90 mb-2 block">
+                          TOOLS & ARTIFACTS
                         </span>
-                      ))}
-                    </div>
+                        <p className="font-sans text-xs leading-relaxed text-white/70">
+                          {phase.tools.join(" · ")}
+                        </p>
+                      </div>
+                    </motion.div>
+
+                    {/* Step Connector Arrow (Desktop: Right Arrow centered in the gap between Cards) */}
+                    {!isLast && (
+                      <div className="hidden md:flex absolute -right-7 lg:-right-8 top-1/2 -translate-y-1/2 z-30 w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-[#0A1128] border-2 border-[#DB3E8C] text-[#DB3E8C] items-center justify-center shadow-2xl pointer-events-none">
+                        <ArrowRight size={15} />
+                      </div>
+                    )}
+
+                    {/* Step Connector Arrow (Mobile: Down Arrow centered between stacked Cards) */}
+                    {!isLast && (
+                      <div className="flex md:hidden items-center justify-center my-3 relative z-30">
+                        <div className="flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#19244E] border border-[#DB3E8C]/50 text-[#DB3E8C] font-mono text-[9.5px] font-bold tracking-widest uppercase shadow-lg">
+                          <span>STEP {idx + 1} ➔ {idx + 2}</span>
+                          <ArrowDown size={11} />
+                        </div>
+                      </div>
+                    )}
                   </div>
-                </motion.div>
-              )
-            })}
+                )
+              })}
+            </div>
           </div>
         </div>
       </section>
@@ -2586,13 +2605,6 @@ export default function App() {
     )
   }
 
-  if (currentView === "sunway-case") {
-    return (
-      <SunwayCase
-        onBack={handleBackToWork}
-      />
-    )
-  }
 
   return (
     <div className="min-h-screen overflow-x-hidden" style={{ backgroundColor: S }}>
