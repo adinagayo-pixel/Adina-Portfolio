@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react"
 import coverTng from "@/imports/Cover TNG.jpg"
+import tngThumb4 from "@/imports/TNG thumb4.png"
+import tngThumb5 from "@/imports/TNG thumb5.png"
 import {
   ArrowLeft, ChevronRight, CheckCircle2, Globe,
   FileCode2, Shield, Zap, RefreshCw, GitBranch, Users, MessageSquare, Sparkles, AlertTriangle, ChevronDown
@@ -346,6 +348,10 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
             <p>
               In this version, I also revised the "ineligible PTV" status color from red to yellow, after the TNG team highlighted that red with a cross conveyed user rejection or system error, whereas ineligibility for a government subsidy did not imply a mistake.
             </p>
+
+            <div className="mt-6 rounded-2xl overflow-hidden shadow-xl border border-slate-200/80 bg-[#111836]">
+              <img src={tngThumb4} alt="TNG eKYC Data Mapping & Pricing Logic Screen" className="w-full h-auto object-cover max-h-[480px]" />
+            </div>
           </div>
         </div>
 
@@ -372,6 +378,10 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
             <p>
               This was a major milestone: I finally received official TNG UI kits, adapting all components: input fields, illustrations, typography, buttons, colors, and icons: to align with the system. I designed two landing page alternatives, with the first concept selected by stakeholders. Structurally, the official UI kit matched what I had constructed: a validating sign that the early reverse engineering approach was accurate. Compliance requirements also expanded here: incorporating regulatory commission statements and explicit consent checkboxes.
             </p>
+
+            <div className="mt-6 rounded-2xl overflow-hidden shadow-xl border border-slate-200/80 bg-[#111836]">
+              <img src={tngThumb5} alt="TNG Policy Checkout & Design System Integration" className="w-full h-auto object-cover max-h-[480px]" />
+            </div>
           </div>
         </div>
 

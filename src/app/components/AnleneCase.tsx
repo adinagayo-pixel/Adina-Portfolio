@@ -4,12 +4,12 @@ import {
   Activity, Heart, MessageSquare, Clipboard,
   CheckCircle2, Users, Zap, AlertTriangle, GitBranch, Search, Sparkles, Layers, ChevronDown
 } from "lucide-react"
-import anlene0 from "@/imports/anlene.png"
-import anlene1 from "@/imports/anlene1.png"
-import anlene2 from "@/imports/anlene2.png"
-import anlene3 from "@/imports/anlene3.png"
-import anlene4 from "@/imports/anlene4.png"
-import anlene5 from "@/imports/anlene5.png"
+import anleneThumb from "@/imports/Anlene thumb.jpg"
+import anleneThumb2 from "@/imports/anlene thumb 2.png"
+import anleneThumb3 from "@/imports/anlene thumb 3.png"
+import anleneThumb4 from "@/imports/anlene thumb 4.png"
+import anleneThumb5 from "@/imports/anlene thumb 5.png"
+import anleneThumb6 from "@/imports/anlene thumb 6.png"
 
 const N = "#19244E"
 const C = "#DB3E8C"
@@ -211,12 +211,13 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
           </div>
 
           {/* Right Column: Hero Image */}
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200/80 bg-[#111836] p-2 group">
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200/80 bg-[#111836] group">
             <img
-              src={anlene0}
+              src={anleneThumb}
               alt="Anlene Health Passport Preview"
-              className="w-full h-auto object-contain max-h-[380px] lg:max-h-[420px] rounded-xl transform group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-auto object-cover max-h-[380px] lg:max-h-[420px] rounded-2xl transform group-hover:scale-105 transition-transform duration-500"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#111836]/40 via-transparent to-transparent pointer-events-none" />
           </div>
         </div>
       </div>
@@ -308,7 +309,7 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
           </div>
 
           {/* UI Screen Showcase Gallery */}
-          <div className="mt-10 p-6 bg-[#0a0f24] rounded-2xl border border-white/10 shadow-2xl">
+          <div className="mt-8 p-6 bg-[#0a0f24] rounded-2xl border border-white/10 shadow-2xl col-span-1 lg:col-span-2">
             <div className="flex items-center justify-between mb-6">
               <div>
                 <MonoTag accent>[FONTERRA × ANLENE UI GALLERY]</MonoTag>
@@ -323,16 +324,16 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
-                { title: "01 · Health Passport Main UI", img: anlene0, desc: "Personalized consumer health passport displaying body age, bone density T-score, and muscle metrics." },
-                { title: "02 · Diagnostic Matrix View", img: anlene1, desc: "4-tier color-coded health diagnostic ranges for fast SPG consultation." },
-                { title: "03 · Bone Scanner Output", img: anlene2, desc: "GE Achilles ultrasound device integration and automated bone density status calculation." },
-                { title: "04 · Field Intake System", img: anlene3, desc: "Fast-entry offline form for SPG event reps with zero data loss protection." },
-                { title: "05 · Checkout & Redemption", img: anlene4, desc: "In-booth product purchase completion and automated WhatsApp PDF dispatch." },
-                { title: "06 · Reports & Analytics", img: anlene5, desc: "Nationwide activation analytics tracking daily attendee intake per city." },
+                { title: "01 · Health Passport Main UI", img: anleneThumb, desc: "Personalized consumer health passport displaying body age, bone density T-score, and muscle metrics." },
+                { title: "02 · Diagnostic Matrix View", img: anleneThumb2, desc: "4-tier color-coded health diagnostic ranges for fast SPG consultation." },
+                { title: "03 · Bone Scanner Output", img: anleneThumb3, desc: "GE Achilles ultrasound device integration and automated bone density status calculation." },
+                { title: "04 · Field Intake System", img: anleneThumb4, desc: "Fast-entry offline form for SPG event reps with zero data loss protection." },
+                { title: "05 · Checkout & Redemption", img: anleneThumb5, desc: "In-booth product purchase completion and automated WhatsApp PDF dispatch." },
+                { title: "06 · Reports & Analytics", img: anleneThumb6, desc: "Nationwide activation analytics tracking daily attendee intake per city." },
               ].map(({ title, img, desc }) => (
                 <div key={title} className="bg-[#141b36] border border-white/10 rounded-xl p-3 flex flex-col justify-between group hover:border-[#DB3E8C]/50 transition-all duration-300">
-                  <div className="aspect-[16/10] rounded-lg overflow-hidden border border-white/10 mb-3 bg-[#0d142d] p-1">
-                    <img src={img} alt={title} className="w-full h-full object-contain rounded group-hover:scale-105 transition-transform duration-500" />
+                  <div className="aspect-[16/10] rounded-lg overflow-hidden border border-white/10 mb-3 bg-[#0d142d]">
+                    <img src={img} alt={title} className="w-full h-full object-cover object-top rounded group-hover:scale-105 transition-transform duration-500" />
                   </div>
                   <div>
                     <h4 className="font-sans text-xs font-bold text-white mb-1 tracking-wide">{title}</h4>

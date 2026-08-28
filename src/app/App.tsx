@@ -6,6 +6,8 @@ import afgLogo from "@/imports/LOGO.png"
 import heroBgImage from "@/imports/smooth-abstract-space-with-flowing-lines-curves-monochromatic-palette.jpg"
 import gettyBgVideo from "@/imports/GettyImages-1152749158.mp4"
 import coverTng from "@/imports/Cover TNG.jpg"
+import tngThumb4 from "@/imports/TNG thumb4.png"
+import tngThumb5 from "@/imports/TNG thumb5.png"
 import projectThumb1 from "@/imports/image-7.png"
 import projectThumb2 from "@/imports/image-8.png"
 import projectThumb4 from "@/imports/image-7.png"
@@ -16,16 +18,25 @@ import mykawan2 from "@/imports/mykawan2.png"
 import mykawan3 from "@/imports/mykawan3.png"
 import mykawan4 from "@/imports/mykawan4.png"
 import mykawan5 from "@/imports/mykawan5.png"
-import anlene0 from "@/imports/anlene.png"
-import anlene1 from "@/imports/anlene1.png"
-import anlene2 from "@/imports/anlene2.png"
-import anlene3 from "@/imports/anlene3.png"
-import anlene4 from "@/imports/anlene4.png"
-import anlene5 from "@/imports/anlene5.png"
+import anleneThumb from "@/imports/Anlene thumb.jpg"
+import anleneThumb2 from "@/imports/anlene thumb 2.png"
+import anleneThumb3 from "@/imports/anlene thumb 3.png"
+import anleneThumb4 from "@/imports/anlene thumb 4.png"
+import anleneThumb5 from "@/imports/anlene thumb 5.png"
+import anleneThumb6 from "@/imports/anlene thumb 6.png"
 import ci1 from "@/imports/CI1.png"
 import ci2 from "@/imports/CI2.png"
 import ci3 from "@/imports/CI3.png"
 import ci4 from "@/imports/CI4.png"
+import ocbcThumb from "@/imports/thumb ocbc gegi.jpg"
+import samaloopThumb from "@/imports/Samaloop thumb.jpg"
+import telescopeThumb from "@/imports/Telescope thumb.jpg"
+import gelmShopeeThumb from "@/imports/gelm shopee thumn.jpg"
+import grabThumb from "@/imports/GRAB THUMB.jpg"
+import aseanThumb from "@/imports/asean thumb.jpg"
+import familyMooThumb from "@/imports/family moo thumb.jpg"
+import yametThumb from "@/imports/yamet thumb.jpg"
+import friendsureThumb from "@/imports/Friendsure thumbnail.jpg"
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback"
 import {
   Home, Briefcase, Layers, Archive, Mail,
@@ -83,8 +94,8 @@ const FEATURED = [
     thumb: coverTng,
     screens: [
       { src: coverTng, label: "01 · WALLET DASHBOARD" },
-      { src: projectThumb1, label: "02 · EKYC DATA MAPPING" },
-      { src: projectThumb5, label: "03 · POLICY CHECKOUT" },
+      { src: tngThumb4, label: "02 · EKYC DATA MAPPING" },
+      { src: tngThumb5, label: "03 · POLICY CHECKOUT" },
     ],
   },
   {
@@ -153,13 +164,14 @@ const FEATURED = [
     headline: "Redesigning Anlene's field health check experience end to end, turning diagnostic scanner data into personalized health reports.",
     metrics: [{ val: "5", sub: "Health Metrics Logic" }, { val: "2", sub: "Diagnostic Scanners" }, { val: "2 Phase", sub: "Multi Year Sprint" }],
     projectId: "anlene",
-    thumb: anlene0,
+    thumb: anleneThumb,
     screens: [
-      { src: anlene0, label: "01 · HEALTH PASSPORT", fitContain: true },
-      { src: anlene1, label: "02 · DIAGNOSTIC MATRIX", fitContain: true },
-      { src: anlene2, label: "03 · BONE SCAN DATA", fitContain: true },
-      { src: anlene3, label: "04 · FIELD SALES INTAKE", fitContain: true },
-      { src: anlene4, label: "05 · CHECKOUT RESULTS", fitContain: true },
+      { src: anleneThumb, label: "01 · HEALTH PASSPORT" },
+      { src: anleneThumb2, label: "02 · DIAGNOSTIC MATRIX" },
+      { src: anleneThumb3, label: "03 · BONE SCAN DATA" },
+      { src: anleneThumb4, label: "04 · FIELD SALES INTAKE" },
+      { src: anleneThumb5, label: "05 · CHECKOUT RESULTS" },
+      { src: anleneThumb6, label: "06 · REPORTS & ANALYTICS" },
     ],
   },
   {
@@ -195,7 +207,6 @@ const FEATURED = [
 const PROJECTS: Project[] = [
   // ── 2026 ──────────────────────────────────────────────────────────────────────
   { id: 1,  name: "OCBC Insurance",        client: "Great Eastern Indonesia (GEGI) × OCBC", market: "Indonesia", year: 2026, status: "LIVE",          category: "Banking & InsurTech",         scope: "End to end insurance acquisition flow built with a custom standalone banking UI Kit from scratch." },
-  { id: 2,  name: "KCIC × Jasindo",        client: "Kereta Cepat Indonesia China",     market: "Indonesia",   year: 2026, status: "ON HOLD",       category: "Public Transit InsurTech",    scope: "Integrated passenger travel insurance purchasing flow with Jasindo." },
   { id: 3,  name: "GE × Shopee Insurance", client: "Great Eastern Malaysia × Shopee",  market: "Malaysia",    year: 2026, status: "LIVE",          category: "InsurTech & E Commerce",      scope: "Insurance product integration and purchase flow embedded within Shopee Malaysia's ecosystem." },
   { id: 4,  name: "Haruuz Internal System",client: "Mikrosayang",                      market: "Malaysia",    year: 2026, status: "PRODUCTION",    category: "Internal System",             scope: "Internal management system for Mikrosayang's operational workflows and data tracking." },
   // ── 2025 ──────────────────────────────────────────────────────────────────────
@@ -1897,19 +1908,19 @@ function WorkflowSection() {
 
 // ─── PROJECT ARCHIVE ───────────────────────────────────────────────────────────
 const PROJECT_PREVIEWS: Record<number, string> = {
-  1: ci1,
+  1: ocbcThumb,
   2: ci2,
-  3: ci3,
+  3: gelmShopeeThumb,
   4: ci4,
-  5: projectThumb1,
+  5: grabThumb,
   6: mykawan1,
-  7: projectThumb5,
-  8: projectThumb2,
-  9: anlene1,
-  10: anlene2,
-  11: anlene3,
-  12: anlene4,
-  13: mykawan3,
+  7: friendsureThumb,
+  8: samaloopThumb,
+  9: familyMooThumb,
+  10: telescopeThumb,
+  11: aseanThumb,
+  12: anleneThumb5,
+  13: yametThumb,
   14: mykawan4,
   15: ci4,
 }
