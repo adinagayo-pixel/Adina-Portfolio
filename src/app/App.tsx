@@ -37,6 +37,12 @@ import aseanThumb from "@/imports/asean thumb.jpg"
 import familyMooThumb from "@/imports/family moo thumb.jpg"
 import yametThumb from "@/imports/yamet thumb.jpg"
 import friendsureThumb from "@/imports/Friendsure thumbnail.jpg"
+import mikrosayangThumb from "@/imports/mikrosayang thumb.jpg"
+import mykawanThumb from "@/imports/mykawan thumb.jpg"
+import disnavThumb from "@/imports/disnav thumb.jpg"
+import adaPolisiThumb from "@/imports/ada polisi thumb.jpg"
+import ftjslThumb from "@/imports/FTJSL Thumbnail.jpg"
+import telkomSiagaVideo from "@/imports/telkom-siaga.mp4"
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback"
 import {
   Home, Briefcase, Layers, Archive, Mail,
@@ -120,9 +126,9 @@ const FEATURED = [
     headline: "Evolving My Money Sense into a dual mode live tournament platform for mySalam regional roadshows.",
     metrics: [{ val: "2 Mode", sub: "Practice & Tournament" }, { val: "2wk", sub: "First Release Sprint" }, { val: "3 People", sub: "Lean Product Team" }],
     projectId: "bijakwang",
-    thumb: mykawan1,
+    thumb: mykawanThumb,
     screens: [
-      { src: mykawan1, label: "01 · LOBBY & CHALLENGES" },
+      { src: mykawanThumb, label: "01 · LOBBY & CHALLENGES" },
       { src: mykawan2, label: "02 · REGISTRATION & ONBOARDING" },
       { src: mykawan3, label: "03 · LIVE QUIZ INTERACTION" },
       { src: mykawan4, label: "04 · RESKILLS REWARDS" },
@@ -207,13 +213,14 @@ const FEATURED = [
 const PROJECTS: Project[] = [
   // ── 2026 ──────────────────────────────────────────────────────────────────────
   { id: 1,  name: "OCBC Insurance",        client: "Great Eastern Indonesia (GEGI) × OCBC", market: "Indonesia", year: 2026, status: "LIVE",          category: "Banking & InsurTech",         scope: "End to end insurance acquisition flow built with a custom standalone banking UI Kit from scratch." },
-  { id: 3,  name: "GE × Shopee Insurance", client: "Great Eastern Malaysia × Shopee",  market: "Malaysia",    year: 2026, status: "LIVE",          category: "InsurTech & E Commerce",      scope: "Insurance product integration and purchase flow embedded within Shopee Malaysia's ecosystem." },
-  { id: 4,  name: "Haruuz Internal System",client: "Mikrosayang",                      market: "Malaysia",    year: 2026, status: "PRODUCTION",    category: "Internal System",             scope: "Internal management system for Mikrosayang's operational workflows and data tracking." },
+  { id: 2,  name: "GE × Shopee Insurance", client: "Great Eastern Malaysia × Shopee",  market: "Malaysia",    year: 2026, status: "LIVE",          category: "InsurTech & E Commerce",      scope: "Insurance product integration and purchase flow embedded within Shopee Malaysia's ecosystem." },
+  { id: 3,  name: "Haruuz Internal System",client: "Mikrosayang",                      market: "Malaysia",    year: 2026, status: "PRODUCTION",    category: "Internal System",             scope: "Internal management system for Mikrosayang's operational workflows and data tracking." },
   // ── 2025 ──────────────────────────────────────────────────────────────────────
-  { id: 5,  name: "Grab Data Pipeline",    client: "Grab",                             market: "Indonesia",   year: 2025, status: "LIVE INTERNAL", category: "Enterprise B2B / FinTech",    scope: "Tri-party data exchange flow & middleware logic mapping across Grab, insurance, and FTI." },
-  { id: 6,  name: "myKawan AI Engine",     client: "myKawan",                          market: "Malaysia",    year: 2025, status: "PRODUCTION",    category: "AI / Marketing Automation",   scope: "Internal AI powered CMS tool for automated marketing copy, articles, images, and media generation." },
-  { id: 7,  name: "Teman E Commerce",      client: "Teman",                            market: "Indonesia",   year: 2025, status: "PROTOTYPE",     category: "AI & Retail E Commerce",      scope: "AI driven product recommendation engine and personalized purchase flow integration." },
-  { id: 8,  name: "Samaloop",              client: "Samaloop",                         market: "Indonesia",   year: 2025, status: "LIVE",          category: "EdTech & Marketplace",        scope: "Corporate website and public speaking coach directory booking platform." },
+  { id: 4,  name: "Grab Data Pipeline",    client: "Grab",                             market: "Indonesia",   year: 2025, status: "LIVE INTERNAL", category: "Enterprise B2B / FinTech",    scope: "Tri-party data exchange flow & middleware logic mapping across Grab, insurance, and FTI." },
+  { id: 5,  name: "myKawan AI Engine",     client: "myKawan",                          market: "Malaysia",    year: 2025, status: "PRODUCTION",    category: "AI / Marketing Automation",   scope: "Internal AI powered CMS tool for automated marketing copy, articles, images, and media generation." },
+  { id: 6,  name: "Teman E Commerce",      client: "Teman",                            market: "Indonesia",   year: 2025, status: "PROTOTYPE",     category: "AI & Retail E Commerce",      scope: "AI driven product recommendation engine and personalized purchase flow integration." },
+  { id: 7,  name: "Samaloop",              client: "Samaloop",                         market: "Indonesia",   year: 2025, status: "LIVE",          category: "EdTech & Marketplace",        scope: "Corporate website and public speaking coach directory booking platform." },
+  { id: 8,  name: "Telkom Siaga",          client: "Telkom · Freelance Work",          market: "Indonesia",   year: 2025, status: "ARCHIVED",      category: "Interactive Display",         scope: "Membuat tampilan layar LED dan web untuk input ucapan tahun baru." },
   // ── 2024 ──────────────────────────────────────────────────────────────────────
   { id: 9,  name: "Family Moo",            client: "Fonterra Indonesia",               market: "Indonesia",   year: 2024, status: "LIVE",          category: "FMCG & Loyalty Portal",       scope: "Customer loyalty management and points redemption portal for Fonterra's consumer ecosystem." },
   { id: 10, name: "Telescope Indonesia",   client: "Telescope Indonesia",              market: "Indonesia",   year: 2024, status: "LIVE",          category: "B2B Industrial Catalog",      scope: "Digital product catalog and technical specification showcase for specialized equipment." },
@@ -222,7 +229,7 @@ const PROJECTS: Project[] = [
   // ── 2022 ──────────────────────────────────────────────────────────────────────
   { id: 13, name: "YAMET Center",          client: "YAMET Child Development",          market: "Indonesia",   year: 2022, status: "LIVE",          category: "Healthcare Portal",           scope: "Corporate website and service directory for child development clinics across Indonesia." },
   { id: 14, name: "Ada Polisi",            client: "Internal Public Sector",           market: "Indonesia",   year: 2022, status: "ARCHIVED",      category: "Public Sector Mobile App",    scope: "Internal mobile system for law enforcement data entry and reporting." },
-  { id: 15, name: "Forum TJSL Portal", client: "BUMN Ecosystem", market: "Indonesia", year: 2022, status: "LIVE", category: "CSR Governance", scope: "Standardisasi pelaporan CSR terpusat, aggregasi metrik dampak sosial lintas perusahaan pelat merah, dan transparansi tata kelola audit." },
+  { id: 15, name: "Forum TJSL Portal",     client: "BUMN Ecosystem",                   market: "Indonesia",   year: 2022, status: "LIVE",          category: "CSR Governance",              scope: "Standardisasi pelaporan CSR terpusat, aggregasi metrik dampak sosial lintas perusahaan pelat merah, dan transparansi tata kelola audit." },
 ]
 
 
@@ -1909,20 +1916,20 @@ function WorkflowSection() {
 // ─── PROJECT ARCHIVE ───────────────────────────────────────────────────────────
 const PROJECT_PREVIEWS: Record<number, string> = {
   1: ocbcThumb,
-  2: ci2,
-  3: gelmShopeeThumb,
-  4: ci4,
-  5: grabThumb,
-  6: mykawan1,
-  7: friendsureThumb,
-  8: samaloopThumb,
+  2: gelmShopeeThumb,
+  3: mikrosayangThumb,
+  4: grabThumb,
+  5: mykawanThumb,
+  6: friendsureThumb,
+  7: samaloopThumb,
+  8: telkomSiagaVideo,
   9: familyMooThumb,
   10: telescopeThumb,
   11: aseanThumb,
-  12: anleneThumb5,
+  12: disnavThumb,
   13: yametThumb,
-  14: mykawan4,
-  15: ci4,
+  14: adaPolisiThumb,
+  15: ftjslThumb,
 }
 
 const STATUS_COLOR: Record<string, string> = {
@@ -2098,11 +2105,22 @@ function ProjectArchiveSection() {
                           className="hidden md:block absolute left-0 top-0 z-40 pointer-events-none -translate-x-1/2"
                         >
                           <div className="w-44 sm:w-52 aspect-[3/4] rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(25,36,78,0.45)] bg-[#141b36]">
-                            <img
-                              src={previewImg}
-                              alt={project.name}
-                              className="w-full h-full object-cover rounded-2xl"
-                            />
+                            {previewImg.endsWith(".mp4") || previewImg.endsWith(".webm") ? (
+                              <video
+                                src={previewImg}
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                className="w-full h-full object-cover rounded-2xl"
+                              />
+                            ) : (
+                              <img
+                                src={previewImg}
+                                alt={project.name}
+                                className="w-full h-full object-cover rounded-2xl"
+                              />
+                            )}
                           </div>
                         </motion.div>
                       )}
@@ -2251,7 +2269,7 @@ function ProjectArchiveSection() {
               />
 
               {/* Close header button */}
-              <div className="flex justify-between items-start mb-6">
+              <div className="flex justify-between items-start mb-4">
                 <div>
                   <span className="font-sans text-xs sm:text-sm font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
                     [{String(selectedProject.id).padStart(2, "0")} // PROJECT DETAILS]
@@ -2267,6 +2285,28 @@ function ProjectArchiveSection() {
                   Close
                 </button>
               </div>
+
+              {/* Project Preview Media (Full Uncropped Display) */}
+              {PROJECT_PREVIEWS[selectedProject.id] && (
+                <div className="relative mb-5 rounded-xl overflow-hidden border border-slate-200/80 shadow-sm bg-[#111836] p-1.5 flex items-center justify-center">
+                  {PROJECT_PREVIEWS[selectedProject.id].endsWith(".mp4") || PROJECT_PREVIEWS[selectedProject.id].endsWith(".webm") ? (
+                    <video
+                      src={PROJECT_PREVIEWS[selectedProject.id]}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-auto max-h-[280px] sm:max-h-[340px] object-contain rounded-lg"
+                    />
+                  ) : (
+                    <img
+                      src={PROJECT_PREVIEWS[selectedProject.id]}
+                      alt={selectedProject.name}
+                      className="w-full h-auto max-h-[280px] sm:max-h-[340px] object-contain rounded-lg"
+                    />
+                  )}
+                </div>
+              )}
 
               {/* Metadata Badges */}
               <div className="grid grid-cols-2 gap-3 sm:gap-4 py-4 px-4 bg-[#F9FAFB] rounded-lg border border-gray-100 mb-6">

@@ -5,6 +5,7 @@ import {
   CheckCircle2, Globe, Target, MessageSquare, Clock, LayoutGrid, FileCode2, Share2, ChevronDown, Sparkles
 } from "lucide-react"
 import mykawan1 from "@/imports/mykawan1.png"
+import mykawanThumb from "@/imports/mykawan thumb.jpg"
 import mykawan2 from "@/imports/mykawan2.png"
 import mykawan3 from "@/imports/mykawan3.png"
 import mykawan4 from "@/imports/mykawan4.png"
@@ -211,7 +212,7 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
           {/* Right Column: Hero Image */}
           <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200/80 bg-[#111836] group">
             <img
-              src={mykawan1}
+              src={mykawanThumb}
               alt="BijakWang Preview"
               className="w-full h-auto object-cover max-h-[380px] lg:max-h-[420px] rounded-2xl transform group-hover:scale-105 transition-transform duration-500"
             />
