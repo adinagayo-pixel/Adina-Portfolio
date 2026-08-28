@@ -43,6 +43,10 @@ import disnavThumb from "@/imports/disnav thumb.jpg"
 import adaPolisiThumb from "@/imports/ada polisi thumb.jpg"
 import ftjslThumb from "@/imports/FTJSL Thumbnail.jpg"
 import telkomSiagaVideo from "@/imports/telkom-siaga.mp4"
+import mykawanGegmThumb from "@/imports/Mykawan GEGM thumb.jpg"
+import drGadgetThumb from "@/imports/dr gadget thumb.jpg"
+import sunwayThumb from "@/imports/sunway thumb.jpg"
+import mySalamThumb from "@/imports/my salam thumb.jpg"
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback"
 import {
   Home, Briefcase, Layers, Archive, Mail,
@@ -126,9 +130,9 @@ const FEATURED = [
     headline: "Evolving My Money Sense into a dual mode live tournament platform for mySalam regional roadshows.",
     metrics: [{ val: "2 Mode", sub: "Practice & Tournament" }, { val: "2wk", sub: "First Release Sprint" }, { val: "3 People", sub: "Lean Product Team" }],
     projectId: "bijakwang",
-    thumb: mykawanThumb,
+    thumb: mySalamThumb,
     screens: [
-      { src: mykawanThumb, label: "01 · LOBBY & CHALLENGES" },
+      { src: mySalamThumb, label: "01 · LOBBY & CHALLENGES" },
       { src: mykawan2, label: "02 · REGISTRATION & ONBOARDING" },
       { src: mykawan3, label: "03 · LIVE QUIZ INTERACTION" },
       { src: mykawan4, label: "04 · RESKILLS REWARDS" },
@@ -214,22 +218,25 @@ const PROJECTS: Project[] = [
   // ── 2026 ──────────────────────────────────────────────────────────────────────
   { id: 1,  name: "OCBC Insurance",        client: "Great Eastern Indonesia (GEGI) × OCBC", market: "Indonesia", year: 2026, status: "LIVE",          category: "Banking & InsurTech",         scope: "End to end insurance acquisition flow built with a custom standalone banking UI Kit from scratch." },
   { id: 2,  name: "GE × Shopee Insurance", client: "Great Eastern Malaysia × Shopee",  market: "Malaysia",    year: 2026, status: "LIVE",          category: "InsurTech & E Commerce",      scope: "Insurance product integration and purchase flow embedded within Shopee Malaysia's ecosystem." },
-  { id: 3,  name: "Haruuz Internal System",client: "Mikrosayang",                      market: "Malaysia",    year: 2026, status: "PRODUCTION",    category: "Internal System",             scope: "Internal management system for Mikrosayang's operational workflows and data tracking." },
+  { id: 3,  name: "Portal Sunway × GEGM",   client: "Great Eastern Malaysia × Sunway",   market: "Malaysia",    year: 2026, status: "LIVE",          category: "SuperApp & InsurTech",        scope: "Integrasi 4 produk embedded web di dalam Sunway Super App." },
+  { id: 4,  name: "Haruuz Internal System",client: "Mikrosayang",                      market: "Malaysia",    year: 2026, status: "PRODUCTION",    category: "Internal System",             scope: "Internal management system for Mikrosayang's operational workflows and data tracking." },
   // ── 2025 ──────────────────────────────────────────────────────────────────────
-  { id: 4,  name: "Grab Data Pipeline",    client: "Grab",                             market: "Indonesia",   year: 2025, status: "LIVE INTERNAL", category: "Enterprise B2B / FinTech",    scope: "Tri-party data exchange flow & middleware logic mapping across Grab, insurance, and FTI." },
-  { id: 5,  name: "myKawan AI Engine",     client: "myKawan",                          market: "Malaysia",    year: 2025, status: "PRODUCTION",    category: "AI / Marketing Automation",   scope: "Internal AI powered CMS tool for automated marketing copy, articles, images, and media generation." },
-  { id: 6,  name: "Teman E Commerce",      client: "Teman",                            market: "Indonesia",   year: 2025, status: "PROTOTYPE",     category: "AI & Retail E Commerce",      scope: "AI driven product recommendation engine and personalized purchase flow integration." },
-  { id: 7,  name: "Samaloop",              client: "Samaloop",                         market: "Indonesia",   year: 2025, status: "LIVE",          category: "EdTech & Marketplace",        scope: "Corporate website and public speaking coach directory booking platform." },
-  { id: 8,  name: "Telkom Siaga",          client: "Telkom · Freelance Work",          market: "Indonesia",   year: 2025, status: "ARCHIVED",      category: "Interactive Display",         scope: "Membuat tampilan layar LED dan web untuk input ucapan tahun baru." },
+  { id: 5,  name: "Grab Data Pipeline",    client: "Grab",                             market: "Indonesia",   year: 2025, status: "LIVE INTERNAL", category: "Enterprise B2B / FinTech",    scope: "Tri-party data exchange flow & middleware logic mapping across Grab, insurance, and FTI." },
+  { id: 6,  name: "myKawan AI Engine",     client: "myKawan",                          market: "Malaysia",    year: 2025, status: "PRODUCTION",    category: "AI / Marketing Automation",   scope: "Internal AI powered CMS tool for automated marketing copy, articles, images, and media generation." },
+  { id: 7,  name: "MyKawan × GEGM",        client: "Great Eastern Malaysia × myKawan",  market: "Malaysia",    year: 2025, status: "LIVE",          category: "InsurTech & Protection",      scope: "Asuransi kesehatan dan proteksi digital Protect Active dan Great Shield Active." },
+  { id: 8,  name: "Teman E Commerce",      client: "Teman",                            market: "Indonesia",   year: 2025, status: "PROTOTYPE",     category: "AI & Retail E Commerce",      scope: "AI driven product recommendation engine and personalized purchase flow integration." },
+  { id: 9,  name: "Samaloop",              client: "Samaloop",                         market: "Indonesia",   year: 2025, status: "LIVE",          category: "EdTech & Marketplace",        scope: "Corporate website and public speaking coach directory booking platform." },
+  { id: 10, name: "Telkom Siaga",          client: "Telkom · Freelance Work",          market: "Indonesia",   year: 2025, status: "ARCHIVED",      category: "Interactive Display",         scope: "Membuat tampilan layar LED dan web untuk input ucapan tahun baru." },
   // ── 2024 ──────────────────────────────────────────────────────────────────────
-  { id: 9,  name: "Family Moo",            client: "Fonterra Indonesia",               market: "Indonesia",   year: 2024, status: "LIVE",          category: "FMCG & Loyalty Portal",       scope: "Customer loyalty management and points redemption portal for Fonterra's consumer ecosystem." },
-  { id: 10, name: "Telescope Indonesia",   client: "Telescope Indonesia",              market: "Indonesia",   year: 2024, status: "LIVE",          category: "B2B Industrial Catalog",      scope: "Digital product catalog and technical specification showcase for specialized equipment." },
-  { id: 11, name: "ASEAN Project Management System", client: "ASEAN Secretariat", market: "ASEAN / Regional", year: 2024, status: "LIVE INTERNAL", category: "Regional / Multi-Gov", scope: "Manajemen siklus proyek multilateral, pelaporan anggaran lintas negara, dan alur persetujuan multi level antar delegasi." },
-  { id: 12, name: "Distrik Navigasi Portal", client: "Maritime Operations", market: "Indonesia", year: 2024, status: "PRODUCTION", category: "Internal Enterprise", scope: "Digitalisasi alur operasional sarana bantu navigasi pelayaran, pemantauan aset maritim, dan koordinasi staf teknis lapangan." },
+  { id: 11, name: "Friendsure × Dr Gadget",client: "Friendsure × Dr Gadget",          market: "Malaysia",    year: 2024, status: "LIVE",          category: "Customer & Admin Portal",     scope: "Menyediakan customer dan admin portal untuk alur layanan servis." },
+  { id: 12, name: "Family Moo",            client: "Fonterra Indonesia",               market: "Indonesia",   year: 2024, status: "LIVE",          category: "FMCG & Loyalty Portal",       scope: "Customer loyalty management and points redemption portal for Fonterra's consumer ecosystem." },
+  { id: 13, name: "Telescope Indonesia",   client: "Telescope Indonesia",              market: "Indonesia",   year: 2024, status: "LIVE",          category: "B2B Industrial Catalog",      scope: "Digital product catalog and technical specification showcase for specialized equipment." },
+  { id: 14, name: "ASEAN Project Management System", client: "ASEAN Secretariat", market: "ASEAN / Regional", year: 2024, status: "LIVE INTERNAL", category: "Regional / Multi-Gov", scope: "Manajemen siklus proyek multilateral, pelaporan anggaran lintas negara, dan alur persetujuan multi level antar delegasi." },
+  { id: 15, name: "Distrik Navigasi Portal", client: "Maritime Operations", market: "Indonesia", year: 2024, status: "PRODUCTION", category: "Internal Enterprise", scope: "Digitalisasi alur operasional sarana bantu navigasi pelayaran, pemantauan aset maritim, dan koordinasi staf teknis lapangan." },
   // ── 2022 ──────────────────────────────────────────────────────────────────────
-  { id: 13, name: "YAMET Center",          client: "YAMET Child Development",          market: "Indonesia",   year: 2022, status: "LIVE",          category: "Healthcare Portal",           scope: "Corporate website and service directory for child development clinics across Indonesia." },
-  { id: 14, name: "Ada Polisi",            client: "Internal Public Sector",           market: "Indonesia",   year: 2022, status: "ARCHIVED",      category: "Public Sector Mobile App",    scope: "Internal mobile system for law enforcement data entry and reporting." },
-  { id: 15, name: "Forum TJSL Portal",     client: "BUMN Ecosystem",                   market: "Indonesia",   year: 2022, status: "LIVE",          category: "CSR Governance",              scope: "Standardisasi pelaporan CSR terpusat, aggregasi metrik dampak sosial lintas perusahaan pelat merah, dan transparansi tata kelola audit." },
+  { id: 16, name: "YAMET Center",          client: "YAMET Child Development",          market: "Indonesia",   year: 2022, status: "LIVE",          category: "Healthcare Portal",           scope: "Corporate website and service directory for child development clinics across Indonesia." },
+  { id: 17, name: "Ada Polisi",            client: "Internal Public Sector",           market: "Indonesia",   year: 2022, status: "ARCHIVED",      category: "Public Sector Mobile App",    scope: "Internal mobile system for law enforcement data entry and reporting." },
+  { id: 18, name: "Forum TJSL Portal",     client: "BUMN Ecosystem",                   market: "Indonesia",   year: 2022, status: "LIVE",          category: "CSR Governance",              scope: "Standardisasi pelaporan CSR terpusat, aggregasi metrik dampak sosial lintas perusahaan pelat merah, dan transparansi tata kelola audit." },
 ]
 
 
@@ -1917,19 +1924,22 @@ function WorkflowSection() {
 const PROJECT_PREVIEWS: Record<number, string> = {
   1: ocbcThumb,
   2: gelmShopeeThumb,
-  3: mikrosayangThumb,
-  4: grabThumb,
-  5: mykawanThumb,
-  6: friendsureThumb,
-  7: samaloopThumb,
-  8: telkomSiagaVideo,
-  9: familyMooThumb,
-  10: telescopeThumb,
-  11: aseanThumb,
-  12: disnavThumb,
-  13: yametThumb,
-  14: adaPolisiThumb,
-  15: ftjslThumb,
+  3: sunwayThumb,
+  4: mikrosayangThumb,
+  5: grabThumb,
+  6: mykawanThumb,
+  7: mykawanGegmThumb,
+  8: friendsureThumb,
+  9: samaloopThumb,
+  10: telkomSiagaVideo,
+  11: drGadgetThumb,
+  12: familyMooThumb,
+  13: telescopeThumb,
+  14: aseanThumb,
+  15: disnavThumb,
+  16: yametThumb,
+  17: adaPolisiThumb,
+  18: ftjslThumb,
 }
 
 const STATUS_COLOR: Record<string, string> = {
