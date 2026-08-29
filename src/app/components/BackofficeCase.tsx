@@ -5,6 +5,7 @@ import {
   Lock, Sliders, Database, Layers, ArrowRight, Activity, Filter, BarChart3, ChevronDown, Sparkles
 } from "lucide-react"
 import heroImg from "@/imports/image-8.png"
+import backofficePortalThumb from "@/imports/backoffice portal thumb.jpg"
 
 const N = "#19244E"
 const C = "#DB3E8C"
@@ -365,7 +366,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
           {/* Right Column: Hero Image */}
           <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200/80 bg-[#111836] group">
             <img
-              src={heroImg}
+              src={backofficePortalThumb}
               alt="Backoffice Architecture Preview"
               className="w-full h-auto object-cover max-h-[380px] lg:max-h-[420px] rounded-2xl transform group-hover:scale-105 transition-transform duration-500"
             />

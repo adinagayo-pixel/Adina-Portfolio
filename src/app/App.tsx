@@ -49,6 +49,8 @@ import sunwayThumb from "@/imports/sunway thumb.jpg"
 import mySalamThumb from "@/imports/my salam thumb.jpg"
 import eSaksiThumb from "@/imports/e-saksi thumb.jpg"
 import proArcheryThumb from "@/imports/proarcherythumb5.jpg"
+import backofficePortalThumb from "@/imports/backoffice portal thumb.jpg"
+import myArcheryPerpaniThumb from "@/imports/myarchery thumb.jpg"
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback"
 import {
   Home, Briefcase, Layers, Archive, Mail,
@@ -162,9 +164,9 @@ const FEATURED = [
     headline: "Building a reusable two track white label and analytics pattern to serve enterprise tenants with different operational needs.",
     metrics: [{ val: "2 Track", sub: "Delivery Model" }, { val: "1 to 3h", sub: "Tenant Setup" }, { val: "0", sub: "BE Query Timeouts" }],
     projectId: "backoffice",
-    thumb: projectThumb5,
+    thumb: backofficePortalThumb,
     screens: [
-      { src: projectThumb5, label: "01 · DUAL TRACK ARCHITECTURE" },
+      { src: backofficePortalThumb, label: "01 · DUAL TRACK ARCHITECTURE" },
       { src: projectThumb2, label: "02 · MULTI TENANT DASHBOARD" },
       { src: projectThumb1, label: "03 · ISOLATED FILTER ENGINE" },
     ],
@@ -207,9 +209,9 @@ const FEATURED = [
     headline: "Designing Indonesia's tournament operating system and real time scoring platform for official PERPANI national championships.",
     metrics: [{ val: "7+", sub: "Public Releases" }, { val: "2yr", sub: "Field Research Lifecycle" }, { val: "3 People", sub: "Remote WFA Team" }],
     projectId: "myarchery",
-    thumb: projectThumb4,
+    thumb: myArcheryPerpaniThumb,
     screens: [
-      { src: projectThumb4, label: "01 · SCORING KEYPAD" },
+      { src: myArcheryPerpaniThumb, label: "01 · SCORING KEYPAD" },
       { src: projectThumb2, label: "02 · ADMIN DASHBOARD" },
       { src: projectThumb1, label: "03 · LIVE SCOREBOARD" },
     ],
@@ -1193,10 +1195,9 @@ function StackedFanOutDeck({ screens }: { screens: { src: string; label: string;
         })}
       </div>
 
-      {/* Interactive Drag & Zoom Helper Badge (Bottom Center) */}
-      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-[#19244E]/95 backdrop-blur-md border border-white/15 rounded-full text-[8px] font-sans font-bold text-white tracking-widest uppercase shadow-md z-40 flex items-center gap-1.5 pointer-events-none whitespace-nowrap">
-        <span className="w-1.5 h-1.5 rounded-full bg-[#DB3E8C] animate-pulse" />
-        <span>Drag to shuffle or click to expand screens</span>
+      {/* Interactive Drag & Zoom Helper Text (Bottom Center) */}
+      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-[10px] sm:text-xs font-sans font-medium text-white/50 tracking-wider uppercase z-40 pointer-events-none whitespace-nowrap">
+        Drag to shuffle or click to expand screens
       </div>
 
       {/* Full-Screen Pop-up Image Slider Lightbox */}
