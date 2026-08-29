@@ -47,6 +47,8 @@ import mykawanGegmThumb from "@/imports/Mykawan GEGM thumb.jpg"
 import drGadgetThumb from "@/imports/dr gadget thumb.jpg"
 import sunwayThumb from "@/imports/sunway thumb.jpg"
 import mySalamThumb from "@/imports/my salam thumb.jpg"
+import eSaksiThumb from "@/imports/e-saksi thumb.jpg"
+import proArcheryThumb from "@/imports/proarcherythumb5.jpg"
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback"
 import {
   Home, Briefcase, Layers, Archive, Mail,
@@ -146,9 +148,9 @@ const FEATURED = [
     headline: "A multi platform system for real time vote monitoring across 38 provinces and 820,000+ TPS within a 48 hour window.",
     metrics: [{ val: "38", sub: "Provinces Monitored" }, { val: "820K+", sub: "TPS Polling Stations" }, { val: "48h", sub: "Tabulation Window" }],
     projectId: "election",
-    thumb: projectThumb5,
+    thumb: eSaksiThumb,
     screens: [
-      { src: projectThumb5, label: "01 · REAL TIME TABULATION" },
+      { src: eSaksiThumb, label: "01 · REAL TIME TABULATION" },
       { src: projectThumb1, label: "02 · PROVINCIAL MATRIX" },
       { src: projectThumb2, label: "03 · VERIFICATION CMS" },
     ],
@@ -191,9 +193,9 @@ const FEATURED = [
     headline: "Turning Indonesia's premier physical archery retailer into a 4 surface digital ecosystem starting with a 24 hour AI built landing page.",
     metrics: [{ val: "24h", sub: "POC Delivery" }, { val: "4", sub: "Surfaces Built" }, { val: "1yr", sub: "Ongoing Engagement" }],
     projectId: "archery",
-    thumb: projectThumb4,
+    thumb: proArcheryThumb,
     screens: [
-      { src: projectThumb4, label: "01 · E COMMERCE PORTAL" },
+      { src: proArcheryThumb, label: "01 · E COMMERCE PORTAL" },
       { src: projectThumb2, label: "02 · POS ADMIN DASHBOARD" },
       { src: projectThumb1, label: "03 · AI PROMPT ARCHITECTURE" },
     ],

@@ -5,6 +5,7 @@ import {
   Shield, Database, MapPin, AlertCircle, Users, WifiOff, RefreshCw, Layers, CheckSquare, ChevronDown, Sparkles
 } from "lucide-react"
 import heroImg from "@/imports/image-9.png"
+import eSaksiThumb from "@/imports/e-saksi thumb.jpg"
 
 const N = "#19244E"
 const C = "#DB3E8C"
@@ -207,7 +208,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
           {/* Right Column: Hero Dummy Image */}
           <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200/80 bg-[#111836] group">
             <img
-              src={heroImg}
+              src={eSaksiThumb}
               alt="Election System Preview"
               className="w-full h-auto object-cover max-h-[380px] lg:max-h-[420px] rounded-2xl transform group-hover:scale-105 transition-transform duration-500"
             />
