@@ -57,7 +57,7 @@ import {
   ArrowRight, ArrowDown, ExternalLink, Globe, Zap,
   Users, CheckCircle, Coins, Bot, LayoutGrid,
   ArrowUpRight, ChevronRight, MousePointer2, Plus, Linkedin, Download,
-  Search, Target, FileCheck, FileText, X, Eye,
+  Search, Target, FileCheck, FileText, X, Eye, ChevronDown, ChevronUp,
 } from "lucide-react"
 import GegiCase from "./components/GegiCase"
 import TngCase from "./components/TngCase"
@@ -1406,11 +1406,8 @@ const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
 }
 
 return (
-  <section ref={sectionRef} id="work" className="relative z-20 overflow-hidden bg-white">
-    <motion.div
-      style={{ clipPath }}
-      className="w-full h-full bg-[#19244E]"
-    >
+  <section id="work" className="relative z-20 overflow-hidden bg-[#19244E]">
+    <div className="w-full h-full bg-[#19244E]">
       {/* Header */}
       <div
         className="px-4 sm:px-8 lg:px-16 py-8 sm:py-10 flex items-center gap-6"
@@ -1679,7 +1676,7 @@ return (
           ))}
         </div>
       </div>
-    </motion.div>
+    </div>
   </section>
   )
 }
@@ -1688,26 +1685,29 @@ return (
 const PHASES = [
   {
     num: "01",
-    phase: "RESEARCH & ALIGNMENT",
-    sub: "Requirement Deep-Dive & Flow Mapping",
+    title: "Research & Alignment",
+    category: "Discovery",
     desc: "Every project starts with understanding the real problem. I dig into requirements with PMs, test existing apps hands-on, and benchmark proven design patterns from mature platforms. I also align early with Backend engineers so edge cases and data logic are solid before designing screens.",
     tools: ["Stakeholder Q&A", "App Walkthroughs", "UI Benchmarking", "Backend Alignment", "User Flows & Sitemaps"],
+    footerMeta: "PMs consulted · Apps benchmarked hands-on",
     Icon: Users,
   },
   {
     num: "02",
-    phase: "BENCHMARK, AI IDEATION & CRAFT",
-    sub: "Industry Benchmarking, AI & Figma Craft",
+    title: "Benchmark, AI Ideation & Craft",
+    category: "Craft",
     desc: "I balance speed and quality by adapting proven patterns from mature apps and Dribbble, combined with AI ideation (Sketch AI, Claude, Gemini). I craft pixel-perfect screens and edge-case states in Figma, collaborate with graphic designers for custom visual assets, and build code prototypes when needed.",
     tools: ["Design Systems", "Figma Variables & Components", "Claude & Gemini", "VS Code", "Antigravity", "Prototyping"],
+    footerMeta: "Powered by Claude, Gemini & Figma",
     Icon: Zap,
   },
   {
     num: "03",
-    phase: "TRACEABLE HANDOFF & QA",
-    sub: "3-Tier Architecture & Jira-Linked Changelogs",
+    title: "Traceable Handoff & QA",
+    category: "Handoff",
     desc: "Inside Figma, I organize every portal into a 3-page structure: Masterflow, Changelog, and Archive. When revisions happen, I create numbered before-and-after frames in Figma linked directly to Jira tickets, making every change easy to track and keeping the live app logic safe.",
     tools: ["Masterflow & Archive", "Jira Changelog Sync", "Numbered Notes", "Design QA", "Live App Auditing"],
+    footerMeta: "Every revision numbered & Jira-linked",
     Icon: CheckCircle,
   },
 ]
@@ -1748,6 +1748,8 @@ function StandaloneClipboardIcon({ className = "w-8 h-8 sm:w-11 sm:h-11 lg:w-14 
 
 function WorkflowSection() {
   const heroRef = useRef<HTMLDivElement>(null)
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null)
+
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end 20%"],
@@ -1758,12 +1760,150 @@ function WorkflowSection() {
   const heroY = useTransform(scrollYProgress, [0, 1], [0, -60])
 
   return (
-    <div id="process" className="relative">
-      {/* ── BLOCK 1: HOW I WORK STATEMENT HERO WITH SUBTLE VIDEO BACKGROUND ── */}
+    <div
+      id="process"
+      className="relative overflow-hidden"
+      style={{
+        background: "linear-gradient(180deg, #19244E 0%, #162044 40%, #0F1735 70%, #0A1128 100%)",
+      }}
+    >
+      {/* ── BLOCK 1: 3-PHASE EXECUTION ENGINE ── */}
+      <section className="pt-24 sm:pt-32 lg:pt-40 pb-16 sm:pb-24 lg:pb-32 px-4 sm:px-8 lg:px-16 relative z-20 overflow-hidden">
+        <div className="w-full relative">
+          {/* Animated Header & Tagline Reveal */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, margin: "-60px" }}
+            transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
+          >
+            {/* Section Header */}
+            <div className="flex items-center justify-between mb-8 sm:mb-12 border-b border-white/10 pb-4">
+              <div className="flex items-center gap-3">
+                <span className="font-sans text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase text-white/70">
+                  3-PHASE EXECUTION ENGINE
+                </span>
+              </div>
+              <span className="font-sans text-[9px] sm:text-[10px] font-bold tracking-widest uppercase text-[#DB3E8C]">
+                DESIGN TO HANDOFF PIPELINE
+              </span>
+            </div>
+          </motion.div>
+
+          {/* 3-Column Spaced Cards Flow with Connecting Lines & Step Arrows */}
+          <div className="relative">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 relative z-10">
+              {PHASES.map((phase, idx) => {
+                const isLast = idx === PHASES.length - 1
+
+                const cardStyleClass =
+                  idx === 0
+                    ? "bg-[#1E2A54]/85 backdrop-blur-md border-t-[3.5px] border-t-[#DB3E8C]/50 hover:border-t-[#DB3E8C]/80 shadow-xl"
+                    : idx === 1
+                    ? "bg-[#1E2A54]/90 backdrop-blur-md border-t-[3.5px] border-t-[#DB3E8C]/75 hover:border-t-[#DB3E8C]/95 shadow-xl"
+                    : "bg-[#1E2A54] backdrop-blur-md border-t-[3.5px] border-t-[#DB3E8C] shadow-xl"
+
+                return (
+                  <div key={phase.num} className="relative flex flex-col">
+                    <motion.div
+                      initial={{ opacity: 0, y: 35 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: false, margin: "-40px" }}
+                      transition={{ duration: 0.6, delay: idx * 0.18, ease: [0.21, 0.47, 0.32, 0.98] }}
+                      onMouseEnter={() => setHoveredCard(idx)}
+                      onMouseLeave={() => setHoveredCard(null)}
+                      className={`group flex-1 flex flex-col justify-between rounded-2xl p-6 sm:p-7 transition-all duration-300 relative z-10 cursor-default hover:-translate-y-1.5 ${cardStyleClass}`}
+                    >
+                      {/* Attached Top-Left Tab Badge (Reference Style: ▶ Action) */}
+                      <div className="absolute -top-3.5 left-5 z-20 flex items-center gap-1.5 px-3 py-0.5 rounded-t-lg rounded-br-lg bg-[#DB3E8C] text-white text-[10px] font-bold tracking-widest uppercase shadow-[0_4px_12px_rgba(219,62,140,0.5)]">
+                        <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                        <span>{phase.category}</span>
+                      </div>
+
+                      {/* Accent Top Border Highlight on Hover */}
+                      <div className="absolute top-0 left-6 right-6 h-0.5 bg-gradient-to-r from-[#DB3E8C] via-[#F472B6] to-[#DB3E8C] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
+
+                      <div>
+                        {/* Header: Number Badge (01/02/03) & Title */}
+                        <div className="flex items-center gap-2.5 mb-4 pt-1 pb-3 border-b border-white/10">
+                          <span className="font-sans text-xs sm:text-sm font-bold tracking-wider text-[#DB3E8C]">
+                            {phase.num}
+                          </span>
+                          <span className="font-sans text-[11px] sm:text-xs font-bold tracking-widest uppercase text-white/90 group-hover:text-[#F472B6] transition-colors duration-200">
+                            {phase.title}
+                          </span>
+                        </div>
+
+                        {/* Body Paragraph */}
+                        <p className="text-xs sm:text-sm leading-relaxed text-white/80 font-sans my-3">
+                          {phase.desc}
+                        </p>
+                      </div>
+
+                      {/* Workflow Tools & Artifacts Section (Clean Editorial Text) */}
+                      <div>
+                        <div className="pt-2">
+                          <div className="flex items-center gap-1.5 mb-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#DB3E8C] animate-pulse" />
+                            <span className="font-sans text-[9px] sm:text-[10px] font-bold tracking-widest uppercase text-[#DB3E8C]/90">
+                              TOOLS & ARTIFACTS
+                            </span>
+                          </div>
+                          <p className="font-sans text-xs leading-relaxed text-white/75 font-normal">
+                            {phase.tools.join(" · ")}
+                          </p>
+                        </div>
+                      </div>
+                    </motion.div>
+
+                    {/* Step Connector Arrow (Desktop: Align Middle without Outline Circle) */}
+                    {!isLast && (
+                      <div
+                        className={`hidden md:flex absolute -right-6 lg:-right-7 top-1/2 -translate-y-1/2 z-30 transition-all duration-300 items-center justify-center pointer-events-none ${
+                          hoveredCard === idx
+                            ? "text-[#F472B6] scale-125 drop-shadow-[0_0_10px_#DB3E8C]"
+                            : "text-[#DB3E8C]/80"
+                        }`}
+                      >
+                        <ArrowRight size={22} className={`transition-transform duration-300 ${hoveredCard === idx ? "translate-x-1" : ""}`} />
+                      </div>
+                    )}
+
+                    {/* Step Connector Arrow (Mobile: Down Arrow centered between stacked Cards) */}
+                    {!isLast && (
+                      <div className="flex md:hidden items-center justify-center my-3 relative z-30">
+                        <div className="flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#1E2A54] border border-[#DB3E8C]/50 text-[#DB3E8C] font-mono text-[9.5px] font-bold tracking-widest uppercase shadow-lg">
+                          <span>STEP {idx + 1} ➔ {idx + 2}</span>
+                          <ArrowDown size={11} />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+
+            {/* Contextual Link Back to Works */}
+            <div className="mt-10 sm:mt-12 text-center relative z-20">
+              <a
+                href="#work"
+                onClick={(e) => {
+                  e.preventDefault()
+                  document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })
+                }}
+                className="font-sans text-xs sm:text-sm text-white/60 hover:text-[#F472B6] transition-colors duration-200 cursor-pointer inline-flex items-center gap-1.5"
+              >
+                <span>See this process in action across all projects →</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── BLOCK 2: HOW I WORK PHILOSOPHICAL STATEMENT HERO (NOW AT THE BOTTOM AS CLOSER) ── */}
       <section
         ref={heroRef}
-        className="relative overflow-hidden flex flex-col justify-center min-h-[460px] lg:min-h-[520px]"
-        style={{ backgroundColor: N }}
+        className="relative overflow-hidden flex flex-col justify-center min-h-[440px] lg:min-h-[480px]"
       >
         {/* Subtle Video Background */}
         <video
@@ -1771,13 +1911,13 @@ function WorkflowSection() {
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-45 mix-blend-screen pointer-events-none"
+          className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-screen pointer-events-none"
         >
           <source src={gettyBgVideo} type="video/mp4" />
         </video>
 
         {/* Gradient Overlay for Text Contrast */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#19244E]/60 via-[#19244E]/30 to-[#19244E]/80 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0A1128]/30 to-[#0A1128]/80 pointer-events-none" />
 
         {/* Header */}
         <div
@@ -1789,7 +1929,7 @@ function WorkflowSection() {
           </span>
           <div className="flex-1 h-px" style={{ backgroundColor: "rgba(255,255,255,0.08)" }} />
           <span className="font-sans text-[9px] sm:text-[10px] font-semibold tracking-widest uppercase text-[#F472B6]">
-            DESIGN PHILOSOPHY
+            DESIGN PHILOSOPHY · REINFORCEMENT
           </span>
         </div>
 
@@ -1820,104 +1960,6 @@ function WorkflowSection() {
             engineers rarely have to second-guess.
           </h2>
         </motion.div>
-      </section>
-
-      {/* ── BLOCK 2: 3-PHASE EXECUTION ENGINE (DARK MINIMALIST LIST VERSION) ── */}
-      <section
-        className="py-14 sm:py-18 lg:py-24 px-4 sm:px-8 lg:px-16 relative z-20 overflow-hidden"
-        style={{
-          background: "linear-gradient(180deg, #0A1128 0%, #101936 100%)",
-          borderTop: `1px solid rgba(255,255,255,0.08)`,
-        }}
-      >
-        <div className="w-full relative">
-          {/* Section Header */}
-          <div className="flex items-center justify-between mb-10 sm:mb-14 border-b border-white/10 pb-4">
-            <div className="flex items-center gap-3">
-              <span className="font-sans text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase text-white/70">
-                3-PHASE EXECUTION ENGINE
-              </span>
-            </div>
-            <span className="font-sans text-[9px] sm:text-[10px] font-bold tracking-widest uppercase text-[#DB3E8C]">
-              DESIGN TO HANDOFF PIPELINE
-            </span>
-          </div>
-
-          {/* 3-Column Spaced Cards Flow with Connecting Lines & Step Arrows */}
-          <div className="relative">
-            {/* Desktop Horizontal Connecting Line Behind Cards */}
-            <div className="hidden md:block absolute top-1/2 left-[12%] right-[12%] h-[2px] bg-[#DB3E8C]/35 pointer-events-none z-0 -translate-y-1/2" />
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 relative z-10">
-              {PHASES.map((phase, idx) => {
-                const currentDelay = idx * 0.15
-                const isLast = idx === PHASES.length - 1
-
-                return (
-                  <div key={phase.num} className="relative flex flex-col">
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "-40px" }}
-                      transition={{ duration: 0.5, delay: currentDelay, ease: [0.21, 0.47, 0.32, 0.98] }}
-                      className="group flex-1 flex flex-col justify-between bg-white/[0.03] backdrop-blur-sm border border-white/12 hover:border-[#DB3E8C]/50 rounded-2xl p-6 sm:p-8 transition-all duration-300 relative z-10 shadow-xl cursor-default hover:-translate-y-1"
-                    >
-                      {/* Subtle Accent Highlight Line on Top Hover */}
-                      <div className="absolute top-0 left-6 right-6 h-0.5 bg-[#DB3E8C] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
-
-                      <div>
-                        {/* Header: Number Badge (01/02/03) & Category Label */}
-                        <div className="flex items-center gap-2.5 mb-5">
-                          <span className="font-sans text-xs sm:text-sm font-bold tracking-wider text-[#DB3E8C]">
-                            {phase.num}
-                          </span>
-                          <span className="font-sans text-[10.5px] font-bold tracking-widest uppercase text-[#DB3E8C]">
-                            {phase.phase}
-                          </span>
-                        </div>
-
-                        {/* Main Phase Title (LARGE Serif) */}
-                        <h3 className="font-serif text-xl sm:text-2xl lg:text-[1.7rem] font-normal italic text-white group-hover:text-[#DB3E8C] transition-colors duration-200 leading-snug mb-4">
-                          {phase.sub}
-                        </h3>
-                        <p className="text-xs sm:text-sm leading-relaxed text-white/75 font-sans mb-6">
-                          {phase.desc}
-                        </p>
-                      </div>
-
-                      {/* Tools & Artifacts Section (Clean Editorial Text) */}
-                      <div className="pt-4 border-t border-white/10">
-                        <span className="font-sans text-[9px] sm:text-[10px] font-bold tracking-widest uppercase text-[#DB3E8C]/90 mb-2 block">
-                          TOOLS & ARTIFACTS
-                        </span>
-                        <p className="font-sans text-xs leading-relaxed text-white/70">
-                          {phase.tools.join(" · ")}
-                        </p>
-                      </div>
-                    </motion.div>
-
-                    {/* Step Connector Arrow (Desktop: Right Arrow centered in the gap between Cards) */}
-                    {!isLast && (
-                      <div className="hidden md:flex absolute -right-7 lg:-right-8 top-1/2 -translate-y-1/2 z-30 w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-[#0A1128] border-2 border-[#DB3E8C] text-[#DB3E8C] items-center justify-center shadow-2xl pointer-events-none">
-                        <ArrowRight size={15} />
-                      </div>
-                    )}
-
-                    {/* Step Connector Arrow (Mobile: Down Arrow centered between stacked Cards) */}
-                    {!isLast && (
-                      <div className="flex md:hidden items-center justify-center my-3 relative z-30">
-                        <div className="flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#19244E] border border-[#DB3E8C]/50 text-[#DB3E8C] font-mono text-[9.5px] font-bold tracking-widest uppercase shadow-lg">
-                          <span>STEP {idx + 1} ➔ {idx + 2}</span>
-                          <ArrowDown size={11} />
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        </div>
       </section>
     </div>
   )
@@ -2430,7 +2472,7 @@ function ContactSection({ onOpenPdfPreview }: { onOpenPdfPreview?: () => void })
   return (
     <section
       id="contact"
-      style={{ backgroundColor: "#0d142d", borderTop: `1px solid rgba(255, 255, 255, 0.08)` }}
+      style={{ backgroundColor: "#111936", borderTop: `1px solid rgba(255, 255, 255, 0.08)` }}
     >
       {/* Header */}
       <div
@@ -2487,13 +2529,12 @@ function ContactSection({ onOpenPdfPreview }: { onOpenPdfPreview?: () => void })
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ delay: 0.1, duration: 0.55 }}
-          className="flex flex-col justify-center"
-          style={{ backgroundColor: "#090d1f" }}
+          className="flex flex-col justify-center bg-[#111936]"
         >
           {[
             { label: "Email", value: "adinagayo@gmail.com", sub: "Primary contact", href: "mailto:adinagayo@gmail.com" },
             { label: "Location", value: "Jakarta, Indonesia", sub: "Open for relocation" },
-            { label: "Availability", value: "Open to new opportunities", sub: "" },
+            { label: "Availability", value: "Looking for the next system to untangle", sub: "" },
             { label: "LinkedIn", value: "/in/adinafayzagayo", sub: "Portfolio & recommendations", href: "https://www.linkedin.com/in/adinafayzagayo/" },
           ].map((item, i) => (
             <div
@@ -2527,10 +2568,10 @@ function ContactSection({ onOpenPdfPreview }: { onOpenPdfPreview?: () => void })
 function Footer() {
   return (
     <footer
-      className="px-8 lg:px-16 py-6 flex items-center justify-center"
-      style={{ borderTop: `1px solid rgba(255, 255, 255, 0.08)`, backgroundColor: "#060914" }}
+      className="px-8 lg:px-16 py-6 sm:py-8 flex items-center justify-center"
+      style={{ borderTop: `1px solid rgba(255, 255, 255, 0.08)`, backgroundColor: "#111936" }}
     >
-      <span className="font-sans text-[10px] font-semibold tracking-widest uppercase text-white/40">© 2026 Adina Fayza Gayo</span>
+      <span className="font-sans text-[10px] sm:text-xs font-semibold tracking-widest uppercase text-white/60">© 2026 Adina Fayza Gayo</span>
     </footer>
   )
 }
