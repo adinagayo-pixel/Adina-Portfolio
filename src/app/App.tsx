@@ -2659,6 +2659,19 @@ export default function App() {
   const [isPdfModalOpen, setIsPdfModalOpen] = useState(false)
   const activeSection = useScrollSpy(["home", "work", "process", "archive", "contact"])
 
+  useEffect(() => {
+    const handlePopState = () => {
+      const hash = window.location.hash.replace("#", "")
+      if (hash && hash.includes("-case")) {
+        setCurrentView(hash as any)
+      } else {
+        setCurrentView("home")
+      }
+    }
+    window.addEventListener("popstate", handlePopState)
+    return () => window.removeEventListener("popstate", handlePopState)
+  }, [])
+
   const handleOpenProject = (id: string | number) => {
     const strId = String(id).toLowerCase()
     if (FEATURED_INDEX_MAP[strId] !== undefined) {
@@ -2697,16 +2710,25 @@ export default function App() {
 
     const targetView = map[strId] || "tng-case"
     setCurrentView(targetView)
-    window.scrollTo({ top: 0 })
+    if (typeof window !== "undefined") {
+      const nextIdx = (window.history.state?.idx || 0) + 1
+      window.history.pushState({ idx: nextIdx }, "", `#${targetView}`)
+      window.scrollTo({ top: 0 })
+    }
   }
 
   const handleBackToWork = () => {
-    setCurrentView("home")
-    if (typeof window !== "undefined") {
-      window.history.pushState(null, "", "/")
-      window.scrollTo({ top: 0, behavior: "instant" })
+    if (typeof window !== "undefined" && window.history.state && window.history.state.idx > 0) {
+      window.history.back()
+    } else {
+      setCurrentView("home")
+      if (typeof window !== "undefined") {
+        window.history.pushState(null, "", "/")
+        window.scrollTo({ top: 0, behavior: "instant" })
+      }
     }
   }
+
 
 
   if (currentView === "about") {
