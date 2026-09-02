@@ -2707,10 +2707,12 @@ export default function App() {
 
   const handleBackToWork = () => {
     setCurrentView("home")
-    setTimeout(() => {
-      document.getElementById("work")?.scrollIntoView({ behavior: "instant", block: "start" })
-    }, 20)
+    if (typeof window !== "undefined") {
+      window.history.pushState(null, "", "/")
+      window.scrollTo({ top: 0, behavior: "instant" })
+    }
   }
+
 
   if (currentView === "about") {
     return (

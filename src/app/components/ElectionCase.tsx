@@ -123,15 +123,20 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
             borderBottom: `1px solid ${HAIR}`,
           }}
         >
-          <button
-            onClick={onBack}
+          <a
+            href="/"
+            onClick={(e) => {
+              e.preventDefault()
+              onBack()
+            }}
             className="flex items-center gap-1.5 font-sans text-xs font-bold tracking-widest uppercase transition-all duration-150 hover:opacity-75 cursor-pointer group"
             style={{ color: N }}
             title="Back to Home Portfolio"
           >
             <Home size={16} className="group-hover:scale-110 transition-transform" />
             <span>HOME</span>
-          </button>
+          </a>
+
           <CaseStudyHeaderBadge caseNum="04" />
         </div>
 
