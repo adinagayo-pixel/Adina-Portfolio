@@ -2662,7 +2662,9 @@ export default function App() {
   useEffect(() => {
     const handlePopState = () => {
       const hash = window.location.hash.replace("#", "")
-      if (hash && hash.includes("-case")) {
+      if (hash === "about") {
+        setCurrentView("about")
+      } else if (hash && hash.includes("-case")) {
         setCurrentView(hash as any)
       } else {
         setCurrentView("home")
@@ -2671,6 +2673,16 @@ export default function App() {
     window.addEventListener("popstate", handlePopState)
     return () => window.removeEventListener("popstate", handlePopState)
   }, [])
+
+  const handleOpenAbout = () => {
+    setCurrentView("about")
+    if (typeof window !== "undefined") {
+      const nextIdx = (window.history.state?.idx || 0) + 1
+      window.history.pushState({ idx: nextIdx }, "", "#about")
+      window.scrollTo({ top: 0 })
+    }
+  }
+
 
   const handleOpenProject = (id: string | number) => {
     const strId = String(id).toLowerCase()
@@ -2734,10 +2746,11 @@ export default function App() {
   if (currentView === "about") {
     return (
       <AboutMe
-        onBack={() => { setCurrentView("home"); window.scrollTo({ top: 0 }) }}
+        onBack={handleBackToWork}
       />
     )
   }
+
 
   const CASE_STUDY_SEQUENCE: CaseStudyMeta[] = [
     { id: "tng", num: "01", name: "Seamless Micro Insurance Integration", client: "Touch 'n Go × GEGM", thumb: coverTng },
@@ -2891,9 +2904,10 @@ export default function App() {
   return (
     <div className="min-h-screen overflow-x-hidden" style={{ backgroundColor: S }}>
       <HeroSection
-        onReadMore={() => { setCurrentView("about"); window.scrollTo({ top: 0 }) }}
+        onReadMore={handleOpenAbout}
         onOpenPdfPreview={() => setIsPdfModalOpen(true)}
       />
+
       <FeaturedWorkSection
         activeIndex={activeFeaturedIndex}
         onActiveIndexChange={setActiveFeaturedIndex}
