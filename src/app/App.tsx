@@ -1436,8 +1436,9 @@ function FeaturedWorkSection({
   }
 
   return (
-    <section id="work" className="relative z-20 overflow-hidden bg-[#19244E]">
-      <div className="w-full h-full bg-[#19244E]">
+    <section id="work" className="relative z-20 overflow-hidden bg-[#0F1735]">
+      <div className="w-full h-full bg-[#0F1735]">
+
         {/* Header */}
         <div
           className="px-4 sm:px-8 lg:px-16 py-8 sm:py-10 flex items-center gap-6"
@@ -1818,7 +1819,6 @@ function StandaloneClipboardIcon({ className = "w-8 h-8 sm:w-11 sm:h-11 lg:w-14 
 
 function WorkflowSection() {
   const heroRef = useRef<HTMLDivElement>(null)
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null)
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -1832,14 +1832,12 @@ function WorkflowSection() {
   return (
     <div
       id="process"
-      className="relative overflow-hidden"
-      style={{
-        background: "linear-gradient(180deg, #19244E 0%, #162044 40%, #0F1735 70%, #0A1128 100%)",
-      }}
+      className="relative overflow-hidden bg-[#0F1735]"
     >
+
       {/* ── BLOCK 1: 3-PHASE EXECUTION ENGINE ── */}
-      <section className="pt-24 sm:pt-32 lg:pt-40 pb-16 sm:pb-24 lg:pb-32 px-4 sm:px-8 lg:px-16 relative z-20 overflow-hidden">
-        <div className="w-full relative">
+      <section className="pt-24 sm:pt-32 lg:pt-40 pb-16 sm:pb-24 lg:pb-32 px-6 sm:px-12 lg:px-20 relative z-20 overflow-hidden">
+        <div className="max-w-7xl mx-auto relative">
           {/* Animated Header & Tagline Reveal */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -1848,122 +1846,89 @@ function WorkflowSection() {
             transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
           >
             {/* Section Header */}
-            <div className="flex items-center justify-between mb-8 sm:mb-12 border-b border-white/10 pb-4">
+            <div className="flex items-center justify-between mb-12 sm:mb-16 border-b border-white/10 pb-5">
               <div className="flex items-center gap-3">
-                <span className="font-sans text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase text-white/70">
+                <span className="font-mono text-[10px] sm:text-xs font-bold tracking-[0.25em] uppercase text-white/80">
                   3-PHASE EXECUTION ENGINE
                 </span>
               </div>
-              <span className="font-sans text-[9px] sm:text-[10px] font-bold tracking-widest uppercase text-[#DB3E8C]">
+              <span className="font-mono text-[10px] sm:text-xs font-bold tracking-widest uppercase text-[#DB3E8C]">
                 DESIGN TO HANDOFF PIPELINE
               </span>
             </div>
           </motion.div>
 
-          {/* 3-Column Spaced Cards Flow with Connecting Lines & Step Arrows */}
+          {/* 3-Column Timeline Pipeline (Continuous Top Line Track & Clean Vertical Dividers) */}
           <div className="relative">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 relative z-10">
+            {/* Continuous Top Pipeline Track Line (Desktop) */}
+            <div className="hidden md:block absolute top-[15px] left-0 right-0 h-px bg-white/10 z-0" />
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14 relative z-10">
               {PHASES.map((phase, idx) => {
                 const isLast = idx === PHASES.length - 1
 
-                const cardStyleClass =
-                  idx === 0
-                    ? "bg-[#1E2A54]/85 backdrop-blur-md border-t-[3.5px] border-t-[#DB3E8C]/50 hover:border-t-[#DB3E8C]/80 shadow-xl"
-                    : idx === 1
-                    ? "bg-[#1E2A54]/90 backdrop-blur-md border-t-[3.5px] border-t-[#DB3E8C]/75 hover:border-t-[#DB3E8C]/95 shadow-xl"
-                    : "bg-[#1E2A54] backdrop-blur-md border-t-[3.5px] border-t-[#DB3E8C] shadow-xl"
-
                 return (
-                  <div key={phase.num} className="relative flex flex-col">
-                    <motion.div
-                      initial={{ opacity: 0, y: 35 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: false, margin: "-40px" }}
-                      transition={{ duration: 0.6, delay: idx * 0.18, ease: [0.21, 0.47, 0.32, 0.98] }}
-                      onMouseEnter={() => setHoveredCard(idx)}
-                      onMouseLeave={() => setHoveredCard(null)}
-                      className={`group flex-1 flex flex-col justify-between rounded-2xl p-6 sm:p-7 transition-all duration-300 relative z-10 cursor-default hover:-translate-y-1.5 ${cardStyleClass}`}
-                    >
-                      {/* Attached Top-Left Tab Badge (Reference Style: ▶ Action) */}
-                      <div className="absolute -top-3.5 left-5 z-20 flex items-center gap-1.5 px-3 py-0.5 rounded-t-lg rounded-br-lg bg-[#DB3E8C] text-white text-[10px] font-bold tracking-widest uppercase shadow-[0_4px_12px_rgba(219,62,140,0.5)]">
-                        <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                        <span>{phase.category}</span>
+                  <motion.div
+                    key={phase.num}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, margin: "-40px" }}
+                    transition={{ duration: 0.6, delay: idx * 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
+                    className={`flex flex-col justify-between relative group ${
+                      !isLast ? "md:border-r md:border-white/10 md:pr-10 lg:pr-14" : ""
+                    }`}
+                  >
+                    <div>
+                      {/* Top Node Header: Node Dot & Sleek Mono Label */}
+                      <div className="flex items-center gap-2.5 mb-7 bg-[#0F1735] pr-4 w-fit relative z-10">
+
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#DB3E8C] shadow-[0_0_10px_#DB3E8C] animate-pulse" />
+                        <span className="font-mono text-[11px] font-bold tracking-widest text-[#DB3E8C] uppercase px-3 py-1 rounded-full bg-[#DB3E8C]/15 border border-[#DB3E8C]/30">
+                          {phase.num} {phase.category}
+                        </span>
                       </div>
 
-                      {/* Accent Top Border Highlight on Hover */}
-                      <div className="absolute top-0 left-6 right-6 h-0.5 bg-gradient-to-r from-[#DB3E8C] via-[#F472B6] to-[#DB3E8C] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
+                      {/* Step Title: Large Bold Heading */}
+                      <h3 className="font-display font-bold text-white text-xl sm:text-2xl lg:text-[26px] mb-4 leading-tight group-hover:text-[#F472B6] transition-colors duration-200">
+                        {phase.title}
+                      </h3>
 
-                      <div>
-                        {/* Header: Number Badge (01/02/03) & Title */}
-                        <div className="flex items-center gap-2.5 mb-4 pt-1 pb-3 border-b border-white/10">
-                          <span className="font-sans text-xs sm:text-sm font-bold tracking-wider text-[#DB3E8C]">
-                            {phase.num}
-                          </span>
-                          <span className="font-sans text-[11px] sm:text-xs font-bold tracking-widest uppercase text-white/90 group-hover:text-[#F472B6] transition-colors duration-200">
-                            {phase.title}
-                          </span>
-                        </div>
+                      {/* Process Description */}
+                      <p className="text-white/80 text-sm leading-relaxed font-sans mb-8">
+                        {phase.desc}
+                      </p>
+                    </div>
 
-                        {/* Body Paragraph */}
-                        <p className="text-xs sm:text-sm leading-relaxed text-white/80 font-sans my-3">
-                          {phase.desc}
-                        </p>
+                    {/* Bottom Artifacts Section (Plain Text) */}
+                    <div className="pt-6 border-t border-white/10 mt-auto">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="font-mono text-[10px] font-bold tracking-widest uppercase text-[#DB3E8C]">
+                          TOOLS & ARTIFACTS
+                        </span>
                       </div>
-
-                      {/* Workflow Tools & Artifacts Section (Clean Editorial Text) */}
-                      <div>
-                        <div className="pt-2">
-                          <div className="flex items-center gap-1.5 mb-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#DB3E8C] animate-pulse" />
-                            <span className="font-sans text-[9px] sm:text-[10px] font-bold tracking-widest uppercase text-[#DB3E8C]/90">
-                              TOOLS & ARTIFACTS
-                            </span>
-                          </div>
-                          <p className="font-sans text-xs leading-relaxed text-white/75 font-normal">
-                            {phase.tools.join(" · ")}
-                          </p>
-                        </div>
-                      </div>
-                    </motion.div>
-
-                    {/* Step Connector Arrow (Desktop: Align Middle without Outline Circle) */}
-                    {!isLast && (
-                      <div
-                        className={`hidden md:flex absolute -right-6 lg:-right-7 top-1/2 -translate-y-1/2 z-30 transition-all duration-300 items-center justify-center pointer-events-none ${
-                          hoveredCard === idx
-                            ? "text-[#F472B6] scale-125 drop-shadow-[0_0_10px_#DB3E8C]"
-                            : "text-[#DB3E8C]/80"
-                        }`}
-                      >
-                        <ArrowRight size={22} className={`transition-transform duration-300 ${hoveredCard === idx ? "translate-x-1" : ""}`} />
-                      </div>
-                    )}
-
-                    {/* Step Connector Arrow (Mobile: Down Arrow centered between stacked Cards) */}
-                    {!isLast && (
-                      <div className="flex md:hidden items-center justify-center my-3 relative z-30">
-                        <div className="flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#1E2A54] border border-[#DB3E8C]/50 text-[#DB3E8C] font-mono text-[9.5px] font-bold tracking-widest uppercase shadow-lg">
-                          <span>STEP {idx + 1} ➔ {idx + 2}</span>
-                          <ArrowDown size={11} />
-                        </div>
-                      </div>
-                    )}
-                  </div>
+                      <p className="font-sans text-xs sm:text-[13px] leading-relaxed text-white/80 font-normal">
+                        {phase.tools.join(" · ")}
+                      </p>
+                    </div>
+                  </motion.div>
                 )
               })}
             </div>
 
-            {/* Contextual Link Back to Works */}
-            <div className="mt-10 sm:mt-12 text-center relative z-20">
+            {/* Centered Bottom CTA Link */}
+            <div className="mt-14 sm:mt-16 lg:mt-20 text-center relative z-20">
               <a
                 href="#work"
                 onClick={(e) => {
                   e.preventDefault()
                   document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })
                 }}
-                className="font-sans text-xs sm:text-sm text-white/60 hover:text-[#F472B6] transition-colors duration-200 cursor-pointer inline-flex items-center gap-1.5"
+                className="font-sans text-xs sm:text-sm font-semibold tracking-wider text-white/70 hover:text-[#DB3E8C] transition-colors duration-200 cursor-pointer inline-flex items-center gap-2 group/cta"
               >
-                <span>See this process in action across all projects →</span>
+                <span className="group-hover/cta:underline underline-offset-4 decoration-[#DB3E8C]/60">
+                  See this process in action across all projects
+                </span>
+                <ArrowRight size={15} className="group-hover/cta:translate-x-1 transition-transform duration-200 text-[#DB3E8C]" />
               </a>
             </div>
           </div>
