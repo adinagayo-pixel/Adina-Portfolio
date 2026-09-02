@@ -57,8 +57,9 @@ import {
   ArrowRight, ArrowDown, ExternalLink, Globe, Zap,
   Users, CheckCircle, Coins, Bot, LayoutGrid,
   ArrowUpRight, ChevronRight, MousePointer2, Plus, Linkedin, Download,
-  Search, Target, FileCheck, FileText, X, Eye, ChevronDown, ChevronUp,
+  Search, Target, FileCheck, FileText, X, Eye, ChevronDown, ChevronUp, MessageSquare,
 } from "lucide-react"
+
 import GegiCase from "./components/GegiCase"
 import TngCase from "./components/TngCase"
 import ProArcheryCase from "./components/ProArcheryCase"
@@ -703,8 +704,9 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
                       <div className="font-bold text-[#DB3E8C] uppercase">STATUS</div>
                       <div className="font-bold text-[#19244E] flex items-center gap-1.5">
                         <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6] animate-pulse" />
-                        Open to Squads
+                        Open to Team Roles
                       </div>
+
                     </div>
                   </div>
 
@@ -1637,7 +1639,8 @@ function FeaturedWorkSection({
                         rel="noopener noreferrer"
                         className="flex items-center justify-center gap-1.5 w-full py-2.5 rounded-lg border border-white/20 hover:border-white/40 bg-white/5 hover:bg-white/10 text-white font-semibold tracking-wider text-xs uppercase transition-all cursor-pointer text-center shadow-sm"
                       >
-                        💬 Ask about this project ↗
+                        <MessageSquare size={14} />
+                        <span>Ask about this project ↗</span>
                       </a>
                     </div>
                   </div>
@@ -1715,10 +1718,12 @@ function FeaturedWorkSection({
                           href={getWhatsAppLink(project.name)}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center justify-center gap-1 w-full py-2.5 px-2 rounded-lg border border-white/20 hover:border-white/40 bg-white/5 hover:bg-white/10 text-white font-semibold tracking-wider text-[11px] uppercase transition-all cursor-pointer text-center"
+                          className="flex items-center justify-center gap-1.5 w-full py-2.5 px-2 rounded-lg border border-white/20 hover:border-white/40 bg-white/5 hover:bg-white/10 text-white font-semibold tracking-wider text-[11px] uppercase transition-all cursor-pointer text-center"
                         >
-                          <span>💬 Ask ↗</span>
+                          <MessageSquare size={13} />
+                          <span>ASK ↗</span>
                         </a>
+
                       </div>
                     </div>
                   </div>
@@ -2296,11 +2301,13 @@ function ProjectArchiveSection() {
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={(e) => e.stopPropagation()}
-                          className="font-sans text-[10px] sm:text-xs font-bold tracking-wider uppercase text-[#19244E]/50 hover:text-[#DB3E8C] transition-colors p-1"
+                          className="inline-flex items-center gap-1 font-sans text-[10px] sm:text-xs font-bold tracking-wider uppercase text-[#19244E]/50 hover:text-[#DB3E8C] transition-colors p-1"
                           title="Ask via WhatsApp"
                         >
-                          💬 Ask ↗
+                          <MessageSquare size={13} />
+                          <span>ASK ↗</span>
                         </a>
+
                       </div>
 
                       {/* Plus Icon (+) - Hides preview image when hovered */}
@@ -2482,8 +2489,10 @@ function ProjectArchiveSection() {
                   rel="noopener noreferrer"
                   className="w-full py-2.5 text-sm font-semibold tracking-wider uppercase text-[#19244E]/70 hover:text-[#19244E] border border-gray-200 hover:border-gray-300 bg-gray-50 hover:bg-gray-100 transition-all cursor-pointer rounded-lg text-center flex items-center justify-center gap-1.5"
                 >
-                  💬 Ask about this project ↗
+                  <MessageSquare size={14} />
+                  <span>Ask about this project ↗</span>
                 </a>
+
               </div>
             </motion.div>
           </>
