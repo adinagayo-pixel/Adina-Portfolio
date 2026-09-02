@@ -227,7 +227,8 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
           </div>
 
           {/* Right Column: Hero Image */}
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200/80 bg-[#111836] group">
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-[#111836] group">
+
             <img
               src={anleneThumb}
               alt="Anlene Health Passport Preview"

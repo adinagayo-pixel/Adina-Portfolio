@@ -380,7 +380,8 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
           </div>
 
           {/* Right Column: Hero Image */}
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200/80 bg-[#111836] group">
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-[#111836] group">
+
             <img
               src={backofficePortalThumb}
               alt="Backoffice Architecture Preview"

@@ -1247,7 +1247,8 @@ function InfiniteMarqueeDeck({ screens }: { screens: { src: string; label?: stri
             dragConstraints={{ left: -300, right: 300, top: -200, bottom: 200 }}
             dragElastic={0.2}
             whileDrag={{ scale: 1.05, zIndex: 99, cursor: "grabbing" }}
-            className="relative h-[340px] lg:h-[400px] aspect-[16/10] rounded-xl overflow-hidden border border-white/20 shadow-2xl flex-shrink-0 bg-[#141b36] group/item cursor-grab"
+            className="relative h-[340px] lg:h-[400px] aspect-[16/10] rounded-xl overflow-hidden shadow-2xl flex-shrink-0 bg-[#141b36] group/item cursor-grab"
+
           >
             <img
               src={screen.src}
@@ -1314,7 +1315,8 @@ function AutoCarouselDeck({ screens }: { screens: { src: string; label?: string 
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 1.02 }}
           transition={{ duration: 0.35, ease: "easeInOut" }}
-          className="relative w-[95%] aspect-[16/10] max-h-[96%] rounded-md overflow-hidden border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.65)] bg-[#141b36] flex items-center justify-center cursor-grab"
+          className="relative w-[95%] aspect-[16/10] max-h-[96%] rounded-md overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.65)] bg-[#141b36] flex items-center justify-center cursor-grab"
+
         >
           <img
             src={current.src}
@@ -1537,7 +1539,8 @@ function FeaturedWorkSection({
                     dragConstraints={{ left: -500, right: 500, top: -350, bottom: 350 }}
                     dragElastic={0.2}
                     whileDrag={{ scale: 1.04, zIndex: 99, cursor: "grabbing" }}
-                    className="relative w-[95%] aspect-[16/10] rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.65)] border border-white/20 bg-[#0d142d] cursor-grab"
+                    className="relative w-[95%] aspect-[16/10] rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.65)] bg-[#0d142d] cursor-grab"
+
                   >
                     <ImageWithFallback
                       src={activeProject.thumb}
@@ -1670,7 +1673,8 @@ function FeaturedWorkSection({
                     role="button"
                     tabIndex={0}
                     aria-label={`Open case study: ${project.name}`}
-                    className="relative aspect-[16/10] rounded-xl border border-white/10 bg-[#1c2446] overflow-hidden mb-4 p-1.5 flex items-center justify-center cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C]"
+                    className="relative aspect-[16/10] rounded-xl bg-[#1c2446] overflow-hidden mb-4 flex items-center justify-center cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C]"
+
                   >
                     <div className="relative w-full h-full rounded-lg overflow-hidden">
                       <ImageWithFallback
@@ -1696,19 +1700,10 @@ function FeaturedWorkSection({
                       </p>
                     </div>
 
-                    {/* Metrics */}
-                    <div className="space-y-3 pt-2">
-                      <div className="grid grid-cols-3 gap-2 border-t border-white/10 pt-3">
-                        {project.metrics.map((m) => (
-                          <div key={m.sub} className="text-center">
-                            <span className="font-display text-sm font-semibold block text-[#DB3E8C]">{m.val}</span>
-                            <span className="font-sans text-[9px] sm:text-[10px] text-white/60 uppercase tracking-wider block truncate">{m.sub}</span>
-                          </div>
-                        ))}
-                      </div>
+                    {/* Action Buttons */}
+                    <div className="pt-2">
+                      <div className="grid grid-cols-2 gap-2">
 
-                      {/* Action Buttons */}
-                      <div className="grid grid-cols-2 gap-2 pt-2">
                         <button
                           onClick={() => onOpenProject(project.projectId)}
                           className="flex items-center justify-center gap-1 w-full py-2.5 px-3 rounded-lg bg-[#DB3E8C] hover:bg-[#DB3E8C]/90 text-white font-sans text-xs font-bold tracking-wider uppercase transition-all shadow-md cursor-pointer"
@@ -2759,6 +2754,7 @@ export default function App() {
         prevProject={prevProject}
         totalCount={CASE_STUDY_SEQUENCE.length}
         currentIndex={idx}
+        allProjects={CASE_STUDY_SEQUENCE}
         onNavigateNext={
           nextProject
             ? () => {
@@ -2775,11 +2771,16 @@ export default function App() {
               }
             : undefined
         }
+        onNavigateTo={(id) => {
+          handleOpenProject(id)
+          window.scrollTo({ top: 0 })
+        }}
         onBackToHome={handleBackToWork}
       >
         {caseComponent}
       </CaseStudySwipeWrapper>
     )
+
   }
 
   if (currentView === "tng-case") {
