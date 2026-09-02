@@ -1368,316 +1368,417 @@ function AutoCarouselDeck({ screens }: { screens: { src: string; label?: string 
 }
 
 function FeaturedWorkSection({
-activeIndex,
-onActiveIndexChange,
-onOpenProject,
+  activeIndex,
+  onActiveIndexChange,
+  onOpenProject,
 }: {
-activeIndex: number
-onActiveIndexChange: (index: number) => void
-onOpenProject: (projectId: string) => void
+  activeIndex: number
+  onActiveIndexChange: (index: number) => void
+  onOpenProject: (projectId: string) => void
 }) {
-const sectionRef = useRef<HTMLDivElement>(null)
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
+  const [isHoveringCanvas, setIsHoveringCanvas] = useState(false)
+  const canvasRef = useRef<HTMLDivElement>(null)
 
-const { scrollYProgress } = useScroll({
-  target: sectionRef,
-  offset: ["start end", "start 25%"]
-})
+  // Mobile Showcase State & Refs
+  const [mobileActiveIndex, setMobileActiveIndex] = useState(0)
+  const mobileCarouselRef = useRef<HTMLDivElement>(null)
+  const mobileChipsRef = useRef<HTMLDivElement>(null)
 
-// GPU-Accelerated "Aperture / Viewport Box" Expansion Transition
-const clipPath = useTransform(
-  scrollYProgress,
-  [0, 1],
-  ["inset(15% 15% 15% 15% round 24px)", "inset(0% 0% 0% 0% round 0px)"]
-)
+  const handleMobileChipClick = (index: number) => {
+    setMobileActiveIndex(index)
+    if (mobileCarouselRef.current && mobileCarouselRef.current.children[index]) {
+      const slide = mobileCarouselRef.current.children[index] as HTMLElement
+      mobileCarouselRef.current.scrollTo({
+        left: slide.offsetLeft - 16,
+        behavior: 'smooth'
+      })
+    }
+  }
 
-const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
-const [isHoveringCanvas, setIsHoveringCanvas] = useState(false)
-const canvasRef = useRef<HTMLDivElement>(null)
+  const handleMobileCarouselScroll = () => {
+    if (!mobileCarouselRef.current) return
+    const container = mobileCarouselRef.current
+    const scrollLeft = container.scrollLeft
+    const firstSlide = container.children[0] as HTMLElement
+    if (!firstSlide) return
+    const slideWidth = firstSlide.offsetWidth + 16 // slide width + gap-4 (16px)
+    const newIndex = Math.min(
+      FEATURED.length - 1,
+      Math.max(0, Math.round(scrollLeft / slideWidth))
+    )
+    if (newIndex !== mobileActiveIndex) {
+      setMobileActiveIndex(newIndex)
+      if (mobileChipsRef.current && mobileChipsRef.current.children[newIndex]) {
+        const chip = mobileChipsRef.current.children[newIndex] as HTMLElement
+        mobileChipsRef.current.scrollTo({
+          left: chip.offsetLeft - 32,
+          behavior: 'smooth'
+        })
+      }
+    }
+  }
 
-const activeProject = FEATURED[activeIndex] || FEATURED[0]
+  const activeProject = FEATURED[activeIndex] || FEATURED[0]
 
-const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-  if (!canvasRef.current) return
-  const rect = canvasRef.current.getBoundingClientRect()
-  setMousePos({
-    x: e.clientX - rect.left,
-    y: e.clientY - rect.top,
-  })
-}
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!canvasRef.current) return
+    const rect = canvasRef.current.getBoundingClientRect()
+    setMousePos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    })
+  }
 
-return (
-  <section id="work" className="relative z-20 overflow-hidden bg-[#19244E]">
-    <div className="w-full h-full bg-[#19244E]">
-      {/* Header */}
-      <div
-        className="px-4 sm:px-8 lg:px-16 py-8 sm:py-10 flex items-center gap-6"
-        style={{ borderBottom: `1px solid rgba(255, 255, 255, 0.08)` }}
-      >
-        <span className="font-sans text-[10px] font-semibold tracking-[0.2em] text-white/60">SELECTED WORK</span>
-        <div className="flex-1 h-px bg-white/10" />
-        <span className="font-sans text-[9px] sm:text-[10px] text-white/60 font-semibold tracking-[0.15em]">ENTERPRISE · B2B · REGIONAL</span>
-      </div>
-
-      {/* Section intro */}
-      <div className="px-4 sm:px-8 lg:px-16 py-5 sm:py-7 lg:py-8" style={{ borderBottom: `1px solid rgba(255, 255, 255, 0.08)` }}>
-        <h2
-          className="font-display font-normal leading-tight text-white"
-          style={{ fontSize: "clamp(1.8rem, 3.5vw, 3rem)", letterSpacing: "-0.02em", maxWidth: "900px" }}
+  return (
+    <section id="work" className="relative z-20 overflow-hidden bg-[#19244E]">
+      <div className="w-full h-full bg-[#19244E]">
+        {/* Header */}
+        <div
+          className="px-4 sm:px-8 lg:px-16 py-8 sm:py-10 flex items-center gap-6"
+          style={{ borderBottom: `1px solid rgba(255, 255, 255, 0.08)` }}
         >
-          Projects that <br className="lg:hidden" />
-          define{" "}
-          <em className="font-normal" style={{ color: C }}>how I think.</em>
-        </h2>
-      </div>
+          <span className="font-sans text-[10px] font-semibold tracking-[0.2em] text-white/60">SELECTED WORK</span>
+          <div className="flex-1 h-px bg-white/10" />
+          <span className="font-sans text-[9px] sm:text-[10px] text-white/60 font-semibold tracking-[0.15em]">ENTERPRISE · B2B · REGIONAL</span>
+        </div>
 
-      {/* Showcase container */}
-      <div className="px-4 sm:px-8 lg:px-16">
-        {/* Desktop Showcase */}
-        <div className="hidden lg:grid lg:grid-cols-[300px_1fr_320px] gap-8 py-10 min-h-[540px]">
-          {/* Left Column: Project Selector */}
-          <div className="flex flex-col gap-2.5 justify-center pr-4 border-r border-white/10">
+        {/* Section intro */}
+        <div className="px-4 sm:px-8 lg:px-16 py-5 sm:py-7 lg:py-8" style={{ borderBottom: `1px solid rgba(255, 255, 255, 0.08)` }}>
+          <h2
+            className="font-display font-normal leading-tight text-white"
+            style={{ fontSize: "clamp(1.8rem, 3.5vw, 3rem)", letterSpacing: "-0.02em", maxWidth: "900px" }}
+          >
+            Projects that <br className="lg:hidden" />
+            define{" "}
+            <em className="font-normal" style={{ color: C }}>how I think.</em>
+          </h2>
+        </div>
+
+        {/* Sticky Horizontal Chip Navigator (Mobile Breakpoint Only) */}
+        <div className="block lg:hidden sticky top-14 sm:top-16 z-30 bg-[#19244E]/95 backdrop-blur-md border-b border-white/10 py-3 px-4 sm:px-8 shadow-md">
+          <div
+            ref={mobileChipsRef}
+            className="flex items-center gap-2 overflow-x-auto scrollbar-none py-0.5"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
             {FEATURED.map((project, i) => {
-              const isActive = i === activeIndex
+              const isActive = i === mobileActiveIndex
+              const shortName = project.client.split(" ")[0]
               return (
                 <button
                   key={project.projectId}
-                  onClick={() => onActiveIndexChange(i)}
-                  aria-label={`View project: ${project.name}`}
-                  aria-pressed={i === activeIndex}
-                  className={`group text-left transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] rounded-lg py-2 px-3 border-l-2 ${
-                    isActive ? "border-[#DB3E8C] bg-white/[0.08] shadow-sm" : "border-transparent hover:bg-white/[0.04]"
+                  onClick={() => handleMobileChipClick(i)}
+                  className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full font-sans text-xs font-semibold uppercase tracking-wider transition-all duration-200 shrink-0 cursor-pointer ${
+                    isActive
+                      ? "bg-[#DB3E8C] text-white shadow-[0_4px_12px_rgba(219,62,140,0.4)] ring-1 ring-white/30"
+                      : "bg-white/5 hover:bg-white/10 text-white/70 border border-white/10"
                   }`}
                 >
-                  <div className="flex items-start gap-2.5">
-                    <span
-                      className="font-sans text-[10px] tracking-wider transition-colors duration-300 pt-0.5 font-bold shrink-0"
-                      style={{ color: isActive ? C : "rgba(255, 255, 255, 0.3)" }}
-                    >
-                      {project.num}
-                    </span>
-                    <span
-                      className="text-xs sm:text-sm leading-snug transition-all duration-300"
-                      style={{
-                        color: isActive ? "#FFFFFF" : "rgba(255, 255, 255, 0.4)",
-                        fontWeight: isActive ? 700 : 500,
-                        transform: isActive ? "translateX(3px)" : "translateX(0px)",
-                      }}
-                    >
-                      {project.name}
-                    </span>
-                  </div>
+                  <span className={isActive ? "text-white font-bold" : "text-[#DB3E8C] font-bold"}>
+                    {project.num}
+                  </span>
+                  <span className="truncate max-w-[110px]">{shortName}</span>
                 </button>
               )
             })}
           </div>
+        </div>
 
-          {/* Center Column: Figma Canvas Stage */}
-          <div
-            ref={canvasRef}
-            onMouseMove={handleMouseMove}
-            onMouseEnter={() => setIsHoveringCanvas(true)}
-            onMouseLeave={() => setIsHoveringCanvas(false)}
-            className="relative flex items-center justify-center p-6 lg:p-8 overflow-hidden rounded-2xl bg-[#111936] cursor-crosshair select-none h-full min-h-[500px]"
-            style={{
-              backgroundImage: "radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px)",
-              backgroundSize: "16px 16px",
-            }}
-          >
-            {/* Figma frame label (Left) */}
-            <div className="absolute top-4 left-4 bg-white/10 backdrop-blur-md border border-white/15 px-3 py-1 rounded text-[10px] font-sans font-bold tracking-widest text-white/90 z-20 shadow-sm">
-              {activeProject.num} · {activeProject.location} · {activeProject.year}
-            </div>
-
-            {/* Active Figma Frame Preview Stage (Borderless & Unclipped) */}
-            <motion.div
-              key={activeProject.projectId}
-              initial={{ scale: 0.98, opacity: 0.9 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.3 }}
-              onClick={() => onOpenProject(activeProject.projectId)}
-              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onOpenProject(activeProject.projectId) }}
-              role="button"
-              tabIndex={0}
-              aria-label={`Open case study: ${activeProject.name}`}
-              className="relative w-full h-full min-h-[460px] lg:min-h-[480px] flex items-center justify-center cursor-pointer transition-transform duration-300 hover:scale-[1.01] focus:outline-none group"
-            >
-              {activeProject.screens ? (
-                <StackedFanOutDeck screens={activeProject.screens} />
-              ) : (
-                <motion.div
-                  drag
-                  dragSnapToOrigin={true}
-                  dragConstraints={{ left: -500, right: 500, top: -350, bottom: 350 }}
-                  dragElastic={0.2}
-                  whileDrag={{ scale: 1.04, zIndex: 99, cursor: "grabbing" }}
-                  className="relative w-[95%] aspect-[16/10] rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.65)] border border-white/20 bg-[#0d142d] cursor-grab"
-                >
-                  <ImageWithFallback
-                    src={activeProject.thumb}
-                    alt={`${activeProject.name} — mockup`}
-                    className="w-full h-full object-cover object-top rounded-2xl group-hover:scale-[1.01] transition-transform duration-700 pointer-events-none"
-                  />
-                </motion.div>
-              )}
-            </motion.div>
-
-            {/* Custom Figma cursor follower */}
-            <AnimatePresence>
-              {isHoveringCanvas && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.15 }}
-                  className="absolute pointer-events-none z-30"
-                  style={{
-                    left: mousePos.x,
-                    top: mousePos.y,
-                    transform: "translate(-2px, -2px)",
-                  }}
-                >
-                  {/* Custom Figma Triangle cursor */}
-                  <div className="flex items-start gap-1">
-                    <MousePointer2 size={20} className="text-[#DB3E8C] fill-[#DB3E8C] stroke-white stroke-[1.5] drop-shadow-md flex-shrink-0" />
-                    {/* User badge label */}
-                    <div
-                      className="ml-0.5 mt-2.5 px-2 py-0.5 rounded-md text-[9px] font-sans font-bold text-white shadow-lg border border-white/20 whitespace-nowrap"
-                      style={{ backgroundColor: C }}
-                    >
-                      Hi Guest! 👋
-                    </div>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
-          {/* Right Column: Project Specs */}
-          <div className="flex flex-col justify-center pl-6 border-l border-white/10">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeProject.projectId}
-                initial={{ opacity: 0, x: 10 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -10 }}
-                transition={{ duration: 0.25 }}
-                className="flex flex-col justify-center space-y-4 py-1"
-              >
-                <div>
-                  <span className="font-sans text-[11px] font-semibold tracking-wider text-white/60 uppercase block mb-1">
-                    CLIENT: {activeProject.client}
-                  </span>
-                  <h3 className="font-display font-semibold mb-2 leading-tight text-white text-xl sm:text-2xl" style={{ letterSpacing: "-0.01em" }}>
-                    {activeProject.name}
-                  </h3>
-                  <p className="text-xs sm:text-sm leading-relaxed mb-3 font-sans text-white/80">
-                    {activeProject.headline}
-                  </p>
-                </div>
-
-                {/* Metrics/Stats */}
-                <div className="space-y-3">
-                  <div className="flex flex-col gap-2 border-t border-[#DB3E8C]/20 pt-3">
-                    <div className="flex items-baseline justify-between border-b border-white/10 pb-1.5">
-                      <span className="font-sans text-[11px] font-bold tracking-widest text-[#DB3E8C] uppercase">OWNERSHIP ROLE</span>
-                      <span className="font-sans font-semibold text-white text-xs text-right">
-                        {activeProject.role}
+        {/* Showcase container */}
+        <div className="px-4 sm:px-8 lg:px-16">
+          {/* Desktop Showcase */}
+          <div className="hidden lg:grid lg:grid-cols-[300px_1fr_320px] gap-8 py-10 min-h-[540px]">
+            {/* Left Column: Project Selector */}
+            <div className="flex flex-col gap-2.5 justify-center pr-4 border-r border-white/10">
+              {FEATURED.map((project, i) => {
+                const isActive = i === activeIndex
+                return (
+                  <button
+                    key={project.projectId}
+                    onClick={() => onActiveIndexChange(i)}
+                    aria-label={`View project: ${project.name}`}
+                    aria-pressed={i === activeIndex}
+                    className={`group text-left transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] rounded-lg py-2 px-3 border-l-2 ${
+                      isActive ? "border-[#DB3E8C] bg-white/[0.08] shadow-sm" : "border-transparent hover:bg-white/[0.04]"
+                    }`}
+                  >
+                    <div className="flex items-start gap-2.5">
+                      <span
+                        className="font-sans text-[10px] tracking-wider transition-colors duration-300 pt-0.5 font-bold shrink-0"
+                        style={{ color: isActive ? C : "rgba(255, 255, 255, 0.3)" }}
+                      >
+                        {project.num}
+                      </span>
+                      <span
+                        className="text-xs sm:text-sm leading-snug transition-all duration-300"
+                        style={{
+                          color: isActive ? "#FFFFFF" : "rgba(255, 255, 255, 0.4)",
+                          fontWeight: isActive ? 700 : 500,
+                          transform: isActive ? "translateX(3px)" : "translateX(0px)",
+                        }}
+                      >
+                        {project.name}
                       </span>
                     </div>
-                    {activeProject.metrics.map((m) => (
-                      <div key={m.sub} className="flex items-baseline justify-between border-b border-white/5 pb-1.5">
-                        <span className="font-sans text-[10px] font-semibold tracking-widest text-white/60 uppercase">{m.sub}</span>
-                        <span className="font-display font-semibold text-white text-base sm:text-lg" style={{ color: C }}>
-                          {m.val}
+                  </button>
+                )
+              })}
+            </div>
+
+            {/* Center Column: Figma Canvas Stage */}
+            <div
+              ref={canvasRef}
+              onMouseMove={handleMouseMove}
+              onMouseEnter={() => setIsHoveringCanvas(true)}
+              onMouseLeave={() => setIsHoveringCanvas(false)}
+              className="relative flex items-center justify-center p-6 lg:p-8 overflow-hidden rounded-2xl bg-[#111936] cursor-crosshair select-none h-full min-h-[500px]"
+              style={{
+                backgroundImage: "radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px)",
+                backgroundSize: "16px 16px",
+              }}
+            >
+              {/* Figma frame label (Left) */}
+              <div className="absolute top-4 left-4 bg-white/10 backdrop-blur-md border border-white/15 px-3 py-1 rounded text-[10px] font-sans font-bold tracking-widest text-white/90 z-20 shadow-sm">
+                {activeProject.num} · {activeProject.location} · {activeProject.year}
+              </div>
+
+              {/* Active Figma Frame Preview Stage (Borderless & Unclipped) */}
+              <motion.div
+                key={activeProject.projectId}
+                initial={{ scale: 0.98, opacity: 0.9 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.3 }}
+                onClick={() => onOpenProject(activeProject.projectId)}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onOpenProject(activeProject.projectId) }}
+                role="button"
+                tabIndex={0}
+                aria-label={`Open case study: ${activeProject.name}`}
+                className="relative w-full h-full min-h-[460px] lg:min-h-[480px] flex items-center justify-center cursor-pointer transition-transform duration-300 hover:scale-[1.01] focus:outline-none group"
+              >
+                {activeProject.screens ? (
+                  <StackedFanOutDeck screens={activeProject.screens} />
+                ) : (
+                  <motion.div
+                    drag
+                    dragSnapToOrigin={true}
+                    dragConstraints={{ left: -500, right: 500, top: -350, bottom: 350 }}
+                    dragElastic={0.2}
+                    whileDrag={{ scale: 1.04, zIndex: 99, cursor: "grabbing" }}
+                    className="relative w-[95%] aspect-[16/10] rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.65)] border border-white/20 bg-[#0d142d] cursor-grab"
+                  >
+                    <ImageWithFallback
+                      src={activeProject.thumb}
+                      alt={`${activeProject.name} — mockup`}
+                      className="w-full h-full object-cover object-top rounded-2xl group-hover:scale-[1.01] transition-transform duration-700 pointer-events-none"
+                    />
+                  </motion.div>
+                )}
+              </motion.div>
+              {/* Custom Figma cursor follower */}
+              <AnimatePresence>
+                {isHoveringCanvas && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.15 }}
+                    className="absolute pointer-events-none z-30"
+                    style={{
+                      left: mousePos.x,
+                      top: mousePos.y,
+                      transform: "translate(-2px, -2px)",
+                    }}
+                  >
+                    {/* Custom Figma Triangle cursor */}
+                    <div className="flex items-start gap-1">
+                      <MousePointer2 size={20} className="text-[#DB3E8C] fill-[#DB3E8C] stroke-white stroke-[1.5] drop-shadow-md flex-shrink-0" />
+                      {/* User badge label */}
+                      <div
+                        className="ml-0.5 mt-2.5 px-2 py-0.5 rounded-md text-[9px] font-sans font-bold text-white shadow-lg border border-white/20 whitespace-nowrap"
+                        style={{ backgroundColor: C }}
+                      >
+                        Hi Guest! 👋
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Right Column: Project Specs */}
+            <div className="flex flex-col justify-center pl-6 border-l border-white/10">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeProject.projectId}
+                  initial={{ opacity: 0, x: 10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -10 }}
+                  transition={{ duration: 0.25 }}
+                  className="flex flex-col justify-center space-y-4 py-1"
+                >
+                  <div>
+                    <span className="font-sans text-[11px] font-semibold tracking-wider text-white/60 uppercase block mb-1">
+                      CLIENT: {activeProject.client}
+                    </span>
+                    <h3 className="font-display font-semibold mb-2 leading-tight text-white text-xl sm:text-2xl" style={{ letterSpacing: "-0.02em" }}>
+                      {activeProject.name}
+                    </h3>
+                    <p className="text-xs sm:text-sm leading-relaxed mb-3 font-sans text-white/80">
+                      {activeProject.headline}
+                    </p>
+                  </div>
+
+                  {/* Metrics/Stats */}
+                  <div className="space-y-3">
+                    <div className="flex flex-col gap-2 border-t border-[#DB3E8C]/20 pt-3">
+                      <div className="flex items-baseline justify-between border-b border-white/10 pb-1.5">
+                        <span className="font-sans text-[11px] font-bold tracking-widest text-[#DB3E8C] uppercase">OWNERSHIP ROLE</span>
+                        <span className="font-sans font-semibold text-white text-xs text-right">
+                          {activeProject.role}
                         </span>
                       </div>
-                    ))}
+                      {activeProject.metrics.map((m) => (
+                        <div key={m.sub} className="flex items-baseline justify-between border-b border-white/5 pb-1.5">
+                          <span className="font-sans text-[10px] font-semibold tracking-widest text-white/60 uppercase">{m.sub}</span>
+                          <span className="font-display font-semibold text-white text-base sm:text-lg" style={{ color: C }}>
+                            {m.val}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="flex flex-col gap-2 pt-1">
+                      <button
+                        onClick={() => onOpenProject(activeProject.projectId)}
+                        className="group flex items-center justify-between w-full px-4 py-3 rounded-lg bg-[#DB3E8C] hover:bg-[#DB3E8C]/90 text-white font-sans text-xs font-bold tracking-widest uppercase transition-all duration-200 shadow-lg shadow-[#DB3E8C]/25 hover:shadow-[0_8px_20px_rgba(219,62,140,0.4)] cursor-pointer"
+                      >
+                        <span>Open Case Study</span>
+                        <ArrowUpRight size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                      </button>
+                      <a
+                        href={getWhatsAppLink(activeProject.name)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-1.5 w-full py-2.5 rounded-lg border border-white/20 hover:border-white/40 bg-white/5 hover:bg-white/10 text-white font-semibold tracking-wider text-xs uppercase transition-all cursor-pointer text-center shadow-sm"
+                      >
+                        💬 Ask about this project ↗
+                      </a>
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
+
+          {/* Mobile Showcase: Swipeable Horizontal Carousel */}
+          <div className="block lg:hidden py-6 sm:py-8">
+            <div
+              ref={mobileCarouselRef}
+              onScroll={handleMobileCarouselScroll}
+              className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-none py-2 px-0 -mx-4 sm:-mx-8 px-4 sm:px-8"
+              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+            >
+              {FEATURED.map((project, i) => (
+                <div
+                  key={project.projectId}
+                  className="w-[86vw] sm:w-[480px] shrink-0 snap-center rounded-2xl bg-[#111936] border border-white/10 p-4 sm:p-5 shadow-xl flex flex-col justify-between"
+                >
+                  {/* Figma frame label */}
+                  <div className="flex justify-between items-center mb-3">
+                    <span className="font-sans text-[10px] sm:text-xs text-white/60 tracking-wider font-semibold">
+                      # {project.num} · {project.location} · {project.year}
+                    </span>
+                    <span className="font-sans text-[10px] sm:text-xs text-[#DB3E8C] font-bold tracking-wider uppercase">
+                      {i + 1} / {FEATURED.length}
+                    </span>
                   </div>
 
-                  <div className="flex flex-col gap-2 pt-1">
-                    <button
-                      onClick={() => onOpenProject(activeProject.projectId)}
-                      className="group flex items-center justify-between w-full px-4 py-3 rounded-lg bg-[#DB3E8C] hover:bg-[#DB3E8C]/90 text-white font-sans text-xs font-bold tracking-widest uppercase transition-all duration-200 shadow-lg shadow-[#DB3E8C]/25 hover:shadow-[0_8px_20px_rgba(219,62,140,0.4)] cursor-pointer"
-                    >
-                      <span>Open Case Study</span>
-                      <ArrowUpRight size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                    </button>
-                    <a
-                      href={getWhatsAppLink(activeProject.name)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-1.5 w-full py-2.5 rounded-lg border border-white/20 hover:border-white/40 bg-white/5 hover:bg-white/10 text-white font-semibold tracking-wider text-xs uppercase transition-all cursor-pointer text-center shadow-sm"
-                    >
-                      💬 Ask about this project ↗
-                    </a>
+                  {/* Mockup Frame */}
+                  <div
+                    onClick={() => onOpenProject(project.projectId)}
+                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onOpenProject(project.projectId) }}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`Open case study: ${project.name}`}
+                    className="relative aspect-[16/10] rounded-xl border border-white/10 bg-[#1c2446] overflow-hidden mb-4 p-1.5 flex items-center justify-center cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C]"
+                  >
+                    <div className="relative w-full h-full rounded-lg overflow-hidden">
+                      <ImageWithFallback
+                        src={project.thumb}
+                        alt={project.name}
+                        className="w-full h-full object-cover object-top rounded-lg group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#19244E]/30 pointer-events-none" />
+                    </div>
+                  </div>
+
+                  {/* Metadata & Headline */}
+                  <div className="flex-1 flex flex-col justify-between">
+                    <div>
+                      <p className="font-sans text-xs font-semibold text-white/60 uppercase mb-0.5 tracking-wider">
+                        CLIENT: {project.client}
+                      </p>
+                      <h3 className="font-display font-semibold text-white text-base sm:text-lg mb-2 leading-tight">
+                        {project.name}
+                      </h3>
+                      <p className="text-xs sm:text-sm leading-relaxed text-white/80 mb-4 font-sans line-clamp-3">
+                        {project.headline}
+                      </p>
+                    </div>
+
+                    {/* Metrics */}
+                    <div className="space-y-3 pt-2">
+                      <div className="grid grid-cols-3 gap-2 border-t border-white/10 pt-3">
+                        {project.metrics.map((m) => (
+                          <div key={m.sub} className="text-center">
+                            <span className="font-display text-sm font-semibold block text-[#DB3E8C]">{m.val}</span>
+                            <span className="font-sans text-[9px] sm:text-[10px] text-white/60 uppercase tracking-wider block truncate">{m.sub}</span>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Action Buttons */}
+                      <div className="grid grid-cols-2 gap-2 pt-2">
+                        <button
+                          onClick={() => onOpenProject(project.projectId)}
+                          className="flex items-center justify-center gap-1 w-full py-2.5 px-3 rounded-lg bg-[#DB3E8C] hover:bg-[#DB3E8C]/90 text-white font-sans text-xs font-bold tracking-wider uppercase transition-all shadow-md cursor-pointer"
+                        >
+                          <span>Open Case</span>
+                          <ArrowUpRight size={14} />
+                        </button>
+                        <a
+                          href={getWhatsAppLink(project.name)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center gap-1 w-full py-2.5 px-2 rounded-lg border border-white/20 hover:border-white/40 bg-white/5 hover:bg-white/10 text-white font-semibold tracking-wider text-[11px] uppercase transition-all cursor-pointer text-center"
+                        >
+                          <span>💬 Ask ↗</span>
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </motion.div>
-            </AnimatePresence>
+              ))}
+            </div>
+
+            {/* Swipe Indicator Dots */}
+            <div className="flex items-center justify-center gap-1.5 mt-4">
+              {FEATURED.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => handleMobileChipClick(idx)}
+                  aria-label={`Go to project ${idx + 1}`}
+                  className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                    idx === mobileActiveIndex ? "w-6 bg-[#DB3E8C]" : "w-1.5 bg-white/30"
+                  }`}
+                />
+              ))}
+            </div>
           </div>
         </div>
-
-        {/* Mobile Showcase */}
-        <div className="block lg:hidden space-y-8 sm:space-y-12 py-8 sm:py-12">
-          {FEATURED.map((project) => (
-            <div
-              key={project.projectId}
-              onClick={() => onOpenProject(project.projectId)}
-              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onOpenProject(project.projectId) }}
-              role="button"
-              tabIndex={0}
-              aria-label={`Open case study: ${project.name}`}
-              className="group relative rounded-2xl bg-[#111936] border border-white/5 p-4 sm:p-5 cursor-pointer shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C]"
-            >
-              {/* Figma frame label */}
-              <div className="flex justify-between items-center mb-3 sm:mb-4">
-                <span className="font-sans text-[10px] sm:text-xs text-white/60 tracking-wider">
-                  # {project.num} · {project.location} · {project.year}
-                </span>
-                <span className="font-sans text-[10px] sm:text-xs text-[#DB3E8C] font-bold tracking-wider uppercase">
-                  View Case ↗
-                </span>
-              </div>
-
-              <div className="relative aspect-[16/10] rounded-xl border border-white/10 bg-[#1c2446] overflow-hidden mb-4 p-1.5 flex items-center justify-center">
-                <div className="relative w-full h-full rounded-lg overflow-hidden">
-                  <ImageWithFallback
-                    src={project.thumb}
-                    alt={project.name}
-                    className="w-full h-full object-cover object-top rounded-lg group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#19244E]/40" />
-                </div>
-              </div>
-
-              {/* Metadata */}
-              <div>
-                <p className="font-sans text-xs font-semibold text-white/60 uppercase mb-0.5">
-                  {project.client}
-                </p>
-                <h3 className="font-display font-semibold text-white text-base sm:text-lg mb-2">
-                  {project.name}
-                </h3>
-                <p className="text-sm leading-relaxed text-white/80 mb-4">
-                  {project.headline}
-                </p>
-
-                {/* Metrics */}
-                <div className="grid grid-cols-3 gap-2 border-t border-white/5 pt-4">
-                  {project.metrics.map((m) => (
-                    <div key={m.sub} className="text-center">
-                      <span className="font-display text-sm font-semibold block text-white" style={{ color: C }}>{m.val}</span>
-                      <span className="font-sans text-[10px] sm:text-[11px] text-white/60 uppercase tracking-wider">{m.sub}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
-    </div>
-  </section>
+    </section>
   )
 }
 
