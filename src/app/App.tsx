@@ -68,6 +68,7 @@ import BijakWangCase from "./components/BijakWangCase"
 import MyArcheryCase from "./components/MyArcheryCase"
 import BackofficeCase from "./components/BackofficeCase"
 import AboutMe from "./components/AboutMe"
+import { CaseStudySwipeWrapper, CaseStudyMeta } from "./components/ui/CaseStudySwipeWrapper"
 
 // ─── Design tokens ────────────────────────────────────────────────────────────
 const N = "#19244E"   // Oiler Navy
@@ -1455,35 +1456,6 @@ function FeaturedWorkSection({
           </h2>
         </div>
 
-        {/* Sticky Horizontal Chip Navigator (Mobile Breakpoint Only) */}
-        <div className="block lg:hidden sticky top-14 sm:top-16 z-30 bg-[#19244E]/95 backdrop-blur-md border-b border-white/10 py-3 px-4 sm:px-8 shadow-md">
-          <div
-            ref={mobileChipsRef}
-            className="flex items-center gap-2 overflow-x-auto scrollbar-none py-0.5"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-          >
-            {FEATURED.map((project, i) => {
-              const isActive = i === mobileActiveIndex
-              const shortName = project.client.split(" ")[0]
-              return (
-                <button
-                  key={project.projectId}
-                  onClick={() => handleMobileChipClick(i)}
-                  className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full font-sans text-xs font-semibold uppercase tracking-wider transition-all duration-200 shrink-0 cursor-pointer ${
-                    isActive
-                      ? "bg-[#DB3E8C] text-white shadow-[0_4px_12px_rgba(219,62,140,0.4)] ring-1 ring-white/30"
-                      : "bg-white/5 hover:bg-white/10 text-white/70 border border-white/10"
-                  }`}
-                >
-                  <span className={isActive ? "text-white font-bold" : "text-[#DB3E8C] font-bold"}>
-                    {project.num}
-                  </span>
-                  <span className="truncate max-w-[110px]">{shortName}</span>
-                </button>
-              )
-            })}
-          </div>
-        </div>
 
         {/* Showcase container */}
         <div className="px-4 sm:px-8 lg:px-16">
@@ -1685,12 +1657,9 @@ function FeaturedWorkSection({
                   className="w-[86vw] sm:w-[480px] shrink-0 snap-center rounded-2xl bg-[#111936] border border-white/10 p-4 sm:p-5 shadow-xl flex flex-col justify-between"
                 >
                   {/* Figma frame label */}
-                  <div className="flex justify-between items-center mb-3">
+                  <div className="mb-3">
                     <span className="font-sans text-[10px] sm:text-xs text-white/60 tracking-wider font-semibold">
                       # {project.num} · {project.location} · {project.year}
-                    </span>
-                    <span className="font-sans text-[10px] sm:text-xs text-[#DB3E8C] font-bold tracking-wider uppercase">
-                      {i + 1} / {FEATURED.length}
                     </span>
                   </div>
 
@@ -2695,19 +2664,45 @@ export default function App() {
   const [isPdfModalOpen, setIsPdfModalOpen] = useState(false)
   const activeSection = useScrollSpy(["home", "work", "process", "archive", "contact"])
 
-  const handleOpenProject = (id: string) => {
-    if (FEATURED_INDEX_MAP[id] !== undefined) {
-      setActiveFeaturedIndex(FEATURED_INDEX_MAP[id])
+  const handleOpenProject = (id: string | number) => {
+    const strId = String(id).toLowerCase()
+    if (FEATURED_INDEX_MAP[strId] !== undefined) {
+      setActiveFeaturedIndex(FEATURED_INDEX_MAP[strId])
     }
-    if (id === "gegi") setCurrentView("gegi-case")
-    if (id === "tng") setCurrentView("tng-case")
-    if (id === "archery") setCurrentView("archery-case")
-    if (id === "election") setCurrentView("election-case")
-    if (id === "anlene") setCurrentView("anlene-case")
-    if (id === "bijakwang") setCurrentView("bijakwang-case")
-    if (id === "myarchery") setCurrentView("myarchery-case")
-    if (id === "backoffice") setCurrentView("backoffice-case")
-    if (id === "sunway") setCurrentView("sunway-case")
+
+    const map: Record<string, typeof currentView> = {
+      tng: "tng-case",
+      gegi: "gegi-case",
+      bijakwang: "bijakwang-case",
+      election: "election-case",
+      backoffice: "backoffice-case",
+      anlene: "anlene-case",
+      archery: "archery-case",
+      myarchery: "myarchery-case",
+      sunway: "tng-case",
+      "1": "tng-case",
+      "2": "gegi-case",
+      "3": "tng-case",
+      "4": "backoffice-case",
+      "5": "backoffice-case",
+      "6": "bijakwang-case",
+      "7": "bijakwang-case",
+      "8": "gegi-case",
+      "9": "bijakwang-case",
+      "10": "election-case",
+      "11": "backoffice-case",
+      "12": "anlene-case",
+      "13": "archery-case",
+      "14": "election-case",
+      "15": "myarchery-case",
+      "16": "anlene-case",
+      "17": "election-case",
+      "18": "backoffice-case",
+    }
+
+    const targetView = map[strId] || "tng-case"
+    setCurrentView(targetView)
+    window.scrollTo({ top: 0 })
   }
 
   const handleBackToWork = () => {
@@ -2725,8 +2720,69 @@ export default function App() {
     )
   }
 
-  if (currentView === "tng-case") {
+  const CASE_STUDY_SEQUENCE: CaseStudyMeta[] = [
+    { id: "tng", num: "01", name: "Seamless Micro Insurance Integration", client: "Touch 'n Go × GEGM", thumb: coverTng },
+    { id: "gegi", num: "02", name: "Gamified CI Evaluation & Acquisition", client: "GEGI Singapore", thumb: ci1 },
+    { id: "bijakwang", num: "03", name: "Roadshow Tournament Platform", client: "mySalam × myKawan", thumb: mySalamThumb },
+    { id: "election", num: "04", name: "38 Province Real Time Election Monitoring", client: "Indonesian Political Party", thumb: aseanThumb },
+    { id: "backoffice", num: "05", name: "Multi-tenant Backoffice Portal", client: "InsureTech SaaS Platform", thumb: backofficePortalThumb },
+    { id: "anlene", num: "06", name: "Brand Design System & Asset Management", client: "Anlene Malaysia", thumb: anleneThumb },
+    { id: "archery", num: "07", name: "ProArchery Competition Scoring App", client: "National Archery Federation", thumb: proArcheryThumb },
+    { id: "myarchery", num: "08", name: "MyArchery Mobile Field App", client: "PERPANI Archery", thumb: myArcheryPerpaniThumb },
+  ]
+
+  const renderCaseStudyView = (viewId: string, caseComponent: React.ReactNode) => {
+    const viewToIdMap: Record<string, string> = {
+      "tng-case": "tng",
+      "gegi-case": "gegi",
+      "bijakwang-case": "bijakwang",
+      "election-case": "election",
+      "backoffice-case": "backoffice",
+      "anlene-case": "anlene",
+      "archery-case": "archery",
+      "myarchery-case": "myarchery",
+    }
+    const currentId = viewToIdMap[viewId]
+    const idx = CASE_STUDY_SEQUENCE.findIndex((item) => item.id === currentId)
+    if (idx === -1) return caseComponent
+
+    const currentProject = CASE_STUDY_SEQUENCE[idx]
+    const nextProject = idx < CASE_STUDY_SEQUENCE.length - 1 ? CASE_STUDY_SEQUENCE[idx + 1] : null
+    const prevProject = idx > 0 ? CASE_STUDY_SEQUENCE[idx - 1] : null
+
     return (
+      <CaseStudySwipeWrapper
+        currentProject={currentProject}
+        nextProject={nextProject}
+        prevProject={prevProject}
+        totalCount={CASE_STUDY_SEQUENCE.length}
+        currentIndex={idx}
+        onNavigateNext={
+          nextProject
+            ? () => {
+                handleOpenProject(nextProject.id)
+                window.scrollTo({ top: 0 })
+              }
+            : undefined
+        }
+        onNavigatePrev={
+          prevProject
+            ? () => {
+                handleOpenProject(prevProject.id)
+                window.scrollTo({ top: 0 })
+              }
+            : undefined
+        }
+        onBackToHome={handleBackToWork}
+      >
+        {caseComponent}
+      </CaseStudySwipeWrapper>
+    )
+  }
+
+  if (currentView === "tng-case") {
+    return renderCaseStudyView(
+      "tng-case",
       <TngCase
         onBack={handleBackToWork}
         onNext={() => { handleOpenProject("gegi"); window.scrollTo({ top: 0 }) }}
@@ -2735,7 +2791,8 @@ export default function App() {
     )
   }
   if (currentView === "gegi-case") {
-    return (
+    return renderCaseStudyView(
+      "gegi-case",
       <GegiCase
         onBack={handleBackToWork}
         onNext={() => { handleOpenProject("bijakwang"); window.scrollTo({ top: 0 }) }}
@@ -2744,7 +2801,8 @@ export default function App() {
     )
   }
   if (currentView === "bijakwang-case") {
-    return (
+    return renderCaseStudyView(
+      "bijakwang-case",
       <BijakWangCase
         onBack={handleBackToWork}
         onNext={() => { handleOpenProject("election"); window.scrollTo({ top: 0 }) }}
@@ -2753,7 +2811,8 @@ export default function App() {
     )
   }
   if (currentView === "election-case") {
-    return (
+    return renderCaseStudyView(
+      "election-case",
       <ElectionCase
         onBack={handleBackToWork}
         onNext={() => { handleOpenProject("backoffice"); window.scrollTo({ top: 0 }) }}
@@ -2762,7 +2821,8 @@ export default function App() {
     )
   }
   if (currentView === "backoffice-case") {
-    return (
+    return renderCaseStudyView(
+      "backoffice-case",
       <BackofficeCase
         onBack={handleBackToWork}
         onNext={() => { handleOpenProject("anlene"); window.scrollTo({ top: 0 }) }}
@@ -2771,7 +2831,8 @@ export default function App() {
     )
   }
   if (currentView === "anlene-case") {
-    return (
+    return renderCaseStudyView(
+      "anlene-case",
       <AnleneCase
         onBack={handleBackToWork}
         onNext={() => { handleOpenProject("archery"); window.scrollTo({ top: 0 }) }}
@@ -2780,7 +2841,8 @@ export default function App() {
     )
   }
   if (currentView === "archery-case") {
-    return (
+    return renderCaseStudyView(
+      "archery-case",
       <ProArcheryCase
         onBack={handleBackToWork}
         onNext={() => { handleOpenProject("myarchery"); window.scrollTo({ top: 0 }) }}
@@ -2789,7 +2851,8 @@ export default function App() {
     )
   }
   if (currentView === "myarchery-case") {
-    return (
+    return renderCaseStudyView(
+      "myarchery-case",
       <MyArcheryCase
         onBack={handleBackToWork}
         onNext={() => { handleOpenProject("tng"); window.scrollTo({ top: 0 }) }}
@@ -2797,6 +2860,7 @@ export default function App() {
       />
     )
   }
+
 
 
   return (

@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react"
+import { CaseStudyHeaderBadge } from "@/app/components/ui/CaseStudyHeaderBadge"
+
 import {
-  ArrowLeft, ChevronRight, CheckCircle2, Globe,
+  ArrowLeft, ChevronRight, CheckCircle2, Globe, Home,
   Smartphone, BarChart2, Camera, MessageSquare,
   Shield, Database, MapPin, AlertCircle, Users, WifiOff, RefreshCw, Layers, CheckSquare, ChevronDown, Sparkles
 } from "lucide-react"
+
 import heroImg from "@/imports/image-9.png"
 import eSaksiThumb from "@/imports/e-saksi thumb.jpg"
 
@@ -109,27 +112,33 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
   return (
     <div className="min-h-screen scroll-smooth" style={{ backgroundColor: S, fontFamily: "var(--font-sans)" }}>
 
-      {/* Sticky top nav */}
-      <div
-        className="sticky top-0 z-50 flex items-center justify-between px-4 sm:px-8 lg:px-16 py-4 transition-all duration-200"
-        style={{
-          backgroundColor: scrolled ? "rgba(255,255,255,0.95)" : W,
-          backdropFilter: "blur(16px)",
-          borderBottom: `1px solid ${HAIR}`,
-        }}
-      >
-        <button
-          onClick={onBack}
-          className="flex items-center gap-2 font-sans text-xs sm:text-sm font-semibold tracking-widest uppercase transition-opacity hover:opacity-60 cursor-pointer"
-          style={{ color: N }}
+      {/* Sticky top header & mobile quick jump stack */}
+      <div className="sticky top-0 z-50 w-full">
+        {/* White top nav */}
+        <div
+          className="flex items-center justify-between px-4 sm:px-8 lg:px-16 py-3 sm:py-3.5 transition-all duration-200"
+          style={{
+            backgroundColor: scrolled ? "rgba(255,255,255,0.95)" : W,
+            backdropFilter: "blur(16px)",
+            borderBottom: `1px solid ${HAIR}`,
+          }}
         >
-          <ArrowLeft size={13} /> Back
-        </button>
-        <MonoTag>Indonesian Election 2024 · 38 Provinces / 820K+ Polling Stations</MonoTag>
-      </div>
+          <button
+            onClick={onBack}
+            className="flex items-center gap-1.5 font-sans text-xs font-bold tracking-widest uppercase transition-all duration-150 hover:opacity-75 cursor-pointer group"
+            style={{ color: N }}
+            title="Back to Home Portfolio"
+          >
+            <Home size={16} className="group-hover:scale-110 transition-transform" />
+            <span>HOME</span>
+          </button>
+          <CaseStudyHeaderBadge caseNum="04" />
+        </div>
 
-      {/* Mobile Collapsible Quick Jump Bar */}
-      <div className="block lg:hidden sticky top-[53px] z-40 bg-[#0e1635] text-white border-b border-white/10 shadow-lg">
+        {/* Mobile Collapsible Quick Jump Bar - Flush underneath */}
+        <div className="block lg:hidden bg-[#0e1635] text-white border-b border-white/10 shadow-lg">
+
+
         <button
           onClick={() => setMobileMenuOpen((v) => !v)}
           className="w-full px-6 py-3 flex items-center justify-between text-xs font-sans cursor-pointer focus:outline-none"
@@ -173,6 +182,8 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
           </div>
         )}
       </div>
+      </div>
+
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
       <div className="px-4 sm:px-8 lg:px-16 pt-12 sm:pt-16 pb-10 sm:pb-14" style={{ backgroundColor: W, borderBottom: `1px solid ${HAIR}` }}>
@@ -477,39 +488,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
         </div>
       </div>
 
-      {/* Back CTA */}
-      <div style={{ borderTop: `1px solid ${HAIR}`, backgroundColor: W }}>
-        <div className="px-8 lg:px-16 py-8 flex items-center justify-between flex-wrap gap-4">
-          <div className="flex items-center gap-6">
-            {onPrev && (
-              <button
-                onClick={onPrev}
-                className="flex items-center gap-2 font-sans text-xs sm:text-sm font-semibold tracking-widest uppercase transition-opacity hover:opacity-60 cursor-pointer"
-                style={{ color: N }}
-              >
-                <ArrowLeft size={13} /> Previous Case
-              </button>
-            )}
-            <button
-              onClick={onBack}
-              className="flex items-center gap-2 font-sans text-xs sm:text-sm font-semibold tracking-widest uppercase transition-opacity hover:opacity-60 cursor-pointer"
-              style={{ color: N }}
-            >
-              Back to Portfolio
-            </button>
-          </div>
-          {onNext && (
-            <button
-              onClick={onNext}
-              className="flex items-center gap-2 font-sans text-xs sm:text-sm font-semibold tracking-widest uppercase transition-opacity hover:opacity-60 cursor-pointer"
-              style={{ color: N }}
-            >
-              Next Case <ChevronRight size={13} />
-            </button>
-          )}
-        </div>
-      </div>
-
     </div>
   )
 }
+
