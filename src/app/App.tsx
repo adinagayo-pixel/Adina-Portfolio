@@ -51,6 +51,8 @@ import eSaksiThumb from "@/imports/e-saksi thumb.jpg"
 import proArcheryThumb from "@/imports/proarcherythumb5.jpg"
 import backofficePortalThumb from "@/imports/backoffice portal thumb.jpg"
 import myArcheryPerpaniThumb from "@/imports/myarchery thumb.jpg"
+import section3PhaseBg from "@/imports/section 3 phase.jpg"
+
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback"
 import {
   Home, Briefcase, Layers, Archive, Mail,
@@ -1832,12 +1834,22 @@ function WorkflowSection() {
   return (
     <div
       id="process"
-      className="relative overflow-hidden bg-[#0F1735]"
+      className="relative overflow-hidden bg-[#0A1128]"
     >
-
       {/* ── BLOCK 1: 3-PHASE EXECUTION ENGINE ── */}
-      <section className="pt-24 sm:pt-32 lg:pt-40 pb-16 sm:pb-24 lg:pb-32 px-6 sm:px-12 lg:px-20 relative z-20 overflow-hidden">
-        <div className="max-w-7xl mx-auto relative">
+      <section className="relative overflow-hidden pt-24 sm:pt-32 lg:pt-40 pb-16 sm:pb-24 lg:pb-32 px-6 sm:px-12 lg:px-20 z-20 bg-[#0A1128]">
+        {/* Background Texture Overlay — Seamless Multiply Blend Mode on #0A1128 */}
+        <div
+          className="absolute inset-0 w-full h-full bg-[#0A1128] pointer-events-none z-0"
+          style={{
+            backgroundImage: `url(${section3PhaseBg})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundBlendMode: "multiply",
+          }}
+        />
+
+        <div className="max-w-7xl mx-auto relative z-10">
           {/* Animated Header & Tagline Reveal */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -1880,7 +1892,7 @@ function WorkflowSection() {
                   >
                     <div>
                       {/* Top Node Header: Node Dot & Sleek Mono Label */}
-                      <div className="flex items-center gap-2.5 mb-7 bg-[#0F1735] pr-4 w-fit relative z-10">
+                      <div className="flex items-center gap-2.5 mb-7 bg-[#0A1128] pr-4 w-fit relative z-10">
 
                         <span className="w-2.5 h-2.5 rounded-full bg-[#DB3E8C] shadow-[0_0_10px_#DB3E8C] animate-pulse" />
                         <span className="font-mono text-[11px] font-bold tracking-widest text-[#DB3E8C] uppercase px-3 py-1 rounded-full bg-[#DB3E8C]/15 border border-[#DB3E8C]/30">
@@ -1938,25 +1950,11 @@ function WorkflowSection() {
       {/* ── BLOCK 2: HOW I WORK PHILOSOPHICAL STATEMENT HERO (NOW AT THE BOTTOM AS CLOSER) ── */}
       <section
         ref={heroRef}
-        className="relative overflow-hidden flex flex-col justify-center min-h-[440px] lg:min-h-[480px]"
+        className="relative overflow-hidden flex flex-col justify-center min-h-[440px] lg:min-h-[480px] bg-[#0A1128]"
       >
-        {/* Subtle Video Background */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-screen pointer-events-none"
-        >
-          <source src={gettyBgVideo} type="video/mp4" />
-        </video>
-
-        {/* Gradient Overlay for Text Contrast */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0A1128]/30 to-[#0A1128]/80 pointer-events-none" />
-
-        {/* Header */}
+        {/* Header - Solid Navy Divider Bar / Sekat Pemisah Mutlak */}
         <div
-          className="relative z-20 px-4 sm:px-8 lg:px-16 py-6 sm:py-8 flex items-center gap-6"
+          className="relative z-30 px-4 sm:px-8 lg:px-16 py-6 sm:py-8 flex items-center gap-6 bg-[#0A1128]"
           style={{ borderBottom: `1px solid rgba(255,255,255,0.08)` }}
         >
           <span className="font-sans text-[10px] font-semibold tracking-widest uppercase" style={{ color: "rgba(255,255,255,0.4)" }}>
@@ -1968,33 +1966,53 @@ function WorkflowSection() {
           </span>
         </div>
 
-        {/* Section headline — scroll-driven smooth fade out */}
-        <motion.div
-          style={{ opacity: heroOpacity, y: heroY }}
-          className="relative z-20 px-4 sm:px-8 lg:px-16 py-14 sm:py-20 lg:py-24 flex flex-col items-center text-center"
-        >
-          <p className="font-sans text-[10px] font-bold tracking-[0.25em] uppercase mb-6 sm:mb-10 text-[#F472B6]">
-            THE LOGIC BEHIND IT
-          </p>
-          <h2
-            className="font-display font-light leading-[1.45] text-white max-w-4xl text-center drop-shadow-lg"
-            style={{ fontSize: "clamp(1.75rem, 4.5vw, 4.2rem)", letterSpacing: "-0.025em" }}
+        {/* Video Area Container */}
+        <div className="relative flex-1 flex flex-col justify-center overflow-hidden">
+          {/* Subtle Video Background */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-screen pointer-events-none"
           >
-            I dig into complex problems first{" "}
-            <span className="inline-block align-middle mx-1 sm:mx-1.5 hover:scale-110 transition-transform duration-300">
-              <StandaloneSearchIcon className="w-8 h-8 sm:w-11 sm:h-11 lg:w-14 lg:h-14 inline-block text-[#F472B6]" />
-            </span>,{" "}
-            craft intuitive web & app interfaces with <span className="text-[#F472B6] font-bold">solid logic</span>{" "}
-            <span className="inline-block align-middle mx-1 sm:mx-1.5 hover:scale-110 transition-transform duration-300">
-              <StandaloneTargetIcon className="w-8 h-8 sm:w-11 sm:h-11 lg:w-14 lg:h-14 inline-block text-[#F472B6]" />
-            </span>,{" "}
-            and hand off design files so clear that{" "}
-            <span className="inline-block align-middle mx-1 sm:mx-1.5 hover:scale-110 transition-transform duration-300">
-              <StandaloneClipboardIcon className="w-8 h-8 sm:w-11 sm:h-11 lg:w-14 lg:h-14 inline-block text-[#F472B6]" />
-            </span>{" "}
-            engineers rarely have to second-guess.
-          </h2>
-        </motion.div>
+            <source src={gettyBgVideo} type="video/mp4" />
+          </video>
+
+          {/* Linear Gradient Mask at Top of Video Container (80-120px) */}
+          <div className="absolute top-0 left-0 right-0 h-24 sm:h-28 lg:h-32 bg-gradient-to-b from-[#0A1128] via-[#0A1128]/80 to-transparent pointer-events-none z-10" />
+
+          {/* Gradient Overlay for Text Contrast */}
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0A1128]/30 to-[#0A1128]/80 pointer-events-none" />
+
+          {/* Section headline — scroll-driven smooth fade out */}
+          <motion.div
+            style={{ opacity: heroOpacity, y: heroY }}
+            className="relative z-20 px-4 sm:px-8 lg:px-16 py-14 sm:py-20 lg:py-24 flex flex-col items-center text-center"
+          >
+            <p className="font-sans text-[10px] font-bold tracking-[0.25em] uppercase mb-6 sm:mb-10 text-[#F472B6]">
+              THE LOGIC BEHIND IT
+            </p>
+            <h2
+              className="font-display font-light leading-[1.45] text-white max-w-4xl text-center drop-shadow-lg"
+              style={{ fontSize: "clamp(1.75rem, 4.5vw, 4.2rem)", letterSpacing: "-0.025em" }}
+            >
+              I dig into complex problems first{" "}
+              <span className="inline-block align-middle mx-1 sm:mx-1.5 hover:scale-110 transition-transform duration-300">
+                <StandaloneSearchIcon className="w-8 h-8 sm:w-11 sm:h-11 lg:w-14 lg:h-14 inline-block text-[#F472B6]" />
+              </span>,{" "}
+              craft intuitive web & app interfaces with <span className="text-[#F472B6] font-bold">solid logic</span>{" "}
+              <span className="inline-block align-middle mx-1 sm:mx-1.5 hover:scale-110 transition-transform duration-300">
+                <StandaloneTargetIcon className="w-8 h-8 sm:w-11 sm:h-11 lg:w-14 lg:h-14 inline-block text-[#F472B6]" />
+              </span>,{" "}
+              and hand off design files so clear that{" "}
+              <span className="inline-block align-middle mx-1 sm:mx-1.5 hover:scale-110 transition-transform duration-300">
+                <StandaloneClipboardIcon className="w-8 h-8 sm:w-11 sm:h-11 lg:w-14 lg:h-14 inline-block text-[#F472B6]" />
+              </span>{" "}
+              engineers rarely have to second-guess.
+            </h2>
+          </motion.div>
+        </div>
       </section>
     </div>
   )
@@ -2145,7 +2163,6 @@ function ProjectArchiveSection() {
             <div className="divide-y divide-[#19244E]/10 border-t border-b border-[#19244E]/10">
               {visible.map((project, idx) => {
                 const isHovered = hoveredId === project.id
-                const statusColor = STATUS_COLOR[project.status] ?? `${N}80`
                 const formattedNum = String(project.id).padStart(2, "0")
                 const previewImg = PROJECT_PREVIEWS[project.id]
 
@@ -2243,22 +2260,10 @@ function ProjectArchiveSection() {
                           {project.year}
                         </span>
                         
-                        {/* Status Badge */}
-                        <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#19244E]/[0.04] border border-[#19244E]/10">
-                          <span className="relative flex h-1.5 w-1.5">
-                            <span 
-                              className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
-                              style={{ backgroundColor: statusColor }}
-                            />
-                            <span 
-                              className="relative inline-flex rounded-full h-1.5 w-1.5"
-                              style={{ backgroundColor: statusColor }}
-                            />
-                          </span>
-                          <span className="font-sans text-[9px] sm:text-[10px] font-bold tracking-widest uppercase text-[#19244E]/80">
-                            {project.status}
-                          </span>
-                        </div>
+                        {/* Status Text */}
+                        <span className="font-sans text-[10px] sm:text-xs font-semibold tracking-wider uppercase text-[#19244E]/60">
+                          {project.status}
+                        </span>
 
                         {/* WhatsApp Quick Link */}
                         <a

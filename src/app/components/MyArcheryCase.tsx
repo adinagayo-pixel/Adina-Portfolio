@@ -256,7 +256,6 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
           className="w-full px-6 py-3 flex items-center justify-between text-xs font-sans cursor-pointer focus:outline-none"
         >
           <div className="flex items-center gap-2.5 min-w-0">
-            <span className="w-2 h-2 rounded-full bg-[#DB3E8C] animate-pulse shrink-0" />
             <span className="font-bold text-[#DB3E8C] uppercase tracking-wider shrink-0">QUICK JUMP:</span>
             <span className="font-semibold text-white/90 truncate">
               {activeSectionObj.num}. {activeSectionObj.label}
@@ -344,7 +343,6 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
       {/* EXECUTIVE SUMMARY & 30 SECOND TAKEAWAYS */}
       <div className="px-8 lg:px-16 py-8 bg-[#111836] border-t border-b border-white/10">
         <div className="flex items-center gap-2 mb-4">
-          <span className="w-2 h-2 rounded-full bg-[#DB3E8C] animate-pulse" />
           <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
             EXECUTIVE SUMMARY & 30 SECOND TAKEAWAYS
           </span>
@@ -377,7 +375,6 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
           <aside className="hidden lg:block sticky top-24 space-y-6 self-start pr-4">
             <div className="p-5 rounded-2xl bg-[#0e1635] text-white shadow-xl border border-white/10">
               <div className="flex items-center gap-2 mb-4 pb-3 border-b border-white/10">
-                <span className="w-2 h-2 rounded-full bg-[#DB3E8C] animate-pulse" />
                 <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
                   QUICK JUMP
                 </span>
@@ -605,7 +602,6 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
 
           <div className="p-8 bg-[#111836] rounded-2xl border border-white/10 text-white space-y-6 shadow-2xl">
             <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#22c55e] animate-pulse" />
               <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#22c55e]">
                 NATIONAL PERPANI ECOSYSTEM IMPACT
               </span>
@@ -617,7 +613,6 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
             {/* WHAT I LEARNED Box */}
             <div className="p-5 rounded-xl bg-white/5 border border-white/10 text-white space-y-2 mt-6">
               <div className="flex items-center gap-2">
-                <Sparkles size={14} className="text-[#DB3E8C]" />
                 <span className="text-[9px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
                   WHAT I LEARNED
                 </span>
@@ -630,7 +625,6 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
             {/* Why This Matters to a Hiring Manager */}
             <div className="mt-6 p-5 rounded-xl bg-[#DB3E8C]/15 border border-[#DB3E8C]/40 text-white space-y-2">
               <div className="flex items-center gap-2">
-                <MessageSquare size={14} className="text-[#DB3E8C]" />
                 <span className="text-[9px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
                   WHY THIS MATTERS TO A HIRING MANAGER
                 </span>
