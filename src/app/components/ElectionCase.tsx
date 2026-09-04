@@ -7,7 +7,7 @@ import {
   Shield, Database, MapPin, AlertCircle, Users, WifiOff, RefreshCw, Layers, CheckSquare, ChevronDown, Sparkles
 } from "lucide-react"
 
-import heroImg from "@/imports/image-9.png"
+import heroImg from "@/imports/image-9.jpg"
 import eSaksiThumb from "@/imports/e-saksi thumb.jpg"
 
 const N = "#19244E"

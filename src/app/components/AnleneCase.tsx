@@ -8,11 +8,11 @@ import {
 } from "lucide-react"
 
 import anleneThumb from "@/imports/Anlene thumb.jpg"
-import anleneThumb2 from "@/imports/anlene thumb 2.png"
-import anleneThumb3 from "@/imports/anlene thumb 3.png"
-import anleneThumb4 from "@/imports/anlene thumb 4.png"
-import anleneThumb5 from "@/imports/anlene thumb 5.png"
-import anleneThumb6 from "@/imports/anlene thumb 6.png"
+import anleneThumb2 from "@/imports/anlene thumb 2.jpg"
+import anleneThumb3 from "@/imports/anlene thumb 3.jpg"
+import anleneThumb4 from "@/imports/anlene thumb 4.jpg"
+import anleneThumb5 from "@/imports/anlene thumb 5.jpg"
+import anleneThumb6 from "@/imports/anlene thumb 6.jpg"
 
 const N = "#19244E"
 const C = "#DB3E8C"

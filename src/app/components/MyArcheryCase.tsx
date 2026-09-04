@@ -7,7 +7,7 @@ import {
   Trophy, Smartphone, Target, QrCode, Sun, WifiOff, Calendar, AlertTriangle, Clock, ChevronDown, Sparkles
 } from "lucide-react"
 
-import heroImg from "@/imports/image-7.png"
+import heroImg from "@/imports/image-7.jpg"
 import myArcheryPerpaniThumb from "@/imports/myarchery thumb.jpg"
 
 const N = "#19244E"

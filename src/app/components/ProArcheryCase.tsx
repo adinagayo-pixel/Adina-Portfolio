@@ -7,7 +7,7 @@ import {
   RefreshCw, FileText, ShieldCheck, GitBranch, ChevronDown, ListFilter, Sparkles
 } from "lucide-react"
 
-import heroImg from "@/imports/image-8.png"
+import heroImg from "@/imports/image-8.jpg"
 import proArcheryThumb from "@/imports/proarcherythumb5.jpg"
 
 const N = "#19244E"

@@ -7,13 +7,13 @@ import {
   CheckCircle2, Globe, Target, MessageSquare, Clock, LayoutGrid, FileCode2, Share2, ChevronDown, Sparkles
 } from "lucide-react"
 
-import mykawan1 from "@/imports/mykawan1.png"
+import mykawan1 from "@/imports/mykawan1.jpg"
 import mykawanThumb from "@/imports/mykawan thumb.jpg"
 import mySalamThumb from "@/imports/my salam thumb.jpg"
-import mykawan2 from "@/imports/mykawan2.png"
-import mykawan3 from "@/imports/mykawan3.png"
-import mykawan4 from "@/imports/mykawan4.png"
-import mykawan5 from "@/imports/mykawan5.png"
+import mykawan2 from "@/imports/mykawan2.jpg"
+import mykawan3 from "@/imports/mykawan3.jpg"
+import mykawan4 from "@/imports/mykawan4.jpg"
+import mykawan5 from "@/imports/mykawan5.jpg"
 
 const N = "#19244E"
 const C = "#DB3E8C"

@@ -7,7 +7,7 @@ import {
   Lock, Sliders, Database, Layers, ArrowRight, Activity, Filter, BarChart3, ChevronDown, Sparkles
 } from "lucide-react"
 
-import heroImg from "@/imports/image-8.png"
+import heroImg from "@/imports/image-8.jpg"
 import backofficePortalThumb from "@/imports/backoffice portal thumb.jpg"
 
 const N = "#19244E"

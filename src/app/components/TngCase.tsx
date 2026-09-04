@@ -3,8 +3,8 @@ import { CaseStudyHeaderBadge } from "@/app/components/ui/CaseStudyHeaderBadge"
 
 
 import coverTng from "@/imports/Cover TNG.jpg"
-import tngThumb4 from "@/imports/TNG thumb4.png"
-import tngThumb5 from "@/imports/TNG thumb5.png"
+import tngThumb4 from "@/imports/TNG thumb4.jpg"
+import tngThumb5 from "@/imports/TNG thumb5.jpg"
 import {
   ArrowLeft, ChevronRight, CheckCircle2, Globe, Home,
   FileCode2, Shield, Zap, RefreshCw, GitBranch, Users, MessageSquare, Sparkles, AlertTriangle, ChevronDown
