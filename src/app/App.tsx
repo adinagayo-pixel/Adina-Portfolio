@@ -3,7 +3,6 @@ import { motion, useMotionValue, useSpring, AnimatePresence, useScroll, useTrans
 import adinaPhotoAbout from "@/imports/Foto At Work.jpg"
 import adinaPhotoLife from "@/imports/Foto In Life.jpg"
 import afgLogo from "@/imports/LOGO.png"
-import heroBgImage from "@/imports/smooth-abstract-space-with-flowing-lines-curves-monochromatic-palette.jpg"
 import gettyBgVideo from "@/imports/GettyImages-1152749158.mp4"
 import coverTng from "@/imports/Cover TNG.jpg"
 import tngThumb4 from "@/imports/TNG thumb4.jpg"
@@ -70,6 +69,7 @@ import AnleneCase from "./components/AnleneCase"
 import BijakWangCase from "./components/BijakWangCase"
 import MyArcheryCase from "./components/MyArcheryCase"
 import BackofficeCase from "./components/BackofficeCase"
+import TelkomCase from "./components/TelkomCase"
 import AboutMe from "./components/AboutMe"
 import { CaseStudySwipeWrapper, CaseStudyMeta } from "./components/ui/CaseStudySwipeWrapper"
 
@@ -103,7 +103,7 @@ export function getGeneralWhatsAppLink() {
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const FEATURED = [
   {
-    num: "01", name: "Seamless Micro Insurance Integration", client: "Touch 'n Go × GEGM",
+    num: "01", shortTitle: "Micro Insurance", name: "Seamless Micro Insurance Integration", client: "Touch 'n Go × GEGM",
     location: "MY", year: "2025", tags: ["PWA / SSO", "eKYC Data Mapping", "B2C / FinTech"],
     role: "Sole Product Designer",
     headline: "Great Tenang Madani micro insurance product integrated directly into Touch 'n Go eWallet ecosystem across 5 design iterations.",
@@ -117,7 +117,7 @@ const FEATURED = [
     ],
   },
   {
-    num: "02", name: "Gamified CI Evaluation & Acquisition", client: "GEGI Singapore",
+    num: "02", shortTitle: "CI Evaluation", name: "Gamified CI Evaluation & Acquisition", client: "GEGI Singapore",
     location: "SG", year: "2026", tags: ["Gamified Evaluation", "Singlish Persona", "Campaign"],
     role: "Sole Product Designer",
     headline: "An interactive digital acquisition campaign assessing critical illness protection gaps for Great Eastern Singapore.",
@@ -132,7 +132,7 @@ const FEATURED = [
     ],
   },
   {
-    num: "03", name: "Kahoot to In House: Roadshow Tournament Platform", client: "mySalam × myKawan",
+    num: "03", shortTitle: "In-House Roadshow", name: "Kahoot to In House: Roadshow Tournament Platform", client: "mySalam × myKawan",
     location: "MY", year: "2025", tags: ["Live Tournament", "100K Concurrent", "Gamified Financial Literacy"],
     role: "Sole Product Designer",
     headline: "Evolving My Money Sense into a dual mode live tournament platform for mySalam regional roadshows.",
@@ -148,7 +148,7 @@ const FEATURED = [
     ],
   },
   {
-    num: "04", name: "38 Province Real Time Election Monitoring", client: "Indonesian Political Party",
+    num: "04", shortTitle: "Election Monitoring", name: "38 Province Real Time Election Monitoring", client: "Indonesian Political Party",
     location: "ID", year: "2024", tags: ["Public Sector", "Civic Tech", "Real Time CMS"],
     role: "Sole Product Designer",
     headline: "A multi platform system for real time vote monitoring across 38 provinces and 820,000+ TPS within a 48 hour window.",
@@ -162,7 +162,7 @@ const FEATURED = [
     ],
   },
   {
-    num: "05", name: "Multi Tenant White Label Backoffice Architecture", client: "Regional SuperApps & FinTech",
+    num: "05", shortTitle: "Multi-Tenant Backoffice", name: "Multi Tenant White Label Backoffice Architecture", client: "Regional SuperApps & FinTech",
     location: "SG/MY/ID", year: "2024 to 2025", tags: ["White Label Engine", "Design System Tokens", "Data Analytics"],
     role: "Sole Product Designer",
     headline: "Building a reusable two track white label and analytics pattern to serve enterprise tenants with different operational needs.",
@@ -176,7 +176,7 @@ const FEATURED = [
     ],
   },
   {
-    num: "06", name: "Bone Density & Health Check Passport Redesign", client: "Fonterra × Anlene",
+    num: "06", shortTitle: "Health Check Passport", name: "Bone Density & Health Check Passport Redesign", client: "Fonterra × Anlene",
     location: "ID", year: "2023", tags: ["Health Tech", "Field Sales Enablement", "Diagnostic Matrix"],
     role: "Sole Product Designer",
     headline: "Redesigning Anlene's field health check experience end to end, turning diagnostic scanner data into personalized health reports.",
@@ -193,7 +193,7 @@ const FEATURED = [
     ],
   },
   {
-    num: "07", name: "Pro Archery 4 Surface Digital Ecosystem", client: "Pro Archery Jakarta",
+    num: "07", shortTitle: "Archery 4 Surface", name: "Pro Archery 4 Surface Digital Ecosystem", client: "Pro Archery Jakarta",
     location: "ID", year: "2025", tags: ["AI Prompt to Code", "E Commerce", "Admin POS"],
     role: "Sole System & UI Designer",
     headline: "Turning Indonesia's premier physical archery retailer into a 4 surface digital ecosystem starting with a 24 hour AI built landing page.",
@@ -207,7 +207,7 @@ const FEATURED = [
     ],
   },
   {
-    num: "08", name: "MyArchery PERPANI National Operating System", client: "PERPANI / MyArchery",
+    num: "08", shortTitle: "PERPANI OS", name: "MyArchery PERPANI National Operating System", client: "PERPANI / MyArchery",
     location: "ID", year: "2021 to 2023", tags: ["Sports Tech", "Field UX Research", "Tournament Engine"],
     role: "Lead UX Researcher & Product Designer",
     headline: "Designing Indonesia's tournament operating system and real time scoring platform for official PERPANI national championships.",
@@ -218,6 +218,20 @@ const FEATURED = [
       { src: myArcheryPerpaniThumb, label: "01 · SCORING KEYPAD" },
       { src: projectThumb2, label: "02 · ADMIN DASHBOARD" },
       { src: projectThumb1, label: "03 · LIVE SCOREBOARD" },
+    ],
+  },
+  {
+    num: "09", shortTitle: "Public LED Display", name: "Interactive Public LED Display Ecosystem", client: "Telkomsel Siaga",
+    location: "ID", year: "2025", tags: ["Interactive Display", "Two Tier Curation", "Public Space UX"],
+    role: "UI Designer",
+    headline: "Refining a nationwide greeting wall: from mobile input form to curated custom shaped LED display at Telkomsel HQ.",
+    metrics: [{ val: "3", sub: "System Touchpoints" }, { val: "2 Tier", sub: "Curation Moderation" }, { val: "1wk", sub: "Sprint Timeline" }],
+    projectId: "telkom",
+    thumb: telkomSiagaVideo,
+    screens: [
+      { src: telkomSiagaVideo, label: "01 · LED LOBBY BROADCAST" },
+      { src: projectThumb2, label: "02 · CURATION DASHBOARD" },
+      { src: projectThumb1, label: "03 · MOBILE SUBMISSION FORM" },
     ],
   },
 ]
@@ -234,17 +248,16 @@ const PROJECTS: Project[] = [
   { id: 7,  name: "MyKawan × GEGM",        client: "Great Eastern Malaysia × myKawan",  market: "Malaysia",    year: 2025, status: "LIVE",          category: "InsurTech & Protection",      scope: "Asuransi kesehatan dan proteksi digital Protect Active dan Great Shield Active." },
   { id: 8,  name: "Teman E Commerce",      client: "Teman",                            market: "Indonesia",   year: 2025, status: "PROTOTYPE",     category: "AI & Retail E Commerce",      scope: "AI driven product recommendation engine and personalized purchase flow integration." },
   { id: 9,  name: "Samaloop",              client: "Samaloop",                         market: "Indonesia",   year: 2025, status: "LIVE",          category: "EdTech & Marketplace",        scope: "Corporate website and public speaking coach directory booking platform." },
-  { id: 10, name: "Telkom Siaga",          client: "Telkom · Freelance Work",          market: "Indonesia",   year: 2025, status: "ARCHIVED",      category: "Interactive Display",         scope: "Membuat tampilan layar LED dan web untuk input ucapan tahun baru." },
   // ── 2024 ──────────────────────────────────────────────────────────────────────
-  { id: 11, name: "Friendsure × Dr Gadget",client: "Friendsure × Dr Gadget",          market: "Malaysia",    year: 2024, status: "LIVE",          category: "Customer & Admin Portal",     scope: "Menyediakan customer dan admin portal untuk alur layanan servis." },
-  { id: 12, name: "Family Moo",            client: "Fonterra Indonesia",               market: "Indonesia",   year: 2024, status: "LIVE",          category: "FMCG & Loyalty Portal",       scope: "Customer loyalty management and points redemption portal for Fonterra's consumer ecosystem." },
-  { id: 13, name: "Telescope Indonesia",   client: "Telescope Indonesia",              market: "Indonesia",   year: 2024, status: "LIVE",          category: "B2B Industrial Catalog",      scope: "Digital product catalog and technical specification showcase for specialized equipment." },
-  { id: 14, name: "ASEAN Project Management System", client: "ASEAN Secretariat", market: "ASEAN / Regional", year: 2024, status: "LIVE INTERNAL", category: "Regional / Multi-Gov", scope: "Manajemen siklus proyek multilateral, pelaporan anggaran lintas negara, dan alur persetujuan multi level antar delegasi." },
-  { id: 15, name: "Distrik Navigasi Portal", client: "Maritime Operations", market: "Indonesia", year: 2024, status: "PRODUCTION", category: "Internal Enterprise", scope: "Digitalisasi alur operasional sarana bantu navigasi pelayaran, pemantauan aset maritim, dan koordinasi staf teknis lapangan." },
+  { id: 10, name: "Friendsure × Dr Gadget",client: "Friendsure × Dr Gadget",          market: "Malaysia",    year: 2024, status: "LIVE",          category: "Customer & Admin Portal",     scope: "Menyediakan customer dan admin portal untuk alur layanan servis." },
+  { id: 11, name: "Family Moo",            client: "Fonterra Indonesia",               market: "Indonesia",   year: 2024, status: "LIVE",          category: "FMCG & Loyalty Portal",       scope: "Customer loyalty management and points redemption portal for Fonterra's consumer ecosystem." },
+  { id: 12, name: "Telescope Indonesia",   client: "Telescope Indonesia",              market: "Indonesia",   year: 2024, status: "LIVE",          category: "B2B Industrial Catalog",      scope: "Digital product catalog and technical specification showcase for specialized equipment." },
+  { id: 13, name: "ASEAN Project Management System", client: "ASEAN Secretariat", market: "ASEAN / Regional", year: 2024, status: "LIVE INTERNAL", category: "Regional / Multi-Gov", scope: "Manajemen siklus proyek multilateral, pelaporan anggaran lintas negara, dan alur persetujuan multi level antar delegasi." },
+  { id: 14, name: "Distrik Navigasi Portal", client: "Maritime Operations", market: "Indonesia", year: 2024, status: "PRODUCTION", category: "Internal Enterprise", scope: "Digitalisasi alur operasional sarana bantu navigasi pelayaran, pemantauan aset maritim, dan koordinasi staf teknis lapangan." },
   // ── 2022 ──────────────────────────────────────────────────────────────────────
-  { id: 16, name: "YAMET Center",          client: "YAMET Child Development",          market: "Indonesia",   year: 2022, status: "LIVE",          category: "Healthcare Portal",           scope: "Corporate website and service directory for child development clinics across Indonesia." },
-  { id: 17, name: "Ada Polisi",            client: "Internal Public Sector",           market: "Indonesia",   year: 2022, status: "ARCHIVED",      category: "Public Sector Mobile App",    scope: "Internal mobile system for law enforcement data entry and reporting." },
-  { id: 18, name: "Forum TJSL Portal",     client: "BUMN Ecosystem",                   market: "Indonesia",   year: 2022, status: "LIVE",          category: "CSR Governance",              scope: "Standardisasi pelaporan CSR terpusat, aggregasi metrik dampak sosial lintas perusahaan pelat merah, dan transparansi tata kelola audit." },
+  { id: 15, name: "YAMET Center",          client: "YAMET Child Development",          market: "Indonesia",   year: 2022, status: "LIVE",          category: "Healthcare Portal",           scope: "Corporate website and service directory for child development clinics across Indonesia." },
+  { id: 16, name: "Ada Polisi",            client: "Internal Public Sector",           market: "Indonesia",   year: 2022, status: "ARCHIVED",      category: "Public Sector Mobile App",    scope: "Internal mobile system for law enforcement data entry and reporting." },
+  { id: 17, name: "Forum TJSL Portal",     client: "BUMN Ecosystem",                   market: "Indonesia",   year: 2022, status: "LIVE",          category: "CSR Governance",              scope: "Standardisasi pelaporan CSR terpusat, aggregasi metrik dampak sosial lintas perusahaan pelat merah, dan transparansi tata kelola audit." },
 ]
 
 
@@ -586,18 +599,41 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
       className="relative w-full min-h-screen flex flex-col justify-between overflow-hidden"
       style={{ background: "#FFFFFF" }}
     >
-      {/* Ultra-Subtle 3D Organic Architectural Waves BG Image with Mask Fade */}
-      <div
-        className="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-[0.14] mix-blend-multiply"
-        style={{
-          WebkitMaskImage: "linear-gradient(to bottom, black 40%, transparent 92%)",
-          maskImage: "linear-gradient(to bottom, black 40%, transparent 92%)",
-        }}
-      >
-        <img
-          src={heroBgImage}
-          alt=""
-          className="w-full h-full object-cover object-center scale-105 filter blur-[1.5px]"
+      {/* ── Technical Grid & Ambient Accent Background ── */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none">
+        {/* Ambient Color Accent Orbs / Soft Glows */}
+        <div
+          className="absolute -top-[12%] -right-[6%] w-[550px] h-[550px] rounded-full filter blur-[140px] opacity-[0.14]"
+          style={{ background: "radial-gradient(circle, #DB3E8C 0%, #3B82F6 100%)" }}
+        />
+        <div
+          className="absolute -bottom-[15%] -left-[8%] w-[650px] h-[650px] rounded-full filter blur-[160px] opacity-[0.09]"
+          style={{ background: "radial-gradient(circle, #19244E 0%, #DB3E8C 100%)" }}
+        />
+
+        {/* Technical Linear Grid Pattern with Radial Mask */}
+        <div
+          className="absolute inset-0 opacity-[0.45]"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, rgba(25, 36, 78, 0.06) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(25, 36, 78, 0.06) 1px, transparent 1px)
+            `,
+            backgroundSize: "44px 44px",
+            WebkitMaskImage: "radial-gradient(ellipse 80% 70% at 50% 40%, black 20%, transparent 90%)",
+            maskImage: "radial-gradient(ellipse 80% 70% at 50% 40%, black 20%, transparent 90%)",
+          }}
+        />
+
+        {/* Subtle Dot Grid Accent Overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.3]"
+          style={{
+            backgroundImage: "radial-gradient(rgba(219, 62, 140, 0.22) 1px, transparent 1px)",
+            backgroundSize: "22px 22px",
+            WebkitMaskImage: "radial-gradient(ellipse 65% 55% at 50% 35%, black 15%, transparent 85%)",
+            maskImage: "radial-gradient(ellipse 65% 55% at 50% 35%, black 15%, transparent 85%)",
+          }}
         />
       </div>
 
@@ -1468,8 +1504,8 @@ function FeaturedWorkSection({
         <div className="px-4 sm:px-8 lg:px-16">
           {/* Desktop Showcase */}
           <div className="hidden lg:grid lg:grid-cols-[300px_1fr_320px] gap-8 py-10 min-h-[540px]">
-            {/* Left Column: Project Selector */}
-            <div className="flex flex-col gap-2.5 justify-center pr-4 border-r border-white/10">
+            {/* Left Column: Project Selector (Ultra-Compact Single-Line Project List) */}
+            <div className="flex flex-col justify-center gap-y-2 sm:gap-y-2.5 py-2 pr-4 border-r border-white/10 overflow-hidden select-none">
               {FEATURED.map((project, i) => {
                 const isActive = i === activeIndex
                 return (
@@ -1478,26 +1514,29 @@ function FeaturedWorkSection({
                     onClick={() => onActiveIndexChange(i)}
                     aria-label={`View project: ${project.name}`}
                     aria-pressed={i === activeIndex}
-                    className={`group text-left transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] rounded-lg py-2 px-3 border-l-2 ${
-                      isActive ? "border-[#DB3E8C] bg-white/[0.08] shadow-sm" : "border-transparent hover:bg-white/[0.04]"
+                    className={`group w-full text-left transition-all duration-200 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#E62E85] py-1.5 px-3 border-l-2 ${
+                      isActive
+                        ? "border-[#E62E85] bg-[#E62E85]/10 rounded-r-md"
+                        : "border-transparent hover:bg-white/[0.03]"
                     }`}
                   >
-                    <div className="flex items-start gap-2.5">
+                    <div className="flex items-center gap-3 w-full min-w-0">
                       <span
-                        className="font-sans text-[10px] tracking-wider transition-colors duration-300 pt-0.5 font-bold shrink-0"
-                        style={{ color: isActive ? C : "rgba(255, 255, 255, 0.3)" }}
+                        className={`font-mono text-xs w-6 shrink-0 transition-colors duration-200 ${
+                          isActive ? "text-[#E62E85] font-bold" : "text-slate-500 group-hover:text-slate-400 font-normal"
+                        }`}
                       >
                         {project.num}
                       </span>
                       <span
-                        className="text-xs sm:text-sm leading-snug transition-all duration-300"
-                        style={{
-                          color: isActive ? "#FFFFFF" : "rgba(255, 255, 255, 0.4)",
-                          fontWeight: isActive ? 700 : 500,
-                          transform: isActive ? "translateX(3px)" : "translateX(0px)",
-                        }}
+                        className={`text-xs sm:text-[13px] transition-all duration-200 whitespace-nowrap ${
+                          isActive
+                            ? "text-white font-semibold translate-x-0.5"
+                            : "text-slate-400 group-hover:text-slate-200 group-hover:translate-x-1 font-medium"
+                        }`}
+                        title={project.name}
                       >
-                        {project.name}
+                        {project.shortTitle || project.name}
                       </span>
                     </div>
                   </button>
@@ -2029,15 +2068,14 @@ const PROJECT_PREVIEWS: Record<number, string> = {
   7: mykawanGegmThumb,
   8: friendsureThumb,
   9: samaloopThumb,
-  10: telkomSiagaVideo,
-  11: drGadgetThumb,
-  12: familyMooThumb,
-  13: telescopeThumb,
-  14: aseanThumb,
-  15: disnavThumb,
-  16: yametThumb,
-  17: adaPolisiThumb,
-  18: ftjslThumb,
+  10: drGadgetThumb,
+  11: familyMooThumb,
+  12: telescopeThumb,
+  13: aseanThumb,
+  14: disnavThumb,
+  15: yametThumb,
+  16: adaPolisiThumb,
+  17: ftjslThumb,
 }
 
 const STATUS_COLOR: Record<string, string> = {
@@ -2049,11 +2087,39 @@ const STATUS_COLOR: Record<string, string> = {
   "ARCHIVED":      "rgba(25,36,78,0.30)",
 }
 
-const CATEGORIES = [
-  { id: "all",      label: "All",                filter: (_: Project) => true },
-  { id: "fintech",  label: "FinTech & InsurTech", filter: (p: Project) => p.category.includes("FinTech") || p.category.includes("InsurTech") },
-  { id: "ai",       label: "AI-Powered",          filter: (p: Project) => p.category.includes("AI") },
-  { id: "live",     label: "Live / Production",   filter: (p: Project) => ["LIVE", "LIVE INTERNAL", "PRODUCTION"].includes(p.status) },
+interface CategoryDef {
+  id: string
+  label: string
+  subtitle?: string
+  filter: (p: Project) => boolean
+}
+
+const CATEGORIES: CategoryDef[] = [
+  { id: "all",        label: "ALL", filter: (_: Project) => true },
+  {
+    id: "enterprise",
+    label: "ENTERPRISE & REGULATED",
+    subtitle: "fintech, insurance, banking, B2B system kompleks",
+    filter: (p: Project) => [1, 2, 3, 4, 5, 7, 13, 14, 17].includes(p.id),
+  },
+  {
+    id: "consumer",
+    label: "CONSUMER & GROWTH",
+    subtitle: "consumer-facing product, e-commerce, marketplace, loyalty",
+    filter: (p: Project) => [8, 9, 10, 11, 12].includes(p.id),
+  },
+  {
+    id: "ai",
+    label: "AI-POWERED",
+    subtitle: "AI-driven recommendation engines & content generation",
+    filter: (p: Project) => p.category.includes("AI") || [6, 8].includes(p.id),
+  },
+  {
+    id: "live",
+    label: "LIVE / PRODUCTION",
+    subtitle: "shipped products actively running in production",
+    filter: (p: Project) => ["LIVE", "LIVE INTERNAL", "PRODUCTION"].includes(p.status),
+  },
 ]
 
 const DEFAULT_VISIBLE = 5
@@ -2114,40 +2180,49 @@ function ProjectArchiveSection() {
 
       {/* Count + filter row */}
       <div
-        className="px-4 sm:px-8 lg:px-16 py-6 sm:py-8 flex flex-col lg:flex-row lg:items-center gap-4 sm:gap-6 justify-between"
+        className="px-4 sm:px-8 lg:px-16 py-6 sm:py-8 flex flex-col gap-4 sm:gap-6"
         style={{ borderBottom: `1px solid rgba(25, 36, 78, 0.05)` }}
       >
-        <div className="flex items-baseline gap-3">
-          <span
-            className="font-display font-light text-4xl sm:text-5xl"
-            style={{ color: N, letterSpacing: "-0.03em", lineHeight: 1 }}
-          >
-            {filtered.length}
-          </span>
-          <span className="font-sans text-[9px] sm:text-[10px] font-semibold tracking-widest text-[#19244E]/60 uppercase">
-            of {PROJECTS.length} projects
-          </span>
+        <div className="flex flex-col lg:flex-row lg:items-center gap-4 sm:gap-6 justify-between">
+          <div className="flex items-baseline gap-3 shrink-0">
+            <span
+              className="font-display font-light text-4xl sm:text-5xl"
+              style={{ color: N, letterSpacing: "-0.03em", lineHeight: 1 }}
+            >
+              {filtered.length}
+            </span>
+            <span className="font-sans text-[9px] sm:text-[10px] font-semibold tracking-widest text-[#19244E]/60 uppercase">
+              of {PROJECTS.length} projects
+            </span>
+          </div>
+          <div className="flex flex-wrap gap-1.5 sm:gap-2">
+            {CATEGORIES.map((cat) => {
+              const isActive = activeCat === cat.id
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => { setActiveCat(cat.id); setShowAll(false) }}
+                  className="flex items-center gap-1.5 px-3.5 sm:px-4 py-2 sm:py-2.5 font-sans text-[9px] sm:text-[10px] font-bold tracking-widest uppercase transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] rounded-xl cursor-pointer"
+                  style={{
+                    backgroundColor: isActive ? N : W,
+                    color: isActive ? W : `${N}DD`,
+                    border: `1px solid ${isActive ? N : "rgba(25, 36, 78, 0.08)"}`,
+                    boxShadow: isActive ? "0 4px 12px -2px rgba(25, 36, 78, 0.12)" : "none"
+                  }}
+                >
+                  {cat.label}
+                </button>
+              )
+            })}
+          </div>
         </div>
-        <div className="flex flex-wrap gap-1.5 sm:gap-2">
-          {CATEGORIES.map((cat) => {
-            const isActive = activeCat === cat.id
-            return (
-              <button
-                key={cat.id}
-                onClick={() => { setActiveCat(cat.id); setShowAll(false) }}
-                className="flex items-center gap-1.5 px-4 sm:px-5 py-2 sm:py-2.5 font-sans text-[9px] sm:text-[10px] font-semibold tracking-widest uppercase transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] rounded-xl cursor-pointer"
-                style={{
-                  backgroundColor: isActive ? N : W,
-                  color: isActive ? W : `${N}DD`,
-                  border: `1px solid ${isActive ? N : "rgba(25, 36, 78, 0.08)"}`,
-                  boxShadow: isActive ? "0 4px 12px -2px rgba(25, 36, 78, 0.12)" : "none"
-                }}
-              >
-                {cat.label}
-              </button>
-            )
-          })}
-        </div>
+
+        {activeDef.subtitle && (
+          <div className="flex items-center gap-2 text-[11px] sm:text-xs font-sans text-[#19244E]/60">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#DB3E8C] shrink-0" />
+            <span className="tracking-wide font-medium">{activeDef.subtitle}</span>
+          </div>
+        )}
       </div>
 
       {/* Catalog List View */}
@@ -2629,11 +2704,12 @@ const FEATURED_INDEX_MAP: Record<string, number> = {
   anlene: 5,
   archery: 6,
   myarchery: 7,
+  telkom: 8,
 }
 
 // ─── APP ──────────────────────────────────────────────────────────────────────
 export default function App() {
-  const [currentView, setCurrentView] = useState<"home" | "about" | "sunway-case" | "gegi-case" | "tng-case" | "archery-case" | "election-case" | "anlene-case" | "bijakwang-case" | "myarchery-case" | "backoffice-case">("home")
+  const [currentView, setCurrentView] = useState<"home" | "about" | "sunway-case" | "gegi-case" | "tng-case" | "archery-case" | "election-case" | "anlene-case" | "bijakwang-case" | "myarchery-case" | "backoffice-case" | "telkom-case">("home")
   const [activeFeaturedIndex, setActiveFeaturedIndex] = useState<number>(0)
   const [isPdfModalOpen, setIsPdfModalOpen] = useState(false)
   const activeSection = useScrollSpy(["home", "work", "process", "archive", "contact"])
@@ -2678,6 +2754,7 @@ export default function App() {
       anlene: "anlene-case",
       archery: "archery-case",
       myarchery: "myarchery-case",
+      telkom: "telkom-case",
       sunway: "tng-case",
       "1": "tng-case",
       "2": "gegi-case",
@@ -2688,15 +2765,14 @@ export default function App() {
       "7": "bijakwang-case",
       "8": "gegi-case",
       "9": "bijakwang-case",
-      "10": "election-case",
-      "11": "backoffice-case",
-      "12": "anlene-case",
-      "13": "archery-case",
-      "14": "election-case",
-      "15": "myarchery-case",
-      "16": "anlene-case",
-      "17": "election-case",
-      "18": "backoffice-case",
+      "10": "backoffice-case",
+      "11": "anlene-case",
+      "12": "archery-case",
+      "13": "election-case",
+      "14": "myarchery-case",
+      "15": "anlene-case",
+      "16": "election-case",
+      "17": "backoffice-case",
     }
 
     const targetView = map[strId] || "tng-case"
@@ -2803,7 +2879,7 @@ export default function App() {
       <TngCase
         onBack={handleBackToWork}
         onNext={() => { handleOpenProject("gegi"); window.scrollTo({ top: 0 }) }}
-        onPrev={() => { handleOpenProject("myarchery"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { handleOpenProject("telkom"); window.scrollTo({ top: 0 }) }}
       />
     )
   }
@@ -2872,8 +2948,18 @@ export default function App() {
       "myarchery-case",
       <MyArcheryCase
         onBack={handleBackToWork}
-        onNext={() => { handleOpenProject("tng"); window.scrollTo({ top: 0 }) }}
+        onNext={() => { handleOpenProject("telkom"); window.scrollTo({ top: 0 }) }}
         onPrev={() => { handleOpenProject("archery"); window.scrollTo({ top: 0 }) }}
+      />
+    )
+  }
+  if (currentView === "telkom-case") {
+    return renderCaseStudyView(
+      "telkom-case",
+      <TelkomCase
+        onBack={handleBackToWork}
+        onNext={() => { handleOpenProject("tng"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { handleOpenProject("myarchery"); window.scrollTo({ top: 0 }) }}
       />
     )
   }
