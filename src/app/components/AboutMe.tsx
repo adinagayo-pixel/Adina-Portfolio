@@ -79,13 +79,13 @@ export default function AboutMe({ onBack }: Props) {
         
         <div className="max-w-[900px] relative z-10">
           <p className="font-sans text-xs sm:text-sm font-semibold tracking-[0.25em] mb-4 uppercase" style={{ color: C }}>
-            Product Designer · System Logic Architect
+            UI/UX Designer · Digital Product Design
           </p>
           <h1 className="font-display font-light text-4xl lg:text-6xl leading-[1.05] tracking-tight mb-8">
             Adina Fayza Gayo
           </h1>
           <p className="text-base lg:text-lg font-sans font-light leading-relaxed text-white/90 max-w-[780px] mb-8">
-            Product Designer with 4+ years of hands-on experience focused on complex B2B platforms and embedded fintech. Most of my time goes into making messy product logic simple, mapping out edge cases, and giving developers specs they can build without second-guessing.
+            UI/UX Designer with 5 years of experience in end-to-end design from user flows and wireframing to prototyping, design systems, AI-assisted design workflows, and developer handoff, including B2B multi-portal operations systems and white-label platforms.
           </p>
           
           {/* Metadata Grid */}
@@ -102,8 +102,8 @@ export default function AboutMe({ onBack }: Props) {
             <a href="https://www.linkedin.com/in/adinafayzagayo/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white transition-colors">
               <Linkedin size={14} className="text-[#DB3E8C]" /> LinkedIn
             </a>
-            <a href="https://dinaworks.framer.website/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white transition-colors">
-              <ExternalLink size={14} className="text-[#DB3E8C]" /> Portfolio Website
+            <a href="https://adinagayo.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white transition-colors">
+              <ExternalLink size={14} className="text-[#DB3E8C]" /> adinagayo.com
             </a>
             <a
               href="/resume-adina-fayza-gayo.pdf"
@@ -124,54 +124,80 @@ export default function AboutMe({ onBack }: Props) {
           <div className="mt-12 space-y-16 relative border-l border-gray-100 pl-6 lg:pl-10 ml-2">
             {[
               {
-                role: "Product Designer",
+                role: "Digital Product Designer, Enterprise Multi-Brand Platforms",
                 company: "Deptech Digital Indonesia",
                 location: "Jakarta",
-                duration: "Jun 2023 - Present",
-                scope: "Enterprise Portals · Embedded InsurTech · Multi-Brand Ecosystems · Solo Designer Ownership",
-                desc: "Led product design for insurance technology platforms (since June 2024) and cross-sector enterprise products as solo designer, shipping 26+ digital products across regional SEA markets (Indonesia & Malaysia).",
+                duration: "Jun 2024 - Present",
+                scope: "Enterprise Multi-Brand Platforms · Insurance & Financial Systems · White-Label Solutions",
+                desc: "Delivered white-label products for enterprise clients including Grab, Touch 'n Go × Great Eastern, GEGM × Shopee, and mySalam × myKawan across Indonesia, Malaysia, and Singapore.",
                 points: [
                   {
-                    lead: "Architected End-to-End B2B & Embedded Platforms:",
-                    text: "Spearheaded user flows, complex logic, and edge cases across web and mobile platforms (17+ live white-label insurance portals, eWallet PWA for Touch 'n Go 20M+ users, and national election PWAs processing 820,000+ data points), translating complex business rules into seamless user interfaces."
+                    lead: "Four-Portal Systems Design:",
+                    text: "Designed four-portal systems (admin, customer, agent, microsite) with claims and underwriting approval workflows in 2–4 days."
                   },
                   {
-                    lead: "Engineered Multi-Brand Design Systems:",
-                    text: "Built and maintained comprehensive design systems with modular components and design tokens serving 16 active client implementations from scratch, accelerating team prototyping speed and UI consistency."
+                    lead: "Touch 'n Go 20M+ User Mini-Program:",
+                    text: "Designed an insurance mini-program for Touch 'n Go's 20M+ user e-wallet through five client-reviewed versions, with subsidy eligibility checks and webview-constrained flows. Analyzed app flows and API documentation for eKYC prefill with fewer redundant inputs and higher data accuracy. Migrated component set to TNG's official UI kit after first-round approval."
                   },
                   {
-                    lead: "Pioneered Decision Traceability & Handoff Frameworks:",
-                    text: "Structured clear logic rationale, state-management specs, and developer documentation across 5-18+ cross-functional team members, cutting handoff friction and implementation errors."
+                    lead: "17+ White-Label Modular UI Adaptation:",
+                    text: "Adapted modular UI components across 17+ white-label products for visual consistency."
                   },
                   {
-                    lead: "Rapid Prototyping & High-Velocity Validation:",
-                    text: "Leveraged AI-assisted workflows and interactive high-fidelity prototypes to deliver landing pages in 2-3 hours and complex portals in 2-5 days, validating solutions rapidly with enterprise stakeholders and shortening time-to-market."
+                    lead: "Gamified Live Quiz Flow Redesign:",
+                    text: "Redesigned post-launch flows for mySalam × myKawan's live quiz game, with a top-5 leaderboard and a no-submit answer flow for faster live play."
+                  },
+                  {
+                    lead: "Agile Scoping & High-Fidelity Handoff:",
+                    text: "Proposed product logic and feature scope to PMs and engineers in Agile teams of 5–18+ members within technical feasibility. Documented states, edge cases, and expected outcomes in developer handoffs, presenting high-fidelity prototypes to stakeholders for approval in 1–2 review cycles."
                   }
                 ]
               },
               {
-                role: "Freelance UI/UX Designer",
-                company: "Remote anywhere",
-                location: "Remote",
-                duration: "May 2023 - Present",
-                scope: "AI-First Prototyping · Healthcare & Legal Tech · B2C Marketplaces · SMB Digital Transformation",
-                desc: "Partnered with startups and SMBs to design and ship digital products from concept to launch across healthcare, legal, and e-commerce sectors.",
+                role: "UI/UX Designer",
+                company: "Deptech Digital Indonesia",
+                location: "Jakarta",
+                duration: "Jun 2023 - Jun 2024",
+                scope: "Consumer Health Platform (FMCG) · National Election System · Usability Testing",
+                desc: "Owned end-to-end UI/UX as sole designer in 4–7 member teams for healthcare, monitoring, and POS products.",
                 points: [
                   {
-                    lead: "Architected End-to-End B2C & SaaS Marketplaces:",
-                    text: "Designed user flows, order management, and chat workflows for legal consulting marketplaces, therapy center management consoles, and e-commerce checkout experiences."
+                    lead: "Healthcare & FMCG Sole Ownership:",
+                    text: "Owned end-to-end UI/UX as sole designer in 4–7 member teams for healthcare, monitoring, and POS products, including Fonterra × Anlene's consumer health platform (FMCG)."
                   },
                   {
-                    lead: "Engineered Scalable Component Assets:",
-                    text: "Standardized UI components and responsive design assets across multi-device surfaces, including custom interactive LED display systems with mobile synchronization."
+                    lead: "National Election Quick Count System:",
+                    text: "Designed a national election quick count system for 820,000+ witness-registered polling stations, with field-driven iteration."
                   },
                   {
-                    lead: "Pioneered Frictionless Developer Handoff:",
-                    text: "Structured user flows, interactive prototypes, and design rationale documentation for remote engineering teams to ensure precise code implementation."
+                    lead: "Audits, Testing & Business Model Analysis:",
+                    text: "Conducted system audits and usability testing for validated UX improvements. Analyzed business models and user patterns against technical and business requirements."
+                  }
+                ]
+              },
+              {
+                role: "Product / UI/UX Designer (Part-time, Remote)",
+                company: "Freelance",
+                location: "Remote",
+                duration: "May 2023 - Present",
+                scope: "AI-Powered Prototyping · Healthcare · Legal Tech · E-Commerce Ecosystems",
+                desc: "Selected projects across healthcare, legal, travel, and e-commerce from MVP through UAT.",
+                points: [
+                  {
+                    lead: "AI-Powered Prototyping Workflows:",
+                    text: "Developed AI-powered design and prototyping workflows with Claude, Gemini, Figma Make, VS Code, and Antigravity, for rapid iteration from requirements to HTML prototypes."
                   },
                   {
-                    lead: "Rapid Prototyping & AI-Assisted Workflows:",
-                    text: "Leveraged AI-assisted workflows (Claude/Gemini and Figma Make/Antigravity) to reduce project delivery timelines by 70% (from 2 weeks to 2-3 days) for live interactive stakeholder validation."
+                    lead: "Telkomsel Siaga Nationwide Greeting Wall:",
+                    text: "Designed the UI for Telkomsel Siaga's nationwide greeting wall (mobile form, moderation dashboard, curved LED display) in a 1-week sprint."
+                  },
+                  {
+                    lead: "Pro Archery Commerce Ecosystem:",
+                    text: "Designed Pro Archery's commerce ecosystem: landing page, B2C e-commerce, customer portal, and admin/POS."
+                  },
+                  {
+                    lead: "Enterprise & Consulting Platforms:",
+                    text: "Designed a legal consulting platform, therapy center ERP, checkout experiences, and directory platforms. Designed websites, mobile applications, dashboards, and digital platforms from MVP through UAT for clients in healthcare, legal, travel, and e-commerce."
                   }
                 ]
               },
@@ -180,24 +206,20 @@ export default function AboutMe({ onBack }: Props) {
                 company: "Reka Cipta Digital",
                 location: "Jakarta",
                 duration: "Aug 2021 - May 2023",
-                scope: "Software House Development · Conversion Optimization · Interactive Prototypes · Responsive Web & Mobile",
-                desc: "Software house specializing in website and application development, crafting custom web and mobile solutions for client products.",
+                scope: "Design Thinking · Interactive Prototypes · Conversion Optimization · Front-End Implementation",
+                desc: "Software house development delivering custom web and mobile solutions for client products.",
                 points: [
                   {
-                    lead: "Architected Cross-Industry Web & Mobile Apps:",
-                    text: "Conducted user research, wireframing, and interactive prototyping for diverse client applications from initial user story through production launch."
+                    lead: "Cross-Functional Alignment & Research:",
+                    text: "Aligned design and engineering teams on project goals and development timelines. Conducted user research using design thinking and qualitative methods to define user flows, personas, and UX strategy."
                   },
                   {
-                    lead: "Engineered Modular Responsive UI Kits:",
-                    text: "Built responsive design systems in Figma using auto-layout, variants, and component libraries to maintain cross-platform visual consistency."
+                    lead: "Interactive Prototypes & Visual Design:",
+                    text: "Created wireframes, visual designs, flow diagrams, and interactive prototypes for front-end implementation."
                   },
                   {
-                    lead: "Structured Design Rationale & Dev Specs:",
-                    text: "Documented UX logic, flow diagrams, and design rationale for front-end engineers, reducing handoff revisions and daily team alignment friction."
-                  },
-                  {
-                    lead: "Rapid Prototyping & Conversion Optimization:",
-                    text: "Designed and A/B tested landing page variations to optimize conversion funnels, user engagement, and client business growth."
+                    lead: "Conversion Optimization & Bug Fixing:",
+                    text: "Tested UI elements, page layouts, and user flow to optimize landing-page conversion. Supported developers through design handoff, implementation, and bug fixing."
                   }
                 ]
               },
@@ -206,24 +228,16 @@ export default function AboutMe({ onBack }: Props) {
                 company: "Badan Amil Zakat Nasional (BAZNAS)",
                 location: "Jakarta",
                 duration: "Apr 2020 - Dec 2021",
-                scope: "National Brand Governance · Visual Communication Systems · Multi-Branch Coordination · Team Leadership",
-                desc: "National philanthropic organization managing zakat, infaq, and alms (ZIS) at the national level.",
+                scope: "Team Leadership · National Campaigns · Multi-Branch Communication",
+                desc: "National philanthropic organization managing zakat, infaq, and alms at the national level.",
                 points: [
                   {
-                    lead: "Architected National Visual Campaign Systems:",
-                    text: "Spearheaded visual identity and graphic design operations for national philanthropic campaigns and public sector communication channels."
+                    lead: "Team Leadership & Multi-Channel Delivery:",
+                    text: "Led a design team of 3 to deliver 20+ design requests weekly across digital campaigns and print materials."
                   },
                   {
-                    lead: "Engineered Brand Standardization Guidelines:",
-                    text: "Coordinated with nationwide regional branches to maintain strict brand consistency across multi-channel digital and print collateral."
-                  },
-                  {
-                    lead: "Established Workflow Quality Standards:",
-                    text: "Led a team of 3 designers managing 20+ weekly design deliverables, establishing efficient review workflows and onboarding standards."
-                  },
-                  {
-                    lead: "Rapid Media Asset Delivery:",
-                    text: "Streamlined multi-channel asset production to ensure rapid campaign rollout across national press and social channels."
+                    lead: "Nationwide Communication & Brand Governance:",
+                    text: "Coordinated design communication across BAZNAS branches nationwide, producing digital campaigns, advertisements, brochures, infographics, and event visuals."
                   }
                 ]
               }
@@ -282,22 +296,24 @@ export default function AboutMe({ onBack }: Props) {
             {[
               {
                 school: "Institut Teknologi Sepuluh Nopember",
-                location: "Surabaya (Online learning)",
+                location: "Surabaya (Online)",
                 degree: "Master of Technology Management",
                 specialization: "Design Innovation Management",
-                gpa: "3.88/4.00",
-                duration: "Feb 2025 - Oct 2026",
-                thesis: "Developing design documentation framework for solo designers managing multi-brand products, focusing on design decision tracking and knowledge transfer.",
+                gpa: "3.89/4.00",
+                duration: "Feb 2025 - Jul 2026",
+                thesis: "“Design Rationale Documentation and Traceability Framework for Solo Designers in Multi-Brand Products: A Case Study at PT Friendsure Teknologi Indonesia”",
+                academicProject: "RemindITS, a task-reminder app for working students. Ran a questionnaire survey and moderated usability testing (11 participants, 5 task scenarios, SUS 70.21).",
                 coursework: ["Design Thinking", "Design Management", "Strategic Brand Management", "UX Design", "Project Management", "Business Statistics"]
               },
               {
                 school: "Universitas Multimedia Nusantara",
                 location: "Gading Serpong",
                 degree: "Bachelor of Interactive Design",
-                specialization: "Human-Computer Interaction & UI/UX",
+                specialization: "Interactive Design & UI/UX",
                 gpa: "3.55/4.00",
                 duration: "Aug 2017 - Jan 2021",
                 thesis: "Interactive card game for children with dyslexia (researched, designed, and prototyped). Learned HCI, interactivity, interface design, and design methods.",
+                academicProject: null,
                 coursework: ["HCI", "Interactivity", "Interface Design", "Design Methods"]
               }
             ].map((edu) => (
@@ -321,6 +337,12 @@ export default function AboutMe({ onBack }: Props) {
                       <span className="block font-sans text-xs font-bold tracking-wider uppercase text-gray-400">Final Thesis / Project Focus</span>
                       <p className="font-sans text-xs sm:text-sm leading-relaxed text-[#19244E]/85 mt-0.5">{edu.thesis}</p>
                     </div>
+                    {edu.academicProject && (
+                      <div>
+                        <span className="block font-sans text-xs font-bold tracking-wider uppercase text-gray-400">Academic Project</span>
+                        <p className="font-sans text-xs sm:text-sm leading-relaxed text-[#19244E]/85 mt-0.5">{edu.academicProject}</p>
+                      </div>
+                    )}
                   </div>
                 </div>
 
@@ -353,36 +375,30 @@ export default function AboutMe({ onBack }: Props) {
           <div className="grid md:grid-cols-2 gap-8">
             {[
               {
-                title: "Design Tools & Prototyping",
+                title: "Core Design Expertise",
                 skills: [
-                  "Figma (Auto Layout, Design Systems, Tokens & Variables, Component Variants)",
-                  "Framer, VS Code Prototyping",
-                  "Adobe Illustrator, Photoshop",
-                  "Adobe Premiere, After Effects",
-                  "Canva, Capcut",
-                  "Wireframing & Mockups",
-                  "User Flows & Journey Mapping",
-                  "Interactive Prototyping",
-                  "MVP & UAT",
-                  "Design Rationale Documentation"
+                  "UX/UI: User flows, wireframing, prototyping",
+                  "Usability testing, journey mapping, UX strategy",
+                  "Interaction design, visual design",
+                  "Product & Systems: Product thinking, system analysis",
+                  "Modular & atomic component systems",
+                  "Multi-brand & white-label products",
+                  "Business model analysis"
                 ]
               },
               {
-                title: "Approach & Research Methods",
+                title: "Tools & Technologies",
                 skills: [
-                  "Design Thinking",
-                  "User Testing & Usability Testing",
-                  "Data-driven Design",
-                  "User Experience Optimization",
-                  "Business Model Analysis",
-                  "Front-end Collaboration",
-                  "Design Systems Architecture",
-                  "User Research & System Analysis",
-                  "Excel, Tableau, LINGO"
+                  "Figma, Figma Make, Framer",
+                  "Claude, Gemini, Antigravity",
+                  "VS Code, HTML/CSS Prototyping",
+                  "Adobe Illustrator, Adobe Photoshop",
+                  "Microsoft Excel, Data Analysis",
+                  "Design System Tokens & Variants"
                 ]
               },
               {
-                title: "Certifications & Education Focus",
+                title: "Certifications",
                 skills: [
                   "Adobe Certified Associate (Illustrator)",
                   "UI/UX Bootcamp (Purwadhika, 2021)",
@@ -391,11 +407,14 @@ export default function AboutMe({ onBack }: Props) {
                 ]
               },
               {
-                title: "Languages & Communication",
+                title: "Languages & Collaboration",
                 skills: [
                   "Indonesian (Native)",
                   "English (TOEFL 550, British Council 570)",
-                  "Korean (Beginner)"
+                  "Korean (Beginner)",
+                  "Stakeholder management",
+                  "Cross-functional collaboration",
+                  "Design rationale documentation & handoff"
                 ]
               }
             ].map(({ title, skills }) => (

@@ -534,7 +534,7 @@ function PdfPreviewModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
                     ADINA FAYZA GAYO
                   </span>
                   <span className="font-mono text-[10px] sm:text-xs text-white/60 truncate">
-                    Product Designer · Technical Resume (PDF)
+                    UI/UX Designer · Digital Product Design (PDF)
                   </span>
                 </div>
               </div>
