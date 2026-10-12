@@ -4,11 +4,16 @@ import { CaseStudyHeaderBadge } from "@/app/components/ui/CaseStudyHeaderBadge"
 import {
   ArrowLeft, ChevronRight, CheckCircle2, Globe, Home,
   FileCode2, LayoutGrid, Zap, ShoppingCart, Package, Users, MessageSquare,
-  RefreshCw, FileText, ShieldCheck, GitBranch, ChevronDown, ListFilter, Sparkles
+  RefreshCw, FileText, ShieldCheck, GitBranch, ChevronDown, ListFilter, Sparkles,
+  X, Maximize2
 } from "lucide-react"
 
 import heroImg from "@/imports/image-8.jpg"
 import proArcheryThumb from "@/imports/proarcherythumb5.jpg"
+import proArcheryInventory from "@/imports/proarchery-inventory.jpg"
+import proArcheryStockTransaction from "@/imports/proarchery-stock-transaction.jpg"
+import proArcheryPricingTiers from "@/imports/proarchery-pricing-tiers.jpg"
+import proArcheryOrderTracking from "@/imports/proarchery-order-tracking.jpg"
 
 const N = "#19244E"
 const C = "#DB3E8C"
@@ -67,12 +72,25 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
   const [scrolled, setScrolled] = useState(false)
   const [activeQuickId, setActiveQuickId] = useState<string>("summary")
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [selectedImage, setSelectedImage] = useState<{
+    src: string
+    title: string
+    badge: string
+    desc: string
+  } | null>(null)
 
   useEffect(() => {
     window.scrollTo({ top: 0 })
     const onScroll = () => setScrolled(window.scrollY > 40)
     window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSelectedImage(null)
+    }
+    window.addEventListener("keydown", handleKeyDown)
+    return () => {
+      window.removeEventListener("scroll", onScroll)
+      window.removeEventListener("keydown", handleKeyDown)
+    }
   }, [])
 
   // ScrollSpy for Quick Jump active state
@@ -461,6 +479,80 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
               </div>
             </div>
           </div>
+
+          {/* HIGH FIDELITY SYSTEM SCREENS SHOWCASE */}
+          <div className="mt-8 p-6 rounded-2xl bg-[#0e1635] border border-white/10 text-white shadow-xl">
+            <div className="flex flex-wrap items-center justify-between gap-2 mb-6 pb-3 border-b border-white/10">
+              <div className="flex items-center gap-2">
+                <Sparkles size={14} className="text-[#DB3E8C]" />
+                <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+                  HIGH FIDELITY SYSTEM SCREENS // PRODUCTION & PROTOTYPE MODULES
+                </span>
+              </div>
+              <span className="font-sans text-[10px] font-bold tracking-widest uppercase text-white/50">
+                4 Core Surfaces
+              </span>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {[
+                {
+                  title: "01 · Inventory & SKU Taxonomy",
+                  img: proArcheryInventory,
+                  badge: "Admin POS Console",
+                  desc: "Granular equipment catalog with SKU taxonomy, multi-variant tracking (Hoyt, Mathews, Easton), and instant Publish/Active/Draft statuses.",
+                },
+                {
+                  title: "02 · Barcode Stock Transactions",
+                  img: proArcheryStockTransaction,
+                  badge: "Warehouse Engine",
+                  desc: "Real-time barcode scanner interface for incoming shipments, transfers, and warehouse bookings with connected Redux transaction hooks.",
+                },
+                {
+                  title: "03 · Multi-Tier Pricing Categories",
+                  img: proArcheryPricingTiers,
+                  badge: "Dynamic Markup",
+                  desc: "Configurable tier-based markup percentage engine across Retail, Bronze, Silver, Gold, Platinum, and Family member tiers.",
+                },
+                {
+                  title: "04 · Order & Warranty Tracking",
+                  img: proArcheryOrderTracking,
+                  badge: "B2C Self-Service Portal",
+                  desc: "Live order timeline (Dibuat → Dibayar → Dikirim → Selesai), itemized serial number mapping, and integrated courier delivery tracking.",
+                },
+              ].map((item) => (
+                <div
+                  key={item.title}
+                  onClick={() => setSelectedImage(item)}
+                  className="bg-[#141b36] border border-white/10 rounded-xl p-3 flex flex-col justify-between group hover:border-[#DB3E8C]/60 hover:shadow-lg transition-all duration-300 cursor-pointer"
+                >
+                  <div className="relative aspect-[16/11] rounded-lg overflow-hidden border border-white/10 mb-3 bg-[#0d142d]">
+                    <img
+                      src={item.img}
+                      alt={item.title}
+                      className="w-full h-full object-cover object-top rounded group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute top-2 left-2 bg-black/70 backdrop-blur-md px-2 py-0.5 rounded text-[9px] font-bold tracking-wider uppercase text-white border border-white/20">
+                      {item.badge}
+                    </div>
+                    <div className="absolute inset-0 bg-[#DB3E8C]/0 group-hover:bg-[#DB3E8C]/10 transition-colors flex items-center justify-center">
+                      <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-black/80 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg border border-white/20">
+                        <Maximize2 size={12} /> Klik untuk Perbesar
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="font-sans text-xs font-bold text-white mb-1 tracking-wide group-hover:text-[#DB3E8C] transition-colors">
+                      {item.title}
+                    </h4>
+                    <p className="font-sans text-[11px] text-white/70 leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         <Hairline />
@@ -663,6 +755,54 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
     </div>
   </div>
 
+      {/* Lightbox Modal */}
+      {selectedImage && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setSelectedImage(null)}
+          className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 animate-in fade-in duration-200"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="relative max-w-5xl w-full bg-[#0d142d] border border-white/20 rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[92vh]"
+          >
+            {/* Header */}
+            <div className="flex items-center justify-between p-4 sm:px-6 border-b border-white/10 bg-[#141b36]">
+              <div className="flex items-center gap-3">
+                <span className="bg-[#DB3E8C]/20 border border-[#DB3E8C]/40 text-[#DB3E8C] text-[10px] font-bold px-2.5 py-0.5 rounded uppercase tracking-wider">
+                  {selectedImage.badge}
+                </span>
+                <h3 className="font-display font-bold text-white text-sm sm:text-base">
+                  {selectedImage.title}
+                </h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => setSelectedImage(null)}
+                aria-label="Tutup preview"
+                className="text-white/60 hover:text-white hover:bg-white/10 p-1.5 rounded-lg transition-colors cursor-pointer"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            {/* Image Stage */}
+            <div className="flex-1 overflow-auto p-3 sm:p-6 flex items-center justify-center bg-[#070b1a]">
+              <img
+                src={selectedImage.src}
+                alt={selectedImage.title}
+                className="w-auto h-auto max-h-[70vh] max-w-full object-contain rounded-lg shadow-2xl"
+              />
+            </div>
+
+            {/* Footer with Description */}
+            <div className="p-4 sm:px-6 border-t border-white/10 bg-[#141b36] text-xs sm:text-sm text-white/80 font-sans leading-relaxed">
+              {selectedImage.desc}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

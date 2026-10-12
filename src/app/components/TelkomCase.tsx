@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react"
 import { CaseStudyHeaderBadge } from "@/app/components/ui/CaseStudyHeaderBadge"
 import telkomSiagaVideo from "@/imports/telkom-siaga.mp4"
+import telkomCurvedLedDisplay from "@/imports/telkom-curved-led-display.png"
+import telkomCurationDashboard from "@/imports/telkom-curation-dashboard.png"
 import {
   ArrowLeft, ChevronRight, CheckCircle2, Globe, Home,
-  FileCode2, Shield, Zap, RefreshCw, GitBranch, Users, MessageSquare, Sparkles, AlertTriangle, ChevronDown, Monitor, Layout, Filter, Eye, Cpu
+  FileCode2, Shield, Zap, RefreshCw, GitBranch, Users, MessageSquare, Sparkles, AlertTriangle, ChevronDown, Monitor, Layout, Filter, Eye, Cpu,
+  X, Maximize2
 } from "lucide-react"
 
 const N = "#19244E"
@@ -62,12 +65,25 @@ export default function TelkomCase({ onBack, onNext, onPrev }: Props) {
   const [scrolled, setScrolled] = useState(false)
   const [activeQuickId, setActiveQuickId] = useState<string>("summary")
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [selectedImage, setSelectedImage] = useState<{
+    src: string
+    title: string
+    badge: string
+    desc: string
+  } | null>(null)
 
   useEffect(() => {
     window.scrollTo({ top: 0 })
     const onScroll = () => setScrolled(window.scrollY > 40)
     window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSelectedImage(null)
+    }
+    window.addEventListener("keydown", handleKeyDown)
+    return () => {
+      window.removeEventListener("scroll", onScroll)
+      window.removeEventListener("keydown", handleKeyDown)
+    }
   }, [])
 
   useEffect(() => {
@@ -372,6 +388,39 @@ export default function TelkomCase({ onBack, onNext, onPrev }: Props) {
                     </p>
                   </div>
                 </div>
+
+                {/* Interactive Image Card: Dashboard Kurasi Pesan */}
+                <div
+                  onClick={() => setSelectedImage({
+                    src: telkomCurationDashboard,
+                    title: "01 · Dashboard Kurasi Pesan (Telkomsel Siaga)",
+                    badge: "Web Curation Console",
+                    desc: "Interactive admin moderation portal featuring status filtering (Semua, Belum Ditinjau, Disetujui, Ditolak), regional branch routing (Bandung, Surabaya, Jakarta), and live lobby LED toggle switches."
+                  })}
+                  className="mt-6 bg-[#0e1635] border border-white/10 rounded-2xl p-4 sm:p-5 shadow-xl hover:border-[#DB3E8C]/50 transition-all duration-300 cursor-pointer group text-white"
+                >
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-3 pb-2 border-b border-white/10">
+                    <div className="flex items-center gap-2">
+                      <span className="bg-[#DB3E8C]/20 border border-[#DB3E8C]/40 text-[#DB3E8C] text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">
+                        Web Curation Console // Admin
+                      </span>
+                      <span className="text-white text-xs font-semibold">Moderation & Live Broadcast Switch</span>
+                    </div>
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 text-[11px] text-[#DB3E8C] font-semibold">
+                      <Maximize2 size={12} /> Klik untuk Perbesar
+                    </div>
+                  </div>
+                  <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-[#070b1a] border border-white/10">
+                    <img
+                      src={telkomCurationDashboard}
+                      alt="Dashboard Kurasi Pesan Telkomsel Siaga"
+                      className="w-full h-full object-cover object-top rounded-xl group-hover:scale-102 transition-transform duration-500"
+                    />
+                  </div>
+                  <p className="mt-3 text-xs text-white/70 font-sans leading-relaxed">
+                    Granular 2-tier moderation portal with regional branch filtering, status filters, and individual LED live toggle switches for real-time broadcast pacing.
+                  </p>
+                </div>
               </div>
             </div>
 
@@ -427,6 +476,39 @@ export default function TelkomCase({ onBack, onNext, onPrev }: Props) {
                     <span className="font-bold block mb-1">Architectural Adjustment</span>
                     Repositioned key branding badges and interactive message nodes away from curved display perimeters into safe flat surface zones to prevent physical clipping at HQ lobby.
                   </div>
+                </div>
+
+                {/* Interactive Image Card: Physical Curved Ceiling LED Display */}
+                <div
+                  onClick={() => setSelectedImage({
+                    src: telkomCurvedLedDisplay,
+                    title: "02 · Custom Shaped Curved Ceiling LED Wall (Telkomsel HQ)",
+                    badge: "Physical Installation",
+                    desc: "Live physical installation in the lobby of Telkomsel HQ featuring custom curved architectural cutouts, floating greeting orbs, and adjusted flat safe zones for branding."
+                  })}
+                  className="mt-6 bg-[#0e1635] border border-white/10 rounded-2xl p-4 sm:p-5 shadow-xl hover:border-[#DB3E8C]/50 transition-all duration-300 cursor-pointer group text-white"
+                >
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-3 pb-2 border-b border-white/10">
+                    <div className="flex items-center gap-2">
+                      <span className="bg-[#DB3E8C]/20 border border-[#DB3E8C]/40 text-[#DB3E8C] text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">
+                        Physical Installation // HQ Lobby
+                      </span>
+                      <span className="text-white text-xs font-semibold">Curved Ceiling Architectural LED Display</span>
+                    </div>
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 text-[11px] text-[#DB3E8C] font-semibold">
+                      <Maximize2 size={12} /> Klik untuk Perbesar
+                    </div>
+                  </div>
+                  <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-[#070b1a] border border-white/10">
+                    <img
+                      src={telkomCurvedLedDisplay}
+                      alt="Physical Curved Ceiling LED Display at Telkomsel HQ"
+                      className="w-full h-full object-cover object-center rounded-xl group-hover:scale-102 transition-transform duration-500"
+                    />
+                  </div>
+                  <p className="mt-3 text-xs text-white/70 font-sans leading-relaxed">
+                    Live broadcast at Telkomsel HQ lobby. Key branding badges and interactive message bubbles were mapped specifically into safe flat surface zones to prevent physical clipping on the curved ceiling perimeter.
+                  </p>
                 </div>
               </div>
             </div>
@@ -501,6 +583,54 @@ export default function TelkomCase({ onBack, onNext, onPrev }: Props) {
         </div>
       </div>
 
+      {/* Lightbox Modal */}
+      {selectedImage && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setSelectedImage(null)}
+          className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 animate-in fade-in duration-200"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="relative max-w-5xl w-full bg-[#0d142d] border border-white/20 rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[92vh]"
+          >
+            {/* Header */}
+            <div className="flex items-center justify-between p-4 sm:px-6 border-b border-white/10 bg-[#141b36]">
+              <div className="flex items-center gap-3">
+                <span className="bg-[#DB3E8C]/20 border border-[#DB3E8C]/40 text-[#DB3E8C] text-[10px] font-bold px-2.5 py-0.5 rounded uppercase tracking-wider">
+                  {selectedImage.badge}
+                </span>
+                <h3 className="font-display font-bold text-white text-sm sm:text-base">
+                  {selectedImage.title}
+                </h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => setSelectedImage(null)}
+                aria-label="Tutup preview"
+                className="text-white/60 hover:text-white hover:bg-white/10 p-1.5 rounded-lg transition-colors cursor-pointer"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            {/* Image Stage */}
+            <div className="flex-1 overflow-auto p-3 sm:p-6 flex items-center justify-center bg-[#070b1a]">
+              <img
+                src={selectedImage.src}
+                alt={selectedImage.title}
+                className="w-auto h-auto max-h-[70vh] max-w-full object-contain rounded-lg shadow-2xl"
+              />
+            </div>
+
+            {/* Footer with Description */}
+            <div className="p-4 sm:px-6 border-t border-white/10 bg-[#141b36] text-xs sm:text-sm text-white/80 font-sans leading-relaxed">
+              {selectedImage.desc}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

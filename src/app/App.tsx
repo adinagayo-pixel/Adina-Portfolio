@@ -41,14 +41,25 @@ import mykawanThumb from "@/imports/mykawan thumb.jpg"
 import disnavThumb from "@/imports/disnav thumb.jpg"
 import adaPolisiThumb from "@/imports/ada polisi thumb.jpg"
 import ftjslThumb from "@/imports/FTJSL Thumbnail.jpg"
-import telkomSiagaVideo from "@/imports/telkom-siaga.mp4"
+import telkomCurvedLedDisplay from "@/imports/telkom-curved-led-display.png"
+import telkomCurationDashboard from "@/imports/telkom-curation-dashboard.png"
 import mykawanGegmThumb from "@/imports/Mykawan GEGM thumb.jpg"
 import drGadgetThumb from "@/imports/dr gadget thumb.jpg"
 import sunwayThumb from "@/imports/sunway thumb.jpg"
 import mySalamThumb from "@/imports/my salam thumb.jpg"
 import eSaksiThumb from "@/imports/e-saksi thumb.jpg"
+import electionVerificationCms from "@/imports/election-verification-cms.png"
+import electionSainteLague from "@/imports/election-sainte-lague.png"
+import electionKpuEntry from "@/imports/election-kpu-entry.png"
 import proArcheryThumb from "@/imports/proarcherythumb5.jpg"
+import proArcheryInventory from "@/imports/proarchery-inventory.jpg"
+import proArcheryStockTransaction from "@/imports/proarchery-stock-transaction.jpg"
+import proArcheryPricingTiers from "@/imports/proarchery-pricing-tiers.jpg"
+import proArcheryOrderTracking from "@/imports/proarchery-order-tracking.jpg"
 import backofficePortalThumb from "@/imports/backoffice portal thumb.jpg"
+import backofficeSalesOverview from "@/imports/backoffice-sales-overview.png"
+import backofficeCustomerDetail from "@/imports/backoffice-customer-detail.png"
+import backofficeAiTopPicks from "@/imports/backoffice-ai-top-picks.png"
 import myArcheryPerpaniThumb from "@/imports/myarchery thumb.jpg"
 import section3PhaseBg from "@/imports/section 3 phase.jpg"
 
@@ -58,7 +69,7 @@ import {
   ArrowRight, ArrowDown, ExternalLink, Globe, Zap,
   Users, CheckCircle, Coins, Bot, LayoutGrid,
   ArrowUpRight, ChevronRight, MousePointer2, Plus, Linkedin, Download,
-  Search, Target, FileCheck, FileText, X, Eye, ChevronDown, ChevronUp, MessageSquare,
+  Search, Target, FileCheck, FileText, X, Eye, ChevronDown, ChevronUp, MessageSquare, Lock,
 } from "lucide-react"
 
 import GegiCase from "./components/GegiCase"
@@ -157,22 +168,25 @@ const FEATURED = [
     thumb: eSaksiThumb,
     screens: [
       { src: eSaksiThumb, label: "01 · REAL TIME TABULATION" },
-      { src: projectThumb1, label: "02 · PROVINCIAL MATRIX" },
-      { src: projectThumb2, label: "03 · VERIFICATION CMS" },
+      { src: electionSainteLague, label: "02 · SAINTE-LAGUË SEAT MATRIX" },
+      { src: electionVerificationCms, label: "03 · FORM C-HASIL VERIFICATION CMS" },
+      { src: electionKpuEntry, label: "04 · DUAL ENTRY TABULATION ENGINE" },
     ],
   },
   {
-    num: "05", shortTitle: "Multi-Tenant Backoffice", name: "Multi Tenant White Label Backoffice Architecture", client: "Regional SuperApps & FinTech",
-    location: "SG/MY/ID", year: "2024 to 2025", tags: ["White Label Engine", "Design System Tokens", "Data Analytics"],
+    num: "05", shortTitle: "White Label Backoffice", name: "One Base, Many Partners: Reusable White Label Backoffice", client: "Multiple Enterprise Partnerships",
+    location: "Regional", year: "2024 to 2025", tags: ["White Label Engine", "Shared Foundation", "Data Analytics"],
     role: "Sole Product Designer",
-    headline: "Building a reusable two track white label and analytics pattern to serve enterprise tenants with different operational needs.",
-    metrics: [{ val: "2 Track", sub: "Delivery Model" }, { val: "1 to 3h", sub: "Tenant Setup" }, { val: "0", sub: "BE Query Timeouts" }],
+    headline: "How I recognized a shared foundation across partner portals, and focused my design time on the parts where partners genuinely differed.",
+    confidentialNote: "Client names, logos, and data have been sanitized to respect NDAs. Screens reflect the real design process, not real production data.",
+    metrics: [{ val: "2 Track", sub: "Delivery Model" }, { val: "1 Base", sub: "Multi-Partner System" }, { val: "Days", sub: "Pitch Turnaround" }],
     projectId: "backoffice",
     thumb: backofficePortalThumb,
     screens: [
       { src: backofficePortalThumb, label: "01 · DUAL TRACK ARCHITECTURE" },
-      { src: projectThumb2, label: "02 · MULTI TENANT DASHBOARD" },
-      { src: projectThumb1, label: "03 · ISOLATED FILTER ENGINE" },
+      { src: backofficeSalesOverview, label: "02 · MULTI TENANT SALES DASHBOARD" },
+      { src: backofficeCustomerDetail, label: "03 · DETAIL CUSTOMER & EKYC" },
+      { src: backofficeAiTopPicks, label: "04 · AI TOP PICKS & RECOMMENDATIONS" },
     ],
   },
   {
@@ -202,8 +216,10 @@ const FEATURED = [
     thumb: proArcheryThumb,
     screens: [
       { src: proArcheryThumb, label: "01 · E COMMERCE PORTAL" },
-      { src: projectThumb2, label: "02 · POS ADMIN DASHBOARD" },
-      { src: projectThumb1, label: "03 · AI PROMPT ARCHITECTURE" },
+      { src: proArcheryInventory, label: "02 · INVENTORY & SKU MANAGEMENT" },
+      { src: proArcheryStockTransaction, label: "03 · BARCODE STOCK TRANSACTIONS" },
+      { src: proArcheryPricingTiers, label: "04 · MULTI-TIER PRICING ENGINE" },
+      { src: proArcheryOrderTracking, label: "05 · ORDER & WARRANTY TRACKING" },
     ],
   },
   {
@@ -227,11 +243,10 @@ const FEATURED = [
     headline: "Refining a nationwide greeting wall: from mobile input form to curated custom shaped LED display at Telkomsel HQ.",
     metrics: [{ val: "3", sub: "System Touchpoints" }, { val: "2 Tier", sub: "Curation Moderation" }, { val: "1wk", sub: "Sprint Timeline" }],
     projectId: "telkom",
-    thumb: telkomSiagaVideo,
+    thumb: telkomCurvedLedDisplay,
     screens: [
-      { src: telkomSiagaVideo, label: "01 · LED LOBBY BROADCAST" },
-      { src: projectThumb2, label: "02 · CURATION DASHBOARD" },
-      { src: projectThumb1, label: "03 · MOBILE SUBMISSION FORM" },
+      { src: telkomCurvedLedDisplay, label: "01 · CURVED CEILING LED WALL" },
+      { src: telkomCurationDashboard, label: "02 · MESSAGE CURATION DASHBOARD" },
     ],
   },
 ]
@@ -1556,9 +1571,21 @@ function FeaturedWorkSection({
                 backgroundSize: "16px 16px",
               }}
             >
-              {/* Figma frame label (Left) */}
-              <div className="absolute top-4 left-4 bg-white/10 backdrop-blur-md border border-white/15 px-3 py-1 rounded text-[10px] font-sans font-bold tracking-widest text-white/90 z-20 shadow-sm">
-                {activeProject.num} · {activeProject.location} · {activeProject.year}
+              {/* Figma frame label & NDA Badge (Stacked Top Left) */}
+              <div className="absolute top-4 left-4 z-20 flex flex-col items-start gap-1.5 pointer-events-none max-w-[calc(100%-2rem)]">
+                <div className="bg-white/10 backdrop-blur-md border border-white/15 px-3 py-1 rounded text-[10px] font-sans font-bold tracking-widest text-white/90 shadow-sm pointer-events-auto">
+                  {activeProject.num} · {activeProject.location} · {activeProject.year}
+                </div>
+
+                {'confidentialNote' in activeProject && activeProject.confidentialNote && (
+                  <div
+                    className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-200 text-[10px] sm:text-[11px] font-sans font-medium shadow-md backdrop-blur-md whitespace-nowrap pointer-events-auto cursor-help hover:bg-amber-500/25 transition-colors"
+                    title="Client names, logos, and specific metrics have been sanitized to respect NDAs. What is shown here reflects the real process, not real production data."
+                  >
+                    <Lock size={12} className="text-amber-400 shrink-0" />
+                    <span>Sanitized for NDA · Reflects real process</span>
+                  </div>
+                )}
               </div>
 
               {/* Active Figma Frame Preview Stage (Borderless & Unclipped) */}
@@ -1730,6 +1757,17 @@ function FeaturedWorkSection({
                       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#19244E]/30 pointer-events-none" />
                     </div>
                   </div>
+
+                  {/* Confidentiality Note badge under image */}
+                  {'confidentialNote' in project && project.confidentialNote && (
+                    <div
+                      className="mb-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-200 text-[10px] font-sans font-medium w-fit"
+                      title={project.confidentialNote}
+                    >
+                      <Lock size={11} className="text-amber-400 shrink-0" />
+                      <span>Sanitized for NDA · Reflects real process</span>
+                    </div>
+                  )}
 
                   {/* Metadata & Headline */}
                   <div className="flex-1 flex flex-col justify-between">
@@ -2725,6 +2763,7 @@ export default function App() {
         setCurrentView("home")
       }
     }
+    handlePopState()
     window.addEventListener("popstate", handlePopState)
     return () => window.removeEventListener("popstate", handlePopState)
   }, [])
@@ -2784,17 +2823,14 @@ export default function App() {
     }
   }
 
-  const handleBackToWork = () => {
-    if (typeof window !== "undefined" && window.history.state && window.history.state.idx > 0) {
-      window.history.back()
-    } else {
-      setCurrentView("home")
-      if (typeof window !== "undefined") {
-        window.history.pushState(null, "", "/")
-        window.scrollTo({ top: 0, behavior: "instant" })
-      }
+  const handleBackToHome = () => {
+    setCurrentView("home")
+    if (typeof window !== "undefined") {
+      window.history.pushState(null, "", window.location.pathname)
+      window.scrollTo({ top: 0, behavior: "instant" })
     }
   }
+  const handleBackToWork = handleBackToHome
 
 
 

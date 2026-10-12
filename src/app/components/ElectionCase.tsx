@@ -4,11 +4,15 @@ import { CaseStudyHeaderBadge } from "@/app/components/ui/CaseStudyHeaderBadge"
 import {
   ArrowLeft, ChevronRight, CheckCircle2, Globe, Home,
   Smartphone, BarChart2, Camera, MessageSquare,
-  Shield, Database, MapPin, AlertCircle, Users, WifiOff, RefreshCw, Layers, CheckSquare, ChevronDown, Sparkles
+  Shield, Database, MapPin, AlertCircle, Users, WifiOff, RefreshCw, Layers, CheckSquare, ChevronDown, Sparkles,
+  X, Maximize2
 } from "lucide-react"
 
 import heroImg from "@/imports/image-9.jpg"
 import eSaksiThumb from "@/imports/e-saksi thumb.jpg"
+import electionVerificationCms from "@/imports/election-verification-cms.png"
+import electionSainteLague from "@/imports/election-sainte-lague.png"
+import electionKpuEntry from "@/imports/election-kpu-entry.png"
 
 const N = "#19244E"
 const C = "#DB3E8C"
@@ -69,12 +73,25 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
   const [scrolled, setScrolled] = useState(false)
   const [activeQuickId, setActiveQuickId] = useState<string>("summary")
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [selectedImage, setSelectedImage] = useState<{
+    src: string
+    title: string
+    badge: string
+    desc: string
+  } | null>(null)
 
   useEffect(() => {
     window.scrollTo({ top: 0 })
     const onScroll = () => setScrolled(window.scrollY > 40)
     window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSelectedImage(null)
+    }
+    window.addEventListener("keydown", handleKeyDown)
+    return () => {
+      window.removeEventListener("scroll", onScroll)
+      window.removeEventListener("keydown", handleKeyDown)
+    }
   }, [])
 
   // ScrollSpy for Quick Jump active state
@@ -350,6 +367,39 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
             <p>
               Witnesses submit photos from a mobile app in the field. A separate web tool handles verification and manual correction, staffed by a dedicated entry team whose job is specifically to catch and fix what the AI got wrong before results are finalized. This wasn't designing for the ideal case and hoping the AI held up: it meant building two parallel experiences, one fast and automated, one manual and deliberate, making sure a human could always step in without the system falling apart around them.
             </p>
+
+            {/* Interactive Image Card: Form C-Hasil Verification CMS */}
+            <div
+              onClick={() => setSelectedImage({
+                src: electionVerificationCms,
+                title: "01 · Dual-Pane Verification Portal (PPLN Abuja)",
+                badge: "AI + Human Verification",
+                desc: "Side-by-side verification CMS allowing dedicated data entry clerks to audit physical C-Hasil tallies against candidate vote inputs across all registered national parties."
+              })}
+              className="mt-6 bg-[#0e1635] border border-white/10 rounded-2xl p-4 sm:p-5 shadow-xl hover:border-[#DB3E8C]/50 transition-all duration-300 cursor-pointer group"
+            >
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-3 pb-2 border-b border-white/10">
+                <div className="flex items-center gap-2">
+                  <span className="bg-[#DB3E8C]/20 border border-[#DB3E8C]/40 text-[#DB3E8C] text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">
+                    Web Verification Portal // PPLN Abuja
+                  </span>
+                  <span className="text-white text-xs font-semibold">Form C-Hasil Physical Tally Audit</span>
+                </div>
+                <div className="opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 text-[11px] text-[#DB3E8C] font-semibold">
+                  <Maximize2 size={12} /> Klik untuk Perbesar
+                </div>
+              </div>
+              <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-[#070b1a] border border-white/10">
+                <img
+                  src={electionVerificationCms}
+                  alt="Form C-Hasil Verification CMS"
+                  className="w-full h-full object-cover object-top rounded-xl group-hover:scale-102 transition-transform duration-500"
+                />
+              </div>
+              <p className="mt-3 text-xs text-white/70 font-sans leading-relaxed">
+                Dedicated data entry clerks audit physical handwritten C-Hasil ballots directly against candidate tallies with nationwide party sequencing.
+              </p>
+            </div>
           </div>
         </div>
 
@@ -382,6 +432,39 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
             <p>
               Understanding it well enough to explain to developers meant going past a surface definition: reading official sources on how and why the method works, then studying how existing third party election tracking sites had solved the same visualization problem for the 2019 election. That research became the basis for a table format showing each party's vote count against its sequence of divisors side by side, so anyone from the party, not just someone fluent in the math, could see how seat allocation was playing out. On top of the raw table, five alert categories translated the numbers into plain language risk signals: from "Menang Telak" to "Kalah Telak": based on vote margin thresholds. This wasn't just displaying a formula; it meant learning an unfamiliar domain well enough to make independent design decisions about what mattered to surface, then defending that logic to the development team building it.
             </p>
+
+            {/* Interactive Image Card: Sainte-Laguë Seat Allocation Matrix */}
+            <div
+              onClick={() => setSelectedImage({
+                src: electionSainteLague,
+                title: "02 · Sainte-Laguë Seat Matrix (DAPIL Banten II)",
+                badge: "Electoral Math Engine",
+                desc: "Real-time calculation table applying odd divisors (n/1, n/3, n/5... n/23), legislative threshold filtering (32% vs 68%), and plain-language alert tags (Min. 2 Kursi, Menang Telak)."
+              })}
+              className="mt-6 bg-[#0e1635] border border-white/10 rounded-2xl p-4 sm:p-5 shadow-xl hover:border-[#DB3E8C]/50 transition-all duration-300 cursor-pointer group"
+            >
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-3 pb-2 border-b border-white/10">
+                <div className="flex items-center gap-2">
+                  <span className="bg-[#DB3E8C]/20 border border-[#DB3E8C]/40 text-[#DB3E8C] text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">
+                    Electoral Engine // DAPIL Banten II
+                  </span>
+                  <span className="text-white text-xs font-semibold">Seat Allocation & Sainte-Laguë Divisors</span>
+                </div>
+                <div className="opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 text-[11px] text-[#DB3E8C] font-semibold">
+                  <Maximize2 size={12} /> Klik untuk Perbesar
+                </div>
+              </div>
+              <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-[#070b1a] border border-white/10">
+                <img
+                  src={electionSainteLague}
+                  alt="Sainte-Laguë Seat Allocation Matrix"
+                  className="w-full h-full object-cover object-top rounded-xl group-hover:scale-102 transition-transform duration-500"
+                />
+              </div>
+              <p className="mt-3 text-xs text-white/70 font-sans leading-relaxed">
+                Dynamic Sainte-Laguë quotient matrix with parliamentary threshold toggle, donut vote status, and automated seat attribution per candidate.
+              </p>
+            </div>
           </div>
         </div>
 
@@ -398,6 +481,39 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
             <p>
               Witness verification checked whether a submitted phone number was already a member of the relevant WhatsApp group: a cheaper, faster proxy for identity than a costly SMS OTP flow, and one that fit how these regional groups already operated. A separate system tracked the physical handover of election documents (Tanda Terima), recording who was responsible and which TPS the documents came from, with multiple design alternatives explored before landing on the final version, including a photo only variant for cases where full manual entry wasn't practical.
             </p>
+
+            {/* Interactive Image Card: Dual-Entry KSN vs KPU Tabulation Tool */}
+            <div
+              onClick={() => setSelectedImage({
+                src: electionKpuEntry,
+                title: "03 · Dual-Entry District Tabulation (DPR RI Jawa Barat I)",
+                badge: "Territorial CMS",
+                desc: "Hierarchical territorial filtering (Provinsi → Dapil → Kota → Kecamatan → Kelurahan → TPS) with 18-party selector and real-time subdistrict audit grid."
+              })}
+              className="mt-6 bg-[#0e1635] border border-white/10 rounded-2xl p-4 sm:p-5 shadow-xl hover:border-[#DB3E8C]/50 transition-all duration-300 cursor-pointer group"
+            >
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-3 pb-2 border-b border-white/10">
+                <div className="flex items-center gap-2">
+                  <span className="bg-[#DB3E8C]/20 border border-[#DB3E8C]/40 text-[#DB3E8C] text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">
+                    Tabulation Tool // DPR RI Jawa Barat I
+                  </span>
+                  <span className="text-white text-xs font-semibold">KSN vs KPU Cross-Reference Grid</span>
+                </div>
+                <div className="opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 text-[11px] text-[#DB3E8C] font-semibold">
+                  <Maximize2 size={12} /> Klik untuk Perbesar
+                </div>
+              </div>
+              <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-[#070b1a] border border-white/10">
+                <img
+                  src={electionKpuEntry}
+                  alt="Entry KPU Tabulation Tool"
+                  className="w-full h-full object-cover object-top rounded-xl group-hover:scale-102 transition-transform duration-500"
+                />
+              </div>
+              <p className="mt-3 text-xs text-white/70 font-sans leading-relaxed">
+                6-tier geographical drilldown and party ballot carousel enabling comparison between internal KSN witness data and official KPU figures.
+              </p>
+            </div>
           </div>
         </div>
 
@@ -488,6 +604,54 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
         </div>
       </div>
 
+      {/* Lightbox Modal */}
+      {selectedImage && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setSelectedImage(null)}
+          className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 animate-in fade-in duration-200"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="relative max-w-5xl w-full bg-[#0d142d] border border-white/20 rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[92vh]"
+          >
+            {/* Header */}
+            <div className="flex items-center justify-between p-4 sm:px-6 border-b border-white/10 bg-[#141b36]">
+              <div className="flex items-center gap-3">
+                <span className="bg-[#DB3E8C]/20 border border-[#DB3E8C]/40 text-[#DB3E8C] text-[10px] font-bold px-2.5 py-0.5 rounded uppercase tracking-wider">
+                  {selectedImage.badge}
+                </span>
+                <h3 className="font-display font-bold text-white text-sm sm:text-base">
+                  {selectedImage.title}
+                </h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => setSelectedImage(null)}
+                aria-label="Tutup preview"
+                className="text-white/60 hover:text-white hover:bg-white/10 p-1.5 rounded-lg transition-colors cursor-pointer"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            {/* Image Stage */}
+            <div className="flex-1 overflow-auto p-3 sm:p-6 flex items-center justify-center bg-[#070b1a]">
+              <img
+                src={selectedImage.src}
+                alt={selectedImage.title}
+                className="w-auto h-auto max-h-[70vh] max-w-full object-contain rounded-lg shadow-2xl"
+              />
+            </div>
+
+            {/* Footer with Description */}
+            <div className="p-4 sm:px-6 border-t border-white/10 bg-[#141b36] text-xs sm:text-sm text-white/80 font-sans leading-relaxed">
+              {selectedImage.desc}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

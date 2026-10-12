@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "motion/react"
-import { ArrowLeft, ArrowRight, ChevronUp, X, Check } from "lucide-react"
+import { ArrowLeft, ArrowRight, ChevronUp, X, Check, Home } from "lucide-react"
 
 
 export interface CaseStudyMeta {
@@ -36,6 +36,7 @@ export function CaseStudySwipeWrapper({
   onNavigateNext,
   onNavigatePrev,
   onNavigateTo,
+  onBackToHome,
 }: CaseStudySwipeWrapperProps) {
   const [isSwitcherOpen, setIsSwitcherOpen] = useState(false)
   const [isVisible, setIsVisible] = useState(true)
@@ -285,6 +286,23 @@ export function CaseStudySwipeWrapper({
                   )
                 })}
               </div>
+
+              {/* Back to Home Action in Drawer */}
+              {onBackToHome && (
+                <div className="pt-3 mt-3 border-t border-white/10 flex items-center justify-between">
+                  <button
+                    onClick={() => {
+                      setIsSwitcherOpen(false)
+                      onBackToHome()
+                    }}
+                    className="flex items-center gap-2 text-xs font-mono font-semibold text-white/80 hover:text-white transition-colors cursor-pointer py-2 px-3 rounded-xl bg-white/5 hover:bg-white/10"
+                  >
+                    <Home size={14} className="text-[#E62E85]" />
+                    <span>Back to Home Portfolio</span>
+                  </button>
+                  <span className="text-[10px] font-mono text-white/40">ESC or click outside to dismiss</span>
+                </div>
+              )}
             </motion.div>
           </>
         )}
