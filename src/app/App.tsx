@@ -114,10 +114,26 @@ export function getGeneralWhatsAppLink() {
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const FEATURED = [
   {
-    num: "01", shortTitle: "Micro Insurance", name: "Seamless Micro Insurance Integration", client: "Touch 'n Go × GEGM",
+    num: "01", shortTitle: "White Label Backoffice", name: "One Base, Many Partners: Reusable White Label Backoffice", client: "Multiple Enterprise Partnerships",
+    location: "Regional", year: "2024 to 2025", tags: ["White Label Engine", "Shared Foundation", "Data Analytics"],
+    role: "Sole Product Designer",
+    headline: "I found the shared foundation across partner portals, then spent my design time only on the parts where partners genuinely differed.",
+    confidentialNote: "Client names, logos, and data have been sanitized to respect NDAs. Screens reflect the real design process, not real production data.",
+    metrics: [{ val: "2 Track", sub: "Delivery Model" }, { val: "1 Base", sub: "Multi-Partner System" }, { val: "Few days", sub: "Est. pitch turnaround" }],
+    projectId: "backoffice",
+    thumb: backofficePortalThumb,
+    screens: [
+      { src: backofficePortalThumb, label: "01 · DUAL TRACK ARCHITECTURE" },
+      { src: backofficeSalesOverview, label: "02 · MULTI TENANT SALES DASHBOARD" },
+      { src: backofficeCustomerDetail, label: "03 · DETAIL CUSTOMER & EKYC" },
+      { src: backofficeAiTopPicks, label: "04 · AI TOP PICKS & RECOMMENDATIONS" },
+    ],
+  },
+  {
+    num: "02", shortTitle: "Micro Insurance", name: "Seamless Micro Insurance Integration", client: "Touch 'n Go × GEGM",
     location: "MY", year: "2025", tags: ["PWA / SSO", "eKYC Data Mapping", "B2C / FinTech"],
     role: "Sole Product Designer",
-    headline: "Great Tenang Madani micro insurance product integrated directly into Touch 'n Go eWallet ecosystem across 5 design iterations.",
+    headline: "A micro insurance checkout inside Touch 'n Go eWallet, where government subsidy eligibility decides the premium. Shipped as V5 after five design iterations.",
     metrics: [{ val: "V5", sub: "Final Release" }, { val: "3mo", sub: "Sprint Timeline" }, { val: "RM0", sub: "PTV Checkout" }],
     projectId: "tng",
     thumb: coverTng,
@@ -128,7 +144,21 @@ const FEATURED = [
     ],
   },
   {
-    num: "02", shortTitle: "CI Evaluation", name: "Gamified CI Evaluation & Acquisition", client: "GEGI Singapore",
+    num: "03", shortTitle: "PERPANI OS", name: "MyArchery PERPANI National Operating System", client: "PERPANI / MyArchery",
+    location: "ID", year: "2021 to 2023", tags: ["Sports Tech", "Field UX Research", "Tournament Engine"],
+    role: "Lead UX Researcher & Product Designer",
+    headline: "Registration, live scoring, and brackets for PERPANI tournaments, designed from research inside the judges' tents where scoring happens.",
+    metrics: [{ val: "7+", sub: "Public Releases" }, { val: "2yr", sub: "Field Research Lifecycle" }, { val: "3 People", sub: "Remote WFA Team" }],
+    projectId: "myarchery",
+    thumb: myArcheryPerpaniThumb,
+    screens: [
+      { src: myArcheryPerpaniThumb, label: "01 · SCORING KEYPAD" },
+      { src: projectThumb2, label: "02 · ADMIN DASHBOARD" },
+      { src: projectThumb1, label: "03 · LIVE SCOREBOARD" },
+    ],
+  },
+  {
+    num: "04", shortTitle: "CI Evaluation", name: "Gamified CI Evaluation & Acquisition", client: "GEGI Singapore",
     location: "SG", year: "2026", tags: ["Gamified Evaluation", "Singlish Persona", "Campaign"],
     role: "Sole Product Designer",
     headline: "An interactive digital acquisition campaign assessing critical illness protection gaps for Great Eastern Singapore.",
@@ -143,7 +173,7 @@ const FEATURED = [
     ],
   },
   {
-    num: "03", shortTitle: "In-House Roadshow", name: "Kahoot to In House: Roadshow Tournament Platform", client: "mySalam × myKawan",
+    num: "05", shortTitle: "In-House Roadshow", name: "Kahoot to In House: Roadshow Tournament Platform", client: "mySalam × myKawan",
     location: "MY", year: "2025", tags: ["Live Tournament", "100K Concurrent", "Gamified Financial Literacy"],
     role: "Sole Product Designer",
     headline: "Evolving My Money Sense into a dual mode live tournament platform for mySalam regional roadshows.",
@@ -159,7 +189,7 @@ const FEATURED = [
     ],
   },
   {
-    num: "04", shortTitle: "Election Monitoring", name: "38 Province Real Time Election Monitoring", client: "Indonesian Political Party",
+    num: "06", shortTitle: "Election Monitoring", name: "38 Province Real Time Election Monitoring", client: "Indonesian Political Party",
     location: "ID", year: "2024", tags: ["Public Sector", "Civic Tech", "Real Time CMS"],
     role: "Sole Product Designer",
     headline: "A multi platform system for real time vote monitoring across 38 provinces and 820,000+ TPS within a 48 hour window.",
@@ -174,23 +204,7 @@ const FEATURED = [
     ],
   },
   {
-    num: "05", shortTitle: "White Label Backoffice", name: "One Base, Many Partners: Reusable White Label Backoffice", client: "Multiple Enterprise Partnerships",
-    location: "Regional", year: "2024 to 2025", tags: ["White Label Engine", "Shared Foundation", "Data Analytics"],
-    role: "Sole Product Designer",
-    headline: "How I recognized a shared foundation across partner portals, and focused my design time on the parts where partners genuinely differed.",
-    confidentialNote: "Client names, logos, and data have been sanitized to respect NDAs. Screens reflect the real design process, not real production data.",
-    metrics: [{ val: "2 Track", sub: "Delivery Model" }, { val: "1 Base", sub: "Multi-Partner System" }, { val: "Days", sub: "Pitch Turnaround" }],
-    projectId: "backoffice",
-    thumb: backofficePortalThumb,
-    screens: [
-      { src: backofficePortalThumb, label: "01 · DUAL TRACK ARCHITECTURE" },
-      { src: backofficeSalesOverview, label: "02 · MULTI TENANT SALES DASHBOARD" },
-      { src: backofficeCustomerDetail, label: "03 · DETAIL CUSTOMER & EKYC" },
-      { src: backofficeAiTopPicks, label: "04 · AI TOP PICKS & RECOMMENDATIONS" },
-    ],
-  },
-  {
-    num: "06", shortTitle: "Health Check Passport", name: "Bone Density & Health Check Passport Redesign", client: "Fonterra × Anlene",
+    num: "07", shortTitle: "Health Check Passport", name: "Bone Density & Health Check Passport Redesign", client: "Fonterra × Anlene",
     location: "ID", year: "2023", tags: ["Health Tech", "Field Sales Enablement", "Diagnostic Matrix"],
     role: "Sole Product Designer",
     headline: "Redesigning Anlene's field health check experience end to end, turning diagnostic scanner data into personalized health reports.",
@@ -207,7 +221,7 @@ const FEATURED = [
     ],
   },
   {
-    num: "07", shortTitle: "Archery 4 Surface", name: "Pro Archery 4 Surface Digital Ecosystem", client: "Pro Archery Jakarta",
+    num: "08", shortTitle: "Archery 4 Surface", name: "Pro Archery 4 Surface Digital Ecosystem", client: "Pro Archery Jakarta",
     location: "ID", year: "2025", tags: ["AI Prompt to Code", "E Commerce", "Admin POS"],
     role: "Sole System & UI Designer",
     headline: "Turning Indonesia's premier physical archery retailer into a 4 surface digital ecosystem starting with a 24 hour AI built landing page.",
@@ -220,20 +234,6 @@ const FEATURED = [
       { src: proArcheryStockTransaction, label: "03 · BARCODE STOCK TRANSACTIONS" },
       { src: proArcheryPricingTiers, label: "04 · MULTI-TIER PRICING ENGINE" },
       { src: proArcheryOrderTracking, label: "05 · ORDER & WARRANTY TRACKING" },
-    ],
-  },
-  {
-    num: "08", shortTitle: "PERPANI OS", name: "MyArchery PERPANI National Operating System", client: "PERPANI / MyArchery",
-    location: "ID", year: "2021 to 2023", tags: ["Sports Tech", "Field UX Research", "Tournament Engine"],
-    role: "Lead UX Researcher & Product Designer",
-    headline: "Designing Indonesia's tournament operating system and real time scoring platform for official PERPANI national championships.",
-    metrics: [{ val: "7+", sub: "Public Releases" }, { val: "2yr", sub: "Field Research Lifecycle" }, { val: "3 People", sub: "Remote WFA Team" }],
-    projectId: "myarchery",
-    thumb: myArcheryPerpaniThumb,
-    screens: [
-      { src: myArcheryPerpaniThumb, label: "01 · SCORING KEYPAD" },
-      { src: projectThumb2, label: "02 · ADMIN DASHBOARD" },
-      { src: projectThumb1, label: "03 · LIVE SCOREBOARD" },
     ],
   },
   {
@@ -2734,14 +2734,14 @@ function Footer() {
 }
 
 const FEATURED_INDEX_MAP: Record<string, number> = {
-  tng: 0,
-  gegi: 1,
-  bijakwang: 2,
-  election: 3,
-  backoffice: 4,
-  anlene: 5,
-  archery: 6,
-  myarchery: 7,
+  backoffice: 0,
+  tng: 1,
+  myarchery: 2,
+  gegi: 3,
+  bijakwang: 4,
+  election: 5,
+  anlene: 6,
+  archery: 7,
   telkom: 8,
 }
 
@@ -2844,14 +2844,15 @@ export default function App() {
 
 
   const CASE_STUDY_SEQUENCE: CaseStudyMeta[] = [
-    { id: "tng", num: "01", name: "Seamless Micro Insurance Integration", client: "Touch 'n Go × GEGM", thumb: coverTng },
-    { id: "gegi", num: "02", name: "Gamified CI Evaluation & Acquisition", client: "GEGI Singapore", thumb: ci1 },
-    { id: "bijakwang", num: "03", name: "Roadshow Tournament Platform", client: "mySalam × myKawan", thumb: mySalamThumb },
-    { id: "election", num: "04", name: "38 Province Real Time Election Monitoring", client: "Indonesian Political Party", thumb: aseanThumb },
-    { id: "backoffice", num: "05", name: "Multi-tenant Backoffice Portal", client: "InsureTech SaaS Platform", thumb: backofficePortalThumb },
-    { id: "anlene", num: "06", name: "Brand Design System & Asset Management", client: "Anlene Malaysia", thumb: anleneThumb },
-    { id: "archery", num: "07", name: "ProArchery Competition Scoring App", client: "National Archery Federation", thumb: proArcheryThumb },
-    { id: "myarchery", num: "08", name: "MyArchery Mobile Field App", client: "PERPANI Archery", thumb: myArcheryPerpaniThumb },
+    { id: "backoffice", num: "01", name: "One Base, Many Partners: Reusable White Label Backoffice", client: "Multiple Enterprise Partnerships", thumb: backofficePortalThumb },
+    { id: "tng", num: "02", name: "Seamless Micro Insurance Integration", client: "Touch 'n Go × GEGM", thumb: coverTng },
+    { id: "myarchery", num: "03", name: "MyArchery PERPANI National Operating System", client: "PERPANI / MyArchery", thumb: myArcheryPerpaniThumb },
+    { id: "gegi", num: "04", name: "Gamified CI Evaluation & Acquisition", client: "GEGI Singapore", thumb: ci1 },
+    { id: "bijakwang", num: "05", name: "Kahoot to In House: Roadshow Tournament Platform", client: "mySalam × myKawan", thumb: mySalamThumb },
+    { id: "election", num: "06", name: "38 Province Real Time Election Monitoring", client: "Indonesian Political Party", thumb: aseanThumb },
+    { id: "anlene", num: "07", name: "Bone Density & Health Check Passport Redesign", client: "Fonterra × Anlene", thumb: anleneThumb },
+    { id: "archery", num: "08", name: "Pro Archery 4 Surface Digital Ecosystem", client: "Pro Archery Jakarta", thumb: proArcheryThumb },
+    { id: "telkom", num: "09", name: "Interactive Public LED Display Ecosystem", client: "Telkomsel Siaga", thumb: telkomCurvedLedDisplay },
   ]
 
   const renderCaseStudyView = (viewId: string, caseComponent: React.ReactNode) => {
@@ -2864,6 +2865,7 @@ export default function App() {
       "anlene-case": "anlene",
       "archery-case": "archery",
       "myarchery-case": "myarchery",
+      "telkom-case": "telkom",
     }
     const currentId = viewToIdMap[viewId]
     const idx = CASE_STUDY_SEQUENCE.findIndex((item) => item.id === currentId)
@@ -2914,8 +2916,8 @@ export default function App() {
       "tng-case",
       <TngCase
         onBack={handleBackToWork}
-        onNext={() => { handleOpenProject("gegi"); window.scrollTo({ top: 0 }) }}
-        onPrev={() => { handleOpenProject("telkom"); window.scrollTo({ top: 0 }) }}
+        onNext={() => { handleOpenProject("myarchery"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { handleOpenProject("backoffice"); window.scrollTo({ top: 0 }) }}
       />
     )
   }
@@ -2925,7 +2927,7 @@ export default function App() {
       <GegiCase
         onBack={handleBackToWork}
         onNext={() => { handleOpenProject("bijakwang"); window.scrollTo({ top: 0 }) }}
-        onPrev={() => { handleOpenProject("tng"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { handleOpenProject("myarchery"); window.scrollTo({ top: 0 }) }}
       />
     )
   }
@@ -2944,7 +2946,7 @@ export default function App() {
       "election-case",
       <ElectionCase
         onBack={handleBackToWork}
-        onNext={() => { handleOpenProject("backoffice"); window.scrollTo({ top: 0 }) }}
+        onNext={() => { handleOpenProject("anlene"); window.scrollTo({ top: 0 }) }}
         onPrev={() => { handleOpenProject("bijakwang"); window.scrollTo({ top: 0 }) }}
       />
     )
@@ -2954,8 +2956,8 @@ export default function App() {
       "backoffice-case",
       <BackofficeCase
         onBack={handleBackToWork}
-        onNext={() => { handleOpenProject("anlene"); window.scrollTo({ top: 0 }) }}
-        onPrev={() => { handleOpenProject("election"); window.scrollTo({ top: 0 }) }}
+        onNext={() => { handleOpenProject("tng"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { handleOpenProject("telkom"); window.scrollTo({ top: 0 }) }}
       />
     )
   }
@@ -2965,7 +2967,7 @@ export default function App() {
       <AnleneCase
         onBack={handleBackToWork}
         onNext={() => { handleOpenProject("archery"); window.scrollTo({ top: 0 }) }}
-        onPrev={() => { handleOpenProject("backoffice"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { handleOpenProject("election"); window.scrollTo({ top: 0 }) }}
       />
     )
   }
@@ -2974,7 +2976,7 @@ export default function App() {
       "archery-case",
       <ProArcheryCase
         onBack={handleBackToWork}
-        onNext={() => { handleOpenProject("myarchery"); window.scrollTo({ top: 0 }) }}
+        onNext={() => { handleOpenProject("telkom"); window.scrollTo({ top: 0 }) }}
         onPrev={() => { handleOpenProject("anlene"); window.scrollTo({ top: 0 }) }}
       />
     )
@@ -2984,8 +2986,8 @@ export default function App() {
       "myarchery-case",
       <MyArcheryCase
         onBack={handleBackToWork}
-        onNext={() => { handleOpenProject("telkom"); window.scrollTo({ top: 0 }) }}
-        onPrev={() => { handleOpenProject("archery"); window.scrollTo({ top: 0 }) }}
+        onNext={() => { handleOpenProject("gegi"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { handleOpenProject("tng"); window.scrollTo({ top: 0 }) }}
       />
     )
   }
@@ -2994,8 +2996,8 @@ export default function App() {
       "telkom-case",
       <TelkomCase
         onBack={handleBackToWork}
-        onNext={() => { handleOpenProject("tng"); window.scrollTo({ top: 0 }) }}
-        onPrev={() => { handleOpenProject("myarchery"); window.scrollTo({ top: 0 }) }}
+        onNext={() => { handleOpenProject("backoffice"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { handleOpenProject("archery"); window.scrollTo({ top: 0 }) }}
       />
     )
   }

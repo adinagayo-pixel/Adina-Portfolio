@@ -153,7 +153,7 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
             <span>HOME</span>
           </a>
 
-          <CaseStudyHeaderBadge caseNum="07" />
+          <CaseStudyHeaderBadge caseNum="08" />
         </div>
 
         {/* Mobile Collapsible Quick Jump Bar - Flush underneath */}
@@ -210,7 +210,7 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
         <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-center">
           <div className="space-y-6">
             <div className="flex flex-wrap items-center gap-3">
-              <MonoTag accent>CASE STUDY 07</MonoTag>
+              <MonoTag accent>CASE STUDY 08</MonoTag>
               <span style={{ color: HAIR }}>/</span>
               <MonoTag>AI FIRST DEVELOPMENT & E COMMERCE SYSTEM</MonoTag>
               <span style={{ color: HAIR }}>/</span>
@@ -735,18 +735,6 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
               </div>
               <p className="text-xs font-sans leading-relaxed text-white/90 italic">
                 "Working AI first taught me that speed does not have to come at the cost of rigor, but it does shift where that rigor lives. Without Figma's frame based states or inline annotation, I had to build my own tools, like the scenario testers, and my own documentation habits to keep a fast moving, constantly changing system explainable to developers."
-              </p>
-            </div>
-
-            {/* Why This Matters to a Hiring Manager */}
-            <div className="mt-6 p-5 rounded-xl bg-[#DB3E8C]/15 border border-[#DB3E8C]/40 text-white space-y-2">
-              <div className="flex items-center gap-2">
-                <span className="text-[9px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
-                  WHY THIS MATTERS TO A HIRING MANAGER
-                </span>
-              </div>
-              <p className="text-xs font-sans leading-relaxed text-white/90 italic">
-                "This project shows I can move fast with AI assisted, code first prototyping when a deadline demands it, and that the output can be solid enough to stand in for a live build in a pinch. It also shows I can sustain a system as the sole designer over close to a year, including through a business model pivot that touched pricing, warranty, and catalog logic, and that I document decisions well enough for that kind of change to be manageable instead of a rebuild."
               </p>
             </div>
           </div>

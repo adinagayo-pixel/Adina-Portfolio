@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { CaseStudyHeaderBadge } from "@/app/components/ui/CaseStudyHeaderBadge"
+import { CaseStudyDisclosure, CaseStudyFacts } from "@/app/components/ui/CaseStudyStory"
 
 
 import coverTng from "@/imports/Cover TNG.jpg"
@@ -55,19 +56,16 @@ interface Props {
 }
 
 const QUICK_SECTIONS = [
-  { id: "summary", num: "01", label: "Executive Overview" },
-  { id: "beforev1", num: "02", label: "Before V1: Reading the System" },
-  { id: "v1", num: "03", label: "V1: Laying the Foundation" },
-  { id: "v2", num: "04", label: "V2: Testing the Pricing Logic" },
-  { id: "v3", num: "05", label: "V3: Refining the Details" },
-  { id: "v4", num: "06", label: "V4: Meeting the Real Design System" },
-  { id: "v5", num: "07", label: "V5: The Exit Flow & Finish Line" },
-  { id: "impact", num: "08", label: "Closing & Key Impact" },
+  { id: "context", num: "01", label: "Context" },
+  { id: "constraints", num: "02", label: "Constraints" },
+  { id: "decisions", num: "03", label: "Key Decisions" },
+  { id: "solution", num: "04", label: "Solution & Evidence" },
+  { id: "outcome", num: "05", label: "Outcome & Reflection" },
 ]
 
 export default function TngCase({ onBack, onNext, onPrev }: Props) {
   const [scrolled, setScrolled] = useState(false)
-  const [activeQuickId, setActiveQuickId] = useState<string>("summary")
+  const [activeQuickId, setActiveQuickId] = useState<string>("context")
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
@@ -137,7 +135,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
             <span>HOME</span>
           </a>
 
-          <CaseStudyHeaderBadge caseNum="01" />
+          <CaseStudyHeaderBadge caseNum="02" />
         </div>
 
         {/* Mobile Collapsible Quick Jump Bar - Flush underneath */}
@@ -194,7 +192,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
         <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-center">
           <div className="space-y-6">
             <div className="flex flex-wrap items-center gap-3">
-              <MonoTag accent>CASE STUDY 01</MonoTag>
+              <MonoTag accent>CASE STUDY 02</MonoTag>
               <span style={{ color: HAIR }}>/</span>
               <MonoTag>FINTECH & EMBEDDED MICRO INSURANCE</MonoTag>
               <span style={{ color: HAIR }}>/</span>
@@ -212,12 +210,35 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
               className="font-display font-light leading-relaxed"
               style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
             >
-              Great Tenang Madani is a micro insurance product integrated directly into Touch 'n Go eWallet: an ecosystem with over 20 million users: via an embedded PWA leveraging native TNG SSO and eKYC data.
+              Great Tenang Madani, embedded in the Touch 'n Go eWallet, where a government subsidy's eligibility decides the premium a user pays.
             </p>
 
             <p className="text-sm sm:text-base leading-relaxed" style={{ color: BODY, lineHeight: 1.8 }}>
-              I served as the sole UI UX Designer on this project under a 3 month deadline. This project progressed through 5 design iterations before its final release: and each version tells its own story about what changed and why.
+              I was the sole product designer on a 3 month deadline. The design went through five versions before the final release, and each version shows what changed and why.
             </p>
+
+            <CaseStudyFacts
+              facts={[
+                {
+                  label: "My contribution",
+                  value: "Sole UI/UX designer: PWA architecture, data flows, UI specs, and developer handoff. I built a mirrored TNG UI kit so design could start before official assets arrived.",
+                },
+                {
+                  label: "Team & scope",
+                  value: "Touch 'n Go and GEGM product and design teams, plus our engineering team. Scope: embedded PWA checkout, SSO and eKYC pre-fill, and PTV voucher verification.",
+                },
+                {
+                  label: "Verified impact",
+                  value: "V5 released to production inside the Touch 'n Go eWallet in 2025.",
+                  tone: "verified",
+                },
+                {
+                  label: "Not measured here",
+                  value: "Adoption and conversion figures. The monthly plan share in Section 03 is client data, not my own measurement.",
+                  tone: "muted",
+                },
+              ]}
+            />
           </div>
 
           {/* Right Column: Hero Cover Image */}
@@ -233,29 +254,33 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
         </div>
       </div>
 
-      {/* EXECUTIVE SUMMARY & 30 SECOND TAKEAWAYS */}
+      {/* 30 SECOND TAKEAWAYS: the five-stage story at a glance */}
       <div className="px-8 lg:px-16 py-8 bg-[#111836] border-t border-b border-white/10">
         <div className="flex items-center gap-2 mb-4">
           <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
-            EXECUTIVE SUMMARY & 30 SECOND TAKEAWAYS
+            30 SECOND TAKEAWAYS
           </span>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-xs sm:text-sm font-sans">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 text-xs sm:text-sm font-sans">
           <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">01 · Problem</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-white/85">Complex multi party eKYC data mapping & insurance checkout inside Malaysia's top eWallet (20M+ users).</p>
+            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">01 · Context</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-white/85">A micro insurance checkout inside Malaysia's leading eWallet, with over 20 million users in the ecosystem.</p>
           </div>
           <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">02 · Core Constraints</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-white/85">3 month deadline, native eWallet webview constraints, PTV government subsidy voucher validation APIs.</p>
+            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">02 · Constraints</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-white/85">A 3 month deadline, eWallet webview rules, PTV voucher checks, and NRIC matching to stop purchases on behalf of others.</p>
+          </div>
+          <div className="bg-white/5 p-4 rounded-lg border border-white/5">
+            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">03 · Key Decisions</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-white/85">Explicit health declarations, two pricing options instead of many, and the platform's native X to close the flow.</p>
           </div>
           <div className="bg-[#DB3E8C]/10 p-4 rounded-lg border border-[#DB3E8C]/30">
-            <span className="block text-xs font-bold tracking-widest text-[#DB3E8C] uppercase mb-1.5">03 · Exact Ownership</span>
-            <p className="text-xs sm:text-sm font-semibold text-white leading-relaxed">Sole UI UX Designer (PWA Architecture, Data Flows, UI Specs & Handoff).</p>
+            <span className="block text-xs font-bold tracking-widest text-[#DB3E8C] uppercase mb-1.5">04 · Solution & Evidence</span>
+            <p className="text-xs sm:text-sm font-semibold text-white leading-relaxed">An embedded PWA with SSO and eKYC pre-fill. Eligible PTV users see a RM 0 premium; others pay through e-wallet debit.</p>
           </div>
           <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">04 · Key Impact</span>
-            <p className="text-xs sm:text-sm font-semibold text-white leading-relaxed">Refined through 5 iterative versions before shipping the final zero defect release live to 20M+ TNG users in 2025.</p>
+            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">05 · Outcome</span>
+            <p className="text-xs sm:text-sm font-semibold text-white leading-relaxed">V5 released to production in 2025. By V5, the TNG team reviewed copy instead of requesting layout changes.</p>
           </div>
         </div>
       </div>
@@ -300,19 +325,55 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
           {/* Right Column: Case Study Main Content Sections */}
           <div className="space-y-16 lg:space-y-20 min-w-0">
 
-        {/* 01 Executive Summary */}
+        {/* 01 Context */}
         <div>
-          <SectionTag id="summary" num="01" label="Executive Summary" />
-          <div className="grid lg:grid-cols-2 gap-4">
+          <SectionTag id="context" num="01" label="Context: Reading the System Before Designing" />
+
+          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
+            <p>
+              Touch 'n Go's eWallet was the channel, so the first task was understanding what the app could already do. I mapped the registration, OCR scanning, and purchase flows, and studied the TNG mini program API docs to find which data fields I could access.
+            </p>
+            <p>
+              Official TNG UI kits were not available at the start. I rebuilt a mirrored kit from the live app so stakeholders could approve the first round. That was a calculated risk: if the official kit differed, the work would need rework. Waiting would have spent time the three month deadline did not have.
+            </p>
+          </div>
+        </div>
+
+        <Hairline />
+
+        {/* 02 Constraints */}
+        <div>
+          <SectionTag id="constraints" num="02" label="Constraints: Platform, Data, and Compliance" />
+
+          <div className="grid md:grid-cols-2 gap-4">
             {[
-              { label: "Client & Initiative", val: "Touch 'n Go eWallet x Great Eastern Life (GEGM) · 2025" },
-              { label: "Role & Scope", val: "Sole Product Designer" },
-              { label: "Core Product Suite", val: "Embedded PWA Insurance Checkout · Native SSO & eKYC Data Pipeline · PTV Subsidy Verification" },
-              { label: "Core Stack", val: "Figma · FigJam · Embedded PWA Webview · TNG SSO & eKYC Schema" },
-            ].map(({ label, val }) => (
-              <div key={label} className="px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
-                <MonoTag>[{label}]</MonoTag>
-                <p className="text-sm font-medium mt-2" style={{ color: N, lineHeight: 1.6 }}>{val}</p>
+              {
+                Icon: Globe,
+                title: "Embedded platform",
+                desc: "The checkout ran as an embedded PWA inside an eWallet webview. Moving from the app to the webview required a mandatory transition page under platform rules.",
+              },
+              {
+                Icon: FileCode2,
+                title: "Limited identity data",
+                desc: "SSO and eKYC fields were limited to what the TNG mini program API exposed. Where availability was unconfirmed, I kept a manual address field.",
+              },
+              {
+                Icon: Shield,
+                title: "Fraud and compliance",
+                desc: "The policyholder's NRIC had to match the authenticated TNG account, so no one could buy a subsidized policy for a third party. Regulatory commission statements and explicit consent were added in V4.",
+              },
+              {
+                Icon: Zap,
+                title: "Subsidy-driven pricing",
+                desc: "PTV eligibility was checked per user, and each user's premium depended on it. Gross premium rules were not provided in V1, so I used dummy values until the client confirmed them.",
+              },
+            ].map(({ Icon, title, desc }) => (
+              <div key={title} className="p-6 bg-white rounded-xl border border-gray-200/80 shadow-xs space-y-3">
+                <div className="w-10 h-10 rounded-lg bg-[#DB3E8C]/10 border border-[#DB3E8C]/20 flex items-center justify-center text-[#DB3E8C]">
+                  <Icon size={18} />
+                </div>
+                <h4 className="font-bold text-[#19244E] text-base">{title}</h4>
+                <p className="font-sans text-xs sm:text-sm text-gray-600 leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
@@ -320,116 +381,151 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
 
         <Hairline />
 
-        {/* 02 Before V1: Reading the System Before Designing It */}
+        {/* 03 Key Decisions */}
         <div>
-          <SectionTag id="beforev1" num="02" label="Before V1: Reading the System Before Designing It" />
-          
-          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
-            <p>
-              Before the first sketch was created, I mapped out existing flows within the TNG app: registration processes, OCR scanning, and purchase flows for other products: while studying TNG mini program API documentation to identify accessible data fields. Because official TNG UI kits were unavailable initially, I constructed a mirrored UI kit based on the live TNG app to secure first round approvals: taking a real risk that this reverse engineered kit might not align once official assets arrived. However, waiting meant wasting valuable time against a tight deadline, so I proceeded forward.
-            </p>
-          </div>
-        </div>
+          <SectionTag id="decisions" num="03" label="Key Decisions: Three Calls That Shaped the Flow" />
 
-        <Hairline />
+          <p className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C] mb-8" style={{ lineHeight: 1.8 }}>
+            Most revisions were wording and pricing changes. These three calls changed how the product behaved, and each one held through release.
+          </p>
 
-        {/* 03 V1: Laying the Foundation */}
-        <div>
-          <SectionTag id="v1" num="03" label="V1: Laying the Foundation" />
+          <div className="space-y-6">
+            <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
+              <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 01 · Health declarations stay explicit</span>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">The pressure:</strong> The TNG team asked repeatedly why "No" answers were not pre-filled to reduce cognitive load.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">What I did:</strong> I did not pre-fill them. The "Select No for All" button I added still needed explicit user action.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">Why it held:</strong> Health declarations have to be read and accepted, not bypassed as a formality.
+              </p>
+            </div>
 
-          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
-            <p>
-              I built this initial version on the mirrored UI kit. I mapped accessible data parameters from the TNG app through direct testing, included a manual address field because system data availability was unconfirmed, and created a UI that auto detected age ranges for monthly or yearly pricing since costs varied by age group. I also added a mandatory transition page for moving from app to webview based on platform rules, plus an NRIC eligibility check flow for PTV government vouchers.
-            </p>
-            <p>
-              Two foundational decisions emerged here that held through project completion. First, health declarations: the TNG team asked repeatedly why "No" answers were not pre filled to reduce cognitive load. I intentionally avoided pre filling: health declarations must be read and consciously accepted rather than bypassed as a formality. The solution was not a middle compromise, but a "Select No for All" button that still required explicit user action. Second, the TNG team proposed merging this declaration step with the preceding personal details step to remove one screen. After checking with our internal engineering team, combining them would impact the existing backend architecture: so I maintained two separate steps despite continued pressure regarding drop off rates.
-            </p>
-            <p>
-              Gross premium calculations were also unprovided by the client in V1, so I proceeded using dummy values while awaiting calculation rules: and the "ineligible PTV" status initially used red with a cross icon, a common pattern for negative states that I later revised.
-            </p>
-          </div>
-        </div>
+            <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
+              <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 02 · Two pricing options instead of many</span>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">The pressure:</strong> V2 introduced 8 to 12 month durations based on age eligibility. The choices felt unnatural for an insurance product, and the price display was unclear.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">What I did:</strong> I questioned the requested direction and said the concept felt unrefined, rather than treating the choices as a finished brief.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">Why it held:</strong> The TNG team streamlined to monthly or yearly after its data showed over 90% of users chose monthly payments (client data).
+              </p>
+            </div>
 
-        <Hairline />
-
-        {/* 04 V2: Testing the Pricing Logic */}
-        <div>
-          <SectionTag id="v2" num="04" label="V2: Testing the Pricing Logic" />
-
-          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
-            <p>
-              In V2, I introduced insurance duration options ranging from 8 to 12 months based on age eligibility, and detailed edge case scenarios for when PTV vouchers were already claimed, unregistered, or NRIC details mismatched. At this stage, I questioned the requested direction: offering that many duration choices felt unnatural for an insurance product, and unclear communication regarding price display made me suspect the concept was unrefined. My intuition proved correct: the TNG team ultimately streamlined all choices down to just two: monthly or yearly: after data revealed over 90% of users chose monthly payments.
-            </p>
-            <p>
-              In this version, I also revised the "ineligible PTV" status color from red to yellow, after the TNG team highlighted that red with a cross conveyed user rejection or system error, whereas ineligibility for a government subsidy did not imply a mistake.
-            </p>
-
-            <div className="mt-6 rounded-2xl overflow-hidden shadow-xl border border-slate-200/80 bg-[#111836]">
-              <img src={tngThumb4} alt="TNG eKYC Data Mapping & Pricing Logic Screen" className="w-full h-auto object-cover max-h-[480px]" />
+            <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
+              <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 03 · Native X over a custom Back button</span>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">The pressure:</strong> After payment, GEGM requested an explicit "Back to App" or "Close" button.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">What I did:</strong> A custom button risked suggesting a return path after the transaction was final. After discussion, we relied on the native X in the mini program header.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">Why it held:</strong> It is a platform pattern users already recognize, and it does not imply they can re-select products.
+              </p>
             </div>
           </div>
-        </div>
 
-        <Hairline />
-
-        {/* 05 V3: Refining the Details */}
-        <div>
-          <SectionTag id="v3" num="05" label="V3: Refining the Details" />
-
-          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
-            <p>
-              Changes in V3 were more granular: adding post health declaration terms, a summary review popup prior to payment, automatic resets with a reappearing "Check Eligibility" button whenever NRIC fields were edited, and replacing floating error popups with full page screens for technical issues. During this iteration, the TNG team suggested moving plan selection to the data entry screen: I maintained plan selection on the landing page so users were not distracted by additional decisions once focused on data entry.
-            </p>
+          <div className="mt-6">
+            <CaseStudyDisclosure label="Trade-off I accepted" summary="Why two separate steps and not one">
+              <p>
+                Personal details and health declarations stayed as two steps. Merging them would have changed the existing backend architecture, so I kept them separate despite continued pressure about drop-off rates. Plan selection also stayed on the landing page, so users were not making extra decisions once they reached data entry.
+              </p>
+            </CaseStudyDisclosure>
           </div>
         </div>
 
         <Hairline />
 
-        {/* 06 V4: Meeting the Real Design System */}
+        {/* 04 Solution & Evidence */}
         <div>
-          <SectionTag id="v4" num="06" label="V4: Meeting the Real Design System" />
+          <SectionTag id="solution" num="04" label="Solution & Evidence: The Embedded Checkout" />
 
           <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
             <p>
-              This was a major milestone: I finally received official TNG UI kits, adapting all components: input fields, illustrations, typography, buttons, colors, and icons: to align with the system. I designed two landing page alternatives, with the first concept selected by stakeholders. Structurally, the official UI kit matched what I had constructed: a validating sign that the early reverse engineering approach was accurate. Compliance requirements also expanded here: incorporating regulatory commission statements and explicit consent checkboxes.
+              The flow has three parts: identity pre-fill from SSO and eKYC, a PTV eligibility check, and a payment split. Eligible users reach a RM 0 premium. Everyone else continues to standard e-wallet debit.
             </p>
+          </div>
 
-            <div className="mt-6 rounded-2xl overflow-hidden shadow-xl border border-slate-200/80 bg-[#111836]">
-              <img src={tngThumb5} alt="TNG Policy Checkout & Design System Integration" className="w-full h-auto object-cover max-h-[480px]" />
+          <div className="grid md:grid-cols-3 gap-4 mt-8">
+            {[
+              {
+                Icon: Users,
+                title: "1. Pre-fill identity",
+                desc: "SSO and eKYC data pre-fill NRIC, name, and age, so users do not retype their identity.",
+              },
+              {
+                Icon: CheckCircle2,
+                title: "2. Check PTV eligibility",
+                desc: "An inline NRIC check tells users whether they qualify. Ineligibility shows a yellow status, not red, because it is not an error.",
+              },
+              {
+                Icon: Sparkles,
+                title: "3. Pay with e-wallet",
+                desc: "Standard purchases debit the TNG e-wallet, with auto-debit, notifications, emails, and insufficient balance handling.",
+              },
+            ].map(({ Icon, title, desc }) => (
+              <div key={title} className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
+                <div className="flex items-center gap-2">
+                  <Icon size={16} className="text-[#DB3E8C]" />
+                  <h5 className="font-bold text-sm text-[#19244E]">{title}</h5>
+                </div>
+                <p className="font-sans text-xs text-gray-600 leading-relaxed">{desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 space-y-8">
+            <div>
+              <div className="rounded-2xl overflow-hidden shadow-xl border border-slate-200/80 bg-[#111836]">
+                <img src={tngThumb4} alt="TNG eKYC Data Mapping & Pricing Logic Screen" className="w-full h-auto object-cover max-h-[480px]" />
+              </div>
+              <p className="font-sans text-xs text-gray-500 mt-3">V2: eKYC data mapping and pricing logic.</p>
+            </div>
+
+            <div>
+              <div className="rounded-2xl overflow-hidden shadow-xl border border-slate-200/80 bg-[#111836]">
+                <img src={tngThumb5} alt="TNG Policy Checkout & Design System Integration" className="w-full h-auto object-cover max-h-[480px]" />
+              </div>
+              <p className="font-sans text-xs text-gray-500 mt-3">V4: policy checkout built on the official TNG design system.</p>
             </div>
           </div>
-        </div>
 
-        <Hairline />
-
-        {/* 07 V5: The Exit Flow & Finish Line */}
-        <div>
-          <SectionTag id="v5" num="07" label="V5: The Exit Flow & Finish Line" />
-
-          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
-            <p>
-              Near final release, a design issue emerged not from technical constraints, but from conflicting client expectations and native platform behavior. Following payment completion, our web page could not return users to the purchase flow because the transaction was finished. GEGM requested an explicit "Back to App" or "Close" button, but TNG mini programs already featured a native X header icon, though subtle. Adding a custom button posed greater risk: users might assume they could return to re select products when the transaction was already final. Following discussions, we relied on the platform's native X icon: trusting native patterns recognized by users.
-            </p>
-            <p>
-              This final release also finalized platform copy, streamlined premium choices down to monthly or yearly as anticipated in V2, and established auto debit flows, push notifications, emails, and insufficient balance handling.
-            </p>
+          <div className="mt-10">
+            <CaseStudyDisclosure label="Technical detail" summary="Iteration history: V1 to V5">
+              <ul className="space-y-3 list-none">
+                <li><strong className="text-[#19244E]">V1 · Foundation.</strong> Built on the mirrored kit. Mapped accessible data parameters through direct testing, added a manual address field, auto-detected age ranges for monthly or yearly pricing, and added the app-to-webview transition page and the NRIC eligibility check for PTV vouchers.</li>
+                <li><strong className="text-[#19244E]">V2 · Pricing logic.</strong> Introduced 8 to 12 month durations and edge cases for vouchers already claimed, unregistered, or mismatched. Streamlined to monthly or yearly, and changed the ineligible status from red to yellow.</li>
+                <li><strong className="text-[#19244E]">V3 · Details.</strong> Added post-declaration terms, a summary popup before payment, and an eligibility reset whenever NRIC fields change. Replaced floating error popups with full-page error screens.</li>
+                <li><strong className="text-[#19244E]">V4 · Design system.</strong> Adapted inputs, illustrations, typography, buttons, colors, and icons to the official TNG kit. Designed two landing page options; stakeholders chose the first. Added regulatory commission statements and explicit consent checkboxes.</li>
+                <li><strong className="text-[#19244E]">V5 · Exit flow & release.</strong> Relied on the native X to close the flow after payment, finalized platform copy, and established auto-debit, notifications, emails, and insufficient balance handling.</li>
+              </ul>
+            </CaseStudyDisclosure>
           </div>
         </div>
 
         <Hairline />
 
-        {/* 08 Closing & Key Impact */}
+        {/* 05 Outcome & Reflection */}
         <div>
-          <SectionTag id="impact" num="08" label="Closing & Key Impact" />
+          <SectionTag id="outcome" num="05" label="Outcome & Reflection" />
           <div className="p-8 bg-[#111836] rounded-2xl border border-white/10 text-white space-y-6 shadow-2xl">
             <div className="flex items-center gap-2">
               <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase text-[#22c55e]">
-                SYSTEM OUTCOME & PRODUCT VALIDATION (2025)
+                VERIFIED OUTCOME (2025)
               </span>
             </div>
-            
+
             <p className="font-sans text-sm sm:text-base text-white/90 leading-relaxed max-w-3xl">
-              Across these five design iterations toward one final release, most revisions focused on wording and pricing adjustments rather than major UX overhauls. Yet at critical junctures, my role was defending sound decisions despite repeated questioning, accepting genuine technical constraints, and trusting my instincts when requested directions felt unrefined until data ultimately validated those views.
+              V5 was released to production inside the Touch 'n Go eWallet. Most revisions across the five versions focused on wording and pricing rather than major UX overhauls. My role was defending decisions under repeated questioning, accepting genuine technical constraints, and trusting my read when a requested direction felt unrefined. The monthly plan data later supported that read.
+            </p>
+
+            <p className="font-sans text-sm sm:text-base text-white/90 leading-relaxed max-w-3xl">
+              The same discipline applies to any product in a regulated, high-traffic ecosystem: balance compliance and platform limits, and be ready to defend the decisions that protect users.
             </p>
 
             {/* What I Learned */}
@@ -443,18 +539,6 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
                 "Working inside the TNG ecosystem taught me that enterprise design is not about creative freedom: it is about building trust fast enough that teams allow you to make decisions without re checking every pixel. By version 5, the TNG team stopped asking for layout revisions and only reviewed copy: that shift in trust was the true milestone of this project."
               </p>
             </div>
-
-            {/* Why This Matters to a Hiring Manager */}
-            <div className="mt-6 p-6 rounded-xl bg-[#DB3E8C]/15 border border-[#DB3E8C]/40 text-white space-y-3">
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
-                  WHY THIS MATTERS TO A HIRING MANAGER
-                </span>
-              </div>
-              <p className="text-xs sm:text-sm font-sans leading-relaxed text-white/95 italic" style={{ lineHeight: 1.8 }}>
-                "This project demonstrates my ability to navigate enterprise complexity within an ecosystem of 20 million plus users: balancing strict eKYC compliance and government API constraints, while preserving defensible design decisions despite repeated client pushback."
-              </p>
-            </div>
           </div>
         </div>
 
@@ -465,4 +549,3 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
     </div>
   )
 }
-

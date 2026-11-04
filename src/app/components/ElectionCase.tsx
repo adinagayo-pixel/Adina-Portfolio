@@ -154,7 +154,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
             <span>HOME</span>
           </a>
 
-          <CaseStudyHeaderBadge caseNum="04" />
+          <CaseStudyHeaderBadge caseNum="06" />
         </div>
 
         {/* Mobile Collapsible Quick Jump Bar - Flush underneath */}
@@ -211,7 +211,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
         <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-center">
           <div className="space-y-6">
             <div className="flex flex-wrap items-center gap-3">
-              <MonoTag accent>CASE STUDY 04</MonoTag>
+              <MonoTag accent>CASE STUDY 06</MonoTag>
               <span style={{ color: HAIR }}>/</span>
               <MonoTag>CIVIC TECH & ELECTION SYSTEMS</MonoTag>
               <span style={{ color: HAIR }}>/</span>
@@ -571,7 +571,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
             </div>
             
             <p className="font-sans text-sm sm:text-base text-white/90 leading-relaxed max-w-3xl">
-              Four interconnected platforms, built and evolved under a fixed, non negotiable deadline, covering witness submission, AI assisted verification, offline data capture, and seat allocation reporting. By designing dual path flows for every failure point: AI verification with human fallback, online submission with an offline mode, WhatsApp with an emergency backup: the system was built to keep functioning when any single piece failed, which mattered more in this context than almost anywhere else.
+              Four interconnected platforms, built and evolved under a fixed, non negotiable deadline, covering witness submission, AI assisted verification, offline data capture, and seat allocation reporting. By designing dual path flows for every failure point: AI verification with human fallback, online submission with an offline mode, WhatsApp with an emergency backup: the system was built to keep functioning when any single piece failed, which mattered more in this context than almost anywhere else. Much of the client relationship was built live, with design work done directly in Figma during meetings. I also learned to be precise about what I could confidently claim and what I could not.
             </p>
 
             {/* What I Learned */}
@@ -583,18 +583,6 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
               </div>
               <p className="text-xs sm:text-sm font-sans leading-relaxed text-white/95 italic" style={{ lineHeight: 1.8 }}>
                 "This project taught me that designing for conditions I don't control: bad signal, tight deadlines, a domain I didn't start out understanding: means building in fallbacks from the start, not patching them in after something breaks."
-              </p>
-            </div>
-
-            {/* Why This Matters to a Hiring Manager */}
-            <div className="mt-6 p-6 rounded-xl bg-[#DB3E8C]/15 border border-[#DB3E8C]/40 text-white space-y-3">
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
-                  WHY THIS MATTERS TO A HIRING MANAGER
-                </span>
-              </div>
-              <p className="text-xs sm:text-sm font-sans leading-relaxed text-white/95 italic" style={{ lineHeight: 1.8 }}>
-                "This project shows I can design for conditions I don't control, a domain I didn't start out understanding, and still deliver systems the team could rely on during the live window. Much of the client relationship was built live, designing directly in Figma during meetings and adjusting on the spot rather than only presenting finished work. It also shows I know the difference between what I can confidently claim and what I can't, which matters as much as the design work itself."
               </p>
             </div>
           </div>

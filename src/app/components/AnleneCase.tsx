@@ -146,7 +146,7 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
             <span>HOME</span>
           </a>
 
-          <CaseStudyHeaderBadge caseNum="06" />
+          <CaseStudyHeaderBadge caseNum="07" />
         </div>
 
         {/* Mobile Collapsible Quick Jump Bar - Flush underneath */}
@@ -203,7 +203,7 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
         <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-center">
           <div className="space-y-6">
             <div className="flex flex-wrap items-center gap-3">
-              <MonoTag accent>CASE STUDY 05</MonoTag>
+              <MonoTag accent>CASE STUDY 07</MonoTag>
               <span style={{ color: HAIR }}>/</span>
               <MonoTag>DIGITAL HEALTH CHECK PLATFORM</MonoTag>
               <span style={{ color: HAIR }}>/</span>
@@ -671,18 +671,6 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
               </div>
               <p className="text-xs sm:text-sm font-sans leading-relaxed text-white/90 italic" style={{ lineHeight: 1.8 }}>
                 "Designing without direct field access taught me that secondhand research, done thoroughly, can still produce a defensible design system. Building the decision tree before touching any screen meant every downstream choice had a clear basis I could explain to both the client and the dev team."
-              </p>
-            </div>
-
-            {/* Why This Matters to a Hiring Manager */}
-            <div className="mt-8 p-6 rounded-xl bg-[#DB3E8C]/15 border border-[#DB3E8C]/40 text-white space-y-3">
-              <div className="flex items-center gap-2">
-                <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
-                  WHY THIS MATTERS TO A HIRING MANAGER
-                </span>
-              </div>
-              <p className="text-xs sm:text-sm font-sans leading-relaxed text-white/95 italic">
-                "This project shows I can work backward from a client's specific complaints to a concrete decision system, then execute against it manually at scale when no automation exists to do it for me. It also shows I can do credible research even without direct field access, and that I can implement a brand's visual direction into a working design system without losing the logic underneath it."
               </p>
             </div>
           </div>

@@ -550,7 +550,7 @@ export default function TelkomCase({ onBack, onNext, onPrev }: Props) {
                 </div>
 
                 <p className="font-sans text-sm sm:text-base text-white/90 leading-relaxed max-w-3xl">
-                  Despite the tight 1 week timeline and restricted collaboration structure, translating physical screen constraints into precise layout safe zones ensured a flawless live launch matching the designed prototype.
+                  Despite the tight 1 week timeline and a restricted collaboration structure (one point of contact, no direct client access), translating physical screen constraints into precise layout safe zones and clear, accurate handoffs produced a live launch that matched the designed prototype.
                 </p>
 
                 {/* What I Learned */}
@@ -562,18 +562,6 @@ export default function TelkomCase({ onBack, onNext, onPrev }: Props) {
                   </div>
                   <p className="text-xs sm:text-sm font-sans leading-relaxed text-white/95 italic" style={{ lineHeight: 1.8 }}>
                     "Public content curation systems require more than simple approval or rejection. Separating eligible for display from currently displaying provides admins with vital real time control for content showcased in physical public spaces."
-                  </p>
-                </div>
-
-                {/* Why This Matters to a Hiring Manager */}
-                <div className="mt-6 p-6 rounded-xl bg-[#DB3E8C]/15 border border-[#DB3E8C]/40 text-white space-y-3">
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
-                      WHY THIS MATTERS TO A HIRING MANAGER
-                    </span>
-                  </div>
-                  <p className="text-xs sm:text-sm font-sans leading-relaxed text-white/95 italic" style={{ lineHeight: 1.8 }}>
-                    "This project demonstrates my ability to work effectively within restricted collaboration structures (single point of contact, no direct client access), translate non standard physical constraints into design decisions, and deliver clear handoffs executed accurately, resulting in an on time launch matching the designed prototype."
                   </p>
                 </div>
               </div>

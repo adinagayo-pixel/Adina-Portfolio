@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react"
 import { CaseStudyHeaderBadge } from "@/app/components/ui/CaseStudyHeaderBadge"
+import { CaseStudyDisclosure, CaseStudyFacts } from "@/app/components/ui/CaseStudyStory"
 
 import {
   ArrowLeft, ChevronRight, CheckCircle2, Globe, Home,
@@ -1753,17 +1754,16 @@ interface Props {
 }
 
 const QUICK_SECTIONS = [
-  { id: "pattern", num: "01", label: "The Pattern I Noticed" },
-  { id: "partners", num: "02", label: "One Base, Different Partners" },
-  { id: "twotracks", num: "03", label: "Two Tracks: Reuse vs. Real Design Work" },
-  { id: "case1", num: "04", label: "Case 1: Same Menu, Different Logic" },
-  { id: "case2", num: "05", label: "Case 2: Designing a Chart From an Open Brief" },
-  { id: "learned", num: "06", label: "What Changed & What I Learned" },
+  { id: "context", num: "01", label: "Context" },
+  { id: "constraints", num: "02", label: "Constraints" },
+  { id: "decisions", num: "03", label: "Key Decisions" },
+  { id: "solution", num: "04", label: "Solution & Evidence" },
+  { id: "outcome", num: "05", label: "Outcome & Reflection" },
 ]
 
 export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
   const [scrolled, setScrolled] = useState(false)
-  const [activeQuickId, setActiveQuickId] = useState<string>("pattern")
+  const [activeQuickId, setActiveQuickId] = useState<string>("context")
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
@@ -1833,7 +1833,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
             <span>HOME</span>
           </a>
 
-          <CaseStudyHeaderBadge caseNum="05" />
+          <CaseStudyHeaderBadge caseNum="01" />
         </div>
 
         {/* Mobile Collapsible Quick Jump Bar - Flush underneath */}
@@ -1888,7 +1888,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
         <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-center">
           <div className="space-y-6">
             <div className="flex flex-wrap items-center gap-3">
-              <MonoTag accent>CASE STUDY 05</MonoTag>
+              <MonoTag accent>CASE STUDY 01</MonoTag>
               <span style={{ color: HAIR }}>/</span>
               <MonoTag>WHITE LABEL BACKOFFICE</MonoTag>
               <span style={{ color: HAIR }}>/</span>
@@ -1906,7 +1906,11 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
               className="font-display font-light leading-relaxed"
               style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
             >
-              How I recognized a shared foundation across partner portals, and focused my design time on the parts where partners genuinely differed.
+              I found the shared foundation across partner portals, then spent my design time only on the parts where partners genuinely differed.
+            </p>
+
+            <p className="text-sm sm:text-base leading-relaxed" style={{ color: BODY, lineHeight: 1.8 }}>
+              I was the sole product designer supporting several partners in parallel. Some requests fit the existing system, and others needed a different workflow. This case shows how I told them apart.
             </p>
 
             {/* Confidentiality Notice */}
@@ -1917,6 +1921,29 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                 Client names, logos, and data have been sanitized to respect NDAs. Screens reflect the real design process, not real production data.
               </div>
             </div>
+
+            <CaseStudyFacts
+              facts={[
+                {
+                  label: "My contribution",
+                  value: "Sole product designer. I identified the shared base, designed new modules end to end from client requirements, and proposed data and filter logic with backend engineers.",
+                },
+                {
+                  label: "Team & scope",
+                  value: "Backend engineers and each partner's team. Partners span insurance, mobility, and affiliate networks, each added as a channel in one system.",
+                },
+                {
+                  label: "Verified impact",
+                  value: "Standard portals were configured and deployed by developers from the existing codebase, without new designs. A ride-hailing partner's employee benefits portal and driver claims portal are live.",
+                  tone: "verified",
+                },
+                {
+                  label: "Not measured here",
+                  value: "Pitch turnaround. \"A few days\" is my experience-based estimate, not a tracked figure.",
+                  tone: "muted",
+                },
+              ]}
+            />
           </div>
 
           {/* Right Column: Hero Image */}
@@ -1931,36 +1958,42 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
         </div>
       </div>
 
-      {/* ── 30 SECOND TAKEAWAYS ────────────────────────────────────────────── */}
+      {/* 30 SECOND TAKEAWAYS: the five-stage story at a glance */}
       <div className="px-8 lg:px-16 py-8 bg-[#111836] border-t border-b border-white/10">
         <div className="flex items-center gap-2 mb-4">
           <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
             30 SECOND TAKEAWAYS
           </span>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-xs sm:text-sm font-sans">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 text-xs sm:text-sm font-sans">
           <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">01 · The Problem</span>
+            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">01 · Context</span>
             <p className="text-xs sm:text-sm leading-relaxed text-white/85">
-              My company kept onboarding new insurance, mobility, and affiliate partners, and each one needed its own admin, partner, and insurance portals, without a formal design system in place.
+              New insurance, mobility, and affiliate partners each needed their own admin, partner, and insurance portals, with no formal design system.
             </p>
           </div>
           <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">02 · The Challenge</span>
+            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">02 · Constraints</span>
             <p className="text-xs sm:text-sm leading-relaxed text-white/85">
-              As the sole product designer supporting several partners in parallel, I faced two kinds of requests: ones the existing system could already handle, and ones where a partner’s workflow worked fundamentally differently, often from briefs that left key decisions open.
+              As the only designer, I supported several partners in parallel, often from briefs that left key decisions open.
+            </p>
+          </div>
+          <div className="bg-white/5 p-4 rounded-lg border border-white/5">
+            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">03 · Key Decisions</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-white/85">
+              Reuse standard portals and redesign only what differs. Put claim data and actions side by side. Keep the chart off the date filter.
             </p>
           </div>
           <div className="bg-[#DB3E8C]/10 p-4 rounded-lg border border-[#DB3E8C]/30">
-            <span className="block text-xs font-bold tracking-widest text-[#DB3E8C] uppercase mb-1.5">03 · My Ownership</span>
+            <span className="block text-xs font-bold tracking-widest text-[#DB3E8C] uppercase mb-1.5">04 · Solution & Evidence</span>
             <p className="text-xs sm:text-sm font-semibold text-white leading-relaxed">
-              Sole Product Designer. I identified the shared base across partners, designed new modules end to end from client requirements, and proposed data and filter logic together with backend engineers.
+              A two-track model, a two-column claim review for Partner B, and a chart with its own time control.
             </p>
           </div>
           <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">04 · Key Results</span>
+            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">05 · Outcome</span>
             <p className="text-xs sm:text-sm font-semibold text-white leading-relaxed">
-              Standard partner portals could be configured by developers from the existing codebase, which let me focus my design time on new modules. The same base now serves partners across insurance, mobility, and affiliate networks, each added as a new channel in the same system.
+              Standard portals shipped without new designs, and design time went to the complex claim flows.
             </p>
           </div>
         </div>
@@ -2006,19 +2039,16 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
           {/* Right Column: Case Study Main Content Sections */}
           <div className="space-y-16 lg:space-y-20 min-w-0">
 
-            {/* SECTION 01: The Pattern I Noticed */}
+            {/* SECTION 01: Context */}
             <div>
-              <SectionTag id="pattern" num="01" label="The Pattern I Noticed" />
-              
+              <SectionTag id="context" num="01" label="Context: The Pattern I Noticed" />
+
               <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
                 <p>
-                  My company kept getting requests to design pitch proposals for new partners, and each one seemed to need its own set of portals. After designing several of these pitches, I realized the foundation was the same every time. The terminology and data changed from client to client, but the core needs did not: monitoring performance, managing customers, and handling transactions and claims.
+                  My company kept getting requests for pitch proposals from new partners, and each one seemed to need its own set of portals. After designing several, the foundation looked the same every time. The terminology and data changed from client to client, but the core needs did not: monitoring performance, managing customers, and handling transactions and claims.
                 </p>
                 <p>
-                  The system was already built for this. The admin portal handled users and roles, and every new partner was added as a new channel in the same system, with its own partner and insurance portals. So instead of designing every pitch from scratch, I started from the same base and focused my effort on what was truly different for each partner.
-                </p>
-                <p>
-                  The two-track approach described below wasn’t a framework I planned upfront. It became clear only after several projects had shipped: some needs could be met by reusing what already existed, while others called for real design work.
+                  The system was already built for this. The admin portal handled users and roles, and every new partner was added as a new channel in the same system, with its own partner and insurance portals.
                 </p>
 
                 {/* System Architecture Diagram */}
@@ -2063,15 +2093,15 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
 
             <Hairline />
 
-            {/* SECTION 02: One Base, Different Partners */}
+            {/* SECTION 02: Constraints */}
             <div>
-              <SectionTag id="partners" num="02" label="One Base, Different Partners" />
-              
+              <SectionTag id="constraints" num="02" label="Constraints: One Base, Different Partners" />
+
               <p className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C] mb-6" style={{ lineHeight: 1.8 }}>
-                Each partner operated in a different industry, with different users and priorities:
+                Each partner operated in a different industry, with different users and priorities. The question for every request was whether the shared base could carry it, or whether the partner's logic was different enough to need new design.
               </p>
 
-              <div className="grid md:grid-cols-3 gap-6 mb-4">
+              <div className="grid md:grid-cols-3 gap-6">
                 <div className="p-6 bg-white rounded-xl border border-gray-200/80 shadow-xs space-y-3">
                   <div className="flex items-center justify-between">
                     <h4 className="font-bold text-[#19244E] text-base">Mobility & Delivery</h4>
@@ -2106,11 +2136,55 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
 
             <Hairline />
 
-            {/* SECTION 03: Two Tracks: Reuse vs. Real Design Work */}
+            {/* SECTION 03: Key Decisions */}
             <div>
-              <SectionTag id="twotracks" num="03" label="Two Tracks: Reuse vs. Real Design Work" />
+              <SectionTag id="decisions" num="03" label="Key Decisions: Reuse, Claim Review, and the Chart Filter" />
+
+              <p className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C] mb-8" style={{ lineHeight: 1.8 }}>
+                Three decisions shaped the work. Each one is shown with its evidence in Section 04.
+              </p>
+
+              <div className="space-y-6">
+                <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
+                  <span className="text-xs font-bold text-[#10B981] uppercase tracking-wider block">Decision 01 · Reuse first, redesign only what differs</span>
+                  <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                    <strong className="text-[#19244E]">The question:</strong> Does the partner need a new module, or different data and claim review logic?
+                  </p>
+                  <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                    <strong className="text-[#19244E]">Why it held:</strong> Standard portals only needed colors, logo, and terminology changes, so developers could ship them without new designs.
+                  </p>
+                </div>
+
+                <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
+                  <span className="text-xs font-bold text-[#3B82F6] uppercase tracking-wider block">Decision 02 · Claim data and review actions side by side</span>
+                  <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                    <strong className="text-[#19244E]">The pressure:</strong> Partner B's eligibility check spans four parties and the policy's conditions. In the standard tab layout, staff switch back and forth between data and documents.
+                  </p>
+                  <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                    <strong className="text-[#19244E]">What I did:</strong> A two-column claim detail page, with details on the left and review actions always visible on the right. I designed it with the backend team, because the data structures differed from the existing system.
+                  </p>
+                </div>
+
+                <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
+                  <span className="text-xs font-bold text-[#10B981] uppercase tracking-wider block">Decision 03 · Keep the chart off the date range filter</span>
+                  <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                    <strong className="text-[#19244E]">The pressure:</strong> Tying the chart to the dashboard's date range could make data retrieval very slow, as my backend engineer pointed out.
+                  </p>
+                  <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                    <strong className="text-[#19244E]">What I did:</strong> The chart follows the product filter, ignores the date range, and has its own monthly or yearly toggle.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <Hairline />
+
+            {/* SECTION 04: Solution & Evidence */}
+            <div>
+              <SectionTag id="solution" num="04" label="Solution & Evidence: Two Tracks in Practice" />
 
               {/* Flowchart: partner request → decision → Track A / Track B */}
+              <h3 className="font-display text-xl font-bold text-[#19244E] mb-6">The two-track model</h3>
               <div className="flex flex-col items-center">
                 <div className="px-4 py-2 rounded-full bg-[#19244E] text-white text-xs font-bold uppercase tracking-wider">
                   New Partner Request
@@ -2134,7 +2208,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                 <span className="absolute top-2 text-[10px] font-bold text-[#3B82F6] uppercase tracking-wider" style={{ right: "calc(25% + 4px)" }}>Yes</span>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-6 mb-6">
+              <div className="grid md:grid-cols-2 gap-6 mb-12">
                 <div className="p-6 bg-white border border-[#10B981]/40 rounded-xl space-y-4 shadow-xs">
                   <span className="md:hidden text-[10px] font-bold text-[#10B981] uppercase tracking-wider block">If no ↓</span>
                   <div className="flex items-center justify-between">
@@ -2147,7 +2221,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                     steps={[
                       "Duplicate the Figma file from a previous project",
                       "Swap colors, logo, and terminology",
-                      "Engineers reuse the codebase, enabling the partner’s menus",
+                      "Engineers reuse the codebase, enabling the partner's menus",
                       "Ship without new designs",
                     ]}
                   />
@@ -2168,7 +2242,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                     steps={[
                       "Map how the partner differs beyond visuals",
                       "Redesign the data shown in customer tables",
-                      "Design the partner’s claim review flow",
+                      "Design the partner's claim review flow",
                       "Hand off new module designs",
                     ]}
                   />
@@ -2177,17 +2251,12 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                   </p>
                 </div>
               </div>
-            </div>
 
-            <Hairline />
-
-            {/* SECTION 04: Case 1: Same Menu, Different Logic */}
-            <div>
-              <SectionTag id="case1" num="04" label="Case 1: Same Menu, Different Logic" />
-
-              <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
+              {/* Evidence 01: Claim review */}
+              <h3 className="font-display text-xl font-bold text-[#19244E] mb-2">Case 1: Same Menu, Different Logic</h3>
+              <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C] mb-10" style={{ lineHeight: 1.8 }}>
                 <p>
-                  On paper, every partner needed the same thing: a Claim menu in their backoffice. In practice, two partners could mean completely different things by “reviewing a claim.”
+                  On paper, every partner needed the same thing: a Claim menu in their backoffice. In practice, two partners meant completely different things by "reviewing a claim."
                 </p>
 
                 <div className="grid md:grid-cols-2 gap-6 my-4">
@@ -2198,7 +2267,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                     </span>
                     <h4 className="font-bold text-[#19244E] text-base">Standard Verification Flow</h4>
                     <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                      Partner A followed our existing flow, which is built around document completeness. A claim moves forward when its documents are complete and valid:
+                      Built around document completeness. A claim moves forward when its documents are complete and valid:
                     </p>
                     <div className="p-3 bg-gray-50 rounded-lg border border-gray-200 text-xs font-mono text-[#19244E] space-y-1">
                       <div className="font-semibold text-[#DB3E8C]">Submitted → Acknowledged → Document Review → Reupload or Lack of Documents → Accepted, Rejected, or Paid</div>
@@ -2215,7 +2284,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                     </span>
                     <h4 className="font-bold text-[#19244E] text-base">Complex Multi-User Logic</h4>
                     <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                      Partner B worked differently. Their claims were judged on eligibility, not paperwork, and a single claim could involve four parties: the participant, the person covered, the claimant, and the nominee. Each stage was handled by a different user.
+                      Claims were judged on eligibility, not paperwork, and a single claim could involve four parties: the participant, the person covered, the claimant, and the nominee. Each stage was handled by a different user.
                     </p>
                     <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
                       The client gave me a BRS defining the rules and requirements. The question of how to turn those rules into a usable interface was mine to answer.
@@ -2224,7 +2293,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                 </div>
 
                 <p>
-                  Because this flow touched data structures that differed significantly from the existing system, I worked through it with the client’s team and our backend engineers before designing. The result was a claim detail page with a side panel that changes with each stage:
+                  Because this flow touched data structures that differed significantly from the existing system, I worked through it with the client's team and our backend engineers before designing. The result is a claim detail page with a side panel that changes at each stage:
                 </p>
 
                 {/* 3 Stages Cards */}
@@ -2260,58 +2329,48 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                   </div>
                 </div>
 
-                {/* Architectural Comparison Matrix */}
-                <div className="my-6 rounded-xl border border-gray-200 overflow-hidden bg-white shadow-xs">
-                  <div className="p-4 bg-[#19244E] text-white flex flex-wrap items-center justify-between gap-2">
-                    <div className="flex items-center gap-2">
-                      <Sliders size={16} className="text-[#DB3E8C]" />
-                      <span className="font-bold text-xs uppercase tracking-wider">
-                        How the Two Claim Screens Differ
-                      </span>
+                <CaseStudyDisclosure label="Technical detail" summary="Full comparison: how the two claim screens differ">
+                  <div className="-mx-5 rounded-b-xl border-t border-gray-200 overflow-hidden">
+                    <div className="overflow-x-auto">
+                      <table className="w-full text-left text-xs font-sans">
+                        <thead className="bg-slate-50 text-[10px] text-slate-400 uppercase font-mono border-b border-slate-200">
+                          <tr>
+                            <th className="py-2.5 px-4 w-1/4">Aspect</th>
+                            <th className="py-2.5 px-4 w-[37.5%] text-teal-800 bg-teal-50/50">Track A: Standard Portal (Reused)</th>
+                            <th className="py-2.5 px-4 w-[37.5%] text-[#DB3E8C] bg-pink-50/40">Track B: Custom Module (Redesigned)</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-slate-100 text-slate-700">
+                          <tr className="hover:bg-slate-50/50">
+                            <td className="py-2.5 px-4 font-semibold text-slate-900">What Staff Check</td>
+                            <td className="py-2.5 px-4 text-slate-600">Are all documents complete and valid?</td>
+                            <td className="py-2.5 px-4 font-medium text-slate-900">Is the claim eligible? Checked across 4 parties and the policy's conditions</td>
+                          </tr>
+                          <tr className="hover:bg-slate-50/50">
+                            <td className="py-2.5 px-4 font-semibold text-slate-900">Screen Layout</td>
+                            <td className="py-2.5 px-4 text-slate-600">One column, with summary and documents on separate tabs</td>
+                            <td className="py-2.5 px-4 font-medium text-slate-900">Two columns: claim details on the left, review actions always visible on the right</td>
+                          </tr>
+                          <tr className="hover:bg-slate-50/50">
+                            <td className="py-2.5 px-4 font-semibold text-slate-900">How Staff Review</td>
+                            <td className="py-2.5 px-4 text-slate-600">Switch tabs back and forth to compare data with documents</td>
+                            <td className="py-2.5 px-4 font-medium text-emerald-700 font-semibold">No tab switching. Data and documents sit side by side</td>
+                          </tr>
+                          <tr className="hover:bg-slate-50/50">
+                            <td className="py-2.5 px-4 font-semibold text-slate-900">Who Handles It</td>
+                            <td className="py-2.5 px-4 text-slate-600">One operations staff member handles every step</td>
+                            <td className="py-2.5 px-4 font-medium text-slate-900">Three roles in turn: Investigator → Underwriter → Finance (payout)</td>
+                          </tr>
+                          <tr className="hover:bg-slate-50/50">
+                            <td className="py-2.5 px-4 font-semibold text-slate-900">Design &amp; Build Effort</td>
+                            <td className="py-2.5 px-4 text-slate-600"><strong>Reuse</strong>: Only colors and logo change. No new design work</td>
+                            <td className="py-2.5 px-4 font-medium text-slate-900"><strong>Full redesign</strong>: The whole review flow, designed together with the backend team</td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </div>
-                    <span className="text-[10px] font-mono text-slate-300 bg-white/10 px-2 py-0.5 rounded">
-                      Reused vs. Redesigned
-                    </span>
                   </div>
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-left text-xs font-sans">
-                      <thead className="bg-slate-50 text-[10px] text-slate-400 uppercase font-mono border-b border-slate-200">
-                        <tr>
-                          <th className="py-2.5 px-4 w-1/4">Aspect</th>
-                          <th className="py-2.5 px-4 w-[37.5%] text-teal-800 bg-teal-50/50">Track A: Standard Portal (Reused)</th>
-                          <th className="py-2.5 px-4 w-[37.5%] text-[#DB3E8C] bg-pink-50/40">Track B: Custom Module (Redesigned)</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-slate-100 text-slate-700">
-                        <tr className="hover:bg-slate-50/50">
-                          <td className="py-2.5 px-4 font-semibold text-slate-900">What Staff Check</td>
-                          <td className="py-2.5 px-4 text-slate-600">Are all documents complete and valid?</td>
-                          <td className="py-2.5 px-4 font-medium text-slate-900">Is the claim eligible? Checked across 4 parties and the policy’s conditions</td>
-                        </tr>
-                        <tr className="hover:bg-slate-50/50">
-                          <td className="py-2.5 px-4 font-semibold text-slate-900">Screen Layout</td>
-                          <td className="py-2.5 px-4 text-slate-600">One column, with summary and documents on separate tabs</td>
-                          <td className="py-2.5 px-4 font-medium text-slate-900">Two columns: claim details on the left, review actions always visible on the right</td>
-                        </tr>
-                        <tr className="hover:bg-slate-50/50">
-                          <td className="py-2.5 px-4 font-semibold text-slate-900">How Staff Review</td>
-                          <td className="py-2.5 px-4 text-slate-600">Switch tabs back and forth to compare data with documents</td>
-                          <td className="py-2.5 px-4 font-medium text-emerald-700 font-semibold">No tab switching. Data and documents sit side by side</td>
-                        </tr>
-                        <tr className="hover:bg-slate-50/50">
-                          <td className="py-2.5 px-4 font-semibold text-slate-900">Who Handles It</td>
-                          <td className="py-2.5 px-4 text-slate-600">One operations staff member handles every step</td>
-                          <td className="py-2.5 px-4 font-medium text-slate-900">Three roles in turn: Investigator → Underwriter → Finance (payout)</td>
-                        </tr>
-                        <tr className="hover:bg-slate-50/50">
-                          <td className="py-2.5 px-4 font-semibold text-slate-900">Design &amp; Build Effort</td>
-                          <td className="py-2.5 px-4 text-slate-600"><strong>Reuse</strong>: Only colors and logo change. No new design work</td>
-                          <td className="py-2.5 px-4 font-medium text-slate-900"><strong>Full redesign</strong>: The whole review flow, designed together with the backend team</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
+                </CaseStudyDisclosure>
 
                 <div className="p-5 bg-[#19244E] text-white rounded-xl space-y-2 shadow-sm">
                   <div className="flex items-center justify-between">
@@ -2321,27 +2380,22 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                     </span>
                   </div>
                   <p className="text-xs sm:text-sm text-white/80 leading-relaxed">
-                    Switch between <strong>Track A (Standard)</strong> and <strong>Track B (Custom)</strong> below. In Track A, staff jump between tabs to check data against documents. In Track B, the claim details and review actions stay side by side, so there’s no switching back and forth.
+                    Switch between <strong>Track A (Standard)</strong> and <strong>Track B (Custom)</strong> below. In Track A, staff jump between tabs to check data against documents. In Track B, the claim details and review actions stay side by side, so there's no switching back and forth.
                   </p>
                 </div>
 
                 {/* Interactive Demo for Partner Claim Review (Track A vs Track B) */}
                 <PartnerBClaimReviewPreview />
               </div>
-            </div>
 
-            <Hairline />
-
-            {/* SECTION 05: Case 2: Designing a Chart From an Open Brief */}
-            <div>
-              <SectionTag id="case2" num="05" label="Case 2: Designing a Chart From an Open Brief" />
-
+              {/* Evidence 02: Chart */}
+              <h3 className="font-display text-xl font-bold text-[#19244E] mb-2">Case 2: A Chart From an Open Brief</h3>
               <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
                 <p>
-                  The client asked for a new “Product Performance” indicator on their reporting dashboard, but the brief left most of it open: whether it should show transactions or policies sold, and over what time period. There were no requirements for the chart type either, so I explored and chose a grouped bar chart with one color per product, letting managers compare products side by side within each period.
+                  The client asked for a new "Product Performance" indicator on their reporting dashboard, but the brief left most of it open: whether it should show transactions or policies sold, and over what time period. There were no requirements for the chart type either, so I explored and chose a grouped bar chart with one color per product, letting managers compare products side by side within each period.
                 </p>
                 <p>
-                  Deciding how the chart should respond to the dashboard’s filters took more thought. While discussing data needs with our backend engineer, I learned that tying this chart to the dashboard’s date range filter could make data retrieval very slow. So I proposed a filter system that separates the two:
+                  Deciding how the chart should respond to the dashboard's filters took more thought. While discussing data needs with our backend engineer, I learned that tying this chart to the date range filter could make data retrieval very slow. So I proposed a filter system that separates the two:
                 </p>
 
                 <div className="grid md:grid-cols-3 gap-4 my-4">
@@ -2351,7 +2405,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                     </span>
                     <h5 className="font-bold text-sm text-[#19244E]">Product Filter</h5>
                     <p className="text-xs text-gray-600 leading-relaxed">
-                      The dashboard’s product selection also applies to this chart, so the legend and bars update to match.
+                      The dashboard's product selection also applies to this chart, so the legend and bars update to match.
                     </p>
                   </div>
 
@@ -2361,7 +2415,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                     </span>
                     <h5 className="font-bold text-sm text-[#19244E]">Date Range Filter</h5>
                     <p className="text-xs text-gray-600 leading-relaxed">
-                      This chart ignores it, so changing the dashboard’s date range doesn’t trigger heavy queries.
+                      This chart ignores it, so changing the dashboard's date range doesn't trigger heavy queries.
                     </p>
                   </div>
 
@@ -2387,36 +2441,44 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
 
             <Hairline />
 
-            {/* SECTION 06: What Changed & What I Learned */}
+            {/* SECTION 05: Outcome & Reflection */}
             <div>
-              <SectionTag id="learned" num="06" label="What Changed & What I Learned" />
+              <SectionTag id="outcome" num="05" label="Outcome & Reflection" />
 
               <div className="space-y-6">
-                <p className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
-                  Separating reuse from real design work changed where my time went. Standard portals moved forward through the existing codebase, while my design time went to the modules that actually needed it, like Partner B’s claim assessment. From my experience, this base also made pitching faster: I could usually deliver a complete set of portals for a new partner within a few days.
-                </p>
-
                 <div className="grid md:grid-cols-3 gap-6">
                   <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
-                    <span className="font-bold text-[#10B981] text-sm block">Reused Codebase</span>
+                    <span className="text-[10px] font-bold tracking-wider uppercase text-[#10B981] font-mono block">Shipped</span>
+                    <h5 className="font-bold text-sm text-[#19244E]">Standard portals</h5>
                     <p className="text-xs text-gray-600 leading-relaxed">
-                      Standard portals deployed directly by developers without design bottlenecks or redundant redrawing.
+                      Deployed by developers from the existing codebase, without design bottlenecks or redrawing.
                     </p>
                   </div>
 
                   <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
-                    <span className="font-bold text-[#DB3E8C] text-sm block">Focused Design Time</span>
+                    <span className="text-[10px] font-bold tracking-wider uppercase text-[#DB3E8C] font-mono block">Designed</span>
+                    <h5 className="font-bold text-sm text-[#19244E]">Partner B's claim flow</h5>
                     <p className="text-xs text-gray-600 leading-relaxed">
-                      High-complexity modules like multi-stage eligibility claim flows received thorough UX exploration.
+                      Multi-stage eligibility review, explored in depth and designed with the backend team.
                     </p>
                   </div>
 
                   <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
-                    <span className="font-bold text-[#3B82F6] text-sm block">Faster Pitch Delivery</span>
+                    <span className="text-[10px] font-bold tracking-wider uppercase text-[#3B82F6] font-mono block">Estimated, not tracked</span>
+                    <h5 className="font-bold text-sm text-[#19244E]">Pitch turnaround</h5>
                     <p className="text-xs text-gray-600 leading-relaxed">
-                      A complete set of pitch portals for newly incoming enterprise partners delivered within a few days.
+                      A complete set of pitch portals for a new partner in a few days, based on my experience.
                     </p>
                   </div>
+                </div>
+
+                <div className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C] space-y-5" style={{ lineHeight: 1.8 }}>
+                  <p>
+                    Separating reuse from real design work changed where my time went. Standard portals moved through the existing codebase, and my design time went to the modules that needed it, such as Partner B's claim assessment. The two-track split was not something I planned upfront. It became clear only after several projects had shipped.
+                  </p>
+                  <p>
+                    This is how I think in systems. I recognized a shared foundation across partners, and I could tell when a request fit it and when it needed a new solution. I also work well when requirements are incomplete: I turn a client's BRS or an open brief into concrete decisions, then check them with backend engineers so they hold up technically.
+                  </p>
                 </div>
 
                 {/* WHAT I LEARNED Box */}
@@ -2427,19 +2489,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                     </span>
                   </div>
                   <p className="text-xs sm:text-sm font-sans leading-relaxed text-[#2E3A5C] italic" style={{ lineHeight: 1.8 }}>
-                    “Designing across many partners taught me that reusability isn’t about forcing every client into the same mold. The real skill is knowing which parts to keep consistent, like navigation, page structures, and common components, and which problems need to be designed from scratch together with the client and engineers.”
-                  </p>
-                </div>
-
-                {/* WHY THIS MATTERS TO A HIRING MANAGER */}
-                <div className="p-8 bg-[#111836] rounded-2xl border border-white/10 text-white space-y-4 shadow-2xl mt-6">
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
-                      WHY THIS MATTERS TO A HIRING MANAGER
-                    </span>
-                  </div>
-                  <p className="text-xs sm:text-sm font-sans leading-relaxed text-white/95 italic" style={{ lineHeight: 1.8 }}>
-                    “This project shows how I think in systems rather than isolated screens. As a sole designer, I recognized a shared foundation across partners, and I could tell when a request fit that foundation and when it needed a new solution. It also shows how I work when requirements are incomplete: turning a client’s BRS or an open brief into concrete design decisions, and working closely with backend engineers so those decisions hold up technically.”
+                    "Designing across many partners taught me that reusability isn't about forcing every client into the same mold. The real skill is knowing which parts to keep consistent, like navigation, page structures, and common components, and which problems need to be designed from scratch together with the client and engineers."
                   </p>
                 </div>
               </div>

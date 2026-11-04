@@ -142,7 +142,7 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
             <span>HOME</span>
           </a>
 
-          <CaseStudyHeaderBadge caseNum="03" />
+          <CaseStudyHeaderBadge caseNum="05" />
         </div>
 
         {/* Mobile Collapsible Quick Jump Bar - Flush underneath */}
@@ -199,7 +199,7 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
         <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-center">
           <div className="space-y-6">
             <div className="flex flex-wrap items-center gap-3">
-              <MonoTag accent>CASE STUDY 03</MonoTag>
+              <MonoTag accent>CASE STUDY 05</MonoTag>
               <span style={{ color: HAIR }}>/</span>
               <MonoTag>IN HOUSE GAMIFIED QUIZ PLATFORM</MonoTag>
               <span style={{ color: HAIR }}>/</span>

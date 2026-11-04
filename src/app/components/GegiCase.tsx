@@ -148,7 +148,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
             <span>HOME</span>
           </a>
 
-          <CaseStudyHeaderBadge caseNum="02" />
+          <CaseStudyHeaderBadge caseNum="04" />
         </div>
 
         {/* Mobile Collapsible Quick Jump Bar - Flush underneath */}
@@ -205,7 +205,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
         <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-center">
           <div className="space-y-6">
             <div className="flex flex-wrap items-center gap-3">
-              <MonoTag accent>CASE STUDY 02</MonoTag>
+              <MonoTag accent>CASE STUDY 04</MonoTag>
               <span style={{ color: HAIR }}>/</span>
               <MonoTag>FINTECH & GAMIFIED CAMPAIGN</MonoTag>
               <span style={{ color: HAIR }}>/</span>
@@ -479,18 +479,6 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
               </div>
               <p className="text-xs sm:text-sm font-sans leading-relaxed text-white/90 italic" style={{ lineHeight: 1.8 }}>
                 "Taking over a concept someone else already started taught me that ownership is not about starting from zero: it is about being willing to fully commit to a direction I did not choose myself, while still pushing back when the brief genuinely needed to change, like the color pivot and bringing in extra illustration support."
-              </p>
-            </div>
-
-            {/* Why This Matters to a Hiring Manager */}
-            <div className="mt-6 p-6 rounded-xl bg-[#DB3E8C]/15 border border-[#DB3E8C]/40 text-white space-y-3">
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
-                  WHY THIS MATTERS TO A HIRING MANAGER
-                </span>
-              </div>
-              <p className="text-xs sm:text-sm font-sans leading-relaxed text-white/95 italic" style={{ lineHeight: 1.8 }}>
-                "This project demonstrates my ability to take over an ongoing concept from another team member and drive it to a client approved product: navigating brand pivots, stakeholder feedback, and illustration constraints midway through a project without missing a tight 2 week deadline."
               </p>
             </div>
           </div>
