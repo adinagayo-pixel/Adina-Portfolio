@@ -49,110 +49,23 @@ function SectionTag({ id, num, label }: { id?: string; num: string; label: strin
   )
 }
 
-// ── Interactive Multi-Tenant Token Swapper Sandbox (Section 03) ──────────────
-function MultiTenantTokenSandbox() {
-  const [tenant, setTenant] = useState<"mobility" | "insurance" | "commerce">("mobility")
-
-  const tenants = {
-    mobility: {
-      name: "Ride-Hailing & Mobility Partner",
-      accent: "#10B981", // Emerald
-      badge: "Mobility & Delivery",
-      termUser: "Active Drivers & Riders",
-      termMenu: "Internal Benefits & Driver Claims",
-      termMetric: "Avg. Claim Resolution Time",
-      metricVal: "4.2 Hours",
-      claimFocus: "Instant driver medical incident tracking",
-    },
-    insurance: {
-      name: "Regional InsurTech Partner",
-      accent: "#EF4444", // Crimson
-      badge: "Regional InsurTech",
-      termUser: "Policyholders & Agents",
-      termMenu: "Policy Funnels & Underwriting Portal",
-      termMetric: "Policy Conversion Rate",
-      metricVal: "38.6% Conversion",
-      claimFocus: "Multi-party eligibility & underwriting review",
-    },
-    commerce: {
-      name: "Commerce Affiliate Network",
-      accent: "#3B82F6", // Cobalt
-      badge: "Affiliate & Commerce",
-      termUser: "Partnership & Affiliate Leads",
-      termMenu: "Referral Trees & Tier Commissions",
-      termMetric: "Monthly Commission Reconciliation",
-      metricVal: "$142,800 Approved",
-      claimFocus: "Partner tier commission & payout audits",
-    },
-  }
-
-  const active = tenants[tenant]
-
+// ── Vertical step chain used inside the Two Tracks flowchart (Section 03) ────
+function TrackSteps({ steps, color }: { steps: string[]; color: string }) {
   return (
-    <div className="my-8 p-6 rounded-2xl bg-[#0f1738] border border-white/10 text-white shadow-2xl space-y-6">
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
-        <div>
-          <div className="flex items-center gap-2">
-            <Sliders size={14} className="text-[#DB3E8C]" />
-            <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
-              INTERACTIVE DEMO // TRACK A: REUSABLE WHITE LABEL THEME
-            </span>
-          </div>
-          <h3 className="font-display text-lg lg:text-xl font-bold mt-1 text-white">
-            How The Base Re-skins For Different Partners Without Code Rewrites
-          </h3>
-          <p className="text-xs text-white/70 mt-1 max-w-xl">
-            Switch partners to see how tokens update brand colors, customer terminology, and active menus across the shared codebase.
-          </p>
-        </div>
-
-        {/* Tenant Selector */}
-        <div className="flex items-center gap-2 bg-white/5 p-1 rounded-lg border border-white/10">
-          {(["mobility", "insurance", "commerce"] as const).map((tKey) => (
-            <button
-              key={tKey}
-              onClick={() => setTenant(tKey)}
-              className={`px-3 py-1.5 rounded-md text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer ${
-                tenant === tKey ? "bg-[#DB3E8C] text-white shadow-lg" : "text-white/60 hover:text-white"
-              }`}
-            >
-              {tKey}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Simulator Display */}
-      <div className="grid md:grid-cols-3 gap-4">
-        <div className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
-          <span className="text-[10px] text-gray-400 uppercase tracking-widest block font-mono">1. Brand & Channel Token</span>
-          <div className="flex items-center gap-2">
-            <span className="w-3 h-3 rounded-full" style={{ backgroundColor: active.accent }} />
-            <span className="text-sm font-bold text-white">{active.name}</span>
-          </div>
+    <ol className="relative space-y-2.5">
+      <div className="absolute left-[9px] top-2 bottom-2 w-px" style={{ backgroundColor: `${color}40` }} />
+      {steps.map((step, i) => (
+        <li key={step} className="relative flex items-start gap-3">
           <span
-            className="inline-block text-[10px] font-bold px-2 py-0.5 rounded-full uppercase mt-1"
-            style={{ backgroundColor: `${active.accent}20`, color: active.accent }}
+            className="relative z-10 flex-shrink-0 w-[19px] h-[19px] rounded-full text-[10px] font-bold flex items-center justify-center text-white"
+            style={{ backgroundColor: color }}
           >
-            {active.badge}
+            {i + 1}
           </span>
-        </div>
-
-        <div className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
-          <span className="text-[10px] text-gray-400 uppercase tracking-widest block font-mono">2. Customized Menus & Roles</span>
-          <span className="text-xs font-bold text-[#DB3E8C] block">{active.termMenu}</span>
-          <p className="text-[11px] text-gray-400">
-            Target Entity: <strong className="text-white">{active.termUser}</strong>
-          </p>
-        </div>
-
-        <div className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
-          <span className="text-[10px] text-gray-400 uppercase tracking-widest block font-mono">3. Operational KPI Focus</span>
-          <span className="text-xs font-bold text-[#22c55e] block">{active.metricVal}</span>
-          <p className="text-[11px] text-gray-400">{active.claimFocus}</p>
-        </div>
-      </div>
-    </div>
+          <span className="text-xs sm:text-sm text-[#19244E] font-medium leading-snug pt-px">{step}</span>
+        </li>
+      ))}
+    </ol>
   )
 }
 
@@ -793,7 +706,7 @@ function PartnerBClaimReviewPreview() {
         {/* Track Architecture Switcher */}
         <div className="flex items-center gap-1.5 bg-slate-900 p-1 rounded-xl border border-slate-800 text-xs">
           <span className="text-[10px] font-mono text-slate-400 uppercase px-2 hidden md:inline">
-            Compare Architecture:
+            Compare Screens:
           </span>
           <button
             onClick={() => setActiveTrack("trackA")}
@@ -804,7 +717,7 @@ function PartnerBClaimReviewPreview() {
             }`}
           >
             <FileText size={13} />
-            <span>Track A: Baseline (Linear)</span>
+            <span>Track A: Standard (Tabs)</span>
           </button>
           <button
             onClick={() => setActiveTrack("trackB")}
@@ -815,7 +728,7 @@ function PartnerBClaimReviewPreview() {
             }`}
           >
             <Split size={13} />
-            <span>Track B: Bespoke (Split-Panel)</span>
+            <span>Track B: Custom (Side by Side)</span>
           </button>
         </div>
       </div>
@@ -825,7 +738,7 @@ function PartnerBClaimReviewPreview() {
         <div className="px-4 py-2 bg-slate-900/90 border-b border-slate-800 flex flex-wrap items-center justify-between gap-2 text-xs">
           <div className="flex items-center gap-2 text-slate-300 text-[11px]">
             <span className="w-2 h-2 rounded-full bg-[#DB3E8C] animate-pulse" />
-            <span className="font-semibold text-slate-200">Track B Multi-Stage Governance:</span>
+            <span className="font-semibold text-slate-200">Track B review steps:</span>
           </div>
           <div className="flex items-center gap-1 bg-slate-950 p-1 rounded-lg border border-slate-800 text-xs">
             <button
@@ -865,11 +778,11 @@ function PartnerBClaimReviewPreview() {
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
             <span className="font-medium text-[11px]">
-              Production Baseline: Standard 1-column layout with tab switching between Summary & Documents.
+              Standard screen: one column, with Summary and Documents on separate tabs.
             </span>
           </div>
           <span className="text-[10px] font-mono text-teal-300/80 bg-teal-900/60 px-2 py-0.5 rounded border border-teal-700/50">
-            Original White Label Template
+            Original Reused Template
           </span>
         </div>
       )}
@@ -1660,20 +1573,20 @@ function PartnerBClaimReviewPreview() {
             <>
               <FileText size={14} className="text-teal-400" />
               <span>
-                <strong>Track A (Baseline Rationale):</strong> Suitable for high-volume, single-operator paperwork verification where documents only need completeness checks. Operators switch between tabs to verify files.
+                <strong>Why Track A works:</strong> One staff member checks whether documents are complete, often for many claims a day. Switching between tabs is enough for that.
               </span>
             </>
           ) : (
             <>
               <Split size={14} className="text-[#DB3E8C]" />
               <span>
-                <strong>Track B (Bespoke Rationale):</strong> The fixed side panel on the right eliminates tab switching, letting assessors audit complex multi-party claims against scrolling documents without losing their place.
+                <strong>Why Track B was redesigned:</strong> Claims involve several parties, so reviewers need to see details and decisions together. The review panel stays on the right while they scroll, so they never lose their place.
               </span>
             </>
           )}
         </span>
         <span className="font-mono text-[10px] text-slate-500">
-          {activeTrack === "trackA" ? "Sanitized Baseline Dummy Reproduction" : "Sanitized NDA Dummy Reproduction"}
+          {activeTrack === "trackA" ? "Recreated with dummy data" : "Recreated with dummy data (NDA)"}
         </span>
       </div>
     </div>
@@ -2197,32 +2110,73 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
             <div>
               <SectionTag id="twotracks" num="03" label="Two Tracks: Reuse vs. Real Design Work" />
 
+              {/* Flowchart: partner request → decision → Track A / Track B */}
+              <div className="flex flex-col items-center">
+                <div className="px-4 py-2 rounded-full bg-[#19244E] text-white text-xs font-bold uppercase tracking-wider">
+                  New Partner Request
+                </div>
+                <div className="w-px h-6 bg-[#19244E]/25" />
+                <div className="max-w-md w-full px-5 py-4 bg-white border-2 border-dashed border-[#DB3E8C]/50 rounded-xl text-center shadow-xs">
+                  <span className="text-[10px] font-bold text-[#DB3E8C] uppercase tracking-wider block mb-1">Decision</span>
+                  <p className="text-sm font-semibold text-[#19244E] leading-snug">
+                    Does the partner need a new module, or different data and claim review logic?
+                  </p>
+                </div>
+                <div className="w-px h-6 bg-[#19244E]/25" />
+              </div>
+
+              {/* Branch connector (desktop) */}
+              <div className="relative hidden md:block h-10">
+                <div className="absolute top-0 h-px bg-[#19244E]/25" style={{ left: "calc(25% - 6px)", right: "calc(25% - 6px)" }} />
+                <div className="absolute top-0 bottom-0 w-px bg-[#10B981]/60" style={{ left: "calc(25% - 6px)" }} />
+                <div className="absolute top-0 bottom-0 w-px bg-[#3B82F6]/60" style={{ right: "calc(25% - 6px)" }} />
+                <span className="absolute top-2 text-[10px] font-bold text-[#10B981] uppercase tracking-wider" style={{ left: "calc(25% + 4px)" }}>No</span>
+                <span className="absolute top-2 text-[10px] font-bold text-[#3B82F6] uppercase tracking-wider" style={{ right: "calc(25% + 4px)" }}>Yes</span>
+              </div>
+
               <div className="grid md:grid-cols-2 gap-6 mb-6">
-                <div className="p-6 bg-white border border-[#10B981]/40 rounded-xl space-y-3 shadow-xs">
+                <div className="p-6 bg-white border border-[#10B981]/40 rounded-xl space-y-4 shadow-xs">
+                  <span className="md:hidden text-[10px] font-bold text-[#10B981] uppercase tracking-wider block">If no ↓</span>
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold text-[#10B981] uppercase tracking-wider block font-mono">TRACK A</span>
                     <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#10B981]/15 text-[#10B981] uppercase">Reuse</span>
                   </div>
                   <h4 className="font-bold text-lg text-[#19244E]">Standard Portals & Theming</h4>
+                  <TrackSteps
+                    color="#10B981"
+                    steps={[
+                      "Duplicate the Figma file from a previous project",
+                      "Swap colors, logo, and terminology",
+                      "Engineers reuse the codebase, enabling the partner’s menus",
+                      "Ship without new designs",
+                    ]}
+                  />
                   <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                    When a new partner needed standard portals, I duplicated the Figma file from a previous project and swapped the colors, logo, and terminology. On the development side, engineers reused the existing codebase, enabling the menus each partner needed and applying their brand colors. Because the components and page structures stayed consistent, standard portals didn’t need new designs to move forward.
+                    Components and page structures stayed consistent across partners, so standard portals could move forward without new designs.
                   </p>
                 </div>
 
-                <div className="p-6 bg-white border border-[#3B82F6]/40 rounded-xl space-y-3 shadow-xs">
+                <div className="p-6 bg-white border border-[#3B82F6]/40 rounded-xl space-y-4 shadow-xs">
+                  <span className="md:hidden text-[10px] font-bold text-[#3B82F6] uppercase tracking-wider block">If yes ↓</span>
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold text-[#3B82F6] uppercase tracking-wider block font-mono">TRACK B</span>
                     <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#3B82F6]/15 text-[#3B82F6] uppercase">Real Design Work</span>
                   </div>
                   <h4 className="font-bold text-lg text-[#19244E]">Deep Custom Modules</h4>
+                  <TrackSteps
+                    color="#3B82F6"
+                    steps={[
+                      "Map how the partner differs beyond visuals",
+                      "Redesign the data shown in customer tables",
+                      "Design the partner’s claim review flow",
+                      "Hand off new module designs",
+                    ]}
+                  />
                   <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                    New modules were where my design process began. Even within the same menu, partners often differed in ways that went beyond visuals: the data shown in customer tables, and most significantly, how claims were reviewed. The two cases below show what this looked like in practice.
+                    This is where my design process began. The most significant difference was how claims were reviewed, as the two cases below show.
                   </p>
                 </div>
               </div>
-
-              {/* Interactive Demo for Track A token theming */}
-              <MultiTenantTokenSandbox />
             </div>
 
             <Hairline />
@@ -2312,47 +2266,47 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                     <div className="flex items-center gap-2">
                       <Sliders size={16} className="text-[#DB3E8C]" />
                       <span className="font-bold text-xs uppercase tracking-wider">
-                        Architectural Contrast: Track A (Baseline) vs Track B (Bespoke)
+                        How the Two Claim Screens Differ
                       </span>
                     </div>
                     <span className="text-[10px] font-mono text-slate-300 bg-white/10 px-2 py-0.5 rounded">
-                      Standard Reuse vs New Architecture
+                      Reused vs. Redesigned
                     </span>
                   </div>
                   <div className="overflow-x-auto">
                     <table className="w-full text-left text-xs font-sans">
                       <thead className="bg-slate-50 text-[10px] text-slate-400 uppercase font-mono border-b border-slate-200">
                         <tr>
-                          <th className="py-2.5 px-4 w-1/4">Dimension</th>
-                          <th className="py-2.5 px-4 w-[37.5%] text-teal-800 bg-teal-50/50">Track A: Baseline Portal (Standard)</th>
-                          <th className="py-2.5 px-4 w-[37.5%] text-[#DB3E8C] bg-pink-50/40">Track B: Bespoke Module (Redesign)</th>
+                          <th className="py-2.5 px-4 w-1/4">Aspect</th>
+                          <th className="py-2.5 px-4 w-[37.5%] text-teal-800 bg-teal-50/50">Track A: Standard Portal (Reused)</th>
+                          <th className="py-2.5 px-4 w-[37.5%] text-[#DB3E8C] bg-pink-50/40">Track B: Custom Module (Redesigned)</th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-slate-100 text-slate-700">
                         <tr className="hover:bg-slate-50/50">
-                          <td className="py-2.5 px-4 font-semibold text-slate-900">Review Objective</td>
-                          <td className="py-2.5 px-4 text-slate-600">Document completeness &amp; file validity</td>
-                          <td className="py-2.5 px-4 font-medium text-slate-900">4-Party legal eligibility &amp; policy condition checks</td>
+                          <td className="py-2.5 px-4 font-semibold text-slate-900">What Staff Check</td>
+                          <td className="py-2.5 px-4 text-slate-600">Are all documents complete and valid?</td>
+                          <td className="py-2.5 px-4 font-medium text-slate-900">Is the claim eligible? Checked across 4 parties and the policy’s conditions</td>
                         </tr>
                         <tr className="hover:bg-slate-50/50">
                           <td className="py-2.5 px-4 font-semibold text-slate-900">Screen Layout</td>
-                          <td className="py-2.5 px-4 text-slate-600">Linear 1-Column with Tab Swapping (Summary ↔ Documents)</td>
-                          <td className="py-2.5 px-4 font-medium text-slate-900">2-Column Split: Scrolling Data (Left) + Fixed Stage Panel (Right)</td>
+                          <td className="py-2.5 px-4 text-slate-600">One column, with summary and documents on separate tabs</td>
+                          <td className="py-2.5 px-4 font-medium text-slate-900">Two columns: claim details on the left, review actions always visible on the right</td>
                         </tr>
                         <tr className="hover:bg-slate-50/50">
-                          <td className="py-2.5 px-4 font-semibold text-slate-900">Operator Review Flow</td>
-                          <td className="py-2.5 px-4 text-slate-600">Switch tabs back-and-forth to verify data against documents</td>
-                          <td className="py-2.5 px-4 font-medium text-emerald-700 font-semibold">Zero tab-switching; persistent side-by-side audit</td>
+                          <td className="py-2.5 px-4 font-semibold text-slate-900">How Staff Review</td>
+                          <td className="py-2.5 px-4 text-slate-600">Switch tabs back and forth to compare data with documents</td>
+                          <td className="py-2.5 px-4 font-medium text-emerald-700 font-semibold">No tab switching. Data and documents sit side by side</td>
                         </tr>
                         <tr className="hover:bg-slate-50/50">
-                          <td className="py-2.5 px-4 font-semibold text-slate-900">Governance &amp; Roles</td>
-                          <td className="py-2.5 px-4 text-slate-600">Single operations officer handles all pipeline states</td>
-                          <td className="py-2.5 px-4 font-medium text-slate-900">3 Distinct Roles: Investigator → Underwriter → Finance Disbursal</td>
+                          <td className="py-2.5 px-4 font-semibold text-slate-900">Who Handles It</td>
+                          <td className="py-2.5 px-4 text-slate-600">One operations staff member handles every step</td>
+                          <td className="py-2.5 px-4 font-medium text-slate-900">Three roles in turn: Investigator → Underwriter → Finance (payout)</td>
                         </tr>
                         <tr className="hover:bg-slate-50/50">
-                          <td className="py-2.5 px-4 font-semibold text-slate-900">Design &amp; Dev Effort</td>
-                          <td className="py-2.5 px-4 text-slate-600"><strong>Smart Reuse</strong>: Color tokens &amp; logo swap only (0 new design sprints)</td>
-                          <td className="py-2.5 px-4 font-medium text-slate-900"><strong>Deep Design Work</strong>: End-to-end BRS workflow co-designed with backend</td>
+                          <td className="py-2.5 px-4 font-semibold text-slate-900">Design &amp; Build Effort</td>
+                          <td className="py-2.5 px-4 text-slate-600"><strong>Reuse</strong>: Only colors and logo change. No new design work</td>
+                          <td className="py-2.5 px-4 font-medium text-slate-900"><strong>Full redesign</strong>: The whole review flow, designed together with the backend team</td>
                         </tr>
                       </tbody>
                     </table>
@@ -2361,13 +2315,13 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
 
                 <div className="p-5 bg-[#19244E] text-white rounded-xl space-y-2 shadow-sm">
                   <div className="flex items-center justify-between">
-                    <h4 className="font-bold text-sm text-white">Interactive Sandbox: Toggle &amp; Compare Both Interfaces Live</h4>
+                    <h4 className="font-bold text-sm text-white">Try It: Compare Both Claim Screens</h4>
                     <span className="text-[10px] font-mono bg-white/10 px-2 py-0.5 rounded text-white/80">
-                      Use top toggle in browser bar
+                      Switch using the buttons at the top
                     </span>
                   </div>
                   <p className="text-xs sm:text-sm text-white/80 leading-relaxed">
-                    Toggle between <strong>Track A (Baseline Portal)</strong> and <strong>Track B (Bespoke Workflow)</strong> below to experience the exact operational difference between linear tab-switching and the persistent side-by-side audit panel.
+                    Switch between <strong>Track A (Standard)</strong> and <strong>Track B (Custom)</strong> below. In Track A, staff jump between tabs to check data against documents. In Track B, the claim details and review actions stay side by side, so there’s no switching back and forth.
                   </p>
                 </div>
 
