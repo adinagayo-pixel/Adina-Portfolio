@@ -2004,6 +2004,22 @@ function WorkflowSection() {
               })}
             </div>
 
+            {/* Reflection: when the standard flow needs to bend */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, margin: "-40px" }}
+              transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
+              className="mt-14 sm:mt-16 lg:mt-20 max-w-3xl border-l-2 border-[#DB3E8C] pl-6 sm:pl-8"
+            >
+              <span className="font-mono text-[10px] sm:text-xs font-bold tracking-[0.25em] uppercase text-[#DB3E8C]">
+                REFLECTION · WHEN THE STANDARD FLOW NEEDS TO BEND
+              </span>
+              <p className="mt-4 font-sans text-sm sm:text-base leading-relaxed text-white/80">
+                Our standard flow is where I start. It asks users to upload their NRIC for OCR and complete the details by hand. On Touch 'n Go, insurance could only be bought by the account owner, and the account already held their registered data. So I built the second flow on that data, including the PTV voucher check. Users no longer retype their details. I depart from the standard only when the platform's rules make it a poor fit, and here they did.
+              </p>
+            </motion.div>
+
             {/* Centered Bottom CTA Link */}
             <div className="mt-14 sm:mt-16 lg:mt-20 text-center relative z-20">
               <a

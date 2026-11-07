@@ -63,6 +63,79 @@ const QUICK_SECTIONS = [
   { id: "outcome", num: "05", label: "Outcome & Reflection" },
 ]
 
+interface WorkFlowStep {
+  num: string
+  lane: string
+  title: string
+  desc: string
+  alternatives?: { label: string; title: string; desc: string; chosen?: boolean }[]
+}
+
+const WORK_FLOW: WorkFlowStep[] = [
+  {
+    num: "01",
+    lane: "GEGM",
+    title: "Briefing",
+    desc: "Product brief from GEGM, our client, for a micro insurance checkout inside the eWallet.",
+  },
+  {
+    num: "02",
+    lane: "Our team",
+    title: "Study the live TNG app",
+    desc: "Walked through the registration, OCR scanning, and purchase flows in the running app, not only in documentation.",
+  },
+  {
+    num: "03",
+    lane: "Our team",
+    title: "Map the TNG API",
+    desc: "Mapped which SSO and eKYC fields the mini program API exposes, and which ones were still unconfirmed.",
+  },
+  {
+    num: "04",
+    lane: "Our team",
+    title: "Two alternatives",
+    desc: "Explored two directions before committing to a V1. The deciding constraint: insurance can only be bought by the account owner, and TNG already holds their registered data.",
+    alternatives: [
+      {
+        label: "Option A",
+        title: "Standard flow",
+        desc: "The baseline flow we use for other clients: the user uploads their NRIC, OCR reads it, and they complete the rest by hand.",
+      },
+      {
+        label: "Option B",
+        title: "Data-driven flow",
+        desc: "Built from the API field analysis and hands-on testing of the TNG app. It pulls the user's registered data from their TNG account, and the PTV voucher check runs on the same data, so nothing is retyped.",
+        chosen: true,
+      },
+    ],
+  },
+  {
+    num: "05",
+    lane: "Our team",
+    title: "V1 decision",
+    desc: "V1 was an internal decision on our side. The revision rounds with the TNG design team started from it.",
+  },
+  {
+    num: "06",
+    lane: "TNG design team",
+    title: "Revisions, V1 to V5",
+    desc: "Most revisions came from the TNG design team through Figma comments and Lark, until V5 was ready.",
+  },
+  {
+    num: "07",
+    lane: "TNG",
+    title: "Release V5",
+    desc: "V5 released inside the Touch 'n Go eWallet in 2025.",
+  },
+]
+
+const LANE_COLOR: Record<string, string> = {
+  "Our team": N,
+  GEGM: C,
+  "TNG design team": TNG,
+  TNG: TNG,
+}
+
 export default function TngCase({ onBack, onNext, onPrev }: Props) {
   const [scrolled, setScrolled] = useState(false)
   const [activeQuickId, setActiveQuickId] = useState<string>("context")
@@ -336,6 +409,61 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
             <p>
               Official TNG UI kits were not available at the start. I rebuilt a mirrored kit from the live app so stakeholders could approve the first round. That was a calculated risk: if the official kit differed, the work would need rework. Waiting would have spent time the three month deadline did not have.
             </p>
+          </div>
+
+          <div className="mt-12">
+            <h3 className="font-display text-lg sm:text-xl font-bold text-[#19244E] mb-8">How the work moved, from brief to release</h3>
+            <ol className="font-sans">
+              {WORK_FLOW.map((step, idx) => {
+                const isLast = idx === WORK_FLOW.length - 1
+                const laneColor = LANE_COLOR[step.lane]
+                return (
+                  <li key={step.num} className={`relative pl-12 ${isLast ? "" : "pb-10"}`}>
+                    {!isLast && (
+                      <span className="absolute left-[15px] top-8 bottom-0 w-px" style={{ backgroundColor: HAIR }} />
+                    )}
+                    <span
+                      className="absolute left-0 top-0 w-8 h-8 rounded-full flex items-center justify-center font-mono text-[11px] font-bold text-white"
+                      style={{ backgroundColor: laneColor }}
+                    >
+                      {step.num}
+                    </span>
+                    <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                      <h4 className="font-bold text-[#19244E] text-base">{step.title}</h4>
+                      <span
+                        className="font-sans text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded-full text-white"
+                        style={{ backgroundColor: laneColor }}
+                      >
+                        {step.lane}
+                      </span>
+                    </div>
+                    <p className="text-sm text-gray-600 leading-relaxed">{step.desc}</p>
+                    {step.alternatives && (
+                      <div className="grid md:grid-cols-2 gap-3 mt-4">
+                        {step.alternatives.map((alt) => (
+                          <div
+                            key={alt.label}
+                            className={`p-4 rounded-xl bg-white border space-y-1.5 ${
+                              alt.chosen ? "border-[#DB3E8C]/50 shadow-md" : "border-gray-200"
+                            }`}
+                          >
+                            <span
+                              className={`block font-sans text-[10px] font-bold tracking-wider uppercase ${
+                                alt.chosen ? "text-[#DB3E8C]" : "text-gray-500"
+                              }`}
+                            >
+                              {alt.label}{alt.chosen ? " · Became V1" : ""}
+                            </span>
+                            <h5 className="font-bold text-sm text-[#19244E]">{alt.title}</h5>
+                            <p className="text-xs text-gray-600 leading-relaxed">{alt.desc}</p>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </li>
+                )
+              })}
+            </ol>
           </div>
         </div>
 
