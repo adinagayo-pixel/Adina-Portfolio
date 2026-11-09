@@ -2016,7 +2016,7 @@ function WorkflowSection() {
                 REFLECTION · WHEN THE STANDARD FLOW NEEDS TO BEND
               </span>
               <p className="mt-4 font-sans text-sm sm:text-base leading-relaxed text-white/80">
-                Our standard flow is where I start. It asks users to upload their NRIC for OCR and complete the details by hand. On Touch 'n Go, insurance could only be bought by the account owner, and the account already held their registered data. So I built the second flow on that data, including the PTV voucher check. Users no longer retype their details. I depart from the standard only when the platform's rules make it a poor fit, and here they did.
+                Our standard flow is where I start. It asks users to upload their NRIC for OCR and complete the details by hand. On Touch 'n Go, insurance could only be bought by the account owner, and the account already held their registered data. So I built the second flow on that data, including the PTV voucher check. Users no longer retype their NRIC, name, or age. I depart from the standard only when the platform's rules make it a poor fit, and here they did.
               </p>
             </motion.div>
 

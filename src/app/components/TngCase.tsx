@@ -8,7 +8,7 @@ import tngThumb4 from "@/imports/TNG thumb4.jpg"
 import tngThumb5 from "@/imports/TNG thumb5.jpg"
 import {
   ArrowLeft, ChevronRight, CheckCircle2, Globe, Home,
-  FileCode2, Shield, Zap, RefreshCw, GitBranch, Users, MessageSquare, Sparkles, AlertTriangle, ChevronDown
+  FileCode2, IdCard, Shield, Zap, RefreshCw, GitBranch, Users, MessageSquare, Sparkles, AlertTriangle, ChevronDown
 } from "lucide-react"
 
 
@@ -80,21 +80,21 @@ const WORK_FLOW: WorkFlowStep[] = [
   },
   {
     num: "02",
-    lane: "Our team",
+    lane: "My research",
     title: "Study the live TNG app",
     desc: "Walked through the registration, OCR scanning, and purchase flows in the running app, not only in documentation.",
   },
   {
     num: "03",
-    lane: "Our team",
+    lane: "My research",
     title: "Map the TNG API",
     desc: "Mapped which SSO and eKYC fields the mini program API exposes, and which ones were still unconfirmed.",
   },
   {
     num: "04",
-    lane: "Our team",
+    lane: "My research",
     title: "Two alternatives",
-    desc: "Explored two directions before committing to a V1. The deciding constraint: insurance can only be bought by the account owner, and TNG already holds their registered data.",
+    desc: "The PM asked for the standard flow. I explored a second direction alongside it. The deciding constraint: insurance can only be bought by the account owner, and TNG already holds their registered data.",
     alternatives: [
       {
         label: "Option A",
@@ -104,16 +104,16 @@ const WORK_FLOW: WorkFlowStep[] = [
       {
         label: "Option B",
         title: "Data-driven flow",
-        desc: "Built from the API field analysis and hands-on testing of the TNG app. It pulls the user's registered data from their TNG account, and the PTV voucher check runs on the same data, so nothing is retyped.",
+        desc: "Built from the API field analysis and hands-on testing of the TNG app. It pulls NRIC, name, and age from the user's TNG account, and the PTV voucher check runs on the same data, so none of them are retyped.",
         chosen: true,
       },
     ],
   },
   {
     num: "05",
-    lane: "Our team",
-    title: "V1 decision",
-    desc: "V1 was an internal decision on our side. The revision rounds with the TNG design team started from it.",
+    lane: "My research",
+    title: "V1 recommendation",
+    desc: "I gave Option B to the PM as my design recommendation. It became V1, and the revision rounds with the TNG design team started from it.",
   },
   {
     num: "06",
@@ -130,7 +130,7 @@ const WORK_FLOW: WorkFlowStep[] = [
 ]
 
 const LANE_COLOR: Record<string, string> = {
-  "Our team": N,
+  "My research": N,
   GEGM: C,
   "TNG design team": TNG,
   TNG: TNG,
@@ -269,7 +269,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
               <span style={{ color: HAIR }}>/</span>
               <MonoTag>FINTECH & EMBEDDED MICRO INSURANCE</MonoTag>
               <span style={{ color: HAIR }}>/</span>
-              <MonoTag>TOUCH 'N GO x GEGM · 2025</MonoTag>
+              <MonoTag>TOUCH 'N GO × GEGM · 2025</MonoTag>
             </div>
 
             <h1
@@ -294,7 +294,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
               facts={[
                 {
                   label: "My contribution",
-                  value: "Sole UI/UX designer: PWA architecture, data flows, UI specs, and developer handoff. I built a mirrored TNG UI kit so design could start before official assets arrived.",
+                  value: "Sole UI/UX designer: user flows, data mapping, UI specs, and developer handoff. I built a mirrored TNG UI kit so design could start before official assets arrived.",
                 },
                 {
                   label: "Team & scope",
@@ -319,7 +319,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
 
             <img
               src={coverTng}
-              alt="Touch 'n Go x GEGM Cover"
+              alt="Touch 'n Go × GEGM Cover"
               className="w-full h-auto object-cover max-h-[380px] lg:max-h-[420px] rounded-2xl transform group-hover:scale-105 transition-transform duration-500"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#111836]/40 via-transparent to-transparent pointer-events-none" />
@@ -345,11 +345,11 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
           </div>
           <div className="bg-white/5 p-4 rounded-lg border border-white/5">
             <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">03 · Key Decisions</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-white/85">Explicit health declarations, two pricing options instead of many, and the platform's native X to close the flow.</p>
+            <p className="text-xs sm:text-sm leading-relaxed text-white/85">Building from the account instead of the NRIC form, two pricing options instead of many, explicit health declarations, and the native X to close the flow.</p>
           </div>
           <div className="bg-[#DB3E8C]/10 p-4 rounded-lg border border-[#DB3E8C]/30">
             <span className="block text-xs font-bold tracking-widest text-[#DB3E8C] uppercase mb-1.5">04 · Solution & Evidence</span>
-            <p className="text-xs sm:text-sm font-semibold text-white leading-relaxed">An embedded PWA with SSO and eKYC pre-fill. Eligible PTV users see a RM 0 premium; others pay through e-wallet debit.</p>
+            <p className="text-xs sm:text-sm font-semibold text-white leading-relaxed">An embedded PWA with SSO and eKYC pre-fill. Eligible PTV users see a RM 0 premium; others pay through eWallet debit.</p>
           </div>
           <div className="bg-white/5 p-4 rounded-lg border border-white/5">
             <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">05 · Outcome</span>
@@ -407,7 +407,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
               Touch 'n Go's eWallet was the channel, so the first task was understanding what the app could already do. I mapped the registration, OCR scanning, and purchase flows, and studied the TNG mini program API docs to find which data fields I could access.
             </p>
             <p>
-              Official TNG UI kits were not available at the start. I rebuilt a mirrored kit from the live app so stakeholders could approve the first round. That was a calculated risk: if the official kit differed, the work would need rework. Waiting would have spent time the three month deadline did not have.
+              Official TNG UI kits were not available at the start. I rebuilt a mirrored kit from the live app so stakeholders could approve the first round. That was a calculated risk: if the official kit differed, the work would need rework. Waiting would have spent time the three month deadline did not have. When the official kit arrived in V4, its structure matched mine, a sign that the early reverse engineering was accurate.
             </p>
           </div>
 
@@ -481,9 +481,9 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
                 desc: "The checkout ran as an embedded PWA inside an eWallet webview. Moving from the app to the webview required a mandatory transition page under platform rules.",
               },
               {
-                Icon: FileCode2,
-                title: "Limited identity data",
-                desc: "SSO and eKYC fields were limited to what the TNG mini program API exposed. Where availability was unconfirmed, I kept a manual address field.",
+                Icon: IdCard,
+                title: "Partial identity data",
+                desc: "The mini program API exposed only some identity fields: NRIC, name, and age. Address availability was not confirmed, so the form kept it as a manual input.",
               },
               {
                 Icon: Shield,
@@ -511,15 +511,28 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
 
         {/* 03 Key Decisions */}
         <div>
-          <SectionTag id="decisions" num="03" label="Key Decisions: Three Calls That Shaped the Flow" />
+          <SectionTag id="decisions" num="03" label="Key Decisions: The Calls That Shaped the Flow" />
 
           <p className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C] mb-8" style={{ lineHeight: 1.8 }}>
-            Most revisions were wording and pricing changes. These three calls changed how the product behaved, and each one held through release.
+            Most revisions were wording and pricing changes. These four calls changed how the product behaved, and each one held through release.
           </p>
 
           <div className="space-y-6">
+            <div className="p-6 bg-white rounded-xl border border-[#DB3E8C]/40 shadow-xs space-y-3">
+              <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 01 · Build from the account, not the form</span>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">The pressure:</strong> The PM asked for the standard flow: the user uploads their NRIC, OCR reads it, and they complete the rest by hand. But insurance could only be bought by the account owner, and TNG already held their registered data.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">What I did:</strong> I analyzed the API fields and tested the live TNG app myself, then built a second flow on the registered data. The PTV voucher check runs on the same data, so NRIC, name, and age are not retyped. I gave it to the PM as my recommendation, and it became V1.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">Why it held:</strong> The flow follows the platform's own rules instead of a default form, and the revisions from V1 to V5 refined it rather than replacing it.
+              </p>
+            </div>
+
             <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
-              <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 01 · Health declarations stay explicit</span>
+              <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 02 · Health declarations stay explicit</span>
               <p className="font-sans text-sm text-gray-600 leading-relaxed">
                 <strong className="text-[#19244E]">The pressure:</strong> The TNG team asked repeatedly why "No" answers were not pre-filled to reduce cognitive load.
               </p>
@@ -532,7 +545,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
             </div>
 
             <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
-              <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 02 · Two pricing options instead of many</span>
+              <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 03 · Two pricing options instead of many</span>
               <p className="font-sans text-sm text-gray-600 leading-relaxed">
                 <strong className="text-[#19244E]">The pressure:</strong> V2 introduced 8 to 12 month durations based on age eligibility. The choices felt unnatural for an insurance product, and the price display was unclear.
               </p>
@@ -545,7 +558,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
             </div>
 
             <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
-              <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 03 · Native X over a custom Back button</span>
+              <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 04 · Native X over a custom Back button</span>
               <p className="font-sans text-sm text-gray-600 leading-relaxed">
                 <strong className="text-[#19244E]">The pressure:</strong> After payment, GEGM requested an explicit "Back to App" or "Close" button.
               </p>
@@ -575,7 +588,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
 
           <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
             <p>
-              The flow has three parts: identity pre-fill from SSO and eKYC, a PTV eligibility check, and a payment split. Eligible users reach a RM 0 premium. Everyone else continues to standard e-wallet debit.
+              The flow has three parts: identity pre-fill from SSO and eKYC, a PTV eligibility check, and a payment split. Eligible users reach a RM 0 premium. Everyone else continues to standard eWallet debit.
             </p>
           </div>
 
@@ -584,7 +597,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
               {
                 Icon: Users,
                 title: "1. Pre-fill identity",
-                desc: "SSO and eKYC data pre-fill NRIC, name, and age, so users do not retype their identity.",
+                desc: "SSO and eKYC data pre-fill NRIC, name, and age, so users do not retype those fields. Address stays a manual input.",
               },
               {
                 Icon: CheckCircle2,
@@ -593,8 +606,8 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
               },
               {
                 Icon: Sparkles,
-                title: "3. Pay with e-wallet",
-                desc: "Standard purchases debit the TNG e-wallet, with auto-debit, notifications, emails, and insufficient balance handling.",
+                title: "3. Pay with eWallet",
+                desc: "Standard purchases debit the TNG eWallet, with auto-debit, notifications, emails, and insufficient balance handling.",
               },
             ].map(({ Icon, title, desc }) => (
               <div key={title} className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
@@ -629,7 +642,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
                 <li><strong className="text-[#19244E]">V1 · Foundation.</strong> Built on the mirrored kit. Mapped accessible data parameters through direct testing, added a manual address field, auto-detected age ranges for monthly or yearly pricing, and added the app-to-webview transition page and the NRIC eligibility check for PTV vouchers.</li>
                 <li><strong className="text-[#19244E]">V2 · Pricing logic.</strong> Introduced 8 to 12 month durations and edge cases for vouchers already claimed, unregistered, or mismatched. Streamlined to monthly or yearly, and changed the ineligible status from red to yellow.</li>
                 <li><strong className="text-[#19244E]">V3 · Details.</strong> Added post-declaration terms, a summary popup before payment, and an eligibility reset whenever NRIC fields change. Replaced floating error popups with full-page error screens.</li>
-                <li><strong className="text-[#19244E]">V4 · Design system.</strong> Adapted inputs, illustrations, typography, buttons, colors, and icons to the official TNG kit. Designed two landing page options; stakeholders chose the first. Added regulatory commission statements and explicit consent checkboxes.</li>
+                <li><strong className="text-[#19244E]">V4 · Design system.</strong> Adapted inputs, illustrations, typography, buttons, colors, and icons to the official TNG kit. Its structure matched the mirrored kit I had built before V1. Designed two landing page options; stakeholders chose the first. Added regulatory commission statements and explicit consent checkboxes.</li>
                 <li><strong className="text-[#19244E]">V5 · Exit flow & release.</strong> Relied on the native X to close the flow after payment, finalized platform copy, and established auto-debit, notifications, emails, and insufficient balance handling.</li>
               </ul>
             </CaseStudyDisclosure>
@@ -641,6 +654,41 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
         {/* 05 Outcome & Reflection */}
         <div>
           <SectionTag id="outcome" num="05" label="Outcome & Reflection" />
+
+          <div className="space-y-6 mb-10">
+            <h3 className="font-display text-lg sm:text-xl font-bold text-[#19244E]">After release: what changed once the product was live</h3>
+
+            <div className="grid md:grid-cols-3 gap-4">
+              {[
+                {
+                  label: "Business change",
+                  title: "PTV was discontinued",
+                  desc: "The NRIC entry that opened the flow was no longer needed as a first step. The landing page now runs a check instead: whether an NRIC has already used the subsidy, or is still eligible.",
+                },
+                {
+                  label: "Misuse path",
+                  title: "Passport purchases",
+                  desc: "Some purchases went through using passport details, which were not eligible. The dev team also added a blocker that stops the purchase when a passport is detected.",
+                },
+                {
+                  label: "Error state",
+                  title: "Insufficient balance screen",
+                  desc: "I designed a dedicated screen for insufficient eWallet balance.",
+                },
+              ].map(({ label, title, desc }) => (
+                <div key={title} className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
+                  <span className="text-[10px] font-bold tracking-wider uppercase text-[#DB3E8C] font-sans block">{label}</span>
+                  <h4 className="font-bold text-sm text-[#19244E]">{title}</h4>
+                  <p className="font-sans text-xs text-gray-600 leading-relaxed">{desc}</p>
+                </div>
+              ))}
+            </div>
+
+            <p className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
+              I map misuse and edge cases thoroughly before release. Even so, a few cases slipped through development and surfaced only after the product was live with users.
+            </p>
+          </div>
+
           <div className="p-8 bg-[#111836] rounded-2xl border border-white/10 text-white space-y-6 shadow-2xl">
             <div className="flex items-center gap-2">
               <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase text-[#22c55e]">
@@ -649,7 +697,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
             </div>
 
             <p className="font-sans text-sm sm:text-base text-white/90 leading-relaxed max-w-3xl">
-              V5 was released to production inside the Touch 'n Go eWallet. Most revisions across the five versions focused on wording and pricing rather than major UX overhauls. My role was defending decisions under repeated questioning, accepting genuine technical constraints, and trusting my read when a requested direction felt unrefined. The monthly plan data later supported that read.
+              V5 was released to production inside the Touch 'n Go eWallet. The biggest design call came before V1, when I chose the data-driven flow. The five versions that followed mostly refined it, with revisions focused on wording and pricing rather than major UX overhauls. My role was defending decisions under repeated questioning, accepting genuine technical constraints, and trusting my read when a requested direction felt unrefined. The monthly plan data later supported that read.
             </p>
 
             <p className="font-sans text-sm sm:text-base text-white/90 leading-relaxed max-w-3xl">
@@ -664,7 +712,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
                 </span>
               </div>
               <p className="text-xs sm:text-sm font-sans leading-relaxed text-white/95 italic" style={{ lineHeight: 1.8 }}>
-                "Working inside the TNG ecosystem taught me that enterprise design is not about creative freedom: it is about building trust fast enough that teams allow you to make decisions without re checking every pixel. By version 5, the TNG team stopped asking for layout revisions and only reviewed copy: that shift in trust was the true milestone of this project."
+                "Working inside the TNG ecosystem taught me that enterprise design is not about creative freedom: it is about building trust fast enough that teams allow you to make decisions without re-checking every pixel. By version 5, the TNG team stopped asking for layout revisions and only reviewed copy: that shift in trust was the true milestone of this project."
               </p>
             </div>
           </div>
