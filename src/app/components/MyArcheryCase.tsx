@@ -333,11 +333,11 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
                 },
                 {
                   label: "Team & scope",
-                  value: "A 3 designer team working remotely (WFA). Scope: registration, on-event scoring and brackets, and post-event scoreboards and reconciliation.",
+                  value: "A team of 3 designers working remotely (work from anywhere, WFA). Scope: registration, on-event scoring and brackets, and post-event scoreboards and reconciliation.",
                 },
                 {
                   label: "Verified impact",
-                  value: "7+ live tournament releases from 2021 to 2023, from Jakarta trials to national events in late 2022.",
+                  value: "7+ live tournament releases from 2021 to 2023, from Jakarta trials to district and regional tournaments in late 2022.",
                   tone: "verified",
                 },
                 {
@@ -438,7 +438,7 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
           <SectionTag id="context" num="01" label="Context: Tournaments Run on Fragmented Tools" />
 
           <p className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C] mb-8" style={{ lineHeight: 1.8 }}>
-            Before MyArchery, tournament operations ran on fragmented manual tools: Google Form signups, WhatsApp bank transfer checks, spreadsheet rosters, and Ianseo, a legacy desktop scoring tool prone to input error under field pressure. Paper scoresheets had to be physically collected and reentered before standings could update, which meant delays every round.
+            Before MyArchery, tournament operations ran on fragmented manual tools: Google Form signups, WhatsApp bank transfer checks, spreadsheet rosters, and a desktop scoring tool not built for field use. Paper scoresheets had to be physically collected and reentered before standings could update, which meant delays every round.
           </p>
 
           <div className="grid md:grid-cols-3 gap-6">
@@ -450,8 +450,8 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
               },
               {
                 Icon: FileCode2,
-                title: "Legacy Ianseo Software",
-                desc: "Fragile desktop software prone to human input errors under fast outdoor field pressure.",
+                title: "Desktop Scoring Software",
+                desc: "Desktop scoring not built for field conditions, prone to input errors under fast outdoor pressure.",
               },
               {
                 Icon: Clock,
@@ -544,7 +544,7 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
                 <strong className="text-[#19244E]">The pressure:</strong> Field conditions could not be fully predicted at a desk.
               </p>
               <p className="font-sans text-sm text-gray-600 leading-relaxed">
-                <strong className="text-[#19244E]">What I did:</strong> I tested each release at a live event, starting with local trials in 2021 and scaling to national events by late 2022.
+                <strong className="text-[#19244E]">What I did:</strong> I tested each release at a live event, starting with local trials in 2021 and scaling to district and regional events by late 2022.
               </p>
               <p className="font-sans text-sm text-gray-600 leading-relaxed">
                 <strong className="text-[#19244E]">Why it held:</strong> Each round of real use refined the scoring and bracket logic before the next event.
@@ -618,7 +618,7 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
               </div>
 
               <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
-                <span className="text-xs font-bold text-[#22c55e] block">Late 2022 // National Events</span>
+                <span className="text-xs font-bold text-[#22c55e] block">Late 2022 // District & Regional Events</span>
                 <p className="text-xs text-gray-600 leading-relaxed">
                   Sumbawa Barat and Purwakarta Open: full scale bracket engines and financial dashboards.
                 </p>
@@ -640,11 +640,11 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
               </span>
             </div>
             <h3 className="font-display text-2xl lg:text-3xl font-light leading-snug">
-              Used at 7+ live tournament releases, from local trials to national events.
+              Used at 7+ live tournament releases, from local trials to district and regional tournaments.
             </h3>
 
             <p className="font-sans text-sm sm:text-base text-white/90 leading-relaxed max-w-3xl">
-              I led daily standups for a 3 designer team working remotely, and I stayed hands-on with field testing at each tournament. I was not only designing the system; I was validating it on site. This is how I work: I design from real conditions rather than assumptions, and I can lead a small remote team while checking the work myself.
+              I led daily standups for a team of 3 designers working remotely, and I stayed hands-on with field testing at each tournament. I was not only designing the system; I was validating it on site.
             </p>
 
             {/* WHAT I LEARNED Box */}

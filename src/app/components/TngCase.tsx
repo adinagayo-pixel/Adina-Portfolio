@@ -298,7 +298,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
                 },
                 {
                   label: "Team & scope",
-                  value: "Touch 'n Go and GEGM product and design teams, plus our engineering team. Scope: embedded PWA checkout, SSO and eKYC pre-fill, and PTV voucher verification.",
+                  value: "Touch 'n Go and GEGM product and design teams, plus our engineering team. Scope: embedded PWA checkout, SSO and eKYC pre-fill, and Perlindungan Tenang Voucher (PTV) verification.",
                 },
                 {
                   label: "Verified impact",

@@ -2098,39 +2098,40 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
               <SectionTag id="constraints" num="02" label="Constraints: One Base, Different Partners" />
 
               <p className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C] mb-6" style={{ lineHeight: 1.8 }}>
-                Each partner operated in a different industry, with different users and priorities. The question for every request was whether the shared base could carry it, or whether the partner's logic was different enough to need new design.
+                Partners ranged from mobility and delivery to regional InsurTech and affiliate commerce, each with different users and priorities. Four constraints shaped how I worked across them:
               </p>
 
-              <div className="grid md:grid-cols-3 gap-6">
-                <div className="p-6 bg-white rounded-xl border border-gray-200/80 shadow-xs space-y-3">
-                  <div className="flex items-center justify-between">
-                    <h4 className="font-bold text-[#19244E] text-base">Mobility & Delivery</h4>
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#10B981]" />
+              <div className="grid md:grid-cols-2 gap-4">
+                {[
+                  {
+                    Icon: Users,
+                    title: "One designer, several partners",
+                    desc: "I was the only product designer, supporting several partners in parallel.",
+                  },
+                  {
+                    Icon: FileText,
+                    title: "Briefs with open decisions",
+                    desc: "Some briefs left key decisions open. The chart brief, for example, left open whether to show transactions or policies sold, and over what time period.",
+                  },
+                  {
+                    Icon: Database,
+                    title: "Data that differed from the system",
+                    desc: "Partner B's claim eligibility needed data structures that differed significantly from the existing system.",
+                  },
+                  {
+                    Icon: Layers,
+                    title: "No formal design system",
+                    desc: "Partner portals were built without a formal design system in place.",
+                  },
+                ].map(({ Icon, title, desc }) => (
+                  <div key={title} className="p-6 bg-white rounded-xl border border-gray-200/80 shadow-xs space-y-3">
+                    <div className="w-10 h-10 rounded-lg bg-[#DB3E8C]/10 border border-[#DB3E8C]/20 flex items-center justify-center text-[#DB3E8C]">
+                      <Icon size={18} />
+                    </div>
+                    <h4 className="font-bold text-[#19244E] text-base">{title}</h4>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">{desc}</p>
                   </div>
-                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                    For a ride-hailing partner, the live products cover two sides: an internal employee benefits portal, and a customer portal where drivers submit and track their own insurance claims.
-                  </p>
-                </div>
-
-                <div className="p-6 bg-white rounded-xl border border-gray-200/80 shadow-xs space-y-3">
-                  <div className="flex items-center justify-between">
-                    <h4 className="font-bold text-[#19244E] text-base">Regional InsurTech</h4>
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#EF4444]" />
-                  </div>
-                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                    Underwriters and business managers track policy conversion funnels, product performance across channels, and agent contributions.
-                  </p>
-                </div>
-
-                <div className="p-6 bg-white rounded-xl border border-gray-200/80 shadow-xs space-y-3">
-                  <div className="flex items-center justify-between">
-                    <h4 className="font-bold text-[#19244E] text-base">Affiliate & Commerce</h4>
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#3B82F6]" />
-                  </div>
-                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                    Partnership managers monitor partner tiers, referral trees, monthly commission reconciliation, and payout verification.
-                  </p>
-                </div>
+                ))}
               </div>
             </div>
 
@@ -2149,6 +2150,9 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                   <span className="text-xs font-bold text-[#10B981] uppercase tracking-wider block">Decision 01 · Reuse first, redesign only what differs</span>
                   <p className="font-sans text-sm text-gray-600 leading-relaxed">
                     <strong className="text-[#19244E]">The question:</strong> Does the partner need a new module, or different data and claim review logic?
+                  </p>
+                  <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                    <strong className="text-[#19244E]">What I did:</strong> Partner A's document-completeness flow fit the existing codebase, so it went to Track A. Partner B's four-party eligibility logic did not, so it went to Track B.
                   </p>
                   <p className="font-sans text-sm text-gray-600 leading-relaxed">
                     <strong className="text-[#19244E]">Why it held:</strong> Standard portals only needed colors, logo, and terminology changes, so developers could ship them without new designs.
@@ -2174,6 +2178,14 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                     <strong className="text-[#19244E]">What I did:</strong> The chart follows the product filter, ignores the date range, and has its own monthly or yearly toggle.
                   </p>
                 </div>
+              </div>
+
+              <div className="mt-6">
+                <CaseStudyDisclosure label="Trade-off I accepted" summary="Why reuse comes first, and what it costs later">
+                  <p>
+                    Reuse is fast to start and easy to present to a client. A company that does not yet know what it wants customized can begin with a standard portal, and the flow stays largely the same. The cost comes later. When a client changes its inputs or flow, the change can ripple into other flows, so I have to check the logic and the impact of each change on the rest of the system before it ships.
+                  </p>
+                </CaseStudyDisclosure>
               </div>
             </div>
 
@@ -2287,7 +2299,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                       Claims were judged on eligibility, not paperwork, and a single claim could involve four parties: the participant, the person covered, the claimant, and the nominee. Each stage was handled by a different user.
                     </p>
                     <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                      The client gave me a BRS defining the rules and requirements. The question of how to turn those rules into a usable interface was mine to answer.
+                      The client gave me a business requirement specification (BRS) defining the rules and requirements. The question of how to turn those rules into a usable interface was mine to answer.
                     </p>
                   </div>
                 </div>
@@ -2376,7 +2388,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                   <div className="flex items-center justify-between">
                     <h4 className="font-bold text-sm text-white">Try It: Compare Both Claim Screens</h4>
                     <span className="text-[10px] font-mono bg-white/10 px-2 py-0.5 rounded text-white/80">
-                      Switch using the buttons at the top
+                      Switch using the buttons in the preview below
                     </span>
                   </div>
                   <p className="text-xs sm:text-sm text-white/80 leading-relaxed">
@@ -2477,7 +2489,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                     Separating reuse from real design work changed where my time went. Standard portals moved through the existing codebase, and my design time went to the modules that needed it, such as Partner B's claim assessment. The two-track split was not something I planned upfront. It became clear only after several projects had shipped.
                   </p>
                   <p>
-                    This is how I think in systems. I recognized a shared foundation across partners, and I could tell when a request fit it and when it needed a new solution. I also work well when requirements are incomplete: I turn a client's BRS or an open brief into concrete decisions, then check them with backend engineers so they hold up technically.
+                    Reusable components are a good starting point. They let a company begin with a standard portal, and they make it faster to present to a client. The lesson I take is to stay alert when a client changes its inputs or flow: every change needs its logic checked, and its impact traced to the other flows before it goes live.
                   </p>
                 </div>
 
