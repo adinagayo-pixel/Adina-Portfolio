@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { CaseStudyHeaderBadge } from "@/app/components/ui/CaseStudyHeaderBadge"
+import { CaseStudyDisclosure, CaseStudyFacts } from "@/app/components/ui/CaseStudyStory"
 
 import {
   ArrowLeft, ChevronRight, CheckCircle2, Globe, Home,
@@ -58,19 +59,16 @@ interface Props {
 }
 
 const QUICK_SECTIONS = [
-  { id: "summary", num: "01", label: "Executive Summary" },
-  { id: "challenge", num: "02", label: "The Strategic Challenge" },
-  { id: "pipeline", num: "03", label: "AI First Pipeline & Architecture" },
-  { id: "suite", num: "04", label: "The Four Surface Ecosystem" },
-  { id: "process", num: "05", label: "AI First Design Process" },
-  { id: "sustaining", num: "06", label: "Sustaining an Evolving System" },
-  { id: "impact-metrics", num: "07", label: "Business Impact & Efficiency" },
-  { id: "so-what", num: "08", label: "Impact & So What" },
+  { id: "context", num: "01", label: "Context" },
+  { id: "constraints", num: "02", label: "Constraints" },
+  { id: "decisions", num: "03", label: "Key Decisions" },
+  { id: "solution", num: "04", label: "Solution & Evidence" },
+  { id: "outcome", num: "05", label: "Outcome & Reflection" },
 ]
 
 export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
   const [scrolled, setScrolled] = useState(false)
-  const [activeQuickId, setActiveQuickId] = useState<string>("summary")
+  const [activeQuickId, setActiveQuickId] = useState<string>("context")
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [selectedImage, setSelectedImage] = useState<{
     src: string
@@ -207,29 +205,40 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
       <div className="px-6 lg:px-16 pt-16 pb-14" style={{ backgroundColor: W, borderBottom: `1px solid ${HAIR}` }}>
-        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-center">
-          <div className="space-y-6">
-            <div className="flex flex-wrap items-center gap-3">
-              <MonoTag accent>CASE STUDY 08</MonoTag>
-              <span style={{ color: HAIR }}>/</span>
-              <MonoTag>AI FIRST DEVELOPMENT & E COMMERCE SYSTEM</MonoTag>
-              <span style={{ color: HAIR }}>/</span>
-              <MonoTag>PRO ARCHERY JAKARTA · NOV 2025 to PRESENT</MonoTag>
-            </div>
+        <div className="space-y-6 mb-10 lg:mb-12">
+          <div className="flex flex-wrap items-center gap-3">
+            <MonoTag accent>CASE STUDY 08</MonoTag>
+            <span style={{ color: HAIR }}>/</span>
+            <MonoTag>AI FIRST DEVELOPMENT & E COMMERCE SYSTEM</MonoTag>
+            <span style={{ color: HAIR }}>/</span>
+            <MonoTag>PRO ARCHERY JAKARTA · NOV 2025 to PRESENT</MonoTag>
+          </div>
+          <h1
+            className="font-display font-bold leading-[1.08] tracking-tight"
+            style={{ fontSize: "clamp(2.2rem, 4vw, 3.6rem)", color: N }}
+          >
+            Digital Transformation & AI Driven Retail Ecosystem
+          </h1>
+        </div>
 
-            <h1
-              className="font-display font-bold leading-[1.08] tracking-tight"
-              style={{ fontSize: "clamp(2.2rem, 4vw, 3.6rem)", color: N }}
-            >
-              Digital Transformation & AI Driven Retail Ecosystem
-            </h1>
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-start">
+          <div className="space-y-6">
+
 
             <p
-              className="font-display font-light leading-relaxed"
+              className="font-display font-medium leading-relaxed"
               style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
             >
               An ongoing, sole designer engagement turning Indonesia's premier physical archery retailer into a 4 surface digital ecosystem, starting with a 24 hour AI built landing page and evolving through real business pivots ever since.
             </p>
+            <CaseStudyFacts
+              facts={[
+                { label: "My contribution", value: "Sole freelance product designer and AI systems integrator, from the start of the project." },
+                { label: "Team & scope", value: "Pro Archery (Jakarta), with storefront support for existing Singapore and Malaysia customers. Four surfaces." },
+                { label: "Verified impact", value: "A landing page shipped in one day, and a four surface ecosystem sustained solo for close to a year." },
+                { label: "Not measured here", value: "Sales and storefront revenue figures." },
+              ]}
+            />
           </div>
 
           {/* Right Column: Hero Image */}
@@ -245,29 +254,33 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
         </div>
       </div>
 
-      {/* EXECUTIVE SUMMARY & 30 SECOND TAKEAWAYS */}
-      <div className="px-6 lg:px-16 py-8 bg-[#111836] border-t border-b border-white/10">
+      {/* 30 SECOND TAKEAWAYS: the five-stage story at a glance */}
+      <div className="px-4 sm:px-8 lg:px-16 py-8 bg-[#F9FAFB] border-t border-b border-[#19244E]/10">
         <div className="flex items-center gap-2 mb-4">
-          <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
-            EXECUTIVE SUMMARY & 30 SECOND TAKEAWAYS
+          <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase text-[#19244E]/60">
+            30 SECOND TAKEAWAYS
           </span>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-xs sm:text-sm font-sans">
-          <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">01 · Problem</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-white/85">Transitioning a brick and mortar archery retailer into a regional e commerce operation across four interconnected surfaces, starting with an urgent partner presentation deadline.</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 text-xs sm:text-sm font-sans">
+          <div className="p-4 border-l border-[#19244E]/15">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">01 · Context</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">A brick and mortar archery retailer going regional, across four surfaces.</p>
           </div>
-          <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">02 · Core Constraints</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-white/85">A traditional Figma to code cycle would not fit the timeline; pricing logic needed to actually function, not just look right; the business model kept changing mid engagement.</p>
+          <div className="p-4 border-l border-[#19244E]/15">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">02 · Constraints</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">A tight partner deadline, pricing that had to work, and a business model that kept changing.</p>
           </div>
-          <div className="bg-[#DB3E8C]/10 p-4 rounded-lg border border-[#DB3E8C]/30">
-            <span className="block text-xs font-bold tracking-widest text-[#DB3E8C] uppercase mb-1.5">03 · Exact Ownership</span>
-            <p className="text-xs sm:text-sm font-semibold text-white leading-relaxed">Sole Freelance Designer & AI Systems Integrator: built the AI first prompt to code pipeline, the embedded scenario testers, and sustained the system through a full business model pivot.</p>
+          <div className="p-4 border-l border-[#19244E]/15">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">03 · Key Decisions</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">Prompt to code over a Figma cycle, real pricing logic, and four warranty resolution paths.</p>
           </div>
-          <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">04 · Key Impact</span>
-            <p className="text-xs sm:text-sm font-semibold text-white leading-relaxed">Shipped a working landing page in a single day, and have sustained the full ecosystem solo for close to a year through a business model change.</p>
+          <div className="p-4 border-l border-[#19244E]/15">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">04 · Solution & Evidence</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">Four surfaces: landing page, storefront, customer portal, and admin and POS.</p>
+          </div>
+          <div className="p-4 border-l border-[#19244E]/15">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">05 · Outcome</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">A landing page in one day, then a solo ecosystem sustained for close to a year.</p>
           </div>
         </div>
       </div>
@@ -312,19 +325,33 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
           {/* Right Column: Case Study Main Content Sections */}
           <div className="space-y-16 lg:space-y-20 min-w-0">
 
-        {/* 01 Executive Summary */}
+        {/* 01 Context */}
         <div>
-          <SectionTag id="summary" num="01" label="Executive Summary" />
-          <div className="grid lg:grid-cols-2 gap-4">
+          <SectionTag id="context" num="01" label="Context: A Brick and Mortar Retailer Going Digital" />
+          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
+            <p>
+              Transitioning a brick and mortar archery retailer into a regional e commerce operation meant designing four interconnected surfaces under real business complexity, starting with an urgent partner presentation deadline.
+            </p>
+            <p>
+              The ecosystem starts with a public facing Company Profile and Landing Page, built to route into two functional portal groups: a B2C storefront with customer self service, and a back office admin and POS console.
+            </p>
+          </div>
+        </div>
+
+        <Hairline />
+
+        {/* 02 Constraints */}
+        <div>
+          <SectionTag id="constraints" num="02" label="Constraints: A Tight Deadline, Complex Inventory, a Shifting Business" />
+          <div className="grid md:grid-cols-3 gap-4">
             {[
-              { label: "Client & Scope", val: "Pro Archery (Jakarta, Indonesia), with storefront support built for their existing Singapore and Malaysia clientele" },
-              { label: "Role & Responsibility", val: "Sole Freelance Product Designer & AI Systems Integrator: the only designer on the project since it began" },
-              { label: "Core Product Suite", val: "Company Profile & Landing Page · B2C E Commerce Storefront · Customer Portal (incl. Warranty & Order Tracking) · Admin Portal & POS (incl. Warranty Management)" },
-              { label: "Core Stack", val: "Claude AI · Gemini · VS Code · Antigravity · HTML CSS Code Driven Prototyping (no Figma)" },
-            ].map(({ label, val }) => (
-              <div key={label} className="px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
-                <MonoTag>[{label}]</MonoTag>
-                <p className="text-sm font-medium mt-2" style={{ color: N, lineHeight: 1.6 }}>{val}</p>
+              { title: "A partner POC deadline", desc: "A working landing page had to be ready faster than a traditional Figma design cycle would allow." },
+              { title: "Complex inventory", desc: "Serial numbers on high value bows, and multi tier member pricing that had to work in the prototype, not just look right." },
+              { title: "A business that kept changing", desc: "Pro Archery simplified its business model mid engagement, so warranty, pricing, and catalog logic had to keep moving." },
+            ].map(({ title, desc }) => (
+              <div key={title} className="p-6 bg-white rounded-xl border border-gray-200/80 shadow-xs space-y-3">
+                <h4 className="font-bold text-[#19244E] text-base">{title}</h4>
+                <p className="font-sans text-xs sm:text-sm text-gray-600 leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
@@ -332,163 +359,71 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
 
         <Hairline />
 
-        {/* 02 Strategic Challenge */}
+        {/* 03 Key Decisions */}
         <div>
-          <SectionTag id="challenge" num="02" label="The Strategic Challenge" />
-          <p className="font-display font-light leading-relaxed mb-10" style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.35rem)", color: N, letterSpacing: "-0.005em", lineHeight: 1.65, maxWidth: "780px" }}>
-            Transitioning a brick and mortar archery retailer into a regional e commerce operation meant designing four interconnected surfaces under real business complexity, starting with an urgent partner presentation deadline that a traditional Figma to code cycle would not fit.
-          </p>
-          <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-5" style={{ color: `${N}99` }}>
-            [Key System & Business Constraints]
-          </p>
-          <div className="space-y-3">
-            {[
-              { Icon: Zap, title: "Ultra Fast Landing Page Needed for Partner POC", desc: "An investor and partner presentation deadline required a working landing page fast enough that a traditional Figma design cycle would not fit the timeline. I went with a direct AI prompt to code approach instead." },
-              { Icon: Package, title: "Complex Inventory Mechanics", desc: "Archery gear needed granular tracking, from individual serial numbers on high value compound bows to multi tier member pricing, and I needed the pricing logic itself to function correctly in the prototype, not just look right." },
-              { Icon: RefreshCw, title: "A Business That Kept Changing Underneath the Design", desc: "This was not a fixed scope project. Over the course of the engagement, Pro Archery simplified its business model from a multi role system (Customer, Dealer, Reseller, Distributor, Dropshipper) to Customer only, restructured how warranty and pricing worked, and cut the Admin Portal's dependency on scattered, siloed screens: all of which meant I had to keep the design moving at the same pace as a business still figuring itself out." },
-            ].map(({ Icon, title, desc }) => (
-              <div key={title} className="flex gap-5 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
-                <div className="w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5" style={{ border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
-                  <Icon size={13} style={{ color: C }} />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold mb-1" style={{ color: N }}>{title}</p>
-                  <p className="text-sm leading-relaxed" style={{ color: BODY, lineHeight: 1.75 }}>{desc}</p>
-                </div>
-              </div>
-            ))}
+          <SectionTag id="decisions" num="03" label="Key Decisions: Prompt to Code, Real Logic, Four Resolution Paths" />
+
+          <div className="space-y-6">
+            <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
+              <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 01 · Prompt to code instead of a Figma cycle</span>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">The pressure:</strong> The investor and partner deadline did not fit a traditional Figma to code cycle.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">What I did:</strong> I wrote the business requirements as a formal document first, then built the prototype directly from it with Claude and Gemini in VS Code and Antigravity.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">Why it held:</strong> The output was production ready enough to stand in for the dev build, once, while it caught up.
+              </p>
+            </div>
+
+            <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
+              <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 02 · Real logic, not just screens</span>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">The pressure:</strong> Pricing had to function across tiers, not just look right in a mockup.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">What I did:</strong> I implemented real pricing logic for the two highest priority tiers, Guest and Silver Member, and built scenario testers into the prototype so stakeholders could switch views live.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">Why it held:</strong> Stakeholders saw the logic work during review, without waiting for separate design revisions.
+              </p>
+            </div>
+
+            <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
+              <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 03 · Four resolution paths, not one simple flow</span>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">The pressure:</strong> The first warranty flow was submit, review, resolve. The client saw that a claim could end four ways, depending on store stock and factory status.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">What I did:</strong> I designed each path with its own resolution UI and audit trail, tracking the original serial number against any replacement issued during a swap.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">Why it held:</strong> The flow matched the real operational complexity, instead of hiding it.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-6">
+            <CaseStudyDisclosure label="Trade-off I accepted" summary="Documentation instead of Figma annotations">
+              <p>
+                Without Figma's inline annotations, developers sometimes had to read the prototype itself to understand intent. I compensated with version histories and changelogs for every module, and I still write handover documents by hand.
+              </p>
+            </CaseStudyDisclosure>
           </div>
         </div>
 
         <Hairline />
 
-        {/* 03 AI-First Pipeline & System Architecture */}
+        {/* 04 Solution & Evidence */}
         <div>
-          <SectionTag id="pipeline" num="03" label="AI First Pipeline & System Architecture" />
+          <SectionTag id="solution" num="04" label="Solution & Evidence: Four Surfaces, Working Logic" />
 
-          {/* Flow diagram */}
-          <div className="mb-8 p-6 overflow-x-auto" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
-            <MonoTag>[AI First Product Pipeline]</MonoTag>
-            <div className="flex items-center mt-5 min-w-max">
-              {[
-                { label: "AI First Prompt to Code", sub: "Claude/Gemini → VS Code & Antigravity direct output", icon: Zap },
-                { label: "Embedded Scenario Tester", sub: "Live grid & user state toggle widget in prototype", icon: LayoutGrid },
-                { label: "Working Lifecycle Tracking", sub: "Serial numbers, order fulfillment & POS sync", icon: ShoppingCart },
-              ].map((step, i) => {
-                const Icon = step.icon
-                return (
-                  <div key={step.label} className="flex items-center">
-                    <div className="flex flex-col items-start gap-3 min-w-[220px]">
-                      <div className="w-10 h-10 flex items-center justify-center" style={{ backgroundColor: i === 1 ? `${C}10` : `${N}06`, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
-                        <Icon size={14} style={{ color: i === 1 ? C : N }} />
-                      </div>
-                      <div>
-                        <p className="text-xs font-semibold" style={{ color: N }}>{step.label}</p>
-                        <p className="font-sans text-[9px] mt-0.5" style={{ color: `${N}AA` }}>{step.sub}</p>
-                      </div>
-                    </div>
-                    {i < 2 && (
-                      <div className="flex items-center mx-4 pb-5">
-                        <div className="h-px w-10" style={{ backgroundColor: HAIR }} />
-                        <ChevronRight size={11} style={{ color: `${N}DD`, marginLeft: "-4px" }} />
-                      </div>
-                    )}
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-
-          <div className="space-y-3">
-            {[
-              { num: "1.", title: "AI First Prompt to Code Pipeline", desc: "I bypassed manual Figma layout work entirely, using AI prompting (Claude/Gemini) to generate functional frontend code directly in VS Code and Antigravity. I took the Company Profile & Landing Page from prompt to a live, working POC in a single working day, ahead of an urgent partner presentation: the origin point for the rest of the engagement. I followed the same no wireframe, code first approach for the other three surfaces, but on a longer timeline that included analyzing the existing business flow and identifying where it needed to improve before building." },
-              { num: "2.", title: "Embedded Scenario Tester Widget", desc: "This was not planned from the start. During an internal review, the PM asked to compare 3, 4, and 5 column product grid layouts. Because an HTML prototype does not have Figma's frame based states, jumping to a specific screen (like a logged in checkout flow) meant restarting the whole user journey from scratch every time. I built a toggle widget directly into the prototype to solve that: the PM could switch between Guest and Silver Member pricing views, or jump straight into any staged screen across the Customer and Admin portals, without walking the full flow each time." },
-              { num: "3.", title: "Working Serial Number & Order Lifecycle Tracking", desc: "I designed a complete flow for the Admin Portal covering serial number input for high value bows, warranty claim status, order fulfillment timelines, and point of sale integration: fully mapped out rather than left as a described requirement." },
-            ].map(({ num, title, desc }) => (
-              <div key={title} className="flex gap-5 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
-                <span className="font-sans text-[10px] font-semibold flex-shrink-0 mt-0.5" style={{ color: C }}>{num}</span>
-                <div>
-                  <p className="text-sm font-semibold mb-1.5" style={{ color: N }}>{title}</p>
-                  <p className="text-sm leading-relaxed" style={{ color: BODY, lineHeight: 1.75 }}>{desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <Hairline />
-
-        {/* 04 The Four-Surface Ecosystem */}
-        <div>
-          <SectionTag id="suite" num="04" label="The Four Surface Ecosystem" />
-          <p className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C] mb-6" style={{ lineHeight: 1.8 }}>
-            The ecosystem starts with a public facing Company Profile & Landing Page: brand storytelling, product spotlights, dealer partnerships, and club or event content: that I built to route into the two functional portal groups below.
-          </p>
-
-          <div className="grid lg:grid-cols-2 gap-6">
-
-            {/* B2C */}
-            <div style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px", overflow: "hidden" }}>
-              <div className="px-6 py-4" style={{ borderBottom: `1px solid ${HAIR}`, backgroundColor: `${N}04` }}>
-                <div className="flex items-center gap-2">
-                  <ShoppingCart size={12} style={{ color: C }} />
-                  <MonoTag accent>[A] B2C E Commerce & Customer Self Service Portal</MonoTag>
-                </div>
-              </div>
-              <div className="px-6 py-5 space-y-5">
-                {[
-                  { title: "Custom Bow & Gear Builder", desc: "I designed an interactive product catalog supporting customized archery equipment configurations with integrated payment gateways, and built in international address, phone number, and shipping fields to support Pro Archery's existing Singapore and Malaysia customers." },
-                  { title: "Customer Warranty & Order Tracking", desc: "I designed a dedicated portal for tracking order timelines, viewing serial number certificates, managing loyalty points, and lodging warranty claims." },
-                  { title: "Warranty Claims: From a Simple Flow to Four Resolution Paths", desc: "The claim review flow did not stay simple for long. After I presented an initial straightforward version (submit → review → resolve), client feedback revealed the reality was more complex: a claim could end in four different ways depending on store conditions at the time: rejected, resolved by swapping in store stock, held pending a factory restock, or a hybrid resolution using both store stock and a pending factory claim together. I designed each path with its own resolution UI and its own audit trail, including tracking the original serial number against any replacement one issued during the swap." },
-                ].map(({ title, desc }) => (
-                  <div key={title}>
-                    <div className="flex items-start gap-2 mb-1.5">
-                      <div className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: C }} />
-                      <p className="text-sm font-semibold" style={{ color: N }}>{title}</p>
-                    </div>
-                    <p className="text-sm leading-relaxed pl-3.5" style={{ color: BODY, lineHeight: 1.75 }}>{desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Admin */}
-            <div style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px", overflow: "hidden" }}>
-              <div className="px-6 py-4" style={{ borderBottom: `1px solid ${HAIR}`, backgroundColor: `${N}04` }}>
-                <div className="flex items-center gap-2">
-                  <Package size={12} style={{ color: C }} />
-                  <MonoTag accent>[B] Back Office Admin & POS Management Console</MonoTag>
-                </div>
-              </div>
-              <div className="px-6 py-5 space-y-5">
-                {[
-                  { title: "Inventory & Serial Number Management", desc: "I designed individual serial number tracking for high tier stock, such as Hoyt Altus compound bows, with real time sync events (create, update, delete) to propagate product, pricing, and stock changes across both POS and e-commerce." },
-                  { title: "Working Multi Tier Pricing Logic", desc: "I implemented functional pricing logic: not just a visual mockup: for the two most significant tiers (Guest and Silver Member), automatically adjusting storefront rates based on which tier was active. I built this specifically to demonstrate the logic to stakeholders during review, covering the two highest priority tiers rather than the full four tier membership system." },
-                  { title: "Scenario Tester: Built Into the Prototype", desc: "I built this so stakeholders could switch live between Guest and Silver Member pricing views, and toggle grid layouts (3, 4, 5 columns), directly inside the prototype during review meetings, instead of waiting for separate design revisions to see each variation." },
-                  { title: "A Second Scenario Tester, Built the Same Way", desc: "I reused the same pattern from the e-commerce prototype here. I built a \"Demo Controller\" widget directly into the claim review screen, letting stakeholders jump straight to any claim state: New, Under Review, Rejected, Store Stock Swap, Awaiting Factory, Hybrid, Resolved: without walking through the full claim lifecycle each time." },
-                  { title: "Manual Claims for Walk In Customers", desc: "Not every claim starts online, so I designed a separate manual claim flow for staff to search a purchase by SO number or serial number and generate a claim on the spot for walk in or direct contact customers, without requiring them to go through the customer portal first." },
-                ].map(({ title, desc }) => (
-                  <div key={title}>
-                    <div className="flex items-start gap-2 mb-1.5">
-                      <div className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: C }} />
-                      <p className="text-sm font-semibold" style={{ color: N }}>{title}</p>
-                    </div>
-                    <p className="text-sm leading-relaxed pl-3.5" style={{ color: BODY, lineHeight: 1.75 }}>{desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* HIGH FIDELITY SYSTEM SCREENS SHOWCASE */}
-          <div className="mt-8 p-6 rounded-2xl bg-[#0e1635] border border-white/10 text-white shadow-xl">
+          <div className="mt-2 p-6 rounded-2xl bg-[#0e1635] border border-white/10 text-white shadow-xl">
             <div className="flex flex-wrap items-center justify-between gap-2 mb-6 pb-3 border-b border-white/10">
-              <div className="flex items-center gap-2">
-                <Sparkles size={14} className="text-[#DB3E8C]" />
-                <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
-                  HIGH FIDELITY SYSTEM SCREENS // PRODUCTION & PROTOTYPE MODULES
-                </span>
-              </div>
+              <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+                HIGH FIDELITY SYSTEM SCREENS
+              </span>
               <span className="font-sans text-[10px] font-bold tracking-widest uppercase text-white/50">
                 4 Core Surfaces
               </span>
@@ -496,252 +431,84 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
 
             <div className="grid md:grid-cols-2 gap-6">
               {[
-                {
-                  title: "01 · Inventory & SKU Taxonomy",
-                  img: proArcheryInventory,
-                  badge: "Admin POS Console",
-                  desc: "Granular equipment catalog with SKU taxonomy, multi-variant tracking (Hoyt, Mathews, Easton), and instant Publish/Active/Draft statuses.",
-                },
-                {
-                  title: "02 · Barcode Stock Transactions",
-                  img: proArcheryStockTransaction,
-                  badge: "Warehouse Engine",
-                  desc: "Real-time barcode scanner interface for incoming shipments, transfers, and warehouse bookings with connected Redux transaction hooks.",
-                },
-                {
-                  title: "03 · Multi-Tier Pricing Categories",
-                  img: proArcheryPricingTiers,
-                  badge: "Dynamic Markup",
-                  desc: "Configurable tier-based markup percentage engine across Retail, Bronze, Silver, Gold, Platinum, and Family member tiers.",
-                },
-                {
-                  title: "04 · Order & Warranty Tracking",
-                  img: proArcheryOrderTracking,
-                  badge: "B2C Self-Service Portal",
-                  desc: "Live order timeline (Dibuat → Dibayar → Dikirim → Selesai), itemized serial number mapping, and integrated courier delivery tracking.",
-                },
+                { title: "01 · Inventory & SKU Taxonomy", img: proArcheryInventory, badge: "Admin POS Console", desc: "Granular equipment catalog with SKU taxonomy, multi-variant tracking, and Publish, Active, and Draft statuses." },
+                { title: "02 · Barcode Stock Transactions", img: proArcheryStockTransaction, badge: "Warehouse Engine", desc: "Barcode scanner interface for incoming shipments, transfers, and warehouse bookings." },
+                { title: "03 · Multi-Tier Pricing Categories", img: proArcheryPricingTiers, badge: "Dynamic Markup", desc: "Tier-based markup engine across Retail, Bronze, Silver, Gold, Platinum, and Family member tiers." },
+                { title: "04 · Order & Warranty Tracking", img: proArcheryOrderTracking, badge: "B2C Self-Service Portal", desc: "Live order timeline, itemized serial number mapping, and integrated courier delivery tracking." },
               ].map((item) => (
                 <div
                   key={item.title}
-                  onClick={() => setSelectedImage(item)}
-                  className="bg-[#141b36] border border-white/10 rounded-xl p-3 flex flex-col justify-between group hover:border-[#DB3E8C]/60 hover:shadow-lg transition-all duration-300 cursor-pointer"
+                  onClick={() => setSelectedImage({ src: item.img, title: item.title, badge: item.badge, desc: item.desc })}
+                  className="bg-[#141b36] border border-white/10 rounded-xl p-3 flex flex-col justify-between group hover:border-[#DB3E8C]/60 transition-all duration-300 cursor-pointer"
                 >
                   <div className="relative aspect-[16/11] rounded-lg overflow-hidden border border-white/10 mb-3 bg-[#0d142d]">
-                    <img
-                      src={item.img}
-                      alt={item.title}
-                      className="w-full h-full object-cover object-top rounded group-hover:scale-105 transition-transform duration-500"
-                    />
+                    <img src={item.img} alt={item.title} className="w-full h-full object-cover object-top rounded group-hover:scale-105 transition-transform duration-500" />
                     <div className="absolute top-2 left-2 bg-black/70 backdrop-blur-md px-2 py-0.5 rounded text-[9px] font-bold tracking-wider uppercase text-white border border-white/20">
                       {item.badge}
                     </div>
-                    <div className="absolute inset-0 bg-[#DB3E8C]/0 group-hover:bg-[#DB3E8C]/10 transition-colors flex items-center justify-center">
-                      <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-black/80 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg border border-white/20">
-                        <Maximize2 size={12} /> Klik untuk Perbesar
-                      </div>
-                    </div>
                   </div>
                   <div>
-                    <h4 className="font-sans text-xs font-bold text-white mb-1 tracking-wide group-hover:text-[#DB3E8C] transition-colors">
-                      {item.title}
-                    </h4>
-                    <p className="font-sans text-[11px] text-white/70 leading-relaxed">
-                      {item.desc}
-                    </p>
+                    <h4 className="font-sans text-xs font-bold text-white mb-1 tracking-wide">{item.title}</h4>
+                    <p className="font-sans text-[11px] text-white/70 leading-relaxed">{item.desc}</p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-        </div>
 
-        <Hairline />
-
-        {/* 05 AI-First Design Process */}
-        <div>
-          <SectionTag id="process" num="05" label="AI First Design Process" />
-          <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-8" style={{ color: `${N}99` }}>
-            [WORKFLOW: RESEARCH → PROTOTYPE → REVISE → CONSOLIDATE] · [NO TRADITIONAL WIREFRAME PHASE]
-          </p>
-
-          <div className="relative">
-            <div className="hidden lg:block absolute left-[calc(3rem-1px)] top-8 bottom-8 w-px" style={{ backgroundColor: HAIR }} />
-            <div className="space-y-6">
-              {[
-                {
-                  phase: "PHASE 01", tag: "RESEARCH & DOCS",
-                  title: "Research & Requirement Documentation",
-                  items: [
-                    { title: "Formal Spec & Business Analysis", desc: "Before any prototyping started, I researched the business requirements and wrote them up as a formal document in the team's repo: the same starting point a Figma based project would have, just skipping the wireframe stage that would normally follow it." },
-                  ],
-                },
-                {
-                  phase: "PHASE 02", tag: "AI BUILD & REVISE",
-                  title: "AI Accelerated Prototype Build",
-                  items: [
-                    { title: "Prompt to Code Execution", desc: "I built the prototype directly from the requirement doc, using Claude and Gemini for prompt to code generation in VS Code and Antigravity. I made revisions during this phase directly in the prototype, bypassing the original doc for speed, then wrote up a consolidated document afterward summarizing the finalized flow for that module." },
-                  ],
-                },
-                {
-                  phase: "PHASE 03", tag: "HANDOFF & GAP",
-                  title: "Handoff & The Annotation Gap",
-                  items: [
-                    { title: "Navigating Handoff Friction", desc: "This was the one part of the AI first workflow that did not fully match Figma's convenience. In Figma, notes and annotations sit directly on each screen. With a code prototype meant to be pulled directly by developers, I did not yet have a clear system for that kind of inline annotation, so developers often had to read through the prototype itself to understand intent, even with supporting documentation provided alongside it." },
-                    { title: "Evolved Staging Comparison", desc: "This has since evolved: once a staging environment exists, the PM now has me directly compare the prototype's base code against staging to pinpoint exactly where the gap is, then decide whether the fix belongs to design or development. I still handle the handoff documentation itself the older way: analyzing the prototype and writing up a handover document manually, without Figma's visual first annotation convenience: but the comparison step has made identifying what needs fixing far more precise." },
-                  ],
-                },
-              ].map((phase, pi) => (
-                <div key={phase.phase} className="grid lg:grid-cols-[6rem_1.1fr_0.9fr] gap-6 lg:gap-10 items-start pb-12 relative">
-                  {/* Badge */}
-                  <div className="flex flex-col items-center gap-2">
-                    <div
-                      className="w-12 h-12 rounded-2xl flex items-center justify-center font-display font-bold text-lg text-white shadow-md z-10"
-                      style={{ backgroundColor: pi === 0 ? N : C }}
-                    >
-                      {String(pi + 1).padStart(2, "0")}
-                    </div>
-                    <div className="text-[9px] font-bold uppercase tracking-widest text-[#19244E]/30 text-center leading-tight">
-                      {phase.tag}
-                    </div>
-                  </div>
-
-                  {/* Left Column: Details */}
-                  <div>
-                    <div className="text-[10px] font-semibold uppercase tracking-[0.2em] mb-2" style={{ color: C }}>
-                      {phase.phase}
-                    </div>
-                    <h3 className="font-display text-xl font-bold text-[#19244E] mb-4 leading-tight">
-                      {phase.title}
-                    </h3>
-                  </div>
-
-                  {/* Right Column: Items */}
-                  <div className="space-y-3">
-                    {phase.items.map(({ title, desc }) => (
-                      <div key={title} className="rounded-xl border border-[#19244E]/8 bg-[#F8F8F6] p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
-                        <div className="flex items-center gap-2 mb-1.5">
-                          <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: C }} />
-                          <span className="text-xs font-bold text-[#19244E]">{title}</span>
-                        </div>
-                        <p className="text-xs text-[#19244E]/65 leading-relaxed pl-3.5">
-                          {desc}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <Hairline />
-
-        {/* 06 Sustaining an Evolving System */}
-        <div>
-          <SectionTag id="sustaining" num="06" label="Sustaining an Evolving System" />
-          <p className="font-display font-light leading-relaxed mb-8" style={{ fontSize: "clamp(1.05rem, 1.6vw, 1.25rem)", color: N, lineHeight: 1.6, maxWidth: "780px" }}>
-            This engagement did not end after the initial build. As the sole designer, staying on meant designing through changes that reshaped the product's foundations, not just adding features on top of a settled system.
-          </p>
-          <div className="space-y-4">
-            {[
-              {
-                title: "A Mid Engagement Business Model Pivot",
-                desc: "Partway through, Pro Archery simplified its business model, moving away from a multi role system (Customer, Dealer, Reseller, Distributor, Dropshipper) to a Customer only model built around simple membership tiers (Regular, Silver, Gold, Platinum). Dealer status stopped affecting anything in the system; it became just a label. Pricing was decoupled from it entirely and now depends purely on membership tier: I had to revisit warranty activation rules, pricing logic, and catalog access that had all been designed around the old model.",
-                icon: GitBranch
-              },
-              {
-                title: "Requirements That Grew More Complex After Being Seen",
-                desc: "The warranty claim flow is one clear example of this pattern: what started as a simple submit review resolve flow became a four path resolution system once the client saw the initial version and recognized the real operational complexity behind it: different store stock conditions meant different outcomes needed different handling.",
-                icon: ShieldCheck
-              },
-              {
-                title: "Living Documentation",
-                desc: "I keep a version history (v1.0, v2.0, sometimes v3.0) on every module with explicit changelogs recording what changed, why, and what broke as a result: a habit that came out of necessity: a system evolving this much needed a paper trail development could follow without re-litigating old decisions.",
-                icon: FileText
-              },
-            ].map(({ title, desc, icon: Icon }) => (
-              <div key={title} className="flex gap-5 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
-                <div className="w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5" style={{ backgroundColor: `${C}08`, border: `1px solid ${C}20`, borderRadius: "4px" }}>
-                  <Icon size={14} style={{ color: C }} />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold mb-1.5" style={{ color: N }}>{title}</p>
-                  <p className="text-sm leading-relaxed" style={{ color: BODY, lineHeight: 1.75 }}>{desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <Hairline />
-
-        {/* 07 Business Impact & Workflow Efficiency */}
-        <div>
-          <SectionTag id="impact-metrics" num="07" label="Business Impact & Workflow Efficiency" />
-          <div className="grid lg:grid-cols-2 gap-4 mb-10">
-            {[
-              { Icon: Zap, title: "24 Hour Landing Page Deployment", desc: "I used the AI first pipeline to ship a fully functional Company Profile & Landing Page in one day for an urgent partner presentation: the starting point for what became a long running engagement." },
-              { Icon: CheckCircle2, title: "A Working Prototype, Not Just a Mockup", desc: "According to the PM, when the development team's implementation was not ready ahead of a fee disbursement milestone, the HTML prototype I built was deployed live in its place while the dev build caught up: invisible to end users. That was a one off, specific to the landing page rather than the customer or admin portals, but a signal of how production ready the AI first output actually was." },
-              { Icon: Globe, title: "Regional Ready Storefront", desc: "I built the B2C storefront to support Pro Archery's existing regional clientele in Singapore and Malaysia from day one, with international address formats, phone fields, and cross border shipping options." },
-              { Icon: RefreshCw, title: "Designed to Survive a Changing Business", desc: "When the business model pivoted mid engagement, I could revise the warranty, pricing, and catalog systems already in place rather than rebuild them: made possible by documentation that tracked why I made each decision in the first place." },
-            ].map(({ Icon, title, desc }) => (
-              <div key={title} className="flex gap-4 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
-                <div className="w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5" style={{ backgroundColor: `${C}08`, border: `1px solid ${C}20`, borderRadius: "4px" }}>
-                  <Icon size={13} style={{ color: C }} />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold mb-1.5" style={{ color: N }}>{title}</p>
-                  <p className="text-sm leading-relaxed" style={{ color: BODY, lineHeight: 1.75 }}>{desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* 08 Impact & The "So What" Closing Box */}
-          <div id="so-what" className="p-8 bg-[#111836] rounded-2xl border border-white/10 text-white space-y-6 shadow-2xl scroll-mt-24">
-            <div className="flex items-center gap-2">
-              <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#22c55e]">
-                SECTION 08 · AI FIRST ECOSYSTEM IMPACT & "SO WHAT"
-              </span>
-            </div>
-            <h3 className="font-display text-xl lg:text-2xl font-semibold leading-relaxed">
-              What started as a 24 hour landing page sprint has become a 4 surface e-commerce ecosystem I've sustained solo for close to a year, through a business model pivot, evolving warranty logic, and a pricing system that had to keep working while its foundations changed underneath it.
-            </h3>
-            <p className="font-sans text-xs text-white/70 leading-relaxed max-w-3xl">
-              By combining AI driven, code first prototyping with disciplined changelog documentation, I could absorb real business change without losing the design logic: while staying honest about where the workflow still has friction, particularly at developer handoff.
+          <div className="mt-8 space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
+            <p>
+              Serial number tracking syncs create, update, and delete events across POS and e-commerce, so product, pricing, and stock changes stay consistent. The warranty flow also includes a manual claim path for walk in customers, searched by SO or serial number.
             </p>
-            <div className="grid md:grid-cols-3 gap-4 pt-4 border-t border-white/10 text-xs">
-              <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-                <span className="block font-bold text-sm text-[#22c55e] mb-1">24h Landing Page</span>
-                <p className="text-white/60">Delivered for an urgent partner presentation; according to the PM, later stood in live for the dev build.</p>
+            <p>
+              The process followed the requirement doc, then prompt to code prototyping, then a comparison against staging once it existed, so the PM could see exactly where the gap was between design and development.
+            </p>
+          </div>
+        </div>
+
+        <Hairline />
+
+        {/* 05 Outcome & Reflection */}
+        <div>
+          <SectionTag id="outcome" num="05" label="Outcome & Reflection" />
+
+          <div className="space-y-6">
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
+                <span className="text-[10px] font-bold tracking-wider uppercase text-[#10B981] font-sans block">Shipped</span>
+                <h5 className="font-bold text-sm text-[#19244E]">A landing page in one day</h5>
+                <p className="text-xs text-gray-600 leading-relaxed">For an urgent partner presentation, and the start of a long running engagement.</p>
               </div>
-              <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-                <span className="block font-bold text-sm text-white mb-1">Nov 2025 to Present</span>
-                <p className="text-white/60">An ongoing solo engagement, not a single sprint.</p>
+              <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
+                <span className="text-[10px] font-bold tracking-wider uppercase text-[#DB3E8C] font-sans block">Sustained</span>
+                <h5 className="font-bold text-sm text-[#19244E]">Solo for close to a year</h5>
+                <p className="text-xs text-gray-600 leading-relaxed">Through a business model pivot, evolving warranty logic, and a pricing system that kept working.</p>
               </div>
-              <div className="bg-[#DB3E8C]/20 p-4 rounded-lg border border-[#DB3E8C]/40">
-                <span className="block font-bold text-sm text-[#DB3E8C] mb-1">Survived a Business Pivot</span>
-                <p className="text-white/80 font-medium">Warranty, pricing, and catalog logic revised, not rebuilt, when the business model changed.</p>
+              <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
+                <span className="text-[10px] font-bold tracking-wider uppercase text-[#3B82F6] font-sans block">Not measured here</span>
+                <h5 className="font-bold text-sm text-[#19244E]">Revenue figures</h5>
+                <p className="text-xs text-gray-600 leading-relaxed">This case does not include sales or storefront revenue numbers.</p>
               </div>
             </div>
 
-            {/* WHAT I LEARNED Box */}
-            <div className="p-5 rounded-xl bg-white/5 border border-white/10 text-white space-y-2 mt-6">
-              <div className="flex items-center gap-2">
-                <span className="text-[9px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
-                  WHAT I LEARNED
-                </span>
-              </div>
-              <p className="text-xs font-sans leading-relaxed text-white/90 italic">
+            <div className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C] space-y-5" style={{ lineHeight: 1.8 }}>
+              <p>
+                Because the documentation tracked why each decision was made, I could revise the warranty, pricing, and catalog systems already in place, instead of rebuilding them.
+              </p>
+            </div>
+
+            <div className="p-6 bg-white rounded-xl border border-gray-200 space-y-2">
+              <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#19244E]">WHAT I LEARNED</span>
+              <p className="text-xs sm:text-sm font-sans leading-relaxed text-[#2E3A5C] italic" style={{ lineHeight: 1.8 }}>
                 "Working AI first taught me that speed does not have to come at the cost of rigor, but it does shift where that rigor lives. Without Figma's frame based states or inline annotation, I had to build my own tools, like the scenario testers, and my own documentation habits to keep a fast moving, constantly changing system explainable to developers."
               </p>
             </div>
           </div>
         </div>
+
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
 
       {/* Lightbox Modal */}
       {selectedImage && (

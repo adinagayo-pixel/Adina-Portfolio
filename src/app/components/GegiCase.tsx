@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { CaseStudyHeaderBadge } from "@/app/components/ui/CaseStudyHeaderBadge"
+import { CaseStudyDisclosure, CaseStudyFacts } from "@/app/components/ui/CaseStudyStory"
 
 import {
   ArrowLeft, ChevronRight, CheckCircle2, Globe, Home,
@@ -59,19 +60,17 @@ interface Props {
 }
 
 const QUICK_SECTIONS = [
-  { id: "summary", num: "01", label: "Executive Overview" },
-  { id: "before", num: "02", label: "Before I Joined: Existing Concept" },
-  { id: "pivot", num: "03", label: "After Presentation: The Color Pivot" },
-  { id: "illustration", num: "04", label: "Midway: The Illustration Gap" },
-  { id: "sharing", num: "05", label: "Beyond the Brief: Designing for Sharing" },
-  { id: "handoff", num: "06", label: "Handing Off to Development" },
-  { id: "impact", num: "07", label: "Closing & Key Impact" },
+  { id: "context", num: "01", label: "Context" },
+  { id: "constraints", num: "02", label: "Constraints" },
+  { id: "decisions", num: "03", label: "Key Decisions" },
+  { id: "solution", num: "04", label: "Solution & Evidence" },
+  { id: "outcome", num: "05", label: "Outcome & Reflection" },
 ]
 
 export default function GegiCase({ onBack, onNext, onPrev }: Props) {
   const [scrolled, setScrolled] = useState(false)
   const [activeZoomImg, setActiveZoomImg] = useState<{ title: string; img: string; desc: string } | null>(null)
-  const [activeQuickId, setActiveQuickId] = useState<string>("summary")
+  const [activeQuickId, setActiveQuickId] = useState<string>("context")
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
@@ -202,33 +201,41 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
       <div className="px-4 sm:px-8 lg:px-16 pt-12 sm:pt-16 pb-10 sm:pb-14" style={{ backgroundColor: W, borderBottom: `1px solid ${HAIR}` }}>
-        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-center">
-          <div className="space-y-6">
-            <div className="flex flex-wrap items-center gap-3">
-              <MonoTag accent>CASE STUDY 04</MonoTag>
-              <span style={{ color: HAIR }}>/</span>
-              <MonoTag>FINTECH & GAMIFIED CAMPAIGN</MonoTag>
-              <span style={{ color: HAIR }}>/</span>
-              <MonoTag>GREAT EASTERN SINGAPORE · 2026</MonoTag>
-            </div>
+        <div className="space-y-6 mb-10 lg:mb-12">
+          <div className="flex flex-wrap items-center gap-3">
+            <MonoTag accent>CASE STUDY 04</MonoTag>
+            <span style={{ color: HAIR }}>/</span>
+            <MonoTag>FINTECH & GAMIFIED CAMPAIGN</MonoTag>
+            <span style={{ color: HAIR }}>/</span>
+            <MonoTag>GREAT EASTERN SINGAPORE · 2026</MonoTag>
+          </div>
+          <h1
+            className="font-display font-bold leading-[1.08] tracking-tight"
+            style={{ fontSize: "clamp(2rem, 4vw, 3.6rem)", color: N }}
+          >
+            Gamified CI Evaluation & Interactive Acquisition Campaign
+          </h1>
+        </div>
 
-            <h1
-              className="font-display font-bold leading-[1.08] tracking-tight"
-              style={{ fontSize: "clamp(2rem, 4vw, 3.6rem)", color: N }}
-            >
-              Gamified CI Evaluation & Interactive Acquisition Campaign
-            </h1>
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-start">
+          <div className="space-y-6">
+
 
             <p
-              className="font-display font-light leading-relaxed"
+              className="font-display font-medium leading-relaxed"
               style={{ fontSize: "clamp(1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
             >
               Great Eastern Singapore needed an engaging digital campaign to assess critical illness protection gaps among its users.
             </p>
 
-            <p className="text-sm sm:text-base leading-relaxed" style={{ color: BODY, lineHeight: 1.8 }}>
-              I stepped in with a tight 2 week sprint deadline, taking over an existing initial concept and driving it to a fully client approved product.
-            </p>
+            <CaseStudyFacts
+              facts={[
+                { label: "My contribution", value: "Lead product designer and UX architect: UX flow, responsive layouts, and interaction logic." },
+                { label: "Team & scope", value: "Great Eastern Singapore (GEGI), with an internal graphic designer and a freelance illustrator. Interactive web app and share cards." },
+                { label: "Verified impact", value: "An interactive web app with 4 localized persona outcomes, with illustrations delivered in under 24 hours." },
+                { label: "Not measured here", value: "Campaign reach and lead figures." },
+              ]}
+            />
           </div>
 
           {/* Right Column: Hero Image */}
@@ -244,29 +251,33 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
         </div>
       </div>
 
-      {/* EXECUTIVE SUMMARY & 30 SECOND TAKEAWAYS */}
-      <div className="px-4 sm:px-8 lg:px-16 py-8 bg-[#111836] border-t border-b border-white/10">
+      {/* 30 SECOND TAKEAWAYS: the five-stage story at a glance */}
+      <div className="px-4 sm:px-8 lg:px-16 py-8 bg-[#F9FAFB] border-t border-b border-[#19244E]/10">
         <div className="flex items-center gap-2 mb-4">
-          <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
-            EXECUTIVE SUMMARY & 30 SECOND TAKEAWAYS
+          <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase text-[#19244E]/60">
+            30 SECOND TAKEAWAYS
           </span>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-xs sm:text-sm font-sans">
-          <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">01 · Problem</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-white/85">GEGI Singapore needed an engaging gamified tool to help users uncover hidden Critical Illness protection gaps.</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 text-xs sm:text-sm font-sans">
+          <div className="p-4 border-l border-[#19244E]/15">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">01 · Context</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">An engaging campaign to show users their critical illness protection gaps.</p>
           </div>
-          <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">02 · Core Constraints</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-white/85">2 week sprint deadline, brand palette pivot from red to light cream, tight 24h illustration turnaround.</p>
+          <div className="p-4 border-l border-[#19244E]/15">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">02 · Constraints</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">A 2 week sprint, a palette pivot from red to cream, and a 24h illustration turnaround.</p>
           </div>
-          <div className="bg-[#DB3E8C]/10 p-4 rounded-lg border border-[#DB3E8C]/30">
-            <span className="block text-xs font-bold tracking-widest text-[#DB3E8C] uppercase mb-1.5">03 · Exact Ownership</span>
-            <p className="text-xs sm:text-sm font-semibold text-white leading-relaxed">Lead UX Designer: drove color pivot, auto advance interaction logic, SVG asset library, and Instagram share cards.</p>
+          <div className="p-4 border-l border-[#19244E]/15">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">03 · Key Decisions</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">The brand palette pivot, auto advance questions, and a second illustrator to support the team.</p>
           </div>
-          <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">04 · Key Impact</span>
-            <p className="text-xs sm:text-sm font-semibold text-white leading-relaxed">First Singapore project delivered by our company, earning direct appreciation from GEGI leadership in 2026.</p>
+          <div className="p-4 border-l border-[#19244E]/15">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">04 · Solution & Evidence</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">An interactive web app with 4 localized personas and Instagram-ready share cards.</p>
+          </div>
+          <div className="p-4 border-l border-[#19244E]/15">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">05 · Outcome</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">The first Singapore project delivered by our company, praised by GEGI leadership in 2026.</p>
           </div>
         </div>
       </div>
@@ -311,25 +322,93 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
           {/* Right Column: Case Study Main Content Sections */}
           <div className="space-y-16 lg:space-y-20 min-w-0">
 
-        {/* 01 Executive Summary */}
+        {/* 01 Context */}
         <div>
-          <SectionTag id="summary" num="01" label="Executive Summary" />
-          <div className="grid lg:grid-cols-2 gap-4">
+          <SectionTag id="context" num="01" label="Context: A Campaign to Show Protection Gaps" />
+          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
+            <p>
+              Great Eastern Singapore needed an engaging digital campaign to show users their critical illness protection gaps.
+            </p>
+            <p>
+              The project started from an initial UI concept by our internal graphic designer, with a dominant red palette, already presented to leadership. When I joined, I turned that concept into a complete product: UX flow, responsive desktop and mobile layouts, and interaction logic based on GEGI's calculation spreadsheet for their 4 persona outcomes.
+            </p>
+          </div>
+        </div>
+
+        <Hairline />
+
+        {/* 02 Constraints */}
+        <div>
+          <SectionTag id="constraints" num="02" label="Constraints: A Two Week Sprint, a Palette Pivot, a Tight Illustration Turnaround" />
+          <div className="grid md:grid-cols-3 gap-4">
             {[
-              { label: "Client & Initiative", val: "Great Eastern General Insurance Singapore (GEGI) · 2026" },
-              { label: "Role & Scope", val: "Lead Product Designer & UX Architect" },
-              { label: "Core Deliverables", val: "Interactive Web App · 4 Localized Persona Outcomes · Instagram Share Cards" },
-              { label: "Core Stack", val: "Figma · SVG Asset Spec · Auto Advance Engine · AEM Developer Spec" },
-            ].map(({ label, val }) => (
-              <div key={label} className="px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
-                <MonoTag>[{label}]</MonoTag>
-                <p className="text-sm font-medium mt-2" style={{ color: N, lineHeight: 1.6 }}>{val}</p>
+              { title: "A 2 week sprint", desc: "The campaign had to be built and client approved within two weeks." },
+              { title: "A palette pivot", desc: "After the first presentation, GEGI moved the project from red to its signature light cream tones." },
+              { title: "A 24h illustration turnaround", desc: "Midway through, the internal illustration drafts had not captured the right tone, and the designer was overloaded." },
+            ].map(({ title, desc }) => (
+              <div key={title} className="p-6 bg-white rounded-xl border border-gray-200/80 shadow-xs space-y-3">
+                <h4 className="font-bold text-[#19244E] text-base">{title}</h4>
+                <p className="font-sans text-xs sm:text-sm text-gray-600 leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
+        </div>
 
-          {/* Localized Personas Visual Strip */}
-          <div className="mt-10 p-6 bg-[#0a0f24] rounded-2xl border border-white/10 shadow-2xl">
+        <Hairline />
+
+        {/* 03 Key Decisions */}
+        <div>
+          <SectionTag id="decisions" num="03" label="Key Decisions: The Palette, the Flow, and the Illustrator" />
+
+          <div className="space-y-6">
+            <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
+              <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 01 · Pivot to the brand palette</span>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">The pressure:</strong> GEGI asked to move from the dominant red palette to their light cream tones.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">What I did:</strong> I requested their complete brand guidelines, and realigned typography and color tokens to match.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">Why it held:</strong> The product felt consistent with GEGI's digital identity, not like a throwaway campaign view.
+              </p>
+            </div>
+
+            <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
+              <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 02 · Auto advance instead of a Next tap</span>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">The pressure:</strong> A Next tap at every question added an unnecessary step.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">What I did:</strong> Selecting an answer moves the user to the next question. The final question keeps an explicit "View My Result" button.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">Why it held:</strong> Users get one clear moment of pause before they submit.
+              </p>
+            </div>
+
+            <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
+              <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 03 · Bring in a second illustrator, not replace anyone</span>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">The pressure:</strong> The internal designer was overloaded, and the drafts did not capture the tone.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">What I did:</strong> I proposed a freelance illustrator I had worked with before. Revi delivered about 25 game assets in under 24 hours, which became the 4 personas.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">Why it held:</strong> The internal designer was supported, not replaced, and the timeline held.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <Hairline />
+
+        {/* 04 Solution & Evidence */}
+        <div>
+          <SectionTag id="solution" num="04" label="Solution & Evidence: Personas, Screens, and Share Cards" />
+
+          <div className="mb-10 p-6 bg-[#0a0f24] rounded-2xl border border-white/10 shadow-2xl">
             <div className="flex items-center justify-between mb-6">
               <div>
                 <MonoTag accent>[GEGI SINGAPORE · 4 LOCALIZED PERSONAS]</MonoTag>
@@ -341,7 +420,6 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
                 Delivered in under 24 hours
               </span>
             </div>
-
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {PERSONAS.map((p) => (
                 <div
@@ -351,9 +429,6 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
                 >
                   <div className="aspect-square rounded-lg overflow-hidden border border-white/10 mb-3 p-2 relative flex items-center justify-center" style={{ backgroundColor: p.bg }}>
                     <img src={p.img} alt={p.name} className="max-h-full object-contain group-hover:scale-105 transition-transform duration-500" />
-                    <div className="absolute top-2 right-2 bg-black/60 backdrop-blur-md px-2 py-1 rounded text-[9px] font-bold text-white uppercase tracking-wider flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                      Zoom 🔍
-                    </div>
                   </div>
                   <div>
                     <h4 className="font-sans text-xs font-bold text-white mb-1 tracking-wide">{p.name}</h4>
@@ -363,67 +438,8 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
               ))}
             </div>
           </div>
-        </div>
 
-        <Hairline />
-
-        {/* 02 Before I Joined: An Existing Concept, Already Presented */}
-        <div>
-          <SectionTag id="before" num="02" label="Before I Joined: An Existing Concept, Already Presented" />
-          
-          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
-            <p>
-              This project originated from an initial UI concept created by our internal graphic designer, featuring a dominant red color palette, which had already been presented to leadership. Once I joined, I took over to translate that concept into a complete product: structuring the UX flow, constructing responsive desktop and mobile layouts in Figma, and setting up interaction logic based on GEGI's calculation spreadsheet for their 4 persona outcome system.
-            </p>
-          </div>
-        </div>
-
-        <Hairline />
-
-        {/* 03 After the First Client Presentation: The Color Pivot */}
-        <div>
-          <SectionTag id="pivot" num="03" label="After the First Client Presentation: The Color Pivot" />
-
-          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
-            <p>
-              Following the first client presentation, GEGI requested shifting from the dominant red palette to their signature light cream tones, referencing the visual language of a game they had built previously. I requested their complete brand guidelines to realign typography and color tokens: ensuring the final product felt consistent with their digital identity rather than a throwaway campaign view.
-            </p>
-            <p>
-              At this point, the interaction model evolved through discussions: moving from traditional click Next navigation to auto advance, where selecting an answer immediately progressed the user to the next question, eliminating an unnecessary tap at every step. One exception: the final question retained an explicit "View My Result" button, giving users a clear moment of pause before submitting.
-            </p>
-          </div>
-        </div>
-
-        <Hairline />
-
-        {/* 04 Midway Through the Sprint: The Illustration Gap */}
-        <div>
-          <SectionTag id="illustration" num="04" label="Midway Through the Sprint: The Illustration Gap" />
-
-          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
-            <p>
-              Midway through the project, illustration drafts from the internal team: including several experiments with AI tools: had not quite captured the specific tone this concept required. Recognizing that our graphic designer was overloaded with heavy workloads, I proposed bringing in an additional illustrator to assist and relieve the workload, not to replace anyone.
-            </p>
-            <p>
-              I reached out to a freelance illustrator I had previously collaborated with, Revi: who successfully delivered the entire set of approximately 25 game assets in under 24 hours. Those assets became the 4 personas featured in the final product.
-            </p>
-          </div>
-        </div>
-
-        <Hairline />
-
-        {/* 05 Beyond the Brief: Designing for Sharing */}
-        <div>
-          <SectionTag id="sharing" num="05" label="Beyond the Brief: Designing for Sharing" />
-
-          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
-            <p>
-              Anticipating that dedicated designs for result sharing might not be prioritized prior to launch, I proactively designed Instagram-ready result cards for each persona: confirming exact dimensions with the PM and recommending a 16:9 ratio suitable for Instagram Stories. This became part of the campaign's organic growth loop, allowing users to share their persona outcomes beyond the quiz itself.
-            </p>
-          </div>
-
-          {/* Gallery of UI Screenshots */}
-          <div className="mt-8 grid sm:grid-cols-2 gap-4">
+          <div className="mb-10 grid sm:grid-cols-2 gap-4">
             {[
               { title: "01 · Critical Illness Question Engine", img: ci1, desc: "Auto advance question flow with localized SG insurance terminology." },
               { title: "02 · Interactive Persona Outcome Card", img: ci2, desc: "Personalized protection gap result with custom character illustration." },
@@ -443,41 +459,51 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
               </div>
             ))}
           </div>
-        </div>
-
-        <Hairline />
-
-        {/* 06 Handing Off to Development */}
-        <div>
-          <SectionTag id="handoff" num="06" label="Handing Off to Development" />
 
           <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
             <p>
-              I prepared a comprehensive SVG asset library: default, selected, and hover states: with precise sizing to maintain a single screen experience across devices. Where scrolling was unavoidable, interactions remained contained within the card frame rather than across the entire page, preserving consistent visual rhythm. I also defined required form fields for lucky draw submissions: full name, email, WhatsApp number, NRIC, and Agent IAC: delivered as specifications to the development team, while AEM integration and backend data handling were executed by developers.
+              Anticipating that result sharing might not be prioritized before launch, I designed Instagram-ready result cards for each persona, and confirmed the dimensions with the PM. The cards became part of the campaign's organic growth loop.
+            </p>
+            <p>
+              For development, I prepared an SVG asset library with default, selected, and hover states, and defined the lucky draw fields: full name, email, WhatsApp number, NRIC, and Agent IAC. AEM integration and backend data handling were done by developers.
             </p>
           </div>
         </div>
 
         <Hairline />
 
-        {/* 07 Closing & Key Impact */}
+        {/* 05 Outcome & Reflection */}
         <div>
-          <SectionTag id="impact" num="07" label="Closing & Key Impact" />
-          <div className="p-8 bg-[#111836] rounded-2xl border border-white/10 text-white space-y-6 shadow-2xl">
-            <div className="flex items-center gap-2">
-              <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase text-[#22c55e]">
-                SYSTEM OUTCOME & PRODUCT VALIDATION (2026)
-              </span>
-            </div>
-            
-            {/* WHAT I LEARNED Box */}
-            <div className="p-6 rounded-xl bg-white/5 border border-white/10 text-white space-y-2 mt-6">
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
-                  WHAT I LEARNED
-                </span>
+          <SectionTag id="outcome" num="05" label="Outcome & Reflection" />
+
+          <div className="space-y-6">
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
+                <span className="text-[10px] font-bold tracking-wider uppercase text-[#10B981] font-sans block">Shipped</span>
+                <h5 className="font-bold text-sm text-[#19244E]">An interactive web app</h5>
+                <p className="text-xs text-gray-600 leading-relaxed">With 4 localized persona outcomes and an AEM developer spec.</p>
               </div>
-              <p className="text-xs sm:text-sm font-sans leading-relaxed text-white/90 italic" style={{ lineHeight: 1.8 }}>
+              <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
+                <span className="text-[10px] font-bold tracking-wider uppercase text-[#DB3E8C] font-sans block">Shared</span>
+                <h5 className="font-bold text-sm text-[#19244E]">Instagram share cards</h5>
+                <p className="text-xs text-gray-600 leading-relaxed">Designed for organic sharing beyond the quiz itself.</p>
+              </div>
+              <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
+                <span className="text-[10px] font-bold tracking-wider uppercase text-[#3B82F6] font-sans block">Not measured here</span>
+                <h5 className="font-bold text-sm text-[#19244E]">Campaign results</h5>
+                <p className="text-xs text-gray-600 leading-relaxed">This case does not include reach or lead figures.</p>
+              </div>
+            </div>
+
+            <div className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C] space-y-5" style={{ lineHeight: 1.8 }}>
+              <p>
+                The first Singapore project delivered by our company, praised by GEGI leadership in 2026.
+              </p>
+            </div>
+
+            <div className="p-6 bg-white rounded-xl border border-gray-200 space-y-2">
+              <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#19244E]">WHAT I LEARNED</span>
+              <p className="text-xs sm:text-sm font-sans leading-relaxed text-[#2E3A5C] italic" style={{ lineHeight: 1.8 }}>
                 "Taking over a concept someone else already started taught me that ownership is not about starting from zero: it is about being willing to fully commit to a direction I did not choose myself, while still pushing back when the brief genuinely needed to change, like the color pivot and bringing in extra illustration support."
               </p>
             </div>

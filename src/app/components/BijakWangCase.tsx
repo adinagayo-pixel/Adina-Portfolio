@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { CaseStudyHeaderBadge } from "@/app/components/ui/CaseStudyHeaderBadge"
+import { CaseStudyDisclosure, CaseStudyFacts } from "@/app/components/ui/CaseStudyStory"
 
 import {
   ArrowLeft, ChevronRight, Trophy, Users, Home,
@@ -59,20 +60,17 @@ interface Props {
 }
 
 const QUICK_SECTIONS = [
-  { id: "summary", num: "01", label: "Executive Overview" },
-  { id: "playtest", num: "02", label: "Before the Build: Playtest, Then Pixels" },
-  { id: "foundation", num: "03", label: "Building the Foundation" },
-  { id: "rollout", num: "04", label: "First Rollout: May 2026" },
-  { id: "roadshow", num: "05", label: "After the First Roadshow: Field Feedback" },
-  { id: "feedback", num: "06", label: "Filtering Feedback, Trimming Friction" },
-  { id: "pressure", num: "07", label: "Shipping Under Pressure" },
-  { id: "impact", num: "08", label: "Closing & Key Impact" },
+  { id: "context", num: "01", label: "Context" },
+  { id: "constraints", num: "02", label: "Constraints" },
+  { id: "decisions", num: "03", label: "Key Decisions" },
+  { id: "solution", num: "04", label: "Solution & Evidence" },
+  { id: "outcome", num: "05", label: "Outcome & Reflection" },
 ]
 
 export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
   const [scrolled, setScrolled] = useState(false)
   const [activeZoomImg, setActiveZoomImg] = useState<{ title: string; img: string; desc: string } | null>(null)
-  const [activeQuickId, setActiveQuickId] = useState<string>("summary")
+  const [activeQuickId, setActiveQuickId] = useState<string>("context")
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
@@ -196,33 +194,41 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
       <div className="px-4 sm:px-8 lg:px-16 pt-12 sm:pt-16 pb-10 sm:pb-14" style={{ backgroundColor: W, borderBottom: `1px solid ${HAIR}` }}>
-        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-center">
-          <div className="space-y-6">
-            <div className="flex flex-wrap items-center gap-3">
-              <MonoTag accent>CASE STUDY 05</MonoTag>
-              <span style={{ color: HAIR }}>/</span>
-              <MonoTag>IN HOUSE GAMIFIED QUIZ PLATFORM</MonoTag>
-              <span style={{ color: HAIR }}>/</span>
-              <MonoTag>MYSALAM x MYKAWAN · 2025 to 2026</MonoTag>
-            </div>
+        <div className="space-y-6 mb-10 lg:mb-12">
+          <div className="flex flex-wrap items-center gap-3">
+            <MonoTag accent>CASE STUDY 05</MonoTag>
+            <span style={{ color: HAIR }}>/</span>
+            <MonoTag>IN HOUSE GAMIFIED QUIZ PLATFORM</MonoTag>
+            <span style={{ color: HAIR }}>/</span>
+            <MonoTag>MYSALAM x MYKAWAN · 2025 to 2026</MonoTag>
+          </div>
+          <h1
+            className="font-display font-bold leading-[1.08] tracking-tight"
+            style={{ fontSize: "clamp(2rem, 4vw, 3.6rem)", color: N }}
+          >
+            From Kahoot to In House: Designing Under Constraints I Didn't Choose
+          </h1>
+        </div>
 
-            <h1
-              className="font-display font-bold leading-[1.08] tracking-tight"
-              style={{ fontSize: "clamp(2rem, 4vw, 3.6rem)", color: N }}
-            >
-              From Kahoot to In House: Designing Under Constraints I Didn't Choose
-            </h1>
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-start">
+          <div className="space-y-6">
+
 
             <p
-              className="font-display font-light leading-relaxed"
+              className="font-display font-medium leading-relaxed"
               style={{ fontSize: "clamp(1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
             >
               This project originated from My Money Sense (2025), a daily financial practice game I built for mySalam.
             </p>
 
-            <p className="text-sm sm:text-base leading-relaxed" style={{ color: BODY, lineHeight: 1.8 }}>
-              When they wanted to evolve it into a live Kahoot style tournament for regional roadshows, I became the sole designer in a lean 3 person team: myself, one fullstack developer, and one QA engineer: working against a 2 week deadline for the first release.
-            </p>
+            <CaseStudyFacts
+              facts={[
+                { label: "My contribution", value: "Sole product designer: UI UX, data integrity, signup flows, and filtering PM revisions." },
+                { label: "Team & scope", value: "One fullstack developer, one QA, and the mySalam and myKawan teams. Daily practice and live tournament modes." },
+                { label: "Verified impact", value: "Tested in real roadshows, then refined from field feedback." },
+                { label: "Not measured here", value: "Engagement and conversion figures." },
+              ]}
+            />
           </div>
 
           {/* Right Column: Hero Image */}
@@ -238,29 +244,33 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
         </div>
       </div>
 
-      {/* EXECUTIVE SUMMARY & 30 SECOND TAKEAWAYS */}
-      <div className="px-4 sm:px-8 lg:px-16 py-8 bg-[#111836] border-t border-b border-white/10">
+      {/* 30 SECOND TAKEAWAYS: the five-stage story at a glance */}
+      <div className="px-4 sm:px-8 lg:px-16 py-8 bg-[#F9FAFB] border-t border-b border-[#19244E]/10">
         <div className="flex items-center gap-2 mb-4">
-          <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
-            EXECUTIVE SUMMARY & 30 SECOND TAKEAWAYS
+          <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase text-[#19244E]/60">
+            30 SECOND TAKEAWAYS
           </span>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-xs sm:text-sm font-sans">
-          <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">01 · Problem</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-white/85">mySalam needed a reusable in house quiz platform for regional roadshows rather than paying third party tools for each event.</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 text-xs sm:text-sm font-sans">
+          <div className="p-4 border-l border-[#19244E]/15">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">01 · Context</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">A quiz platform for mySalam's regional roadshows, to replace per event third party tools.</p>
           </div>
-          <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">02 · Core Constraints</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-white/85">2 week initial deadline, lean 3-person team, strict third party marketing compliance, dual self paced and live tournament modes.</p>
+          <div className="p-4 border-l border-[#19244E]/15">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">02 · Constraints</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">2 week deadline, 3 person team, marketing compliance, and two modes.</p>
           </div>
-          <div className="bg-[#DB3E8C]/10 p-4 rounded-lg border border-[#DB3E8C]/30">
-            <span className="block text-xs font-bold tracking-widest text-[#DB3E8C] uppercase mb-1.5">03 · Exact Ownership</span>
-            <p className="text-xs sm:text-sm font-semibold text-white leading-relaxed">Sole Designer: executed UI UX, defended data integrity, negotiated signup flows, and filtered PM AI revisions.</p>
+          <div className="p-4 border-l border-[#19244E]/15">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">03 · Key Decisions</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">One scoring logic for teams and individuals, email only sign up, and filtered PM revisions.</p>
           </div>
-          <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">04 · Key Impact</span>
-            <p className="text-xs sm:text-sm font-semibold text-white leading-relaxed">Shipped an extensible platform tested in real roadshows, evolving signup, scoring, and UI through direct field feedback.</p>
+          <div className="p-4 border-l border-[#19244E]/15">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">04 · Solution & Evidence</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">A gamified quiz platform, tested in real roadshows and refined from field feedback.</p>
+          </div>
+          <div className="p-4 border-l border-[#19244E]/15">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">05 · Outcome</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">Shipped in May 2026 and refined since, driven by real field feedback.</p>
           </div>
         </div>
       </div>
@@ -305,184 +315,175 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
           {/* Right Column: Case Study Main Content Sections */}
           <div className="space-y-16 lg:space-y-20 min-w-0">
 
-        {/* 01 Executive Summary */}
+        {/* 01 Context */}
         <div>
-          <SectionTag id="summary" num="01" label="Executive Summary" />
-          <div className="grid lg:grid-cols-2 gap-4">
+          <SectionTag id="context" num="01" label="Context: A Quiz Platform for mySalam" />
+
+          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
+            <p>
+              mySalam needed an in house quiz platform for regional roadshows, instead of paying third party tools for each event. The brief asked for a Kahoot-like experience.
+            </p>
+            <p>
+              Before any design files, the developer and I played Kahoot together: he needed the host flow, and I needed the player side. Kahoot's geometric answer shapes made players glance between their phones and the big screen, a friction I had seen at other Kahoot events. We replaced the shapes with full A, B, C, and D text, consistent across host and player screens.
+            </p>
+          </div>
+        </div>
+
+        <Hairline />
+
+        {/* 02 Constraints */}
+        <div>
+          <SectionTag id="constraints" num="02" label="Constraints: Two Weeks, Three People, Strict Compliance" />
+
+          <div className="grid md:grid-cols-2 gap-4">
             {[
-              { label: "Client & Initiative", val: "mySalam Malaysia, under myKawan (Friendsure Technology)" },
-              { label: "Role & Team", val: "Sole Product Designer (1 Designer, 1 Fullstack Dev, 1 QA)" },
-              { label: "Core Product Suite", val: "Self Paced Daily Practice · Host Controlled Live Tournament Engine · Email Lead Capture" },
-              { label: "Core Stack", val: "Figma · Figma Make · Gemini AI Audio · ReSkills Partner Voucher API" },
-            ].map(({ label, val }) => (
-              <div key={label} className="px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
-                <MonoTag>[{label}]</MonoTag>
-                <p className="text-sm font-medium mt-2" style={{ color: N, lineHeight: 1.6 }}>{val}</p>
+              { title: "Deadline", desc: "A 2 week initial deadline for the first version." },
+              { title: "Lean team", desc: "One designer, one fullstack developer, and one QA." },
+              { title: "Marketing compliance", desc: "The activity could not work as marketing, so follow up emails could not link back to the game." },
+              { title: "Two modes", desc: "Self paced daily practice, and host controlled live tournaments." },
+            ].map(({ title, desc }) => (
+              <div key={title} className="p-6 bg-white rounded-xl border border-gray-200/80 shadow-xs space-y-3">
+                <h4 className="font-bold text-[#19244E] text-base">{title}</h4>
+                <p className="font-sans text-xs sm:text-sm text-gray-600 leading-relaxed">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <Hairline />
+
+        {/* 03 Key Decisions */}
+        <div>
+          <SectionTag id="decisions" num="03" label="Key Decisions: Scoring, Sign Up, and Filtering Revisions" />
+
+          <div className="space-y-6">
+            <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
+              <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 01 · One scoring logic for individuals and teams</span>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">The pressure:</strong> mySalam asked for individual and team modes, with up to 3 members per team and team average scores.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">What I did:</strong> I treated an individual as a team of 1, so one scoring logic covered both. I also built team registration with invite links, approvals, and team leaderboards, after studying similar mechanics in other games.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">Why it held:</strong> When mySalam later asked for individual mode only, scoring did not need to change, because individuals had been a team of 1 from the start.
+              </p>
+            </div>
+
+            <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
+              <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 02 · Email only sign up, with the reward after the game</span>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">The pressure:</strong> A long registration slowed player onboarding, and mySalam briefly asked for a username only.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">What I did:</strong> We pushed back, because sign up records each user's game history, which a username cannot do. The email only decision came from our CEO, PM, and mySalam, and I executed it in the UI. Since follow up emails could not link back to the game, an end of game popup offered a 1 month free ReSkills voucher.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">Why it held:</strong> The voucher kept conversion without breaking the marketing rule.
+              </p>
+            </div>
+
+            <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
+              <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 03 · Filter PM revisions, do not just execute them</span>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">The pressure:</strong> Many PM revisions were generated with AI tools, and not all of them made technical sense.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">What I did:</strong> On the result screen, the PM proposed personal score badges, answer distribution percentages, explanation boxes, and manual navigation buttons. I advised against all four: results were not personalized, distributions needed calculations not yet available, explanation boxes had been removed at client request, and manual navigation did not fit a host controlled flow.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">Why it held:</strong> Several of these fit the personalized daily practice mode, so the ideas were placed where they belong, not dismissed.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-6">
+            <CaseStudyDisclosure label="Trade-off I accepted" summary="Team registration that never ran live">
+              <p>
+                I built team registration, but mySalam later asked for individual mode only, so it was never deployed in live roadshows. The scoring still transitioned smoothly, because individuals had already been treated as a team of 1.
+              </p>
+            </CaseStudyDisclosure>
+          </div>
+        </div>
+
+        <Hairline />
+
+        {/* 04 Solution & Evidence */}
+        <div>
+          <SectionTag id="solution" num="04" label="Solution & Evidence: The Platform in the Field" />
+
+          <p className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C] mb-6" style={{ lineHeight: 1.8 }}>
+            Five screens from the platform. Click any screen to zoom in.
+          </p>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {[
+              { title: "01 · Player Lobby", img: mykawan1, desc: "Interactive welcome screen with Singlish persona mascot and game rule instructions." },
+              { title: "02 · Email Login & Registration", img: mykawan4, desc: "Instant entry verification for student participants before entering live queue." },
+              { title: "03 · Live Quiz Screen", img: mykawan2, desc: "Real time multiple choice question engine with instant squad leaderboard tracking." },
+              { title: "04 · Voucher & Reward Claim", img: mykawan3, desc: "Sponsor integration popup providing 1 Month Free Learning via ReSkills." },
+              { title: "05 · Live Tournament Leaderboard", img: mykawan5, desc: "Global and state level real time leaderboard processing live participant scores." },
+            ].map(({ title, img, desc }) => (
+              <div
+                key={title}
+                onClick={() => setActiveZoomImg({ title, img, desc })}
+                className="bg-white border border-gray-200 rounded-xl p-3 flex flex-col justify-between group hover:border-[#DB3E8C]/50 transition-all duration-300 cursor-pointer shadow-xs"
+              >
+                <div className="aspect-[4/3] rounded-lg overflow-hidden border border-gray-200 mb-3 relative">
+                  <img src={img} alt={title} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+                </div>
+                <div>
+                  <h4 className="font-sans text-xs font-bold text-[#19244E] mb-1 tracking-wide">{title}</h4>
+                  <p className="font-sans text-xs text-gray-600 leading-relaxed">{desc}</p>
+                </div>
               </div>
             ))}
           </div>
 
-          {/* UI Screen Showcase Gallery */}
-          <div className="mt-10 p-6 bg-[#0a0f24] rounded-2xl border border-white/10 shadow-2xl">
-            <div className="flex items-center justify-between mb-6">
-              <div>
-                <MonoTag accent>[MYSALAM × MYKAWAN UI GALLERY]</MonoTag>
-                <h3 className="font-display text-xl font-bold text-white mt-1">
-                  In House Roadshow Tournament Platform Flow
-                </h3>
+          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
+            <p>
+              The first rollout in May 2026 ran the playtest insights, team mode, and full registration live in the field for the first time.
+            </p>
+            <p>
+              Feedback from that rollout drove most of the later trade offs. The first scoring rule gave a flat +15 bonus for answers within 30 seconds, inspired by Kahoot. mySalam then raised concern about long onboarding, not scoring. We moved to 10 base points plus the remaining seconds at submission, and hid the timer while keeping the timing logic in the background.
+            </p>
+            <p>
+              We also trimmed the top leaderboard from 10 names to 5, because 10 rows forced scrolling on mobile, and removed the manual Submit button, a leftover from self paced practice.
+            </p>
+            <p>
+              The Jelajah BijakWang landing page came together under a rapid turnaround while my workload was heavy. I started from Figma Make, customized it with the BijakWang palette, and designed a brief transition screen for users entering from different entry points, since BijakWang runs on its own domain.
+            </p>
+          </div>
+        </div>
+
+        <Hairline />
+
+        {/* 05 Outcome & Reflection */}
+        <div>
+          <SectionTag id="outcome" num="05" label="Outcome & Reflection" />
+
+          <div className="space-y-6">
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
+                <span className="text-[10px] font-bold tracking-wider uppercase text-[#10B981] font-sans block">Shipped</span>
+                <h5 className="font-bold text-sm text-[#19244E]">First live roadshow</h5>
+                <p className="text-xs text-gray-600 leading-relaxed">Deployed in May 2026, with playtest insights, team mode, and registration.</p>
               </div>
-              <span className="font-sans text-xs text-white/50 tracking-widest uppercase hidden sm:inline">
-                5 High Fidelity Views
-              </span>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                { title: "01 · Player Lobby", img: mykawan1, desc: "Interactive welcome screen with Singlish persona mascot and game rule instructions." },
-                { title: "02 · Email Login & Registration", img: mykawan4, desc: "Instant entry verification for student participants before entering live queue." },
-                { title: "03 · Live Quiz Screen", img: mykawan2, desc: "Real time multiple choice question engine with instant squad leaderboard tracking." },
-                { title: "04 · Voucher & Reward Claim", img: mykawan3, desc: "Sponsor integration popup providing 1 Month Free Learning via ReSkills." },
-                { title: "05 · Live Tournament Leaderboard", img: mykawan5, desc: "Global and state level real time leaderboard processing live participant scores." },
-              ].map(({ title, img, desc }) => (
-                <div
-                  key={title}
-                  onClick={() => setActiveZoomImg({ title, img, desc })}
-                  className="bg-[#141b36] border border-white/10 rounded-xl p-3 flex flex-col justify-between group hover:border-[#DB3E8C]/50 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-2xl"
-                >
-                  <div className="aspect-[4/3] rounded-lg overflow-hidden border border-white/10 mb-3 bg-[#0d142d] p-1 relative">
-                    <img src={img} alt={title} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 rounded" />
-                    <div className="absolute top-2 right-2 bg-black/60 backdrop-blur-md px-2 py-1 rounded text-[9px] font-bold text-white uppercase tracking-wider flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                      Click to Zoom 🔍
-                    </div>
-                  </div>
-                  <div>
-                    <h4 className="font-sans text-xs font-bold text-white mb-1 tracking-wide">{title}</h4>
-                    <p className="font-sans text-xs text-white/60 leading-relaxed">{desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <Hairline />
-
-        {/* 02 Before the Build: Playtest, Then Pixels */}
-        <div>
-          <SectionTag id="playtest" num="02" label="Before the Build: Playtest, Then Pixels" />
-          
-          <p className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
-            The moment the brief asking for a Kahoot-like experience arrived, the developer and I sat down to play actual Kahoot games together before touching any design files. The developer needed to grasp the host side flow he would build directly, while I needed to understand the player side experience I would design. This session sparked one foundational decision that held through completion: Kahoot used geometric shapes for answer choices, forcing players to constantly glance back and forth between their phones and the big screen: a friction point I had experienced firsthand at other Kahoot events. We replaced shapes with full A, B, C, D text, keeping them consistent across both host and player screens.
-          </p>
-        </div>
-
-        <Hairline />
-
-        {/* 03 Building the Foundation */}
-        <div>
-          <SectionTag id="foundation" num="03" label="Building the Foundation" />
-
-          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
-            <p>
-              During the initial build phase, I designed a join flow using codes or QR scans along with a pre game lobby: retained directly from Kahoot observations. The requirement from mySalam was ambitious: support both individual and team modes (up to 3 members per team), with scores calculated as a team average. I proposed defining an individual as a team of 1 player rather than creating two separate categories: establishing a unified scoring logic for all cases. To support team mode, I built a complete registration system featuring invite links or codes, member request and approval flows, and dedicated team leaderboards after researching similar mechanics in other games.
-            </p>
-            <p>
-              Initial registration was comprehensive: collecting email, phone number, gender (to generate gender matched avatars), and password.
-            </p>
-          </div>
-        </div>
-
-        <Hairline />
-
-        {/* 04 First Rollout — May 2026 */}
-        <div>
-          <SectionTag id="rollout" num="04" label="First Rollout — May 2026" />
-
-          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
-            <p>
-              This version deployed at the first live roadshow. All foundational elements: playtest insights, team mode, and comprehensive registration: ran live in the field for the first time.
-            </p>
-          </div>
-        </div>
-
-        <Hairline />
-
-        {/* 05 After the First Roadshow: What the Field Taught Us */}
-        <div>
-          <SectionTag id="roadshow" num="05" label="After the First Roadshow: What the Field Taught Us" />
-
-          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
-            <p>
-              Feedback from the initial rollout triggered nearly all subsequent major trade offs.
-            </p>
-            <p>
-              mySalam requested simplifying team mode to individual mode only, without providing detailed context to the design team. Although the team registration feature was built, it was never deployed in live roadshows: yet the transition was smooth from a scoring perspective because individuals were treated as a team of 1 player from day one.
-            </p>
-            <p>
-              Registration was simplified incrementally: from email plus phone plus gender plus password, mySalam briefly requested username only to reduce friction. The developer and I pushed back: the primary sign up purpose was recording historical game performance per user, something nearly impossible to track with just a username. The final email only decision emerged from discussions among our CEO, PM, and mySalam, which I executed in the UI. An additional constraint: the activity could not serve as a marketing effort, so follow up emails for profile completion could not contain direct links back to the game. Our solution: an end of game popup offering a 1 month free ReSkills class voucher to maintain real user conversion.
-            </p>
-            <p>
-              The scoring system evolved as well. The initial rule: a flat +15 bonus for answering within 30 seconds: was established by the developer and myself, inspired by Kahoot. After the first rollout, mySalam expressed concern over long player onboarding times caused by the initial lengthy registration form rather than scoring itself. They updated the scoring logic to a proportional model: 10 base points plus a bonus equal to remaining seconds upon submission: and requested hiding the timer from the UI while keeping the timing logic running in the background.
-            </p>
-            <p>
-              Further UI adjustments followed: trimming the top leaderboard from 10 names to 5 (my proposal, as 10 rows forced mobile scrolling), and removing the manual Submit button: a legacy from self paced practice that created unnecessary friction during live tournaments.
-            </p>
-          </div>
-        </div>
-
-        <Hairline />
-
-        {/* 06 Filtering the Feedback, Trimming the Friction */}
-        <div>
-          <SectionTag id="feedback" num="06" label="Filtering the Feedback, Trimming the Friction" />
-
-          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
-            <p>
-              A major part of my role during this iteration phase was filtering revision requests from the PM: often generated via AI tools: ensuring we executed only what made technical sense. A prime example occurred with result screen revisions: the PM proposed adding personal score badges, answer distribution percentages, explanation boxes, and manual navigation buttons. I advised against all four for distinct reasons: tournament result screens were not personalized, distribution percentages required extra calculation configs not yet available, explanation boxes had been previously removed per client request, and manual navigation buttons were irrelevant since tournament flow was host controlled. Interestingly, I noted these features were well suited for the personalized Daily Practice mode.
-            </p>
-            <p>
-              For visual assets, I coordinated directly with our graphic designer based on PM briefs. For AI tools, I used Gemini as a validator at two touchpoints: validating my drafted scoring calculations, and drafting platform copy in Bahasa Malaysia. Because our team was unfamiliar with local linguistic nuances, nearly every line received revisions from the Malaysian team: simple words like "team" became "pasukan", and "success" became "berjaya".
-            </p>
-          </div>
-        </div>
-
-        <Hairline />
-
-        {/* 07 Shipping Under Pressure */}
-        <div>
-          <SectionTag id="pressure" num="07" label="Shipping Under Pressure" />
-
-          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
-            <p>
-              The Jelajah BijakWang landing page emerged under far from ideal conditions: the client requested a rapid turnaround while my workload was heavy. I used Figma Make as a starting point, then customized it with the BijakWang color palette. Because BijakWang operates on a standalone domain separate from the main myKawan website, I also designed a brief transition loading screen for users entering via different entry points.
-            </p>
-          </div>
-        </div>
-
-        <Hairline />
-
-        {/* 08 Closing & Key Impact */}
-        <div>
-          <SectionTag id="impact" num="08" label="Closing & Key Impact" />
-          <div className="p-8 bg-[#111836] rounded-2xl border border-white/10 text-white space-y-6 shadow-2xl">
-            <div className="flex items-center gap-2">
-              <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase text-[#22c55e]">
-                SYSTEM OUTCOME & PRODUCT VALIDATION
-              </span>
-            </div>
-            
-            <p className="font-sans text-sm sm:text-base text-white/90 leading-relaxed max-w-3xl">
-              This platform has evolved continuously since its initial rollout, with every iteration across registration, scoring, and UI driven by real field feedback rather than design assumptions.
-            </p>
-
-            {/* WHAT I LEARNED Box */}
-            <div className="p-6 rounded-xl bg-white/5 border border-white/10 text-white space-y-2 mt-6">
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
-                  WHAT I LEARNED
-                </span>
+              <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
+                <span className="text-[10px] font-bold tracking-wider uppercase text-[#DB3E8C] font-sans block">Refined</span>
+                <h5 className="font-bold text-sm text-[#19244E]">Registration, scoring, and UI</h5>
+                <p className="text-xs text-gray-600 leading-relaxed">Each change came from field feedback rather than design assumptions.</p>
               </div>
-              <p className="text-xs sm:text-sm font-sans leading-relaxed text-white/90 italic" style={{ lineHeight: 1.8 }}>
+              <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
+                <span className="text-[10px] font-bold tracking-wider uppercase text-[#3B82F6] font-sans block">Not measured here</span>
+                <h5 className="font-bold text-sm text-[#19244E]">Engagement and conversion</h5>
+                <p className="text-xs text-gray-600 leading-relaxed">This case does not include usage numbers.</p>
+              </div>
+            </div>
+
+            <div className="p-6 bg-white rounded-xl border border-gray-200 space-y-2">
+              <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#19244E]">WHAT I LEARNED</span>
+              <p className="text-xs sm:text-sm font-sans leading-relaxed text-[#2E3A5C] italic" style={{ lineHeight: 1.8 }}>
                 "This project taught me that a lean team means every revision request has to be filtered, not just executed. Playing the actual competitor product before designing anything, and pushing back on requests that did not hold up technically, mattered more here than producing more screens faster."
               </p>
             </div>

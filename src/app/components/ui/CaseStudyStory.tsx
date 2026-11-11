@@ -6,25 +6,16 @@ interface CaseStudyFact {
   tone?: "default" | "verified" | "muted"
 }
 
-const FACT_TONE: Record<NonNullable<CaseStudyFact["tone"]>, { card: string; label: string }> = {
-  default: { card: "border-gray-200 bg-white", label: "text-[#DB3E8C]" },
-  verified: { card: "border-emerald-300/60 bg-emerald-50/40", label: "text-emerald-700" },
-  muted: { card: "border-gray-200 bg-gray-50", label: "text-gray-500" },
-}
-
-// Separates who did what, what the project covered, and what is verified.
+// The facts read as a short list under the description, not as boxes.
 export function CaseStudyFacts({ facts }: { facts: CaseStudyFact[] }) {
   return (
-    <div className="grid sm:grid-cols-2 gap-3">
-      {facts.map(({ label, value, tone = "default" }) => (
-        <div key={label} className={`p-4 rounded-xl border space-y-1.5 ${FACT_TONE[tone].card}`}>
-          <span className={`block font-sans text-[10px] font-bold tracking-[0.15em] uppercase ${FACT_TONE[tone].label}`}>
-            {label}
-          </span>
-          <p className="font-sans text-xs sm:text-sm leading-relaxed text-[#19244E]">{value}</p>
-        </div>
+    <ul className="list-disc pl-5 space-y-2 font-sans text-sm leading-relaxed text-[#2E3A5C]">
+      {facts.map(({ label, value }) => (
+        <li key={label}>
+          <span className="font-semibold text-[#19244E]">{label}:</span> {value}
+        </li>
       ))}
-    </div>
+    </ul>
   )
 }
 

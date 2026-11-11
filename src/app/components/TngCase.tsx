@@ -262,43 +262,43 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
       <div className="px-8 lg:px-16 pt-16 pb-14" style={{ backgroundColor: W, borderBottom: `1px solid ${HAIR}` }}>
-        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-center">
-          <div className="space-y-6">
-            <div className="flex flex-wrap items-center gap-3">
-              <MonoTag accent>CASE STUDY 02</MonoTag>
-              <span style={{ color: HAIR }}>/</span>
-              <MonoTag>FINTECH & EMBEDDED MICRO INSURANCE</MonoTag>
-              <span style={{ color: HAIR }}>/</span>
-              <MonoTag>TOUCH 'N GO × GEGM · 2025</MonoTag>
-            </div>
+        <div className="space-y-6 mb-10 lg:mb-12">
+          <div className="flex flex-wrap items-center gap-3">
+            <MonoTag accent>CASE STUDY 02</MonoTag>
+            <span style={{ color: HAIR }}>/</span>
+            <MonoTag>FINTECH & EMBEDDED MICRO INSURANCE</MonoTag>
+            <span style={{ color: HAIR }}>/</span>
+            <MonoTag>TOUCH 'N GO × GEGM · 2025</MonoTag>
+          </div>
+          <h1
+            className="font-display font-bold leading-[1.08] tracking-tight"
+            style={{ fontSize: "clamp(2.2rem, 4vw, 3.6rem)", color: N }}
+          >
+            Seamless Micro Insurance & Government Subsidy Integration
+          </h1>
+        </div>
 
-            <h1
-              className="font-display font-bold leading-[1.08] tracking-tight"
-              style={{ fontSize: "clamp(2.2rem, 4vw, 3.6rem)", color: N }}
-            >
-              Seamless Micro Insurance & Government Subsidy Integration
-            </h1>
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-start">
+          <div className="space-y-6">
+
 
             <p
-              className="font-display font-light leading-relaxed"
+              className="font-display font-medium leading-relaxed"
               style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
             >
               Great Tenang Madani, embedded in the Touch 'n Go eWallet, where a government subsidy's eligibility decides the premium a user pays.
             </p>
 
-            <p className="text-sm sm:text-base leading-relaxed" style={{ color: BODY, lineHeight: 1.8 }}>
-              I was the sole product designer on a 3 month deadline. The design went through five versions before the final release, and each version shows what changed and why.
-            </p>
 
             <CaseStudyFacts
               facts={[
                 {
                   label: "My contribution",
-                  value: "Sole UI/UX designer: user flows, data mapping, UI specs, and developer handoff. I built a mirrored TNG UI kit so design could start before official assets arrived.",
+                  value: "Sole UI/UX designer: user flows, data mapping, UI specs, and developer handoff.",
                 },
                 {
                   label: "Team & scope",
-                  value: "Touch 'n Go and GEGM product and design teams, plus our engineering team. Scope: embedded PWA checkout, SSO and eKYC pre-fill, and Perlindungan Tenang Voucher (PTV) verification.",
+                  value: "Touch 'n Go and GEGM teams, plus our engineers. Embedded PWA checkout with PTV verification.",
                 },
                 {
                   label: "Verified impact",
@@ -307,7 +307,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
                 },
                 {
                   label: "Not measured here",
-                  value: "Adoption and conversion figures. The monthly plan share in Section 03 is client data, not my own measurement.",
+                  value: "Adoption and conversion. The monthly plan share is client data.",
                   tone: "muted",
                 },
               ]}
@@ -328,32 +328,32 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
       </div>
 
       {/* 30 SECOND TAKEAWAYS: the five-stage story at a glance */}
-      <div className="px-8 lg:px-16 py-8 bg-[#111836] border-t border-b border-white/10">
+      <div className="px-8 lg:px-16 py-8 bg-[#F9FAFB] border-t border-b border-[#19244E]/10">
         <div className="flex items-center gap-2 mb-4">
-          <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+          <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase text-[#19244E]/60">
             30 SECOND TAKEAWAYS
           </span>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 text-xs sm:text-sm font-sans">
-          <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">01 · Context</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-white/85">A micro insurance checkout inside Malaysia's leading eWallet, with over 20 million users in the ecosystem.</p>
+          <div className="p-4 border-l border-[#19244E]/15">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">01 · Context</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">A micro insurance checkout inside Malaysia's leading eWallet, with over 20 million users.</p>
           </div>
-          <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">02 · Constraints</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-white/85">A 3 month deadline, eWallet webview rules, PTV voucher checks, and NRIC matching to stop purchases on behalf of others.</p>
+          <div className="p-4 border-l border-[#19244E]/15">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">02 · Constraints</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">A 3 month deadline, webview rules, PTV checks, and NRIC matching.</p>
           </div>
-          <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">03 · Key Decisions</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-white/85">Building from the account instead of the NRIC form, two pricing options instead of many, explicit health declarations, and the native X to close the flow.</p>
+          <div className="p-4 border-l border-[#19244E]/15">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">03 · Key Decisions</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">Build from the account, explicit health declarations, two pricing options, and the native X.</p>
           </div>
-          <div className="bg-[#DB3E8C]/10 p-4 rounded-lg border border-[#DB3E8C]/30">
-            <span className="block text-xs font-bold tracking-widest text-[#DB3E8C] uppercase mb-1.5">04 · Solution & Evidence</span>
-            <p className="text-xs sm:text-sm font-semibold text-white leading-relaxed">An embedded PWA with SSO and eKYC pre-fill. Eligible PTV users see a RM 0 premium; others pay through eWallet debit.</p>
+          <div className="p-4 border-l border-[#19244E]/15">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">04 · Solution & Evidence</span>
+            <p className="text-xs sm:text-sm font-semibold text-[#19244E] leading-relaxed">An embedded PWA with SSO and eKYC pre-fill. Eligible PTV users pay RM 0.</p>
           </div>
-          <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">05 · Outcome</span>
-            <p className="text-xs sm:text-sm font-semibold text-white leading-relaxed">V5 released to production in 2025. By V5, the TNG team reviewed copy instead of requesting layout changes.</p>
+          <div className="p-4 border-l border-[#19244E]/15">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">05 · Outcome</span>
+            <p className="text-xs sm:text-sm font-semibold text-[#19244E] leading-relaxed">V5 released to production in 2025, after five iterations.</p>
           </div>
         </div>
       </div>

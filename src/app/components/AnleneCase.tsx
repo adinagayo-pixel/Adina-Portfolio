@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { CaseStudyHeaderBadge } from "@/app/components/ui/CaseStudyHeaderBadge"
+import { CaseStudyDisclosure, CaseStudyFacts } from "@/app/components/ui/CaseStudyStory"
 
 import {
   ArrowLeft, ChevronRight, FileText, Smartphone, Home,
@@ -63,20 +64,16 @@ interface Props {
 }
 
 const QUICK_SECTIONS = [
-  { id: "summary", num: "01", label: "Executive Overview" },
-  { id: "challenge", num: "02", label: "The Strategic Challenge" },
-  { id: "research", num: "03", label: "Research Under Constraint" },
-  { id: "logic", num: "04", label: "Decision Logic" },
-  { id: "flow", num: "05", label: "Full Flow" },
-  { id: "evolution", num: "06", label: "Design Evolution" },
-  { id: "process", num: "07", label: "Design Process" },
-  { id: "deliverables", num: "08", label: "Deliverables" },
-  { id: "impact", num: "09", label: 'Key Impact & "So What"' },
+  { id: "context", num: "01", label: "Context" },
+  { id: "constraints", num: "02", label: "Constraints" },
+  { id: "decisions", num: "03", label: "Key Decisions" },
+  { id: "solution", num: "04", label: "Solution & Evidence" },
+  { id: "outcome", num: "05", label: "Outcome & Reflection" },
 ]
 
 export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
   const [scrolled, setScrolled] = useState(false)
-  const [activeQuickId, setActiveQuickId] = useState<string>("summary")
+  const [activeQuickId, setActiveQuickId] = useState<string>("context")
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
@@ -200,29 +197,41 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
       <div className="px-8 lg:px-16 pt-16 pb-14" style={{ backgroundColor: W, borderBottom: `1px solid ${HAIR}` }}>
-        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-center">
-          <div className="space-y-6">
-            <div className="flex flex-wrap items-center gap-3">
-              <MonoTag accent>CASE STUDY 07</MonoTag>
-              <span style={{ color: HAIR }}>/</span>
-              <MonoTag>DIGITAL HEALTH CHECK PLATFORM</MonoTag>
-              <span style={{ color: HAIR }}>/</span>
-              <MonoTag>FONTERRA × ANLENE INDONESIA · 2023–2024</MonoTag>
-            </div>
+        <div className="space-y-6 mb-10 lg:mb-12">
+          <div className="flex flex-wrap items-center gap-3">
+            <MonoTag accent>CASE STUDY 07</MonoTag>
+            <span style={{ color: HAIR }}>/</span>
+            <MonoTag>DIGITAL HEALTH CHECK PLATFORM</MonoTag>
+            <span style={{ color: HAIR }}>/</span>
+            <MonoTag>FONTERRA × ANLENE INDONESIA · 2023–2024</MonoTag>
+          </div>
+          <h1
+            className="font-display font-bold leading-[1.08] tracking-tight"
+            style={{ fontSize: "clamp(2.2rem, 4vw, 3.6rem)", color: N }}
+          >
+            Turning a Bone Density Scanner Into a Personalized Health Report
+          </h1>
+        </div>
 
-            <h1
-              className="font-display font-bold leading-[1.08] tracking-tight"
-              style={{ fontSize: "clamp(2.2rem, 4vw, 3.6rem)", color: N }}
-            >
-              Turning a Bone Density Scanner Into a Personalized Health Report
-            </h1>
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-start">
+          <div className="space-y-6">
+
 
             <p
-              className="font-display font-light leading-relaxed"
+              className="font-display font-medium leading-relaxed"
               style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
             >
               Redesigning Anlene's field health check experience end to end, from decision logic to PDF report, after the client identified their existing tool as too generic and lacking real insight.
             </p>
+
+            <CaseStudyFacts
+              facts={[
+                { label: "My contribution", value: "Sole product designer, working with a nutritionist on health content." },
+                { label: "Team & scope", value: "Fonterra Indonesia for the Anlene brand. A field health check app for in-booth activations." },
+                { label: "Verified impact", value: "The client returned for a second phase, over a year later." },
+                { label: "Not measured here", value: "Activation, attendance, and sales numbers." },
+              ]}
+            />
           </div>
 
           {/* Right Column: Hero Image */}
@@ -238,29 +247,33 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
         </div>
       </div>
 
-      {/* EXECUTIVE SUMMARY & 30 SECOND TAKEAWAYS */}
-      <div className="px-8 lg:px-16 py-8 bg-[#111836] border-t border-b border-white/10">
+      {/* 30 SECOND TAKEAWAYS: the five-stage story at a glance */}
+      <div className="px-4 sm:px-8 lg:px-16 py-8 bg-[#F9FAFB] border-t border-b border-[#19244E]/10">
         <div className="flex items-center gap-2 mb-4">
-          <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
-            EXECUTIVE SUMMARY & 30 SECOND TAKEAWAYS
+          <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase text-[#19244E]/60">
+            30 SECOND TAKEAWAYS
           </span>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-xs sm:text-sm font-sans">
-          <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">01 · Problem</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-white/85">Anlene's field health check app only surfaced a few data points, gave generic results, and lacked any real breakdown connecting metrics to recommendations.</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 text-xs sm:text-sm font-sans">
+          <div className="p-4 border-l border-[#19244E]/15">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">01 · Context</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">Sales promoters run health check activations for Anlene, from a scan to a personalized result.</p>
           </div>
-          <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">02 · Core Constraints</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-white/85">No direct field access for research, no hardware to app integration for the two scanners, no system to auto generate result reports.</p>
+          <div className="p-4 border-l border-[#19244E]/15">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">02 · Constraints</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">No field access, no hardware link, and no auto generated reports.</p>
           </div>
-          <div className="bg-[#DB3E8C]/10 p-4 rounded-lg border border-[#DB3E8C]/30">
-            <span className="block text-xs font-bold tracking-widest text-[#DB3E8C] uppercase mb-1.5">03 · Exact Ownership</span>
-            <p className="text-xs sm:text-sm font-semibold text-white leading-relaxed">Sole Designer: built the full decision tree logic across five health metrics, designed every result combination report manually, and translated a later brand refresh into Figma.</p>
+          <div className="p-4 border-l border-[#19244E]/15">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">03 · Key Decisions</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">Two journey maps, a decision tree before any screen, and hand built reports.</p>
           </div>
-          <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">04 · Key Impact</span>
-            <p className="text-xs sm:text-sm font-semibold text-white leading-relaxed">Directly resolved all three complaints the client raised about the prior tool, and the engagement returned for a second phase over a year later.</p>
+          <div className="p-4 border-l border-[#19244E]/15">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">04 · Solution & Evidence</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">A health check flow from manual scan entry to a personalized WhatsApp report.</p>
+          </div>
+          <div className="p-4 border-l border-[#19244E]/15">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">05 · Outcome</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">Addressed all three client complaints, and the client returned for a second phase.</p>
           </div>
         </div>
       </div>
@@ -305,99 +318,33 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
           {/* Right Column: Case Study Main Content Sections */}
           <div className="space-y-16 lg:space-y-20 min-w-0">
 
-        {/* SECTION 01 · Executive Summary */}
+        {/* 01 Context */}
         <div>
-          <SectionTag id="summary" num="01" label="Executive Summary" />
-          <div className="grid lg:grid-cols-2 gap-4">
-            {[
-              { label: "Client & Market", val: "Fonterra Indonesia, for the Anlene brand" },
-              { label: "Role & Ownership", val: "Sole Product Designer, working closely with a nutritionist on health content" },
-              { label: "Core Problem", val: "Anlene's existing health check app only surfaced a few data points from the Omron scan, gave overly general results, and lacked any real breakdown of what those results meant for the person standing in front of it" },
-              { label: "Core Stack", val: "Figma, manual PDF report design (no auto-generation), field documentation research via Instagram and YouTube" },
-            ].map(({ label, val }) => (
-              <div key={label} className="px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
-                <MonoTag>[{label}]</MonoTag>
-                <p className="text-sm font-medium mt-2" style={{ color: N, lineHeight: 1.6 }}>{val}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* UI Screen Showcase Gallery */}
-          <div className="mt-8 p-6 bg-[#0a0f24] rounded-2xl border border-white/10 shadow-2xl col-span-1 lg:col-span-2">
-            <div className="flex items-center justify-between mb-6">
-              <div>
-                <MonoTag accent>[FONTERRA × ANLENE UI GALLERY]</MonoTag>
-                <h3 className="font-display text-xl font-bold text-white mt-1">
-                  Medical Diagnostics & Field Sales Flow
-                </h3>
-              </div>
-              <span className="font-sans text-[10px] text-white/50 tracking-widest uppercase hidden sm:inline">
-                6 High-Fidelity Views
-              </span>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                { title: "01 · Health Passport Main UI", img: anleneThumb, desc: "Personalized consumer health passport displaying body age, bone density T-score, and muscle metrics." },
-                { title: "02 · Diagnostic Matrix View", img: anleneThumb2, desc: "4-tier color-coded health diagnostic ranges for fast SPG consultation." },
-                { title: "03 · Bone Scanner Output", img: anleneThumb3, desc: "GE Achilles ultrasound device integration and automated bone density status calculation." },
-                { title: "04 · Field Intake System", img: anleneThumb4, desc: "Fast-entry offline form for SPG event reps with zero data loss protection." },
-                { title: "05 · Checkout & Redemption", img: anleneThumb5, desc: "In-booth product purchase completion and automated WhatsApp PDF dispatch." },
-                { title: "06 · Reports & Analytics", img: anleneThumb6, desc: "Nationwide activation analytics tracking daily attendee intake per city." },
-              ].map(({ title, img, desc }) => (
-                <div key={title} className="bg-[#141b36] border border-white/10 rounded-xl p-3 flex flex-col justify-between group hover:border-[#DB3E8C]/50 transition-all duration-300">
-                  <div className="aspect-[16/10] rounded-lg overflow-hidden border border-white/10 mb-3 bg-[#0d142d]">
-                    <img src={img} alt={title} className="w-full h-full object-cover object-top rounded group-hover:scale-105 transition-transform duration-500" />
-                  </div>
-                  <div>
-                    <h4 className="font-sans text-xs font-bold text-white mb-1 tracking-wide">{title}</h4>
-                    <p className="font-sans text-[10px] text-white/60 leading-relaxed">{desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+          <SectionTag id="context" num="01" label="Context: Health Checks Run by Sales Promoters" />
+          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
+            <p>
+              Anlene runs in-person health check activations. A sales promoter walks a customer through a bone density scan (Achilles) and a body composition scan (Omron), then delivers a personalized result.
+            </p>
+            <p>
+              The client had already identified three gaps in the existing app: it showed only a handful of the Omron metrics, its results felt generic, and nothing connected each metric to a recommendation.
+            </p>
           </div>
         </div>
 
         <Hairline />
 
-        {/* SECTION 02 · The Strategic Challenge */}
+        {/* 02 Constraints */}
         <div>
-          <SectionTag id="challenge" num="02" label="The Strategic Challenge" />
-          <p className="font-display font-light leading-relaxed mb-8" style={{ fontSize: "clamp(1.05rem, 1.6vw, 1.3rem)", color: N, letterSpacing: "-0.005em", lineHeight: 1.65 }}>
-            Anlene runs in-person health check activations where an SPG (Sales Promotion Girl) walks a customer through a bone density scan (Achilles) and a body composition scan (Omron), then delivers a personalized result. The existing app fell short in three specific ways the client had already identified: it only displayed a handful of the available Omron metrics, the results felt generic rather than personal, and there was no clear breakdown connecting each metric to an actual recommendation.
-          </p>
-
-          <p className="font-sans text-[9px] font-semibold tracking-widest uppercase mb-5" style={{ color: `${N}99` }}>
-            [Key Constraints]
-          </p>
-
-          <div className="space-y-4">
+          <SectionTag id="constraints" num="02" label="Constraints: No Field Access, No Hardware Link, No Reports" />
+          <div className="grid md:grid-cols-3 gap-4">
             {[
-              {
-                Icon: Search,
-                title: "No Direct Field Access",
-                desc: "Research had to happen without being on-site with an SPG. That gap was filled by combing through Anlene's own Instagram documentation of past \"Health Checking Day\" events and YouTube tutorials on how to operate the Achilles and Omron devices, to understand the real physical flow before designing around it.",
-              },
-              {
-                Icon: Smartphone,
-                title: "No Hardware Integration",
-                desc: "Neither the Achilles scanner nor the Omron device connects to the app directly. Every result gets typed in manually by an admin, meaning the interface had to be fast and error-resistant for manual data entry under time pressure, not just visually polished.",
-              },
-              {
-                Icon: FileText,
-                title: "No Auto-Generated Reports",
-                desc: "There was no system to automatically assemble a PDF based on a customer's result combination. Every meaningful combination of BMI, Body Fat, Visceral Fat, Skeletal Muscle, and T-Score categories needed its own manually designed report, closely following the color logic (green/yellow/red) of the underlying decision tree.",
-              },
-            ].map(({ Icon, title, desc }) => (
-              <div key={title} className="flex gap-5 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
-                <div className="w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5" style={{ border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
-                  <Icon size={14} style={{ color: C }} />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold mb-1" style={{ color: N }}>{title}</p>
-                  <p className="text-sm leading-relaxed" style={{ color: BODY, lineHeight: 1.75 }}>{desc}</p>
-                </div>
+              { title: "No direct field access", desc: "Research had to happen without being on site. I used Anlene's own Instagram coverage of past Health Checking Day events, and YouTube guides for the Achilles and Omron devices." },
+              { title: "No hardware integration", desc: "Neither device connects to the app. Every result is typed in manually by an admin, so the interface had to be fast and error resistant under time pressure." },
+              { title: "No auto generated reports", desc: "Nothing assembled a PDF from a customer's result combination. Each meaningful combination needed its own layout, following the green, yellow, and red logic." },
+            ].map(({ title, desc }) => (
+              <div key={title} className="p-6 bg-white rounded-xl border border-gray-200/80 shadow-xs space-y-3">
+                <h4 className="font-bold text-[#19244E] text-base">{title}</h4>
+                <p className="font-sans text-xs sm:text-sm text-gray-600 leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
@@ -405,271 +352,136 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
 
         <Hairline />
 
-        {/* SECTION 03 · Research Under Constraint */}
+        {/* 03 Key Decisions */}
         <div>
-          <SectionTag id="research" num="03" label="Research Under Constraint" />
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="px-6 py-6" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
-              <div className="flex items-center gap-2 mb-3">
-                <GitBranch size={16} style={{ color: C }} />
-                <h3 className="font-sans text-base font-bold" style={{ color: N }}>Mapping Two Journeys, Not One</h3>
-              </div>
-              <p className="text-sm leading-relaxed" style={{ color: BODY, lineHeight: 1.75 }}>
-                Rather than a single generic user flow, two separate customer journey maps were built in FigJam: one for the customer going through the health check, and one for the SPG administering it. Each mapped Actions, Devices used, Questions the person likely had, Sentiment, and Opportunities, surfacing friction points like "why do I need to give my phone number again" or "how long will this result stay accessible."
-              </p>
-            </div>
+          <SectionTag id="decisions" num="03" label="Key Decisions: Two Journeys, One Decision Tree, Hand Built Reports" />
 
-            <div className="px-6 py-6" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
-              <div className="flex items-center gap-2 mb-3">
-                <Search size={16} style={{ color: C }} />
-                <h3 className="font-sans text-base font-bold" style={{ color: N }}>Learning the Devices Secondhand</h3>
-              </div>
-              <p className="text-sm leading-relaxed" style={{ color: BODY, lineHeight: 1.75 }}>
-                With no access to an actual activation event, the physical process of using the Achilles scanner and Omron device was pieced together from GE's own product documentation, YouTube walkthroughs, and screenshots of Anlene's real event coverage on Instagram, close enough to see the tablet-and-scanner setup SPGs were actually working with in the field.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <Hairline />
-
-        {/* SECTION 04 · Building the Decision Logic */}
-        <div>
-          <SectionTag id="logic" num="04" label="Building the Decision Logic" />
           <div className="space-y-6">
-            <p className="text-sm sm:text-base leading-relaxed" style={{ color: BODY, lineHeight: 1.8 }}>
-              Before any report screen could be designed, every possible result needed a clear category. A decision tree was built covering five metrics, BMI, Body Fat, Visceral Fat, Skeletal Muscle, and T-Score, each split by gender, with defined numeric ranges mapped to Low, Normal, High, and Very High classifications (color-coded blue, green, yellow, red).
-            </p>
-            <p className="text-sm sm:text-base leading-relaxed" style={{ color: BODY, lineHeight: 1.8 }}>
-              This tree became the backbone for every downstream design decision: which color a result card should be, which recommendation block it should trigger, and which combination needed its own manually designed PDF page. It also gave the development team and the client something concrete to review and approve against, rather than an abstract description of "how results should look."
-            </p>
+            <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
+              <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 01 · Map two journeys, not one</span>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">The pressure:</strong> Without field access, research had to rely on secondhand material.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">What I did:</strong> I built two FigJam journey maps, one for the customer and one for the SPG. Each covered actions, devices, questions, sentiment, and opportunities.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">Why it held:</strong> The maps surfaced friction such as being asked for a phone number again, and how long a result stays accessible.
+              </p>
+            </div>
 
-            {/* 4-Tier Color Matrix Visual */}
-            <div style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px", overflow: "hidden" }} className="mt-6">
-              <div className="px-6 py-4" style={{ borderBottom: `1px solid ${HAIR}` }}>
-                <MonoTag>[DECISION SYSTEM: 4-TIER COLOR MATRIX THRESHOLDS]</MonoTag>
-              </div>
-              <div className="grid grid-cols-2 lg:grid-cols-4">
-                {[
-                  { tier: TIER_BLUE,   label: "Low / Below Average", examples: "T-Score < −2.5 (Osteoporosis)\nBMI < 18.5 (Underweight)", code: "BLUE" },
-                  { tier: TIER_GREEN,  label: "Normal / Ideal State", examples: "T-Score −1.0 to 0\nBMI 18.5–24.9 (Normal)", code: "GREEN" },
-                  { tier: TIER_YELLOW, label: "High / Moderate Risk", examples: "Visceral Fat 10–14\nBody Fat % Above Normal", code: "YELLOW" },
-                  { tier: TIER_RED,    label: "Very High / High Risk", examples: "T-Score < −2.5 + fracture\nVisceral Fat 15+ (Obese)", code: "RED" },
-                ].map(({ tier, label, examples, code }, i) => (
-                  <div
-                    key={code}
-                    className="px-5 py-5"
-                    style={{
-                      backgroundColor: tier.bg,
-                      borderRight: i < 3 ? `1px solid ${HAIR}` : "none",
-                    }}
-                  >
-                    <div className="flex items-center gap-2 mb-3">
-                      <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: tier.dot }} />
-                      <span className="font-sans text-[9px] font-semibold tracking-widest" style={{ color: tier.text }}>
-                        [{code}]
-                      </span>
-                    </div>
-                    <p className="text-xs font-semibold mb-2" style={{ color: tier.text }}>{label}</p>
-                    <p className="font-sans text-xs leading-relaxed whitespace-pre-line" style={{ color: tier.text, opacity: 0.75 }}>
-                      {examples}
-                    </p>
-                  </div>
-                ))}
-              </div>
+            <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
+              <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 02 · A decision tree before any screen</span>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">The pressure:</strong> Every result needed a clear category, and the client's complaints were about generic results.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">What I did:</strong> I built a decision tree for five metrics (BMI, body fat, visceral fat, skeletal muscle, and T-score), split by gender, with Low, Normal, High, and Very High tiers.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">Why it held:</strong> It set the colors, the recommendations, and which combinations needed their own report. It also gave the client something concrete to approve.
+              </p>
+            </div>
+
+            <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
+              <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 03 · Hand build every report combination</span>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">The pressure:</strong> No system could generate PDFs, so every meaningful combination needed its own layout.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">What I did:</strong> I designed each result combination report in Figma, all following the same grammar: score, ideal range, and recommendation.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">Why it held:</strong> Results stayed consistent, even though every page was built by hand.
+              </p>
             </div>
           </div>
-        </div>
 
-        <Hairline />
-
-        {/* SECTION 05 · From Scan to Report — The Full Flow */}
-        <div>
-          <SectionTag id="flow" num="05" label="From Scan to Report — The Full Flow" />
-          <div className="grid md:grid-cols-2 gap-6">
-            {[
-              {
-                num: "01",
-                title: "Manual, Not Automated, by Design Necessity",
-                desc: "An SPG scans the customer on the Achilles and Omron devices, then manually enters both results into the app. There's no Bluetooth or API bridge between the hardware and the software, so every screen from data entry to final result had to be designed around the reality of a person typing numbers off a scanner display under event-floor time pressure.",
-              },
-              {
-                num: "02",
-                title: "OTP Verification via WhatsApp",
-                desc: "Customers verify their identity through an OTP sent to WhatsApp, a requirement set from the beginning of the project rather than a decision made during design.",
-              },
-              {
-                num: "03",
-                title: "One Report, Many Combinations",
-                desc: "Because there was no system to auto-generate PDFs, every meaningful combination coming out of the decision tree, normal across the board, overweight with low muscle, underweight with very high visceral fat, and others, was designed as its own report layout, each following the same visual grammar (score, ideal range, recommendation) so results stayed consistent even though every page was built by hand.",
-              },
-              {
-                num: "04",
-                title: "Result Delivery",
-                desc: "Once verified, the customer's personalized results, along with tailored nutrition and lifestyle tips based on their age and gender, and a relevant Anlene product recommendation, are shared back through WhatsApp.",
-              },
-            ].map(({ num, title, desc }) => (
-              <div key={num} className="px-6 py-6" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="font-mono text-xs font-bold text-[#DB3E8C] px-2 py-0.5 rounded bg-[#DB3E8C]/10">{num}</span>
-                  <h3 className="font-sans text-base font-bold" style={{ color: N }}>{title}</h3>
-                </div>
-                <p className="text-sm leading-relaxed" style={{ color: BODY, lineHeight: 1.75 }}>{desc}</p>
-              </div>
-            ))}
+          <div className="mt-6">
+            <CaseStudyDisclosure label="Trade-off I accepted" summary="Slower than auto generation, but approvable">
+              <p>
+                Designing each report by hand took longer than auto generation would have. It also gave the client and developers a concrete, approvable reference for every scenario.
+              </p>
+            </CaseStudyDisclosure>
           </div>
         </div>
 
         <Hairline />
 
-        {/* SECTION 06 · Design Evolution — Aug 2023 to Nov 2024 */}
+        {/* 04 Solution & Evidence */}
         <div>
-          <SectionTag id="evolution" num="06" label="Design Evolution — Aug 2023 to Nov 2024" />
-          <div className="p-8" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
-            <div className="flex items-center gap-2 mb-4">
-              <MonoTag accent>[REBRANDING & BRAND-ALIGNED HANDOFF]</MonoTag>
-            </div>
-            <h3 className="font-display text-xl font-bold mb-4" style={{ color: N }}>
-              Implementing a Brand-Aligned Handoff
-            </h3>
-            <p className="text-sm sm:text-base leading-relaxed" style={{ color: BODY, lineHeight: 1.8 }}>
-              The core work, solving the client's three original complaints, building the decision tree, and designing every result-combination report, happened across Aug–Oct 2024. In November, still within the same engagement, Anlene's branding team provided a new visual direction to align with their internal branding standards, rebranded from "Anlene HealthPassport" to "Anlene Bone Health Check," including a more clinical-feeling layout referencing a bone density curve (mass vs. age, by gender, with a menopause marker). My role in this phase was translating that branding-provided design into Figma, keeping the underlying decision logic and report structure intact while the presentation layer was updated.
-            </p>
-          </div>
-        </div>
+          <SectionTag id="solution" num="04" label="Solution & Evidence: The Health Check Flow" />
 
-        <Hairline />
-
-        {/* SECTION 07 · Design Process & Workflow */}
-        <div>
-          <SectionTag id="process" num="07" label="Design Process & Workflow" />
-          <div className="space-y-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {[
-              {
-                step: "01",
-                phase: "Phase 01",
-                title: "Discovery Under Constraint",
-                desc: "Built two FigJam customer journey maps from secondhand research (Instagram, YouTube) in the absence of direct field access.",
-              },
-              {
-                step: "02",
-                phase: "Phase 02",
-                title: "Decision Logic First",
-                desc: "Mapped every metric's classification thresholds by gender before touching any visual design, so every downstream report screen had a clear, defensible basis.",
-              },
-              {
-                step: "03",
-                phase: "Phase 03",
-                title: "Cross-Functional Collaboration",
-                desc: "Worked directly with a nutritionist to validate health recommendations tied to each result category, ensuring content wasn't just visually clear but medically sound.",
-              },
-              {
-                step: "04",
-                phase: "Phase 04",
-                title: "Manual-at-Scale Execution",
-                desc: "Designed each result-combination report individually in Figma, since no auto-generation system existed, giving both developers and the client a concrete, approvable reference for every scenario.",
-              },
-              {
-                step: "05",
-                phase: "Phase 05",
-                title: "Brand Handoff Implementation",
-                desc: "Translated a new visual direction from Anlene's branding team into Figma in November, preserving the decision logic and report structure from the original phase.",
-              },
-            ].map(({ step, phase, title, desc }) => (
-              <div key={step} className="flex flex-col sm:flex-row gap-4 sm:gap-6 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
-                <div className="flex items-center gap-3 sm:flex-col sm:items-start sm:gap-1 flex-shrink-0 min-w-[120px]">
-                  <span className="font-mono text-xs font-bold text-[#DB3E8C]">{step} · {phase}</span>
+              { title: "01 · Health Passport Main UI", img: anleneThumb, desc: "Personalized consumer health passport displaying body age, bone density T-score, and muscle metrics." },
+              { title: "02 · Diagnostic Matrix View", img: anleneThumb2, desc: "4-tier color-coded health diagnostic ranges for fast consultation." },
+              { title: "03 · Bone Scanner Output", img: anleneThumb3, desc: "Bone scanner integration and automated bone density status calculation." },
+              { title: "04 · Field Intake System", img: anleneThumb4, desc: "Fast-entry offline form for event reps with zero data loss protection." },
+              { title: "05 · Checkout & Redemption", img: anleneThumb5, desc: "In-booth product purchase completion and automated WhatsApp PDF dispatch." },
+              { title: "06 · Reports & Analytics", img: anleneThumb6, desc: "Nationwide activation analytics tracking daily attendee intake per city." },
+            ].map(({ title, img, desc }) => (
+              <div key={title} className="bg-white border border-gray-200 rounded-xl p-3 flex flex-col justify-between">
+                <div className="aspect-[16/10] rounded-lg overflow-hidden border border-gray-200 mb-3">
+                  <img src={img} alt={title} className="w-full h-full object-cover object-top" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-semibold mb-1" style={{ color: N }}>{title}</h4>
-                  <p className="text-sm leading-relaxed" style={{ color: BODY, lineHeight: 1.75 }}>{desc}</p>
+                  <h4 className="font-sans text-xs font-bold text-[#19244E] mb-1 tracking-wide">{title}</h4>
+                  <p className="font-sans text-xs text-gray-600 leading-relaxed">{desc}</p>
                 </div>
               </div>
             ))}
           </div>
-        </div>
 
-        <Hairline />
-
-        {/* SECTION 08 · Business Impact & Key Deliverables */}
-        <div>
-          <SectionTag id="deliverables" num="08" label="Business Impact & Key Deliverables" />
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-4 mb-8">
             {[
-              {
-                Icon: CheckCircle2,
-                title: "Solved the Original Complaint, Directly",
-                desc: "Addressed all three issues the client raised about the prior tool: incomplete Omron data display, generic results, and lack of actionable recommendation detail.",
-              },
-              {
-                Icon: GitBranch,
-                title: "A Defensible Decision System",
-                desc: "Every color, category, and recommendation traced back to an explicit decision tree, not a subjective visual choice, giving the client and dev team a clear basis for approval.",
-              },
-              {
-                Icon: Users,
-                title: "Cross-Functional Health Content",
-                desc: "Nutrition and lifestyle recommendations were developed with a nutritionist, not written independently, keeping the health guidance credible.",
-              },
-              {
-                Icon: Layers,
-                title: "Brand-Aligned Implementation",
-                desc: "Translated a new visual direction provided by Anlene's branding team into Figma, preserving the underlying decision logic and report structure while updating the presentation layer to meet internal branding standards.",
-              },
-            ].map(({ Icon, title, desc }) => (
-              <div key={title} className="flex gap-5 px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
-                <div className="w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5" style={{ backgroundColor: `${C}08`, border: `1px solid ${C}20`, borderRadius: "4px" }}>
-                  <Icon size={14} style={{ color: C }} />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold mb-1.5" style={{ color: N }}>{title}</p>
-                  <p className="text-sm leading-relaxed" style={{ color: BODY, lineHeight: 1.75 }}>{desc}</p>
-                </div>
+              { title: "01 · Manual entry, by design", desc: "An SPG scans the customer, then types both results into the app. No Bluetooth or API links the hardware to the software." },
+              { title: "02 · OTP via WhatsApp", desc: "Customers verify their identity with an OTP sent to WhatsApp, a requirement set from the start of the project." },
+              { title: "03 · One report, many combinations", desc: "Each combination from the decision tree got its own layout, with the same visual grammar." },
+              { title: "04 · Result delivery", desc: "Verified customers receive their results, tailored tips by age and gender, and a product recommendation, through WhatsApp." },
+            ].map(({ title, desc }) => (
+              <div key={title} className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
+                <h5 className="font-bold text-sm text-[#19244E]">{title}</h5>
+                <p className="font-sans text-xs text-gray-600 leading-relaxed">{desc}</p>
               </div>
             ))}
+          </div>
+
+          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
+            <p>
+              The core work happened from August to October 2024. In November, Anlene's branding team provided a new visual direction, and I translated it into Figma while keeping the decision logic and report structure intact.
+            </p>
           </div>
         </div>
 
         <Hairline />
 
-        {/* SECTION 09 · Key Impact & "So What" */}
+        {/* 05 Outcome & Reflection */}
         <div>
-          <SectionTag id="impact" num="09" label={"Key Impact & \"So What\""} />
-          
-          <div className="p-8 bg-[#111836] rounded-2xl border border-white/10 text-white space-y-6 shadow-2xl">
-            <div className="flex items-center gap-2">
-              <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#22c55e]">
-                SYSTEM OUTCOME & DESIGN VALIDATION
-              </span>
-            </div>
+          <SectionTag id="outcome" num="05" label="Outcome & Reflection" />
 
-            <p className="font-display text-lg lg:text-xl font-light leading-relaxed text-white/90">
-              A field health check tool rebuilt from an explicit decision tree, two constrained-research journey maps, and close collaboration with a nutritionist, resolving specific complaints about a prior version and holding up well enough to return for a second phase over a year later.
-            </p>
-
-            <div className="space-y-3 pt-2">
-              <div className="flex items-start gap-3 text-xs text-white/80">
-                <span className="font-bold text-[#DB3E8C]">•</span>
-                <span><strong className="text-white">Explicit Decision Logic</strong> — Five metrics, split by gender, mapped to clear categories before any screen was designed.</span>
+          <div className="space-y-6">
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
+                <span className="text-[10px] font-bold tracking-wider uppercase text-[#10B981] font-sans block">Addressed</span>
+                <h5 className="font-bold text-sm text-[#19244E]">All three complaints</h5>
+                <p className="text-xs text-gray-600 leading-relaxed">Incomplete Omron data, generic results, and missing recommendations were each addressed.</p>
               </div>
-              <div className="flex items-start gap-3 text-xs text-white/80">
-                <span className="font-bold text-[#DB3E8C]">•</span>
-                <span><strong className="text-white">Constrained-Research Methodology</strong> — Built accurate journey maps without direct field access, using existing documentation.</span>
+              <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
+                <span className="text-[10px] font-bold tracking-wider uppercase text-[#DB3E8C] font-sans block">Returned</span>
+                <h5 className="font-bold text-sm text-[#19244E]">A second phase</h5>
+                <p className="text-xs text-gray-600 leading-relaxed">The client came back for a second phase, over a year later.</p>
               </div>
-              <div className="flex items-start gap-3 text-xs text-white/80">
-                <span className="font-bold text-[#DB3E8C]">•</span>
-                <span><strong className="text-white">Cross-Functional Content</strong> — Health recommendations developed with a nutritionist, not assumed.</span>
+              <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
+                <span className="text-[10px] font-bold tracking-wider uppercase text-[#3B82F6] font-sans block">Not measured here</span>
+                <h5 className="font-bold text-sm text-[#19244E]">Activation numbers</h5>
+                <p className="text-xs text-gray-600 leading-relaxed">This case does not include attendance or sales figures.</p>
               </div>
             </div>
 
-            {/* WHAT I LEARNED Box */}
-            <div className="p-6 rounded-xl bg-white/5 border border-white/10 text-white space-y-2 mt-6">
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
-                  WHAT I LEARNED
-                </span>
-              </div>
-              <p className="text-xs sm:text-sm font-sans leading-relaxed text-white/90 italic" style={{ lineHeight: 1.8 }}>
+            <div className="p-6 bg-white rounded-xl border border-gray-200 space-y-2">
+              <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#19244E]">WHAT I LEARNED</span>
+              <p className="text-xs sm:text-sm font-sans leading-relaxed text-[#2E3A5C] italic" style={{ lineHeight: 1.8 }}>
                 "Designing without direct field access taught me that secondhand research, done thoroughly, can still produce a defensible design system. Building the decision tree before touching any screen meant every downstream choice had a clear basis I could explain to both the client and the dev team."
               </p>
             </div>

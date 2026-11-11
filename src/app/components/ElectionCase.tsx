@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { CaseStudyHeaderBadge } from "@/app/components/ui/CaseStudyHeaderBadge"
+import { CaseStudyDisclosure, CaseStudyFacts } from "@/app/components/ui/CaseStudyStory"
 
 import {
   ArrowLeft, ChevronRight, CheckCircle2, Globe, Home,
@@ -58,20 +59,16 @@ interface Props {
 }
 
 const QUICK_SECTIONS = [
-  { id: "summary", num: "01", label: "Executive Overview" },
-  { id: "challenge", num: "02", label: "The Strategic Challenge" },
-  { id: "pilar1", num: "03", label: "Pillar 1: AI + Human Hybrid Verification" },
-  { id: "pilar2", num: "04", label: "Pillar 2: Offline First Mode & Sync" },
-  { id: "pilar3", num: "05", label: "Pillar 3: Sainte Laguë Table & Alerts" },
-  { id: "supporting", num: "06", label: "Supporting Systems" },
-  { id: "process", num: "07", label: "Design Process & Pipeline" },
-  { id: "impact-business", num: "08", label: "Business Impact & Deliverables" },
-  { id: "impact", num: "09", label: "Closing & Key Impact" },
+  { id: "context", num: "01", label: "Context" },
+  { id: "constraints", num: "02", label: "Constraints" },
+  { id: "decisions", num: "03", label: "Key Decisions" },
+  { id: "solution", num: "04", label: "Solution & Evidence" },
+  { id: "outcome", num: "05", label: "Outcome & Reflection" },
 ]
 
 export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
   const [scrolled, setScrolled] = useState(false)
-  const [activeQuickId, setActiveQuickId] = useState<string>("summary")
+  const [activeQuickId, setActiveQuickId] = useState<string>("context")
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [selectedImage, setSelectedImage] = useState<{
     src: string
@@ -208,33 +205,41 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
       <div className="px-4 sm:px-8 lg:px-16 pt-12 sm:pt-16 pb-10 sm:pb-14" style={{ backgroundColor: W, borderBottom: `1px solid ${HAIR}` }}>
-        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-center">
-          <div className="space-y-6">
-            <div className="flex flex-wrap items-center gap-3">
-              <MonoTag accent>CASE STUDY 06</MonoTag>
-              <span style={{ color: HAIR }}>/</span>
-              <MonoTag>CIVIC TECH & ELECTION SYSTEMS</MonoTag>
-              <span style={{ color: HAIR }}>/</span>
-              <MonoTag>NATIONAL POLITICAL PARTY · 2024</MonoTag>
-            </div>
+        <div className="space-y-6 mb-10 lg:mb-12">
+          <div className="flex flex-wrap items-center gap-3">
+            <MonoTag accent>CASE STUDY 06</MonoTag>
+            <span style={{ color: HAIR }}>/</span>
+            <MonoTag>CIVIC TECH & ELECTION SYSTEMS</MonoTag>
+            <span style={{ color: HAIR }}>/</span>
+            <MonoTag>NATIONAL POLITICAL PARTY · 2024</MonoTag>
+          </div>
+          <h1
+            className="font-display font-bold leading-[1.08] tracking-tight"
+            style={{ fontSize: "clamp(2rem, 4vw, 3.6rem)", color: N }}
+          >
+            Designing for the Unpredictable: Election Monitoring System for 38 Provinces
+          </h1>
+        </div>
 
-            <h1
-              className="font-display font-bold leading-[1.08] tracking-tight"
-              style={{ fontSize: "clamp(2rem, 4vw, 3.6rem)", color: N }}
-            >
-              Designing for the Unpredictable: Election Monitoring System for 38 Provinces
-            </h1>
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-start">
+          <div className="space-y-6">
+
 
             <p
-              className="font-display font-light leading-relaxed"
+              className="font-display font-medium leading-relaxed"
               style={{ fontSize: "clamp(1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
             >
               Indonesian Political Party (National) · 2024 Presidential & Legislative Elections
             </p>
 
-            <p className="text-sm sm:text-base leading-relaxed" style={{ color: BODY, lineHeight: 1.8 }}>
-              A multi platform system for real time vote monitoring, designed for the party's national witness network: 820,000 plus TPS across 38 provinces where the party had registered witnesses, each submitting through the same monitoring system: built to hold up under the exact conditions a national election guarantees: unreliable signal, tight time windows, and data that has to be right the first time. I worked as solo UX UI Designer & Systems Architect across four connected platforms: a web admin dashboard, a web verification portal, a mobile app for TPS witnesses, and a web data entry tool, all within a fixed 48 hour live tabulation window.
-            </p>
+            <CaseStudyFacts
+              facts={[
+                { label: "My contribution", value: "Sole product designer across four connected platforms." },
+                { label: "Team & scope", value: "An Indonesian national political party, covering 38 provinces and 820,000+ polling stations." },
+                { label: "Verified impact", value: "The system ran live across 38 provinces with zero downtime through the 48 hour tabulation window." },
+                { label: "Not measured here", value: "TPS level accuracy and submission data, which I did not have direct access to." },
+              ]}
+            />
           </div>
 
           {/* Right Column: Hero Dummy Image */}
@@ -250,29 +255,33 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
         </div>
       </div>
 
-      {/* EXECUTIVE SUMMARY & 30 SECOND TAKEAWAYS */}
-      <div className="px-4 sm:px-8 lg:px-16 py-8 bg-[#111836] border-t border-b border-white/10">
+      {/* 30 SECOND TAKEAWAYS: the five-stage story at a glance */}
+      <div className="px-4 sm:px-8 lg:px-16 py-8 bg-[#F9FAFB] border-t border-b border-[#19244E]/10">
         <div className="flex items-center gap-2 mb-4">
-          <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
-            EXECUTIVE SUMMARY & 30 SECOND TAKEAWAYS
+          <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase text-[#19244E]/60">
+            30 SECOND TAKEAWAYS
           </span>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-xs sm:text-sm font-sans">
-          <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">01 · Problem</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-white/85">Real time vote monitoring for 820,000+ TPS across 38 provinces under zero signal & 48 hour deadlines.</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 text-xs sm:text-sm font-sans">
+          <div className="p-4 border-l border-[#19244E]/15">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">01 · Context</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">Real time vote monitoring for 820,000+ polling stations across 38 provinces.</p>
           </div>
-          <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">02 · Core Constraints</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-white/85">Non-negotiable election date, offline first field conditions, AI handwriting OCR fallback, Sainte Laguë seat logic.</p>
+          <div className="p-4 border-l border-[#19244E]/15">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">02 · Constraints</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">A fixed 48 hour window, offline field conditions, and handwritten tallies.</p>
           </div>
-          <div className="bg-[#DB3E8C]/10 p-4 rounded-lg border border-[#DB3E8C]/30">
-            <span className="block text-xs font-bold tracking-widest text-[#DB3E8C] uppercase mb-1.5">03 · Exact Ownership</span>
-            <p className="text-xs sm:text-sm font-semibold text-white leading-relaxed">Solo Designer: architected 4 connected platforms, offline sync mode, AI human hybrid review, and Sainte Laguë alert engine.</p>
+          <div className="p-4 border-l border-[#19244E]/15">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">03 · Key Decisions</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">AI with a human fallback, offline as an expected state, and plain language seat allocation.</p>
           </div>
-          <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">04 · Key Impact</span>
-            <p className="text-xs sm:text-sm font-semibold text-white leading-relaxed">System ran live across 38 provinces with zero downtime during the 48 hour 2024 election tabulation window.</p>
+          <div className="p-4 border-l border-[#19244E]/15">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">04 · Solution & Evidence</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">Four connected platforms, with a dual path flow for every failure point.</p>
+          </div>
+          <div className="p-4 border-l border-[#19244E]/15">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">05 · Outcome</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">Ran live across 38 provinces with zero downtime through the tabulation window.</p>
           </div>
         </div>
       </div>
@@ -317,19 +326,33 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
           {/* Right Column: Case Study Main Content Sections */}
           <div className="space-y-16 lg:space-y-20 min-w-0">
 
-        {/* 01 Executive Summary */}
+        {/* 01 Context */}
         <div>
-          <SectionTag id="summary" num="01" label="Executive Overview" />
-          <div className="grid lg:grid-cols-2 gap-4">
+          <SectionTag id="context" num="01" label="Context: An Election That Does Not Wait" />
+          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
+            <p>
+              An election does not wait for good conditions. The system had to work in a city with full signal and in a village with none, with a neatly filled form and with one scrawled in a rush during vote counting, and with an AI that reads handwriting well or needs a human to step in.
+            </p>
+            <p>
+              Four election types, President, DPR RI, DPRD Provinsi, and DPRD Kabupaten or Kota, each needed its own vote entry, verification, and seat allocation logic, all against the same 48 hour clock.
+            </p>
+          </div>
+        </div>
+
+        <Hairline />
+
+        {/* 02 Constraints */}
+        <div>
+          <SectionTag id="constraints" num="02" label="Constraints: A Fixed Clock, Unreliable Infrastructure, Handwritten Tallies" />
+          <div className="grid md:grid-cols-3 gap-4">
             {[
-              { label: "Client & Scale", val: "Indonesian National Political Party · 38 Provinces · 820,000+ Polling Stations (TPS)" },
-              { label: "Role & Ownership", val: "Sole Product Designer" },
-              { label: "Product Ecosystem", val: "Mobile Witness App · Web AI Verification Portal · Web Data Entry Tool · Web Admin Dashboard" },
-              { label: "Core Stack", val: "Figma Live Co Design · Offline Sync Engine · Sainte Laguë Alert Matrix · Emergency Backup App" },
-            ].map(({ label, val }) => (
-              <div key={label} className="px-6 py-5" style={{ backgroundColor: W, border: `1px solid ${HAIR}`, borderRadius: "4px" }}>
-                <MonoTag>[{label}]</MonoTag>
-                <p className="text-sm font-medium mt-2" style={{ color: N, lineHeight: 1.6 }}>{val}</p>
+              { title: "A fixed 48 hour window", desc: "Four election types shared one clock. The election date did not move, whatever the state of the system." },
+              { title: "Unreliable infrastructure", desc: "Signal dead zones, and WhatsApp numbers that could go down without warning." },
+              { title: "Handwritten tallies", desc: "Vote tallies are handwritten on physical forms, so the AI reading needed a real fallback, not a best guess." },
+            ].map(({ title, desc }) => (
+              <div key={title} className="p-6 bg-white rounded-xl border border-gray-200/80 shadow-xs space-y-3">
+                <h4 className="font-bold text-[#19244E] text-base">{title}</h4>
+                <p className="font-sans text-xs sm:text-sm text-gray-600 leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
@@ -337,38 +360,67 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
 
         <Hairline />
 
-        {/* 02 The Strategic Challenge */}
+        {/* 03 Key Decisions */}
         <div>
-          <SectionTag id="challenge" num="02" label="The Strategic Challenge" />
+          <SectionTag id="decisions" num="03" label="Key Decisions: Human Fallback, Offline by Default, Plain Seat Allocation" />
 
-          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
-            <p>
-              An election doesn't wait for good conditions. The system had to work whether a witness was in a city with full signal or a village with none, whether a form was filled out neatly or scrawled in a rush during vote counting, and whether the AI reading a handwritten tally got it right or needed a human to step in.
-            </p>
-            <p>
-              Four separate election types: President, DPR RI, DPRD Provinsi, DPRD Kabupaten or Kota: each required separate vote entry, verification, and seat allocation logic, all racing against the same 48 hour clock, on infrastructure I couldn't control: signal dead zones, WhatsApp numbers that could go down without warning, and thousands of witnesses with varying comfort levels with technology.
-            </p>
+          <div className="space-y-6">
+            <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
+              <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 01 · AI with a human fallback, not AI alone</span>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">The pressure:</strong> Handwriting is not always legible, and the AI needed a real fallback.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">What I did:</strong> I built two parallel experiences: a fast automated flow for witnesses on mobile, and a manual web tool for a dedicated entry team. Party order follows the KPU ballot, with numbered tabs that match the physical paper.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">Why it held:</strong> A human could always step in without the system falling apart.
+              </p>
+            </div>
+
+            <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
+              <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 02 · Offline as an expected state, not an error</span>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">The pressure:</strong> The client found regions with limited or no signal, and asked for an offline mode close to launch.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">What I did:</strong> A persistent offline label, two tabs ("Belum diinput" and "Sudah diinput"), and one "Sinkron Semua Data" button for all pending entries when the connection returns.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">Why it held:</strong> A witness cannot sync nine out of ten records and forget the tenth, because the sync happens in one action.
+              </p>
+            </div>
+
+            <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
+              <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 03 · Plain language for seat allocation</span>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">The pressure:</strong> Sainte-Laguë is mathematically sound, and unreadable to almost anyone outside election administration.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">What I did:</strong> A table that puts each party's vote count against its divisors, and five alert categories, from "Menang Telak" to "Kalah Telak", based on vote margins.
+              </p>
+              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">Why it held:</strong> Anyone from a party could see how seat allocation was playing out, not only someone fluent in the math.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-6">
+            <CaseStudyDisclosure label="Trade-off I accepted" summary="Two experiences to build and keep in sync">
+              <p>
+                Building two parallel experiences, one fast and automated and one manual and deliberate, meant more work on both sides. It was the price of making sure a human could always step in.
+              </p>
+            </CaseStudyDisclosure>
           </div>
         </div>
 
         <Hairline />
 
-        {/* 03 Pillar 1 — AI + Human Hybrid Verification */}
+        {/* 04 Solution & Evidence */}
         <div>
-          <SectionTag id="pilar1" num="03" label="Pillar 1: AI + Human Hybrid Verification" />
+          <SectionTag id="solution" num="04" label="Solution & Evidence: Four Platforms, Three Screens" />
 
-          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
-            <p>
-              Vote tallies in Indonesia are handwritten on physical forms (C Hasil), then photographed and submitted by TPS witnesses. An AI model reads the handwriting and auto fills the digital form, but handwriting isn't always legible, and the system needed a real fallback, not just a best effort guess.
-            </p>
-            <p>
-              Party order on every ballot paper follows the same official KPU numbering nationwide. Rather than treating this as a fixed constraint, it became the foundation of the verification flow: reviewers first select which parties appear on the form they're looking at, then move through numbered tabs matching the physical layout of the paper: letting a reviewer under time pressure jump straight to the relevant section instead of scrolling through an unfamiliar list. The system also distinguishes between two paper types, Plano and Berita Acara, each with a slightly different verification path, and includes a built in reject path for photos that are duplicates, unreadable, or the wrong form entirely.
-            </p>
-            <p>
-              Witnesses submit photos from a mobile app in the field. A separate web tool handles verification and manual correction, staffed by a dedicated entry team whose job is specifically to catch and fix what the AI got wrong before results are finalized. This wasn't designing for the ideal case and hoping the AI held up: it meant building two parallel experiences, one fast and automated, one manual and deliberate, making sure a human could always step in without the system falling apart around them.
-            </p>
-
-            {/* Interactive Image Card: Form C-Hasil Verification CMS */}
+          <div className="grid md:grid-cols-3 gap-6 mb-10">
             <div
               onClick={() => setSelectedImage({
                 src: electionVerificationCms,
@@ -376,212 +428,102 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
                 badge: "AI + Human Verification",
                 desc: "Side-by-side verification CMS allowing dedicated data entry clerks to audit physical C-Hasil tallies against candidate vote inputs across all registered national parties."
               })}
-              className="mt-6 bg-[#0e1635] border border-white/10 rounded-2xl p-4 sm:p-5 shadow-xl hover:border-[#DB3E8C]/50 transition-all duration-300 cursor-pointer group"
+              className="bg-white border border-gray-200 rounded-2xl p-4 shadow-xs hover:border-[#DB3E8C]/50 transition-all duration-300 cursor-pointer group"
             >
-              <div className="flex flex-wrap items-center justify-between gap-2 mb-3 pb-2 border-b border-white/10">
-                <div className="flex items-center gap-2">
-                  <span className="bg-[#DB3E8C]/20 border border-[#DB3E8C]/40 text-[#DB3E8C] text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">
-                    Web Verification Portal // PPLN Abuja
-                  </span>
-                  <span className="text-white text-xs font-semibold">Form C-Hasil Physical Tally Audit</span>
-                </div>
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 text-[11px] text-[#DB3E8C] font-semibold">
-                  <Maximize2 size={12} /> Klik untuk Perbesar
-                </div>
-              </div>
-              <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-[#070b1a] border border-white/10">
+              <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-[#070b1a] border border-gray-200">
                 <img
                   src={electionVerificationCms}
-                  alt="Form C-Hasil Verification CMS"
+                  alt="Form C-Hasil verification CMS"
                   className="w-full h-full object-cover object-top rounded-xl group-hover:scale-102 transition-transform duration-500"
                 />
               </div>
-              <p className="mt-3 text-xs text-white/70 font-sans leading-relaxed">
-                Dedicated data entry clerks audit physical handwritten C-Hasil ballots directly against candidate tallies with nationwide party sequencing.
+              <p className="mt-3 font-sans text-xs text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">Verification.</strong> Dedicated entry clerks audit handwritten tallies directly against candidate figures.
               </p>
             </div>
-          </div>
-        </div>
-
-        <Hairline />
-
-        {/* 04 Pillar 2 — Offline-First Mode & Sync */}
-        <div>
-          <SectionTag id="pilar2" num="04" label="Pillar 2: Offline First Mode & Sync" />
-
-          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
-            <p>
-              This feature didn't exist in the original scope. It came from the client physically traveling across Indonesia ahead of the election and finding regions with limited or no signal, then requesting an offline mode close to launch.
-            </p>
-            <p>
-              Rather than treating offline as an error state, the interface treats it as expected: a persistent "Mode di luar jaringan" label stays visible, and TPS entries split into two clear tabs, "Belum diinput" and "Sudah diinput," pulled automatically from each witness's pre assigned region. Instead of requiring users to sync each entry individually, a single "Sinkron Semua Data" button handles everything at once when connection returns, reducing the risk of a witness syncing nine out of ten records and forgetting the tenth. Entries waiting to sync are marked with a recycle plus alert icon: a convention chosen after looking at how similar pending state indicators are used elsewhere, rather than inventing a new pattern users would have to learn from scratch. This mode covers the Tanda Terima and Manual Entry flows, the two places where data capture couldn't afford to simply stop because a witness had no signal.
-            </p>
-          </div>
-        </div>
-
-        <Hairline />
-
-        {/* 05 Pillar 3 — Sainte-Laguë Table & Alert System */}
-        <div>
-          <SectionTag id="pilar3" num="05" label="Pillar 3: Sainte Laguë Table & Alert System" />
-
-          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
-            <p>
-              Seat allocation in Indonesian elections uses the Sainte Laguë method, dividing each party's vote count by a sequence of odd numbers to determine who wins each seat. It's mathematically sound and visually unreadable to almost everyone outside election administration.
-            </p>
-            <p>
-              Understanding it well enough to explain to developers meant going past a surface definition: reading official sources on how and why the method works, then studying how existing third party election tracking sites had solved the same visualization problem for the 2019 election. That research became the basis for a table format showing each party's vote count against its sequence of divisors side by side, so anyone from the party, not just someone fluent in the math, could see how seat allocation was playing out. On top of the raw table, five alert categories translated the numbers into plain language risk signals: from "Menang Telak" to "Kalah Telak": based on vote margin thresholds. This wasn't just displaying a formula; it meant learning an unfamiliar domain well enough to make independent design decisions about what mattered to surface, then defending that logic to the development team building it.
-            </p>
-
-            {/* Interactive Image Card: Sainte-Laguë Seat Allocation Matrix */}
             <div
               onClick={() => setSelectedImage({
                 src: electionSainteLague,
                 title: "02 · Sainte-Laguë Seat Matrix (DAPIL Banten II)",
                 badge: "Electoral Math Engine",
-                desc: "Real-time calculation table applying odd divisors (n/1, n/3, n/5... n/23), legislative threshold filtering (32% vs 68%), and plain-language alert tags (Min. 2 Kursi, Menang Telak)."
+                desc: "Real-time calculation table applying odd divisors, legislative threshold filtering, and plain-language alert tags."
               })}
-              className="mt-6 bg-[#0e1635] border border-white/10 rounded-2xl p-4 sm:p-5 shadow-xl hover:border-[#DB3E8C]/50 transition-all duration-300 cursor-pointer group"
+              className="bg-white border border-gray-200 rounded-2xl p-4 shadow-xs hover:border-[#DB3E8C]/50 transition-all duration-300 cursor-pointer group"
             >
-              <div className="flex flex-wrap items-center justify-between gap-2 mb-3 pb-2 border-b border-white/10">
-                <div className="flex items-center gap-2">
-                  <span className="bg-[#DB3E8C]/20 border border-[#DB3E8C]/40 text-[#DB3E8C] text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">
-                    Electoral Engine // DAPIL Banten II
-                  </span>
-                  <span className="text-white text-xs font-semibold">Seat Allocation & Sainte-Laguë Divisors</span>
-                </div>
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 text-[11px] text-[#DB3E8C] font-semibold">
-                  <Maximize2 size={12} /> Klik untuk Perbesar
-                </div>
-              </div>
-              <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-[#070b1a] border border-white/10">
+              <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-[#070b1a] border border-gray-200">
                 <img
                   src={electionSainteLague}
-                  alt="Sainte-Laguë Seat Allocation Matrix"
+                  alt="Sainte-Laguë seat allocation matrix"
                   className="w-full h-full object-cover object-top rounded-xl group-hover:scale-102 transition-transform duration-500"
                 />
               </div>
-              <p className="mt-3 text-xs text-white/70 font-sans leading-relaxed">
-                Dynamic Sainte-Laguë quotient matrix with parliamentary threshold toggle, donut vote status, and automated seat attribution per candidate.
+              <p className="mt-3 font-sans text-xs text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">Seat allocation.</strong> A quotient matrix with a threshold toggle and automated seat attribution.
               </p>
             </div>
-          </div>
-        </div>
-
-        <Hairline />
-
-        {/* 06 Supporting Systems */}
-        <div>
-          <SectionTag id="supporting" num="06" label="Supporting Systems" />
-
-          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
-            <p>
-              Submissions originally ran through 12 regional WhatsApp numbers, tied to a custom system for tracking whether each number was actively connected. As data started coming in scattered across a dozen separate channels, the team moved primary submission to a centralized web app instead. When the WhatsApp system genuinely went down close to the election, the previously built Emergency App became the fallback channel, letting witnesses keep submitting without a working WA connection.
-            </p>
-            <p>
-              Witness verification checked whether a submitted phone number was already a member of the relevant WhatsApp group: a cheaper, faster proxy for identity than a costly SMS OTP flow, and one that fit how these regional groups already operated. A separate system tracked the physical handover of election documents (Tanda Terima), recording who was responsible and which TPS the documents came from, with multiple design alternatives explored before landing on the final version, including a photo only variant for cases where full manual entry wasn't practical.
-            </p>
-
-            {/* Interactive Image Card: Dual-Entry KSN vs KPU Tabulation Tool */}
             <div
               onClick={() => setSelectedImage({
                 src: electionKpuEntry,
                 title: "03 · Dual-Entry District Tabulation (DPR RI Jawa Barat I)",
                 badge: "Territorial CMS",
-                desc: "Hierarchical territorial filtering (Provinsi → Dapil → Kota → Kecamatan → Kelurahan → TPS) with 18-party selector and real-time subdistrict audit grid."
+                desc: "Hierarchical territorial filtering with a party selector and real-time subdistrict audit grid."
               })}
-              className="mt-6 bg-[#0e1635] border border-white/10 rounded-2xl p-4 sm:p-5 shadow-xl hover:border-[#DB3E8C]/50 transition-all duration-300 cursor-pointer group"
+              className="bg-white border border-gray-200 rounded-2xl p-4 shadow-xs hover:border-[#DB3E8C]/50 transition-all duration-300 cursor-pointer group"
             >
-              <div className="flex flex-wrap items-center justify-between gap-2 mb-3 pb-2 border-b border-white/10">
-                <div className="flex items-center gap-2">
-                  <span className="bg-[#DB3E8C]/20 border border-[#DB3E8C]/40 text-[#DB3E8C] text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">
-                    Tabulation Tool // DPR RI Jawa Barat I
-                  </span>
-                  <span className="text-white text-xs font-semibold">KSN vs KPU Cross-Reference Grid</span>
-                </div>
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 text-[11px] text-[#DB3E8C] font-semibold">
-                  <Maximize2 size={12} /> Klik untuk Perbesar
-                </div>
-              </div>
-              <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-[#070b1a] border border-white/10">
+              <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-[#070b1a] border border-gray-200">
                 <img
                   src={electionKpuEntry}
-                  alt="Entry KPU Tabulation Tool"
+                  alt="KPU tabulation entry tool"
                   className="w-full h-full object-cover object-top rounded-xl group-hover:scale-102 transition-transform duration-500"
                 />
               </div>
-              <p className="mt-3 text-xs text-white/70 font-sans leading-relaxed">
-                6-tier geographical drilldown and party ballot carousel enabling comparison between internal KSN witness data and official KPU figures.
+              <p className="mt-3 font-sans text-xs text-gray-600 leading-relaxed">
+                <strong className="text-[#19244E]">Tabulation.</strong> Compares internal witness data with official KPU figures, by territory.
               </p>
             </div>
           </div>
-        </div>
-
-        <Hairline />
-
-        {/* 07 Design Process & Workflow Pipeline */}
-        <div>
-          <SectionTag id="process" num="07" label="Design Process & Workflow Pipeline" />
 
           <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
             <p>
-              <strong>Domain Research</strong>: Learned Sainte Laguë from official sources and studied existing third party visualizations before designing the internal seat allocation tables and alert system.
-            </p>
-            <p>
-              <strong>Core Flow Design</strong>: Designed the AI assisted verification flow across mobile and web, including the party selection and tabbed review system built around the fixed KPU ballot order.
-            </p>
-            <p>
-              <strong>Field Driven Iteration</strong>: Added Offline Mode and the Emergency App in response to real conditions the client encountered in the field: low signal regions and a WhatsApp outage: rather than assumptions made at the planning stage.
-            </p>
-            <p>
-              <strong>Scope Discipline Under Deadline</strong>: Several planned modules (Admin, Profile, TPS Prioritas) were deliberately shelved to protect the timeline for higher priority flows, since an election date isn't a deadline that moves.
-            </p>
-            <p>
-              <strong>Live Co Design Agility</strong>: Much of the client facing work happened in real time. Rather than presenting only finished mockups, sessions often involved designing directly in Figma while the client watched, adjusting flows and layouts on the spot based on their feedback. This was before AI assisted design tools were common, so it meant thinking and building at the same pace as the conversation. The client's feedback throughout these sessions was directly positive, often remarking on how quickly the work moved from discussion to something visible.
+              Offline mode and the Emergency App were added in response to what the client met in the field: low signal regions, and a WhatsApp outage close to the election. Several planned modules, including Admin, Profile, and TPS Prioritas, were deliberately shelved to protect the flows that mattered most.
             </p>
           </div>
         </div>
 
         <Hairline />
 
-        {/* 08 Business Impact & Key Deliverables */}
+        {/* 05 Outcome & Reflection */}
         <div>
-          <SectionTag id="impact-business" num="08" label="Business Impact & Key Deliverables" />
+          <SectionTag id="outcome" num="05" label="Outcome & Reflection" />
 
-          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
-            <p>
-              Every major design decision: the verification fallback, the offline mode, the emergency channel: existed because the happy path alone wasn't going to hold up on election day. Seat allocation logic and alert thresholds were researched and designed independently, then translated into specifications a development team could build against. Major features were added mid project based on direct observations from the client's own fieldwork, not a fixed brief handed down at the start.
-            </p>
-            <p>
-              An honest note on results data: TPS level submission and accuracy data does exist from election day, but wasn't something I had direct access to at the time. What I can speak to directly is that the systems ran, and the team was on standby throughout the tabulation window supporting live operations.
-            </p>
-          </div>
-        </div>
-
-        <Hairline />
-
-        {/* 09 Closing & Key Impact */}
-        <div>
-          <SectionTag id="impact" num="09" label="Closing & Key Impact" />
-          <div className="p-8 bg-[#111836] rounded-2xl border border-white/10 text-white space-y-6 shadow-2xl">
-            <div className="flex items-center gap-2">
-              <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase text-[#22c55e]">
-                SYSTEM OUTCOME & PRODUCT VALIDATION (2024)
-              </span>
-            </div>
-            
-            <p className="font-sans text-sm sm:text-base text-white/90 leading-relaxed max-w-3xl">
-              Four interconnected platforms, built and evolved under a fixed, non negotiable deadline, covering witness submission, AI assisted verification, offline data capture, and seat allocation reporting. By designing dual path flows for every failure point: AI verification with human fallback, online submission with an offline mode, WhatsApp with an emergency backup: the system was built to keep functioning when any single piece failed, which mattered more in this context than almost anywhere else. Much of the client relationship was built live, with design work done directly in Figma during meetings. I also learned to be precise about what I could confidently claim and what I could not.
-            </p>
-
-            {/* What I Learned */}
-            <div className="mt-6 p-6 rounded-xl bg-white/5 border border-white/10 text-white space-y-3">
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
-                  WHAT I LEARNED
-                </span>
+          <div className="space-y-6">
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
+                <span className="text-[10px] font-bold tracking-wider uppercase text-[#10B981] font-sans block">Shipped</span>
+                <h5 className="font-bold text-sm text-[#19244E]">Four connected platforms</h5>
+                <p className="text-xs text-gray-600 leading-relaxed">Witness submission, AI verification, offline capture, and seat allocation reporting.</p>
               </div>
-              <p className="text-xs sm:text-sm font-sans leading-relaxed text-white/95 italic" style={{ lineHeight: 1.8 }}>
+              <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
+                <span className="text-[10px] font-bold tracking-wider uppercase text-[#DB3E8C] font-sans block">Ran live</span>
+                <h5 className="font-bold text-sm text-[#19244E]">Across 38 provinces</h5>
+                <p className="text-xs text-gray-600 leading-relaxed">Through the 48 hour tabulation window, with the team on standby.</p>
+              </div>
+              <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
+                <span className="text-[10px] font-bold tracking-wider uppercase text-[#3B82F6] font-sans block">Not measured here</span>
+                <h5 className="font-bold text-sm text-[#19244E]">Accuracy data</h5>
+                <p className="text-xs text-gray-600 leading-relaxed">TPS level submission and accuracy data existed, but I had no direct access to it.</p>
+              </div>
+            </div>
+
+            <div className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C] space-y-5" style={{ lineHeight: 1.8 }}>
+              <p>
+                Much of the client relationship was built live, with design work done directly in Figma during meetings. I also learned to be precise about what I could confidently claim and what I could not.
+              </p>
+            </div>
+
+            <div className="p-6 bg-white rounded-xl border border-gray-200 space-y-2">
+              <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#19244E]">WHAT I LEARNED</span>
+              <p className="text-xs sm:text-sm font-sans leading-relaxed text-[#2E3A5C] italic" style={{ lineHeight: 1.8 }}>
                 "This project taught me that designing for conditions I don't control: bad signal, tight deadlines, a domain I didn't start out understanding: means building in fallbacks from the start, not patching them in after something breaks."
               </p>
             </div>

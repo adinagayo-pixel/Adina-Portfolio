@@ -144,7 +144,7 @@ const FEATURED = [
     ],
   },
   {
-    num: "03", shortTitle: "PERPANI OS", name: "MyArchery PERPANI National Operating System", client: "PERPANI / MyArchery",
+    num: "03", shortTitle: "MyArchery", name: "MyArchery · One Platform for Every Archery Event", client: "PERPANI / MyArchery",
     location: "ID", year: "2021 to 2023", tags: ["Sports Tech", "Field UX Research", "Tournament Engine"],
     role: "Lead UX Researcher & Product Designer",
     headline: "Registration, live scoring, and brackets for PERPANI tournaments, designed from research inside the judges' tents where scoring happens.",
@@ -700,9 +700,9 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
             style={{ width: "200%" }}
           >
             {/* ── PANEL A: AT WORK ── */}
-            <div className="w-1/2 min-w-[50%] flex flex-col justify-between px-4 sm:px-8 lg:px-16 pt-2 sm:pt-4 pb-32 sm:pb-40 min-h-[calc(100vh-100px)] shrink-0 bg-transparent">
+            <div className="w-1/2 min-w-[50%] flex flex-col justify-between px-4 sm:px-8 lg:px-16 pt-0 sm:pt-1 pb-32 sm:pb-40 min-h-[calc(100vh-100px)] shrink-0 bg-transparent">
               {/* Top Oversized Asymmetrical Headline & Floating Bio Container */}
-              <div className="w-full mt-3 sm:mt-5 lg:mt-7 mb-auto flex flex-col justify-between bg-transparent">
+              <div className="w-full mt-0 lg:-mt-2 mb-auto flex flex-col bg-transparent">
                 {/* 1. Full-Width Jumbo Headline Stack (Top) */}
                 <div className="w-full flex flex-col items-center sm:items-start select-none cursor-default bg-transparent relative z-0">
                   <motion.h1
@@ -711,17 +711,17 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
                     transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
                     className="font-normal leading-[0.86] tracking-tight text-center sm:text-left select-none cursor-default bg-transparent w-full"
                     style={{
-                      fontSize: "clamp(3.8rem, 11.5vw, 12.5rem)",
-                      fontFamily: "'Instrument Serif', Georgia, serif",
+                      fontSize: "clamp(3.8rem, 9.6vw, 12.5rem)",
+                      fontFamily: "var(--font-serif)",
                     }}
                   >
-                    <span className="block text-[#0F172A] font-normal">
+                    <span className="block text-[#0F172A] font-medium">
                       Smart Systems.
                     </span>
                     <span
-                      className="block font-normal transition-all duration-300 mt-2 sm:mt-3 lg:mt-4 ml-0 sm:ml-6 lg:ml-12 text-[#DB3E8C]"
+                      className="block sm:whitespace-nowrap font-medium transition-all duration-300 mt-2 sm:mt-3 lg:mt-4 ml-0 sm:ml-6 lg:ml-12 text-[#DB3E8C]"
                       style={{
-                        fontFamily: "'Instrument Serif', Georgia, serif",
+                        fontFamily: "var(--font-serif)",
                       }}
                     >
                       Thoughtful Interfaces.
@@ -729,52 +729,55 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
                   </motion.h1>
                 </div>
 
-                {/* 2. Bottom Stack (2-Column Parallel Layout directly under Headline) */}
-                <div className="w-full mt-8 sm:mt-10 lg:mt-12 flex flex-col lg:flex-row items-center lg:items-end justify-between gap-6 sm:gap-8 bg-transparent relative z-10">
-                  {/* Left Column Technical Specs & Metrics under Headline */}
-                  <div className="flex flex-col items-center sm:items-start gap-3 font-mono text-xs text-[#19244E] text-center sm:text-left shrink-0 mb-1 relative z-20 w-full lg:w-auto">
-                    {/* Shipped Systems Counter (2 lines on mobile, 1 line on desktop) */}
-                    <div className="flex items-center sm:items-start justify-center sm:justify-start gap-2 font-bold tracking-wider text-[#DB3E8C]">
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#DB3E8C] animate-pulse shrink-0 sm:mt-1" />
-                      <div className="text-[#19244E] flex flex-col sm:flex-row sm:items-center sm:gap-1.5 text-center sm:text-left leading-tight sm:leading-normal">
-                        <span className="whitespace-nowrap">15+ SHIPPED SYSTEMS</span>
-                        <span className="hidden sm:inline text-[#DB3E8C]">·</span>
-                        <span className="whitespace-nowrap">5+ YRS INDUSTRIAL EXP</span>
+                {/* Info and profile row: info on the left, profile on the right in line style, no card */}
+                <div className="relative z-20 w-full mt-10 sm:mt-14 lg:mt-20 flex flex-col xl:flex-row xl:items-start xl:justify-between gap-10 xl:gap-16">
+                  <div className="flex flex-col gap-8 xl:flex-1 xl:min-w-0">
+                  <div className="flex flex-col items-center sm:items-start lg:flex-row lg:items-center lg:gap-x-6 gap-3 font-mono text-xs text-[#19244E] text-center sm:text-left">
+                    {/* Shipped Systems Counter: one line at every width; sits beside the role line on large screens */}
+                    <div className="flex items-center sm:items-start lg:items-center justify-center sm:justify-start gap-2 font-bold tracking-wider text-[#DB3E8C]">
+                      <div className="text-[#19244E] flex flex-row items-center gap-1.5 whitespace-nowrap text-[11px] sm:text-xs leading-none">
+                        <span>5+ YRS INDUSTRIAL EXP</span>
                       </div>
                     </div>
 
-                    {/* Technical Radar Specs Table */}
-                    <div className="grid grid-cols-[60px_1fr] gap-y-1.5 gap-x-3 text-[11px] tracking-wide text-[#19244E]/85 pt-2 border-t border-[#19244E]/12 max-w-xs sm:max-w-sm text-left mx-auto sm:mx-0">
-                      <div className="font-bold text-[#DB3E8C] uppercase">ROLE</div>
-                      <div className="font-medium text-[#19244E]">Product Designer</div>
-
-                      <div className="font-bold text-[#DB3E8C] uppercase">BASE</div>
-                      <div className="font-medium text-[#19244E]">Jakarta, ID (Open for Global Relocation)</div>
-
-                      <div className="font-bold text-[#DB3E8C] uppercase">MODE</div>
-                      <div className="font-medium text-[#19244E]">Remote, hybrid, or on-site</div>
-
-                      <div className="font-bold text-[#DB3E8C] uppercase">STATUS</div>
-                      <div className="font-bold text-[#19244E] flex items-center gap-1.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6] animate-pulse" />
-                        Open to Team Roles
-                      </div>
-
+                    {/* Role line: one line instead of the four-row spec table */}
+                    <div className="flex items-center justify-center sm:justify-start text-[11px] sm:text-xs leading-none tracking-wide whitespace-nowrap text-[#19244E]/85 pt-2 border-t border-[#19244E]/12 mx-auto sm:mx-0 lg:pt-1 lg:border-t-0 lg:border-l lg:pl-6 lg:py-1">
+                      <span className="font-bold text-[#19244E]">Product Designer</span>
+                      <span className="text-[#DB3E8C] mx-1.5">·</span>
+                      <span>Jakarta, ID</span>
+                      <span className="text-[#DB3E8C] mx-1.5">·</span>
+                      <span className="inline-flex items-center gap-1.5 font-bold text-[#19244E] leading-none">
+                        Open to team roles
+                      </span>
                     </div>
                   </div>
 
-                  {/* Floating Bio Card with Subtle Soft Shadow */}
+                    <div className="w-full xl:max-w-2xl">
+                      <dl className="border-b border-[#19244E]/10 font-sans text-xs sm:text-sm">
+                        {[
+                          { label: "Industries", items: "Insurance & Financial Services · Healthcare & Wellness · FMCG · Government · E-commerce · E-wallet · Enterprise Operations · Ride Hailing" },
+                          { label: "Expertise", items: "UX/UI · Product & Systems · Collaboration & Handoff" },
+                          { label: "Tools", items: "Figma · Figma Make · Framer · Adobe Illustrator · Adobe Photoshop · Claude · Gemini · Antigravity · Excel" },
+                        ].map((row) => (
+                          <div key={row.label} className="border-t border-[#19244E]/10 py-4 flex flex-col sm:flex-row sm:items-baseline gap-1.5 sm:gap-10 text-center sm:text-left">
+                            <dt className="sm:w-28 shrink-0 text-[11px] font-bold tracking-wider uppercase text-[#DB3E8C]">{row.label}</dt>
+                            <dd className="text-[#19244E]/90 leading-relaxed">{row.items}</dd>
+                          </div>
+                        ))}
+                      </dl>
+                    </div>
+                  </div>
+
                   <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="max-w-xl bg-white/50 sm:bg-white/60 backdrop-blur-sm p-5 sm:p-6 rounded-3xl shadow-sm sm:shadow-[0_4px_24px_rgba(25,36,78,0.06)] relative z-20 ml-auto"
+                    className="w-full xl:w-auto xl:max-w-[540px] xl:shrink-0 pt-6 xl:pt-0 border-t xl:border-t-0 xl:border-l border-[#19244E]/12 xl:pl-12"
                   >
                     <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-5">
                       {/* Small Avatar Photo */}
                       <div
-                        className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden shadow-md shrink-0 transition-transform duration-300 hover:rotate-0 hover:scale-105"
-                        style={{ transform: "rotate(-3deg)" }}
+                        className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden shrink-0 transition-transform duration-300 hover:scale-105"
                       >
                         <ImageWithFallback
                           src={adinaPhotoAbout}
@@ -807,11 +810,11 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
                         <div className="w-full h-[1px] bg-[#19244E]/10 my-3.5" />
 
                         {/* Action Buttons Row (Order: Resume -> Let's Chat -> Email) */}
-                        <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-2.5 mb-2.5">
+                        <div className="flex flex-wrap xl:flex-nowrap items-center justify-center sm:justify-start gap-2 sm:gap-2.5 mb-2.5">
                           {/* 1. Resume Download & In-App PDF Preview Button */}
                           <button
                             onClick={onOpenPdfPreview}
-                            className="flex items-center gap-1.5 font-sans text-xs font-semibold tracking-wider transition-all duration-150 rounded-xl px-3.5 py-2 cursor-pointer shadow-sm bg-white"
+                            className="flex items-center gap-1.5 font-sans text-xs font-semibold tracking-wider transition-all duration-150 rounded-xl px-3.5 py-2 cursor-pointer bg-white"
                             style={{ border: `1px solid ${HAIR}`, color: `${N}DD` }}
                             onMouseEnter={(e) => {
                               ;(e.currentTarget as HTMLElement).style.backgroundColor = N
@@ -833,7 +836,7 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
                             href={getGeneralWhatsAppLink()}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="font-sans text-xs font-semibold tracking-wider transition-all duration-150 rounded-xl px-3.5 py-2 whitespace-nowrap cursor-pointer shadow-sm flex items-center gap-1.5"
+                            className="font-sans text-xs font-semibold tracking-wider transition-all duration-150 rounded-xl px-3.5 py-2 whitespace-nowrap cursor-pointer flex items-center gap-1.5"
                             style={{ border: `1px solid ${N}`, color: N, backgroundColor: "transparent" }}
                             onMouseEnter={(e) => { ;(e.currentTarget as HTMLElement).style.backgroundColor = N; ;(e.currentTarget as HTMLElement).style.color = W }}
                             onMouseLeave={(e) => { ;(e.currentTarget as HTMLElement).style.backgroundColor = "transparent"; ;(e.currentTarget as HTMLElement).style.color = N }}
@@ -849,7 +852,7 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
                             <a
                               href="mailto:adinagayo@gmail.com"
                               aria-label="Email Adina Fayza Gayo"
-                              className="flex items-center justify-center w-9 h-9 rounded-xl transition-all duration-150 cursor-pointer shadow-sm bg-white"
+                              className="flex items-center justify-center w-9 h-9 rounded-xl transition-all duration-150 cursor-pointer bg-white"
                               style={{ border: `1px solid ${HAIR}`, color: N }}
                               onMouseEnter={(e) => {
                                 ;(e.currentTarget as HTMLElement).style.borderColor = N
@@ -878,7 +881,7 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
                               target="_blank"
                               rel="noopener noreferrer"
                               aria-label="LinkedIn Adina Fayza Gayo"
-                              className="flex items-center justify-center w-9 h-9 rounded-xl transition-all duration-150 cursor-pointer shadow-sm bg-white"
+                              className="flex items-center justify-center w-9 h-9 rounded-xl transition-all duration-150 cursor-pointer bg-white"
                               style={{ border: `1px solid ${HAIR}`, color: N }}
                               onMouseEnter={(e) => {
                                 ;(e.currentTarget as HTMLElement).style.borderColor = N
@@ -927,7 +930,7 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
                 className="font-normal leading-[0.96] sm:leading-[0.90] tracking-tight text-center group select-none cursor-default bg-transparent"
                 style={{
                   fontSize: "clamp(2.8rem, 7vw, 7.8rem)",
-                  fontFamily: "'Instrument Serif', Georgia, serif",
+                  fontFamily: "var(--font-serif)",
                 }}
               >
                 <WavyHeadlineText text="Plot Twists. Live Acoustics." color="#0F172A" />
@@ -2004,22 +2007,6 @@ function WorkflowSection() {
               })}
             </div>
 
-            {/* Reflection: when the standard flow needs to bend */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, margin: "-40px" }}
-              transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="mt-14 sm:mt-16 lg:mt-20 max-w-3xl border-l-2 border-[#DB3E8C] pl-6 sm:pl-8"
-            >
-              <span className="font-mono text-[10px] sm:text-xs font-bold tracking-[0.25em] uppercase text-[#DB3E8C]">
-                REFLECTION · WHEN THE STANDARD FLOW NEEDS TO BEND
-              </span>
-              <p className="mt-4 font-sans text-sm sm:text-base leading-relaxed text-white/80">
-                Our standard flow is where I start. It asks users to upload their NRIC for OCR and complete the details by hand. On Touch 'n Go, insurance could only be bought by the account owner, and the account already held their registered data. So I built the second flow on that data, including the PTV voucher check. Users no longer retype their NRIC, name, or age. I depart from the standard only when the platform's rules make it a poor fit, and here they did.
-              </p>
-            </motion.div>
-
             {/* Centered Bottom CTA Link */}
             <div className="mt-14 sm:mt-16 lg:mt-20 text-center relative z-20">
               <a
@@ -2862,7 +2849,7 @@ export default function App() {
   const CASE_STUDY_SEQUENCE: CaseStudyMeta[] = [
     { id: "backoffice", num: "01", name: "One Base, Many Partners: Reusable White Label Backoffice", client: "Multiple Enterprise Partnerships", thumb: backofficePortalThumb },
     { id: "tng", num: "02", name: "Seamless Micro Insurance Integration", client: "Touch 'n Go × GEGM", thumb: coverTng },
-    { id: "myarchery", num: "03", name: "MyArchery PERPANI National Operating System", client: "PERPANI / MyArchery", thumb: myArcheryPerpaniThumb },
+    { id: "myarchery", num: "03", name: "MyArchery · One Platform for Every Archery Event", client: "PERPANI / MyArchery", thumb: myArcheryPerpaniThumb },
     { id: "gegi", num: "04", name: "Gamified CI Evaluation & Acquisition", client: "GEGI Singapore", thumb: ci1 },
     { id: "bijakwang", num: "05", name: "Kahoot to In House: Roadshow Tournament Platform", client: "mySalam × myKawan", thumb: mySalamThumb },
     { id: "election", num: "06", name: "38 Province Real Time Election Monitoring", client: "Indonesian Political Party", thumb: aseanThumb },

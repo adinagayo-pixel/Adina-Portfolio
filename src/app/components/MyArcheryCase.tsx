@@ -10,6 +10,9 @@ import {
 
 import heroImg from "@/imports/image-7.jpg"
 import myArcheryPerpaniThumb from "@/imports/myarchery thumb.jpg"
+import myArcheryBeforeField from "@/imports/myarchery-before-field.jpeg"
+import myArcheryOrganizer from "@/imports/myarchery-organizer.png"
+import myArcheryReleaseTimeline from "@/imports/myarchery-release-timeline.png"
 
 const N = "#19244E"
 const C = "#DB3E8C"
@@ -43,116 +46,6 @@ function SectionTag({ id, num, label }: { id?: string; num: string; label: strin
         {label}
       </h2>
       <div className="w-12 h-[2px] mt-4 bg-[#DB3E8C]" />
-    </div>
-  )
-}
-
-// ── Interactive Archery Scoring Keypad Component ─────────────────────────────
-function TargetScoringKeypad() {
-  const [scores, setScores] = useState<string[]>([])
-
-  const addScore = (val: string) => {
-    if (scores.length < 6) {
-      setScores([...scores, val])
-    }
-  }
-
-  const resetScores = () => setScores([])
-
-  const calculateTotal = () => {
-    return scores.reduce((sum, s) => {
-      if (s === "X" || s === "10") return sum + 10
-      if (s === "M") return sum + 0
-      return sum + (parseInt(s, 10) || 0)
-    }, 0)
-  }
-
-  const countTens = () => scores.filter((s) => s === "X" || s === "10").length
-
-  return (
-    <div className="my-10 p-6 rounded-2xl bg-[#0f1738] border border-white/10 text-white shadow-2xl space-y-6">
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
-        <div>
-          <div className="flex items-center gap-2">
-            <Target size={14} className="text-[#DB3E8C]" />
-            <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
-              INTERACTIVE DEMO // FIELD SCORING KEYPAD
-            </span>
-          </div>
-          <h3 className="font-display text-lg lg:text-xl font-bold mt-1 text-white">
-            High Velocity Outdoor Target Scoring Interface
-          </h3>
-        </div>
-        <button
-          onClick={resetScores}
-          className="px-3 py-1.5 rounded text-[10px] font-bold uppercase tracking-wider bg-white/10 hover:bg-white/20 text-white/80 transition-colors cursor-pointer"
-        >
-          Reset End (6 Arrows)
-        </button>
-      </div>
-
-      {/* Target Keypad Buttons */}
-      <div className="grid grid-cols-4 sm:grid-cols-6 gap-2">
-        {[
-          { label: "X", val: "X", bg: "bg-[#EAB308] text-black font-extrabold" },
-          { label: "10", val: "10", bg: "bg-[#FACC15] text-black font-bold" },
-          { label: "9", val: "9", bg: "bg-[#FEF08A] text-black font-bold" },
-          { label: "8", val: "8", bg: "bg-[#EF4444] text-white font-bold" },
-          { label: "7", val: "7", bg: "bg-[#F87171] text-white font-bold" },
-          { label: "6", val: "6", bg: "bg-[#3B82F6] text-white font-bold" },
-          { label: "5", val: "5", bg: "bg-[#60A5FA] text-white font-bold" },
-          { label: "4", val: "4", bg: "bg-[#1E293B] text-white font-bold border border-white/20" },
-          { label: "3", val: "3", bg: "bg-[#334155] text-white font-bold border border-white/20" },
-          { label: "2", val: "2", bg: "bg-white text-black font-bold" },
-          { label: "1", val: "1", bg: "bg-gray-200 text-black font-bold" },
-          { label: "M", val: "M", bg: "bg-gray-700 text-white font-bold" },
-        ].map((btn) => (
-          <button
-            key={btn.label}
-            onClick={() => addScore(btn.val)}
-            disabled={scores.length >= 6}
-            className={`py-3 rounded-lg text-sm transition-transform active:scale-95 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed ${btn.bg}`}
-          >
-            {btn.label}
-          </button>
-        ))}
-      </div>
-
-      {/* Live Arrow Matrix Display */}
-      <div className="grid grid-cols-6 gap-2 pt-2">
-        {Array.from({ length: 6 }).map((_, idx) => (
-          <div
-            key={idx}
-            className="h-12 rounded-lg bg-black/40 border border-white/10 flex items-center justify-center font-mono text-base font-bold text-white"
-          >
-            {scores[idx] ? (
-              <span className={scores[idx] === "X" || scores[idx] === "10" ? "text-yellow-400" : ""}>
-                {scores[idx]}
-              </span>
-            ) : (
-              <span className="text-white/20 text-xs">—</span>
-            )}
-          </div>
-        ))}
-      </div>
-
-      {/* Calculated End Totals */}
-      <div className="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10">
-        <div className="flex items-center gap-4">
-          <div>
-            <span className="text-[9px] text-gray-400 uppercase tracking-widest block font-mono">End Total</span>
-            <span className="text-xl font-bold text-white font-mono">{calculateTotal()} / 60</span>
-          </div>
-          <div className="h-6 w-px bg-white/10" />
-          <div>
-            <span className="text-[9px] text-gray-400 uppercase tracking-widest block font-mono">10 + X Count</span>
-            <span className="text-sm font-bold text-yellow-400 font-mono">{countTens()} Hits</span>
-          </div>
-        </div>
-        <span className="text-[10px] text-emerald-400 font-mono flex items-center gap-1">
-          <WifiOff size={10} /> Local Queue Ready
-        </span>
-      </div>
     </div>
   )
 }
@@ -297,52 +190,52 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
       <div className="px-8 lg:px-16 pt-16 pb-14" style={{ backgroundColor: W, borderBottom: `1px solid ${HAIR}` }}>
-        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-center">
-          <div className="space-y-6">
-            <div className="flex flex-wrap items-center gap-3">
-              <MonoTag accent>CASE STUDY 03</MonoTag>
-              <span style={{ color: HAIR }}>/</span>
-              <MonoTag>SPORTS TECH & FIELD RESEARCH</MonoTag>
-              <span style={{ color: HAIR }}>/</span>
-              <MonoTag>PERPANI · 2021 to 2023</MonoTag>
-            </div>
+        <div className="space-y-6 mb-10 lg:mb-12">
+          <div className="flex flex-wrap items-center gap-3">
+            <MonoTag accent>CASE STUDY 03</MonoTag>
+            <span style={{ color: HAIR }}>/</span>
+            <MonoTag>SPORTS TECH & FIELD RESEARCH</MonoTag>
+            <span style={{ color: HAIR }}>/</span>
+            <MonoTag>PERPANI · 2021 to 2023</MonoTag>
+          </div>
+          <h1
+            className="font-display font-bold leading-[1.08] tracking-tight"
+            style={{ fontSize: "clamp(2rem, 3.8vw, 3.4rem)", color: N }}
+          >
+            MyArchery · One Platform for Every Archery Event
+          </h1>
+        </div>
 
-            <h1
-              className="font-display font-bold leading-[1.08] tracking-tight"
-              style={{ fontSize: "clamp(2rem, 3.8vw, 3.4rem)", color: N }}
-            >
-              MyArchery · PERPANI National Operating System
-            </h1>
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-start">
+          <div className="space-y-6">
+
 
             <p
-              className="font-display font-light leading-relaxed"
+              className="font-display font-medium leading-relaxed"
               style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
             >
               Registration, live scoring, and brackets for PERPANI tournaments, designed inside the judges' tents where the scoring happens.
             </p>
 
-            <p className="text-sm sm:text-base leading-relaxed" style={{ color: BODY, lineHeight: 1.8 }}>
-              I led research and product design for a platform that replaced manual registration checks and paper score re-entry. It shipped through 7+ live tournament releases, and I tested each one on site.
-            </p>
 
             <CaseStudyFacts
               facts={[
                 {
                   label: "My contribution",
-                  value: "Lead UX researcher and product designer. I ran contextual inquiry in judges' tents, designed the tournament lifecycle, and led the design team.",
+                  value: "Lead UX researcher and product designer. I led field research and the design team.",
                 },
                 {
                   label: "Team & scope",
-                  value: "A team of 3 designers working remotely (work from anywhere, WFA). Scope: registration, on-event scoring and brackets, and post-event scoreboards and reconciliation.",
+                  value: "A remote team of 3 designers. Scope: the organizer platform. The athlete app is out of scope.",
                 },
                 {
                   label: "Verified impact",
-                  value: "7+ live tournament releases from 2021 to 2023, from Jakarta trials to district and regional tournaments in late 2022.",
+                  value: "7+ live tournament releases, 2021 to 2023.",
                   tone: "verified",
                 },
                 {
                   label: "Not measured here",
-                  value: "Before and after timing or accuracy metrics. This case rests on field observation and release history.",
+                  value: "Before and after timing or accuracy metrics. This case rests on field observation.",
                   tone: "muted",
                 },
               ]}
@@ -363,32 +256,32 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
       </div>
 
       {/* 30 SECOND TAKEAWAYS: the five-stage story at a glance */}
-      <div className="px-8 lg:px-16 py-8 bg-[#111836] border-t border-b border-white/10">
+      <div className="px-8 lg:px-16 py-8 bg-[#F9FAFB] border-t border-b border-[#19244E]/10">
         <div className="flex items-center gap-2 mb-4">
-          <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+          <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase text-[#19244E]/60">
             30 SECOND TAKEAWAYS
           </span>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 text-xs sm:text-sm font-sans">
-          <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">01 · Context</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-white/85">Tournament operations ran on Google Forms, WhatsApp transfer checks, spreadsheets, and a legacy desktop scorer.</p>
+          <div className="p-4 border-l border-[#19244E]/15">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">01 · Context</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">Tournaments ran on Google Forms, WhatsApp transfers, spreadsheets, and a desktop scorer.</p>
           </div>
-          <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">02 · Constraints</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-white/85">No digital foundation to build on, outdoor glare, patchy Wi-Fi, and short gaps between scoring ends.</p>
+          <div className="p-4 border-l border-[#19244E]/15">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">02 · Constraints</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">No digital base, outdoor glare, patchy Wi-Fi, and short gaps between ends.</p>
           </div>
-          <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">03 · Key Decisions</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-white/85">A color coded keypad matched to the target rings, real-time brackets, and small field releases instead of one launch.</p>
+          <div className="p-4 border-l border-[#19244E]/15">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">03 · Key Decisions</span>
+            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">A color coded keypad, real-time brackets, and small field releases.</p>
           </div>
-          <div className="bg-[#DB3E8C]/10 p-4 rounded-lg border border-[#DB3E8C]/30">
-            <span className="block text-xs font-bold tracking-widest text-[#DB3E8C] uppercase mb-1.5">04 · Solution & Evidence</span>
-            <p className="text-xs sm:text-sm font-semibold text-white leading-relaxed">Registration with payment, a field tested keypad, live brackets, public scoreboards, and reconciliation, refined at each event.</p>
+          <div className="p-4 border-l border-[#19244E]/15">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">04 · Solution & Evidence</span>
+            <p className="text-xs sm:text-sm font-semibold text-[#19244E] leading-relaxed">Registration, keypad scoring, live brackets, scoreboards, and reconciliation.</p>
           </div>
-          <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-            <span className="block text-xs font-bold tracking-widest text-white/50 uppercase mb-1.5">05 · Outcome</span>
-            <p className="text-xs sm:text-sm font-semibold text-white leading-relaxed">Used across 7+ live tournaments. Field conditions shaped the design from the start, not after launch.</p>
+          <div className="p-4 border-l border-[#19244E]/15">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">05 · Outcome</span>
+            <p className="text-xs sm:text-sm font-semibold text-[#19244E] leading-relaxed">Used across 7+ live tournaments, from local trials to district and regional events.</p>
           </div>
         </div>
       </div>
@@ -441,7 +334,61 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
             Before MyArchery, tournament operations ran on fragmented manual tools: Google Form signups, WhatsApp bank transfer checks, spreadsheet rosters, and a desktop scoring tool not built for field use. Paper scoresheets had to be physically collected and reentered before standings could update, which meant delays every round.
           </p>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="mb-8">
+            <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#19244E]/60 font-sans block mb-3">Research methods</span>
+            <p className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
+              Methods included desk research in the early stages, a comparative study, interviews, surveys, and focus groups, plus concept testing, field studies, usability testing, and observation.
+            </p>
+          </div>
+
+          <div className="mt-10">
+            <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#19244E]/60 font-sans block mb-4">How hosting worked before MyArchery</span>
+            <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white">
+              <table className="w-full text-left text-xs font-sans">
+                <thead className="bg-slate-50 text-[10px] text-slate-500 uppercase font-mono border-b border-slate-200">
+                  <tr>
+                    <th className="py-2.5 px-4">Stage</th>
+                    <th className="py-2.5 px-4">Tools organizers used</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100 text-slate-700">
+                  <tr className="hover:bg-slate-50/50">
+                    <td className="py-2.5 px-4 font-semibold text-slate-900">Create the registration form</td>
+                    <td className="py-2.5 px-4">Google Form, event proposal, technical handbook</td>
+                  </tr>
+                  <tr className="hover:bg-slate-50/50">
+                    <td className="py-2.5 px-4 font-semibold text-slate-900">Broadcast and answer questions</td>
+                    <td className="py-2.5 px-4">WhatsApp group</td>
+                  </tr>
+                  <tr className="hover:bg-slate-50/50">
+                    <td className="py-2.5 px-4 font-semibold text-slate-900">Recap registration data</td>
+                    <td className="py-2.5 px-4">Excel, Ianseo</td>
+                  </tr>
+                  <tr className="hover:bg-slate-50/50">
+                    <td className="py-2.5 px-4 font-semibold text-slate-900">Host the event and score</td>
+                    <td className="py-2.5 px-4">Ianseo, Excel, printing devices</td>
+                  </tr>
+                  <tr className="hover:bg-slate-50/50">
+                    <td className="py-2.5 px-4 font-semibold text-slate-900">Publish results and certificates</td>
+                    <td className="py-2.5 px-4">Ianseo, WhatsApp</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <figure className="mt-10">
+            <img
+              src={myArcheryBeforeField}
+              alt="Before MyArchery: registration, results, and coordination across WhatsApp, Google Form, Ianseo, and paper score sheets"
+              className="w-full h-auto rounded-xl border border-gray-200 shadow-xs"
+            />
+            <figcaption className="font-sans text-xs text-gray-500 mt-3">
+              Before MyArchery: registration ran on Google Forms and WhatsApp, and results came from printed Ianseo brackets and paper score sheets.
+            </figcaption>
+          </figure>
+
+          <div className="grid md:grid-cols-3 gap-6 mt-10">
             {[
               {
                 Icon: Users,
@@ -528,7 +475,7 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
             <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
               <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 02 · Real-time brackets instead of manual tabulation</span>
               <p className="font-sans text-sm text-gray-600 leading-relaxed">
-                <strong className="text-[#19244E]">The pressure:</strong> Paper scoresheets were collected and retyped before standings could update, which delayed every round.
+                <strong className="text-[#19244E]">The pressure:</strong> Results were printed from Ianseo, and paper scoresheets were collected and retyped before standings could update, which delayed every round.
               </p>
               <p className="font-sans text-sm text-gray-600 leading-relaxed">
                 <strong className="text-[#19244E]">What I did:</strong> I designed real-time bracket calculation, so standings update without waiting on manual tabulation.
@@ -593,37 +540,26 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
             </CaseStudyDisclosure>
           </div>
 
-          {/* Interactive Scoring Keypad */}
-          <TargetScoringKeypad />
-
-          <p className="font-sans text-xs text-gray-500 -mt-6 mb-10">
-            Try it: tap up to six arrows for one end. The total and the 10 and X count update as you score.
-          </p>
+          <figure className="mb-10">
+            <img
+              src={myArcheryOrganizer}
+              alt="MyArchery organizer app: event management, QR check-in, scoring, and e-certificates"
+              className="w-full h-auto rounded-xl border border-gray-200 shadow-xs"
+            />
+            <figcaption className="font-sans text-xs text-gray-500 mt-3">
+              The organizer app: event management, QR check-in for participants, scoring, and e-certificates.
+            </figcaption>
+          </figure>
 
           <div>
             <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#19244E]/60 font-sans block mb-4">Release timeline</span>
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
-                <span className="text-xs font-bold text-[#DB3E8C] block">2021 // Local Trials</span>
-                <p className="text-xs text-gray-600 leading-relaxed">
-                  The HUB Cibubur Trials: initial field validation of keypad scoring under outdoor conditions.
-                </p>
-              </div>
-
-              <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
-                <span className="text-xs font-bold text-[#3B82F6] block">2022 // Regional Open</span>
-                <p className="text-xs text-gray-600 leading-relaxed">
-                  Jakarta Open: expanding multi category support for Barebow, Compound, and Recurve classes.
-                </p>
-              </div>
-
-              <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
-                <span className="text-xs font-bold text-[#22c55e] block">Late 2022 // District & Regional Events</span>
-                <p className="text-xs text-gray-600 leading-relaxed">
-                  Sumbawa Barat and Purwakarta Open: full scale bracket engines and financial dashboards.
-                </p>
-              </div>
-            </div>
+            <figure>
+              <img
+                src={myArcheryReleaseTimeline}
+                alt="MyArchery release timeline, from the alpha release in October 2021 to public release 2.4 in December 2022"
+                className="w-full h-auto rounded-xl border border-gray-200 shadow-xs bg-white"
+              />
+            </figure>
           </div>
         </div>
 
