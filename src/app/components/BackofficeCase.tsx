@@ -303,13 +303,13 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
           <div className="p-4 border-l border-[#19244E]/15">
             <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">01 · Context</span>
             <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">
-              Each new partner needed its own portals, with no formal design system.
+              Every new partner seemed to need its own set of portals, yet the foundation was the same each time.
             </p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
             <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">02 · Constraints</span>
             <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">
-              One designer across several partners, often working from open briefs.
+              Several partners in parallel, open briefs, and components copied from file to file.
             </p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
@@ -439,8 +439,8 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                 {[
                   {
                     Icon: Users,
-                    title: "One designer, several partners",
-                    desc: "I was the only product designer, supporting several partners in parallel.",
+                    title: "Several partners in parallel",
+                    desc: "Partner requests overlapped, so I could not design every portal from scratch.",
                   },
                   {
                     Icon: FileText,
@@ -450,12 +450,12 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                   {
                     Icon: Database,
                     title: "Data that differed from the system",
-                    desc: "Partner B's claim eligibility needed data structures that differed significantly from the existing system.",
+                    desc: "One partner's claim eligibility rules needed data the existing system did not hold.",
                   },
                   {
                     Icon: Layers,
                     title: "No formal design system",
-                    desc: "Partner portals were built without a formal design system in place.",
+                    desc: "Components were copied from the previous partner's file, with no shared tokens or documentation.",
                   },
                 ].map(({ Icon, title, desc }) => (
                   <div key={title} className="p-6 bg-white rounded-xl border border-gray-200/80 shadow-xs space-y-3">
@@ -486,7 +486,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                     <strong className="text-[#19244E]">The question:</strong> Does the partner need a new module, or different data and claim review logic?
                   </p>
                   <p className="font-sans text-sm text-gray-600 leading-relaxed">
-                    <strong className="text-[#19244E]">What I did:</strong> Partner A's document-completeness flow fit the existing codebase, so it went to Track A. Partner B's four-party eligibility logic did not, so it went to Track B.
+                    <strong className="text-[#19244E]">What I did:</strong> I sorted every request into one of two tracks. Partner A's document check fit the existing codebase, so it went to Track A: reuse. Partner B's four-party eligibility check did not, so it went to Track B: new design work.
                   </p>
                   <p className="font-sans text-sm text-gray-600 leading-relaxed">
                     <strong className="text-[#19244E]">Why it held:</strong> Standard portals only needed colors, logo, and terminology changes, so developers could ship them without new designs.
@@ -499,7 +499,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                     <strong className="text-[#19244E]">The pressure:</strong> Partner B's eligibility check spans four parties and the policy's conditions. In the standard tab layout, staff switch back and forth between data and documents.
                   </p>
                   <p className="font-sans text-sm text-gray-600 leading-relaxed">
-                    <strong className="text-[#19244E]">What I did:</strong> A two-column claim detail page, with details on the left and review actions always visible on the right. I designed it with the backend team, because the data structures differed from the existing system.
+                    <strong className="text-[#19244E]">What I did:</strong> A two-column claim detail page, with details on the left and review actions always visible on the right. I worked it out with the client's team and our backend engineers first, because the data differed from the existing system.
                   </p>
                 </div>
 
@@ -571,9 +571,6 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                       "Ship without new designs",
                     ]}
                   />
-                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                    Components and page structures stayed consistent across partners, so standard portals could move forward without new designs.
-                  </p>
                 </div>
 
                 <div className="p-6 bg-white border border-[#3B82F6]/40 rounded-xl space-y-4 shadow-xs">
@@ -593,7 +590,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                     ]}
                   />
                   <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                    This is where my design process began. The most significant difference was how claims were reviewed, as the two cases below show.
+                    This is where my design time went. The two cases below are both Track B work.
                   </p>
                 </div>
               </div>
@@ -619,7 +616,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                       <div className="font-semibold text-[#DB3E8C]">Submitted → Acknowledged → Document Review → Reupload or Lack of Documents → Accepted, Rejected, or Paid</div>
                     </div>
                     <p className="text-xs text-gray-600 leading-relaxed">
-                      Operations staff handle every state. This partner fit the existing codebase, so developers could configure it without new designs.
+                      Operations staff handle every state. This is Track A: the existing claim screens, reused.
                     </p>
                   </div>
 
@@ -639,7 +636,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                 </div>
 
                 <p>
-                  Because this flow touched data structures that differed significantly from the existing system, I worked through it with the client's team and our backend engineers before designing. The result is a claim detail page with a side panel that changes at each stage:
+                  This is Track B. The claim detail page has a side panel that changes at each of three stages:
                 </p>
 
                 {/* 3 Stages Cards */}
@@ -733,13 +730,13 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                       a: backofficeDetailTrackA,
                       b: backofficeDetailTrackB,
                       captionA: "One column, with Summary and Documents on separate tabs.",
-                      captionB: "Status changes are confirmed in a dialog that shows the amounts first.",
+                      captionB: "Two columns. Each party and policy condition is checked in a side panel beside the claim details.",
                     },
                     {
                       stage: "Assessment and payment",
                       a: backofficePaymentTrackA,
                       b: backofficePaymentTrackB,
-                      captionA: "Each party and policy condition is checked in a side panel beside the claim details.",
+                      captionA: "Status changes are confirmed in a dialog that shows the amounts first.",
                       captionB: "Net payable is calculated first, then split across beneficiaries by share.",
                     },
                   ].map((row) => (
@@ -777,7 +774,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                   The client asked for a new "Product Performance" indicator on their reporting dashboard, but the brief left most of it open: whether it should show transactions or policies sold, and over what time period. There were no requirements for the chart type either, so I explored and chose a grouped bar chart with one color per product, letting managers compare products side by side within each period.
                 </p>
                 <p>
-                  Deciding how the chart should respond to the dashboard's filters took more thought. While discussing data needs with our backend engineer, I learned that tying this chart to the date range filter could make data retrieval very slow. So I proposed a filter system that separates the two:
+                  How the chart responds to the dashboard's filters follows Decision 03. Each filter has one job:
                 </p>
 
                 <div className="grid md:grid-cols-3 gap-4 my-4">
@@ -811,10 +808,6 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                     </p>
                   </div>
                 </div>
-
-                <p>
-                  The result keeps the chart readable as a trend view and avoids slow loading, without adding complexity to the rest of the dashboard.
-                </p>
 
                 {/* Before and after: the chart is the addition that sets this dashboard apart from the standard white-label one */}
                 <div className="my-8">
@@ -866,10 +859,10 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
 
                 <div className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C] space-y-5" style={{ lineHeight: 1.8 }}>
                   <p>
-                    Separating reuse from real design work changed where my time went. Standard portals moved through the existing codebase, and my design time went to the modules that needed it, such as Partner B's claim assessment. The two-track split was not something I planned upfront. It became clear only after several projects had shipped.
+                    The two-track split was not something I planned upfront. It became clear only after several projects had shipped.
                   </p>
                   <p>
-                    Reusable components are a good starting point. They let a company begin with a standard portal, and they make it faster to present to a client. The lesson I take is to stay alert when a client changes its inputs or flow: every change needs its logic checked, and its impact traced to the other flows before it goes live.
+                    The lesson I take is to stay alert when a client changes its inputs or flow. Every change needs its logic checked, and its impact traced to the other flows, before it goes live.
                   </p>
                 </div>
 
@@ -878,7 +871,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                   <h3 className="font-display text-xl font-bold text-[#19244E] mb-2">What I did next: from a shared base to a design library</h3>
                   <div className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C] space-y-5 mb-6" style={{ lineHeight: 1.8 }}>
                     <p>
-                      The "no formal design system" constraint stayed with me. For every new partner I had copied components from the previous file, so after these projects I went back and consolidated them. I used Claude Code with the Figma MCP to audit my existing files and generate a documented library from them, then reviewed and revised it over several rounds. It is a v0.1 draft: semantic color tokens on top of primitives, a two-family type scale, a 4-pt spacing scale, 18 documented components, and three layout patterns.
+                      Copying components from file to file was the constraint I most wanted to fix, so after these projects I went back and consolidated them. I used Claude Code with the Figma MCP to audit my existing files and generate a documented library from them, then reviewed and revised it over several rounds. It is a v0.1 draft: semantic color tokens on top of primitives, a two-family type scale, a 4-pt spacing scale, 18 documented components, and three layout patterns.
                     </p>
                     <p>
                       The audit also showed what duplicating files from partner to partner had left behind. Six legacy typefaces were retired in favor of Montserrat and Inter, two sizes of input field became one, and status text moved to darker tokens that pass AA contrast on white.
