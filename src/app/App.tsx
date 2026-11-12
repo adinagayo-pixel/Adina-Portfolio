@@ -111,8 +111,7 @@ export function getGeneralWhatsAppLink() {
 }
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
-// Every case study, in reading order. The first six lead the Work section; the rest sit in a short list below it.
-const ALL_CASES = [
+const FEATURED = [
   {
     num: "01", shortTitle: "Micro Insurance", name: "Seamless Micro Insurance Integration", client: "Touch 'n Go × GEGM",
     location: "MY", year: "2025", tags: ["PWA / SSO", "eKYC Data Mapping", "B2C / FinTech"],
@@ -250,9 +249,6 @@ const ALL_CASES = [
     ],
   },
 ]
-
-const FEATURED = ALL_CASES.slice(0, 6)
-const MORE_CASES = ALL_CASES.slice(6)
 
 const PROJECTS: Project[] = [
   // ── 2026 ──────────────────────────────────────────────────────────────────────
@@ -1832,31 +1828,6 @@ function FeaturedWorkSection({
             </div>
           </div>
         </div>
-
-        {/* More case studies: the cases outside the featured six */}
-        <div className="px-4 sm:px-8 lg:px-16 pb-12 pt-2">
-          <div className="pt-8 border-t border-white/10">
-            <span className="block font-sans text-[10px] font-semibold tracking-[0.2em] uppercase text-white/60 mb-4">
-              More case studies
-            </span>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-              {MORE_CASES.map((project) => (
-                <button
-                  key={project.projectId}
-                  type="button"
-                  onClick={() => onOpenProject(project.projectId)}
-                  className="group text-left p-4 rounded-xl border border-white/10 hover:border-[#DB3E8C]/60 hover:bg-white/5 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C]"
-                >
-                  <span className="block font-sans text-[10px] font-bold tracking-wider uppercase text-[#DB3E8C] mb-1.5">{project.num} · {project.client}</span>
-                  <span className="block font-sans text-sm font-semibold text-white leading-snug">{project.name}</span>
-                  <span className="inline-flex items-center gap-1 mt-3 font-sans text-xs text-white/60 group-hover:text-white">
-                    Read case <ArrowRight size={12} />
-                  </span>
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   )
@@ -2754,6 +2725,9 @@ const FEATURED_INDEX_MAP: Record<string, number> = {
   anlene: 3,
   myarchery: 4,
   bijakwang: 5,
+  gegi: 6,
+  archery: 7,
+  telkom: 8,
 }
 
 // ─── APP ──────────────────────────────────────────────────────────────────────
