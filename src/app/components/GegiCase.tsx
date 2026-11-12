@@ -147,7 +147,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
             <span>HOME</span>
           </a>
 
-          <CaseStudyHeaderBadge caseNum="04" />
+          <CaseStudyHeaderBadge caseNum="07" />
         </div>
 
         {/* Mobile Collapsible Quick Jump Bar - Flush underneath */}
@@ -203,7 +203,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
       <div className="px-4 sm:px-8 lg:px-16 pt-12 sm:pt-16 pb-10 sm:pb-14" style={{ backgroundColor: W, borderBottom: `1px solid ${HAIR}` }}>
         <div className="space-y-6 mb-10 lg:mb-12">
           <div className="flex flex-wrap items-center gap-3">
-            <MonoTag accent>CASE STUDY 04</MonoTag>
+            <MonoTag accent>CASE STUDY 07</MonoTag>
             <span style={{ color: HAIR }}>/</span>
             <MonoTag>FINTECH & GAMIFIED CAMPAIGN</MonoTag>
             <span style={{ color: HAIR }}>/</span>
@@ -213,7 +213,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
             className="font-display font-bold leading-[1.08] tracking-tight"
             style={{ fontSize: "clamp(2rem, 4vw, 3.6rem)", color: N }}
           >
-            Gamified CI Evaluation & Interactive Acquisition Campaign
+            A Two Week Quiz Campaign That Shows People Their Critical Illness Protection Gap
           </h1>
         </div>
 
@@ -225,7 +225,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
               className="font-display font-medium leading-relaxed"
               style={{ fontSize: "clamp(1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
             >
-              Great Eastern Singapore needed an engaging digital campaign to assess critical illness protection gaps among its users.
+              A web quiz for Great Eastern Singapore that turns a short set of questions into one of four persona results, each with a shareable card. I took it from an early visual concept to a complete, responsive product in two weeks.
             </p>
 
             <CaseStudyFacts

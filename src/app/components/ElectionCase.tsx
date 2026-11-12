@@ -151,7 +151,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
             <span>HOME</span>
           </a>
 
-          <CaseStudyHeaderBadge caseNum="06" />
+          <CaseStudyHeaderBadge caseNum="02" />
         </div>
 
         {/* Mobile Collapsible Quick Jump Bar - Flush underneath */}
@@ -207,7 +207,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
       <div className="px-4 sm:px-8 lg:px-16 pt-12 sm:pt-16 pb-10 sm:pb-14" style={{ backgroundColor: W, borderBottom: `1px solid ${HAIR}` }}>
         <div className="space-y-6 mb-10 lg:mb-12">
           <div className="flex flex-wrap items-center gap-3">
-            <MonoTag accent>CASE STUDY 06</MonoTag>
+            <MonoTag accent>CASE STUDY 02</MonoTag>
             <span style={{ color: HAIR }}>/</span>
             <MonoTag>CIVIC TECH & ELECTION SYSTEMS</MonoTag>
             <span style={{ color: HAIR }}>/</span>
@@ -229,7 +229,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
               className="font-display font-medium leading-relaxed"
               style={{ fontSize: "clamp(1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
             >
-              Indonesian Political Party (National) · 2024 Presidential & Legislative Elections
+              A system for a national political party to enter, verify, and tabulate polling station results in Indonesia's 2024 elections, inside a 48 hour window. It had to work with no signal, with handwritten forms, and with an AI that sometimes needs a human to step in.
             </p>
 
             <CaseStudyFacts

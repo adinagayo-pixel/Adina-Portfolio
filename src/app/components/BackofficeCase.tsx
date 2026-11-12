@@ -14,7 +14,6 @@ import {
 
 import backofficePortalThumb from "@/imports/backoffice portal thumb.jpg"
 import backofficeSalesOverview from "@/imports/backoffice-sales-overview.png"
-import backofficeCustomerDetail from "@/imports/backoffice-customer-detail.png"
 import backofficeDashboardBefore from "@/imports/backoffice-dashboard-before.png"
 import backofficeDashboardAfter from "@/imports/backoffice-dashboard-after.png"
 import backofficeClaimTrackA from "@/imports/backoffice-claim-track-a.png"
@@ -167,7 +166,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
             <span>HOME</span>
           </a>
 
-          <CaseStudyHeaderBadge caseNum="01" />
+          <CaseStudyHeaderBadge caseNum="03" />
         </div>
 
         {/* Mobile Collapsible Quick Jump Bar - Flush underneath */}
@@ -221,7 +220,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
       <div className="px-8 lg:px-16 pt-16 pb-14" style={{ backgroundColor: W, borderBottom: `1px solid ${HAIR}` }}>
         <div className="space-y-6 mb-10 lg:mb-12">
           <div className="flex flex-wrap items-center gap-3">
-            <MonoTag accent>CASE STUDY 01</MonoTag>
+            <MonoTag accent>CASE STUDY 03</MonoTag>
             <span style={{ color: HAIR }}>/</span>
             <MonoTag>WHITE LABEL BACKOFFICE</MonoTag>
             <span style={{ color: HAIR }}>/</span>
@@ -243,7 +242,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
               className="font-display font-medium leading-relaxed"
               style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
             >
-              I found the shared foundation across partner portals, then spent my design time only on the parts where partners genuinely differed.
+              A backoffice where partners monitor sales, manage customers, and review insurance claims. I designed the base once, then spent my design time only where partners genuinely differed.
             </p>
 
 
@@ -331,6 +330,30 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
             </p>
           </div>
         </div>
+      </div>
+
+      {/* THE PRODUCT AT A GLANCE: three screens before the story starts */}
+      <div className="px-8 lg:px-16 py-10 border-b border-[#19244E]/10">
+        <span className="block font-sans text-xs font-bold tracking-[0.2em] uppercase text-[#19244E]/60 mb-4">
+          THE PRODUCT AT A GLANCE
+        </span>
+        <div className="grid md:grid-cols-3 gap-4">
+          {[
+            { src: backofficeSalesOverview, title: "Sales dashboard", caption: "Managers monitor transactions and contributions." },
+            { src: backofficeClaimTrackB, title: "Claim list", caption: "Operations staff track every claim by stage." },
+            { src: backofficeDetailTrackB, title: "Claim review", caption: "Reviewers check a claim beside its details." },
+          ].map((shot) => (
+            <figure key={shot.title} className="space-y-2">
+              <div className="overflow-hidden rounded-xl border border-gray-200 shadow-xs bg-white">
+                <ZoomableImage src={shot.src} alt={`${shot.title} screen`} />
+              </div>
+              <figcaption className="font-sans text-xs text-gray-600">
+                <strong className="text-[#19244E]">{shot.title}.</strong> {shot.caption}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <p className="font-sans text-xs text-gray-500 mt-3">Recreated with dummy data.</p>
       </div>
 
       {/* ── MAIN BODY WITH STICKY LEFT SIDEBAR TOC (DESKTOP) ──────────────── */}
@@ -590,13 +613,13 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                     ]}
                   />
                   <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                    This is where my design time went. The two cases below are both Track B work.
+                    This is where my design time went. Both examples below are Track B work.
                   </p>
                 </div>
               </div>
 
               {/* Evidence 01: Claim review */}
-              <h3 className="font-display text-xl font-bold text-[#19244E] mb-2">Case 1: Same Menu, Different Logic</h3>
+              <h3 className="font-display text-xl font-bold text-[#19244E] mb-2">The Main Case: Same Menu, Different Logic</h3>
               <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C] mb-10" style={{ lineHeight: 1.8 }}>
                 <p>
                   On paper, every partner needed the same thing: a Claim menu in their backoffice. In practice, two partners meant completely different things by "reviewing a claim."
@@ -768,16 +791,25 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
               </div>
 
               {/* Evidence 02: Chart */}
-              <h3 className="font-display text-xl font-bold text-[#19244E] mb-2">Case 2: A Chart From an Open Brief</h3>
+              <h3 className="font-display text-xl font-bold text-[#19244E] mb-2">Also in Track B: A Chart From an Open Brief</h3>
               <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
                 <p>
-                  The client asked for a new "Product Performance" indicator on their reporting dashboard, but the brief left most of it open: whether it should show transactions or policies sold, and over what time period. There were no requirements for the chart type either, so I explored and chose a grouped bar chart with one color per product, letting managers compare products side by side within each period.
+                  A client asked for a "Product Performance" indicator on their dashboard, but the brief left open what to show, over what period, and in what chart. I chose a grouped bar chart with one color per product, so managers can compare products side by side.
                 </p>
-                <p>
-                  How the chart responds to the dashboard's filters follows Decision 03. Each filter has one job:
-                </p>
+                {/* Before and after: the chart is the addition that sets this dashboard apart from the standard white-label one */}
+                <div className="my-8">
+                  <BeforeAfterSlider
+                    beforeSrc={backofficeDashboardBefore}
+                    afterSrc={backofficeDashboardAfter}
+                    alt="Dashboard before and after the Product Performance chart was added"
+                  />
+                  <p className="font-sans text-xs text-gray-500 mt-3">
+                    Before: the standard white-label dashboard. After: the same dashboard with the Product Performance chart added. Drag to compare. Recreated with dummy data.
+                  </p>
+                </div>
 
-                <div className="grid md:grid-cols-3 gap-4 my-4">
+                <CaseStudyDisclosure label="Technical detail" summary="How the chart responds to each dashboard filter">
+                <div className="grid md:grid-cols-3 gap-4">
                   <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
                     <span className="text-[10px] font-bold text-[#3B82F6] uppercase tracking-wider block font-mono">
                       FILTER 1 (SHARED)
@@ -808,18 +840,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                     </p>
                   </div>
                 </div>
-
-                {/* Before and after: the chart is the addition that sets this dashboard apart from the standard white-label one */}
-                <div className="my-8">
-                  <BeforeAfterSlider
-                    beforeSrc={backofficeDashboardBefore}
-                    afterSrc={backofficeDashboardAfter}
-                    alt="Dashboard before and after the Product Performance chart was added"
-                  />
-                  <p className="font-sans text-xs text-gray-500 mt-3">
-                    Before: the standard white-label dashboard. After: the same dashboard with the Product Performance chart added. Drag to compare. Recreated with dummy data.
-                  </p>
-                </div>
+                </CaseStudyDisclosure>
 
               </div>
             </div>

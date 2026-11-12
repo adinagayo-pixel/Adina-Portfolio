@@ -217,7 +217,7 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
             className="font-display font-bold leading-[1.08] tracking-tight"
             style={{ fontSize: "clamp(2.2rem, 4vw, 3.6rem)", color: N }}
           >
-            Digital Transformation & AI Driven Retail Ecosystem
+            Taking an Archery Shop Online: Four Connected Surfaces, Designed and Built Solo
           </h1>
         </div>
 
@@ -229,7 +229,7 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
               className="font-display font-medium leading-relaxed"
               style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
             >
-              An ongoing, sole designer engagement turning Indonesia's premier physical archery retailer into a 4 surface digital ecosystem, starting with a 24 hour AI built landing page and evolving through real business pivots ever since.
+              A public landing page, a storefront with customer self service, and an admin and POS console for Pro Archery, a physical archery retailer in Jakarta. It started with a landing page built with AI in 24 hours, and has changed with the business ever since.
             </p>
             <CaseStudyFacts
               facts={[

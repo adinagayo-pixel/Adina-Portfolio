@@ -140,7 +140,7 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
             <span>HOME</span>
           </a>
 
-          <CaseStudyHeaderBadge caseNum="05" />
+          <CaseStudyHeaderBadge caseNum="06" />
         </div>
 
         {/* Mobile Collapsible Quick Jump Bar - Flush underneath */}
@@ -196,7 +196,7 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
       <div className="px-4 sm:px-8 lg:px-16 pt-12 sm:pt-16 pb-10 sm:pb-14" style={{ backgroundColor: W, borderBottom: `1px solid ${HAIR}` }}>
         <div className="space-y-6 mb-10 lg:mb-12">
           <div className="flex flex-wrap items-center gap-3">
-            <MonoTag accent>CASE STUDY 05</MonoTag>
+            <MonoTag accent>CASE STUDY 06</MonoTag>
             <span style={{ color: HAIR }}>/</span>
             <MonoTag>IN HOUSE GAMIFIED QUIZ PLATFORM</MonoTag>
             <span style={{ color: HAIR }}>/</span>
@@ -206,7 +206,7 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
             className="font-display font-bold leading-[1.08] tracking-tight"
             style={{ fontSize: "clamp(2rem, 4vw, 3.6rem)", color: N }}
           >
-            From Kahoot to In House: Designing Under Constraints I Didn't Choose
+            From Kahoot to In House: A Live Quiz Platform for mySalam Roadshows
           </h1>
         </div>
 
@@ -218,7 +218,7 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
               className="font-display font-medium leading-relaxed"
               style={{ fontSize: "clamp(1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
             >
-              This project originated from My Money Sense (2025), a daily financial practice game I built for mySalam.
+              A quiz platform that mySalam runs at regional roadshows, with a daily practice mode and a live tournament mode, built in house instead of paying a third party tool for each event. It grew out of My Money Sense (2025), a daily financial practice game I built for mySalam.
             </p>
 
             <CaseStudyFacts
