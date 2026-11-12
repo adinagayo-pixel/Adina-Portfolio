@@ -1,46 +1,202 @@
 import { useState, useEffect } from "react"
-import {
-  ArrowLeft, CheckCircle2, Mail, Linkedin, MapPin, Phone,
-  ExternalLink, GraduationCap, Briefcase, Award, Languages,
-  ChevronRight, Calendar, Sparkles, Download
-} from "lucide-react"
+import type { ReactNode } from "react"
+import { ArrowLeft, ArrowUpRight, Eye } from "lucide-react"
+import adinaPhotoAbout from "@/imports/Foto At Work.jpg"
+import adinaPhotoLife from "@/imports/Foto In Life.jpg"
 
-const N = "#19244E" // Oiler Navy
-const C = "#DB3E8C" // Deep Cerise
-const W = "#ffffff"
-const S = "#F9FAFB" // Slate off-white
-const HAIR = `rgba(25,36,78,0.10)` // hairline border
+// Type and color roles match the case study pages:
+// navy for headings, soft navy for body, grey for small notes, one pink accent.
+const N = "#19244E"
+const BODY = "#2E3A5C"
+const C = "#DB3E8C"
+const HAIR = "rgba(25,36,78,0.10)"
 
-function MonoTag({ children, accent = false }: { children: React.ReactNode; accent?: boolean }) {
+const CONTACTS = [
+  { label: "Email", href: "mailto:adinagayo@gmail.com" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/adinafayzagayo/" },
+]
+
+const AT_A_GLANCE = [
+  { value: "5 years", note: "in product design" },
+  { value: "26+", note: "digital products" },
+  { value: "17+", note: "white-label products" },
+  { value: "3 markets", note: "ID · MY · SG" },
+]
+
+const EXPERIENCE = [
+  {
+    role: "Digital Product Designer, Enterprise Multi-Brand Platforms",
+    company: "Deptech Digital Indonesia",
+    location: "Jakarta",
+    duration: "Jun 2024 to Present",
+    scope: "Enterprise multi-brand platforms · Insurance and financial systems · White-label solutions",
+    desc: "Delivered white-label products for enterprise clients including Grab, Touch 'n Go × Great Eastern, GEGM × Shopee, and mySalam × myKawan across Indonesia, Malaysia, and Singapore.",
+    points: [
+      { lead: "Four-portal systems.", text: "Designed four-portal systems (admin, customer, agent, microsite) with claims and underwriting approval workflows in 2–4 days." },
+      { lead: "Touch 'n Go mini-program.", text: "Designed an insurance mini-program for Touch 'n Go's 20M+ user e-wallet through five client-reviewed versions, with subsidy eligibility checks and webview-constrained flows. Analyzed app flows and API documentation for eKYC prefill, with fewer redundant inputs and higher data accuracy. Migrated the component set to TNG's official UI kit after first-round approval." },
+      { lead: "Modular UI across 17+ products.", text: "Adapted modular UI components across 17+ white-label products for visual consistency." },
+      { lead: "Live quiz flow redesign.", text: "Redesigned post-launch flows for mySalam × myKawan's live quiz game, with a top-5 leaderboard and a no-submit answer flow for faster live play." },
+      { lead: "Scoping and handoff.", text: "Proposed product logic and feature scope to PMs and engineers in Agile teams of 5–18+ members, within technical feasibility. Documented states, edge cases, and expected outcomes in developer handoffs, and presented high-fidelity prototypes to stakeholders for approval in 1–2 review cycles." },
+    ],
+  },
+  {
+    role: "UI/UX Designer",
+    company: "Deptech Digital Indonesia",
+    location: "Jakarta",
+    duration: "Jun 2023 to Jun 2024",
+    scope: "Consumer health platform (FMCG) · National election system · Usability testing",
+    desc: "Owned end-to-end UI/UX as sole designer in 4–7 member teams for healthcare, monitoring, and POS products.",
+    points: [
+      { lead: "Healthcare and FMCG.", text: "Included Fonterra × Anlene's consumer health platform (FMCG)." },
+      { lead: "National election quick count.", text: "Designed a national election quick count system for 820,000+ witness-registered polling stations, with field-driven iteration." },
+      { lead: "Audits and testing.", text: "Conducted system audits and usability testing for validated UX improvements. Analyzed business models and user patterns against technical and business requirements." },
+    ],
+  },
+  {
+    role: "Product / UI/UX Designer (Part-time, Remote)",
+    company: "Freelance",
+    location: "Remote",
+    duration: "May 2023 to Present",
+    scope: "AI-powered prototyping · Healthcare · Legal tech · E-commerce",
+    desc: "Selected projects across healthcare, legal, travel, and e-commerce, from MVP through UAT.",
+    points: [
+      { lead: "AI-powered prototyping.", text: "Developed AI-powered design and prototyping workflows with Claude, Gemini, Figma Make, VS Code, and Antigravity, for rapid iteration from requirements to HTML prototypes." },
+      { lead: "Telkomsel Siaga greeting wall.", text: "Designed the UI for Telkomsel Siaga's nationwide greeting wall (mobile form, moderation dashboard, curved LED display) in a 1-week sprint." },
+      { lead: "Pro Archery commerce.", text: "Designed Pro Archery's commerce ecosystem: landing page, B2C e-commerce, customer portal, and admin/POS." },
+      { lead: "Consulting and enterprise platforms.", text: "Designed a legal consulting platform, therapy center ERP, checkout experiences, and directory platforms, along with websites, mobile applications, and dashboards." },
+    ],
+  },
+  {
+    role: "UI/UX Designer",
+    company: "Reka Cipta Digital",
+    location: "Jakarta",
+    duration: "Aug 2021 to May 2023",
+    scope: "Design thinking · Interactive prototypes · Conversion optimization · Front-end implementation",
+    desc: "A software house delivering custom web and mobile solutions for client products.",
+    points: [
+      { lead: "Alignment and research.", text: "Aligned design and engineering teams on project goals and development timelines. Conducted user research using design thinking and qualitative methods to define user flows, personas, and UX strategy." },
+      { lead: "Prototypes and visual design.", text: "Created wireframes, visual designs, flow diagrams, and interactive prototypes for front-end implementation." },
+      { lead: "Conversion and bug fixing.", text: "Tested UI elements, page layouts, and user flow to optimize landing-page conversion. Supported developers through design handoff, implementation, and bug fixing." },
+    ],
+  },
+  {
+    role: "Graphic Designer",
+    company: "Badan Amil Zakat Nasional (BAZNAS)",
+    location: "Jakarta",
+    duration: "Apr 2020 to Dec 2021",
+    scope: "Team leadership · National campaigns · Multi-branch communication",
+    desc: "A national philanthropic organization managing zakat, infaq, and alms.",
+    points: [
+      { lead: "Team leadership.", text: "Led a design team of 3 to deliver 20+ design requests weekly across digital campaigns and print materials." },
+      { lead: "Nationwide communication.", text: "Coordinated design communication across BAZNAS branches nationwide, producing digital campaigns, advertisements, brochures, infographics, and event visuals." },
+    ],
+  },
+]
+
+const EDUCATION = [
+  {
+    school: "Institut Teknologi Sepuluh Nopember",
+    location: "Surabaya (Online)",
+    degree: "Master of Technology Management, Design Innovation Management",
+    gpa: "3.89 / 4.00",
+    duration: "Feb 2025 to Jul 2026",
+    details: [
+      { label: "Thesis", text: "“Design Rationale Documentation and Traceability Framework for Solo Designers in Multi-Brand Products: A Case Study at PT Friendsure Teknologi Indonesia”" },
+      { label: "Academic project", text: "RemindITS, a task-reminder app for working students. Ran a questionnaire survey and moderated usability testing (11 participants, 5 task scenarios, SUS 70.21)." },
+      { label: "Coursework", text: "Design Thinking · Design Management · Strategic Brand Management · UX Design · Project Management · Business Statistics" },
+    ],
+  },
+  {
+    school: "Universitas Multimedia Nusantara",
+    location: "Gading Serpong",
+    degree: "Bachelor of Interactive Design, Interactive Design & UI/UX",
+    gpa: "3.55 / 4.00",
+    duration: "Aug 2017 to Jan 2021",
+    details: [
+      { label: "Final project", text: "Interactive card game for children with dyslexia: researched, designed, and prototyped." },
+      { label: "Coursework", text: "HCI · Interactivity · Interface Design · Design Methods" },
+    ],
+  },
+]
+
+const TOOLKIT = [
+  {
+    label: "UX/UI",
+    items: "User flows · Wireframing · Prototyping · Usability testing · Journey mapping · UX strategy · Interaction design · Visual design",
+  },
+  {
+    label: "Product & systems",
+    items: "Product thinking · System analysis · Modular and atomic component systems · Multi-brand and white-label products · Business model analysis",
+  },
+  {
+    label: "Collaboration",
+    items: "Stakeholder management · Cross-functional collaboration · Design rationale documentation and handoff",
+  },
+  {
+    label: "Tools",
+    items: "Figma · Figma Make · Framer · Claude · Gemini · Antigravity · VS Code · HTML/CSS prototyping · Adobe Illustrator · Adobe Photoshop · Microsoft Excel",
+  },
+  {
+    label: "Certifications",
+    items: "Adobe Certified Associate (Illustrator) · UI/UX Bootcamp (Purwadhika, 2021) · IDF User Experience Foundation (2023) · Full Stack Integration (Skill Academy, 2024)",
+  },
+  {
+    label: "Languages",
+    items: "Indonesian (native) · English (TOEFL 550, British Council 570) · Korean (beginner)",
+  },
+]
+
+const IN_LIFE = [
+  {
+    title: "Stories and live rooms",
+    text: "Off the clock, I trade Figma files for live gigs, plot twists, and systematic quirks. I enjoy taking complex stories apart, whether that means predicting the culprit in a thriller K-Drama, logging my latest reads with favorite quotes, or letting a playlist drift from classical into smooth RnB. Local indie concerts, seen from the crowd, have a rhythm of their own.",
+  },
+  {
+    title: "Planned to the gram",
+    text: "My structural instincts rarely shut down. I am the friend who builds color-coded travel itineraries three weeks early, with walking distances, backup cafes, and dual-currency budgets. In the kitchen I follow recipes to the exact gram, until it comes to fried rice, where instinct takes over.",
+  },
+  {
+    title: "Friendly competition",
+    text: "Fueled by zero-sugar iced Americanos and the occasional bowl of properly bitter matcha, my downtime is friendly competition: personal bests on Sudoku and Blockblast, oversized jigsaw puzzles, and late-night Uno with friends.",
+  },
+]
+
+function Label({ children }: { children: ReactNode }) {
   return (
-    <span
-      className="font-sans text-xs font-semibold tracking-wider uppercase"
-      style={{ color: accent ? C : `${N}CC` }}
-    >
+    <span className="block font-sans text-[11px] font-bold tracking-[0.2em] uppercase" style={{ color: C }}>
       {children}
     </span>
   )
 }
 
-function SectionTag({ label }: { num?: string; label: string }) {
+// One page section: the title sits in a narrow left column and stays in view while its content scrolls.
+function Section({ title, note, children }: { title: string; note?: string; children: ReactNode }) {
   return (
-    <div className="mb-8">
-      <div className="text-xs font-semibold uppercase tracking-[0.2em] mb-2" style={{ color: C }}>
-        {label.toUpperCase()}
+    <section className="py-16 lg:py-24" style={{ borderTop: `1px solid ${HAIR}` }}>
+      <div className="max-w-[1120px] mx-auto px-6 lg:px-12 grid lg:grid-cols-[240px_1fr] gap-8 lg:gap-16 items-start">
+        <div className="lg:sticky lg:top-24">
+          <h2 className="font-display text-2xl lg:text-3xl font-bold" style={{ color: N }}>
+            {title}
+          </h2>
+          <div className="w-12 h-[2px] mt-4" style={{ backgroundColor: C }} />
+          {note && (
+            <p className="font-sans text-sm leading-relaxed mt-5" style={{ color: BODY }}>
+              {note}
+            </p>
+          )}
+        </div>
+        <div className="min-w-0">{children}</div>
       </div>
-      <h3 className="font-display text-2xl lg:text-3xl font-bold" style={{ color: N }}>
-        {label}
-      </h3>
-      <div className="w-12 h-[2px] mt-3" style={{ backgroundColor: C }} />
-    </div>
+    </section>
   )
 }
 
 interface Props {
   onBack: () => void
+  onOpenPdfPreview: () => void
 }
 
-export default function AboutMe({ onBack }: Props) {
+export default function AboutMe({ onBack, onOpenPdfPreview }: Props) {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -51,432 +207,246 @@ export default function AboutMe({ onBack }: Props) {
   }, [])
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: S, fontFamily: "var(--font-sans)", color: N }}>
-      
+    <div className="min-h-screen bg-white" style={{ fontFamily: "var(--font-sans)", color: N }}>
+
       {/* Sticky header */}
       <div
-        className="sticky top-0 z-50 flex items-center justify-between px-8 lg:px-16 py-4 transition-all duration-200"
+        className="sticky top-0 z-50 flex items-center justify-between gap-4 px-6 lg:px-12 py-4 transition-all duration-200"
         style={{
-          backgroundColor: scrolled ? "rgba(255,255,255,0.96)" : W,
+          backgroundColor: scrolled ? "rgba(255,255,255,0.96)" : "#ffffff",
           backdropFilter: scrolled ? "blur(16px)" : "none",
           borderBottom: `1px solid ${HAIR}`,
         }}
       >
         <button
           onClick={onBack}
-          className="flex items-center gap-2 font-sans text-xs sm:text-sm font-semibold tracking-widest uppercase transition-opacity hover:opacity-60 cursor-pointer"
+          className="flex items-center gap-2 font-sans text-xs font-semibold tracking-widest uppercase transition-opacity hover:opacity-60 cursor-pointer"
           style={{ color: N }}
         >
           <ArrowLeft size={13} /> Back to Home
         </button>
-        <MonoTag>ADINA FAYZA GAYO · FULL PROFILE & RESUME</MonoTag>
+        <button
+          type="button"
+          onClick={onOpenPdfPreview}
+          className="flex items-center gap-2 font-sans text-xs font-semibold tracking-widest uppercase transition-opacity hover:opacity-60 cursor-pointer"
+          style={{ color: C }}
+        >
+          <Eye size={13} /> View Resume
+        </button>
       </div>
 
-      {/* ── HERO BANNER ────────────────────────────────────────────────── */}
-      <div className="py-20 lg:py-24 px-8 lg:px-20 text-white relative overflow-hidden" style={{ backgroundColor: N }}>
-        {/* Subtle background gradient elements */}
-        <div className="absolute right-0 top-0 w-96 h-96 rounded-full filter blur-[120px] opacity-15 pointer-events-none" style={{ background: `linear-gradient(135deg, ${C} 0%, #3B82F6 100%)` }} />
-        
-        <div className="max-w-[900px] relative z-10">
-          <p className="font-sans text-xs sm:text-sm font-semibold tracking-[0.25em] mb-4 uppercase" style={{ color: C }}>
-            UI/UX Designer · Digital Product Design
-          </p>
-          <h1 className="font-display font-light text-4xl lg:text-6xl leading-[1.05] tracking-tight mb-8">
-            Adina Fayza Gayo
-          </h1>
-          <p className="text-base lg:text-lg font-sans font-light leading-relaxed text-white/90 max-w-[780px] mb-8">
-            UI/UX Designer with 5 years of experience in end-to-end design from user flows and wireframing to prototyping, design systems, AI-assisted design workflows, and developer handoff, including B2B multi-portal operations systems and white-label platforms.
-          </p>
-          
-          {/* Metadata Grid */}
-          <div className="flex flex-wrap gap-y-3.5 gap-x-6 pt-6 border-t border-white/10 text-xs sm:text-sm font-sans text-white/85">
-            <span className="flex items-center gap-1.5">
-              <MapPin size={14} className="text-[#DB3E8C]" /> Jakarta, Indonesia
-            </span>
-            <a href="tel:+6289630441118" className="flex items-center gap-1.5 hover:text-white transition-colors">
-              <Phone size={14} className="text-[#DB3E8C]" /> +62 896 3044 1118
-            </a>
-            <a href="mailto:adinagayo@gmail.com" className="flex items-center gap-1.5 hover:text-white transition-colors">
-              <Mail size={14} className="text-[#DB3E8C]" /> adinagayo@gmail.com
-            </a>
-            <a href="https://www.linkedin.com/in/adinafayzagayo/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white transition-colors">
-              <Linkedin size={14} className="text-[#DB3E8C]" /> LinkedIn
-            </a>
-            <a href="https://adinagayo.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white transition-colors">
-              <ExternalLink size={14} className="text-[#DB3E8C]" /> adinagayo.com
-            </a>
-            <a
-              href="/resume-adina-fayza-gayo.pdf"
-              download="ADINA FAYZA GAYO Resume 2026.pdf"
-              className="flex items-center gap-1.5 px-3.5 py-1.5 bg-[#DB3E8C] hover:bg-[#DB3E8C]/90 text-white rounded text-xs sm:text-sm font-bold transition-all shadow ml-auto"
+      {/* ── HERO ───────────────────────────────────────────────────────── */}
+      <div className="max-w-[1120px] mx-auto px-6 lg:px-12 pt-14 lg:pt-20 pb-16 lg:pb-20">
+        <div className="grid lg:grid-cols-[1fr_auto] gap-10 lg:gap-16 items-end">
+          <div>
+            <Label>UI/UX Designer · Jakarta, Indonesia</Label>
+            <h1
+              className="font-display font-medium leading-[1.02] tracking-tight mt-4"
+              style={{ fontSize: "clamp(2.6rem, 6.4vw, 5.5rem)", color: N }}
             >
-              <Download size={14} /> Download Resume PDF
-            </a>
+              Adina Fayza Gayo
+            </h1>
+            <p
+              className="font-display font-medium mt-8 max-w-[680px]"
+              style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
+            >
+              UI/UX Designer with 5 years of experience in end-to-end design, from user flows and wireframing to prototyping, design systems, AI-assisted design workflows, and developer handoff, including B2B multi-portal operations systems and white-label platforms.
+            </p>
+
+            <div className="mt-8 flex flex-wrap items-center gap-2.5">
+              <button
+                type="button"
+                onClick={onOpenPdfPreview}
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-sans text-xs font-bold tracking-wider uppercase text-white transition-opacity hover:opacity-90 cursor-pointer"
+                style={{ backgroundColor: C }}
+              >
+                <Eye size={14} /> View Resume
+              </button>
+              {CONTACTS.map((c) => (
+                <a
+                  key={c.label}
+                  href={c.href}
+                  target={c.href.startsWith("http") ? "_blank" : undefined}
+                  rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="inline-flex items-center gap-1.5 px-4 py-3 rounded-xl bg-white font-sans text-xs font-bold tracking-wider uppercase hover:border-[#DB3E8C] transition-colors"
+                  style={{ color: N, border: `1px solid ${N}33` }}
+                >
+                  {c.label} <ArrowUpRight size={14} style={{ color: C }} />
+                </a>
+              ))}
+            </div>
           </div>
+
+          <img
+            src={adinaPhotoAbout}
+            alt="Adina Fayza Gayo"
+            className="w-40 sm:w-48 lg:w-56 h-auto rounded-2xl"
+          />
+        </div>
+
+        {/* At a glance */}
+        <div className="mt-14 lg:mt-20 grid grid-cols-2 lg:grid-cols-4" style={{ borderTop: `1px solid ${HAIR}`, borderBottom: `1px solid ${HAIR}` }}>
+          {AT_A_GLANCE.map((item, i) => (
+            <div
+              key={item.value}
+              className={`py-6 pr-6 ${i > 0 ? "lg:pl-6 lg:border-l" : ""} ${i % 2 === 1 ? "pl-6 border-l lg:border-l" : ""} ${i > 1 ? "border-t lg:border-t-0" : ""}`}
+              style={{ borderColor: HAIR }}
+            >
+              <span className="block font-display font-medium text-3xl lg:text-4xl leading-none" style={{ color: N }}>
+                {item.value}
+              </span>
+              <span className="block font-sans text-sm leading-snug mt-3" style={{ color: BODY }}>
+                {item.note}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* ── WORK EXPERIENCE ────────────────────────────────────────────── */}
-      <div className="py-20 px-8 lg:px-20 bg-white" style={{ borderBottom: `1px solid ${HAIR}` }}>
-        <div className="max-w-[900px] mx-auto">
-          <SectionTag label="Work Experience" />
-          
-          <div className="mt-12 space-y-16 relative border-l border-gray-100 pl-6 lg:pl-10 ml-2">
-            {[
-              {
-                role: "Digital Product Designer, Enterprise Multi-Brand Platforms",
-                company: "Deptech Digital Indonesia",
-                location: "Jakarta",
-                duration: "Jun 2024 - Present",
-                scope: "Enterprise Multi-Brand Platforms · Insurance & Financial Systems · White-Label Solutions",
-                desc: "Delivered white-label products for enterprise clients including Grab, Touch 'n Go × Great Eastern, GEGM × Shopee, and mySalam × myKawan across Indonesia, Malaysia, and Singapore.",
-                points: [
-                  {
-                    lead: "Four-Portal Systems Design:",
-                    text: "Designed four-portal systems (admin, customer, agent, microsite) with claims and underwriting approval workflows in 2–4 days."
-                  },
-                  {
-                    lead: "Touch 'n Go 20M+ User Mini-Program:",
-                    text: "Designed an insurance mini-program for Touch 'n Go's 20M+ user e-wallet through five client-reviewed versions, with subsidy eligibility checks and webview-constrained flows. Analyzed app flows and API documentation for eKYC prefill with fewer redundant inputs and higher data accuracy. Migrated component set to TNG's official UI kit after first-round approval."
-                  },
-                  {
-                    lead: "17+ White-Label Modular UI Adaptation:",
-                    text: "Adapted modular UI components across 17+ white-label products for visual consistency."
-                  },
-                  {
-                    lead: "Gamified Live Quiz Flow Redesign:",
-                    text: "Redesigned post-launch flows for mySalam × myKawan's live quiz game, with a top-5 leaderboard and a no-submit answer flow for faster live play."
-                  },
-                  {
-                    lead: "Agile Scoping & High-Fidelity Handoff:",
-                    text: "Proposed product logic and feature scope to PMs and engineers in Agile teams of 5–18+ members within technical feasibility. Documented states, edge cases, and expected outcomes in developer handoffs, presenting high-fidelity prototypes to stakeholders for approval in 1–2 review cycles."
-                  }
-                ]
-              },
-              {
-                role: "UI/UX Designer",
-                company: "Deptech Digital Indonesia",
-                location: "Jakarta",
-                duration: "Jun 2023 - Jun 2024",
-                scope: "Consumer Health Platform (FMCG) · National Election System · Usability Testing",
-                desc: "Owned end-to-end UI/UX as sole designer in 4–7 member teams for healthcare, monitoring, and POS products.",
-                points: [
-                  {
-                    lead: "Healthcare & FMCG Sole Ownership:",
-                    text: "Owned end-to-end UI/UX as sole designer in 4–7 member teams for healthcare, monitoring, and POS products, including Fonterra × Anlene's consumer health platform (FMCG)."
-                  },
-                  {
-                    lead: "National Election Quick Count System:",
-                    text: "Designed a national election quick count system for 820,000+ witness-registered polling stations, with field-driven iteration."
-                  },
-                  {
-                    lead: "Audits, Testing & Business Model Analysis:",
-                    text: "Conducted system audits and usability testing for validated UX improvements. Analyzed business models and user patterns against technical and business requirements."
-                  }
-                ]
-              },
-              {
-                role: "Product / UI/UX Designer (Part-time, Remote)",
-                company: "Freelance",
-                location: "Remote",
-                duration: "May 2023 - Present",
-                scope: "AI-Powered Prototyping · Healthcare · Legal Tech · E-Commerce Ecosystems",
-                desc: "Selected projects across healthcare, legal, travel, and e-commerce from MVP through UAT.",
-                points: [
-                  {
-                    lead: "AI-Powered Prototyping Workflows:",
-                    text: "Developed AI-powered design and prototyping workflows with Claude, Gemini, Figma Make, VS Code, and Antigravity, for rapid iteration from requirements to HTML prototypes."
-                  },
-                  {
-                    lead: "Telkomsel Siaga Nationwide Greeting Wall:",
-                    text: "Designed the UI for Telkomsel Siaga's nationwide greeting wall (mobile form, moderation dashboard, curved LED display) in a 1-week sprint."
-                  },
-                  {
-                    lead: "Pro Archery Commerce Ecosystem:",
-                    text: "Designed Pro Archery's commerce ecosystem: landing page, B2C e-commerce, customer portal, and admin/POS."
-                  },
-                  {
-                    lead: "Enterprise & Consulting Platforms:",
-                    text: "Designed a legal consulting platform, therapy center ERP, checkout experiences, and directory platforms. Designed websites, mobile applications, dashboards, and digital platforms from MVP through UAT for clients in healthcare, legal, travel, and e-commerce."
-                  }
-                ]
-              },
-              {
-                role: "UI/UX Designer",
-                company: "Reka Cipta Digital",
-                location: "Jakarta",
-                duration: "Aug 2021 - May 2023",
-                scope: "Design Thinking · Interactive Prototypes · Conversion Optimization · Front-End Implementation",
-                desc: "Software house development delivering custom web and mobile solutions for client products.",
-                points: [
-                  {
-                    lead: "Cross-Functional Alignment & Research:",
-                    text: "Aligned design and engineering teams on project goals and development timelines. Conducted user research using design thinking and qualitative methods to define user flows, personas, and UX strategy."
-                  },
-                  {
-                    lead: "Interactive Prototypes & Visual Design:",
-                    text: "Created wireframes, visual designs, flow diagrams, and interactive prototypes for front-end implementation."
-                  },
-                  {
-                    lead: "Conversion Optimization & Bug Fixing:",
-                    text: "Tested UI elements, page layouts, and user flow to optimize landing-page conversion. Supported developers through design handoff, implementation, and bug fixing."
-                  }
-                ]
-              },
-              {
-                role: "Graphic Designer",
-                company: "Badan Amil Zakat Nasional (BAZNAS)",
-                location: "Jakarta",
-                duration: "Apr 2020 - Dec 2021",
-                scope: "Team Leadership · National Campaigns · Multi-Branch Communication",
-                desc: "National philanthropic organization managing zakat, infaq, and alms at the national level.",
-                points: [
-                  {
-                    lead: "Team Leadership & Multi-Channel Delivery:",
-                    text: "Led a design team of 3 to deliver 20+ design requests weekly across digital campaigns and print materials."
-                  },
-                  {
-                    lead: "Nationwide Communication & Brand Governance:",
-                    text: "Coordinated design communication across BAZNAS branches nationwide, producing digital campaigns, advertisements, brochures, infographics, and event visuals."
-                  }
-                ]
-              }
-            ].map((work) => (
-              <div key={work.company + work.duration} className="relative group">
-                {/* Timeline Dot */}
-                <div
-                  className="absolute -left-[31px] lg:-left-[45px] top-1.5 w-3 h-3 rounded-full border-2 border-white transition-colors duration-200 group-hover:bg-[#DB3E8C]"
-                  style={{ backgroundColor: N }}
-                />
-                
-                <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-2">
-                  <span className="font-sans text-xs sm:text-sm font-semibold tracking-wider uppercase" style={{ color: C }}>
-                    {work.duration}
-                  </span>
-                  <span className="font-sans text-xs text-gray-400 font-medium">
-                    {work.location}
-                  </span>
-                </div>
-                
-                <h4 className="font-display text-xl font-bold" style={{ color: N }}>
-                  {work.role} <span className="font-sans text-sm font-normal text-gray-400">at {work.company}</span>
-                </h4>
+      {/* ── EXPERIENCE ─────────────────────────────────────────────────── */}
+      <Section title="Experience" note="Five roles since 2020, most recently on white-label platforms for enterprise clients.">
+        <div>
+          {EXPERIENCE.map((work, i) => (
+            <article
+              key={work.company + work.duration}
+              className={`grid sm:grid-cols-[150px_1fr] gap-3 sm:gap-8 ${i > 0 ? "pt-10 mt-10" : ""}`}
+              style={i > 0 ? { borderTop: `1px solid ${HAIR}` } : undefined}
+            >
+              <div>
+                <span className="block font-sans text-[11px] font-bold tracking-wider uppercase" style={{ color: C }}>
+                  {work.duration}
+                </span>
+                <span className="block font-sans text-xs text-gray-500 mt-1.5">{work.location}</span>
+              </div>
 
-                <div className="font-sans text-xs font-bold tracking-wider uppercase mt-1 mb-3" style={{ color: C }}>
-                  Scope: {work.scope}
-                </div>
-                
-                <p className="font-sans text-sm sm:text-base leading-relaxed mb-4 text-[#19244E]/85">
+              <div className="min-w-0">
+                <h3 className="font-display text-xl font-bold leading-snug" style={{ color: N }}>
+                  {work.role}
+                </h3>
+                <span className="block font-sans text-sm mt-1" style={{ color: BODY }}>{work.company}</span>
+                <span className="block font-sans text-xs text-gray-500 mt-2 leading-relaxed">{work.scope}</span>
+
+                <p className="font-sans text-base leading-relaxed mt-5" style={{ color: BODY, lineHeight: 1.8 }}>
                   {work.desc}
                 </p>
-                
-                <ul className="space-y-3 pl-1">
-                  {work.points.map((pt, i) => (
-                    <li key={i} className="flex items-start gap-2.5 font-sans text-sm leading-relaxed text-[#19244E]/85">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#DB3E8C] flex-shrink-0 mt-2" />
-                      <span>
-                        <strong className="font-bold text-[#19244E]">{pt.lead} </strong>
-                        {pt.text}
-                      </span>
+
+                <ul className="mt-5 space-y-3">
+                  {work.points.map((pt) => (
+                    <li key={pt.lead} className="font-sans text-sm leading-relaxed pl-4" style={{ color: BODY, borderLeft: `2px solid ${HAIR}` }}>
+                      <strong className="font-semibold" style={{ color: N }}>{pt.lead}</strong> {pt.text}
                     </li>
                   ))}
                 </ul>
               </div>
-            ))}
-          </div>
+            </article>
+          ))}
         </div>
-      </div>
+      </Section>
 
       {/* ── EDUCATION ──────────────────────────────────────────────────── */}
-      <div className="py-20 px-8 lg:px-20 bg-white" style={{ borderBottom: `1px solid ${HAIR}` }}>
-        <div className="max-w-[900px] mx-auto">
-          <SectionTag label="Education Level" />
-          
-          <div className="grid md:grid-cols-2 gap-8 mt-8">
-            {[
-              {
-                school: "Institut Teknologi Sepuluh Nopember",
-                location: "Surabaya (Online)",
-                degree: "Master of Technology Management",
-                specialization: "Design Innovation Management",
-                gpa: "3.89/4.00",
-                duration: "Feb 2025 - Jul 2026",
-                thesis: "“Design Rationale Documentation and Traceability Framework for Solo Designers in Multi-Brand Products: A Case Study at PT Friendsure Teknologi Indonesia”",
-                academicProject: "RemindITS, a task-reminder app for working students. Ran a questionnaire survey and moderated usability testing (11 participants, 5 task scenarios, SUS 70.21).",
-                coursework: ["Design Thinking", "Design Management", "Strategic Brand Management", "UX Design", "Project Management", "Business Statistics"]
-              },
-              {
-                school: "Universitas Multimedia Nusantara",
-                location: "Gading Serpong",
-                degree: "Bachelor of Interactive Design",
-                specialization: "Interactive Design & UI/UX",
-                gpa: "3.55/4.00",
-                duration: "Aug 2017 - Jan 2021",
-                thesis: "Interactive card game for children with dyslexia (researched, designed, and prototyped). Learned HCI, interactivity, interface design, and design methods.",
-                academicProject: null,
-                coursework: ["HCI", "Interactivity", "Interface Design", "Design Methods"]
-              }
-            ].map((edu) => (
-              <div key={edu.school} className="p-6 rounded-xl border border-gray-100 flex flex-col justify-between" style={{ backgroundColor: S }}>
-                <div>
-                  <div className="flex items-center justify-between text-xs sm:text-sm font-semibold text-[#DB3E8C] mb-3">
-                    <span>{edu.duration}</span>
-                    <span>GPA: {edu.gpa}</span>
-                  </div>
-                  <h4 className="font-display text-lg sm:text-xl font-bold mb-1" style={{ color: N }}>
-                    {edu.school}
-                  </h4>
-                  <p className="font-sans text-xs sm:text-sm text-gray-500 mb-4">{edu.location}</p>
-                  
-                  <div className="space-y-3 mb-6">
-                    <div>
-                      <span className="block font-sans text-xs font-bold tracking-wider uppercase text-gray-400">Degree & Focus</span>
-                      <span className="font-sans text-sm sm:text-base font-semibold text-[#19244E]">{edu.degree} — {edu.specialization}</span>
-                    </div>
-                    <div>
-                      <span className="block font-sans text-xs font-bold tracking-wider uppercase text-gray-400">Final Thesis / Project Focus</span>
-                      <p className="font-sans text-xs sm:text-sm leading-relaxed text-[#19244E]/85 mt-0.5">{edu.thesis}</p>
-                    </div>
-                    {edu.academicProject && (
-                      <div>
-                        <span className="block font-sans text-xs font-bold tracking-wider uppercase text-gray-400">Academic Project</span>
-                        <p className="font-sans text-xs sm:text-sm leading-relaxed text-[#19244E]/85 mt-0.5">{edu.academicProject}</p>
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                <div className="pt-4 border-t border-gray-200/50">
-                  <span className="block font-sans text-xs font-bold tracking-wider uppercase text-gray-400 mb-2">Key Coursework</span>
-                  <div className="flex flex-wrap gap-1.5">
-                    {edu.coursework.map((course) => (
-                      <span key={course} className="font-sans text-xs sm:text-sm px-2.5 py-1 rounded bg-white text-[#19244E]/85 border border-gray-200 shadow-xs">
-                        {course}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+      <Section title="Education">
+        <div>
+          {EDUCATION.map((edu, i) => (
+            <article
+              key={edu.school}
+              className={`grid sm:grid-cols-[150px_1fr] gap-3 sm:gap-8 ${i > 0 ? "pt-10 mt-10" : ""}`}
+              style={i > 0 ? { borderTop: `1px solid ${HAIR}` } : undefined}
+            >
+              <div>
+                <span className="block font-sans text-[11px] font-bold tracking-wider uppercase" style={{ color: C }}>
+                  {edu.duration}
+                </span>
+                <span className="block font-sans text-xs text-gray-500 mt-1.5">{edu.location}</span>
+                <span className="block font-sans text-xs text-gray-500 mt-1.5">GPA {edu.gpa}</span>
               </div>
-            ))}
-          </div>
-        </div>
-      </div>
 
-      {/* ── SKILLS, ACHIEVEMENTS & OTHER EXPERIENCE ────────────────────── */}
-      <div className="py-20 px-8 lg:px-20" style={{ borderBottom: `1px solid ${HAIR}` }}>
-        <div className="max-w-[900px] mx-auto grid lg:grid-cols-[280px_1fr] gap-12">
-          <div>
-            <SectionTag label="Skills & Toolkit" />
-            <p className="font-sans text-sm sm:text-base leading-relaxed mt-4" style={{ color: `${N}AA` }}>
-              Synthesizing UX design frameworks, technical engineering constraints, and rapid prototyping workflows to build scalable digital ecosystems.
-            </p>
-          </div>
+              <div className="min-w-0">
+                <h3 className="font-display text-xl font-bold leading-snug" style={{ color: N }}>
+                  {edu.school}
+                </h3>
+                <span className="block font-sans text-sm mt-1" style={{ color: BODY }}>{edu.degree}</span>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {[
-              {
-                title: "Core Design Expertise",
-                skills: [
-                  "UX/UI: User flows, wireframing, prototyping",
-                  "Usability testing, journey mapping, UX strategy",
-                  "Interaction design, visual design",
-                  "Product & Systems: Product thinking, system analysis",
-                  "Modular & atomic component systems",
-                  "Multi-brand & white-label products",
-                  "Business model analysis"
-                ]
-              },
-              {
-                title: "Tools & Technologies",
-                skills: [
-                  "Figma, Figma Make, Framer",
-                  "Claude, Gemini, Antigravity",
-                  "VS Code, HTML/CSS Prototyping",
-                  "Adobe Illustrator, Adobe Photoshop",
-                  "Microsoft Excel, Data Analysis",
-                  "Design System Tokens & Variants"
-                ]
-              },
-              {
-                title: "Certifications",
-                skills: [
-                  "Adobe Certified Associate (Illustrator)",
-                  "UI/UX Bootcamp (Purwadhika, 2021)",
-                  "IDF User Experience Foundation (2023)",
-                  "Full Stack Integration (Skill Academy, 2024)"
-                ]
-              },
-              {
-                title: "Languages & Collaboration",
-                skills: [
-                  "Indonesian (Native)",
-                  "English (TOEFL 550, British Council 570)",
-                  "Korean (Beginner)",
-                  "Stakeholder management",
-                  "Cross-functional collaboration",
-                  "Design rationale documentation & handoff"
-                ]
-              }
-            ].map(({ title, skills }) => (
-              <div key={title} className="p-6 rounded-lg bg-white border border-gray-100">
-                <h4 className="font-sans text-xs sm:text-sm font-bold tracking-wider uppercase mb-4" style={{ color: C }}>
-                  {title}
-                </h4>
-                <ul className="space-y-2">
-                  {skills.map((skill) => (
-                    <li key={skill} className="flex items-center gap-2 font-sans text-xs sm:text-sm" style={{ color: `${N}CC` }}>
-                      <CheckCircle2 size={13} style={{ color: C }} /> {skill}
-                    </li>
+                <dl className="mt-5 space-y-4">
+                  {edu.details.map((d) => (
+                    <div key={d.label}>
+                      <dt className="font-sans text-[11px] font-bold tracking-wider uppercase text-gray-500">{d.label}</dt>
+                      <dd className="font-sans text-sm leading-relaxed mt-1" style={{ color: BODY }}>{d.text}</dd>
+                    </div>
                   ))}
-                </ul>
+                </dl>
               </div>
-            ))}
-          </div>
+            </article>
+          ))}
         </div>
-      </div>
+      </Section>
 
-      {/* ── PERSONAL: IN LIFE ───────────────────────────────────────────── */}
-      <div className="py-20 px-8 lg:px-20 bg-white" style={{ borderBottom: `1px solid ${HAIR}` }}>
-        <div className="max-w-[800px] mx-auto">
-          <div className="text-center">
-            <SectionTag label="In Life" />
-          </div>
-          
-          <div className="space-y-6 text-sm lg:text-base font-sans font-light leading-relaxed mt-8 text-left" style={{ color: `${N}DD`, lineHeight: 1.8 }}>
-            <p>
-              Off the clock, I trade Figma files for live gigs, plot twists, and systematic quirks. I find genuine joy in deconstructing complex narratives—whether that means predicting murderer motifs in thriller K-Dramas, logging my latest book reads with highlighted favorite quotes, or letting an eclectic playlist drift from classical compositions into smooth RnB. There is a special kind of rhythm in catching local indie concerts from the crowd, soaking in the collective energy of a live room.
-            </p>
-            <p>
-              That said, my structural instincts rarely shut down completely. Outside of design sprints, I am the friend who builds color-coded travel itineraries three weeks early, complete with walking-distance calculations, backup cafe options, and dual-currency budgets. In the kitchen, I follow recipes down to the exact gram measurement like a lab experiment—until it comes to fried rice, where pure instinct takes over.
-            </p>
-            <p>
-              Fueled by zero-sugar iced Americanos (and the occasional bowl of properly bitter ceremonial matcha), my downtime revolves around friendly competition: chasing personal bests on Sudoku and Blockblast, assembling oversized jigsaw puzzles, and surviving the chaos of late-night Uno showdowns with friends.
-            </p>
-          </div>
+      {/* ── SKILLS & TOOLKIT ───────────────────────────────────────────── */}
+      <Section title="Skills & Toolkit">
+        <dl style={{ borderBottom: `1px solid ${HAIR}` }}>
+          {TOOLKIT.map((row) => (
+            <div
+              key={row.label}
+              className="py-5 flex flex-col sm:flex-row sm:items-baseline gap-1.5 sm:gap-8"
+              style={{ borderTop: `1px solid ${HAIR}` }}
+            >
+              <dt className="sm:w-40 shrink-0 font-sans text-[11px] font-bold tracking-wider uppercase" style={{ color: C }}>
+                {row.label}
+              </dt>
+              <dd className="font-sans text-base leading-relaxed" style={{ color: BODY }}>{row.items}</dd>
+            </div>
+          ))}
+        </dl>
+      </Section>
+
+      {/* ── IN LIFE ────────────────────────────────────────────────────── */}
+      <Section title="In Life">
+        <div className="flex flex-col sm:flex-row items-start gap-6 mb-10">
+          <img
+            src={adinaPhotoLife}
+            alt="Adina Fayza Gayo, off the clock"
+            className="w-24 h-24 rounded-2xl object-cover shrink-0"
+          />
+          <p
+            className="font-display font-medium leading-relaxed"
+            style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
+          >
+            Equal parts concert-goer and spreadsheet enthusiast.
+          </p>
         </div>
-      </div>
 
-      {/* ── FOOTER CTA ────────────────────────────────────────────────── */}
-      <div className="py-16 px-8 lg:px-20 text-center" style={{ backgroundColor: N, borderTop: `1px solid rgba(255,255,255,0.06)` }}>
-        <p className="font-sans text-xs sm:text-sm font-semibold tracking-[0.2em] text-white/60 uppercase mb-4">
-          Want to design something together?
-        </p>
-        <a
-          href="mailto:adinagayo@gmail.com"
-          className="font-display font-light text-2xl lg:text-3xl text-white hover:text-[#DB3E8C] transition-colors"
-        >
-          adinagayo@gmail.com
-        </a>
-        
-        <div className="mt-8 flex justify-center">
+        <div className="grid md:grid-cols-3 gap-8">
+          {IN_LIFE.map((item) => (
+            <div key={item.title} className="pt-5" style={{ borderTop: `2px solid ${C}` }}>
+              <h3 className="font-sans text-base font-bold" style={{ color: N }}>{item.title}</h3>
+              <p className="font-sans text-sm leading-relaxed mt-3" style={{ color: BODY }}>{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* ── FOOTER CTA ─────────────────────────────────────────────────── */}
+      <section style={{ borderTop: `1px solid ${HAIR}`, backgroundColor: "#F9FAFB" }}>
+        <div className="max-w-[1120px] mx-auto px-6 lg:px-12 py-16 lg:py-20 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
+          <div>
+            <Label>Want to design something together?</Label>
+            <a
+              href="mailto:adinagayo@gmail.com"
+              className="group inline-flex items-center gap-3 font-display font-medium mt-4 hover:text-[#DB3E8C] transition-colors break-all"
+              style={{ fontSize: "clamp(1.6rem, 4vw, 3rem)", color: N }}
+            >
+              adinagayo@gmail.com
+              <ArrowUpRight className="shrink-0 w-6 h-6 lg:w-8 lg:h-8" style={{ color: C }} />
+            </a>
+          </div>
           <button
             onClick={onBack}
-            className="flex items-center gap-2 px-5 py-2.5 text-xs sm:text-sm font-semibold tracking-widest text-white/80 border border-white/10 hover:border-white/30 rounded uppercase transition-colors cursor-pointer"
+            className="self-start lg:self-auto flex items-center gap-2 px-5 py-3 rounded-xl font-sans text-xs font-bold tracking-wider uppercase transition-colors hover:border-[#DB3E8C] cursor-pointer"
+            style={{ color: N, border: `1px solid ${N}33` }}
           >
             <ArrowLeft size={13} /> Back to Home
           </button>
         </div>
-      </div>
+      </section>
 
     </div>
   )

@@ -486,6 +486,62 @@ const WavyHeadlineText = ({ text, color }: { text: string; color: string }) => {
   )
 }
 
+// ─── HERO FACTS ──────────────────────────────────────────────────────────────
+// Three categories; hovering, focusing, or tapping one swaps the chips beside it.
+// One category is always open, so the content is never hidden on touch screens.
+const HERO_FACTS = [
+  { label: "Industries", items: ["Insurance & Financial Services", "Healthcare & Wellness", "FMCG", "Government", "E-commerce", "E-wallet", "Enterprise Operations", "Ride Hailing"] },
+  { label: "Expertise", items: ["White-label & Multi-brand Products", "B2B Multi-portal Systems", "Modular Component Systems", "AI-assisted Design Workflows", "Developer Handoff"] },
+  { label: "Tools", items: ["Figma", "Figma Make", "Framer", "Adobe Illustrator", "Adobe Photoshop", "Claude", "Gemini", "Antigravity", "Excel"] },
+]
+
+function HeroFacts() {
+  const [active, setActive] = useState(1)
+  const current = HERO_FACTS[active]
+
+  return (
+    <div className="w-full flex flex-col md:flex-row md:items-start gap-4 md:gap-10 py-4 border-t border-[#19244E]/10 font-sans">
+      <div role="tablist" aria-label="Profile facts" className="flex md:flex-col justify-center md:justify-start gap-1 md:w-36 shrink-0">
+        {HERO_FACTS.map((fact, i) => {
+          const isActive = i === active
+          return (
+            <button
+              key={fact.label}
+              type="button"
+              role="tab"
+              aria-selected={isActive}
+              onMouseEnter={() => setActive(i)}
+              onFocus={() => setActive(i)}
+              onClick={() => setActive(i)}
+              className={`flex items-center gap-2 px-2 md:px-0 py-1 text-[11px] font-bold tracking-wider uppercase cursor-pointer transition-colors focus:outline-none focus-visible:underline ${
+                isActive ? "text-[#DB3E8C]" : "text-[#19244E]/50 hover:text-[#19244E]"
+              }`}
+            >
+              <span className={`hidden md:block h-px bg-current transition-all duration-300 ${isActive ? "w-6" : "w-2"}`} />
+              {fact.label}
+            </button>
+          )
+        })}
+      </div>
+
+      <div role="tabpanel" aria-label={current.label} className="flex-1 flex flex-wrap justify-center md:justify-start content-start gap-2 min-h-[5.5rem]">
+        {current.items.map((item, i) => (
+          <motion.span
+            key={`${current.label}-${item}`}
+            initial={{ opacity: 0, y: 10, scale: 0.9, rotate: i % 2 === 0 ? -4 : 4 }}
+            animate={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
+            transition={{ type: "spring", stiffness: 420, damping: 22, delay: i * 0.04 }}
+            whileHover={{ y: -3, rotate: i % 2 === 0 ? -2 : 2 }}
+            className="px-3 py-1.5 rounded-xl bg-white border border-[#19244E]/10 text-sm text-[#19244E] cursor-default select-none"
+          >
+            {item}
+          </motion.span>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 // ─── PDF PREVIEW MODAL COMPONENT ───────────────────────────────────────────────
 function PdfPreviewModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   useEffect(() => {
@@ -729,9 +785,9 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
                 </div>
 
                 {/* Info and profile row: info on the left, profile on the right in line style, no card */}
-                <div className="relative z-20 w-full mt-10 sm:mt-14 lg:mt-20 flex flex-col xl:flex-row xl:items-start xl:justify-between gap-10 xl:gap-16">
-                  <div className="flex flex-col gap-8 xl:flex-1 xl:min-w-0">
-                  <div className="flex flex-col items-center sm:items-start lg:flex-row lg:items-center lg:gap-x-6 gap-3 font-mono text-xs text-[#19244E] text-center sm:text-left">
+                <div className="relative z-20 w-full mt-10 sm:mt-12 lg:mt-14 flex flex-col gap-6">
+                  <div className="flex flex-col gap-6">
+                  <div className="flex flex-col items-center sm:items-start lg:flex-row lg:items-center lg:gap-x-0 gap-3 font-mono text-xs text-[#19244E] text-center sm:text-left">
                     {/* Shipped Systems Counter: one line at every width; sits beside the role line on large screens */}
                     <div className="flex items-center sm:items-start lg:items-center justify-center sm:justify-start gap-2 font-bold tracking-wider text-[#DB3E8C]">
                       <div className="text-[#19244E] flex flex-row items-center gap-1.5 whitespace-nowrap text-[11px] sm:text-xs leading-none">
@@ -740,7 +796,8 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
                     </div>
 
                     {/* Role line: one line instead of the four-row spec table */}
-                    <div className="flex items-center justify-center sm:justify-start text-[11px] sm:text-xs leading-none tracking-wide whitespace-nowrap text-[#19244E]/85 pt-2 border-t border-[#19244E]/12 mx-auto sm:mx-0 lg:pt-1 lg:border-t-0 lg:border-l lg:pl-6 lg:py-1">
+                    <div className="flex items-center justify-center sm:justify-start text-[11px] sm:text-xs leading-none tracking-wide whitespace-nowrap text-[#19244E]/85 pt-2 border-t border-[#19244E]/12 mx-auto sm:mx-0 lg:pt-0 lg:border-t-0">
+                      <span className="hidden lg:inline text-[#DB3E8C] mx-1.5">·</span>
                       <span className="font-bold text-[#19244E]">Product Designer</span>
                       <span className="text-[#DB3E8C] mx-1.5">·</span>
                       <span>Jakarta, ID</span>
@@ -751,44 +808,33 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
                     </div>
                   </div>
 
-                    <div className="w-full xl:max-w-2xl">
-                      <dl className="border-b border-[#19244E]/10 font-sans text-xs sm:text-sm">
-                        {[
-                          { label: "Industries", items: "Insurance & Financial Services · Healthcare & Wellness · FMCG · Government · E-commerce · E-wallet · Enterprise Operations · Ride Hailing" },
-                          { label: "Expertise", items: "UX/UI · Product & Systems · Collaboration & Handoff" },
-                          { label: "Tools", items: "Figma · Figma Make · Framer · Adobe Illustrator · Adobe Photoshop · Claude · Gemini · Antigravity · Excel" },
-                        ].map((row) => (
-                          <div key={row.label} className="border-t border-[#19244E]/10 py-4 flex flex-col sm:flex-row sm:items-baseline gap-1.5 sm:gap-10 text-center sm:text-left">
-                            <dt className="sm:w-28 shrink-0 text-[11px] font-bold tracking-wider uppercase text-[#DB3E8C]">{row.label}</dt>
-                            <dd className="text-[#19244E]/90 leading-relaxed">{row.items}</dd>
-                          </div>
-                        ))}
-                      </dl>
-                    </div>
                   </div>
 
                   <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="w-full xl:w-auto xl:max-w-[540px] xl:shrink-0 pt-6 xl:pt-0 border-t xl:border-t-0 xl:border-l border-[#19244E]/12 xl:pl-12"
+                    className="w-full"
                   >
-                    <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-5">
-                      {/* Small Avatar Photo */}
+                    <div className="flex flex-col-reverse sm:flex-row items-center sm:items-center sm:justify-between gap-8 lg:gap-16">
+                      {/* Profile photo, shown whole */}
                       <div
-                        className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden shrink-0 transition-transform duration-300 hover:scale-105"
+                        className="relative w-32 sm:w-36 lg:w-40 rounded-2xl overflow-hidden shrink-0 sm:order-2"
                       >
                         <ImageWithFallback
                           src={adinaPhotoAbout}
                           alt="Adina Fayza Gayo - At Work"
-                          className="w-full h-full object-cover object-top rounded-2xl"
+                          className="block w-full h-auto rounded-2xl"
                         />
                       </div>
 
                       {/* Bio Paragraph & Conversion CTAs */}
-                      <div className="flex-1 text-center sm:text-left">
-                        <p className="font-sans text-xs sm:text-sm leading-relaxed text-[#19244E]/90">
-                          <span className="font-bold text-[#DB3E8C] inline-flex items-center gap-1 mr-1.5">
+                      <div className="flex-1 text-center sm:text-left max-w-3xl sm:order-1">
+                        <p
+                          className="font-display font-medium text-[#19244E]"
+                          style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.45rem)", letterSpacing: "-0.01em", lineHeight: 1.6 }}
+                        >
+                          <span className="text-[#DB3E8C] inline-flex items-center gap-1 mr-1.5">
                             <AnimatePresence mode="wait">
                               <motion.span
                                 key={tick}
@@ -805,11 +851,10 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
                           I design end-to-end B2B platforms across fintech, e-commerce, and enterprise systems. I turn messy logic into clear edge cases and developer-ready Figma specs.
                         </p>
 
-                        {/* Thin Divider Line */}
-                        <div className="w-full h-[1px] bg-[#19244E]/10 my-3.5" />
+                        <div className="h-5" />
 
                         {/* Action Buttons Row (Order: Resume -> Let's Chat -> Email) */}
-                        <div className="flex flex-wrap xl:flex-nowrap items-center justify-center sm:justify-start gap-2 sm:gap-2.5 mb-2.5">
+                        <div className="flex flex-wrap xl:flex-nowrap items-center justify-center sm:justify-start gap-2 sm:gap-2.5">
                           {/* 1. Resume Download & In-App PDF Preview Button */}
                           <button
                             onClick={onOpenPdfPreview}
@@ -830,21 +875,36 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
                             <Eye size={14} />
                           </button>
 
-                          {/* 2. Let's Chat WhatsApp Button */}
-                          <a
-                            href={getGeneralWhatsAppLink()}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-sans text-xs font-semibold tracking-wider transition-all duration-150 rounded-xl px-3.5 py-2 whitespace-nowrap cursor-pointer flex items-center gap-1.5"
-                            style={{ border: `1px solid ${N}`, color: N, backgroundColor: "transparent" }}
-                            onMouseEnter={(e) => { ;(e.currentTarget as HTMLElement).style.backgroundColor = N; ;(e.currentTarget as HTMLElement).style.color = W }}
-                            onMouseLeave={(e) => { ;(e.currentTarget as HTMLElement).style.backgroundColor = "transparent"; ;(e.currentTarget as HTMLElement).style.color = N }}
-                          >
-                            <span>Let's Chat</span>
-                            <svg className="w-3.5 h-3.5 fill-current shrink-0" viewBox="0 0 24 24">
+                          {/* 2. WhatsApp Icon Button */}
+                          <div className="relative group">
+                            <a
+                              href={getGeneralWhatsAppLink()}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label="Chat with Adina Fayza Gayo on WhatsApp"
+                              className="flex items-center justify-center w-9 h-9 rounded-xl transition-all duration-150 cursor-pointer bg-white"
+                              style={{ border: `1px solid ${HAIR}`, color: N }}
+                              onMouseEnter={(e) => {
+                                ;(e.currentTarget as HTMLElement).style.borderColor = N
+                                ;(e.currentTarget as HTMLElement).style.backgroundColor = N
+                                ;(e.currentTarget as HTMLElement).style.color = W
+                              }}
+                              onMouseLeave={(e) => {
+                                ;(e.currentTarget as HTMLElement).style.borderColor = HAIR
+                                ;(e.currentTarget as HTMLElement).style.backgroundColor = W
+                                ;(e.currentTarget as HTMLElement).style.color = N
+                              }}
+                            >
+                              <svg className="w-[15px] h-[15px] fill-current shrink-0" viewBox="0 0 24 24">
                               <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
                             </svg>
-                          </a>
+                            </a>
+
+                            <div className="absolute left-0 sm:left-auto sm:right-0 top-full mt-2 hidden group-hover:flex items-center gap-2 bg-[#19244E] text-white px-3 py-1.5 rounded-lg shadow-xl text-xs font-mono font-medium whitespace-nowrap z-50 pointer-events-none transition-all duration-200">
+                              <span className="w-2 h-2 rounded-full bg-[#25D366]" />
+                              <span>Let's chat on WhatsApp</span>
+                            </div>
+                          </div>
 
                           {/* 3. Email Icon Button */}
                           <div className="relative group">
@@ -901,19 +961,21 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
                               <span>/in/adinafayzagayo</span>
                             </div>
                           </div>
+                          {/* 5. Link: VIEW FULL PROFILE › */}
+                          <button
+                            onClick={onReadMore}
+                            className="font-sans text-xs font-bold tracking-wider uppercase text-[#DB3E8C] hover:underline transition-all flex items-center gap-1 focus:outline-none cursor-pointer py-0.5 ml-1 sm:ml-2 whitespace-nowrap"
+                          >
+                            <span>VIEW FULL PROFILE</span>
+                            <ChevronRight size={13} />
+                          </button>
                         </div>
 
-                        {/* Link: VIEW FULL PROFILE › */}
-                        <button
-                          onClick={onReadMore}
-                          className="font-sans text-xs font-bold tracking-wider uppercase text-[#DB3E8C] hover:underline transition-all flex items-center justify-center sm:justify-start gap-1 focus:outline-none cursor-pointer py-0.5 mx-auto sm:mx-0"
-                        >
-                          <span>VIEW FULL PROFILE</span>
-                          <ChevronRight size={13} />
-                        </button>
                       </div>
                     </div>
                   </motion.div>
+
+                  <HeroFacts />
                 </div>
               </div>
             </div>
@@ -926,14 +988,14 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
                 initial={{ opacity: 0, y: 22 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-                className="font-normal leading-[0.96] sm:leading-[0.90] tracking-tight text-center group select-none cursor-default bg-transparent"
+                className="font-medium leading-[0.96] sm:leading-[0.90] tracking-tight text-center group select-none cursor-default bg-transparent"
                 style={{
                   fontSize: "clamp(2.8rem, 7vw, 7.8rem)",
                   fontFamily: "var(--font-serif)",
                 }}
               >
                 <WavyHeadlineText text="Plot Twists. Live Acoustics." color="#0F172A" />
-                <WavyHeadlineText text="Front Row Crowds" color="#DB2777" />
+                <WavyHeadlineText text="Front Row Crowds" color="#DB3E8C" />
               </motion.h1>
 
               {/* Bio Block with Photo on Left & Bio Text + Greeting on Right */}
@@ -1837,8 +1899,8 @@ const PHASES = [
     num: "01",
     title: "Research & Alignment",
     category: "Discovery",
-    desc: "Every project starts with understanding the real problem. I dig into requirements with PMs, test existing apps hands-on, and benchmark proven design patterns from mature platforms. I also align early with Backend engineers so edge cases and data logic are solid before designing screens.",
-    tools: ["Stakeholder Q&A", "App Walkthroughs", "UI Benchmarking", "Backend Alignment", "User Flows & Sitemaps"],
+    desc: "Every project starts with understanding the real problem. I dig into requirements with PMs, then do desk research: testing existing apps hands-on, reading API and product documentation, and benchmarking patterns from mature platforms. I align early with backend engineers so edge cases and data logic are solid before I design screens.",
+    tools: ["Stakeholder Q&A", "Desk Research", "App Walkthroughs", "Backend Alignment", "User Flows & Sitemaps"],
     footerMeta: "PMs consulted · Apps benchmarked hands-on",
     Icon: Users,
   },
@@ -2819,9 +2881,13 @@ export default function App() {
 
   if (currentView === "about") {
     return (
-      <AboutMe
-        onBack={handleBackToWork}
-      />
+      <>
+        <AboutMe
+          onBack={handleBackToWork}
+          onOpenPdfPreview={() => setIsPdfModalOpen(true)}
+        />
+        <PdfPreviewModal isOpen={isPdfModalOpen} onClose={() => setIsPdfModalOpen(false)} />
+      </>
     )
   }
 
