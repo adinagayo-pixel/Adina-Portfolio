@@ -408,15 +408,15 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
         <div>
           <SectionTag id="solution" num="04" label="Solution & Evidence: Personas, Screens, and Share Cards" />
 
-          <div className="mb-10 p-6 bg-[#0a0f24] rounded-2xl border border-white/10 shadow-2xl">
+          <div className="mb-10">
             <div className="flex items-center justify-between mb-6">
               <div>
                 <MonoTag accent>[GEGI SINGAPORE · 4 LOCALIZED PERSONAS]</MonoTag>
-                <h3 className="font-display text-xl font-bold text-white mt-1">
+                <h3 className="font-display text-xl font-bold text-[#19244E] mt-1">
                   Custom Illustration Outcome Cards
                 </h3>
               </div>
-              <span className="font-sans text-xs text-white/50 tracking-widest uppercase hidden sm:inline">
+              <span className="font-sans text-xs text-gray-500 tracking-widest uppercase hidden sm:inline">
                 Delivered in under 24 hours
               </span>
             </div>
@@ -425,14 +425,14 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
                 <div
                   key={p.name}
                   onClick={() => setActiveZoomImg({ title: p.name, img: p.img, desc: p.desc })}
-                  className="bg-[#141b36] border border-white/10 rounded-xl p-3 flex flex-col justify-between group hover:border-[#DB3E8C]/50 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-2xl"
+                  className="bg-white border border-gray-200 rounded-xl p-3 flex flex-col justify-between group hover:border-[#DB3E8C]/50 transition-all duration-300 cursor-pointer shadow-xs"
                 >
-                  <div className="aspect-square rounded-lg overflow-hidden border border-white/10 mb-3 p-2 relative flex items-center justify-center" style={{ backgroundColor: p.bg }}>
+                  <div className="aspect-square rounded-lg overflow-hidden border border-gray-200 mb-3 p-2 relative flex items-center justify-center" style={{ backgroundColor: p.bg }}>
                     <img src={p.img} alt={p.name} className="max-h-full object-contain group-hover:scale-105 transition-transform duration-500" />
                   </div>
                   <div>
-                    <h4 className="font-sans text-xs font-bold text-white mb-1 tracking-wide">{p.name}</h4>
-                    <p className="font-sans text-xs text-white/60 leading-relaxed">{p.desc}</p>
+                    <h4 className="font-sans text-xs font-bold text-[#19244E] mb-1 tracking-wide">{p.name}</h4>
+                    <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">{p.desc}</p>
                   </div>
                 </div>
               ))}

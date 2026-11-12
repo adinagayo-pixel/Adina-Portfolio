@@ -419,15 +419,10 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
         <div>
           <SectionTag id="solution" num="04" label="Solution & Evidence: Four Surfaces, Working Logic" />
 
-          <div className="mt-2 p-6 rounded-2xl bg-[#0e1635] border border-white/10 text-white shadow-xl">
-            <div className="flex flex-wrap items-center justify-between gap-2 mb-6 pb-3 border-b border-white/10">
-              <span className="font-sans text-[11px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
-                HIGH FIDELITY SYSTEM SCREENS
-              </span>
-              <span className="font-sans text-[11px] font-bold tracking-widest uppercase text-white/50">
-                4 Core Surfaces
-              </span>
-            </div>
+          <div className="mt-2">
+            <p className="font-sans text-base leading-relaxed text-[#2E3A5C] mb-6" style={{ lineHeight: 1.8 }}>
+              Four screens from the system. Click any screen to zoom in.
+            </p>
 
             <div className="grid md:grid-cols-2 gap-6">
               {[
@@ -439,17 +434,17 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
                 <div
                   key={item.title}
                   onClick={() => setSelectedImage({ src: item.img, title: item.title, badge: item.badge, desc: item.desc })}
-                  className="bg-[#141b36] border border-white/10 rounded-xl p-3 flex flex-col justify-between group hover:border-[#DB3E8C]/60 transition-all duration-300 cursor-pointer"
+                  className="bg-white border border-gray-200 rounded-xl p-3 flex flex-col justify-between group hover:border-[#DB3E8C]/50 transition-all duration-300 cursor-pointer shadow-xs"
                 >
-                  <div className="relative aspect-[16/11] rounded-lg overflow-hidden border border-white/10 mb-3 bg-[#0d142d]">
+                  <div className="relative aspect-[16/11] rounded-lg overflow-hidden border border-gray-200 mb-3 bg-gray-50">
                     <img src={item.img} alt={item.title} className="w-full h-full object-cover object-top rounded group-hover:scale-105 transition-transform duration-500" />
                     <div className="absolute top-2 left-2 bg-black/70 backdrop-blur-md px-2 py-0.5 rounded text-[9px] font-bold tracking-wider uppercase text-white border border-white/20">
                       {item.badge}
                     </div>
                   </div>
                   <div>
-                    <h4 className="font-sans text-xs font-bold text-white mb-1 tracking-wide">{item.title}</h4>
-                    <p className="font-sans text-[11px] text-white/70 leading-relaxed">{item.desc}</p>
+                    <h4 className="font-sans text-xs font-bold text-[#19244E] mb-1 tracking-wide">{item.title}</h4>
+                    <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">{item.desc}</p>
                   </div>
                 </div>
               ))}

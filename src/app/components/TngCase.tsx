@@ -208,7 +208,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
             <span>HOME</span>
           </a>
 
-          <CaseStudyHeaderBadge caseNum="01" />
+          <CaseStudyHeaderBadge caseNum="02" />
         </div>
 
         {/* Mobile Collapsible Quick Jump Bar - Flush underneath */}
@@ -264,7 +264,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
       <div className="px-8 lg:px-16 pt-16 pb-14" style={{ backgroundColor: W, borderBottom: `1px solid ${HAIR}` }}>
         <div className="space-y-6 mb-10 lg:mb-12">
           <div className="flex flex-wrap items-center gap-3">
-            <MonoTag accent>CASE STUDY 01</MonoTag>
+            <MonoTag accent>CASE STUDY 02</MonoTag>
             <span style={{ color: HAIR }}>/</span>
             <MonoTag>FINTECH & EMBEDDED MICRO INSURANCE</MonoTag>
             <span style={{ color: HAIR }}>/</span>

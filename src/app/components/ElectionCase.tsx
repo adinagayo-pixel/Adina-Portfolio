@@ -151,7 +151,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
             <span>HOME</span>
           </a>
 
-          <CaseStudyHeaderBadge caseNum="02" />
+          <CaseStudyHeaderBadge caseNum="03" />
         </div>
 
         {/* Mobile Collapsible Quick Jump Bar - Flush underneath */}
@@ -207,7 +207,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
       <div className="px-4 sm:px-8 lg:px-16 pt-12 sm:pt-16 pb-10 sm:pb-14" style={{ backgroundColor: W, borderBottom: `1px solid ${HAIR}` }}>
         <div className="space-y-6 mb-10 lg:mb-12">
           <div className="flex flex-wrap items-center gap-3">
-            <MonoTag accent>CASE STUDY 02</MonoTag>
+            <MonoTag accent>CASE STUDY 03</MonoTag>
             <span style={{ color: HAIR }}>/</span>
             <MonoTag>CIVIC TECH & ELECTION SYSTEMS</MonoTag>
             <span style={{ color: HAIR }}>/</span>

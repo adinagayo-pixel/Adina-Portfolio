@@ -68,7 +68,7 @@ import {
   ArrowRight, ArrowDown, ExternalLink, Globe, Zap,
   Users, CheckCircle, Coins, Bot, LayoutGrid,
   ArrowUpRight, ChevronRight, MousePointer2, Plus, Linkedin, Download,
-  Search, Target, FileCheck, FileText, X, Eye, ChevronDown, ChevronUp, MessageSquare, Lock,
+  Search, Target, FileCheck, FileText, X, Eye, ChevronDown, ChevronUp, MessageSquare,
 } from "lucide-react"
 
 import GegiCase from "./components/GegiCase"
@@ -113,7 +113,23 @@ export function getGeneralWhatsAppLink() {
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const FEATURED = [
   {
-    num: "01", shortTitle: "Micro Insurance", name: "Seamless Micro Insurance Integration", client: "Touch 'n Go × GEGM",
+    num: "01", shortTitle: "White Label Backoffice", name: "One Base, Many Partners: Reusable White Label Backoffice", client: "Multiple Enterprise Partnerships",
+    location: "Regional", year: "2024 to 2025", tags: ["White Label Engine", "Shared Foundation", "Data Analytics"],
+    role: "Sole Product Designer",
+    headline: "A backoffice where partners monitor sales, manage customers, and review insurance claims. I designed the base once, then spent my design time only where partners genuinely differed.",
+    confidentialNote: "Client names, logos, and data have been sanitized to respect NDAs. Screens reflect the real design process, not real production data.",
+    metrics: [{ val: "2 Track", sub: "Delivery Model" }, { val: "1 Base", sub: "Multi-Partner System" }, { val: "Few days", sub: "Est. pitch turnaround" }],
+    projectId: "backoffice",
+    thumb: backofficePortalThumb,
+    screens: [
+      { src: backofficePortalThumb, label: "01 · DUAL TRACK ARCHITECTURE" },
+      { src: backofficeSalesOverview, label: "02 · MULTI TENANT SALES DASHBOARD" },
+      { src: backofficeCustomerDetail, label: "03 · DETAIL CUSTOMER & EKYC" },
+      { src: backofficeAiTopPicks, label: "04 · AI TOP PICKS & RECOMMENDATIONS" },
+    ],
+  },
+  {
+    num: "02", shortTitle: "Micro Insurance", name: "Seamless Micro Insurance Integration", client: "Touch 'n Go × GEGM",
     location: "MY", year: "2025", tags: ["PWA / SSO", "eKYC Data Mapping", "B2C / FinTech"],
     role: "Sole Product Designer",
     headline: "A micro insurance checkout inside Touch 'n Go eWallet, where government subsidy eligibility decides the premium. Shipped as V5 after five design iterations.",
@@ -127,7 +143,7 @@ const FEATURED = [
     ],
   },
   {
-    num: "02", shortTitle: "Election Monitoring", name: "38 Province Real Time Election Monitoring", client: "Indonesian Political Party",
+    num: "03", shortTitle: "Election Monitoring", name: "38 Province Real Time Election Monitoring", client: "Indonesian Political Party",
     location: "ID", year: "2024", tags: ["Public Sector", "Civic Tech", "Real Time CMS"],
     role: "Sole Product Designer",
     headline: "A multi platform system for real time vote monitoring across 38 provinces and 820,000+ TPS within a 48 hour window.",
@@ -139,22 +155,6 @@ const FEATURED = [
       { src: electionSainteLague, label: "02 · SAINTE-LAGUË SEAT MATRIX" },
       { src: electionVerificationCms, label: "03 · FORM C-HASIL VERIFICATION CMS" },
       { src: electionKpuEntry, label: "04 · DUAL ENTRY TABULATION ENGINE" },
-    ],
-  },
-  {
-    num: "03", shortTitle: "White Label Backoffice", name: "One Base, Many Partners: Reusable White Label Backoffice", client: "Multiple Enterprise Partnerships",
-    location: "Regional", year: "2024 to 2025", tags: ["White Label Engine", "Shared Foundation", "Data Analytics"],
-    role: "Sole Product Designer",
-    headline: "A backoffice where partners monitor sales, manage customers, and review insurance claims. I designed the base once, then spent my design time only where partners genuinely differed.",
-    confidentialNote: "Client names, logos, and data have been sanitized to respect NDAs. Screens reflect the real design process, not real production data.",
-    metrics: [{ val: "2 Track", sub: "Delivery Model" }, { val: "1 Base", sub: "Multi-Partner System" }, { val: "Few days", sub: "Est. pitch turnaround" }],
-    projectId: "backoffice",
-    thumb: backofficePortalThumb,
-    screens: [
-      { src: backofficePortalThumb, label: "01 · DUAL TRACK ARCHITECTURE" },
-      { src: backofficeSalesOverview, label: "02 · MULTI TENANT SALES DASHBOARD" },
-      { src: backofficeCustomerDetail, label: "03 · DETAIL CUSTOMER & EKYC" },
-      { src: backofficeAiTopPicks, label: "04 · AI TOP PICKS & RECOMMENDATIONS" },
     ],
   },
   {
@@ -1584,7 +1584,6 @@ function FeaturedWorkSection({
                     className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-200 text-[10px] sm:text-[11px] font-sans font-medium shadow-md backdrop-blur-md whitespace-nowrap pointer-events-auto cursor-help hover:bg-amber-500/25 transition-colors"
                     title="Client names, logos, and specific metrics have been sanitized to respect NDAs. What is shown here reflects the real process, not real production data."
                   >
-                    <Lock size={12} className="text-amber-400 shrink-0" />
                     <span>Sanitized for NDA · Reflects real process</span>
                   </div>
                 )}
@@ -1766,7 +1765,6 @@ function FeaturedWorkSection({
                       className="mb-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-200 text-[10px] font-sans font-medium w-fit"
                       title={project.confidentialNote}
                     >
-                      <Lock size={11} className="text-amber-400 shrink-0" />
                       <span>Sanitized for NDA · Reflects real process</span>
                     </div>
                   )}
@@ -2719,9 +2717,9 @@ function Footer() {
 }
 
 const FEATURED_INDEX_MAP: Record<string, number> = {
-  tng: 0,
-  election: 1,
-  backoffice: 2,
+  backoffice: 0,
+  tng: 1,
+  election: 2,
   anlene: 3,
   myarchery: 4,
   bijakwang: 5,
@@ -2829,9 +2827,9 @@ export default function App() {
 
 
   const CASE_STUDY_SEQUENCE: CaseStudyMeta[] = [
-    { id: "tng", num: "01", name: "Seamless Micro Insurance Integration", client: "Touch 'n Go × GEGM", thumb: coverTng },
-    { id: "election", num: "02", name: "38 Province Real Time Election Monitoring", client: "Indonesian Political Party", thumb: aseanThumb },
-    { id: "backoffice", num: "03", name: "One Base, Many Partners: Reusable White Label Backoffice", client: "Multiple Enterprise Partnerships", thumb: backofficePortalThumb },
+    { id: "backoffice", num: "01", name: "One Base, Many Partners: Reusable White Label Backoffice", client: "Multiple Enterprise Partnerships", thumb: backofficePortalThumb },
+    { id: "tng", num: "02", name: "Seamless Micro Insurance Integration", client: "Touch 'n Go × GEGM", thumb: coverTng },
+    { id: "election", num: "03", name: "38 Province Real Time Election Monitoring", client: "Indonesian Political Party", thumb: aseanThumb },
     { id: "anlene", num: "04", name: "Bone Density & Health Check Passport Redesign", client: "Fonterra × Anlene", thumb: anleneThumb },
     { id: "myarchery", num: "05", name: "MyArchery · One Platform for Every Archery Event", client: "PERPANI / MyArchery", thumb: myArcheryPerpaniThumb },
     { id: "bijakwang", num: "06", name: "Kahoot to In House: Roadshow Tournament Platform", client: "mySalam × myKawan", thumb: mySalamThumb },
@@ -2902,7 +2900,7 @@ export default function App() {
       <TngCase
         onBack={handleBackToWork}
         onNext={() => { handleOpenProject("election"); window.scrollTo({ top: 0 }) }}
-        onPrev={() => { handleOpenProject("telkom"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { handleOpenProject("backoffice"); window.scrollTo({ top: 0 }) }}
       />
     )
   }
@@ -2931,7 +2929,7 @@ export default function App() {
       "election-case",
       <ElectionCase
         onBack={handleBackToWork}
-        onNext={() => { handleOpenProject("backoffice"); window.scrollTo({ top: 0 }) }}
+        onNext={() => { handleOpenProject("anlene"); window.scrollTo({ top: 0 }) }}
         onPrev={() => { handleOpenProject("tng"); window.scrollTo({ top: 0 }) }}
       />
     )
@@ -2941,8 +2939,8 @@ export default function App() {
       "backoffice-case",
       <BackofficeCase
         onBack={handleBackToWork}
-        onNext={() => { handleOpenProject("anlene"); window.scrollTo({ top: 0 }) }}
-        onPrev={() => { handleOpenProject("election"); window.scrollTo({ top: 0 }) }}
+        onNext={() => { handleOpenProject("tng"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { handleOpenProject("telkom"); window.scrollTo({ top: 0 }) }}
       />
     )
   }
@@ -2952,7 +2950,7 @@ export default function App() {
       <AnleneCase
         onBack={handleBackToWork}
         onNext={() => { handleOpenProject("myarchery"); window.scrollTo({ top: 0 }) }}
-        onPrev={() => { handleOpenProject("backoffice"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { handleOpenProject("election"); window.scrollTo({ top: 0 }) }}
       />
     )
   }
@@ -2981,7 +2979,7 @@ export default function App() {
       "telkom-case",
       <TelkomCase
         onBack={handleBackToWork}
-        onNext={() => { handleOpenProject("tng"); window.scrollTo({ top: 0 }) }}
+        onNext={() => { handleOpenProject("backoffice"); window.scrollTo({ top: 0 }) }}
         onPrev={() => { handleOpenProject("archery"); window.scrollTo({ top: 0 }) }}
       />
     )

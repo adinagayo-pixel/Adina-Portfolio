@@ -7,7 +7,7 @@ import { ZoomableImage } from "@/app/components/ui/ZoomableImage"
 import {
   ArrowLeft, ChevronRight, CheckCircle2, Globe, Home,
   FileCode2, Shield, Zap, RefreshCw, Users, MessageSquare,
-  Lock, Sliders, Database, Layers, ArrowRight, Activity, Filter, BarChart3, ChevronDown, Sparkles,
+  Sliders, Database, Layers, ArrowRight, Activity, Filter, BarChart3, ChevronDown, Sparkles,
   ClipboardCheck, Split, CheckSquare, Clock, AlertCircle, FileText, ArrowUpRight,
   Menu, Eye, Check, X, CreditCard, Calendar, UserCheck, ShieldCheck, HelpCircle, FileCheck
 } from "lucide-react"
@@ -166,7 +166,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
             <span>HOME</span>
           </a>
 
-          <CaseStudyHeaderBadge caseNum="03" />
+          <CaseStudyHeaderBadge caseNum="01" />
         </div>
 
         {/* Mobile Collapsible Quick Jump Bar - Flush underneath */}
@@ -220,7 +220,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
       <div className="px-8 lg:px-16 pt-16 pb-14" style={{ backgroundColor: W, borderBottom: `1px solid ${HAIR}` }}>
         <div className="space-y-6 mb-10 lg:mb-12">
           <div className="flex flex-wrap items-center gap-3">
-            <MonoTag accent>CASE STUDY 03</MonoTag>
+            <MonoTag accent>CASE STUDY 01</MonoTag>
             <span style={{ color: HAIR }}>/</span>
             <MonoTag>WHITE LABEL BACKOFFICE</MonoTag>
             <span style={{ color: HAIR }}>/</span>
@@ -248,7 +248,6 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
 
             {/* Confidentiality Notice */}
             <div className="flex items-start gap-3 text-xs leading-relaxed text-gray-500">
-              <Lock size={15} className="shrink-0 mt-0.5 text-gray-500" />
               <div>
                 <strong className="font-bold text-[#19244E] block">Confidentiality Note:</strong>
                 Client names, logos, and data have been sanitized to respect NDAs. Screens reflect the real design process, not real production data.
