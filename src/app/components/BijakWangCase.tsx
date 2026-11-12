@@ -218,7 +218,7 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
               className="font-display font-medium leading-relaxed"
               style={{ fontSize: "clamp(1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
             >
-              A quiz platform that mySalam runs at regional roadshows, with a daily practice mode and a live tournament mode, built in house instead of paying a third party tool for each event. It grew out of My Money Sense (2025), a daily financial practice game I built for mySalam.
+              A quiz platform built for mySalam's regional roadshows, with a daily practice mode and a live tournament mode, made in house instead of paying a third party tool for each event. It grew out of My Money Sense (2025), a daily financial practice game I built for mySalam.
             </p>
 
             <CaseStudyFacts
@@ -480,6 +480,10 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
                 <p className="text-xs text-gray-600 leading-relaxed">This case does not include usage numbers.</p>
               </div>
             </div>
+
+            <p className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
+              We also ran an internal load test with up to 60 people playing at once, to check that the server could hold. It tested capacity, not design, and changed no flow. The game was planned for mySalam's final roadshow, but the client decided not to use it there. It is still available on the site.
+            </p>
 
             <div className="p-6 bg-white rounded-xl border border-gray-200 space-y-2">
               <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#19244E]">WHAT I LEARNED</span>
