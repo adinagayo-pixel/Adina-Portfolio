@@ -23,6 +23,7 @@ import backofficeDetailTrackA from "@/imports/backoffice-detail-track-a.png"
 import backofficeDetailTrackB from "@/imports/backoffice-detail-track-b.png"
 import backofficePaymentTrackA from "@/imports/backoffice-payment-track-a.png"
 import backofficePaymentTrackB from "@/imports/backoffice-payment-track-b.png"
+import { BackofficeLibrary } from "@/app/components/BackofficeLibrary"
 
 const N = "#19244E"
 const C = "#DB3E8C"
@@ -869,6 +870,23 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                   </p>
                   <p>
                     Reusable components are a good starting point. They let a company begin with a standard portal, and they make it faster to present to a client. The lesson I take is to stay alert when a client changes its inputs or flow: every change needs its logic checked, and its impact traced to the other flows before it goes live.
+                  </p>
+                </div>
+
+                {/* After the project: the shared base consolidated into a design library */}
+                <div className="pt-4">
+                  <h3 className="font-display text-xl font-bold text-[#19244E] mb-2">What I did next: from a shared base to a design library</h3>
+                  <div className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C] space-y-5 mb-6" style={{ lineHeight: 1.8 }}>
+                    <p>
+                      The "no formal design system" constraint stayed with me. For every new partner I had copied components from the previous file, so after these projects I went back and consolidated them. I used Claude Code with the Figma MCP to audit my existing files and generate a documented library from them, then reviewed and revised it over several rounds. It is a v0.1 draft: semantic color tokens on top of primitives, a two-family type scale, a 4-pt spacing scale, 18 documented components, and three layout patterns.
+                    </p>
+                    <p>
+                      The audit also showed what duplicating files from partner to partner had left behind. Six legacy typefaces were retired in favor of Montserrat and Inter, two sizes of input field became one, and status text moved to darker tokens that pass AA contrast on white.
+                    </p>
+                  </div>
+                  <BackofficeLibrary />
+                  <p className="font-sans text-xs text-gray-500 mt-4">
+                    Pages exported from my Figma library. Select a page to read it in full.
                   </p>
                 </div>
 

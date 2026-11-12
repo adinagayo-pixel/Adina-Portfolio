@@ -3,7 +3,6 @@ import { motion, useMotionValue, useSpring, AnimatePresence, useScroll, useTrans
 import adinaPhotoAbout from "@/imports/Foto At Work.jpg"
 import adinaPhotoLife from "@/imports/Foto In Life.jpg"
 import afgLogo from "@/imports/LOGO.png"
-import gettyBgVideo from "@/imports/GettyImages-1152749158.mp4"
 import coverTng from "@/imports/Cover TNG.jpg"
 import tngThumb4 from "@/imports/TNG thumb4.jpg"
 import tngThumb5 from "@/imports/TNG thumb5.jpg"
@@ -2046,25 +2045,8 @@ function WorkflowSection() {
           </span>
         </div>
 
-        {/* Video Area Container */}
+        {/* Headline area */}
         <div className="relative flex-1 flex flex-col justify-center overflow-hidden">
-          {/* Subtle Video Background */}
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-screen pointer-events-none"
-          >
-            <source src={gettyBgVideo} type="video/mp4" />
-          </video>
-
-          {/* Linear Gradient Mask at Top of Video Container (80-120px) */}
-          <div className="absolute top-0 left-0 right-0 h-24 sm:h-28 lg:h-32 bg-gradient-to-b from-[#0A1128] via-[#0A1128]/80 to-transparent pointer-events-none z-10" />
-
-          {/* Gradient Overlay for Text Contrast */}
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0A1128]/30 to-[#0A1128]/80 pointer-events-none" />
-
           {/* Section headline — scroll-driven smooth fade out */}
           <motion.div
             style={{ opacity: heroOpacity, y: heroY }}
