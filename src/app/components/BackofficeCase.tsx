@@ -48,10 +48,10 @@ function Hairline() {
 
 function SectionTag({ id, num, label }: { id?: string; num: string; label: string }) {
   return (
-    <div id={id} className="mb-10 pt-4 scroll-mt-24">
-      <div className="text-[10px] font-bold uppercase tracking-[0.2em] mb-2 text-[#DB3E8C]">
-        SECTION {num}
-      </div>
+    <div id={id} className="mb-10 scroll-mt-24">
+      <span aria-hidden="true" className="block font-display font-medium leading-none text-[#DB3E8C]/30 text-6xl lg:text-7xl mb-4">
+        {num}
+      </span>
       <h2 className="font-display text-2xl lg:text-3xl font-bold text-[#19244E]">
         {label}
       </h2>
@@ -248,7 +248,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
 
             {/* Confidentiality Notice */}
             <div className="flex items-start gap-3 text-xs leading-relaxed text-gray-500">
-              <Lock size={15} className="shrink-0 mt-0.5 text-gray-400" />
+              <Lock size={15} className="shrink-0 mt-0.5 text-gray-500" />
               <div>
                 <strong className="font-bold text-[#19244E] block">Confidentiality Note:</strong>
                 Client names, logos, and data have been sanitized to respect NDAs. Screens reflect the real design process, not real production data.
@@ -298,34 +298,34 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
             30 SECOND TAKEAWAYS
           </span>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 text-xs sm:text-sm font-sans">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 text-sm font-sans">
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">01 · Context</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">01 · Context</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">
               Every new partner seemed to need its own set of portals, yet the foundation was the same each time.
             </p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">02 · Constraints</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">02 · Constraints</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">
               Several partners in parallel, open briefs, and components copied from file to file.
             </p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">03 · Key Decisions</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">03 · Key Decisions</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">
               Reuse what fits, redesign what differs, and keep the chart off the date filter.
             </p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
             <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">04 · Solution & Evidence</span>
-            <p className="text-xs sm:text-sm font-semibold text-[#19244E] leading-relaxed">
+            <p className="text-sm font-semibold text-[#19244E] leading-relaxed">
               A two-track model, a two-column claim review, and a chart with its own time control.
             </p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">05 · Outcome</span>
-            <p className="text-xs sm:text-sm font-semibold text-[#19244E] leading-relaxed">
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">05 · Outcome</span>
+            <p className="text-sm font-semibold text-[#19244E] leading-relaxed">
               Standard portals shipped without new designs. Design time went to complex claims.
             </p>
           </div>
@@ -347,7 +347,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
               <div className="overflow-hidden rounded-xl border border-gray-200 shadow-xs bg-white">
                 <ZoomableImage src={shot.src} alt={`${shot.title} screen`} />
               </div>
-              <figcaption className="font-sans text-xs text-gray-600">
+              <figcaption className="font-sans text-xs text-[#2E3A5C]">
                 <strong className="text-[#19244E]">{shot.title}.</strong> {shot.caption}
               </figcaption>
             </figure>
@@ -364,7 +364,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
           <aside className="hidden lg:block sticky top-24 space-y-6 self-start pr-4">
             <div className="p-5 rounded-2xl bg-[#0e1635] text-white shadow-xl border border-white/10">
               <div className="flex items-center gap-2 mb-4 pb-3 border-b border-white/10">
-                <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+                <span className="font-sans text-[11px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
                   QUICK JUMP
                 </span>
               </div>
@@ -382,7 +382,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                           : "text-white/65 hover:bg-white/10 hover:text-white font-medium"
                       }`}
                     >
-                      <span className={`font-mono text-[10px] shrink-0 pt-0.5 ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
+                      <span className={`font-mono text-[11px] shrink-0 pt-0.5 ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
                         {sec.num}
                       </span>
                       <span className="leading-snug">{sec.label}</span>
@@ -394,13 +394,13 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
           </aside>
 
           {/* Right Column: Case Study Main Content Sections */}
-          <div className="space-y-16 lg:space-y-20 min-w-0">
+          <div className="space-y-20 lg:space-y-28 min-w-0">
 
             {/* SECTION 01: Context */}
             <div>
               <SectionTag id="context" num="01" label="Context: The Pattern I Noticed" />
 
-              <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
+              <div className="space-y-5 font-sans text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
                 <p>
                   My company kept getting requests for pitch proposals from new partners, and each one seemed to need its own set of portals. After designing several, the foundation looked the same every time. The terminology and data changed from client to client, but the core needs did not: monitoring performance, managing customers, and handling transactions and claims.
                 </p>
@@ -410,7 +410,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
 
                 {/* System Architecture Diagram */}
                 <div className="p-6 bg-white border border-gray-200 rounded-2xl shadow-xs space-y-4 my-6">
-                  <span className="text-[10px] font-bold tracking-widest uppercase text-[#DB3E8C] block font-mono">
+                  <span className="text-[11px] font-bold tracking-widest uppercase text-[#DB3E8C] block font-mono">
                     UNIFIED CHANNEL ARCHITECTURE
                   </span>
                   <div className="grid md:grid-cols-3 gap-4">
@@ -419,27 +419,27 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                         <Shield size={16} className="text-[#DB3E8C]" />
                         <h4 className="font-bold text-sm">1. Central Admin Portal</h4>
                       </div>
-                      <p className="text-xs text-white/75 leading-relaxed">
+                      <p className="text-sm text-white/75 leading-relaxed">
                         Manages roles, permissions, system audit logs, and controls multi-tenant channel deployments.
                       </p>
                     </div>
 
                     <div className="p-4 rounded-xl bg-[#0e1635] text-white space-y-1.5">
                       <div className="flex items-center gap-2">
-                        <Users size={16} className="text-[#10B981]" />
+                        <Users size={16} className="text-[#DB3E8C]" />
                         <h4 className="font-bold text-sm">2. Partner Portal</h4>
                       </div>
-                      <p className="text-xs text-white/75 leading-relaxed">
+                      <p className="text-sm text-white/75 leading-relaxed">
                         Channel-level operations: customer list, transaction monitoring, and standard claims management.
                       </p>
                     </div>
 
                     <div className="p-4 rounded-xl bg-[#0e1635] text-white space-y-1.5">
                       <div className="flex items-center gap-2">
-                        <Activity size={16} className="text-[#3B82F6]" />
+                        <Activity size={16} className="text-[#DB3E8C]" />
                         <h4 className="font-bold text-sm">3. Insurance & Custom Portals</h4>
                       </div>
-                      <p className="text-xs text-white/75 leading-relaxed">
+                      <p className="text-sm text-white/75 leading-relaxed">
                         Specialized modules tailored for underwriting, eligibility assessment, or end-customer driver filing.
                       </p>
                     </div>
@@ -454,7 +454,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
             <div>
               <SectionTag id="constraints" num="02" label="Constraints: One Base, Different Partners" />
 
-              <p className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C] mb-6" style={{ lineHeight: 1.8 }}>
+              <p className="font-sans text-base leading-relaxed text-[#2E3A5C] mb-6" style={{ lineHeight: 1.8 }}>
                 Partners ranged from mobility and delivery to regional InsurTech and affiliate commerce, each with different users and priorities. Four constraints shaped how I worked across them:
               </p>
 
@@ -486,7 +486,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                       <Icon size={18} />
                     </div>
                     <h4 className="font-bold text-[#19244E] text-base">{title}</h4>
-                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">{desc}</p>
+                    <p className="text-sm text-[#2E3A5C] leading-relaxed">{desc}</p>
                   </div>
                 ))}
               </div>
@@ -498,40 +498,40 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
             <div>
               <SectionTag id="decisions" num="03" label="Key Decisions: Reuse, Claim Review, and the Chart Filter" />
 
-              <p className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C] mb-8" style={{ lineHeight: 1.8 }}>
+              <p className="font-sans text-base leading-relaxed text-[#2E3A5C] mb-8" style={{ lineHeight: 1.8 }}>
                 Three decisions shaped the work. Each one is shown with its evidence in Section 04.
               </p>
 
               <div className="space-y-6">
                 <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
-                  <span className="text-xs font-bold text-[#10B981] uppercase tracking-wider block">Decision 01 · Reuse first, redesign only what differs</span>
-                  <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                  <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 01 · Reuse first, redesign only what differs</span>
+                  <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                     <strong className="text-[#19244E]">The question:</strong> Does the partner need a new module, or different data and claim review logic?
                   </p>
-                  <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                  <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                     <strong className="text-[#19244E]">What I did:</strong> I sorted every request into one of two tracks. Partner A's document check fit the existing codebase, so it went to Track A: reuse. Partner B's four-party eligibility check did not, so it went to Track B: new design work.
                   </p>
-                  <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                  <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                     <strong className="text-[#19244E]">Why it held:</strong> Standard portals only needed colors, logo, and terminology changes, so developers could ship them without new designs.
                   </p>
                 </div>
 
                 <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
-                  <span className="text-xs font-bold text-[#3B82F6] uppercase tracking-wider block">Decision 02 · Claim data and review actions side by side</span>
-                  <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                  <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 02 · Claim data and review actions side by side</span>
+                  <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                     <strong className="text-[#19244E]">The pressure:</strong> Partner B's eligibility check spans four parties and the policy's conditions. In the standard tab layout, staff switch back and forth between data and documents.
                   </p>
-                  <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                  <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                     <strong className="text-[#19244E]">What I did:</strong> A two-column claim detail page, with details on the left and review actions always visible on the right. I worked it out with the client's team and our backend engineers first, because the data differed from the existing system.
                   </p>
                 </div>
 
                 <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
-                  <span className="text-xs font-bold text-[#10B981] uppercase tracking-wider block">Decision 03 · Keep the chart off the date range filter</span>
-                  <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                  <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 03 · Keep the chart off the date range filter</span>
+                  <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                     <strong className="text-[#19244E]">The pressure:</strong> Tying the chart to the dashboard's date range could make data retrieval very slow, as my backend engineer pointed out.
                   </p>
-                  <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                  <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                     <strong className="text-[#19244E]">What I did:</strong> The chart follows the product filter, ignores the date range, and has its own monthly or yearly toggle.
                   </p>
                 </div>
@@ -560,7 +560,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                 </div>
                 <div className="w-px h-6 bg-[#19244E]/25" />
                 <div className="max-w-md w-full px-5 py-4 bg-white border-2 border-dashed border-[#DB3E8C]/50 rounded-xl text-center shadow-xs">
-                  <span className="text-[10px] font-bold text-[#DB3E8C] uppercase tracking-wider block mb-1">Decision</span>
+                  <span className="text-[11px] font-bold text-[#DB3E8C] uppercase tracking-wider block mb-1">Decision</span>
                   <p className="text-sm font-semibold text-[#19244E] leading-snug">
                     Does the partner need a new module, or different data and claim review logic?
                   </p>
@@ -573,18 +573,18 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                 <div className="absolute top-0 h-px bg-[#19244E]/25" style={{ left: "calc(25% - 6px)", right: "calc(25% - 6px)" }} />
                 <div className="absolute top-0 bottom-0 w-px bg-[#10B981]/60" style={{ left: "calc(25% - 6px)" }} />
                 <div className="absolute top-0 bottom-0 w-px bg-[#3B82F6]/60" style={{ right: "calc(25% - 6px)" }} />
-                <span className="absolute top-2 text-[10px] font-bold text-[#10B981] uppercase tracking-wider" style={{ left: "calc(25% + 4px)" }}>No</span>
-                <span className="absolute top-2 text-[10px] font-bold text-[#3B82F6] uppercase tracking-wider" style={{ right: "calc(25% + 4px)" }}>Yes</span>
+                <span className="absolute top-2 text-[11px] font-bold text-[#10B981] uppercase tracking-wider" style={{ left: "calc(25% + 4px)" }}>No</span>
+                <span className="absolute top-2 text-[11px] font-bold text-[#3B82F6] uppercase tracking-wider" style={{ right: "calc(25% + 4px)" }}>Yes</span>
               </div>
 
               <div className="grid md:grid-cols-2 gap-6 mb-12">
                 <div className="p-6 bg-white border border-[#10B981]/40 rounded-xl space-y-4 shadow-xs">
-                  <span className="md:hidden text-[10px] font-bold text-[#10B981] uppercase tracking-wider block">If no ↓</span>
+                  <span className="md:hidden text-[11px] font-bold text-[#10B981] uppercase tracking-wider block">If no ↓</span>
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold text-[#10B981] uppercase tracking-wider block font-mono">TRACK A</span>
-                    <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#10B981]/15 text-[#10B981] uppercase">Reuse</span>
+                    <span className="text-[11px] font-bold px-2 py-0.5 rounded bg-[#10B981]/15 text-[#10B981] uppercase">Reuse</span>
                   </div>
-                  <h4 className="font-bold text-lg text-[#19244E]">Standard Portals & Theming</h4>
+                  <h4 className="font-bold text-base text-[#19244E]">Standard Portals & Theming</h4>
                   <TrackSteps
                     color="#10B981"
                     steps={[
@@ -597,12 +597,12 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                 </div>
 
                 <div className="p-6 bg-white border border-[#3B82F6]/40 rounded-xl space-y-4 shadow-xs">
-                  <span className="md:hidden text-[10px] font-bold text-[#3B82F6] uppercase tracking-wider block">If yes ↓</span>
+                  <span className="md:hidden text-[11px] font-bold text-[#3B82F6] uppercase tracking-wider block">If yes ↓</span>
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold text-[#3B82F6] uppercase tracking-wider block font-mono">TRACK B</span>
-                    <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#3B82F6]/15 text-[#3B82F6] uppercase">Real Design Work</span>
+                    <span className="text-[11px] font-bold px-2 py-0.5 rounded bg-[#3B82F6]/15 text-[#3B82F6] uppercase">Real Design Work</span>
                   </div>
-                  <h4 className="font-bold text-lg text-[#19244E]">Deep Custom Modules</h4>
+                  <h4 className="font-bold text-base text-[#19244E]">Deep Custom Modules</h4>
                   <TrackSteps
                     color="#3B82F6"
                     steps={[
@@ -612,7 +612,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                       "Hand off new module designs",
                     ]}
                   />
-                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                  <p className="text-sm text-[#2E3A5C] leading-relaxed">
                     This is where my design time went. Both examples below are Track B work.
                   </p>
                 </div>
@@ -620,7 +620,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
 
               {/* Evidence 01: Claim review */}
               <h3 className="font-display text-xl font-bold text-[#19244E] mb-2">The Main Case: Same Menu, Different Logic</h3>
-              <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C] mb-10" style={{ lineHeight: 1.8 }}>
+              <div className="space-y-5 font-sans text-base leading-relaxed text-[#2E3A5C] mb-10" style={{ lineHeight: 1.8 }}>
                 <p>
                   On paper, every partner needed the same thing: a Claim menu in their backoffice. In practice, two partners meant completely different things by "reviewing a claim."
                 </p>
@@ -632,13 +632,13 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                       PARTNER A · DOCUMENT COMPLETENESS
                     </span>
                     <h4 className="font-bold text-[#19244E] text-base">Standard Verification Flow</h4>
-                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                    <p className="text-sm text-[#2E3A5C] leading-relaxed">
                       Built around document completeness. A claim moves forward when its documents are complete and valid:
                     </p>
                     <div className="p-3 bg-gray-50 rounded-lg border border-gray-200 text-xs font-mono text-[#19244E] space-y-1">
                       <div className="font-semibold text-[#DB3E8C]">Submitted → Acknowledged → Document Review → Reupload or Lack of Documents → Accepted, Rejected, or Paid</div>
                     </div>
-                    <p className="text-xs text-gray-600 leading-relaxed">
+                    <p className="text-sm text-[#2E3A5C] leading-relaxed">
                       Operations staff handle every state. This is Track A: the existing claim screens, reused.
                     </p>
                   </div>
@@ -649,10 +649,10 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                       PARTNER B · 4-PARTY ELIGIBILITY
                     </span>
                     <h4 className="font-bold text-[#19244E] text-base">Complex Multi-User Logic</h4>
-                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                    <p className="text-sm text-[#2E3A5C] leading-relaxed">
                       Claims were judged on eligibility, not paperwork, and a single claim could involve four parties: the participant, the person covered, the claimant, and the nominee. Each stage was handled by a different user.
                     </p>
-                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                    <p className="text-sm text-[#2E3A5C] leading-relaxed">
                       The client gave me a business requirement specification (BRS) defining the rules and requirements. The question of how to turn those rules into a usable interface was mine to answer.
                     </p>
                   </div>
@@ -667,29 +667,29 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                   <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
                     <div className="flex items-center gap-2">
                       <ClipboardCheck size={16} className="text-[#DB3E8C]" />
-                      <h5 className="font-bold text-sm text-[#19244E]">1. Investigation</h5>
+                      <h5 className="font-bold text-base text-[#19244E]">1. Investigation</h5>
                     </div>
-                    <p className="text-xs text-gray-600 leading-relaxed">
+                    <p className="text-sm text-[#2E3A5C] leading-relaxed">
                       An assessment checklist where each item (identity of each party, event date within the policy or grace period, waiting period, exclusions, fraud check) is marked Pass, Fail, or Not Applicable, with remarks.
                     </p>
                   </div>
 
                   <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
                     <div className="flex items-center gap-2">
-                      <Split size={16} className="text-[#3B82F6]" />
-                      <h5 className="font-bold text-sm text-[#19244E]">2. Approval & Payee Split</h5>
+                      <Split size={16} className="text-[#DB3E8C]" />
+                      <h5 className="font-bold text-base text-[#19244E]">2. Approval & Payee Split</h5>
                     </div>
-                    <p className="text-xs text-gray-600 leading-relaxed">
+                    <p className="text-sm text-[#2E3A5C] leading-relaxed">
                       The net payable is calculated by deducting any overdue contribution from the gross amount, then split across multiple beneficiaries by share and role, with a sanction check before submitting for payment.
                     </p>
                   </div>
 
                   <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
                     <div className="flex items-center gap-2">
-                      <CheckCircle2 size={16} className="text-[#10B981]" />
-                      <h5 className="font-bold text-sm text-[#19244E]">3. Disbursement</h5>
+                      <CheckCircle2 size={16} className="text-[#DB3E8C]" />
+                      <h5 className="font-bold text-base text-[#19244E]">3. Disbursement</h5>
                     </div>
-                    <p className="text-xs text-gray-600 leading-relaxed">
+                    <p className="text-sm text-[#2E3A5C] leading-relaxed">
                       Tracking per beneficiary, including handling failed payments with mandatory remarks and editable bank details.
                     </p>
                   </div>
@@ -699,38 +699,38 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                   <div className="-mx-5 rounded-b-xl border-t border-gray-200 overflow-hidden">
                     <div className="overflow-x-auto">
                       <table className="w-full text-left text-xs font-sans">
-                        <thead className="bg-slate-50 text-[10px] text-slate-400 uppercase font-mono border-b border-slate-200">
+                        <thead className="bg-slate-50 text-[11px] text-gray-500 uppercase font-mono border-b border-slate-200">
                           <tr>
                             <th className="py-2.5 px-4 w-1/4">Aspect</th>
-                            <th className="py-2.5 px-4 w-[37.5%] text-teal-800 bg-teal-50/50">Track A: Standard Portal (Reused)</th>
-                            <th className="py-2.5 px-4 w-[37.5%] text-[#DB3E8C] bg-pink-50/40">Track B: Custom Module (Redesigned)</th>
+                            <th className="py-2.5 px-4 w-[37.5%] text-[#19244E]">Track A: Standard Portal (Reused)</th>
+                            <th className="py-2.5 px-4 w-[37.5%] text-[#19244E]">Track B: Custom Module (Redesigned)</th>
                           </tr>
                         </thead>
-                        <tbody className="divide-y divide-slate-100 text-slate-700">
+                        <tbody className="divide-y divide-slate-100 text-[#2E3A5C]">
                           <tr className="hover:bg-slate-50/50">
-                            <td className="py-2.5 px-4 font-semibold text-slate-900">What Staff Check</td>
-                            <td className="py-2.5 px-4 text-slate-600">Are all documents complete and valid?</td>
-                            <td className="py-2.5 px-4 font-medium text-slate-900">Is the claim eligible? Checked across 4 parties and the policy's conditions</td>
+                            <td className="py-2.5 px-4 font-semibold text-[#19244E]">What Staff Check</td>
+                            <td className="py-2.5 px-4 text-[#2E3A5C]">Are all documents complete and valid?</td>
+                            <td className="py-2.5 px-4 font-medium text-[#19244E]">Is the claim eligible? Checked across 4 parties and the policy's conditions</td>
                           </tr>
                           <tr className="hover:bg-slate-50/50">
-                            <td className="py-2.5 px-4 font-semibold text-slate-900">Screen Layout</td>
-                            <td className="py-2.5 px-4 text-slate-600">One column, with summary and documents on separate tabs</td>
-                            <td className="py-2.5 px-4 font-medium text-slate-900">Two columns: claim details on the left, review actions always visible on the right</td>
+                            <td className="py-2.5 px-4 font-semibold text-[#19244E]">Screen Layout</td>
+                            <td className="py-2.5 px-4 text-[#2E3A5C]">One column, with summary and documents on separate tabs</td>
+                            <td className="py-2.5 px-4 font-medium text-[#19244E]">Two columns: claim details on the left, review actions always visible on the right</td>
                           </tr>
                           <tr className="hover:bg-slate-50/50">
-                            <td className="py-2.5 px-4 font-semibold text-slate-900">How Staff Review</td>
-                            <td className="py-2.5 px-4 text-slate-600">Switch tabs back and forth to compare data with documents</td>
-                            <td className="py-2.5 px-4 font-medium text-emerald-700 font-semibold">No tab switching. Data and documents sit side by side</td>
+                            <td className="py-2.5 px-4 font-semibold text-[#19244E]">How Staff Review</td>
+                            <td className="py-2.5 px-4 text-[#2E3A5C]">Switch tabs back and forth to compare data with documents</td>
+                            <td className="py-2.5 px-4 font-medium text-[#19244E]">No tab switching. Data and documents sit side by side</td>
                           </tr>
                           <tr className="hover:bg-slate-50/50">
-                            <td className="py-2.5 px-4 font-semibold text-slate-900">Who Handles It</td>
-                            <td className="py-2.5 px-4 text-slate-600">One operations staff member handles every step</td>
-                            <td className="py-2.5 px-4 font-medium text-slate-900">Three roles in turn: Investigator → Underwriter → Finance (payout)</td>
+                            <td className="py-2.5 px-4 font-semibold text-[#19244E]">Who Handles It</td>
+                            <td className="py-2.5 px-4 text-[#2E3A5C]">One operations staff member handles every step</td>
+                            <td className="py-2.5 px-4 font-medium text-[#19244E]">Three roles in turn: Investigator → Underwriter → Finance (payout)</td>
                           </tr>
                           <tr className="hover:bg-slate-50/50">
-                            <td className="py-2.5 px-4 font-semibold text-slate-900">Design &amp; Build Effort</td>
-                            <td className="py-2.5 px-4 text-slate-600"><strong>Reuse</strong>: Only colors and logo change. No new design work</td>
-                            <td className="py-2.5 px-4 font-medium text-slate-900"><strong>Full redesign</strong>: The whole review flow, designed together with the backend team</td>
+                            <td className="py-2.5 px-4 font-semibold text-[#19244E]">Design &amp; Build Effort</td>
+                            <td className="py-2.5 px-4 text-[#2E3A5C]"><strong>Reuse</strong>: Only colors and logo change. No new design work</td>
+                            <td className="py-2.5 px-4 font-medium text-[#19244E]"><strong>Full redesign</strong>: The whole review flow, designed together with the backend team</td>
                           </tr>
                         </tbody>
                       </table>
@@ -764,13 +764,13 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                     },
                   ].map((row) => (
                     <div key={row.stage}>
-                      <span className="block font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C] mb-3">{row.stage}</span>
+                      <span className="block font-sans text-[11px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C] mb-3">{row.stage}</span>
                       <div className="grid md:grid-cols-2 gap-4">
                         <figure className="space-y-2">
                           <div className="overflow-hidden rounded-xl border border-gray-200 shadow-xs bg-white">
                             <ZoomableImage src={row.a} alt={`${row.stage}, Track A`} />
                           </div>
-                          <figcaption className="font-sans text-xs text-gray-600">
+                          <figcaption className="font-sans text-xs text-[#2E3A5C]">
                             <strong className="text-[#19244E]">Track A.</strong> {row.captionA}
                           </figcaption>
                         </figure>
@@ -778,7 +778,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                           <div className="overflow-hidden rounded-xl border border-gray-200 shadow-xs bg-white">
                             <ZoomableImage src={row.b} alt={`${row.stage}, Track B`} />
                           </div>
-                          <figcaption className="font-sans text-xs text-gray-600">
+                          <figcaption className="font-sans text-xs text-[#2E3A5C]">
                             <strong className="text-[#19244E]">Track B.</strong> {row.captionB}
                           </figcaption>
                         </figure>
@@ -792,7 +792,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
 
               {/* Evidence 02: Chart */}
               <h3 className="font-display text-xl font-bold text-[#19244E] mb-2">Also in Track B: A Chart From an Open Brief</h3>
-              <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
+              <div className="space-y-5 font-sans text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
                 <p>
                   A client asked for a "Product Performance" indicator on their dashboard, but the brief left open what to show, over what period, and in what chart. I chose a grouped bar chart with one color per product, so managers can compare products side by side.
                 </p>
@@ -811,31 +811,31 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                 <CaseStudyDisclosure label="Technical detail" summary="How the chart responds to each dashboard filter">
                 <div className="grid md:grid-cols-3 gap-4">
                   <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
-                    <span className="text-[10px] font-bold text-[#3B82F6] uppercase tracking-wider block font-mono">
+                    <span className="text-[11px] font-bold text-[#DB3E8C] uppercase tracking-wider block font-mono">
                       FILTER 1 (SHARED)
                     </span>
-                    <h5 className="font-bold text-sm text-[#19244E]">Product Filter</h5>
-                    <p className="text-xs text-gray-600 leading-relaxed">
+                    <h5 className="font-bold text-base text-[#19244E]">Product Filter</h5>
+                    <p className="text-sm text-[#2E3A5C] leading-relaxed">
                       The dashboard's product selection also applies to this chart, so the legend and bars update to match.
                     </p>
                   </div>
 
                   <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
-                    <span className="text-[10px] font-bold text-red-500 uppercase tracking-wider block font-mono">
+                    <span className="text-[11px] font-bold text-[#DB3E8C] uppercase tracking-wider block font-mono">
                       FILTER 2 (EXCLUDED)
                     </span>
-                    <h5 className="font-bold text-sm text-[#19244E]">Date Range Filter</h5>
-                    <p className="text-xs text-gray-600 leading-relaxed">
+                    <h5 className="font-bold text-base text-[#19244E]">Date Range Filter</h5>
+                    <p className="text-sm text-[#2E3A5C] leading-relaxed">
                       This chart ignores it, so changing the dashboard's date range doesn't trigger heavy queries.
                     </p>
                   </div>
 
                   <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
-                    <span className="text-[10px] font-bold text-[#10B981] uppercase tracking-wider block font-mono">
+                    <span className="text-[11px] font-bold text-[#DB3E8C] uppercase tracking-wider block font-mono">
                       FILTER 3 (LOCAL)
                     </span>
-                    <h5 className="font-bold text-sm text-[#19244E]">Monthly / Yearly Toggle</h5>
-                    <p className="text-xs text-gray-600 leading-relaxed">
+                    <h5 className="font-bold text-base text-[#19244E]">Monthly / Yearly Toggle</h5>
+                    <p className="text-sm text-[#2E3A5C] leading-relaxed">
                       The chart gets its own time control, defaulting to Monthly.
                     </p>
                   </div>
@@ -854,31 +854,31 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
               <div className="space-y-6">
                 <div className="grid md:grid-cols-3 gap-6">
                   <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
-                    <span className="text-[10px] font-bold tracking-wider uppercase text-[#10B981] font-mono block">Shipped</span>
-                    <h5 className="font-bold text-sm text-[#19244E]">Standard portals</h5>
-                    <p className="text-xs text-gray-600 leading-relaxed">
+                    <span className="text-[11px] font-bold tracking-wider uppercase text-[#DB3E8C] font-mono block">Shipped</span>
+                    <h5 className="font-bold text-base text-[#19244E]">Standard portals</h5>
+                    <p className="text-sm text-[#2E3A5C] leading-relaxed">
                       Deployed by developers from the existing codebase, without design bottlenecks or redrawing.
                     </p>
                   </div>
 
                   <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
-                    <span className="text-[10px] font-bold tracking-wider uppercase text-[#DB3E8C] font-mono block">Designed</span>
-                    <h5 className="font-bold text-sm text-[#19244E]">Partner B's claim flow</h5>
-                    <p className="text-xs text-gray-600 leading-relaxed">
+                    <span className="text-[11px] font-bold tracking-wider uppercase text-[#DB3E8C] font-mono block">Designed</span>
+                    <h5 className="font-bold text-base text-[#19244E]">Partner B's claim flow</h5>
+                    <p className="text-sm text-[#2E3A5C] leading-relaxed">
                       Multi-stage eligibility review, explored in depth and designed with the backend team.
                     </p>
                   </div>
 
                   <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
-                    <span className="text-[10px] font-bold tracking-wider uppercase text-[#3B82F6] font-mono block">Estimated, not tracked</span>
-                    <h5 className="font-bold text-sm text-[#19244E]">Pitch turnaround</h5>
-                    <p className="text-xs text-gray-600 leading-relaxed">
+                    <span className="text-[11px] font-bold tracking-wider uppercase text-[#DB3E8C] font-mono block">Estimated, not tracked</span>
+                    <h5 className="font-bold text-base text-[#19244E]">Pitch turnaround</h5>
+                    <p className="text-sm text-[#2E3A5C] leading-relaxed">
                       A complete set of pitch portals for a new partner in a few days, based on my experience.
                     </p>
                   </div>
                 </div>
 
-                <div className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C] space-y-5" style={{ lineHeight: 1.8 }}>
+                <div className="font-sans text-base leading-relaxed text-[#2E3A5C] space-y-5" style={{ lineHeight: 1.8 }}>
                   <p>
                     The two-track split was not something I planned upfront. It became clear only after several projects had shipped.
                   </p>
@@ -890,7 +890,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                 {/* After the project: the shared base consolidated into a design library */}
                 <div className="pt-4">
                   <h3 className="font-display text-xl font-bold text-[#19244E] mb-2">What I did next: from a shared base to a design library</h3>
-                  <div className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C] space-y-5 mb-6" style={{ lineHeight: 1.8 }}>
+                  <div className="font-sans text-base leading-relaxed text-[#2E3A5C] space-y-5 mb-6" style={{ lineHeight: 1.8 }}>
                     <p>
                       Copying components from file to file was the constraint I most wanted to fix, so after these projects I went back and consolidated them. I used Claude Code with the Figma MCP to audit my existing files and generate a documented library from them, then reviewed and revised it over several rounds. It is a v0.1 draft: semantic color tokens on top of primitives, a two-family type scale, a 4-pt spacing scale, 18 documented components, and three layout patterns.
                     </p>
@@ -911,7 +911,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                       WHAT I LEARNED
                     </span>
                   </div>
-                  <p className="text-xs sm:text-sm font-sans leading-relaxed text-[#2E3A5C] italic" style={{ lineHeight: 1.8 }}>
+                  <p className="text-sm font-sans leading-relaxed text-[#2E3A5C] italic" style={{ lineHeight: 1.8 }}>
                     "Designing across many partners taught me that reusability isn't about forcing every client into the same mold. The real skill is knowing which parts to keep consistent, like navigation, page structures, and common components, and which problems need to be designed from scratch together with the client and engineers."
                   </p>
                 </div>

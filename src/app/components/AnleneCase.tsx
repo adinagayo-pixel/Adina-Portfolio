@@ -45,10 +45,10 @@ function Hairline() {
 
 function SectionTag({ id, num, label }: { id?: string; num: string; label: string }) {
   return (
-    <div id={id} className="mb-10 pt-4 scroll-mt-24">
-      <div className="text-[10px] font-bold uppercase tracking-[0.2em] mb-2 text-[#DB3E8C]">
-        SECTION {num}
-      </div>
+    <div id={id} className="mb-10 scroll-mt-24">
+      <span aria-hidden="true" className="block font-display font-medium leading-none text-[#DB3E8C]/30 text-6xl lg:text-7xl mb-4">
+        {num}
+      </span>
       <h2 className="font-display text-2xl lg:text-3xl font-bold text-[#19244E]">
         {label}
       </h2>
@@ -254,26 +254,26 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
             30 SECOND TAKEAWAYS
           </span>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 text-xs sm:text-sm font-sans">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 text-sm font-sans">
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">01 · Context</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">Sales promoters run health check activations for Anlene, from a scan to a personalized result.</p>
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">01 · Context</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">Sales promoters run health check activations for Anlene, from a scan to a personalized result.</p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">02 · Constraints</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">No field access, no hardware link, and no auto generated reports.</p>
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">02 · Constraints</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">No field access, no hardware link, and no auto generated reports.</p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">03 · Key Decisions</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">Two journey maps, a decision tree before any screen, and hand built reports.</p>
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">03 · Key Decisions</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">Two journey maps, a decision tree before any screen, and hand built reports.</p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">04 · Solution & Evidence</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">A health check flow from manual scan entry to a personalized WhatsApp report.</p>
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">04 · Solution & Evidence</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">A health check flow from manual scan entry to a personalized WhatsApp report.</p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">05 · Outcome</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">Addressed all three client complaints, and the client returned for a second phase.</p>
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">05 · Outcome</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">Addressed all three client complaints, and the client returned for a second phase.</p>
           </div>
         </div>
       </div>
@@ -286,7 +286,7 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
           <aside className="hidden lg:block sticky top-24 space-y-6 self-start pr-4">
             <div className="p-5 rounded-2xl bg-[#0e1635] text-white shadow-xl border border-white/10">
               <div className="flex items-center gap-2 mb-4 pb-3 border-b border-white/10">
-                <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+                <span className="font-sans text-[11px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
                   QUICK JUMP
                 </span>
               </div>
@@ -304,7 +304,7 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
                           : "text-white/65 hover:bg-white/10 hover:text-white font-medium"
                       }`}
                     >
-                      <span className={`font-mono text-[10px] shrink-0 pt-0.5 ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
+                      <span className={`font-mono text-[11px] shrink-0 pt-0.5 ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
                         {sec.num}
                       </span>
                       <span className="leading-snug">{sec.label}</span>
@@ -316,12 +316,12 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
           </aside>
 
           {/* Right Column: Case Study Main Content Sections */}
-          <div className="space-y-16 lg:space-y-20 min-w-0">
+          <div className="space-y-20 lg:space-y-28 min-w-0">
 
         {/* 01 Context */}
         <div>
           <SectionTag id="context" num="01" label="Context: Health Checks Run by Sales Promoters" />
-          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
+          <div className="space-y-5 font-sans text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
             <p>
               Anlene runs in-person health check activations. A sales promoter walks a customer through a bone density scan (Achilles) and a body composition scan (Omron), then delivers a personalized result.
             </p>
@@ -344,7 +344,7 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
             ].map(({ title, desc }) => (
               <div key={title} className="p-6 bg-white rounded-xl border border-gray-200/80 shadow-xs space-y-3">
                 <h4 className="font-bold text-[#19244E] text-base">{title}</h4>
-                <p className="font-sans text-xs sm:text-sm text-gray-600 leading-relaxed">{desc}</p>
+                <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
@@ -359,39 +359,39 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
           <div className="space-y-6">
             <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
               <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 01 · Map two journeys, not one</span>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">The pressure:</strong> Without field access, research had to rely on secondhand material.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">What I did:</strong> I built two FigJam journey maps, one for the customer and one for the SPG. Each covered actions, devices, questions, sentiment, and opportunities.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">Why it held:</strong> The maps surfaced friction such as being asked for a phone number again, and how long a result stays accessible.
               </p>
             </div>
 
             <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
               <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 02 · A decision tree before any screen</span>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">The pressure:</strong> Every result needed a clear category, and the client's complaints were about generic results.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">What I did:</strong> I built a decision tree for five metrics (BMI, body fat, visceral fat, skeletal muscle, and T-score), split by gender, with Low, Normal, High, and Very High tiers.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">Why it held:</strong> It set the colors, the recommendations, and which combinations needed their own report. It also gave the client something concrete to approve.
               </p>
             </div>
 
             <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
               <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 03 · Hand build every report combination</span>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">The pressure:</strong> No system could generate PDFs, so every meaningful combination needed its own layout.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">What I did:</strong> I designed each result combination report in Figma, all following the same grammar: score, ideal range, and recommendation.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">Why it held:</strong> Results stayed consistent, even though every page was built by hand.
               </p>
             </div>
@@ -427,7 +427,7 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
                 </div>
                 <div>
                   <h4 className="font-sans text-xs font-bold text-[#19244E] mb-1 tracking-wide">{title}</h4>
-                  <p className="font-sans text-xs text-gray-600 leading-relaxed">{desc}</p>
+                  <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">{desc}</p>
                 </div>
               </div>
             ))}
@@ -441,13 +441,13 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
               { title: "04 · Result delivery", desc: "Verified customers receive their results, tailored tips by age and gender, and a product recommendation, through WhatsApp." },
             ].map(({ title, desc }) => (
               <div key={title} className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
-                <h5 className="font-bold text-sm text-[#19244E]">{title}</h5>
-                <p className="font-sans text-xs text-gray-600 leading-relaxed">{desc}</p>
+                <h5 className="font-bold text-base text-[#19244E]">{title}</h5>
+                <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
 
-          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
+          <div className="space-y-5 font-sans text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
             <p>
               The core work happened from August to October 2024. In November, Anlene's branding team provided a new visual direction, and I translated it into Figma while keeping the decision logic and report structure intact.
             </p>
@@ -463,25 +463,25 @@ export default function AnleneCase({ onBack, onNext, onPrev }: Props) {
           <div className="space-y-6">
             <div className="grid md:grid-cols-3 gap-6">
               <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
-                <span className="text-[10px] font-bold tracking-wider uppercase text-[#10B981] font-sans block">Addressed</span>
-                <h5 className="font-bold text-sm text-[#19244E]">All three complaints</h5>
-                <p className="text-xs text-gray-600 leading-relaxed">Incomplete Omron data, generic results, and missing recommendations were each addressed.</p>
+                <span className="text-[11px] font-bold tracking-wider uppercase text-[#DB3E8C] font-sans block">Addressed</span>
+                <h5 className="font-bold text-base text-[#19244E]">All three complaints</h5>
+                <p className="text-sm text-[#2E3A5C] leading-relaxed">Incomplete Omron data, generic results, and missing recommendations were each addressed.</p>
               </div>
               <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
-                <span className="text-[10px] font-bold tracking-wider uppercase text-[#DB3E8C] font-sans block">Returned</span>
-                <h5 className="font-bold text-sm text-[#19244E]">A second phase</h5>
-                <p className="text-xs text-gray-600 leading-relaxed">The client came back for a second phase, over a year later.</p>
+                <span className="text-[11px] font-bold tracking-wider uppercase text-[#DB3E8C] font-sans block">Returned</span>
+                <h5 className="font-bold text-base text-[#19244E]">A second phase</h5>
+                <p className="text-sm text-[#2E3A5C] leading-relaxed">The client came back for a second phase, over a year later.</p>
               </div>
               <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
-                <span className="text-[10px] font-bold tracking-wider uppercase text-[#3B82F6] font-sans block">Not measured here</span>
-                <h5 className="font-bold text-sm text-[#19244E]">Activation numbers</h5>
-                <p className="text-xs text-gray-600 leading-relaxed">This case does not include attendance or sales figures.</p>
+                <span className="text-[11px] font-bold tracking-wider uppercase text-[#DB3E8C] font-sans block">Not measured here</span>
+                <h5 className="font-bold text-base text-[#19244E]">Activation numbers</h5>
+                <p className="text-sm text-[#2E3A5C] leading-relaxed">This case does not include attendance or sales figures.</p>
               </div>
             </div>
 
             <div className="p-6 bg-white rounded-xl border border-gray-200 space-y-2">
               <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#19244E]">WHAT I LEARNED</span>
-              <p className="text-xs sm:text-sm font-sans leading-relaxed text-[#2E3A5C] italic" style={{ lineHeight: 1.8 }}>
+              <p className="text-sm font-sans leading-relaxed text-[#2E3A5C] italic" style={{ lineHeight: 1.8 }}>
                 "Designing without direct field access taught me that secondhand research, done thoroughly, can still produce a defensible design system. Building the decision tree before touching any screen meant every downstream choice had a clear basis I could explain to both the client and the dev team."
               </p>
             </div>

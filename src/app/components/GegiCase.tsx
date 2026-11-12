@@ -41,10 +41,10 @@ function Hairline() {
 
 function SectionTag({ id, num, label }: { id?: string; num: string; label: string }) {
   return (
-    <div id={id} className="mb-10 pt-4 scroll-mt-24">
-      <div className="text-xs font-bold uppercase tracking-[0.2em] mb-2 text-[#DB3E8C]">
-        SECTION {num}
-      </div>
+    <div id={id} className="mb-10 scroll-mt-24">
+      <span aria-hidden="true" className="block font-display font-medium leading-none text-[#DB3E8C]/30 text-6xl lg:text-7xl mb-4">
+        {num}
+      </span>
       <h2 className="font-display text-2xl lg:text-3xl font-bold text-[#19244E]">
         {label}
       </h2>
@@ -258,26 +258,26 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
             30 SECOND TAKEAWAYS
           </span>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 text-xs sm:text-sm font-sans">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 text-sm font-sans">
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">01 · Context</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">An engaging campaign to show users their critical illness protection gaps.</p>
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">01 · Context</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">An engaging campaign to show users their critical illness protection gaps.</p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">02 · Constraints</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">A 2 week sprint, a palette pivot from red to cream, and a 24h illustration turnaround.</p>
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">02 · Constraints</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">A 2 week sprint, a palette pivot from red to cream, and a 24h illustration turnaround.</p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">03 · Key Decisions</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">The brand palette pivot, auto advance questions, and a second illustrator to support the team.</p>
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">03 · Key Decisions</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">The brand palette pivot, auto advance questions, and a second illustrator to support the team.</p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">04 · Solution & Evidence</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">An interactive web app with 4 localized personas and Instagram-ready share cards.</p>
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">04 · Solution & Evidence</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">An interactive web app with 4 localized personas and Instagram-ready share cards.</p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">05 · Outcome</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">The first Singapore project delivered by our company, praised by GEGI leadership in 2026.</p>
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">05 · Outcome</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">The first Singapore project delivered by our company, praised by GEGI leadership in 2026.</p>
           </div>
         </div>
       </div>
@@ -290,7 +290,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
           <aside className="hidden lg:block sticky top-24 space-y-6 self-start pr-4">
             <div className="p-5 rounded-2xl bg-[#0e1635] text-white shadow-xl border border-white/10">
               <div className="flex items-center gap-2 mb-4 pb-3 border-b border-white/10">
-                <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+                <span className="font-sans text-[11px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
                   QUICK JUMP
                 </span>
               </div>
@@ -308,7 +308,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
                           : "text-white/65 hover:bg-white/10 hover:text-white font-medium"
                       }`}
                     >
-                      <span className={`font-mono text-[10px] shrink-0 pt-0.5 ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
+                      <span className={`font-mono text-[11px] shrink-0 pt-0.5 ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
                         {sec.num}
                       </span>
                       <span className="leading-snug">{sec.label}</span>
@@ -320,12 +320,12 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
           </aside>
 
           {/* Right Column: Case Study Main Content Sections */}
-          <div className="space-y-16 lg:space-y-20 min-w-0">
+          <div className="space-y-20 lg:space-y-28 min-w-0">
 
         {/* 01 Context */}
         <div>
           <SectionTag id="context" num="01" label="Context: A Campaign to Show Protection Gaps" />
-          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
+          <div className="space-y-5 font-sans text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
             <p>
               Great Eastern Singapore needed an engaging digital campaign to show users their critical illness protection gaps.
             </p>
@@ -348,7 +348,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
             ].map(({ title, desc }) => (
               <div key={title} className="p-6 bg-white rounded-xl border border-gray-200/80 shadow-xs space-y-3">
                 <h4 className="font-bold text-[#19244E] text-base">{title}</h4>
-                <p className="font-sans text-xs sm:text-sm text-gray-600 leading-relaxed">{desc}</p>
+                <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
@@ -363,39 +363,39 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
           <div className="space-y-6">
             <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
               <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 01 · Pivot to the brand palette</span>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">The pressure:</strong> GEGI asked to move from the dominant red palette to their light cream tones.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">What I did:</strong> I requested their complete brand guidelines, and realigned typography and color tokens to match.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">Why it held:</strong> The product felt consistent with GEGI's digital identity, not like a throwaway campaign view.
               </p>
             </div>
 
             <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
               <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 02 · Auto advance instead of a Next tap</span>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">The pressure:</strong> A Next tap at every question added an unnecessary step.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">What I did:</strong> Selecting an answer moves the user to the next question. The final question keeps an explicit "View My Result" button.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">Why it held:</strong> Users get one clear moment of pause before they submit.
               </p>
             </div>
 
             <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
               <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 03 · Bring in a second illustrator, not replace anyone</span>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">The pressure:</strong> The internal designer was overloaded, and the drafts did not capture the tone.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">What I did:</strong> I proposed a freelance illustrator I had worked with before. Revi delivered about 25 game assets in under 24 hours, which became the 4 personas.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">Why it held:</strong> The internal designer was supported, not replaced, and the timeline held.
               </p>
             </div>
@@ -460,7 +460,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
             ))}
           </div>
 
-          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
+          <div className="space-y-5 font-sans text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
             <p>
               Anticipating that result sharing might not be prioritized before launch, I designed Instagram-ready result cards for each persona, and confirmed the dimensions with the PM. The cards became part of the campaign's organic growth loop.
             </p>
@@ -479,23 +479,23 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
           <div className="space-y-6">
             <div className="grid md:grid-cols-3 gap-6">
               <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
-                <span className="text-[10px] font-bold tracking-wider uppercase text-[#10B981] font-sans block">Shipped</span>
-                <h5 className="font-bold text-sm text-[#19244E]">An interactive web app</h5>
-                <p className="text-xs text-gray-600 leading-relaxed">With 4 localized persona outcomes and an AEM developer spec.</p>
+                <span className="text-[11px] font-bold tracking-wider uppercase text-[#DB3E8C] font-sans block">Shipped</span>
+                <h5 className="font-bold text-base text-[#19244E]">An interactive web app</h5>
+                <p className="text-sm text-[#2E3A5C] leading-relaxed">With 4 localized persona outcomes and an AEM developer spec.</p>
               </div>
               <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
-                <span className="text-[10px] font-bold tracking-wider uppercase text-[#DB3E8C] font-sans block">Shared</span>
-                <h5 className="font-bold text-sm text-[#19244E]">Instagram share cards</h5>
-                <p className="text-xs text-gray-600 leading-relaxed">Designed for organic sharing beyond the quiz itself.</p>
+                <span className="text-[11px] font-bold tracking-wider uppercase text-[#DB3E8C] font-sans block">Shared</span>
+                <h5 className="font-bold text-base text-[#19244E]">Instagram share cards</h5>
+                <p className="text-sm text-[#2E3A5C] leading-relaxed">Designed for organic sharing beyond the quiz itself.</p>
               </div>
               <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
-                <span className="text-[10px] font-bold tracking-wider uppercase text-[#3B82F6] font-sans block">Not measured here</span>
-                <h5 className="font-bold text-sm text-[#19244E]">Campaign results</h5>
-                <p className="text-xs text-gray-600 leading-relaxed">This case does not include reach or lead figures.</p>
+                <span className="text-[11px] font-bold tracking-wider uppercase text-[#DB3E8C] font-sans block">Not measured here</span>
+                <h5 className="font-bold text-base text-[#19244E]">Campaign results</h5>
+                <p className="text-sm text-[#2E3A5C] leading-relaxed">This case does not include reach or lead figures.</p>
               </div>
             </div>
 
-            <div className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C] space-y-5" style={{ lineHeight: 1.8 }}>
+            <div className="font-sans text-base leading-relaxed text-[#2E3A5C] space-y-5" style={{ lineHeight: 1.8 }}>
               <p>
                 The first Singapore project delivered by our company, praised by GEGI leadership in 2026.
               </p>
@@ -503,7 +503,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
 
             <div className="p-6 bg-white rounded-xl border border-gray-200 space-y-2">
               <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#19244E]">WHAT I LEARNED</span>
-              <p className="text-xs sm:text-sm font-sans leading-relaxed text-[#2E3A5C] italic" style={{ lineHeight: 1.8 }}>
+              <p className="text-sm font-sans leading-relaxed text-[#2E3A5C] italic" style={{ lineHeight: 1.8 }}>
                 "Taking over a concept someone else already started taught me that ownership is not about starting from zero: it is about being willing to fully commit to a direction I did not choose myself, while still pushing back when the brief genuinely needed to change, like the color pivot and bringing in extra illustration support."
               </p>
             </div>
@@ -541,7 +541,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
               className="max-w-full max-h-[72vh] object-contain rounded-xl shadow-2xl border border-white/10 mb-4"
             />
             <h3 className="text-white font-display text-xl font-bold text-center mb-1">{activeZoomImg.title}</h3>
-            <p className="text-white/70 text-xs sm:text-sm font-sans text-center max-w-xl">{activeZoomImg.desc}</p>
+            <p className="text-white/70 text-sm font-sans text-center max-w-xl">{activeZoomImg.desc}</p>
           </div>
         </div>
       )}

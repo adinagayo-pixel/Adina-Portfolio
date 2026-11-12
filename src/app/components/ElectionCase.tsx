@@ -40,10 +40,10 @@ function Hairline() {
 
 function SectionTag({ id, num, label }: { id?: string; num: string; label: string }) {
   return (
-    <div id={id} className="mb-10 pt-4 scroll-mt-24">
-      <div className="text-xs font-bold uppercase tracking-[0.2em] mb-2 text-[#DB3E8C]">
-        SECTION {num}
-      </div>
+    <div id={id} className="mb-10 scroll-mt-24">
+      <span aria-hidden="true" className="block font-display font-medium leading-none text-[#DB3E8C]/30 text-6xl lg:text-7xl mb-4">
+        {num}
+      </span>
       <h2 className="font-display text-2xl lg:text-3xl font-bold text-[#19244E]">
         {label}
       </h2>
@@ -262,26 +262,26 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
             30 SECOND TAKEAWAYS
           </span>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 text-xs sm:text-sm font-sans">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 text-sm font-sans">
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">01 · Context</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">Real time vote monitoring for 820,000+ polling stations across 38 provinces.</p>
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">01 · Context</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">Real time vote monitoring for 820,000+ polling stations across 38 provinces.</p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">02 · Constraints</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">A fixed 48 hour window, offline field conditions, and handwritten tallies.</p>
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">02 · Constraints</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">A fixed 48 hour window, offline field conditions, and handwritten tallies.</p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">03 · Key Decisions</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">AI with a human fallback, offline as an expected state, and plain language seat allocation.</p>
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">03 · Key Decisions</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">AI with a human fallback, offline as an expected state, and plain language seat allocation.</p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">04 · Solution & Evidence</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">Four connected platforms, with a dual path flow for every failure point.</p>
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">04 · Solution & Evidence</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">Four connected platforms, with a dual path flow for every failure point.</p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">05 · Outcome</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">Ran live across 38 provinces with zero downtime through the tabulation window.</p>
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">05 · Outcome</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">Ran live across 38 provinces with zero downtime through the tabulation window.</p>
           </div>
         </div>
       </div>
@@ -294,7 +294,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
           <aside className="hidden lg:block sticky top-24 space-y-6 self-start pr-4">
             <div className="p-5 rounded-2xl bg-[#0e1635] text-white shadow-xl border border-white/10">
               <div className="flex items-center gap-2 mb-4 pb-3 border-b border-white/10">
-                <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+                <span className="font-sans text-[11px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
                   QUICK JUMP
                 </span>
               </div>
@@ -312,7 +312,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
                           : "text-white/65 hover:bg-white/10 hover:text-white font-medium"
                       }`}
                     >
-                      <span className={`font-mono text-[10px] shrink-0 pt-0.5 ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
+                      <span className={`font-mono text-[11px] shrink-0 pt-0.5 ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
                         {sec.num}
                       </span>
                       <span className="leading-snug">{sec.label}</span>
@@ -324,12 +324,12 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
           </aside>
 
           {/* Right Column: Case Study Main Content Sections */}
-          <div className="space-y-16 lg:space-y-20 min-w-0">
+          <div className="space-y-20 lg:space-y-28 min-w-0">
 
         {/* 01 Context */}
         <div>
           <SectionTag id="context" num="01" label="Context: An Election That Does Not Wait" />
-          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
+          <div className="space-y-5 font-sans text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
             <p>
               An election does not wait for good conditions. The system had to work in a city with full signal and in a village with none, with a neatly filled form and with one scrawled in a rush during vote counting, and with an AI that reads handwriting well or needs a human to step in.
             </p>
@@ -352,7 +352,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
             ].map(({ title, desc }) => (
               <div key={title} className="p-6 bg-white rounded-xl border border-gray-200/80 shadow-xs space-y-3">
                 <h4 className="font-bold text-[#19244E] text-base">{title}</h4>
-                <p className="font-sans text-xs sm:text-sm text-gray-600 leading-relaxed">{desc}</p>
+                <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
@@ -367,39 +367,39 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
           <div className="space-y-6">
             <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
               <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 01 · AI with a human fallback, not AI alone</span>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">The pressure:</strong> Handwriting is not always legible, and the AI needed a real fallback.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">What I did:</strong> I built two parallel experiences: a fast automated flow for witnesses on mobile, and a manual web tool for a dedicated entry team. Party order follows the KPU ballot, with numbered tabs that match the physical paper.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">Why it held:</strong> A human could always step in without the system falling apart.
               </p>
             </div>
 
             <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
               <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 02 · Offline as an expected state, not an error</span>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">The pressure:</strong> The client found regions with limited or no signal, and asked for an offline mode close to launch.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">What I did:</strong> A persistent offline label, two tabs ("Belum diinput" and "Sudah diinput"), and one "Sinkron Semua Data" button for all pending entries when the connection returns.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">Why it held:</strong> A witness cannot sync nine out of ten records and forget the tenth, because the sync happens in one action.
               </p>
             </div>
 
             <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
               <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 03 · Plain language for seat allocation</span>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">The pressure:</strong> Sainte-Laguë is mathematically sound, and unreadable to almost anyone outside election administration.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">What I did:</strong> A table that puts each party's vote count against its divisors, and five alert categories, from "Menang Telak" to "Kalah Telak", based on vote margins.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">Why it held:</strong> Anyone from a party could see how seat allocation was playing out, not only someone fluent in the math.
               </p>
             </div>
@@ -437,7 +437,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
                   className="w-full h-full object-cover object-top rounded-xl group-hover:scale-102 transition-transform duration-500"
                 />
               </div>
-              <p className="mt-3 font-sans text-xs text-gray-600 leading-relaxed">
+              <p className="mt-3 font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">Verification.</strong> Dedicated entry clerks audit handwritten tallies directly against candidate figures.
               </p>
             </div>
@@ -457,7 +457,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
                   className="w-full h-full object-cover object-top rounded-xl group-hover:scale-102 transition-transform duration-500"
                 />
               </div>
-              <p className="mt-3 font-sans text-xs text-gray-600 leading-relaxed">
+              <p className="mt-3 font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">Seat allocation.</strong> A quotient matrix with a threshold toggle and automated seat attribution.
               </p>
             </div>
@@ -477,13 +477,13 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
                   className="w-full h-full object-cover object-top rounded-xl group-hover:scale-102 transition-transform duration-500"
                 />
               </div>
-              <p className="mt-3 font-sans text-xs text-gray-600 leading-relaxed">
+              <p className="mt-3 font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">Tabulation.</strong> Compares internal witness data with official KPU figures, by territory.
               </p>
             </div>
           </div>
 
-          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
+          <div className="space-y-5 font-sans text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
             <p>
               Offline mode and the Emergency App were added in response to what the client met in the field: low signal regions, and a WhatsApp outage close to the election. Several planned modules, including Admin, Profile, and TPS Prioritas, were deliberately shelved to protect the flows that mattered most.
             </p>
@@ -499,23 +499,23 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
           <div className="space-y-6">
             <div className="grid md:grid-cols-3 gap-6">
               <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
-                <span className="text-[10px] font-bold tracking-wider uppercase text-[#10B981] font-sans block">Shipped</span>
-                <h5 className="font-bold text-sm text-[#19244E]">Four connected platforms</h5>
-                <p className="text-xs text-gray-600 leading-relaxed">Witness submission, AI verification, offline capture, and seat allocation reporting.</p>
+                <span className="text-[11px] font-bold tracking-wider uppercase text-[#DB3E8C] font-sans block">Shipped</span>
+                <h5 className="font-bold text-base text-[#19244E]">Four connected platforms</h5>
+                <p className="text-sm text-[#2E3A5C] leading-relaxed">Witness submission, AI verification, offline capture, and seat allocation reporting.</p>
               </div>
               <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
-                <span className="text-[10px] font-bold tracking-wider uppercase text-[#DB3E8C] font-sans block">Ran live</span>
-                <h5 className="font-bold text-sm text-[#19244E]">Across 38 provinces</h5>
-                <p className="text-xs text-gray-600 leading-relaxed">Through the 48 hour tabulation window, with the team on standby.</p>
+                <span className="text-[11px] font-bold tracking-wider uppercase text-[#DB3E8C] font-sans block">Ran live</span>
+                <h5 className="font-bold text-base text-[#19244E]">Across 38 provinces</h5>
+                <p className="text-sm text-[#2E3A5C] leading-relaxed">Through the 48 hour tabulation window, with the team on standby.</p>
               </div>
               <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
-                <span className="text-[10px] font-bold tracking-wider uppercase text-[#3B82F6] font-sans block">Not measured here</span>
-                <h5 className="font-bold text-sm text-[#19244E]">Accuracy data</h5>
-                <p className="text-xs text-gray-600 leading-relaxed">TPS level submission and accuracy data existed, but I had no direct access to it.</p>
+                <span className="text-[11px] font-bold tracking-wider uppercase text-[#DB3E8C] font-sans block">Not measured here</span>
+                <h5 className="font-bold text-base text-[#19244E]">Accuracy data</h5>
+                <p className="text-sm text-[#2E3A5C] leading-relaxed">TPS level submission and accuracy data existed, but I had no direct access to it.</p>
               </div>
             </div>
 
-            <div className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C] space-y-5" style={{ lineHeight: 1.8 }}>
+            <div className="font-sans text-base leading-relaxed text-[#2E3A5C] space-y-5" style={{ lineHeight: 1.8 }}>
               <p>
                 Much of the client relationship was built live, with design work done directly in Figma during meetings. I also learned to be precise about what I could confidently claim and what I could not.
               </p>
@@ -523,7 +523,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
 
             <div className="p-6 bg-white rounded-xl border border-gray-200 space-y-2">
               <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#19244E]">WHAT I LEARNED</span>
-              <p className="text-xs sm:text-sm font-sans leading-relaxed text-[#2E3A5C] italic" style={{ lineHeight: 1.8 }}>
+              <p className="text-sm font-sans leading-relaxed text-[#2E3A5C] italic" style={{ lineHeight: 1.8 }}>
                 "This project taught me that designing for conditions I don't control: bad signal, tight deadlines, a domain I didn't start out understanding: means building in fallbacks from the start, not patching them in after something breaks."
               </p>
             </div>
@@ -549,10 +549,10 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
             {/* Header */}
             <div className="flex items-center justify-between p-4 sm:px-6 border-b border-white/10 bg-[#141b36]">
               <div className="flex items-center gap-3">
-                <span className="bg-[#DB3E8C]/20 border border-[#DB3E8C]/40 text-[#DB3E8C] text-[10px] font-bold px-2.5 py-0.5 rounded uppercase tracking-wider">
+                <span className="bg-[#DB3E8C]/20 border border-[#DB3E8C]/40 text-[#DB3E8C] text-[11px] font-bold px-2.5 py-0.5 rounded uppercase tracking-wider">
                   {selectedImage.badge}
                 </span>
-                <h3 className="font-display font-bold text-white text-sm sm:text-base">
+                <h3 className="font-display font-bold text-white text-base">
                   {selectedImage.title}
                 </h3>
               </div>
@@ -576,7 +576,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
             </div>
 
             {/* Footer with Description */}
-            <div className="p-4 sm:px-6 border-t border-white/10 bg-[#141b36] text-xs sm:text-sm text-white/80 font-sans leading-relaxed">
+            <div className="p-4 sm:px-6 border-t border-white/10 bg-[#141b36] text-sm text-white/80 font-sans leading-relaxed">
               {selectedImage.desc}
             </div>
           </div>

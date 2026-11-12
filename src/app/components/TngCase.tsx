@@ -37,10 +37,10 @@ function Hairline() {
 
 function SectionTag({ id, num, label }: { id?: string; num: string; label: string }) {
   return (
-    <div id={id} className="mb-10 pt-4 scroll-mt-24">
-      <div className="text-[10px] font-bold uppercase tracking-[0.2em] mb-2 text-[#DB3E8C]">
-        SECTION {num}
-      </div>
+    <div id={id} className="mb-10 scroll-mt-24">
+      <span aria-hidden="true" className="block font-display font-medium leading-none text-[#DB3E8C]/30 text-6xl lg:text-7xl mb-4">
+        {num}
+      </span>
       <h2 className="font-display text-2xl lg:text-3xl font-bold text-[#19244E]">
         {label}
       </h2>
@@ -334,26 +334,26 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
             30 SECOND TAKEAWAYS
           </span>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 text-xs sm:text-sm font-sans">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 text-sm font-sans">
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">01 · Context</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">A micro insurance checkout inside Malaysia's leading eWallet, with over 20 million users.</p>
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">01 · Context</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">A micro insurance checkout inside Malaysia's leading eWallet, with over 20 million users.</p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">02 · Constraints</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">A 3 month deadline, webview rules, PTV checks, and NRIC matching.</p>
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">02 · Constraints</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">A 3 month deadline, webview rules, PTV checks, and NRIC matching.</p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">03 · Key Decisions</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">Build from the account, explicit health declarations, two pricing options, and the native X.</p>
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">03 · Key Decisions</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">Build from the account, explicit health declarations, two pricing options, and the native X.</p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
             <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">04 · Solution & Evidence</span>
-            <p className="text-xs sm:text-sm font-semibold text-[#19244E] leading-relaxed">An embedded PWA with SSO and eKYC pre-fill. Eligible PTV users pay RM 0.</p>
+            <p className="text-sm font-semibold text-[#19244E] leading-relaxed">An embedded PWA with SSO and eKYC pre-fill. Eligible PTV users pay RM 0.</p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">05 · Outcome</span>
-            <p className="text-xs sm:text-sm font-semibold text-[#19244E] leading-relaxed">V5 released to production in 2025, after five iterations.</p>
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">05 · Outcome</span>
+            <p className="text-sm font-semibold text-[#19244E] leading-relaxed">V5 released to production in 2025, after five iterations.</p>
           </div>
         </div>
       </div>
@@ -366,7 +366,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
           <aside className="hidden lg:block sticky top-24 space-y-6 self-start pr-4">
             <div className="p-5 rounded-2xl bg-[#0e1635] text-white shadow-xl border border-white/10">
               <div className="flex items-center gap-2 mb-4 pb-3 border-b border-white/10">
-                <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+                <span className="font-sans text-[11px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
                   QUICK JUMP
                 </span>
               </div>
@@ -384,7 +384,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
                           : "text-white/65 hover:bg-white/10 hover:text-white font-medium"
                       }`}
                     >
-                      <span className={`font-mono text-[10px] shrink-0 pt-0.5 ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
+                      <span className={`font-mono text-[11px] shrink-0 pt-0.5 ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
                         {sec.num}
                       </span>
                       <span className="leading-snug">{sec.label}</span>
@@ -396,13 +396,13 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
           </aside>
 
           {/* Right Column: Case Study Main Content Sections */}
-          <div className="space-y-16 lg:space-y-20 min-w-0">
+          <div className="space-y-20 lg:space-y-28 min-w-0">
 
         {/* 01 Context */}
         <div>
           <SectionTag id="context" num="01" label="Context: Reading the System Before Designing" />
 
-          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
+          <div className="space-y-5 font-sans text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
             <p>
               Touch 'n Go's eWallet was the channel, so the first task was understanding what the app could already do. I mapped the registration, OCR scanning, and purchase flows, and studied the TNG mini program API docs to find which data fields I could access.
             </p>
@@ -431,13 +431,13 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
                     <div className="flex flex-wrap items-center gap-2 mb-1.5">
                       <h4 className="font-bold text-[#19244E] text-base">{step.title}</h4>
                       <span
-                        className="font-sans text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded-full text-white"
+                        className="font-sans text-[11px] font-bold tracking-wider uppercase px-2 py-0.5 rounded-full text-white"
                         style={{ backgroundColor: laneColor }}
                       >
                         {step.lane}
                       </span>
                     </div>
-                    <p className="text-sm text-gray-600 leading-relaxed">{step.desc}</p>
+                    <p className="text-sm text-[#2E3A5C] leading-relaxed">{step.desc}</p>
                     {step.alternatives && (
                       <div className="grid md:grid-cols-2 gap-3 mt-4">
                         {step.alternatives.map((alt) => (
@@ -448,14 +448,14 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
                             }`}
                           >
                             <span
-                              className={`block font-sans text-[10px] font-bold tracking-wider uppercase ${
+                              className={`block font-sans text-[11px] font-bold tracking-wider uppercase ${
                                 alt.chosen ? "text-[#DB3E8C]" : "text-gray-500"
                               }`}
                             >
                               {alt.label}{alt.chosen ? " · Became V1" : ""}
                             </span>
-                            <h5 className="font-bold text-sm text-[#19244E]">{alt.title}</h5>
-                            <p className="text-xs text-gray-600 leading-relaxed">{alt.desc}</p>
+                            <h5 className="font-bold text-base text-[#19244E]">{alt.title}</h5>
+                            <p className="text-sm text-[#2E3A5C] leading-relaxed">{alt.desc}</p>
                           </div>
                         ))}
                       </div>
@@ -501,7 +501,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
                   <Icon size={18} />
                 </div>
                 <h4 className="font-bold text-[#19244E] text-base">{title}</h4>
-                <p className="font-sans text-xs sm:text-sm text-gray-600 leading-relaxed">{desc}</p>
+                <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
@@ -513,59 +513,59 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
         <div>
           <SectionTag id="decisions" num="03" label="Key Decisions: The Calls That Shaped the Flow" />
 
-          <p className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C] mb-8" style={{ lineHeight: 1.8 }}>
+          <p className="font-sans text-base leading-relaxed text-[#2E3A5C] mb-8" style={{ lineHeight: 1.8 }}>
             Most revisions were wording and pricing changes. These four calls changed how the product behaved, and each one held through release.
           </p>
 
           <div className="space-y-6">
             <div className="p-6 bg-white rounded-xl border border-[#DB3E8C]/40 shadow-xs space-y-3">
               <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 01 · Build from the account, not the form</span>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">The pressure:</strong> The PM asked for the standard flow: the user uploads their NRIC, OCR reads it, and they complete the rest by hand. But insurance could only be bought by the account owner, and TNG already held their registered data.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">What I did:</strong> I analyzed the API fields and tested the live TNG app myself, then built a second flow on the registered data. The PTV voucher check runs on the same data, so NRIC, name, and age are not retyped. I gave it to the PM as my recommendation, and it became V1.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">Why it held:</strong> The flow follows the platform's own rules instead of a default form, and the revisions from V1 to V5 refined it rather than replacing it.
               </p>
             </div>
 
             <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
               <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 02 · Health declarations stay explicit</span>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">The pressure:</strong> The TNG team asked repeatedly why "No" answers were not pre-filled to reduce cognitive load.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">What I did:</strong> I did not pre-fill them. The "Select No for All" button I added still needed explicit user action.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">Why it held:</strong> Health declarations have to be read and accepted, not bypassed as a formality.
               </p>
             </div>
 
             <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
               <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 03 · Two pricing options instead of many</span>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">The pressure:</strong> V2 introduced 8 to 12 month durations based on age eligibility. The choices felt unnatural for an insurance product, and the price display was unclear.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">What I did:</strong> I questioned the requested direction and said the concept felt unrefined, rather than treating the choices as a finished brief.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">Why it held:</strong> The TNG team streamlined to monthly or yearly after its data showed over 90% of users chose monthly payments (client data).
               </p>
             </div>
 
             <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
               <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 04 · Native X over a custom Back button</span>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">The pressure:</strong> After payment, GEGM requested an explicit "Back to App" or "Close" button.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">What I did:</strong> A custom button risked suggesting a return path after the transaction was final. After discussion, we relied on the native X in the mini program header.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">Why it held:</strong> It is a platform pattern users already recognize, and it does not imply they can re-select products.
               </p>
             </div>
@@ -586,7 +586,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
         <div>
           <SectionTag id="solution" num="04" label="Solution & Evidence: The Embedded Checkout" />
 
-          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
+          <div className="space-y-5 font-sans text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
             <p>
               The flow has three parts: identity pre-fill from SSO and eKYC, a PTV eligibility check, and a payment split. Eligible users reach a RM 0 premium. Everyone else continues to standard eWallet debit.
             </p>
@@ -613,9 +613,9 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
               <div key={title} className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
                 <div className="flex items-center gap-2">
                   <Icon size={16} className="text-[#DB3E8C]" />
-                  <h5 className="font-bold text-sm text-[#19244E]">{title}</h5>
+                  <h5 className="font-bold text-base text-[#19244E]">{title}</h5>
                 </div>
-                <p className="font-sans text-xs text-gray-600 leading-relaxed">{desc}</p>
+                <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
@@ -677,30 +677,30 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
                 },
               ].map(({ label, title, desc }) => (
                 <div key={title} className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
-                  <span className="text-[10px] font-bold tracking-wider uppercase text-[#DB3E8C] font-sans block">{label}</span>
-                  <h4 className="font-bold text-sm text-[#19244E]">{title}</h4>
-                  <p className="font-sans text-xs text-gray-600 leading-relaxed">{desc}</p>
+                  <span className="text-[11px] font-bold tracking-wider uppercase text-[#DB3E8C] font-sans block">{label}</span>
+                  <h4 className="font-bold text-base text-[#19244E]">{title}</h4>
+                  <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">{desc}</p>
                 </div>
               ))}
             </div>
 
-            <p className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
+            <p className="font-sans text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
               I map misuse and edge cases thoroughly before release. Even so, a few cases slipped through development and surfaced only after the product was live with users.
             </p>
           </div>
 
           <div className="p-8 bg-[#111836] rounded-2xl border border-white/10 text-white space-y-6 shadow-2xl">
             <div className="flex items-center gap-2">
-              <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase text-[#22c55e]">
+              <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
                 VERIFIED OUTCOME (2025)
               </span>
             </div>
 
-            <p className="font-sans text-sm sm:text-base text-white/90 leading-relaxed max-w-3xl">
+            <p className="font-sans text-base text-white/90 leading-relaxed max-w-3xl">
               V5 was released to production inside the Touch 'n Go eWallet. The biggest design call came before V1, when I chose the data-driven flow. The five versions that followed mostly refined it, with revisions focused on wording and pricing rather than major UX overhauls. My role was defending decisions under repeated questioning, accepting genuine technical constraints, and trusting my read when a requested direction felt unrefined. The monthly plan data later supported that read.
             </p>
 
-            <p className="font-sans text-sm sm:text-base text-white/90 leading-relaxed max-w-3xl">
+            <p className="font-sans text-base text-white/90 leading-relaxed max-w-3xl">
               The same discipline applies to any product in a regulated, high-traffic ecosystem: balance compliance and platform limits, and be ready to defend the decisions that protect users.
             </p>
 
@@ -711,7 +711,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
                   WHAT I LEARNED
                 </span>
               </div>
-              <p className="text-xs sm:text-sm font-sans leading-relaxed text-white/95 italic" style={{ lineHeight: 1.8 }}>
+              <p className="text-sm font-sans leading-relaxed text-white/95 italic" style={{ lineHeight: 1.8 }}>
                 "Working inside the TNG ecosystem taught me that enterprise design is not about creative freedom: it is about building trust fast enough that teams allow you to make decisions without re-checking every pixel. By version 5, the TNG team stopped asking for layout revisions and only reviewed copy: that shift in trust was the true milestone of this project."
               </p>
             </div>

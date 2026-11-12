@@ -41,10 +41,10 @@ function Hairline() {
 
 function SectionTag({ id, num, label }: { id?: string; num: string; label: string }) {
   return (
-    <div id={id} className="mb-10 pt-4 scroll-mt-24">
-      <div className="text-xs font-bold uppercase tracking-[0.2em] mb-2 text-[#DB3E8C]">
-        SECTION {num}
-      </div>
+    <div id={id} className="mb-10 scroll-mt-24">
+      <span aria-hidden="true" className="block font-display font-medium leading-none text-[#DB3E8C]/30 text-6xl lg:text-7xl mb-4">
+        {num}
+      </span>
       <h2 className="font-display text-2xl lg:text-3xl font-bold text-[#19244E]">
         {label}
       </h2>
@@ -251,26 +251,26 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
             30 SECOND TAKEAWAYS
           </span>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 text-xs sm:text-sm font-sans">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 text-sm font-sans">
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">01 · Context</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">A quiz platform for mySalam's regional roadshows, to replace per event third party tools.</p>
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">01 · Context</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">A quiz platform for mySalam's regional roadshows, to replace per event third party tools.</p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">02 · Constraints</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">2 week deadline, 3 person team, marketing compliance, and two modes.</p>
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">02 · Constraints</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">2 week deadline, 3 person team, marketing compliance, and two modes.</p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">03 · Key Decisions</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">One scoring logic for teams and individuals, email only sign up, and filtered PM revisions.</p>
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">03 · Key Decisions</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">One scoring logic for teams and individuals, email only sign up, and filtered PM revisions.</p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">04 · Solution & Evidence</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">A gamified quiz platform, tested in real roadshows and refined from field feedback.</p>
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">04 · Solution & Evidence</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">A gamified quiz platform, tested in real roadshows and refined from field feedback.</p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">05 · Outcome</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">Shipped in May 2026 and refined since, driven by real field feedback.</p>
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">05 · Outcome</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">Shipped in May 2026 and refined since, driven by real field feedback.</p>
           </div>
         </div>
       </div>
@@ -283,7 +283,7 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
           <aside className="hidden lg:block sticky top-24 space-y-6 self-start pr-4">
             <div className="p-5 rounded-2xl bg-[#0e1635] text-white shadow-xl border border-white/10">
               <div className="flex items-center gap-2 mb-4 pb-3 border-b border-white/10">
-                <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+                <span className="font-sans text-[11px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
                   QUICK JUMP
                 </span>
               </div>
@@ -301,7 +301,7 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
                           : "text-white/65 hover:bg-white/10 hover:text-white font-medium"
                       }`}
                     >
-                      <span className={`font-mono text-[10px] shrink-0 pt-0.5 ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
+                      <span className={`font-mono text-[11px] shrink-0 pt-0.5 ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
                         {sec.num}
                       </span>
                       <span className="leading-snug">{sec.label}</span>
@@ -313,13 +313,13 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
           </aside>
 
           {/* Right Column: Case Study Main Content Sections */}
-          <div className="space-y-16 lg:space-y-20 min-w-0">
+          <div className="space-y-20 lg:space-y-28 min-w-0">
 
         {/* 01 Context */}
         <div>
           <SectionTag id="context" num="01" label="Context: A Quiz Platform for mySalam" />
 
-          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
+          <div className="space-y-5 font-sans text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
             <p>
               mySalam needed an in house quiz platform for regional roadshows, instead of paying third party tools for each event. The brief asked for a Kahoot-like experience.
             </p>
@@ -344,7 +344,7 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
             ].map(({ title, desc }) => (
               <div key={title} className="p-6 bg-white rounded-xl border border-gray-200/80 shadow-xs space-y-3">
                 <h4 className="font-bold text-[#19244E] text-base">{title}</h4>
-                <p className="font-sans text-xs sm:text-sm text-gray-600 leading-relaxed">{desc}</p>
+                <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
@@ -359,39 +359,39 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
           <div className="space-y-6">
             <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
               <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 01 · One scoring logic for individuals and teams</span>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">The pressure:</strong> mySalam asked for individual and team modes, with up to 3 members per team and team average scores.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">What I did:</strong> I treated an individual as a team of 1, so one scoring logic covered both. I also built team registration with invite links, approvals, and team leaderboards, after studying similar mechanics in other games.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">Why it held:</strong> When mySalam later asked for individual mode only, scoring did not need to change, because individuals had been a team of 1 from the start.
               </p>
             </div>
 
             <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
               <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 02 · Email only sign up, with the reward after the game</span>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">The pressure:</strong> A long registration slowed player onboarding, and mySalam briefly asked for a username only.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">What I did:</strong> We pushed back, because sign up records each user's game history, which a username cannot do. The email only decision came from our CEO, PM, and mySalam, and I executed it in the UI. Since follow up emails could not link back to the game, an end of game popup offered a 1 month free ReSkills voucher.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">Why it held:</strong> The voucher kept conversion without breaking the marketing rule.
               </p>
             </div>
 
             <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
               <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 03 · Filter PM revisions, do not just execute them</span>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">The pressure:</strong> Many PM revisions were generated with AI tools, and not all of them made technical sense.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">What I did:</strong> On the result screen, the PM proposed personal score badges, answer distribution percentages, explanation boxes, and manual navigation buttons. I advised against all four: results were not personalized, distributions needed calculations not yet available, explanation boxes had been removed at client request, and manual navigation did not fit a host controlled flow.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">Why it held:</strong> Several of these fit the personalized daily practice mode, so the ideas were placed where they belong, not dismissed.
               </p>
             </div>
@@ -412,7 +412,7 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
         <div>
           <SectionTag id="solution" num="04" label="Solution & Evidence: The Platform in the Field" />
 
-          <p className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C] mb-6" style={{ lineHeight: 1.8 }}>
+          <p className="font-sans text-base leading-relaxed text-[#2E3A5C] mb-6" style={{ lineHeight: 1.8 }}>
             Five screens from the platform. Click any screen to zoom in.
           </p>
 
@@ -434,13 +434,13 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
                 </div>
                 <div>
                   <h4 className="font-sans text-xs font-bold text-[#19244E] mb-1 tracking-wide">{title}</h4>
-                  <p className="font-sans text-xs text-gray-600 leading-relaxed">{desc}</p>
+                  <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">{desc}</p>
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
+          <div className="space-y-5 font-sans text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
             <p>
               The first rollout in May 2026 ran the playtest insights, team mode, and full registration live in the field for the first time.
             </p>
@@ -465,29 +465,29 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
           <div className="space-y-6">
             <div className="grid md:grid-cols-3 gap-6">
               <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
-                <span className="text-[10px] font-bold tracking-wider uppercase text-[#10B981] font-sans block">Shipped</span>
-                <h5 className="font-bold text-sm text-[#19244E]">First live roadshow</h5>
-                <p className="text-xs text-gray-600 leading-relaxed">Deployed in May 2026, with playtest insights, team mode, and registration.</p>
+                <span className="text-[11px] font-bold tracking-wider uppercase text-[#DB3E8C] font-sans block">Shipped</span>
+                <h5 className="font-bold text-base text-[#19244E]">First live roadshow</h5>
+                <p className="text-sm text-[#2E3A5C] leading-relaxed">Deployed in May 2026, with playtest insights, team mode, and registration.</p>
               </div>
               <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
-                <span className="text-[10px] font-bold tracking-wider uppercase text-[#DB3E8C] font-sans block">Refined</span>
-                <h5 className="font-bold text-sm text-[#19244E]">Registration, scoring, and UI</h5>
-                <p className="text-xs text-gray-600 leading-relaxed">Each change came from field feedback rather than design assumptions.</p>
+                <span className="text-[11px] font-bold tracking-wider uppercase text-[#DB3E8C] font-sans block">Refined</span>
+                <h5 className="font-bold text-base text-[#19244E]">Registration, scoring, and UI</h5>
+                <p className="text-sm text-[#2E3A5C] leading-relaxed">Each change came from field feedback rather than design assumptions.</p>
               </div>
               <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
-                <span className="text-[10px] font-bold tracking-wider uppercase text-[#3B82F6] font-sans block">Not measured here</span>
-                <h5 className="font-bold text-sm text-[#19244E]">Engagement and conversion</h5>
-                <p className="text-xs text-gray-600 leading-relaxed">This case does not include usage numbers.</p>
+                <span className="text-[11px] font-bold tracking-wider uppercase text-[#DB3E8C] font-sans block">Not measured here</span>
+                <h5 className="font-bold text-base text-[#19244E]">Engagement and conversion</h5>
+                <p className="text-sm text-[#2E3A5C] leading-relaxed">This case does not include usage numbers.</p>
               </div>
             </div>
 
-            <p className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
+            <p className="font-sans text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
               We also ran an internal load test with up to 60 people playing at once, to check that the server could hold. It tested capacity, not design, and changed no flow. The game was planned for mySalam's final roadshow, but the client decided not to use it there. It is still available on the site.
             </p>
 
             <div className="p-6 bg-white rounded-xl border border-gray-200 space-y-2">
               <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#19244E]">WHAT I LEARNED</span>
-              <p className="text-xs sm:text-sm font-sans leading-relaxed text-[#2E3A5C] italic" style={{ lineHeight: 1.8 }}>
+              <p className="text-sm font-sans leading-relaxed text-[#2E3A5C] italic" style={{ lineHeight: 1.8 }}>
                 "This project taught me that a lean team means every revision request has to be filtered, not just executed. Playing the actual competitor product before designing anything, and pushing back on requests that did not hold up technically, mattered more here than producing more screens faster."
               </p>
             </div>
@@ -525,7 +525,7 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
               className="max-w-full max-h-[72vh] object-contain rounded-xl shadow-2xl border border-white/10 mb-4"
             />
             <h3 className="text-white font-display text-xl font-bold text-center mb-1">{activeZoomImg.title}</h3>
-            <p className="text-white/70 text-xs sm:text-sm font-sans text-center max-w-xl">{activeZoomImg.desc}</p>
+            <p className="text-white/70 text-sm font-sans text-center max-w-xl">{activeZoomImg.desc}</p>
           </div>
         </div>
       )}

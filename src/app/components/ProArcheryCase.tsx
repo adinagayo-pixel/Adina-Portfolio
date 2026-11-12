@@ -40,10 +40,10 @@ function Hairline() {
 
 function SectionTag({ id, num, label }: { id?: string; num: string; label: string }) {
   return (
-    <div id={id} className="mb-8 pt-4 scroll-mt-24">
-      <div className="text-[10px] font-bold uppercase tracking-[0.2em] mb-2 text-[#DB3E8C]">
-        SECTION {num}
-      </div>
+    <div id={id} className="mb-10 scroll-mt-24">
+      <span aria-hidden="true" className="block font-display font-medium leading-none text-[#DB3E8C]/30 text-6xl lg:text-7xl mb-4">
+        {num}
+      </span>
       <h2 className="font-display text-2xl lg:text-3xl font-bold text-[#19244E]">
         {label}
       </h2>
@@ -261,26 +261,26 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
             30 SECOND TAKEAWAYS
           </span>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 text-xs sm:text-sm font-sans">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 text-sm font-sans">
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">01 · Context</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">A brick and mortar archery retailer going regional, across four surfaces.</p>
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">01 · Context</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">A brick and mortar archery retailer going regional, across four surfaces.</p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">02 · Constraints</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">A tight partner deadline, pricing that had to work, and a business model that kept changing.</p>
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">02 · Constraints</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">A tight partner deadline, pricing that had to work, and a business model that kept changing.</p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">03 · Key Decisions</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">Prompt to code over a Figma cycle, real pricing logic, and four warranty resolution paths.</p>
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">03 · Key Decisions</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">Prompt to code over a Figma cycle, real pricing logic, and four warranty resolution paths.</p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">04 · Solution & Evidence</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">Four surfaces: landing page, storefront, customer portal, and admin and POS.</p>
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">04 · Solution & Evidence</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">Four surfaces: landing page, storefront, customer portal, and admin and POS.</p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">05 · Outcome</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">A landing page in one day, then a solo ecosystem sustained for close to a year.</p>
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">05 · Outcome</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">A landing page in one day, then a solo ecosystem sustained for close to a year.</p>
           </div>
         </div>
       </div>
@@ -293,7 +293,7 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
           <aside className="hidden lg:block sticky top-24 space-y-6 self-start pr-4">
             <div className="p-5 rounded-2xl bg-[#0e1635] text-white shadow-xl border border-white/10">
               <div className="flex items-center gap-2 mb-4 pb-3 border-b border-white/10">
-                <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+                <span className="font-sans text-[11px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
                   QUICK JUMP
                 </span>
               </div>
@@ -311,7 +311,7 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
                           : "text-white/65 hover:bg-white/10 hover:text-white font-medium"
                       }`}
                     >
-                      <span className={`font-mono text-[10px] shrink-0 pt-0.5 ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
+                      <span className={`font-mono text-[11px] shrink-0 pt-0.5 ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
                         {sec.num}
                       </span>
                       <span className="leading-snug">{sec.label}</span>
@@ -323,12 +323,12 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
           </aside>
 
           {/* Right Column: Case Study Main Content Sections */}
-          <div className="space-y-16 lg:space-y-20 min-w-0">
+          <div className="space-y-20 lg:space-y-28 min-w-0">
 
         {/* 01 Context */}
         <div>
           <SectionTag id="context" num="01" label="Context: A Brick and Mortar Retailer Going Digital" />
-          <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
+          <div className="space-y-5 font-sans text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
             <p>
               Transitioning a brick and mortar archery retailer into a regional e commerce operation meant designing four interconnected surfaces under real business complexity, starting with an urgent partner presentation deadline.
             </p>
@@ -351,7 +351,7 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
             ].map(({ title, desc }) => (
               <div key={title} className="p-6 bg-white rounded-xl border border-gray-200/80 shadow-xs space-y-3">
                 <h4 className="font-bold text-[#19244E] text-base">{title}</h4>
-                <p className="font-sans text-xs sm:text-sm text-gray-600 leading-relaxed">{desc}</p>
+                <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
@@ -366,39 +366,39 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
           <div className="space-y-6">
             <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
               <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 01 · Prompt to code instead of a Figma cycle</span>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">The pressure:</strong> The investor and partner deadline did not fit a traditional Figma to code cycle.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">What I did:</strong> I wrote the business requirements as a formal document first, then built the prototype directly from it with Claude and Gemini in VS Code and Antigravity.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">Why it held:</strong> The output was production ready enough to stand in for the dev build, once, while it caught up.
               </p>
             </div>
 
             <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
               <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 02 · Real logic, not just screens</span>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">The pressure:</strong> Pricing had to function across tiers, not just look right in a mockup.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">What I did:</strong> I implemented real pricing logic for the two highest priority tiers, Guest and Silver Member, and built scenario testers into the prototype so stakeholders could switch views live.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">Why it held:</strong> Stakeholders saw the logic work during review, without waiting for separate design revisions.
               </p>
             </div>
 
             <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
               <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 03 · Four resolution paths, not one simple flow</span>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">The pressure:</strong> The first warranty flow was submit, review, resolve. The client saw that a claim could end four ways, depending on store stock and factory status.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">What I did:</strong> I designed each path with its own resolution UI and audit trail, tracking the original serial number against any replacement issued during a swap.
               </p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
+              <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">Why it held:</strong> The flow matched the real operational complexity, instead of hiding it.
               </p>
             </div>
@@ -421,10 +421,10 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
 
           <div className="mt-2 p-6 rounded-2xl bg-[#0e1635] border border-white/10 text-white shadow-xl">
             <div className="flex flex-wrap items-center justify-between gap-2 mb-6 pb-3 border-b border-white/10">
-              <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+              <span className="font-sans text-[11px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
                 HIGH FIDELITY SYSTEM SCREENS
               </span>
-              <span className="font-sans text-[10px] font-bold tracking-widest uppercase text-white/50">
+              <span className="font-sans text-[11px] font-bold tracking-widest uppercase text-white/50">
                 4 Core Surfaces
               </span>
             </div>
@@ -456,7 +456,7 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
             </div>
           </div>
 
-          <div className="mt-8 space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
+          <div className="mt-8 space-y-5 font-sans text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
             <p>
               Serial number tracking syncs create, update, and delete events across POS and e-commerce, so product, pricing, and stock changes stay consistent. The warranty flow also includes a manual claim path for walk in customers, searched by SO or serial number.
             </p>
@@ -475,23 +475,23 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
           <div className="space-y-6">
             <div className="grid md:grid-cols-3 gap-6">
               <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
-                <span className="text-[10px] font-bold tracking-wider uppercase text-[#10B981] font-sans block">Shipped</span>
-                <h5 className="font-bold text-sm text-[#19244E]">A landing page in one day</h5>
-                <p className="text-xs text-gray-600 leading-relaxed">For an urgent partner presentation, and the start of a long running engagement.</p>
+                <span className="text-[11px] font-bold tracking-wider uppercase text-[#DB3E8C] font-sans block">Shipped</span>
+                <h5 className="font-bold text-base text-[#19244E]">A landing page in one day</h5>
+                <p className="text-sm text-[#2E3A5C] leading-relaxed">For an urgent partner presentation, and the start of a long running engagement.</p>
               </div>
               <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
-                <span className="text-[10px] font-bold tracking-wider uppercase text-[#DB3E8C] font-sans block">Sustained</span>
-                <h5 className="font-bold text-sm text-[#19244E]">Solo for close to a year</h5>
-                <p className="text-xs text-gray-600 leading-relaxed">Through a business model pivot, evolving warranty logic, and a pricing system that kept working.</p>
+                <span className="text-[11px] font-bold tracking-wider uppercase text-[#DB3E8C] font-sans block">Sustained</span>
+                <h5 className="font-bold text-base text-[#19244E]">Solo for close to a year</h5>
+                <p className="text-sm text-[#2E3A5C] leading-relaxed">Through a business model pivot, evolving warranty logic, and a pricing system that kept working.</p>
               </div>
               <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
-                <span className="text-[10px] font-bold tracking-wider uppercase text-[#3B82F6] font-sans block">Not measured here</span>
-                <h5 className="font-bold text-sm text-[#19244E]">Revenue figures</h5>
-                <p className="text-xs text-gray-600 leading-relaxed">This case does not include sales or storefront revenue numbers.</p>
+                <span className="text-[11px] font-bold tracking-wider uppercase text-[#DB3E8C] font-sans block">Not measured here</span>
+                <h5 className="font-bold text-base text-[#19244E]">Revenue figures</h5>
+                <p className="text-sm text-[#2E3A5C] leading-relaxed">This case does not include sales or storefront revenue numbers.</p>
               </div>
             </div>
 
-            <div className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C] space-y-5" style={{ lineHeight: 1.8 }}>
+            <div className="font-sans text-base leading-relaxed text-[#2E3A5C] space-y-5" style={{ lineHeight: 1.8 }}>
               <p>
                 Because the documentation tracked why each decision was made, I could revise the warranty, pricing, and catalog systems already in place, instead of rebuilding them.
               </p>
@@ -499,7 +499,7 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
 
             <div className="p-6 bg-white rounded-xl border border-gray-200 space-y-2">
               <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#19244E]">WHAT I LEARNED</span>
-              <p className="text-xs sm:text-sm font-sans leading-relaxed text-[#2E3A5C] italic" style={{ lineHeight: 1.8 }}>
+              <p className="text-sm font-sans leading-relaxed text-[#2E3A5C] italic" style={{ lineHeight: 1.8 }}>
                 "Working AI first taught me that speed does not have to come at the cost of rigor, but it does shift where that rigor lives. Without Figma's frame based states or inline annotation, I had to build my own tools, like the scenario testers, and my own documentation habits to keep a fast moving, constantly changing system explainable to developers."
               </p>
             </div>
@@ -525,10 +525,10 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
             {/* Header */}
             <div className="flex items-center justify-between p-4 sm:px-6 border-b border-white/10 bg-[#141b36]">
               <div className="flex items-center gap-3">
-                <span className="bg-[#DB3E8C]/20 border border-[#DB3E8C]/40 text-[#DB3E8C] text-[10px] font-bold px-2.5 py-0.5 rounded uppercase tracking-wider">
+                <span className="bg-[#DB3E8C]/20 border border-[#DB3E8C]/40 text-[#DB3E8C] text-[11px] font-bold px-2.5 py-0.5 rounded uppercase tracking-wider">
                   {selectedImage.badge}
                 </span>
-                <h3 className="font-display font-bold text-white text-sm sm:text-base">
+                <h3 className="font-display font-bold text-white text-base">
                   {selectedImage.title}
                 </h3>
               </div>
@@ -552,7 +552,7 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
             </div>
 
             {/* Footer with Description */}
-            <div className="p-4 sm:px-6 border-t border-white/10 bg-[#141b36] text-xs sm:text-sm text-white/80 font-sans leading-relaxed">
+            <div className="p-4 sm:px-6 border-t border-white/10 bg-[#141b36] text-sm text-white/80 font-sans leading-relaxed">
               {selectedImage.desc}
             </div>
           </div>

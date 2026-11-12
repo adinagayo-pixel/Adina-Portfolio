@@ -29,10 +29,10 @@ function Hairline() {
 
 function SectionTag({ id, num, label }: { id?: string; num: string; label: string }) {
   return (
-    <div id={id} className="mb-10 pt-4 scroll-mt-24">
-      <div className="text-xs font-bold uppercase tracking-[0.2em] mb-2 text-[#DB3E8C]">
-        SECTION {num}
-      </div>
+    <div id={id} className="mb-10 scroll-mt-24">
+      <span aria-hidden="true" className="block font-display font-medium leading-none text-[#DB3E8C]/30 text-6xl lg:text-7xl mb-4">
+        {num}
+      </span>
       <h2 className="font-display text-2xl lg:text-3xl font-bold text-[#19244E]">
         {label}
       </h2>
@@ -248,26 +248,26 @@ export default function TelkomCase({ onBack, onNext, onPrev }: Props) {
             30 SECOND TAKEAWAYS
           </span>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 text-xs sm:text-sm font-sans">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 text-sm font-sans">
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">01 · Context</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">Greetings from every Telkomsel branch, curated for one curved LED wall in the HQ lobby.</p>
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">01 · Context</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">Greetings from every Telkomsel branch, curated for one curved LED wall in the HQ lobby.</p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">02 · Constraints</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">A 1 week sprint, one point of contact, a custom curved screen, and non overlapping bubbles.</p>
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">02 · Constraints</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">A 1 week sprint, one point of contact, a custom curved screen, and non overlapping bubbles.</p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">03 · Key Decisions</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">Separate approval and live toggles, two bubble layouts, and the logo moved into flat safe zones.</p>
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">03 · Key Decisions</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">Separate approval and live toggles, two bubble layouts, and the logo moved into flat safe zones.</p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">04 · Solution & Evidence</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">A mobile input form, a curation dashboard, and the live LED wall, with a handoff package.</p>
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">04 · Solution & Evidence</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">A mobile input form, a curation dashboard, and the live LED wall, with a handoff package.</p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
-            <span className="block text-xs font-bold tracking-widest text-[#19244E]/50 uppercase mb-1.5">05 · Outcome</span>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#2E3A5C]">Shipped on time for the late December 2025 campaign.</p>
+            <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">05 · Outcome</span>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">Shipped on time for the late December 2025 campaign.</p>
           </div>
         </div>
       </div>
@@ -280,7 +280,7 @@ export default function TelkomCase({ onBack, onNext, onPrev }: Props) {
           <aside className="hidden lg:block sticky top-24 space-y-6 self-start pr-4">
             <div className="p-5 rounded-2xl bg-[#0e1635] text-white shadow-xl border border-white/10">
               <div className="flex items-center gap-2 mb-4 pb-3 border-b border-white/10">
-                <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+                <span className="font-sans text-[11px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
                   QUICK JUMP
                 </span>
               </div>
@@ -298,7 +298,7 @@ export default function TelkomCase({ onBack, onNext, onPrev }: Props) {
                           : "text-white/65 hover:bg-white/10 hover:text-white font-medium"
                       }`}
                     >
-                      <span className={`font-mono text-[10px] shrink-0 pt-0.5 ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
+                      <span className={`font-mono text-[11px] shrink-0 pt-0.5 ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
                         {sec.num}
                       </span>
                       <span className="leading-snug">{sec.label}</span>
@@ -310,13 +310,13 @@ export default function TelkomCase({ onBack, onNext, onPrev }: Props) {
           </aside>
 
           {/* Right Column: Case Study Main Content Sections */}
-          <div className="space-y-16 lg:space-y-20 min-w-0">
+          <div className="space-y-20 lg:space-y-28 min-w-0">
 
             {/* 01 Context */}
             <div>
               <SectionTag id="context" num="01" label="Context: Greetings From Every Branch, One Lobby Screen" />
 
-              <div className="space-y-5 font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
+              <div className="space-y-5 font-sans text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
                 <p>
                   Telkomsel employees across Indonesia, from Bandung and Surabaya to Jakarta and other branches, submitted holiday greetings through a mobile form, choosing their branch from a dropdown. Every submission then converged on one physical LED wall in the lobby of Telkomsel headquarters.
                 </p>
@@ -341,7 +341,7 @@ export default function TelkomCase({ onBack, onNext, onPrev }: Props) {
                 ].map(({ title, desc }) => (
                   <div key={title} className="p-6 bg-white rounded-xl border border-gray-200/80 shadow-xs space-y-3">
                     <h4 className="font-bold text-[#19244E] text-base">{title}</h4>
-                    <p className="font-sans text-xs sm:text-sm text-gray-600 leading-relaxed">{desc}</p>
+                    <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">{desc}</p>
                   </div>
                 ))}
               </div>
@@ -356,39 +356,39 @@ export default function TelkomCase({ onBack, onNext, onPrev }: Props) {
               <div className="space-y-6">
                 <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
                   <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 01 · Approval and live display are two separate decisions</span>
-                  <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                  <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                     <strong className="text-[#19244E]">The pressure:</strong> Nationwide submissions had to be screened, yet the lobby screen had to stay neat and curated.
                   </p>
-                  <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                  <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                     <strong className="text-[#19244E]">What I did:</strong> The dashboard has two tiers. Tier 1 is content approval for appropriateness, language, and policy. Tier 2 is a live toggle that picks which approved messages appear on the LED wall.
                   </p>
-                  <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                  <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                     <strong className="text-[#19244E]">Why it held:</strong> Admins control what the public sees in real time and can pace the queue.
                   </p>
                 </div>
 
                 <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
                   <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 02 · Two layout modes for message bubbles</span>
-                  <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                  <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                     <strong className="text-[#19244E]">The pressure:</strong> Bubbles must never overlap, but the number of messages varies.
                   </p>
-                  <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                  <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                     <strong className="text-[#19244E]">What I did:</strong> I designed two layouts. Low volume uses larger bubble radii and more breathing space. High volume uses tighter grid spacing, so density never causes collisions.
                   </p>
-                  <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                  <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                     <strong className="text-[#19244E]">Why it held:</strong> Each bubble stays readable at both volumes, on screen and on the LED wall.
                   </p>
                 </div>
 
                 <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
                   <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 03 · Logo and key nodes move into the flat part of the screen</span>
-                  <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                  <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                     <strong className="text-[#19244E]">The pressure:</strong> The first layout put the Telkomsel logo in the curved section, where it would clip on the live screen.
                   </p>
-                  <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                  <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                     <strong className="text-[#19244E]">What I did:</strong> Working alongside the developer, I moved branding badges and interactive message nodes into flat safe zones, and documented them in a safe zone spec.
                   </p>
-                  <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                  <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                     <strong className="text-[#19244E]">Why it held:</strong> The safe zone spec went into the handoff package for the developer to build against.
                   </p>
                 </div>
@@ -409,24 +409,24 @@ export default function TelkomCase({ onBack, onNext, onPrev }: Props) {
             <div>
               <SectionTag id="solution" num="04" label="Solution & Evidence: Three Touchpoints and a Handoff" />
 
-              <p className="font-sans text-sm sm:text-base leading-relaxed text-[#2E3A5C] mb-6" style={{ lineHeight: 1.8 }}>
+              <p className="font-sans text-base leading-relaxed text-[#2E3A5C] mb-6" style={{ lineHeight: 1.8 }}>
                 Three touchpoints work as one system. Click any image to zoom in.
               </p>
 
               <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs mb-6">
                 <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#19244E] block mb-4">Three touchpoint system</span>
-                <div className="grid md:grid-cols-3 gap-4 text-xs sm:text-sm font-sans">
+                <div className="grid md:grid-cols-3 gap-4 text-sm font-sans">
                   <div className="p-4 rounded-lg bg-[#F9FAFB] border border-gray-200">
                     <span className="font-bold text-[#19244E] block mb-1">1 · Branch mobile submission</span>
-                    <span className="text-gray-600">Employees pick their branch and enter a three word holiday greeting.</span>
+                    <span className="text-[#2E3A5C]">Employees pick their branch and enter a three word holiday greeting.</span>
                   </div>
                   <div className="p-4 rounded-lg bg-[#F9FAFB] border border-gray-200">
                     <span className="font-bold text-[#19244E] block mb-1">2 · Central curation portal</span>
-                    <span className="text-gray-600">Admins filter submissions by status, branch, and date range.</span>
+                    <span className="text-[#2E3A5C]">Admins filter submissions by status, branch, and date range.</span>
                   </div>
                   <div className="p-4 rounded-lg bg-[#F9FAFB] border border-gray-200">
                     <span className="font-bold text-[#19244E] block mb-1">3 · HQ lobby LED display</span>
-                    <span className="text-gray-600">Curated, non overlapping message bubbles, broadcast live.</span>
+                    <span className="text-[#2E3A5C]">Curated, non overlapping message bubbles, broadcast live.</span>
                   </div>
                 </div>
               </div>
@@ -446,7 +446,7 @@ export default function TelkomCase({ onBack, onNext, onPrev }: Props) {
                     </div>
                     <div>
                       <h4 className="font-sans text-xs font-bold text-[#19244E] mb-1 tracking-wide">{item.title}</h4>
-                      <p className="font-sans text-xs text-gray-600 leading-relaxed">{item.desc}</p>
+                      <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">{item.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -471,25 +471,25 @@ export default function TelkomCase({ onBack, onNext, onPrev }: Props) {
               <div className="space-y-6">
                 <div className="grid md:grid-cols-3 gap-6">
                   <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
-                    <span className="text-[10px] font-bold tracking-wider uppercase text-[#10B981] font-sans block">Shipped</span>
-                    <h5 className="font-bold text-sm text-[#19244E]">Live LED wall at HQ</h5>
-                    <p className="text-xs text-gray-600 leading-relaxed">Live in the Telkomsel HQ lobby for the late December 2025 campaign.</p>
+                    <span className="text-[11px] font-bold tracking-wider uppercase text-[#DB3E8C] font-sans block">Shipped</span>
+                    <h5 className="font-bold text-base text-[#19244E]">Live LED wall at HQ</h5>
+                    <p className="text-sm text-[#2E3A5C] leading-relaxed">Live in the Telkomsel HQ lobby for the late December 2025 campaign.</p>
                   </div>
                   <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
-                    <span className="text-[10px] font-bold tracking-wider uppercase text-[#DB3E8C] font-sans block">Delivered</span>
-                    <h5 className="font-bold text-sm text-[#19244E]">Moderation and layout specs</h5>
-                    <p className="text-xs text-gray-600 leading-relaxed">A two tier dashboard and curved safe zone specs, handed off to the developer.</p>
+                    <span className="text-[11px] font-bold tracking-wider uppercase text-[#DB3E8C] font-sans block">Delivered</span>
+                    <h5 className="font-bold text-base text-[#19244E]">Moderation and layout specs</h5>
+                    <p className="text-sm text-[#2E3A5C] leading-relaxed">A two tier dashboard and curved safe zone specs, handed off to the developer.</p>
                   </div>
                   <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
-                    <span className="text-[10px] font-bold tracking-wider uppercase text-[#3B82F6] font-sans block">Not measured here</span>
-                    <h5 className="font-bold text-sm text-[#19244E]">Volume and engagement</h5>
-                    <p className="text-xs text-gray-600 leading-relaxed">This case does not include submission counts or display engagement.</p>
+                    <span className="text-[11px] font-bold tracking-wider uppercase text-[#DB3E8C] font-sans block">Not measured here</span>
+                    <h5 className="font-bold text-base text-[#19244E]">Volume and engagement</h5>
+                    <p className="text-sm text-[#2E3A5C] leading-relaxed">This case does not include submission counts or display engagement.</p>
                   </div>
                 </div>
 
                 <div className="p-6 bg-white rounded-xl border border-gray-200 space-y-2">
                   <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#19244E]">WHAT I LEARNED</span>
-                  <p className="text-xs sm:text-sm font-sans leading-relaxed text-[#2E3A5C] italic" style={{ lineHeight: 1.8 }}>
+                  <p className="text-sm font-sans leading-relaxed text-[#2E3A5C] italic" style={{ lineHeight: 1.8 }}>
                     "Public content curation needs more than approve or reject. Separating eligible for display from currently displaying gives admins real time control over what a physical public space shows."
                   </p>
                 </div>
@@ -515,10 +515,10 @@ export default function TelkomCase({ onBack, onNext, onPrev }: Props) {
             {/* Header */}
             <div className="flex items-center justify-between p-4 sm:px-6 border-b border-white/10 bg-[#141b36]">
               <div className="flex items-center gap-3">
-                <span className="bg-[#DB3E8C]/20 border border-[#DB3E8C]/40 text-[#DB3E8C] text-[10px] font-bold px-2.5 py-0.5 rounded uppercase tracking-wider">
+                <span className="bg-[#DB3E8C]/20 border border-[#DB3E8C]/40 text-[#DB3E8C] text-[11px] font-bold px-2.5 py-0.5 rounded uppercase tracking-wider">
                   {selectedImage.badge}
                 </span>
-                <h3 className="font-display font-bold text-white text-sm sm:text-base">
+                <h3 className="font-display font-bold text-white text-base">
                   {selectedImage.title}
                 </h3>
               </div>
@@ -542,7 +542,7 @@ export default function TelkomCase({ onBack, onNext, onPrev }: Props) {
             </div>
 
             {/* Footer with Description */}
-            <div className="p-4 sm:px-6 border-t border-white/10 bg-[#141b36] text-xs sm:text-sm text-white/80 font-sans leading-relaxed">
+            <div className="p-4 sm:px-6 border-t border-white/10 bg-[#141b36] text-sm text-white/80 font-sans leading-relaxed">
               {selectedImage.desc}
             </div>
           </div>
