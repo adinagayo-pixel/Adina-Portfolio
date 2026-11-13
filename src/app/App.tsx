@@ -762,34 +762,8 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
             <div className="w-1/2 min-w-[50%] flex flex-col justify-between px-4 sm:px-8 lg:px-16 pt-0 sm:pt-1 pb-32 sm:pb-40 min-h-[calc(100vh-100px)] shrink-0 bg-transparent">
               {/* Top Oversized Asymmetrical Headline & Floating Bio Container */}
               <div className="w-full mt-0 lg:-mt-2 mb-auto flex flex-col bg-transparent">
-                {/* 1. Full-Width Jumbo Headline Stack (Top) */}
-                <div className="w-full flex flex-col items-center sm:items-start select-none cursor-default bg-transparent relative z-0">
-                  <motion.h1
-                    initial={{ opacity: 0, x: -30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-                    className="font-normal leading-[0.86] tracking-tight text-center sm:text-left select-none cursor-default bg-transparent w-full"
-                    style={{
-                      fontSize: "clamp(3.8rem, 9.6vw, 12.5rem)",
-                      fontFamily: "var(--font-serif)",
-                    }}
-                  >
-                    <span className="block text-[#0F172A] font-medium">
-                      Smart Systems.
-                    </span>
-                    <span
-                      className="block sm:whitespace-nowrap font-medium transition-all duration-300 mt-2 sm:mt-3 lg:mt-4 ml-0 sm:ml-6 lg:ml-12 text-[#DB3E8C]"
-                      style={{
-                        fontFamily: "var(--font-serif)",
-                      }}
-                    >
-                      Thoughtful Interfaces.
-                    </span>
-                  </motion.h1>
-                </div>
-
                 {/* Info and profile row: info on the left, profile on the right in line style, no card */}
-                <div className="relative z-20 w-full mt-10 sm:mt-12 lg:mt-14 flex flex-col gap-6">
+                <div className="relative z-20 w-full mt-8 sm:mt-12 lg:mt-16 flex flex-col gap-6 lg:gap-8">
                   <div className="flex flex-col gap-6">
                   <div className="flex flex-col items-center sm:items-start lg:flex-row lg:items-center lg:gap-x-0 gap-3 font-mono text-xs text-[#19244E] text-center sm:text-left">
                     {/* Shipped Systems Counter: one line at every width; sits beside the role line on large screens */}
@@ -822,8 +796,8 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
                   >
                     <div className="flex flex-col-reverse sm:flex-row items-center sm:items-center sm:justify-between gap-8 lg:gap-16">
                       {/* Round profile photo with a waving hand */}
-                      <div className="relative shrink-0 sm:order-2 sm:self-start sm:-mt-3">
-                        <div className="w-28 h-28 sm:w-32 sm:h-32 lg:w-36 lg:h-36 rounded-full overflow-hidden border border-[#19244E]/10">
+                      <div className="relative shrink-0 sm:order-2 sm:self-center">
+                        <div className="w-32 h-32 sm:w-40 sm:h-40 lg:w-56 lg:h-56 xl:w-64 xl:h-64 rounded-full overflow-hidden border border-[#19244E]/10">
                           <ImageWithFallback
                             src={adinaPhotoAbout}
                             alt="Adina Fayza Gayo - At Work"
@@ -835,7 +809,7 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
                           animate={{ rotate: [0, 18, -8, 18, -4, 0] }}
                           transition={{ duration: 1.6, repeat: Infinity, repeatDelay: 2.4, ease: "easeInOut" }}
                           style={{ transformOrigin: "70% 70%" }}
-                          className="absolute -bottom-1 -left-2 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white border border-[#19244E]/10 shadow-sm flex items-center justify-center text-xl sm:text-2xl select-none"
+                          className="absolute bottom-1 -left-2 lg:bottom-3 lg:left-0 w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-full bg-white border border-[#19244E]/10 shadow-sm flex items-center justify-center text-xl sm:text-2xl lg:text-3xl select-none"
                         >
                           👋
                         </motion.span>
@@ -843,25 +817,34 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
 
                       {/* Bio Paragraph & Conversion CTAs */}
                       <div className="flex-1 min-w-0 max-w-5xl text-center sm:text-left sm:order-1">
-                        <p
-                          className="font-display font-normal text-[#19244E]"
-                          style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.45rem)", letterSpacing: "-0.01em", lineHeight: 1.6 }}
+                        <span
+                          className="block font-display font-medium text-[#DB3E8C] mb-3 sm:mb-4 min-h-[1.6em]"
+                          style={{ fontSize: "clamp(1.1rem, 1.6vw, 1.4rem)" }}
                         >
-                          <span className="text-[#DB3E8C] inline-flex items-center gap-1 mr-1.5">
-                            <AnimatePresence mode="wait">
-                              <motion.span
-                                key={tick}
-                                initial={{ y: 2, opacity: 0 }}
-                                animate={{ y: 0, opacity: 1 }}
-                                exit={{ y: -2, opacity: 0 }}
-                                transition={{ duration: 0.2 }}
-                                className="inline-block"
-                              >
-                                {HELLOS[tick]}
-                              </motion.span>
-                            </AnimatePresence>
-                          </span>
-                          I design end-to-end B2B platforms across fintech, e-commerce, and enterprise systems. I turn business rules and compliance constraints into flows people can follow and specs developers can build from.
+                          <AnimatePresence mode="wait">
+                            <motion.span
+                              key={tick}
+                              initial={{ y: 4, opacity: 0 }}
+                              animate={{ y: 0, opacity: 1 }}
+                              exit={{ y: -4, opacity: 0 }}
+                              transition={{ duration: 0.2 }}
+                              className="inline-block"
+                            >
+                              {HELLOS[tick]}
+                            </motion.span>
+                          </AnimatePresence>
+                        </span>
+                        <h1
+                          className="font-display font-medium text-[#0F172A] tracking-tight"
+                          style={{ fontSize: "clamp(2.1rem, 4.7vw, 5.2rem)", lineHeight: 1.04 }}
+                        >
+                          I design end-to-end <span className="text-[#DB3E8C]">B2B platforms</span> across fintech, e-commerce, and enterprise systems.
+                        </h1>
+                        <p
+                          className="font-sans text-[#2E3A5C] mt-5 sm:mt-6 max-w-3xl mx-auto sm:mx-0"
+                          style={{ fontSize: "clamp(1rem, 1.35vw, 1.2rem)", lineHeight: 1.6 }}
+                        >
+                          I turn business rules and compliance constraints into flows people can follow and specs developers can build from.
                         </p>
 
                         <div className="h-5" />
