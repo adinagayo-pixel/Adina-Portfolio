@@ -652,11 +652,14 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
   const [tick, setTick] = useState(0)
   const HELLOS = ["Hi, it's Dina!", "Halo, saya Dina!", "안녕하세요, 디나예요!"]
 
-  const { scrollY } = useScroll()
-
-  // Subtle Scale & Dim Transition (Cinematic Fade) on Scroll (0px -> 360px)
-  const heroScale = useTransform(scrollY, [0, 360], [1, 0.96])
-  const heroOpacity = useTransform(scrollY, [0, 350], [1, 0.05])
+  // Scale and dim the hero as it leaves the screen. The fade is tied to the hero's own height:
+  // it starts only once the hero's bottom edge has reached the bottom of the viewport, so on
+  // phones, where the hero is taller than the screen, the buttons and facts stay fully visible
+  // until they have been scrolled into view.
+  const heroRef = useRef<HTMLElement>(null)
+  const { scrollYProgress: heroExit } = useScroll({ target: heroRef, offset: ["end end", "end start"] })
+  const heroScale = useTransform(heroExit, [0, 0.45], [1, 0.96])
+  const heroOpacity = useTransform(heroExit, [0, 0.45], [1, 0.05])
 
   useEffect(() => {
     const id = setInterval(() => setTick((t) => (t + 1) % HELLOS.length), 3200)
@@ -666,6 +669,7 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
   return (
     <section
       id="home"
+      ref={heroRef}
       className="relative w-full min-h-screen flex flex-col justify-between overflow-hidden"
       style={{ background: "#FFFFFF" }}
     >
@@ -817,21 +821,30 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
                     className="w-full"
                   >
                     <div className="flex flex-col-reverse sm:flex-row items-center sm:items-center sm:justify-between gap-8 lg:gap-16">
-                      {/* Profile photo, shown whole */}
-                      <div
-                        className="relative w-32 sm:w-36 lg:w-40 rounded-2xl overflow-hidden shrink-0 sm:order-2"
-                      >
-                        <ImageWithFallback
-                          src={adinaPhotoAbout}
-                          alt="Adina Fayza Gayo - At Work"
-                          className="block w-full h-auto rounded-2xl"
-                        />
+                      {/* Round profile photo with a waving hand */}
+                      <div className="relative shrink-0 sm:order-2 sm:self-start sm:-mt-3">
+                        <div className="w-28 h-28 sm:w-32 sm:h-32 lg:w-36 lg:h-36 rounded-full overflow-hidden border border-[#19244E]/10">
+                          <ImageWithFallback
+                            src={adinaPhotoAbout}
+                            alt="Adina Fayza Gayo - At Work"
+                            className="block w-full h-full object-cover object-[50%_18%]"
+                          />
+                        </div>
+                        <motion.span
+                          aria-hidden="true"
+                          animate={{ rotate: [0, 18, -8, 18, -4, 0] }}
+                          transition={{ duration: 1.6, repeat: Infinity, repeatDelay: 2.4, ease: "easeInOut" }}
+                          style={{ transformOrigin: "70% 70%" }}
+                          className="absolute -bottom-1 -left-2 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white border border-[#19244E]/10 shadow-sm flex items-center justify-center text-xl sm:text-2xl select-none"
+                        >
+                          👋
+                        </motion.span>
                       </div>
 
                       {/* Bio Paragraph & Conversion CTAs */}
-                      <div className="flex-1 text-center sm:text-left max-w-3xl sm:order-1">
+                      <div className="flex-1 min-w-0 max-w-5xl text-center sm:text-left sm:order-1">
                         <p
-                          className="font-display font-medium text-[#19244E]"
+                          className="font-display font-normal text-[#19244E]"
                           style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.45rem)", letterSpacing: "-0.01em", lineHeight: 1.6 }}
                         >
                           <span className="text-[#DB3E8C] inline-flex items-center gap-1 mr-1.5">
@@ -848,7 +861,7 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
                               </motion.span>
                             </AnimatePresence>
                           </span>
-                          I design end-to-end B2B platforms across fintech, e-commerce, and enterprise systems. I turn messy logic into clear edge cases and developer-ready Figma specs.
+                          I design end-to-end B2B platforms across fintech, e-commerce, and enterprise systems. I turn business rules and compliance constraints into flows people can follow and specs developers can build from.
                         </p>
 
                         <div className="h-5" />
