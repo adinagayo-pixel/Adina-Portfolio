@@ -73,7 +73,7 @@ export function BackofficeLibrary() {
               <span className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white to-transparent" />
             </button>
             <figcaption className="font-sans text-xs text-gray-600 leading-relaxed">
-              <span className="block text-[10px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">{p.group}</span>
+              <span className="block text-[11px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">{p.group}</span>
               <strong className="text-[#19244E]">{p.title}.</strong> {p.caption}
             </figcaption>
           </figure>

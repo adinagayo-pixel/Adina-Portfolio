@@ -50,7 +50,7 @@ export function BeforeAfterSlider({
           { label: "After", src: afterSrc, alt },
         ].map((view) => (
           <div key={view.label}>
-            <span className="font-sans text-[10px] font-bold tracking-wider uppercase text-[#19244E]">{view.label}</span>
+            <span className="font-sans text-[11px] font-bold tracking-wider uppercase text-[#19244E]">{view.label}</span>
             <div className="mt-2 overflow-x-auto rounded-2xl border border-slate-200/80 bg-[#f5f6f8] shadow-xl">
               <img src={view.src} alt={view.alt} className="block w-[820px] max-w-none h-auto" />
             </div>
@@ -102,10 +102,10 @@ export function BeforeAfterSlider({
         &lsaquo; &rsaquo;
       </div>
 
-      <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/90 font-sans text-[10px] font-bold tracking-wider uppercase text-[#19244E] pointer-events-none">
+      <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/90 font-sans text-[11px] font-bold tracking-wider uppercase text-[#19244E] pointer-events-none">
         Before
       </span>
-      <span className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-white/90 font-sans text-[10px] font-bold tracking-wider uppercase text-[#DB3E8C] pointer-events-none">
+      <span className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-white/90 font-sans text-[11px] font-bold tracking-wider uppercase text-[#DB3E8C] pointer-events-none">
         After
       </span>
     </div>

@@ -26,7 +26,7 @@ const BODY = "#2E3A5C"
 function MonoTag({ children, accent = false }: { children: React.ReactNode; accent?: boolean }) {
   return (
     <span
-      className="font-sans text-[10px] font-semibold tracking-wider uppercase"
+      className="font-sans text-[11px] font-semibold tracking-wider uppercase"
       style={{ color: accent ? C : `${N}CC` }}
     >
       {children}
@@ -190,7 +190,7 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
                       : "text-white/75 hover:bg-white/10 hover:text-white font-medium"
                   }`}
                 >
-                  <span className={`font-mono text-[10px] ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
+                  <span className={`font-mono text-[11px] ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
                     {sec.num}
                   </span>
                   <span>{sec.label}</span>
@@ -438,7 +438,7 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
                 >
                   <div className="relative aspect-[16/11] rounded-lg overflow-hidden border border-gray-200 mb-3 bg-gray-50">
                     <img src={item.img} alt={item.title} className="w-full h-full object-cover object-top rounded group-hover:scale-105 transition-transform duration-500" />
-                    <div className="absolute top-2 left-2 bg-black/70 backdrop-blur-md px-2 py-0.5 rounded text-[9px] font-bold tracking-wider uppercase text-white border border-white/20">
+                    <div className="absolute top-2 left-2 bg-black/70 backdrop-blur-md px-2 py-0.5 rounded text-[11px] font-bold tracking-wider uppercase text-white border border-white/20">
                       {item.badge}
                     </div>
                   </div>

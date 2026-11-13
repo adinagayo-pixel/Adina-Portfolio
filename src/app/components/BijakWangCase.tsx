@@ -179,7 +179,7 @@ export default function BijakWangCase({ onBack, onNext, onPrev }: Props) {
                       : "text-white/75 hover:bg-white/10 hover:text-white font-medium"
                   }`}
                 >
-                  <span className={`font-mono text-[10px] ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
+                  <span className={`font-mono text-[11px] ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
                     {sec.num}
                   </span>
                   <span>{sec.label}</span>

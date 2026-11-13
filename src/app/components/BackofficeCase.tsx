@@ -34,7 +34,7 @@ const BODY = "#2E3A5C"
 function MonoTag({ children, accent = false }: { children: React.ReactNode; accent?: boolean }) {
   return (
     <span
-      className="font-sans text-[10px] font-semibold tracking-wider uppercase"
+      className="font-sans text-[11px] font-semibold tracking-wider uppercase"
       style={{ color: accent ? C : `${N}CC` }}
     >
       {children}
@@ -68,7 +68,7 @@ function TrackSteps({ steps, color }: { steps: string[]; color: string }) {
       {steps.map((step, i) => (
         <li key={step} className="relative flex items-start gap-3">
           <span
-            className="relative z-10 flex-shrink-0 w-[19px] h-[19px] rounded-full text-[10px] font-bold flex items-center justify-center text-white"
+            className="relative z-10 flex-shrink-0 w-[19px] h-[19px] rounded-full text-[11px] font-bold flex items-center justify-center text-white"
             style={{ backgroundColor: color }}
           >
             {i + 1}
@@ -203,7 +203,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                         : "text-white/75 hover:bg-white/10 hover:text-white font-medium"
                     }`}
                   >
-                    <span className={`font-mono text-[10px] ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
+                    <span className={`font-mono text-[11px] ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
                       {sec.num}
                     </span>
                     <span>{sec.label}</span>

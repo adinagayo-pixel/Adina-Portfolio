@@ -53,7 +53,7 @@ export function CaseStudyHeaderBadge({ caseNum, totalCases = "09" }: CaseStudyHe
   const strokeOffset = isNaN(rawOffset) ? ringCircumference : rawOffset
 
   return (
-    <div className="flex items-center gap-2 sm:gap-2.5 font-mono text-[10px] sm:text-[11px] select-none">
+    <div className="flex items-center gap-2 sm:gap-2.5 font-mono text-[11px] select-none">
       {/* Teks: Dark navy/slate static text with bold pink active number only */}
       <span className="flex items-center gap-1 tracking-wider">
         <span className="text-[#64748B] font-semibold">CASE</span>
@@ -97,7 +97,7 @@ export function CaseStudyHeaderBadge({ caseNum, totalCases = "09" }: CaseStudyHe
           />
         </div>
 
-        <span className="text-[10px] text-[#64748B] font-sans font-semibold">{progress}%</span>
+        <span className="text-[11px] text-[#64748B] font-sans font-semibold">{progress}%</span>
       </div>
     </div>
   )

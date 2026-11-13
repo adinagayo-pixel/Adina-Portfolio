@@ -404,7 +404,7 @@ function FloatingDock({ activeSection }: { activeSection: string }) {
             }}
           >
             <entry.Icon size={19} strokeWidth={isActive ? 2.2 : 1.6} className="group-hover:text-[#19244E] transition-colors" />
-            <span className={`font-sans text-[8.5px] sm:text-[9.5px] tracking-wider uppercase transition-colors ${isActive ? "font-bold text-[#19244E]" : "font-semibold text-[#19244E]/70 group-hover:text-[#19244E]"}`}>
+            <span className={`font-sans text-[11px] tracking-wider uppercase transition-colors ${isActive ? "font-bold text-[#19244E]" : "font-semibold text-[#19244E]/70 group-hover:text-[#19244E]"}`}>
               {entry.label}
             </span>
             {isActive && (
@@ -532,7 +532,7 @@ function HeroFacts() {
             animate={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
             transition={{ type: "spring", stiffness: 420, damping: 22, delay: i * 0.04 }}
             whileHover={{ y: -3, rotate: i % 2 === 0 ? -2 : 2 }}
-            className="px-3 py-1.5 rounded-xl bg-white border border-[#19244E]/10 text-sm text-[#19244E] cursor-default select-none"
+            className="px-3.5 py-2 rounded-xl bg-white border border-[#19244E]/10 text-[15px] text-[#19244E] cursor-default select-none"
           >
             {item}
           </motion.span>
@@ -588,7 +588,7 @@ function PdfPreviewModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
                   <span className="font-sans text-xs sm:text-sm font-bold tracking-tight text-white truncate">
                     ADINA FAYZA GAYO
                   </span>
-                  <span className="font-mono text-[10px] sm:text-xs text-white/60 truncate">
+                  <span className="font-mono text-[11px] sm:text-xs text-white/60 truncate">
                     UI/UX Designer · Digital Product Design (PDF)
                   </span>
                 </div>
@@ -768,13 +768,13 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
                   <div className="flex flex-col items-center sm:items-start lg:flex-row lg:items-center lg:gap-x-0 gap-3 font-mono text-xs text-[#19244E] text-center sm:text-left">
                     {/* Shipped Systems Counter: one line at every width; sits beside the role line on large screens */}
                     <div className="flex items-center sm:items-start lg:items-center justify-center sm:justify-start gap-2 font-bold tracking-wider text-[#DB3E8C]">
-                      <div className="text-[#19244E] flex flex-row items-center gap-1.5 whitespace-nowrap text-[11px] sm:text-xs leading-none">
+                      <div className="text-[#19244E] flex flex-row items-center gap-1.5 whitespace-nowrap text-xs sm:text-sm leading-none">
                         <span>5+ YRS INDUSTRIAL EXP</span>
                       </div>
                     </div>
 
                     {/* Role line: one line instead of the four-row spec table */}
-                    <div className="flex items-center justify-center sm:justify-start text-[11px] sm:text-xs leading-none tracking-wide whitespace-nowrap text-[#19244E]/85 pt-2 border-t border-[#19244E]/12 mx-auto sm:mx-0 lg:pt-0 lg:border-t-0">
+                    <div className="flex items-center justify-center sm:justify-start text-[13px] sm:text-[15px] leading-none tracking-wide whitespace-nowrap text-[#19244E]/85 pt-2 border-t border-[#19244E]/12 mx-auto sm:mx-0 lg:pt-0 lg:border-t-0">
                       <span className="hidden lg:inline text-[#DB3E8C] mx-1.5">·</span>
                       <span className="font-bold text-[#19244E]">Product Designer</span>
                       <span className="text-[#DB3E8C] mx-1.5">·</span>
@@ -1043,7 +1043,7 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
                 <div className="flex items-center gap-2.5 bg-transparent">
                   <span className="w-2 h-2 rounded-full bg-[#DB3E8C] shrink-0" />
                   <div>
-                    <span className="text-[9.5px] font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
+                    <span className="text-[11px] font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
                       ON ROTATION
                     </span>
                     <span className="font-semibold text-xs sm:text-sm text-[#19244E]/85">
@@ -1055,7 +1055,7 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
                 <div className="flex items-center gap-2.5 bg-transparent">
                   <span className="w-2 h-2 rounded-full bg-[#10b981] shrink-0" />
                   <div>
-                    <span className="text-[9.5px] font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
+                    <span className="text-[11px] font-bold tracking-widest text-[#DB3E8C] uppercase block mb-0.5">
                       SUPERPOWER
                     </span>
                     <span className="font-semibold text-xs sm:text-sm text-[#19244E]/85">
@@ -1129,7 +1129,7 @@ function ImageLightboxModal({
         {/* Top Header */}
         <div className="flex items-center justify-between text-white z-10" onClick={(e) => e.stopPropagation()}>
           <div className="flex items-center gap-3">
-            <span className="px-3 py-1 rounded-md bg-[#DB3E8C] text-white text-[10px] font-sans font-bold tracking-widest uppercase shadow-md">
+            <span className="px-3 py-1 rounded-md bg-[#DB3E8C] text-white text-[11px] font-sans font-bold tracking-widest uppercase shadow-md">
               Screen {currentIndex + 1} / {screens.length}
             </span>
             <span className="text-sm font-sans font-semibold text-white/90">
@@ -1312,7 +1312,7 @@ function StackedFanOutDeck({ screens }: { screens: { src: string; label: string;
       </div>
 
       {/* Interactive Drag & Zoom Helper Text (Bottom Center) */}
-      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-[10px] sm:text-xs font-sans font-medium text-white/50 tracking-wider uppercase z-40 pointer-events-none whitespace-nowrap">
+      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-[11px] sm:text-xs font-sans font-medium text-white/50 tracking-wider uppercase z-40 pointer-events-none whitespace-nowrap">
         Drag to shuffle or click to expand screens
       </div>
 
@@ -1371,7 +1371,7 @@ function InfiniteMarqueeDeck({ screens }: { screens: { src: string; label?: stri
               className="w-full h-full object-cover object-top transition-transform duration-300 group-hover/item:scale-[1.03] pointer-events-none"
             />
             {screen.label && (
-              <div className="absolute bottom-3 left-3 right-3 px-2.5 py-1 bg-[#19244E]/90 backdrop-blur-md rounded text-[8px] font-sans font-bold text-white tracking-widest uppercase border border-white/10 truncate text-center opacity-0 group-hover/item:opacity-100 transition-opacity z-10 pointer-events-none">
+              <div className="absolute bottom-3 left-3 right-3 px-2.5 py-1 bg-[#19244E]/90 backdrop-blur-md rounded text-[11px] font-sans font-bold text-white tracking-widest uppercase border border-white/10 truncate text-center opacity-0 group-hover/item:opacity-100 transition-opacity z-10 pointer-events-none">
                 {screen.label}
               </div>
             )}
@@ -1380,7 +1380,7 @@ function InfiniteMarqueeDeck({ screens }: { screens: { src: string; label?: stri
       </motion.div>
 
       {/* Floating Badge Indicator */}
-      <div className="absolute -top-2 right-0 px-3 py-1 bg-[#DB3E8C] text-white font-sans text-[8px] font-bold tracking-widest uppercase rounded-full shadow-md z-30 pointer-events-none flex items-center gap-1.5">
+      <div className="absolute -top-2 right-0 px-3 py-1 bg-[#DB3E8C] text-white font-sans text-[11px] font-bold tracking-widest uppercase rounded-full shadow-md z-30 pointer-events-none flex items-center gap-1.5">
         <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
         Infinite Marquee · Drag Cards
       </div>
@@ -1459,7 +1459,7 @@ function AutoCarouselDeck({ screens }: { screens: { src: string; label?: string 
 
     {/* Screen Step Label Overlay */}
     {current.label && (
-      <div className="absolute bottom-4 left-6 px-3 py-1 bg-[#19244E]/90 backdrop-blur-md rounded-lg text-[9px] font-sans font-bold text-white tracking-widest uppercase border border-white/15 z-20 pointer-events-none shadow-md">
+      <div className="absolute bottom-4 left-6 px-3 py-1 bg-[#19244E]/90 backdrop-blur-md rounded-lg text-[11px] font-sans font-bold text-white tracking-widest uppercase border border-white/15 z-20 pointer-events-none shadow-md">
         {current.label}
       </div>
     )}
@@ -1477,7 +1477,7 @@ function AutoCarouselDeck({ screens }: { screens: { src: string; label?: string 
     </div>
 
     {/* Floating Badge Indicator */}
-    <div className="absolute -top-2 right-0 px-3 py-1 bg-[#DB3E8C] text-white font-sans text-[8px] font-bold tracking-widest uppercase rounded-full shadow-md z-30 pointer-events-none flex items-center gap-1.5">
+    <div className="absolute -top-2 right-0 px-3 py-1 bg-[#DB3E8C] text-white font-sans text-[11px] font-bold tracking-widest uppercase rounded-full shadow-md z-30 pointer-events-none flex items-center gap-1.5">
       <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
       Auto Carousel · Drag Screen to Inspect
     </div>
@@ -1557,9 +1557,9 @@ function FeaturedWorkSection({
           className="px-4 sm:px-8 lg:px-16 py-8 sm:py-10 flex items-center gap-6"
           style={{ borderBottom: `1px solid rgba(255, 255, 255, 0.08)` }}
         >
-          <span className="font-sans text-[10px] font-semibold tracking-[0.2em] text-white/60">SELECTED WORK</span>
+          <span className="font-sans text-[11px] font-semibold tracking-[0.2em] text-white/60">SELECTED WORK</span>
           <div className="flex-1 h-px bg-white/10" />
-          <span className="font-sans text-[9px] sm:text-[10px] text-white/60 font-semibold tracking-[0.15em]">ENTERPRISE · B2B · REGIONAL</span>
+          <span className="font-sans text-[11px] text-white/60 font-semibold tracking-[0.15em]">ENTERPRISE · B2B · REGIONAL</span>
         </div>
 
         {/* Section intro */}
@@ -1597,14 +1597,14 @@ function FeaturedWorkSection({
                   >
                     <div className="flex items-center gap-3 w-full min-w-0">
                       <span
-                        className={`font-mono text-xs w-6 shrink-0 transition-colors duration-200 ${
+                        className={`font-mono text-sm w-7 shrink-0 transition-colors duration-200 ${
                           isActive ? "text-[#E62E85] font-bold" : "text-slate-500 group-hover:text-slate-400 font-normal"
                         }`}
                       >
                         {project.num}
                       </span>
                       <span
-                        className={`text-xs sm:text-[13px] transition-all duration-200 whitespace-nowrap ${
+                        className={`text-sm sm:text-base transition-all duration-200 whitespace-nowrap ${
                           isActive
                             ? "text-white font-semibold translate-x-0.5"
                             : "text-slate-400 group-hover:text-slate-200 group-hover:translate-x-1 font-medium"
@@ -1633,13 +1633,13 @@ function FeaturedWorkSection({
             >
               {/* Figma frame label & NDA Badge (Stacked Top Left) */}
               <div className="absolute top-4 left-4 z-20 flex flex-col items-start gap-1.5 pointer-events-none max-w-[calc(100%-2rem)]">
-                <div className="bg-white/10 backdrop-blur-md border border-white/15 px-3 py-1 rounded text-[10px] font-sans font-bold tracking-widest text-white/90 shadow-sm pointer-events-auto">
+                <div className="bg-white/10 backdrop-blur-md border border-white/15 px-3 py-1 rounded text-xs font-sans font-bold tracking-widest text-white/90 shadow-sm pointer-events-auto">
                   {activeProject.num} · {activeProject.location} · {activeProject.year}
                 </div>
 
                 {'confidentialNote' in activeProject && activeProject.confidentialNote && (
                   <div
-                    className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-200 text-[10px] sm:text-[11px] font-sans font-medium shadow-md backdrop-blur-md whitespace-nowrap pointer-events-auto cursor-help hover:bg-amber-500/25 transition-colors"
+                    className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-200 text-xs font-sans font-medium shadow-md backdrop-blur-md whitespace-nowrap pointer-events-auto cursor-help hover:bg-amber-500/25 transition-colors"
                     title="Client names, logos, and specific metrics have been sanitized to respect NDAs. What is shown here reflects the real process, not real production data."
                   >
                     <span>Sanitized for NDA · Reflects real process</span>
@@ -1700,7 +1700,7 @@ function FeaturedWorkSection({
                       <MousePointer2 size={20} className="text-[#DB3E8C] fill-[#DB3E8C] stroke-white stroke-[1.5] drop-shadow-md flex-shrink-0" />
                       {/* User badge label */}
                       <div
-                        className="ml-0.5 mt-2.5 px-2 py-0.5 rounded-md text-[9px] font-sans font-bold text-white shadow-lg border border-white/20 whitespace-nowrap"
+                        className="ml-0.5 mt-2.5 px-2 py-0.5 rounded-md text-[11px] font-sans font-bold text-white shadow-lg border border-white/20 whitespace-nowrap"
                         style={{ backgroundColor: C }}
                       >
                         Hi Guest! 👋
@@ -1723,13 +1723,13 @@ function FeaturedWorkSection({
                   className="flex flex-col justify-center space-y-4 py-1"
                 >
                   <div>
-                    <span className="font-sans text-[11px] font-semibold tracking-wider text-white/60 uppercase block mb-1">
+                    <span className="font-sans text-xs font-semibold tracking-wider text-white/60 uppercase block mb-1">
                       CLIENT: {activeProject.client}
                     </span>
                     <h3 className="font-display font-semibold mb-2 leading-tight text-white text-xl sm:text-2xl" style={{ letterSpacing: "-0.02em" }}>
                       {activeProject.name}
                     </h3>
-                    <p className="text-xs sm:text-sm leading-relaxed mb-3 font-sans text-white/80">
+                    <p className="text-base leading-relaxed mb-3 font-sans text-white/80">
                       {activeProject.headline}
                     </p>
                   </div>
@@ -1738,14 +1738,14 @@ function FeaturedWorkSection({
                   <div className="space-y-3">
                     <div className="flex flex-col gap-2 border-t border-[#DB3E8C]/20 pt-3">
                       <div className="flex items-baseline justify-between border-b border-white/10 pb-1.5">
-                        <span className="font-sans text-[11px] font-bold tracking-widest text-[#DB3E8C] uppercase">OWNERSHIP ROLE</span>
-                        <span className="font-sans font-semibold text-white text-xs text-right">
+                        <span className="font-sans text-xs font-bold tracking-widest text-[#DB3E8C] uppercase">OWNERSHIP ROLE</span>
+                        <span className="font-sans font-semibold text-white text-sm text-right">
                           {activeProject.role}
                         </span>
                       </div>
                       {activeProject.metrics.map((m) => (
                         <div key={m.sub} className="flex items-baseline justify-between border-b border-white/5 pb-1.5">
-                          <span className="font-sans text-[10px] font-semibold tracking-widest text-white/60 uppercase">{m.sub}</span>
+                          <span className="font-sans text-xs font-semibold tracking-widest text-white/60 uppercase">{m.sub}</span>
                           <span className="font-display font-semibold text-white text-base sm:text-lg" style={{ color: C }}>
                             {m.val}
                           </span>
@@ -1792,7 +1792,7 @@ function FeaturedWorkSection({
                 >
                   {/* Figma frame label */}
                   <div className="mb-3">
-                    <span className="font-sans text-[10px] sm:text-xs text-white/60 tracking-wider font-semibold">
+                    <span className="font-sans text-xs text-white/60 tracking-wider font-semibold">
                       # {project.num} · {project.location} · {project.year}
                     </span>
                   </div>
@@ -1820,7 +1820,7 @@ function FeaturedWorkSection({
                   {/* Confidentiality Note badge under image */}
                   {'confidentialNote' in project && project.confidentialNote && (
                     <div
-                      className="mb-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-200 text-[10px] font-sans font-medium w-fit"
+                      className="mb-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-200 text-xs font-sans font-medium w-fit"
                       title={project.confidentialNote}
                     >
                       <span>Sanitized for NDA · Reflects real process</span>
@@ -1836,7 +1836,7 @@ function FeaturedWorkSection({
                       <h3 className="font-display font-semibold text-white text-base sm:text-lg mb-2 leading-tight">
                         {project.name}
                       </h3>
-                      <p className="text-xs sm:text-sm leading-relaxed text-white/80 mb-4 font-sans line-clamp-3">
+                      <p className="text-sm sm:text-base leading-relaxed text-white/80 mb-4 font-sans line-clamp-3">
                         {project.headline}
                       </p>
                     </div>
@@ -1995,11 +1995,11 @@ function WorkflowSection() {
             {/* Section Header */}
             <div className="flex items-center justify-between mb-12 sm:mb-16 border-b border-white/10 pb-5">
               <div className="flex items-center gap-3">
-                <span className="font-mono text-[10px] sm:text-xs font-bold tracking-[0.25em] uppercase text-white/80">
+                <span className="font-mono text-[11px] sm:text-xs font-bold tracking-[0.25em] uppercase text-white/80">
                   3-PHASE EXECUTION ENGINE
                 </span>
               </div>
-              <span className="font-mono text-[10px] sm:text-xs font-bold tracking-widest uppercase text-[#DB3E8C]">
+              <span className="font-mono text-[11px] sm:text-xs font-bold tracking-widest uppercase text-[#DB3E8C]">
                 DESIGN TO HANDOFF PIPELINE
               </span>
             </div>
@@ -2010,7 +2010,7 @@ function WorkflowSection() {
             {/* Continuous Top Pipeline Track Line (Desktop) */}
             <div className="hidden md:block absolute top-[15px] left-0 right-0 h-px bg-white/10 z-0" />
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14 relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-[auto_auto] gap-y-10 md:gap-y-0 gap-x-10 lg:gap-x-14 relative z-10">
               {PHASES.map((phase, idx) => {
                 const isLast = idx === PHASES.length - 1
 
@@ -2021,7 +2021,7 @@ function WorkflowSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: false, margin: "-40px" }}
                     transition={{ duration: 0.6, delay: idx * 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
-                    className={`flex flex-col justify-between relative group ${
+                    className={`flex flex-col md:grid md:grid-rows-subgrid md:row-span-2 relative group ${
                       !isLast ? "md:border-r md:border-white/10 md:pr-10 lg:pr-14" : ""
                     }`}
                   >
@@ -2041,19 +2041,19 @@ function WorkflowSection() {
                       </h3>
 
                       {/* Process Description */}
-                      <p className="text-white/80 text-sm leading-relaxed font-sans mb-8">
+                      <p className="text-white/80 text-base leading-relaxed font-sans mb-8">
                         {phase.desc}
                       </p>
                     </div>
 
                     {/* Bottom Artifacts Section (Plain Text) */}
-                    <div className="pt-6 border-t border-white/10 mt-auto">
+                    <div className="pt-6 border-t border-white/10">
                       <div className="flex items-center gap-2 mb-2">
-                        <span className="font-mono text-[10px] font-bold tracking-widest uppercase text-[#DB3E8C]">
+                        <span className="font-mono text-[11px] font-bold tracking-widest uppercase text-[#DB3E8C]">
                           TOOLS & ARTIFACTS
                         </span>
                       </div>
-                      <p className="font-sans text-xs sm:text-[13px] leading-relaxed text-white/80 font-normal">
+                      <p className="font-sans text-[15px] leading-relaxed text-white/80 font-normal">
                         {phase.tools.join(" · ")}
                       </p>
                     </div>
@@ -2092,11 +2092,11 @@ function WorkflowSection() {
           className="relative z-30 px-4 sm:px-8 lg:px-16 py-6 sm:py-8 flex items-center gap-6 bg-[#0A1128]"
           style={{ borderBottom: `1px solid rgba(255,255,255,0.08)` }}
         >
-          <span className="font-sans text-[10px] font-semibold tracking-widest uppercase" style={{ color: "rgba(255,255,255,0.4)" }}>
+          <span className="font-sans text-[11px] font-semibold tracking-widest uppercase" style={{ color: "rgba(255,255,255,0.4)" }}>
             SYSTEM LOGIC
           </span>
           <div className="flex-1 h-px" style={{ backgroundColor: "rgba(255,255,255,0.08)" }} />
-          <span className="font-sans text-[9px] sm:text-[10px] font-semibold tracking-widest uppercase text-[#F472B6]">
+          <span className="font-sans text-[11px] font-semibold tracking-widest uppercase text-[#F472B6]">
             DESIGN PHILOSOPHY · REINFORCEMENT
           </span>
         </div>
@@ -2108,7 +2108,7 @@ function WorkflowSection() {
             style={{ opacity: heroOpacity, y: heroY }}
             className="relative z-20 px-4 sm:px-8 lg:px-16 py-14 sm:py-20 lg:py-24 flex flex-col items-center text-center"
           >
-            <p className="font-sans text-[10px] font-bold tracking-[0.25em] uppercase mb-6 sm:mb-10 text-[#F472B6]">
+            <p className="font-sans text-[11px] font-bold tracking-[0.25em] uppercase mb-6 sm:mb-10 text-[#F472B6]">
               THE LOGIC BEHIND IT
             </p>
             <h2
@@ -2252,9 +2252,9 @@ function ProjectArchiveSection() {
         className="px-4 sm:px-8 lg:px-16 py-8 sm:py-10 flex items-center gap-6"
         style={{ borderBottom: `1px solid rgba(25, 36, 78, 0.05)` }}
       >
-        <span className="font-sans text-[10px] font-semibold tracking-[0.2em] text-[#19244E]/60">CATALOG</span>
+        <span className="font-sans text-[11px] font-semibold tracking-[0.2em] text-[#19244E]/60">CATALOG</span>
         <div className="flex-1 h-px" style={{ backgroundColor: "rgba(25, 36, 78, 0.05)" }} />
-        <span className="font-sans text-[9px] sm:text-[10px] font-semibold tracking-[0.15em] text-[#19244E]/60">Additional Works & Shipped Systems</span>
+        <span className="font-sans text-[11px] font-semibold tracking-[0.15em] text-[#19244E]/60">Additional Works & Shipped Systems</span>
       </div>
 
       {/* Count + filter row */}
@@ -2270,7 +2270,7 @@ function ProjectArchiveSection() {
             >
               {filtered.length}
             </span>
-            <span className="font-sans text-[9px] sm:text-[10px] font-semibold tracking-widest text-[#19244E]/60 uppercase">
+            <span className="font-sans text-[11px] font-semibold tracking-widest text-[#19244E]/60 uppercase">
               of {PROJECTS.length} projects
             </span>
           </div>
@@ -2281,7 +2281,7 @@ function ProjectArchiveSection() {
                 <button
                   key={cat.id}
                   onClick={() => { setActiveCat(cat.id); setShowAll(false) }}
-                  className="flex items-center gap-1.5 px-3.5 sm:px-4 py-2 sm:py-2.5 font-sans text-[9px] sm:text-[10px] font-bold tracking-widest uppercase transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] rounded-xl cursor-pointer"
+                  className="flex items-center gap-1.5 px-3.5 sm:px-4 py-2 sm:py-2.5 font-sans text-[11px] font-bold tracking-widest uppercase transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] rounded-xl cursor-pointer"
                   style={{
                     backgroundColor: isActive ? N : W,
                     color: isActive ? W : `${N}DD`,
@@ -2396,11 +2396,11 @@ function ProjectArchiveSection() {
                           {project.name}
                         </h4>
                         <div className="flex items-center gap-2 mt-0.5 sm:mt-1">
-                          <span className="font-sans text-[11px] sm:text-xs text-[#19244E]/60 font-medium truncate">
+                          <span className="font-sans text-sm sm:text-[15px] text-[#19244E]/70 font-medium truncate">
                             {project.client}
                           </span>
                           <span className="text-[#19244E]/30 hidden sm:inline">•</span>
-                          <span className="font-sans text-[11px] sm:text-xs text-[#19244E]/50 hidden sm:inline truncate">
+                          <span className="font-sans text-sm sm:text-[15px] text-[#19244E]/60 hidden sm:inline truncate">
                             {project.category}
                           </span>
                         </div>
@@ -2410,12 +2410,12 @@ function ProjectArchiveSection() {
                     {/* Right: Year, Status Badge, WhatsApp link & Plus (+) icon */}
                     <div className="flex items-center justify-between sm:justify-end gap-3 sm:gap-6 shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-[#19244E]/5">
                       <div className="flex items-center gap-3">
-                        <span className="font-sans text-xs text-[#19244E]/50 font-medium hidden md:inline">
+                        <span className="font-sans text-sm text-[#19244E]/60 font-medium hidden md:inline">
                           {project.year}
                         </span>
                         
                         {/* Status Text */}
-                        <span className="font-sans text-[10px] sm:text-xs font-semibold tracking-wider uppercase text-[#19244E]/60">
+                        <span className="font-sans text-xs sm:text-sm font-semibold tracking-wider uppercase text-[#19244E]/60">
                           {project.status}
                         </span>
 
@@ -2425,7 +2425,7 @@ function ProjectArchiveSection() {
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={(e) => e.stopPropagation()}
-                          className="inline-flex items-center gap-1 font-sans text-[10px] sm:text-xs font-bold tracking-wider uppercase text-[#19244E]/50 hover:text-[#DB3E8C] transition-colors p-1"
+                          className="inline-flex items-center gap-1 font-sans text-[11px] sm:text-xs font-bold tracking-wider uppercase text-[#19244E]/50 hover:text-[#DB3E8C] transition-colors p-1"
                           title="Ask via WhatsApp"
                         >
                           <MessageSquare size={13} />
@@ -2593,7 +2593,7 @@ function ProjectArchiveSection() {
                 <span className="block font-sans text-xs font-bold tracking-widest uppercase text-gray-500 mb-2">
                   System Architecture & Scope
                 </span>
-                <p className="font-sans text-sm sm:text-base leading-relaxed text-[#19244E]/90">
+                <p className="font-sans text-base sm:text-[17px] leading-relaxed text-[#19244E]/90">
                   {selectedProject.scope}
                 </p>
               </div>
@@ -2677,9 +2677,9 @@ function ContactSection({ onOpenPdfPreview }: { onOpenPdfPreview?: () => void })
         className="px-4 sm:px-8 lg:px-16 py-6 sm:py-8 flex items-center gap-6"
         style={{ borderBottom: `1px solid rgba(255, 255, 255, 0.08)` }}
       >
-        <span className="font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-white/50">CONTACT</span>
+        <span className="font-sans text-[11px] font-bold tracking-[0.2em] uppercase text-white/50">CONTACT</span>
         <div className="flex-1 h-px bg-white/10" />
-        <span className="font-sans text-[9px] sm:text-[10px] font-semibold tracking-[0.15em] text-[#DB3E8C]">OPEN TO MID – SENIOR PRODUCT DESIGNER ROLES</span>
+        <span className="font-sans text-[11px] font-semibold tracking-[0.15em] text-[#DB3E8C]">OPEN TO MID – SENIOR PRODUCT DESIGNER ROLES</span>
       </div>
 
       <div ref={ref} className="grid lg:grid-cols-[1fr_1px_480px]" style={{ minHeight: "440px" }}>
@@ -2740,7 +2740,7 @@ function ContactSection({ onOpenPdfPreview }: { onOpenPdfPreview?: () => void })
               className="px-5 sm:px-10 py-6 sm:py-8"
               style={{ borderBottom: i < 3 ? `1px solid rgba(255, 255, 255, 0.08)` : "none" }}
             >
-              <span className="font-sans text-[9px] font-bold tracking-[0.2em] uppercase text-white/40 block mb-1">{item.label}</span>
+              <span className="font-sans text-[11px] font-bold tracking-[0.2em] uppercase text-white/40 block mb-1">{item.label}</span>
               {item.href ? (
                 <a
                   href={item.href}
@@ -2753,7 +2753,7 @@ function ContactSection({ onOpenPdfPreview }: { onOpenPdfPreview?: () => void })
               ) : (
                 <p className="text-sm sm:text-base font-semibold mt-1.5 sm:mt-2 mb-0.5 text-white">{item.value}</p>
               )}
-              {item.sub && <p className="text-xs sm:text-sm text-white/50">{item.sub}</p>}
+              {item.sub && <p className="text-sm text-white/60">{item.sub}</p>}
             </div>
           ))}
         </motion.div>
@@ -2769,7 +2769,7 @@ function Footer() {
       className="px-8 lg:px-16 py-6 sm:py-8 flex items-center justify-center"
       style={{ borderTop: `1px solid rgba(255, 255, 255, 0.08)`, backgroundColor: "#111936" }}
     >
-      <span className="font-sans text-[10px] sm:text-xs font-semibold tracking-widest uppercase text-white/60">© 2026 Adina Fayza Gayo</span>
+      <span className="font-sans text-[11px] sm:text-xs font-semibold tracking-widest uppercase text-white/60">© 2026 Adina Fayza Gayo</span>
     </footer>
   )
 }

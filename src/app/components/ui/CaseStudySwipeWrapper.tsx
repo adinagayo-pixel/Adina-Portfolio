@@ -155,7 +155,7 @@ export function CaseStudySwipeWrapper({
 
             {/* Metadata Column */}
             <div className="min-w-0 flex flex-col justify-center">
-              <span className="text-[9px] sm:text-[10px] font-mono font-bold tracking-widest text-[#9CA3AF] uppercase block leading-none mb-1">
+              <span className="text-[11px] font-mono font-bold tracking-widest text-[#9CA3AF] uppercase block leading-none mb-1">
                 NOW READING
               </span>
 
@@ -213,7 +213,7 @@ export function CaseStudySwipeWrapper({
               {/* Drawer Top Bar & Close Button */}
               <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-4">
                 <div>
-                  <span className="text-[10px] font-mono font-bold tracking-widest text-[#E62E85] uppercase block">
+                  <span className="text-[11px] font-mono font-bold tracking-widest text-[#E62E85] uppercase block">
                     CASE STUDY CATALOG
                   </span>
                   <h3 className="font-display text-base sm:text-lg font-bold text-white">
@@ -262,7 +262,7 @@ export function CaseStudySwipeWrapper({
 
                         {/* Title & Metadata */}
                         <div className="min-w-0">
-                          <span className="text-[10px] font-mono font-semibold text-white/50 block uppercase tracking-wider mb-0.5">
+                          <span className="text-[11px] font-mono font-semibold text-white/50 block uppercase tracking-wider mb-0.5">
                             CASE {project.num} · {project.client}
                           </span>
                           <h4 className="text-xs sm:text-sm font-bold text-white truncate">
@@ -273,7 +273,7 @@ export function CaseStudySwipeWrapper({
 
                       {/* Active Indicator Badge / Chevron */}
                       {isActive ? (
-                        <div className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#E62E85] text-white text-[10px] font-mono font-bold shrink-0 ml-2">
+                        <div className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#E62E85] text-white text-[11px] font-mono font-bold shrink-0 ml-2">
                           <Check size={12} />
                           <span>READING</span>
                         </div>
@@ -300,7 +300,7 @@ export function CaseStudySwipeWrapper({
                     <Home size={14} className="text-[#E62E85]" />
                     <span>Back to Home Portfolio</span>
                   </button>
-                  <span className="text-[10px] font-mono text-white/40">ESC or click outside to dismiss</span>
+                  <span className="text-[11px] font-mono text-white/40">ESC or click outside to dismiss</span>
                 </div>
               )}
             </motion.div>

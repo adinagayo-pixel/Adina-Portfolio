@@ -24,7 +24,7 @@ const BODY = "#2E3A5C"
 function MonoTag({ children, accent = false }: { children: React.ReactNode; accent?: boolean }) {
   return (
     <span
-      className="font-sans text-[10px] font-semibold tracking-wider uppercase"
+      className="font-sans text-[11px] font-semibold tracking-wider uppercase"
       style={{ color: accent ? C : `${N}CC` }}
     >
       {children}
@@ -175,7 +175,7 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
                       : "text-white/75 hover:bg-white/10 hover:text-white font-medium"
                   }`}
                 >
-                  <span className={`font-mono text-[10px] ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
+                  <span className={`font-mono text-[11px] ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
                     {sec.num}
                   </span>
                   <span>{sec.label}</span>
@@ -434,7 +434,7 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
                 <span className="text-xs font-bold tracking-widest uppercase">FIELD CONSTRAINT 01</span>
               </div>
               <h4 className="text-lg font-bold text-white">Outdoor Heat & Sunlight Glare</h4>
-              <p className="text-xs text-white/70 leading-relaxed">
+              <p className="text-sm text-white/75 leading-relaxed">
                 The scoring screen had to stay readable and tappable in direct sun, which is why the keypad uses high contrast color.
               </p>
             </div>
@@ -586,7 +586,7 @@ export default function MyArcheryCase({ onBack, onNext, onPrev }: Props) {
             {/* WHAT I LEARNED Box */}
             <div className="p-5 rounded-xl bg-white/5 border border-white/10 text-white space-y-2 mt-6">
               <div className="flex items-center gap-2">
-                <span className="text-[9px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
+                <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
                   WHAT I LEARNED
                 </span>
               </div>

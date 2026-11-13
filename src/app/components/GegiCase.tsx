@@ -186,7 +186,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
                       : "text-white/75 hover:bg-white/10 hover:text-white font-medium"
                   }`}
                 >
-                  <span className={`font-mono text-[10px] ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
+                  <span className={`font-mono text-[11px] ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
                     {sec.num}
                   </span>
                   <span>{sec.label}</span>
@@ -455,7 +455,7 @@ export default function GegiCase({ onBack, onNext, onPrev }: Props) {
                   <img src={img} alt={title} className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-300" />
                 </div>
                 <h4 className="font-sans text-xs font-bold text-[#19244E]">{title}</h4>
-                <p className="font-sans text-[11px] text-gray-500 mt-0.5">{desc}</p>
+                <p className="font-sans text-sm text-[#2E3A5C] mt-0.5">{desc}</p>
               </div>
             ))}
           </div>

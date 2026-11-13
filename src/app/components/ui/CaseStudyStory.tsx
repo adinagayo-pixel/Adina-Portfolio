@@ -25,7 +25,7 @@ export function CaseStudyDisclosure({ label, summary, children }: { label: strin
     <details className="group rounded-xl border border-gray-200 bg-white shadow-xs">
       <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 [&::-webkit-details-marker]:hidden">
         <span className="space-y-1">
-          <span className="block font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">{label}</span>
+          <span className="block font-sans text-[11px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">{label}</span>
           <span className="block font-sans text-sm font-semibold text-[#19244E]">{summary}</span>
         </span>
         <ChevronDown size={16} className="shrink-0 text-[#19244E]/60 transition-transform duration-200 group-open:rotate-180" />

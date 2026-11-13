@@ -23,7 +23,7 @@ const BODY = "#2E3A5C"
 function MonoTag({ children, accent = false }: { children: React.ReactNode; accent?: boolean }) {
   return (
     <span
-      className="font-sans text-[10px] font-semibold tracking-wider uppercase"
+      className="font-sans text-[11px] font-semibold tracking-wider uppercase"
       style={{ color: accent ? C : `${N}CC` }}
     >
       {children}
@@ -247,7 +247,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
                       : "text-white/75 hover:bg-white/10 hover:text-white font-medium"
                   }`}
                 >
-                  <span className={`font-mono text-[10px] ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
+                  <span className={`font-mono text-[11px] ${isActive ? "text-white" : "text-[#DB3E8C]"}`}>
                     {sec.num}
                   </span>
                   <span>{sec.label}</span>
