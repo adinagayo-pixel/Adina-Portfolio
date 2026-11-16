@@ -266,7 +266,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                 },
                 {
                   label: "Verified impact",
-                  value: "Standard portals deployed by developers without new designs. A ride-hailing partner's portals are live.",
+                  value: "Standard portals deployed by developers without new designs. Around six partner portals are live.",
                   tone: "verified",
                 },
                 {
@@ -325,7 +325,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
           <div className="p-4 border-l border-[#19244E]/15">
             <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">05 · Outcome</span>
             <p className="text-sm font-semibold text-[#19244E] leading-relaxed">
-              Standard portals shipped without new designs. Design time went to complex claims.
+              Around six partner portals live without new designs. Design time went to complex claims.
             </p>
           </div>
         </div>

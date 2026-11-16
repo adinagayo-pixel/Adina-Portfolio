@@ -4,5 +4,17 @@
   "installCommand": "npm install",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "rewrites": [{ "source": "/(.*)", "destination": "/" }]
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/(ADINA|Adina)(.*)Resume(.*)\\.pdf",
+      "destination": "/resume-adina-fayza-gayo.pdf",
+      "permanent": false
+    }
+  ]
 }
