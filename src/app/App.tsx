@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from "react"
-import { motion, useMotionValue, useSpring, AnimatePresence, useScroll, useTransform } from "motion/react"
+import { motion, useMotionValue, useSpring, AnimatePresence, useScroll, useTransform, useReducedMotion } from "motion/react"
+import type { MotionValue } from "motion/react"
+import type { ReactNode } from "react"
 import adinaPhotoAbout from "@/imports/Foto At Work.jpg"
 import adinaPhotoLife from "@/imports/Foto In Life.jpg"
 import afgLogo from "@/imports/LOGO.png"
@@ -67,8 +69,8 @@ import {
   Home, Briefcase, Layers, Archive, Mail,
   ArrowRight, ArrowDown, ExternalLink, Globe, Zap,
   Users, CheckCircle, Coins, Bot, LayoutGrid,
-  ArrowUpRight, ChevronRight, MousePointer2, Plus, Linkedin, Download,
-  Search, Target, FileCheck, FileText, X, Eye, ChevronDown, ChevronUp, MessageSquare,
+  ArrowUpRight, ChevronRight, ChevronLeft, MousePointer2, Plus, Linkedin, Download,
+  Search, Target, FileCheck, FileText, X, Eye, ChevronDown, ChevronUp, MessageSquare, List,
 } from "lucide-react"
 
 import GegiCase from "./components/GegiCase"
@@ -276,11 +278,13 @@ const PROJECTS: Project[] = [
 
 
 // ─── Hooks ────────────────────────────────────────────────────────────────────
+// True while the element is on screen and false once it leaves, so entry animations replay every time
+// the reader scrolls back to the section.
 function useInView(threshold = 0.12) {
   const ref = useRef<HTMLDivElement>(null)
   const [inView, setInView] = useState(false)
   useEffect(() => {
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setInView(true) }, { threshold })
+    const obs = new IntersectionObserver(([e]) => setInView(e.isIntersecting), { threshold })
     if (ref.current) obs.observe(ref.current)
     return () => obs.disconnect()
   }, [threshold])
@@ -644,6 +648,11 @@ function PdfPreviewModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
 }
 
 // ─── Hero Spring Config ───────────────────────────────────────────────────────
+// One motion language for every section entrance: same distance, duration and easing
+const REVEAL_EASE = [0.21, 0.47, 0.32, 0.98] as const
+const REVEAL_Y = 24
+const REVEAL_DURATION = 0.7
+
 const HERO_SPRING = { type: "tween" as const, ease: [0.16, 1, 0.3, 1] as const, duration: 0.7 }
 
 // ─── Hero Section ─────────────────────────────────────────────────────────────
@@ -789,9 +798,9 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
                   </div>
 
                   <motion.div
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: REVEAL_Y }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
+                    transition={{ duration: REVEAL_DURATION, delay: 0.15, ease: REVEAL_EASE }}
                     className="w-full"
                   >
                     <div className="flex flex-col-reverse sm:flex-row items-center sm:items-center sm:justify-between gap-8 lg:gap-16">
@@ -981,9 +990,9 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
             {/* Centered Editorial Headline & Bio */}
             <div className="flex flex-col items-center max-w-5xl mx-auto my-auto w-full bg-transparent">
               <motion.h1
-                initial={{ opacity: 0, y: 22 }}
+                initial={{ opacity: 0, y: REVEAL_Y }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: REVEAL_DURATION, ease: REVEAL_EASE }}
                 className="font-medium leading-[0.96] sm:leading-[0.90] tracking-tight text-center group select-none cursor-default bg-transparent"
                 style={{
                   fontSize: "clamp(2.8rem, 7vw, 7.8rem)",
@@ -1562,8 +1571,15 @@ function FeaturedWorkSection({
           <span className="font-sans text-[11px] text-white/60 font-semibold tracking-[0.15em]">ENTERPRISE · B2B · REGIONAL</span>
         </div>
 
-        {/* Section intro */}
-        <div className="px-4 sm:px-8 lg:px-16 py-5 sm:py-7 lg:py-8" style={{ borderBottom: `1px solid rgba(255, 255, 255, 0.08)` }}>
+        {/* Section intro: fades up each time the section scrolls into view, like Process */}
+        <motion.div
+          initial={{ opacity: 0, y: REVEAL_Y }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: "-60px" }}
+          transition={{ duration: REVEAL_DURATION, ease: REVEAL_EASE }}
+          className="px-4 sm:px-8 lg:px-16 py-5 sm:py-7 lg:py-8"
+          style={{ borderBottom: `1px solid rgba(255, 255, 255, 0.08)` }}
+        >
           <h2
             className="font-display font-normal leading-tight text-white"
             style={{ fontSize: "clamp(1.8rem, 3.5vw, 3rem)", letterSpacing: "-0.02em", maxWidth: "900px" }}
@@ -1572,11 +1588,17 @@ function FeaturedWorkSection({
             define{" "}
             <em className="font-normal" style={{ color: C }}>how I think.</em>
           </h2>
-        </div>
+        </motion.div>
 
 
-        {/* Showcase container */}
-        <div className="px-4 sm:px-8 lg:px-16">
+        {/* Showcase container: follows the intro in, slightly later */}
+        <motion.div
+          initial={{ opacity: 0, y: REVEAL_Y }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: "-60px" }}
+          transition={{ duration: REVEAL_DURATION, delay: 0.15, ease: REVEAL_EASE }}
+          className="px-4 sm:px-8 lg:px-16"
+        >
           {/* Desktop Showcase */}
           <div className="hidden lg:grid lg:grid-cols-[300px_1fr_320px] gap-8 py-10 min-h-[540px]">
             {/* Left Column: Project Selector (Ultra-Compact Single-Line Project List) */}
@@ -1883,7 +1905,7 @@ function FeaturedWorkSection({
               ))}
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )
@@ -1954,6 +1976,39 @@ function StandaloneClipboardIcon({ className = "w-8 h-8 sm:w-11 sm:h-11 lg:w-14 
   )
 }
 
+// ─── SCROLL REVEAL TEXT ──────────────────────────────────────────────────────
+// Each piece starts dim and turns fully white as the reader scrolls the statement
+// through the middle of the screen. Pieces are words, or an icon with its punctuation.
+type RevealPiece = { key: string; node: ReactNode }
+
+function RevealPieceSpan({ piece, index, total, progress }: { piece: RevealPiece; index: number; total: number; progress: MotionValue<number> }) {
+  const start = index / total
+  const end = Math.min(1, start + 1.5 / total)
+  const opacity = useTransform(progress, [start, end], [0.16, 1])
+  return (
+    <motion.span style={{ opacity }} className="inline">
+      {piece.node}{" "}
+    </motion.span>
+  )
+}
+
+function ScrollRevealText({ pieces, className, style }: { pieces: RevealPiece[]; className?: string; style?: React.CSSProperties }) {
+  const ref = useRef<HTMLHeadingElement>(null)
+  const reduceMotion = useReducedMotion()
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.85", "end 0.5"] })
+  return (
+    <h2 ref={ref} className={className} style={style}>
+      {reduceMotion
+        ? pieces.map((p) => <span key={p.key}>{p.node} </span>)
+        : pieces.map((p, i) => <RevealPieceSpan key={p.key} piece={p} index={i} total={pieces.length} progress={scrollYProgress} />)}
+    </h2>
+  )
+}
+
+function revealWords(text: string, keyPrefix: string, render?: (word: string) => ReactNode): RevealPiece[] {
+  return text.split(" ").map((word, i) => ({ key: `${keyPrefix}-${i}`, node: render ? render(word) : word }))
+}
+
 function WorkflowSection() {
   const heroRef = useRef<HTMLDivElement>(null)
 
@@ -1969,13 +2024,13 @@ function WorkflowSection() {
   return (
     <div
       id="process"
-      className="relative overflow-hidden bg-[#0A1128]"
+      className="relative overflow-hidden bg-[#0F1735]"
     >
       {/* ── BLOCK 1: 3-PHASE EXECUTION ENGINE ── */}
-      <section className="relative overflow-hidden pt-24 sm:pt-32 lg:pt-40 pb-16 sm:pb-24 lg:pb-32 px-6 sm:px-12 lg:px-20 z-20 bg-[#0A1128]">
-        {/* Background Texture Overlay — Seamless Multiply Blend Mode on #0A1128 */}
+      <section className="relative overflow-hidden pt-24 sm:pt-32 lg:pt-40 pb-16 sm:pb-24 lg:pb-32 px-6 sm:px-12 lg:px-20 z-20 bg-[#0F1735]">
+        {/* Background Texture Overlay — Seamless Multiply Blend Mode on #0F1735 */}
         <div
-          className="absolute inset-0 w-full h-full bg-[#0A1128] pointer-events-none z-0"
+          className="absolute inset-0 w-full h-full bg-[#0F1735] pointer-events-none z-0"
           style={{
             backgroundImage: `url(${section3PhaseBg})`,
             backgroundSize: "cover",
@@ -1987,10 +2042,10 @@ function WorkflowSection() {
         <div className="max-w-7xl mx-auto relative z-10">
           {/* Animated Header & Tagline Reveal */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: REVEAL_Y }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, margin: "-60px" }}
-            transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
+            transition={{ duration: REVEAL_DURATION, ease: REVEAL_EASE }}
           >
             {/* Section Header */}
             <div className="flex items-center justify-between mb-12 sm:mb-16 border-b border-white/10 pb-5">
@@ -2017,17 +2072,17 @@ function WorkflowSection() {
                 return (
                   <motion.div
                     key={phase.num}
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: REVEAL_Y }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: false, margin: "-40px" }}
-                    transition={{ duration: 0.6, delay: idx * 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
+                    transition={{ duration: REVEAL_DURATION, delay: idx * 0.15, ease: REVEAL_EASE }}
                     className={`flex flex-col md:grid md:grid-rows-subgrid md:row-span-2 relative group ${
                       !isLast ? "md:border-r md:border-white/10 md:pr-10 lg:pr-14" : ""
                     }`}
                   >
                     <div>
                       {/* Top Node Header: Node Dot & Sleek Mono Label */}
-                      <div className="flex items-center gap-2.5 mb-7 bg-[#0A1128] pr-4 w-fit relative z-10">
+                      <div className="flex items-center gap-2.5 mb-7 bg-[#0F1735] pr-4 w-fit relative z-10">
 
                         <span className="w-2.5 h-2.5 rounded-full bg-[#DB3E8C] shadow-[0_0_10px_#DB3E8C] animate-pulse" />
                         <span className="font-mono text-[11px] font-bold tracking-widest text-[#DB3E8C] uppercase px-3 py-1 rounded-full bg-[#DB3E8C]/15 border border-[#DB3E8C]/30">
@@ -2085,11 +2140,11 @@ function WorkflowSection() {
       {/* ── BLOCK 2: HOW I WORK PHILOSOPHICAL STATEMENT HERO (NOW AT THE BOTTOM AS CLOSER) ── */}
       <section
         ref={heroRef}
-        className="relative overflow-hidden flex flex-col justify-center min-h-[440px] lg:min-h-[480px] bg-[#0A1128]"
+        className="relative overflow-hidden flex flex-col justify-center min-h-[440px] lg:min-h-[480px] bg-[#0F1735]"
       >
         {/* Header - Solid Navy Divider Bar / Sekat Pemisah Mutlak */}
         <div
-          className="relative z-30 px-4 sm:px-8 lg:px-16 py-6 sm:py-8 flex items-center gap-6 bg-[#0A1128]"
+          className="relative z-30 px-4 sm:px-8 lg:px-16 py-6 sm:py-8 flex items-center gap-6 bg-[#0F1735]"
           style={{ borderBottom: `1px solid rgba(255,255,255,0.08)` }}
         >
           <span className="font-sans text-[11px] font-semibold tracking-widest uppercase" style={{ color: "rgba(255,255,255,0.4)" }}>
@@ -2111,24 +2166,45 @@ function WorkflowSection() {
             <p className="font-sans text-[11px] font-bold tracking-[0.25em] uppercase mb-6 sm:mb-10 text-[#F472B6]">
               THE LOGIC BEHIND IT
             </p>
-            <h2
+            <ScrollRevealText
               className="font-display font-light leading-[1.45] text-white max-w-4xl text-center drop-shadow-lg"
               style={{ fontSize: "clamp(1.75rem, 4.5vw, 4.2rem)", letterSpacing: "-0.025em" }}
-            >
-              I dig into complex problems first{" "}
-              <span className="inline-block align-middle mx-1 sm:mx-1.5 hover:scale-110 transition-transform duration-300">
-                <StandaloneSearchIcon className="w-8 h-8 sm:w-11 sm:h-11 lg:w-14 lg:h-14 inline-block text-[#F472B6]" />
-              </span>,{" "}
-              craft intuitive web & app interfaces with <span className="text-[#F472B6] font-bold">solid logic</span>{" "}
-              <span className="inline-block align-middle mx-1 sm:mx-1.5 hover:scale-110 transition-transform duration-300">
-                <StandaloneTargetIcon className="w-8 h-8 sm:w-11 sm:h-11 lg:w-14 lg:h-14 inline-block text-[#F472B6]" />
-              </span>,{" "}
-              and hand off design files so clear that{" "}
-              <span className="inline-block align-middle mx-1 sm:mx-1.5 hover:scale-110 transition-transform duration-300">
-                <StandaloneClipboardIcon className="w-8 h-8 sm:w-11 sm:h-11 lg:w-14 lg:h-14 inline-block text-[#F472B6]" />
-              </span>{" "}
-              engineers rarely have to second-guess.
-            </h2>
+              pieces={[
+                ...revealWords("I dig into complex problems first", "a"),
+                {
+                  key: "icon-search",
+                  node: (
+                    <span className="whitespace-nowrap">
+                      <span className="inline-block align-middle mx-1 sm:mx-1.5 hover:scale-110 transition-transform duration-300">
+                        <StandaloneSearchIcon className="w-8 h-8 sm:w-11 sm:h-11 lg:w-14 lg:h-14 inline-block text-[#F472B6]" />
+                      </span>,
+                    </span>
+                  ),
+                },
+                ...revealWords("craft intuitive web & app interfaces with", "b"),
+                ...revealWords("solid logic", "c", (w) => <span className="text-[#F472B6] font-bold">{w}</span>),
+                {
+                  key: "icon-target",
+                  node: (
+                    <span className="whitespace-nowrap">
+                      <span className="inline-block align-middle mx-1 sm:mx-1.5 hover:scale-110 transition-transform duration-300">
+                        <StandaloneTargetIcon className="w-8 h-8 sm:w-11 sm:h-11 lg:w-14 lg:h-14 inline-block text-[#F472B6]" />
+                      </span>,
+                    </span>
+                  ),
+                },
+                ...revealWords("and hand off Figma files", "d"),
+                ...revealWords("engineers rarely have to second-guess.", "e"),
+                {
+                  key: "icon-clipboard",
+                  node: (
+                    <span className="inline-block align-middle mx-1 sm:mx-1.5 hover:scale-110 transition-transform duration-300">
+                      <StandaloneClipboardIcon className="w-8 h-8 sm:w-11 sm:h-11 lg:w-14 lg:h-14 inline-block text-[#F472B6]" />
+                    </span>
+                  ),
+                },
+              ]}
+            />
           </motion.div>
         </div>
       </section>
@@ -2166,40 +2242,6 @@ const STATUS_COLOR: Record<string, string> = {
   "ARCHIVED":      "rgba(25,36,78,0.30)",
 }
 
-interface CategoryDef {
-  id: string
-  label: string
-  subtitle?: string
-  filter: (p: Project) => boolean
-}
-
-const CATEGORIES: CategoryDef[] = [
-  { id: "all",        label: "ALL", filter: (_: Project) => true },
-  {
-    id: "enterprise",
-    label: "ENTERPRISE & REGULATED",
-    subtitle: "fintech, insurance, banking, B2B system kompleks",
-    filter: (p: Project) => [1, 2, 3, 4, 5, 7, 13, 14, 17].includes(p.id),
-  },
-  {
-    id: "consumer",
-    label: "CONSUMER & GROWTH",
-    subtitle: "consumer-facing product, e-commerce, marketplace, loyalty",
-    filter: (p: Project) => [8, 9, 10, 11, 12].includes(p.id),
-  },
-  {
-    id: "ai",
-    label: "AI-POWERED",
-    subtitle: "AI-driven recommendation engines & content generation",
-    filter: (p: Project) => p.category.includes("AI") || [6, 8].includes(p.id),
-  },
-  {
-    id: "live",
-    label: "LIVE / PRODUCTION",
-    subtitle: "shipped products actively running in production",
-    filter: (p: Project) => ["LIVE", "LIVE INTERNAL", "PRODUCTION"].includes(p.status),
-  },
-]
 
 const DEFAULT_VISIBLE = 5
 
@@ -2212,18 +2254,535 @@ const getGradient = (id: number) => {
   return subtleGradients[id % subtleGradients.length]
 }
 
+// ─── CATALOG GALLERY VIEW ────────────────────────────────────────────────────
+// 2.5D cursor parallax, curated and calm. Every thumbnail has a fixed, upright anchor in a loose ring
+// around the headline, with generous white space: no two cards touch, and none reaches the text, even
+// at full parallax offset plus idle float. Cards come in three depth tiers. Far cards are small, faint,
+// and nearly still; near cards are larger, clear, and follow the cursor most. Moving the cursor shifts
+// each card from its anchor by its tier's amount, eased slowly. Hovering a card brings it forward.
+type ParallaxCard = {
+  fx: number; fy: number; depth: number; restScale: number; restOpacity: number; tier: 1 | 2 | 3
+  ox: number; oy: number; scale: number
+  // Idle float: two slow waves per axis with their own speed, size, and phase, so each path is a loose, unrepeating loop.
+  floatAmp: number; floatLive: number; fA: number; fB: number; pA: number; pB: number
+}
+
+const PARALLAX = {
+  MAX_OFFSET: 45,    // px a card may move away from its anchor
+  LERP: 0.04,        // how quickly a card follows the cursor
+  IDLE_MIN: 5,       // px, smallest idle float
+  IDLE_MAX: 12,      // px, largest idle float
+  TEXT_GAP: 24,      // px kept between a card and the headline, on top of all motion
+  CARD_GAP: 22,      // px of white space kept between any two cards, on top of all motion
+  CARD_BASE: 160,    // px, width of the card element before scaling (cards are 3:4)
+}
+
+// Three depth tiers: card width range in px, opacity, and how strongly the card follows the cursor.
+const DEPTH_TIERS = {
+  1: { minW: 60, maxW: 80, opacity: 0.25, depth: 0.015 },   // far
+  2: { minW: 95, maxW: 115, opacity: 0.65, depth: 0.035 },  // middle
+  3: { minW: 130, maxW: 150, opacity: 0.95, depth: 0.06 },  // near
+} as const
+
+// Gallery view: one horizontally scrolling row of project cards in the same card language as the
+// Work section (padded card, rounded image, name + meta underneath), so the catalog reads as a
+// continuation of the case studies and stays short. Swipe/trackpad scroll, plus arrow buttons for
+// mouse users. Static on purpose, like the list view.
+function CatalogGrid({ projects, onOpen }: { projects: Project[]; onOpen: (p: Project) => void }) {
+  const trackRef = useRef<HTMLDivElement>(null)
+  const [edge, setEdge] = useState({ start: true, end: false })
+  const updateEdge = () => {
+    const el = trackRef.current
+    if (!el) return
+    setEdge({ start: el.scrollLeft < 8, end: el.scrollLeft + el.clientWidth > el.scrollWidth - 8 })
+  }
+  useEffect(() => {
+    updateEdge()
+    window.addEventListener("resize", updateEdge)
+    return () => window.removeEventListener("resize", updateEdge)
+  }, [])
+  const scrollByPage = (dir: 1 | -1) => {
+    const el = trackRef.current
+    if (el) el.scrollBy({ left: dir * el.clientWidth * 0.8, behavior: "smooth" })
+  }
+  const arrow = "flex items-center justify-center w-10 h-10 rounded-full border border-[#19244E]/15 bg-white text-[#19244E] transition-all hover:border-[#19244E]/40 disabled:opacity-30 disabled:cursor-default cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C]"
+  return (
+    <div className="pt-10 sm:pt-14 pb-14 sm:pb-20">
+      <div className="px-4 sm:px-8 lg:px-16 flex items-end justify-between gap-6 mb-8 sm:mb-10">
+        <h3
+          className="font-display font-medium text-[#19244E] tracking-tight"
+          style={{ fontSize: "clamp(1.8rem, 3.5vw, 3rem)", lineHeight: 1.08, letterSpacing: "-0.02em" }}
+        >
+          {projects.length} more products, designed <span className="text-[#DB3E8C]">end to end.</span>
+        </h3>
+        <div className="hidden sm:flex items-center gap-2 shrink-0">
+          <button type="button" aria-label="Scroll catalog left" className={arrow} disabled={edge.start} onClick={() => scrollByPage(-1)}>
+            <ChevronLeft size={18} />
+          </button>
+          <button type="button" aria-label="Scroll catalog right" className={arrow} disabled={edge.end} onClick={() => scrollByPage(1)}>
+            <ChevronRight size={18} />
+          </button>
+        </div>
+      </div>
+      <div
+        ref={trackRef}
+        onScroll={updateEdge}
+        className="flex gap-3 sm:gap-5 overflow-x-auto snap-x snap-mandatory scroll-px-4 sm:scroll-px-8 lg:scroll-px-16 px-4 sm:px-8 lg:px-16 pb-2"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+      >
+        {projects.map((p) => {
+          const src = PROJECT_PREVIEWS[p.id]
+          return (
+            <button
+              key={p.id}
+              type="button"
+              onClick={() => onOpen(p)}
+              className="group shrink-0 snap-start w-[42vw] sm:w-[220px] lg:w-[240px] xl:w-[260px] flex flex-col justify-start text-left rounded-2xl bg-white border border-[#19244E]/10 p-2.5 sm:p-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_32px_-12px_rgba(25,36,78,0.25)] hover:border-[#19244E]/20 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] my-2"
+            >
+              <div className="aspect-[3/4] rounded-xl overflow-hidden bg-[#19244E]/5">
+                {src && (
+                  <img
+                    src={src}
+                    alt={`${p.name} preview`}
+                    loading="lazy"
+                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                )}
+              </div>
+              <div className="px-1 pt-3 pb-1">
+                <p className="font-sans text-sm sm:text-[15px] font-semibold text-[#19244E] leading-snug">{p.name}</p>
+                <p className="font-sans text-xs sm:text-[13px] text-[#2E3A5C]/70 mt-1 leading-snug">
+                  {p.category} · {p.year}
+                </p>
+              </div>
+            </button>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
+// Previous gallery view (floating parallax cards). Kept, unused, until the grid is approved.
+function CatalogFloatGallery({ projects, onOpen }: { projects: Project[]; onOpen: (p: Project) => void }) {
+  const wrapRef = useRef<HTMLDivElement>(null)
+  const itemRefs = useRef<(HTMLButtonElement | null)[]>([])
+  const textRef = useRef<HTMLDivElement>(null)
+  const reduceMotion = useReducedMotion()
+  const withImages = projects.filter((p) => {
+    const src = PROJECT_PREVIEWS[p.id]
+    return src && !src.endsWith(".mp4") && !src.endsWith(".webm")
+  })
+  const [hovered, setHovered] = useState<number | null>(null)
+  const hoveredRef = useRef<number | null>(null)
+  hoveredRef.current = hovered
+
+  const cards = useRef<ParallaxCard[]>([])
+  // Cursor position relative to the section's center, from -0.5 to 0.5 on each axis.
+  const mouse = useRef({ x: 0, y: 0 })
+
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = wrapRef.current?.getBoundingClientRect()
+    if (!rect) return
+    mouse.current = { x: (e.clientX - rect.left) / rect.width - 0.5, y: (e.clientY - rect.top) / rect.height - 0.5 }
+  }
+  const onLeave = () => { mouse.current = { x: 0, y: 0 } }
+
+  useEffect(() => {
+    const wrap = wrapRef.current
+    if (!wrap) return
+    const lerp = (from: number, to: number, f: number) => from + (to - from) * f
+
+    // Repeatable pseudo-random numbers, so the layout looks the same on every visit.
+    let seed = 7
+    const rand = () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646 }
+
+    // Everything scales with the canvas width: cards, motion range, and spacing. A 1280 px canvas is
+    // full size; narrower canvases scale down (to 55% at most), so the layout fits small windows too.
+    const fitFor = (w: number, h: number = w) => Math.max(0.55, Math.min(1, Math.max(w, h) / 1280))
+    // How much of the full spacing the current layout uses (1 = full). Lowered when space is tight.
+    const layout = { level: 1, fit: 1 }
+
+    const place = () => {
+      const W0 = wrap.clientWidth, H0 = wrap.clientHeight
+      if (W0 < 50 || H0 < 50) return false
+      const fit = fitFor(W0, H0)
+      const tHalfW0 = (textRef.current?.offsetWidth ?? 600) / 2
+      const tHalfH0 = (textRef.current?.offsetHeight ?? 220) / 2
+      const n = withImages.length
+
+      // Tier mix: about a quarter near, a third middle, the rest far, shuffled around the ring.
+      const nearCount = Math.round(n * 0.24), midCount = Math.round(n * 0.36)
+      const tiers: (1 | 2 | 3)[] = withImages.map((_, i) => (i < nearCount ? 3 : i < nearCount + midCount ? 2 : 1))
+      for (let i = tiers.length - 1; i > 0; i--) {
+        const j = Math.floor(rand() * (i + 1))
+        ;[tiers[i], tiers[j]] = [tiers[j], tiers[i]]
+      }
+      const tierWidths = tiers.map((t) => (DEPTH_TIERS[t].minW + rand() * (DEPTH_TIERS[t].maxW - DEPTH_TIERS[t].minW)) * fit)
+      const widths = tierWidths.map((w) => w)
+      const setShrink = (k: number) => { tierWidths.forEach((w, i) => { widths[i] = w * k }) }
+
+      // How far each card can travel from its anchor: parallax on each axis, plus idle float.
+      const reachX = (i: number) => Math.min(PARALLAX.MAX_OFFSET * fit, 0.5 * W0 * DEPTH_TIERS[tiers[i]].depth)
+      const reachY = (i: number) => Math.min(PARALLAX.MAX_OFFSET * fit, 0.5 * H0 * DEPTH_TIERS[tiers[i]].depth)
+      const idle = PARALLAX.IDLE_MAX * fit
+      const half = (i: number) => ({ hw: widths[i] / 2, hh: (widths[i] * 4) / 3 / 2 })
+
+      // A spot is allowed when the card, at any parallax offset and float, stays inside the canvas,
+      // clear of the headline, and clear of every card already placed. Two cards always shift the same
+      // way with the cursor, so between them only the difference in their reach can close the gap.
+      const allowed = (x: number, y: number, i: number, placed: { i: number; x: number; y: number }[], spacing: number) => {
+        const { hw, hh } = half(i)
+        const mx = reachX(i) + idle, my = reachY(i) + idle
+        if (Math.abs(x) > W0 / 2 - hw - mx - 8 || Math.abs(y) > H0 / 2 - hh - my - 8) return false
+        // The headline always keeps at least half its gap, whatever the spacing level.
+        const tg = PARALLAX.TEXT_GAP * fit * Math.max(spacing, 0.5) + 4
+        if (Math.abs(x) < tHalfW0 + hw + mx + tg && Math.abs(y) < tHalfH0 + hh + my + tg) return false
+        const cg = PARALLAX.CARD_GAP * fit * spacing
+        for (const p of placed) {
+          const o = half(p.i)
+          const needX = hw + o.hw + Math.abs(reachX(i) - reachX(p.i)) + 2 * idle + cg
+          const needY = hh + o.hh + Math.abs(reachY(i) - reachY(p.i)) + 2 * idle + cg
+          if (Math.abs(x - p.x) < needX && Math.abs(y - p.y) < needY) return false
+        }
+        return true
+      }
+
+      // Curated ring: each card has a home angle, evenly spaced all the way around. Larger tiers are
+      // placed first, then smaller cards settle into the space left. Each card searches near its home
+      // angle first, widening the search only if needed, at a radius between the headline and the edge.
+      const tryPlace = (spacing: number) => {
+        const placed: { i: number; x: number; y: number }[] = []
+        let failures = 0
+        const step = (Math.PI * 2) / Math.max(1, n)
+        const order = withImages.map((_, i) => i).sort((a, b) => tiers[b] - tiers[a])
+        for (const i of order) {
+          const home = -Math.PI / 2 + i * step
+          let spot: { x: number; y: number } | null = null
+          for (let attempt = 0; attempt < 400 && !spot; attempt++) {
+            const spread = step * (0.3 + attempt / 50)
+            const angle = home + (rand() - 0.5) * spread
+            const band = 0.28 + rand() * 0.16
+            const ex = Math.cos(angle) * band * W0, ey = Math.sin(angle) * band * H0
+            const dist = Math.hypot(ex, ey) || 1
+            const cx = ex / dist, cy = ey / dist
+            // Search outward from just past the headline toward the canvas edge along this direction.
+            const r = dist * (0.85 + rand() * 0.4)
+            const x = cx * r, y = cy * r
+            if (allowed(x, y, i, placed, spacing)) spot = { x, y }
+          }
+          if (!spot) {
+            failures++
+            // Keep the card off the headline even when it cannot find a perfect spot.
+            const cx = Math.cos(home), cy = Math.sin(home)
+            const { hw, hh } = half(i)
+            const r = Math.min((tHalfW0 + hw + 40) / Math.max(Math.abs(cx), 1e-6), (tHalfH0 + hh + 40) / Math.max(Math.abs(cy), 1e-6))
+            spot = { x: cx * r, y: cy * r }
+          }
+          placed.push({ i, ...spot })
+        }
+        return { placed, failures }
+      }
+
+      // Full white space first. On small canvases, step the spacing down; if cards still do not all
+      // fit, make every card a little smaller and try again, so cards never have to overlap.
+      let result = tryPlace(1), spacingUsed = 1
+      outer: for (const k of [1, 0.9, 0.8, 0.7, 0.6]) {
+        if (k !== 1) setShrink(k)
+        for (const sp of [1, 0.6, 0.3, 0]) {
+          if (k === 1 && sp === 1) { if (result.failures === 0) break outer; continue }
+          const next = tryPlace(sp)
+          if (next.failures < result.failures || next.failures === 0) { result = next; spacingUsed = sp }
+          if (result.failures === 0) break outer
+        }
+      }
+      // If a later, smaller round did not beat an earlier result, the cards are drawn at the smaller
+      // size anyway; smaller cards only widen the gaps, so the earlier positions stay safe.
+      layout.level = spacingUsed
+      layout.fit = fit
+
+      // Balance the bottom-right quadrant. It runs after every card is placed and only moves cards in
+      // that quadrant, so the rest of the layout stays exactly as it was. Visual weight is card area
+      // times opacity. If the bottom-right carries less than half the average of the other quadrants:
+      //   1. one of its far cards becomes a near (tier 3) card, placed where it has the most room;
+      //   2. the most cramped of its remaining cards moves to a roomier spot in the same quadrant.
+      // Every move still passes the same checks: no overlap, clear of the headline, inside the canvas.
+      {
+        const placed = result.placed
+        const weightOf = (p: { i: number }) => widths[p.i] * widths[p.i] * (4 / 3) * DEPTH_TIERS[tiers[p.i]].opacity
+        const inBR = (p: { x: number; y: number }) => p.x > 0 && p.y > 0
+        const quadrant = (p: { x: number; y: number }) => (p.y < 0 ? 0 : 2) + (p.x < 0 ? 0 : 1)
+        const weights = [0, 0, 0, 0]
+        placed.forEach((p) => { weights[quadrant(p)] += weightOf(p) })
+        const othersAvg = (weights[0] + weights[1] + weights[2]) / 3
+        const roomAt = (x: number, y: number, skip: number) => {
+          let best = Infinity
+          for (const p of placed) if (p.i !== skip) best = Math.min(best, Math.hypot((x - p.x) * 0.75, y - p.y))
+          return best
+        }
+        const findRoomiest = (i: number) => {
+          const rest = placed.filter((p) => p.i !== i)
+          let spot: { x: number; y: number } | null = null, bestRoom = -1
+          for (let k = 0; k < 600; k++) {
+            const x = rand() * (W0 / 2), y = rand() * (H0 / 2)
+            if (!allowed(x, y, i, rest, spacingUsed)) continue
+            const room = roomAt(x, y, i)
+            if (room > bestRoom) { bestRoom = room; spot = { x, y } }
+          }
+          return spot ? { ...spot, room: bestRoom } : null
+        }
+
+        if (weights[3] < othersAvg * 0.5) {
+          // 1. Promote one far card to the near tier, at the size of the other near cards.
+          const nearWidths = placed.filter((p) => tiers[p.i] === 3).map((p) => widths[p.i])
+          const nearWidth = nearWidths.length ? nearWidths.reduce((a, b) => a + b, 0) / nearWidths.length : widths[0] * 1.8
+          const candidates = placed.filter((p) => inBR(p) && tiers[p.i] === 1)
+            .sort((a, b) => roomAt(b.x, b.y, b.i) - roomAt(a.x, a.y, a.i))
+          let promoted = -1
+          for (const c of candidates) {
+            const before = { tier: tiers[c.i], width: widths[c.i] }
+            tiers[c.i] = 3
+            widths[c.i] = nearWidth
+            const spot = findRoomiest(c.i)
+            if (spot) { c.x = spot.x; c.y = spot.y; promoted = c.i; break }
+            tiers[c.i] = before.tier
+            widths[c.i] = before.width
+          }
+
+          // 2. Give the most cramped remaining bottom-right card more room, if a clearly better spot exists.
+          const rest = placed.filter((p) => inBR(p) && p.i !== promoted)
+            .sort((a, b) => roomAt(a.x, a.y, a.i) - roomAt(b.x, b.y, b.i))
+          const cramped = rest[0]
+          if (cramped) {
+            const now = roomAt(cramped.x, cramped.y, cramped.i)
+            const spot = findRoomiest(cramped.i)
+            if (spot && spot.room > now * 1.3) { cramped.x = spot.x; cramped.y = spot.y }
+          }
+        }
+
+        // Bridge the widest gap in the bottom-right. For each small (far) card there, look at its nearest
+        // neighbours on the left and on the right. The card sitting in the widest such gap is raised to the
+        // middle tier and moved toward the midpoint between those two neighbours, so the row reads as a
+        // smooth run of sizes instead of a hole with a tiny card in it. The move starts at the midpoint and
+        // widens only as far as the checks allow: no overlap, clear of the headline, inside the canvas.
+        const midWidths = placed.filter((p) => tiers[p.i] === 2).map((p) => widths[p.i])
+        const midWidth = midWidths.length ? midWidths.reduce((a, b) => a + b, 0) / midWidths.length : widths[0] * 1.4
+        const lowerHalf = placed.filter((p) => p.y > 0)
+        let bridge: { card: (typeof placed)[number]; mid: { x: number; y: number }; span: number } | null = null
+        for (const c of placed.filter((p) => inBR(p) && tiers[p.i] === 1)) {
+          const left = lowerHalf.filter((p) => p.x < c.x).sort((a, b) => Math.hypot(a.x - c.x, a.y - c.y) - Math.hypot(b.x - c.x, b.y - c.y))[0]
+          const right = placed.filter((p) => p.x > c.x && p.y > -H0 * 0.1).sort((a, b) => Math.hypot(a.x - c.x, a.y - c.y) - Math.hypot(b.x - c.x, b.y - c.y))[0]
+          if (!left || !right) continue
+          const span = Math.hypot(right.x - left.x, right.y - left.y)
+          if (!bridge || span > bridge.span) bridge = { card: c, mid: { x: (left.x + right.x) / 2, y: (left.y + right.y) / 2 }, span }
+        }
+        if (bridge && bridge.span > midWidth * 3) {
+          const m = bridge.card
+          const rest = placed.filter((p) => p.i !== m.i)
+          const before = { tier: tiers[m.i], width: widths[m.i] }
+          const tryAt = (tier: 1 | 2, width: number) => {
+            tiers[m.i] = tier
+            widths[m.i] = width
+            for (let k = 0; k < 600; k++) {
+              const radius = k * 0.3
+              const a = rand() * Math.PI * 2
+              const x = bridge!.mid.x + Math.cos(a) * radius, y = bridge!.mid.y + Math.sin(a) * radius
+              // Only accept spots closer to the midpoint than the card already is.
+              if (Math.hypot(x - bridge!.mid.x, y - bridge!.mid.y) >= Math.hypot(m.x - bridge!.mid.x, m.y - bridge!.mid.y)) break
+              if (allowed(x, y, m.i, rest, spacingUsed)) return { x, y }
+            }
+            return null
+          }
+          const spot = tryAt(2, midWidth) ?? tryAt(1, before.width)
+          if (spot) { m.x = spot.x; m.y = spot.y } else { tiers[m.i] = before.tier; widths[m.i] = before.width }
+          // If the middle tier did not fit, try promoting in place.
+          if (!spot) {
+            tiers[m.i] = 2
+            widths[m.i] = midWidth
+            if (!allowed(m.x, m.y, m.i, rest, spacingUsed)) { tiers[m.i] = before.tier; widths[m.i] = before.width }
+          }
+        }
+      }
+
+      const byIndex = new Map(result.placed.map((p) => [p.i, p]))
+      cards.current = withImages.map((_, i) => {
+        const p = byIndex.get(i)!
+        const t = DEPTH_TIERS[tiers[i]]
+        const restScale = widths[i] / fit / PARALLAX.CARD_BASE
+        return {
+          fx: p.x / W0, fy: p.y / H0, depth: t.depth, restScale, restOpacity: t.opacity, tier: tiers[i],
+          ox: 0, oy: 0, scale: restScale,
+          floatAmp: PARALLAX.IDLE_MIN + rand() * (PARALLAX.IDLE_MAX - PARALLAX.IDLE_MIN), floatLive: 1,
+          // Periods of roughly 9 to 20 seconds.
+          fA: 0.0003 + rand() * 0.0004, fB: 0.0003 + rand() * 0.0004,
+          pA: rand() * Math.PI * 2, pB: rand() * Math.PI * 2,
+        }
+      })
+      return true
+    }
+
+    // Lay out once the canvas has a size, and again when its width changes noticeably.
+    let laidOutWidth = 0
+    const relayout = () => {
+      const w = wrap.clientWidth
+      if (laidOutWidth && Math.abs(w - laidOutWidth) / laidOutWidth < 0.12) return
+      seed = 7
+      if (place()) laidOutWidth = w
+    }
+    relayout()
+    const observer = new ResizeObserver(relayout)
+    observer.observe(wrap)
+
+    let frame = 0
+    let last = performance.now()
+    const tick = (now: number) => {
+      // Every step is scaled by elapsed time, so the motion is equally smooth at 60 Hz and 120 Hz.
+      const dt = Math.min(3, (now - last) / 16.667)
+      last = now
+      const ease = (f: number) => 1 - Math.pow(1 - f, dt)
+      const W = wrap.clientWidth, H = wrap.clientHeight
+      const textHalfW = (textRef.current?.offsetWidth ?? 600) / 2
+      const textHalfH = (textRef.current?.offsetHeight ?? 220) / 2
+      const hoveredIndex = hoveredRef.current
+      const fit = fitFor(W, H)
+      const maxOffset = PARALLAX.MAX_OFFSET * fit
+      const idle = PARALLAX.IDLE_MAX * fit
+
+      cards.current.forEach((c, i) => {
+        const el = itemRefs.current[i]
+        if (!el) return
+        const isHovered = hoveredIndex === i
+        // Hover grows the card smoothly; small far cards grow enough to be readable.
+        c.scale = lerp(c.scale, isHovered ? Math.max(c.restScale * 1.35, 0.95) : c.restScale, ease(0.1))
+        const shown = c.scale * fit
+        const cardW = el.offsetWidth * shown, cardH = el.offsetHeight * shown
+
+        // Anchor from its stored fraction of the canvas. As a safety net after a resize, if it sits
+        // too close to the headline, move it outward along its own direction.
+        let ax = c.fx * W
+        let ay = c.fy * H
+        // Use this card's own reach, the same figure the layout was planned with, so the safety net
+        // never pushes a card further than planned and into a neighbour.
+        const reachX = Math.min(maxOffset, 0.5 * W * c.depth) + idle
+        const reachY = Math.min(maxOffset, 0.5 * H * c.depth) + idle
+        const k = Math.max(Math.abs(ax) / (textHalfW + cardW / 2 + reachX), Math.abs(ay) / (textHalfH + cardH / 2 + reachY))
+        if (k < 0.001) { ax = textHalfW + cardW / 2 + reachX; ay = 0 }
+        else if (k < 1) { ax /= k; ay /= k }
+        // Keep the anchor far enough inside the section that a full offset stays inside too.
+        const limX = Math.max(0, W / 2 - cardW / 2 - reachX - 8)
+        const limY = Math.max(0, H / 2 - cardH / 2 - reachY - 8)
+        ax = Math.max(-limX, Math.min(limX, ax))
+        ay = Math.max(-limY, Math.min(limY, ay))
+
+        // Final position = anchor + idle float + cursor parallax.
+        // Parallax: near layers shift further than far ones, opposite to the cursor, capped at MAX_OFFSET,
+        // and eased with a heavy lerp so the cards follow the cursor slowly.
+        const still = reduceMotion || isHovered
+        const clampOffset = (v: number) => Math.max(-maxOffset, Math.min(maxOffset, v))
+        const targetX = still ? 0 : clampOffset(-mouse.current.x * W * c.depth)
+        const targetY = still ? 0 : clampOffset(-mouse.current.y * H * c.depth)
+        c.ox = lerp(c.ox, targetX, ease(PARALLAX.LERP))
+        c.oy = lerp(c.oy, targetY, ease(PARALLAX.LERP))
+        // Idle float: two slow waves per axis. It fades out while hovered and back in afterwards.
+        c.floatLive = lerp(c.floatLive, still ? 0 : 1, ease(0.04))
+        const amp = c.floatAmp * c.floatLive * fit
+        const fx = (Math.sin(now * c.fA + c.pA) * 0.7 + Math.sin(now * c.fB * 0.6 + c.pB) * 0.3) * amp
+        const fy = (Math.cos(now * c.fB + c.pB) * 0.7 + Math.cos(now * c.fA * 0.7 + c.pA) * 0.3) * amp
+
+        // Upright, no rotation or skew.
+        el.style.transform = `translate(-50%, -50%) translate(${W / 2 + ax + c.ox + fx}px, ${H / 2 + ay + c.oy + fy}px) scale(${shown})`
+        el.style.zIndex = isHovered ? "40" : String(10 + c.tier * 5)
+        el.style.opacity = isHovered ? "1" : String(c.restOpacity)
+        el.style.filter = isHovered ? "none" : "grayscale(1)"
+      })
+      frame = requestAnimationFrame(tick)
+    }
+    frame = requestAnimationFrame(tick)
+    return () => { cancelAnimationFrame(frame); observer.disconnect() }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [withImages.length, reduceMotion])
+
+  const active = hovered !== null ? withImages[hovered] : null
+
+  return (
+    <div
+      ref={wrapRef}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      className="relative overflow-hidden h-[80vh] min-h-[560px] max-h-[880px] select-none"
+    >
+      {withImages.map((p, i) => (
+        <button
+          key={p.id}
+          ref={(el) => { itemRefs.current[i] = el }}
+          type="button"
+          onMouseEnter={() => setHovered(i)}
+          onMouseLeave={() => setHovered((h) => (h === i ? null : h))}
+          onFocus={() => setHovered(i)}
+          onBlur={() => setHovered((h) => (h === i ? null : h))}
+          onClick={() => onOpen(p)}
+          aria-label={`Open ${p.name}`}
+          className="absolute left-0 top-0 w-[160px] aspect-[3/4] overflow-hidden rounded-xl border border-[#19244E]/10 bg-white shadow-[0_12px_30px_-14px_rgba(25,36,78,0.4)] cursor-pointer transition-[filter,opacity] duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C]"
+          style={{ opacity: 0.2, filter: "grayscale(1)", willChange: "transform" }}
+        >
+          <img src={PROJECT_PREVIEWS[p.id]} alt="" className="w-full h-full object-cover object-top" draggable={false} />
+        </button>
+      ))}
+
+      <div
+        className="absolute inset-0 z-30 flex flex-col items-center justify-center text-center px-6 pointer-events-none transition-opacity duration-300"
+        style={{ opacity: active ? 0.12 : 1 }}
+      >
+        <div ref={textRef} className="flex flex-col items-center">
+        <span className="block font-sans text-[11px] font-bold tracking-[0.2em] uppercase text-[#DB3E8C] mb-4">
+          Move to explore · Hover to see · Click to open
+        </span>
+        <h3
+          className="font-display font-medium text-[#19244E] tracking-tight"
+          style={{ fontSize: "clamp(1.9rem, 4vw, 3.75rem)", lineHeight: 1.06 }}
+        >
+          {projects.length} more products,
+          <br /> designed <span className="text-[#DB3E8C]">end to end.</span>
+        </h3>
+        </div>
+      </div>
+
+      {/* Name of the hovered project, pinned to the bottom so the image never covers it */}
+      <div className="absolute inset-x-0 bottom-6 z-50 flex justify-center px-6 pointer-events-none">
+        <AnimatePresence mode="wait">
+          {active && (
+            <motion.div
+              key={active.id}
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.18 }}
+              className="text-center"
+            >
+              <span className="block font-display font-semibold text-[#19244E] text-xl sm:text-2xl">{active.name}</span>
+              <span className="block mt-1 font-sans text-sm text-[#2E3A5C]">{active.client !== active.name ? `${active.client} · ` : ""}{active.year} · Click to open</span>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </div>
+  )
+}
+
 function ProjectArchiveSection() {
-  const [activeCat, setActiveCat] = useState("all")
   const [showAll, setShowAll] = useState(false)
-  const { ref, inView } = useInView()
-  const activeDef = CATEGORIES.find((c) => c.id === activeCat)!
-  const filtered = PROJECTS.filter(activeDef.filter)
+  const { ref } = useInView()
+  const filtered = PROJECTS
   const visible = showAll ? filtered : filtered.slice(0, DEFAULT_VISIBLE)
   const hasMore = filtered.length > DEFAULT_VISIBLE
 
   const [hoveredId, setHoveredId] = useState<number | null>(null)
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  // Gallery by default on wide screens, list by default on phones.
+  const [view, setView] = useState<"list" | "gallery">(() =>
+    typeof window !== "undefined" && window.matchMedia("(min-width: 768px)").matches ? "gallery" : "list"
+  )
 
   useEffect(() => {
     if (selectedProject) {
@@ -2254,65 +2813,41 @@ function ProjectArchiveSection() {
       >
         <span className="font-sans text-[11px] font-semibold tracking-[0.2em] text-[#19244E]/60">CATALOG</span>
         <div className="flex-1 h-px" style={{ backgroundColor: "rgba(25, 36, 78, 0.05)" }} />
-        <span className="font-sans text-[11px] font-semibold tracking-[0.15em] text-[#19244E]/60">Additional Works & Shipped Systems</span>
-      </div>
-
-      {/* Count + filter row */}
-      <div
-        className="px-4 sm:px-8 lg:px-16 py-6 sm:py-8 flex flex-col gap-4 sm:gap-6"
-        style={{ borderBottom: `1px solid rgba(25, 36, 78, 0.05)` }}
-      >
-        <div className="flex flex-col lg:flex-row lg:items-center gap-4 sm:gap-6 justify-between">
-          <div className="flex items-baseline gap-3 shrink-0">
-            <span
-              className="font-display font-light text-4xl sm:text-5xl"
-              style={{ color: N, letterSpacing: "-0.03em", lineHeight: 1 }}
-            >
-              {filtered.length}
-            </span>
-            <span className="font-sans text-[11px] font-semibold tracking-widest text-[#19244E]/60 uppercase">
-              of {PROJECTS.length} projects
-            </span>
-          </div>
-          <div className="flex flex-wrap gap-1.5 sm:gap-2">
-            {CATEGORIES.map((cat) => {
-              const isActive = activeCat === cat.id
-              return (
-                <button
-                  key={cat.id}
-                  onClick={() => { setActiveCat(cat.id); setShowAll(false) }}
-                  className="flex items-center gap-1.5 px-3.5 sm:px-4 py-2 sm:py-2.5 font-sans text-[11px] font-bold tracking-widest uppercase transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] rounded-xl cursor-pointer"
-                  style={{
-                    backgroundColor: isActive ? N : W,
-                    color: isActive ? W : `${N}DD`,
-                    border: `1px solid ${isActive ? N : "rgba(25, 36, 78, 0.08)"}`,
-                    boxShadow: isActive ? "0 4px 12px -2px rgba(25, 36, 78, 0.12)" : "none"
-                  }}
-                >
-                  {cat.label}
-                </button>
-              )
-            })}
-          </div>
+        <span className="hidden sm:inline font-sans text-[11px] font-semibold tracking-[0.15em] text-[#19244E]/60">Additional Works & Shipped Systems</span>
+        <div role="tablist" aria-label="Catalog view" className="flex items-center gap-1 p-1 rounded-xl border border-[#19244E]/10 bg-white">
+          {([
+            { v: "gallery", label: "Gallery view", Icon: LayoutGrid },
+            { v: "list", label: "List view", Icon: List },
+          ] as const).map(({ v, label, Icon }) => {
+            const isActive = view === v
+            return (
+              <button
+                key={v}
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                aria-label={label}
+                title={label}
+                onClick={() => setView(v)}
+                className={`flex items-center justify-center w-8 h-8 rounded-lg transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] ${
+                  isActive ? "bg-[#19244E] text-white" : "text-[#19244E]/50 hover:text-[#19244E] hover:bg-[#19244E]/5"
+                }`}
+              >
+                <Icon size={16} />
+              </button>
+            )
+          })}
         </div>
-
-        {activeDef.subtitle && (
-          <div className="flex items-center gap-2 text-[11px] sm:text-xs font-sans text-[#19244E]/60">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#DB3E8C] shrink-0" />
-            <span className="tracking-wide font-medium">{activeDef.subtitle}</span>
-          </div>
-        )}
       </div>
 
       {/* Catalog List View */}
+      {view === "gallery" ? (
+        <CatalogGrid projects={filtered} onOpen={setSelectedProject} />
+      ) : (
+      // List view is static on purpose: no entry animation, so rows never fade out as the reader
+      // scrolls on to the next section.
       <AnimatePresence mode="wait">
-        <motion.div
-          key={activeCat}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
-        >
+        <motion.div key="all">
           <div className="px-4 sm:px-8 lg:px-16 py-6 sm:py-10">
             <div className="divide-y divide-[#19244E]/10 border-t border-b border-[#19244E]/10">
               {visible.map((project, idx) => {
@@ -2323,9 +2858,6 @@ function ProjectArchiveSection() {
                 return (
                   <motion.div
                     key={project.id}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.25, delay: idx * 0.03 }}
                     onMouseEnter={(e) => {
                       setHoveredId(project.id)
                       const rect = e.currentTarget.getBoundingClientRect()
@@ -2491,6 +3023,7 @@ function ProjectArchiveSection() {
           )}
         </motion.div>
       </AnimatePresence>
+      )}
 
       {/* iOS-style Bottom Sheet Drawer */}
       <AnimatePresence>
@@ -2670,7 +3203,7 @@ function ContactSection({ onOpenPdfPreview }: { onOpenPdfPreview?: () => void })
   return (
     <section
       id="contact"
-      style={{ backgroundColor: "#111936", borderTop: `1px solid rgba(255, 255, 255, 0.08)` }}
+      style={{ backgroundColor: "#0F1735", borderTop: `1px solid rgba(255, 255, 255, 0.08)` }}
     >
       {/* Header */}
       <div
@@ -2685,9 +3218,9 @@ function ContactSection({ onOpenPdfPreview }: { onOpenPdfPreview?: () => void })
       <div ref={ref} className="grid lg:grid-cols-[1fr_1px_480px]" style={{ minHeight: "440px" }}>
         {/* Left: headline */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.55 }}
+          initial={{ opacity: 0, y: REVEAL_Y }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: REVEAL_Y }}
+          transition={{ duration: REVEAL_DURATION, ease: REVEAL_EASE }}
           className="flex flex-col justify-center px-4 sm:px-8 lg:px-16 py-12 sm:py-16"
           style={{ borderRight: `1px solid rgba(255, 255, 255, 0.08)` }}
         >
@@ -2724,10 +3257,10 @@ function ContactSection({ onOpenPdfPreview }: { onOpenPdfPreview?: () => void })
 
         {/* Right: contact details */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.1, duration: 0.55 }}
-          className="flex flex-col justify-center bg-[#111936]"
+          initial={{ opacity: 0, y: REVEAL_Y }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: REVEAL_Y }}
+          transition={{ duration: REVEAL_DURATION, delay: 0.15, ease: REVEAL_EASE }}
+          className="flex flex-col justify-center bg-[#0F1735]"
         >
           {[
             { label: "Email", value: "adinagayo@gmail.com", sub: "Primary contact", href: "mailto:adinagayo@gmail.com" },
@@ -2767,7 +3300,7 @@ function Footer() {
   return (
     <footer
       className="px-8 lg:px-16 py-6 sm:py-8 flex items-center justify-center"
-      style={{ borderTop: `1px solid rgba(255, 255, 255, 0.08)`, backgroundColor: "#111936" }}
+      style={{ borderTop: `1px solid rgba(255, 255, 255, 0.08)`, backgroundColor: "#0F1735" }}
     >
       <span className="font-sans text-[11px] sm:text-xs font-semibold tracking-widest uppercase text-white/60">© 2026 Adina Fayza Gayo</span>
     </footer>
