@@ -2359,6 +2359,65 @@ function FeaturedWorkSection({
 
   const activeProject = FEATURED[activeIndex] || FEATURED[0]
 
+  // The right column's content for one case. Rendered for every case (invisibly) as well, so the
+  // column always takes the height of the tallest case and the list and deck never jump when the
+  // reader switches between cases.
+  const renderSpecs = (project: (typeof FEATURED)[number]) => (
+    <>
+          <div>
+            <span className="font-sans text-xs font-semibold tracking-wider text-white/60 uppercase block mb-1">
+              CLIENT: {project.client}
+            </span>
+            <h3 className="font-display font-semibold mb-2 leading-tight text-white text-xl sm:text-2xl" style={{ letterSpacing: "-0.02em" }}>
+              {project.name}
+            </h3>
+            <p className="text-base leading-relaxed mb-3 font-sans text-white/80">
+              {project.headline}
+            </p>
+          </div>
+
+          {/* Metrics/Stats */}
+          <div className="space-y-3">
+            <div className="flex flex-col gap-2 border-t border-[#DB3E8C]/20 pt-3">
+              <div className="flex items-baseline justify-between border-b border-white/10 pb-1.5">
+                <span className="font-sans text-xs font-bold tracking-widest text-[#DB3E8C] uppercase">OWNERSHIP ROLE</span>
+                <span className="font-sans font-semibold text-white text-sm text-right">
+                  {project.role}
+                </span>
+              </div>
+              {project.metrics.map((m) => (
+                <div key={m.sub} className="flex items-baseline justify-between border-b border-white/5 pb-1.5">
+                  <span className="font-sans text-xs font-semibold tracking-widest text-white/60 uppercase">{m.sub}</span>
+                  <span className="font-display font-semibold text-white text-base sm:text-lg" style={{ color: C }}>
+                    {m.val}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex flex-col gap-2 pt-1">
+              <button
+                onClick={() => onOpenProject(project.projectId)}
+                className="group flex items-center justify-between w-full px-4 py-3 rounded-lg bg-[#DB3E8C] hover:bg-[#DB3E8C]/90 text-white font-sans text-xs font-bold tracking-widest uppercase transition-all duration-200 shadow-lg shadow-[#DB3E8C]/25 hover:shadow-[0_8px_20px_rgba(219,62,140,0.4)] cursor-pointer"
+              >
+                <span>Open Case Study</span>
+                <ArrowUpRight size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </button>
+              <a
+                href={getWhatsAppLink(project.name)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-1.5 w-full py-2.5 rounded-lg border border-white/20 hover:border-white/40 bg-white/5 hover:bg-white/10 text-white font-semibold tracking-wider text-xs uppercase transition-all cursor-pointer text-center shadow-sm"
+              >
+                <MessageSquare size={14} />
+                <span>Ask about this project ↗</span>
+              </a>
+            </div>
+          </div>
+    </>
+  )
+
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!canvasRef.current) return
     const rect = canvasRef.current.getBoundingClientRect()
@@ -2372,23 +2431,13 @@ function FeaturedWorkSection({
     <section id="work" className="relative z-20 overflow-hidden bg-[#0F1735]">
       <div className="w-full h-full bg-[#0F1735]">
 
-        {/* Header */}
-        <div
-          className="px-4 sm:px-8 lg:px-16 py-8 sm:py-10 flex items-center gap-6"
-          style={{ borderBottom: `1px solid rgba(255, 255, 255, 0.08)` }}
-        >
-          <span className="font-sans text-[11px] font-semibold tracking-[0.2em] text-white/60">SELECTED WORK</span>
-          <div className="flex-1 h-px bg-white/10" />
-          <span className="font-sans text-[11px] text-white/60 font-semibold tracking-[0.15em]">ENTERPRISE · B2B · REGIONAL</span>
-        </div>
-
         {/* Section intro: fades up each time the section scrolls into view, like Process */}
         <motion.div
           initial={skipReveal ? false : { opacity: 0, y: REVEAL_Y }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, margin: "-60px" }}
           transition={{ duration: REVEAL_DURATION, ease: REVEAL_EASE }}
-          className="px-4 sm:px-8 lg:px-16 py-5 sm:py-7 lg:py-8"
+          className="px-4 sm:px-8 lg:px-16 pt-14 sm:pt-16 lg:pt-20 pb-5 sm:pb-7 lg:pb-8"
           style={{ borderBottom: `1px solid rgba(255, 255, 255, 0.08)` }}
         >
           <h2
@@ -2548,68 +2597,27 @@ function FeaturedWorkSection({
             </div>
 
             {/* Right Column: Project Specs */}
-            <div className="flex flex-col justify-center pl-6 border-l border-white/10">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeProject.projectId}
-                  initial={{ opacity: 0, x: 10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -10 }}
-                  transition={{ duration: 0.25 }}
-                  className="flex flex-col justify-center space-y-4 py-1"
-                >
-                  <div>
-                    <span className="font-sans text-xs font-semibold tracking-wider text-white/60 uppercase block mb-1">
-                      CLIENT: {activeProject.client}
-                    </span>
-                    <h3 className="font-display font-semibold mb-2 leading-tight text-white text-xl sm:text-2xl" style={{ letterSpacing: "-0.02em" }}>
-                      {activeProject.name}
-                    </h3>
-                    <p className="text-base leading-relaxed mb-3 font-sans text-white/80">
-                      {activeProject.headline}
-                    </p>
-                  </div>
-
-                  {/* Metrics/Stats */}
-                  <div className="space-y-3">
-                    <div className="flex flex-col gap-2 border-t border-[#DB3E8C]/20 pt-3">
-                      <div className="flex items-baseline justify-between border-b border-white/10 pb-1.5">
-                        <span className="font-sans text-xs font-bold tracking-widest text-[#DB3E8C] uppercase">OWNERSHIP ROLE</span>
-                        <span className="font-sans font-semibold text-white text-sm text-right">
-                          {activeProject.role}
-                        </span>
-                      </div>
-                      {activeProject.metrics.map((m) => (
-                        <div key={m.sub} className="flex items-baseline justify-between border-b border-white/5 pb-1.5">
-                          <span className="font-sans text-xs font-semibold tracking-widest text-white/60 uppercase">{m.sub}</span>
-                          <span className="font-display font-semibold text-white text-base sm:text-lg" style={{ color: C }}>
-                            {m.val}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-
-                    <div className="flex flex-col gap-2 pt-1">
-                      <button
-                        onClick={() => onOpenProject(activeProject.projectId)}
-                        className="group flex items-center justify-between w-full px-4 py-3 rounded-lg bg-[#DB3E8C] hover:bg-[#DB3E8C]/90 text-white font-sans text-xs font-bold tracking-widest uppercase transition-all duration-200 shadow-lg shadow-[#DB3E8C]/25 hover:shadow-[0_8px_20px_rgba(219,62,140,0.4)] cursor-pointer"
-                      >
-                        <span>Open Case Study</span>
-                        <ArrowUpRight size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                      </button>
-                      <a
-                        href={getWhatsAppLink(activeProject.name)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-1.5 w-full py-2.5 rounded-lg border border-white/20 hover:border-white/40 bg-white/5 hover:bg-white/10 text-white font-semibold tracking-wider text-xs uppercase transition-all cursor-pointer text-center shadow-sm"
-                      >
-                        <MessageSquare size={14} />
-                        <span>Ask about this project ↗</span>
-                      </a>
-                    </div>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
+            <div className="grid pl-6 border-l border-white/10">
+              {/* Invisible copies of every case's specs, stacked in one cell: they set the column's height */}
+              {FEATURED.map((project) => (
+                <div key={project.projectId} aria-hidden="true" className="invisible [grid-area:1/1] flex flex-col justify-center space-y-4 py-1">
+                  {renderSpecs(project)}
+                </div>
+              ))}
+              <div className="[grid-area:1/1] flex flex-col justify-center">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeProject.projectId}
+                    initial={{ opacity: 0, x: 10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -10 }}
+                    transition={{ duration: 0.25 }}
+                    className="flex flex-col justify-center space-y-4 py-1"
+                  >
+                    {renderSpecs(activeProject)}
+                  </motion.div>
+                </AnimatePresence>
+              </div>
             </div>
           </div>
 
@@ -2857,26 +2865,6 @@ function WorkflowSection() {
         />
 
         <div className="max-w-7xl mx-auto relative z-10">
-          {/* Animated Header & Tagline Reveal */}
-          <motion.div
-            initial={{ opacity: 0, y: REVEAL_Y }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, margin: "-60px" }}
-            transition={{ duration: REVEAL_DURATION, ease: REVEAL_EASE }}
-          >
-            {/* Section Header */}
-            <div className="flex items-center justify-between mb-12 sm:mb-16 border-b border-[#19244E]/10 pb-5">
-              <div className="flex items-center gap-3">
-                <span className="font-mono text-[11px] sm:text-xs font-bold tracking-[0.25em] uppercase text-[#19244E]/60">
-                  PROCESS
-                </span>
-              </div>
-              <span className="font-mono text-[11px] sm:text-xs font-bold tracking-widest uppercase text-[#DB3E8C]">
-                FROM BRIEF TO DEVELOPER HANDOFF
-              </span>
-            </div>
-          </motion.div>
-
           {/* Four phases: one row of four on wide screens, a 2×2 grid on tablets and small laptops */}
           <div className="relative">
             {/* Continuous Top Pipeline Track Line (Desktop) */}
@@ -2962,20 +2950,6 @@ function WorkflowSection() {
         className="relative overflow-hidden flex flex-col justify-center min-h-[440px] lg:min-h-[480px]"
         style={{ backgroundColor: S, borderTop: `1px solid ${HAIR}` }}
       >
-        {/* Header - Solid Navy Divider Bar / Sekat Pemisah Mutlak */}
-        <div
-          className="relative z-30 px-4 sm:px-8 lg:px-16 py-6 sm:py-8 flex items-center gap-6"
-          style={{ backgroundColor: S, borderBottom: `1px solid ${HAIR}` }}
-        >
-          <span className="font-sans text-[11px] font-semibold tracking-widest uppercase" style={{ color: "rgba(25,36,78,0.6)" }}>
-            SYSTEM LOGIC
-          </span>
-          <div className="flex-1 h-px" style={{ backgroundColor: HAIR }} />
-          <span className="font-sans text-[11px] font-semibold tracking-widest uppercase text-[#DB3E8C]">
-            DESIGN PHILOSOPHY · REINFORCEMENT
-          </span>
-        </div>
-
         {/* Headline area */}
         <div className="relative flex-1 flex flex-col justify-center overflow-hidden">
           {/* Section headline — scroll-driven smooth fade out */}
@@ -3077,7 +3051,7 @@ const getGradient = (id: number) => {
 // Work section (padded card, rounded image, name + meta underneath), so the catalog reads as a
 // continuation of the case studies and stays short. Swipe/trackpad scroll, plus arrow buttons for
 // mouse users. Static on purpose, like the list view.
-function CatalogGrid({ projects, onOpen }: { projects: Project[]; onOpen: (p: Project) => void }) {
+function CatalogGrid({ projects, onOpen, headline, toolbar }: { projects: Project[]; onOpen: (p: Project) => void; headline: ReactNode; toolbar?: ReactNode }) {
   const trackRef = useRef<HTMLDivElement>(null)
   const [edge, setEdge] = useState({ start: true, end: false })
   const updateEdge = () => {
@@ -3098,19 +3072,17 @@ function CatalogGrid({ projects, onOpen }: { projects: Project[]; onOpen: (p: Pr
   return (
     <div className="pt-10 sm:pt-14 pb-14 sm:pb-20">
       <div className="px-4 sm:px-8 lg:px-16 flex items-end justify-between gap-6 mb-8 sm:mb-10">
-        <h3
-          className="font-display font-medium text-[#19244E] tracking-tight"
-          style={{ fontSize: "clamp(1.8rem, 3.5vw, 3rem)", lineHeight: 1.08, letterSpacing: "-0.02em" }}
-        >
-          {projects.length} more products, designed <span className="text-[#DB3E8C]">end to end.</span>
-        </h3>
-        <div className="hidden sm:flex items-center gap-2 shrink-0">
-          <button type="button" aria-label="Scroll catalog left" className={arrow} disabled={edge.start} onClick={() => scrollByPage(-1)}>
-            <ChevronLeft size={18} />
-          </button>
-          <button type="button" aria-label="Scroll catalog right" className={arrow} disabled={edge.end} onClick={() => scrollByPage(1)}>
-            <ChevronRight size={18} />
-          </button>
+        {headline}
+        <div className="flex items-center gap-2 shrink-0">
+          <div className="hidden sm:flex items-center gap-2 mr-2">
+            <button type="button" aria-label="Scroll catalog left" className={arrow} disabled={edge.start} onClick={() => scrollByPage(-1)}>
+              <ChevronLeft size={18} />
+            </button>
+            <button type="button" aria-label="Scroll catalog right" className={arrow} disabled={edge.end} onClick={() => scrollByPage(1)}>
+              <ChevronRight size={18} />
+            </button>
+          </div>
+          {toolbar}
         </div>
       </div>
       <div
@@ -3154,7 +3126,6 @@ function CatalogGrid({ projects, onOpen }: { projects: Project[]; onOpen: (p: Pr
 
 function ProjectArchiveSection() {
   const [showAll, setShowAll] = useState(false)
-  const { ref } = useInView()
   const filtered = PROJECTS
   const visible = showAll ? filtered : filtered.slice(0, DEFAULT_VISIBLE)
   const hasMore = filtered.length > DEFAULT_VISIBLE
@@ -3183,54 +3154,59 @@ function ProjectArchiveSection() {
     }
   }, [selectedProject])
 
+  // Gallery / list switch, shown at the end of the catalog's headline row in both views.
+  const viewToggle = (
+  <div role="tablist" aria-label="Catalog view" className="flex items-center gap-1 p-1 rounded-xl border border-[#19244E]/10 bg-white">
+    {([
+      { v: "gallery", label: "Gallery view", Icon: LayoutGrid },
+      { v: "list", label: "List view", Icon: List },
+    ] as const).map(({ v, label, Icon }) => {
+      const isActive = view === v
+      return (
+        <button
+          key={v}
+          type="button"
+          role="tab"
+          aria-selected={isActive}
+          aria-label={label}
+          title={label}
+          onClick={() => setView(v)}
+          className={`flex items-center justify-center w-8 h-8 rounded-lg transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] ${
+            isActive ? "bg-[#19244E] text-white" : "text-[#19244E]/50 hover:text-[#19244E] hover:bg-[#19244E]/5"
+          }`}
+        >
+          <Icon size={16} />
+        </button>
+      )
+    })}
+  </div>
+  )
+  const headline = (
+    <h3
+      className="font-display font-medium text-[#19244E] tracking-tight"
+      style={{ fontSize: "clamp(1.8rem, 3.5vw, 3rem)", lineHeight: 1.08, letterSpacing: "-0.02em" }}
+    >
+      {filtered.length} more products, designed <span className="text-[#DB3E8C]">end to end.</span>
+    </h3>
+  )
+
   return (
     <section
       id="archive"
       style={{ backgroundColor: S, borderTop: `1px solid ${HAIR}` }}
     >
-      {/* Header */}
-      <div
-        ref={ref}
-        className="px-4 sm:px-8 lg:px-16 py-8 sm:py-10 flex items-center gap-6"
-        style={{ borderBottom: `1px solid rgba(25, 36, 78, 0.05)` }}
-      >
-        <span className="font-sans text-[11px] font-semibold tracking-[0.2em] text-[#19244E]/60">CATALOG</span>
-        <div className="flex-1 h-px" style={{ backgroundColor: "rgba(25, 36, 78, 0.05)" }} />
-        <span className="hidden sm:inline font-sans text-[11px] font-semibold tracking-[0.15em] text-[#19244E]/60">Additional Works & Shipped Systems</span>
-        <div role="tablist" aria-label="Catalog view" className="flex items-center gap-1 p-1 rounded-xl border border-[#19244E]/10 bg-white">
-          {([
-            { v: "gallery", label: "Gallery view", Icon: LayoutGrid },
-            { v: "list", label: "List view", Icon: List },
-          ] as const).map(({ v, label, Icon }) => {
-            const isActive = view === v
-            return (
-              <button
-                key={v}
-                type="button"
-                role="tab"
-                aria-selected={isActive}
-                aria-label={label}
-                title={label}
-                onClick={() => setView(v)}
-                className={`flex items-center justify-center w-8 h-8 rounded-lg transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C] ${
-                  isActive ? "bg-[#19244E] text-white" : "text-[#19244E]/50 hover:text-[#19244E] hover:bg-[#19244E]/5"
-                }`}
-              >
-                <Icon size={16} />
-              </button>
-            )
-          })}
-        </div>
-      </div>
-
       {/* Catalog List View */}
       {view === "gallery" ? (
-        <CatalogGrid projects={filtered} onOpen={setSelectedProject} />
+        <CatalogGrid projects={filtered} onOpen={setSelectedProject} headline={headline} toolbar={viewToggle} />
       ) : (
       // List view is static on purpose: no entry animation, so rows never fade out as the reader
       // scrolls on to the next section.
       <AnimatePresence mode="wait">
         <motion.div key="all">
+          <div className="px-4 sm:px-8 lg:px-16 pt-10 sm:pt-14 flex items-end justify-between gap-6">
+            {headline}
+            {viewToggle}
+          </div>
           <div className="px-4 sm:px-8 lg:px-16 py-6 sm:py-10">
             <div className="divide-y divide-[#19244E]/10 border-t border-b border-[#19244E]/10">
               {visible.map((project, idx) => {
@@ -3588,16 +3564,6 @@ function ContactSection({ onOpenPdfPreview }: { onOpenPdfPreview?: () => void })
       id="contact"
       style={{ backgroundColor: W, borderTop: `1px solid ${HAIR}` }}
     >
-      {/* Header */}
-      <div
-        className="px-4 sm:px-8 lg:px-16 py-6 sm:py-8 flex items-center gap-6"
-        style={{ borderBottom: `1px solid ${HAIR}` }}
-      >
-        <span className="font-sans text-[11px] font-bold tracking-[0.2em] uppercase text-[#19244E]/60">CONTACT</span>
-        <div className="flex-1 h-px bg-[#19244E]/10" />
-        <span className="font-sans text-[11px] font-semibold tracking-[0.15em] text-[#DB3E8C]">OPEN TO MID – SENIOR PRODUCT DESIGNER ROLES</span>
-      </div>
-
       <div ref={ref} className="grid lg:grid-cols-[1fr_1px_480px]" style={{ minHeight: "440px" }}>
         {/* Left: headline */}
         <motion.div
@@ -3605,7 +3571,6 @@ function ContactSection({ onOpenPdfPreview }: { onOpenPdfPreview?: () => void })
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: REVEAL_Y }}
           transition={{ duration: REVEAL_DURATION, ease: REVEAL_EASE }}
           className="flex flex-col justify-center px-4 sm:px-8 lg:px-16 py-12 sm:py-16"
-          style={{ borderRight: `1px solid ${HAIR}` }}
         >
           <h2
             className="font-display font-light leading-[0.95] sm:leading-[0.9] my-4 sm:my-6 text-[#19244E]"
