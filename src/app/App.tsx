@@ -1,7 +1,8 @@
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, Fragment } from "react"
 import { motion, useMotionValue, useSpring, AnimatePresence, useScroll, useTransform, useReducedMotion } from "motion/react"
 import type { MotionValue } from "motion/react"
 import type { ReactNode } from "react"
+import section3PhaseBg from "@/imports/section 3 phase.jpg"
 import adinaPhotoAbout from "@/imports/Foto At Work.jpg"
 import adinaPhotoLife from "@/imports/Foto In Life.jpg"
 import afgLogo from "@/imports/LOGO.png"
@@ -62,7 +63,6 @@ import backofficeSalesOverview from "@/imports/backoffice-sales-overview.png"
 import backofficeCustomerDetail from "@/imports/backoffice-customer-detail.png"
 import backofficeAiTopPicks from "@/imports/backoffice-ai-top-picks.png"
 import myArcheryPerpaniThumb from "@/imports/myarchery thumb.jpg"
-import section3PhaseBg from "@/imports/section 3 phase.jpg"
 
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback"
 import {
@@ -131,7 +131,7 @@ const FEATURED = [
     ],
   },
   {
-    num: "02", shortTitle: "Micro Insurance", name: "Seamless Micro Insurance Integration", client: "Touch 'n Go × GEGM",
+    num: "02", shortTitle: "E-wallet Insurance Checkout", name: "Seamless Micro Insurance Integration", client: "Touch 'n Go × GEGM",
     location: "MY", year: "2025", tags: ["PWA / SSO", "eKYC Data Mapping", "B2C / FinTech"],
     role: "Sole Product Designer",
     headline: "A micro insurance checkout inside Touch 'n Go eWallet, where government subsidy eligibility decides the premium. Shipped as V5 after five design iterations.",
@@ -160,7 +160,7 @@ const FEATURED = [
     ],
   },
   {
-    num: "04", shortTitle: "Health Check Passport", name: "Bone Density & Health Check Passport Redesign", client: "Fonterra × Anlene",
+    num: "04", shortTitle: "Field Health Screening App", name: "Bone Density & Health Check Passport Redesign", client: "Fonterra × Anlene",
     location: "ID", year: "2023", tags: ["Health Tech", "Field Sales Enablement", "Diagnostic Matrix"],
     role: "Sole Product Designer",
     headline: "Redesigning Anlene's field health check experience end to end, turning diagnostic scanner data into personalized health reports.",
@@ -177,7 +177,7 @@ const FEATURED = [
     ],
   },
   {
-    num: "05", shortTitle: "MyArchery", name: "MyArchery · One Platform for Every Archery Event", client: "PERPANI / MyArchery",
+    num: "05", shortTitle: "Archery Tournament Platform", name: "MyArchery · One Platform for Every Archery Event", client: "PERPANI / MyArchery",
     location: "ID", year: "2021 to 2023", tags: ["Sports Tech", "Field UX Research", "Tournament Engine"],
     role: "Lead UX Researcher & Product Designer",
     headline: "Registration, live scoring, and brackets for PERPANI tournaments, designed from research inside the judges' tents where scoring happens.",
@@ -191,7 +191,7 @@ const FEATURED = [
     ],
   },
   {
-    num: "06", shortTitle: "In-House Roadshow", name: "Kahoot to In House: Roadshow Tournament Platform", client: "mySalam × myKawan",
+    num: "06", shortTitle: "Live Quiz Tournament Platform", name: "Kahoot to In House: Roadshow Tournament Platform", client: "mySalam × myKawan",
     location: "MY", year: "2025", tags: ["Live Tournament", "100K Concurrent", "Gamified Financial Literacy"],
     role: "Sole Product Designer",
     headline: "Evolving My Money Sense into a dual mode live tournament platform for mySalam regional roadshows.",
@@ -207,7 +207,7 @@ const FEATURED = [
     ],
   },
   {
-    num: "07", shortTitle: "CI Evaluation", name: "Critical Illness Protection Gap Quiz", client: "GEGI Singapore",
+    num: "07", shortTitle: "Insurance Protection Gap Quiz", name: "Critical Illness Protection Gap Quiz", client: "GEGI Singapore",
     location: "SG", year: "2026", tags: ["Gamified Evaluation", "Singlish Persona", "Campaign"],
     role: "Sole Product Designer",
     headline: "An interactive digital acquisition campaign assessing critical illness protection gaps for Great Eastern Singapore.",
@@ -222,7 +222,7 @@ const FEATURED = [
     ],
   },
   {
-    num: "08", shortTitle: "Archery 4 Surface", name: "Pro Archery 4 Surface Digital Ecosystem", client: "Pro Archery Jakarta",
+    num: "08", shortTitle: "Retail E-commerce & POS", name: "Pro Archery 4 Surface Digital Ecosystem", client: "Pro Archery Jakarta",
     location: "ID", year: "2025", tags: ["AI Prompt to Code", "E Commerce", "Admin POS"],
     role: "Sole System & UI Designer",
     headline: "Turning Indonesia's premier physical archery retailer into a 4 surface digital ecosystem starting with a 24 hour AI built landing page.",
@@ -346,8 +346,8 @@ function Hairline({ className = "" }: { className?: string }) {
 const DOCK = [
   { id: "home", label: "Home", Icon: Home },
   { id: "work", label: "Work", Icon: Briefcase },
-  { id: "process", label: "Process", Icon: Layers },
   { id: "archive", label: "Catalog", Icon: Archive },
+  { id: "process", label: "Process", Icon: Layers },
   { id: "contact", label: "Contact", Icon: Mail },
 ]
 
@@ -498,6 +498,42 @@ const HERO_FACTS = [
   { label: "Expertise", items: ["White-label & Multi-brand Products", "B2B Multi-portal Systems", "Modular Component Systems", "AI-assisted Design Workflows", "Developer Handoff"] },
   { label: "Tools", items: ["Figma", "Figma Make", "Framer", "Adobe Illustrator", "Adobe Photoshop", "Claude", "Gemini", "Antigravity", "Excel"] },
 ]
+
+// Desktop only: the same industries, expertise, and tools as the phone hero's switcher, laid out
+// as a quiet three-column strip under the hero so every keyword is visible at a glance. No
+// interaction on purpose; the hero's floating cards stay the page's one signature moment.
+function HeroFactsStrip() {
+  return (
+    <section aria-label="Industries, expertise, and tools" className="hidden lg:block relative z-20 bg-white" style={{ borderTop: `1px solid ${HAIR}` }}>
+      <motion.div
+        initial={{ opacity: 0, y: REVEAL_Y }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, margin: "-40px" }}
+        transition={{ duration: REVEAL_DURATION, ease: REVEAL_EASE }}
+        className="grid grid-cols-3 gap-12 xl:gap-16 px-16 py-12"
+      >
+        {HERO_FACTS.map((group) => (
+          <div key={group.label} className="min-w-0">
+            <span className="block font-sans text-[11px] font-semibold tracking-[0.2em] uppercase text-[#19244E]/60 mb-4">
+              {group.label}
+            </span>
+            <p className="font-sans text-[15px] leading-[1.9] text-[#2E3A5C]">
+              {group.items.map((item, i) => (
+                <Fragment key={item}>
+                  <span className="whitespace-nowrap">
+                    {item}
+                    {i < group.items.length - 1 && <span className="text-[#19244E]/25 ml-2" aria-hidden="true">·</span>}
+                  </span>
+                  {i < group.items.length - 1 && " "}
+                </Fragment>
+              ))}
+            </p>
+          </div>
+        ))}
+      </motion.div>
+    </section>
+  )
+}
 
 function HeroFacts() {
   const [active, setActive] = useState(1)
@@ -1082,6 +1118,12 @@ function HeroWorkField({ items, children, className = "" }: { items: HeroFieldIt
       const fit = fitFor(W, H)
       const maxOffset = PARALLAX.MAX_OFFSET * fit
       const idle = PARALLAX.IDLE_MAX * fit
+      // Exit on scroll: as the page scrolls past the hero, the cards drift up and fade, near cards
+      // fastest and backdrop cards slowest, so the field lifts away by depth. 0 at the top of the
+      // page, 1 once the field has scrolled most of its height. Skipped for reduced motion.
+      const wr = wrap.getBoundingClientRect()
+      const exit = reduceMotion ? 0 : Math.max(0, Math.min(1, -wr.top / (wr.height * 0.75) + 0.12))
+      const exitEase = exit * exit * (3 - 2 * exit)
 
       cards.current.forEach((c, i) => {
         const el = itemRefs.current[i]
@@ -1128,9 +1170,10 @@ function HeroWorkField({ items, children, className = "" }: { items: HeroFieldIt
         const fy = (Math.cos(now * c.fB + c.pB) * 0.7 + Math.cos(now * c.fA * 0.7 + c.pA) * 0.3) * amp
 
         // Upright, no rotation or skew.
-        el.style.transform = `translate(-50%, -50%) translate(${W / 2 + ax + c.ox + fx}px, ${H / 2 + ay + c.oy + fy}px) scale(${shown})`
+        const lift = exitEase * (120 + 520 * (c.tier === 3 ? 1 : c.tier === 2 ? 0.7 : c.tier === 1 ? 0.45 : 0.25))
+        el.style.transform = `translate(-50%, -50%) translate(${W / 2 + ax + c.ox + fx}px, ${H / 2 + ay + c.oy + fy - lift}px) scale(${shown})`
         el.style.zIndex = isHovered ? "40" : String(10 + c.tier * 5)
-        el.style.opacity = isHovered ? "1" : String(c.restOpacity)
+        el.style.opacity = String((isHovered ? 1 : c.restOpacity) * (1 - exitEase))
         if (c.backdrop) el.style.filter = "grayscale(1)"
       })
       frame = requestAnimationFrame(tick)
@@ -2562,15 +2605,24 @@ const PHASES = [
   },
   {
     num: "02",
-    title: "Benchmark, AI Ideation & Craft",
-    category: "Craft",
-    desc: "I balance speed and quality by adapting proven patterns from mature apps and Dribbble, combined with AI ideation (Sketch AI, Claude, Gemini). I craft pixel-perfect screens and edge-case states in Figma, collaborate with graphic designers for custom visual assets, and build code prototypes when needed.",
-    tools: ["Design Systems", "Figma Variables & Components", "Claude & Gemini", "VS Code", "Antigravity", "Prototyping"],
-    footerMeta: "Powered by Claude, Gemini & Figma",
+    title: "Benchmark & AI Ideation",
+    category: "Explore",
+    desc: "I balance speed and quality by adapting proven patterns from mature apps and Dribbble, then exploring directions quickly with AI (Sketch AI, Claude, Gemini) before committing to one in Figma.",
+    tools: ["Pattern Benchmarking", "Reference Boards", "AI Ideation", "Concept Directions"],
+    footerMeta: "Claude, Gemini & Sketch AI in the loop",
     Icon: Zap,
   },
   {
     num: "03",
+    title: "Platform-first Design",
+    category: "Design",
+    desc: "I first confirm which platform matters most, mobile or web, and design that one in Figma with the edge-case states developers need. I add responsive screens only where a layout truly changes; the rest, developers adapt from the base. I also work with graphic designers on custom visuals and build code prototypes when needed.",
+    tools: ["Design Systems", "Figma Variables & Components", "Edge-case States", "Code Prototypes"],
+    footerMeta: "Mobile or web first, responsive where it matters",
+    Icon: Layers,
+  },
+  {
+    num: "04",
     title: "Traceable Handoff & QA",
     category: "Handoff",
     desc: "Inside Figma, I organize every portal into a 3-page structure: Masterflow, Changelog, and Archive. When revisions happen, I create numbered before-and-after frames in Figma linked directly to Jira tickets, making every change easy to track and keeping the live app logic safe.",
@@ -2633,7 +2685,7 @@ function RevealPieceSpan({ piece, index, total, progress }: { piece: RevealPiece
 function ScrollRevealText({ pieces, className, style }: { pieces: RevealPiece[]; className?: string; style?: React.CSSProperties }) {
   const ref = useRef<HTMLHeadingElement>(null)
   const reduceMotion = useReducedMotion()
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.85", "end 0.5"] })
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.85", "end 0.7"] })
   return (
     <h2 ref={ref} className={className} style={style}>
       {reduceMotion
@@ -2650,30 +2702,24 @@ function revealWords(text: string, keyPrefix: string, render?: (word: string) =>
 function WorkflowSection() {
   const heroRef = useRef<HTMLDivElement>(null)
 
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end 20%"],
-  })
-
-  // Smooth scroll-driven opacity fade out & parallax lift as user scrolls past
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.4, 0.85], [1, 0.4, 0])
-  const heroY = useTransform(scrollYProgress, [0, 1], [0, -60])
-
   return (
     <div
       id="process"
-      className="relative overflow-hidden bg-[#0F1735]"
+      className="relative overflow-hidden bg-white"
     >
-      {/* ── BLOCK 1: 3-PHASE EXECUTION ENGINE ── */}
-      <section className="relative overflow-hidden pt-24 sm:pt-32 lg:pt-40 pb-16 sm:pb-24 lg:pb-32 px-6 sm:px-12 lg:px-20 z-20 bg-[#0F1735]">
-        {/* Background Texture Overlay — Seamless Multiply Blend Mode on #0F1735 */}
+      {/* ── BLOCK 1: PROCESS (three phases) ── */}
+      <section className="relative overflow-hidden pt-16 sm:pt-20 lg:pt-24 pb-16 sm:pb-24 lg:pb-28 px-6 sm:px-12 lg:px-20 z-20 bg-white" style={{ borderTop: `1px solid ${HAIR}` }}>
+        {/* Faint blueprint texture: strongest at the bottom, fading out toward the top so the phase
+            text stays on a clean background. Static on purpose. */}
         <div
-          className="absolute inset-0 w-full h-full bg-[#0F1735] pointer-events-none z-0"
+          aria-hidden="true"
+          className="absolute inset-0 pointer-events-none z-0 opacity-[0.2]"
           style={{
             backgroundImage: `url(${section3PhaseBg})`,
             backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundBlendMode: "multiply",
+            backgroundPosition: "center bottom",
+            WebkitMaskImage: "linear-gradient(to top, black 0%, black 18%, transparent 55%)",
+            maskImage: "linear-gradient(to top, black 0%, black 18%, transparent 55%)",
           }}
         />
 
@@ -2686,26 +2732,30 @@ function WorkflowSection() {
             transition={{ duration: REVEAL_DURATION, ease: REVEAL_EASE }}
           >
             {/* Section Header */}
-            <div className="flex items-center justify-between mb-12 sm:mb-16 border-b border-white/10 pb-5">
+            <div className="flex items-center justify-between mb-12 sm:mb-16 border-b border-[#19244E]/10 pb-5">
               <div className="flex items-center gap-3">
-                <span className="font-mono text-[11px] sm:text-xs font-bold tracking-[0.25em] uppercase text-white/80">
-                  3-PHASE EXECUTION ENGINE
+                <span className="font-mono text-[11px] sm:text-xs font-bold tracking-[0.25em] uppercase text-[#19244E]/60">
+                  PROCESS
                 </span>
               </div>
               <span className="font-mono text-[11px] sm:text-xs font-bold tracking-widest uppercase text-[#DB3E8C]">
-                DESIGN TO HANDOFF PIPELINE
+                FROM BRIEF TO DEVELOPER HANDOFF
               </span>
             </div>
           </motion.div>
 
-          {/* 3-Column Timeline Pipeline (Continuous Top Line Track & Clean Vertical Dividers) */}
+          {/* Four phases: one row of four on wide screens, a 2×2 grid on tablets and small laptops */}
           <div className="relative">
             {/* Continuous Top Pipeline Track Line (Desktop) */}
-            <div className="hidden md:block absolute top-[15px] left-0 right-0 h-px bg-white/10 z-0" />
+            <div className="hidden xl:block absolute top-[15px] left-0 right-0 h-px bg-[#19244E]/10 z-0" />
 
-            <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-[auto_auto] gap-y-10 md:gap-y-0 gap-x-10 lg:gap-x-14 relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 md:grid-rows-[auto_auto_auto_auto] xl:grid-rows-[auto_auto] gap-y-10 md:gap-y-14 xl:gap-y-0 gap-x-10 xl:gap-x-12 relative z-10">
               {PHASES.map((phase, idx) => {
-                const isLast = idx === PHASES.length - 1
+                // Vertical divider after each column: phases 01 and 03 on the 2×2 grid, every phase but the last on one row.
+                const divider = [
+                  idx % 2 === 0 ? "md:border-r md:pr-10" : "",
+                  idx < PHASES.length - 1 ? "xl:border-r xl:pr-12" : "xl:border-r-0 xl:pr-0",
+                ].join(" ")
 
                 return (
                   <motion.div
@@ -2714,39 +2764,37 @@ function WorkflowSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: false, margin: "-40px" }}
                     transition={{ duration: REVEAL_DURATION, delay: idx * 0.15, ease: REVEAL_EASE }}
-                    className={`flex flex-col md:grid md:grid-rows-subgrid md:row-span-2 relative group ${
-                      !isLast ? "md:border-r md:border-white/10 md:pr-10 lg:pr-14" : ""
-                    }`}
+                    className={`flex flex-col md:grid md:grid-rows-subgrid md:row-span-2 relative group md:border-[#19244E]/10 ${divider}`}
                   >
                     <div>
                       {/* Top Node Header: Node Dot & Sleek Mono Label */}
-                      <div className="flex items-center gap-2.5 mb-7 bg-[#0F1735] pr-4 w-fit relative z-10">
+                      <div className="flex items-center gap-2.5 mb-7 bg-white pr-4 w-fit relative z-10">
 
-                        <span className="w-2.5 h-2.5 rounded-full bg-[#DB3E8C] shadow-[0_0_10px_#DB3E8C] animate-pulse" />
-                        <span className="font-mono text-[11px] font-bold tracking-widest text-[#DB3E8C] uppercase px-3 py-1 rounded-full bg-[#DB3E8C]/15 border border-[#DB3E8C]/30">
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#DB3E8C] shadow-[0_0_8px_rgba(219,62,140,0.45)] animate-pulse" />
+                        <span className="font-mono text-[11px] font-bold tracking-widest text-[#DB3E8C] uppercase px-3 py-1 rounded-full bg-[#DB3E8C]/10 border border-[#DB3E8C]/25">
                           {phase.num} {phase.category}
                         </span>
                       </div>
 
                       {/* Step Title: Large Bold Heading */}
-                      <h3 className="font-display font-bold text-white text-xl sm:text-2xl lg:text-[26px] mb-4 leading-tight group-hover:text-[#F472B6] transition-colors duration-200">
+                      <h3 className="font-display font-bold text-[#19244E] text-xl sm:text-2xl lg:text-[26px] mb-4 leading-tight group-hover:text-[#DB3E8C] transition-colors duration-200">
                         {phase.title}
                       </h3>
 
                       {/* Process Description */}
-                      <p className="text-white/80 text-base leading-relaxed font-sans mb-8">
+                      <p className="text-[#2E3A5C] text-base leading-relaxed font-sans mb-8">
                         {phase.desc}
                       </p>
                     </div>
 
                     {/* Bottom Artifacts Section (Plain Text) */}
-                    <div className="pt-6 border-t border-white/10">
+                    <div className="pt-6 border-t border-[#19244E]/10">
                       <div className="flex items-center gap-2 mb-2">
                         <span className="font-mono text-[11px] font-bold tracking-widest uppercase text-[#DB3E8C]">
                           TOOLS & ARTIFACTS
                         </span>
                       </div>
-                      <p className="font-sans text-[15px] leading-relaxed text-white/80 font-normal">
+                      <p className="font-sans text-[15px] leading-relaxed text-[#2E3A5C] font-normal">
                         {phase.tools.join(" · ")}
                       </p>
                     </div>
@@ -2763,7 +2811,7 @@ function WorkflowSection() {
                   e.preventDefault()
                   document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })
                 }}
-                className="font-sans text-xs sm:text-sm font-semibold tracking-wider text-white/70 hover:text-[#DB3E8C] transition-colors duration-200 cursor-pointer inline-flex items-center gap-2 group/cta"
+                className="font-sans text-xs sm:text-sm font-semibold tracking-wider text-[#19244E]/70 hover:text-[#DB3E8C] transition-colors duration-200 cursor-pointer inline-flex items-center gap-2 group/cta"
               >
                 <span className="group-hover/cta:underline underline-offset-4 decoration-[#DB3E8C]/60">
                   See this process in action across all projects
@@ -2778,18 +2826,19 @@ function WorkflowSection() {
       {/* ── BLOCK 2: HOW I WORK PHILOSOPHICAL STATEMENT HERO (NOW AT THE BOTTOM AS CLOSER) ── */}
       <section
         ref={heroRef}
-        className="relative overflow-hidden flex flex-col justify-center min-h-[440px] lg:min-h-[480px] bg-[#0F1735]"
+        className="relative overflow-hidden flex flex-col justify-center min-h-[440px] lg:min-h-[480px]"
+        style={{ backgroundColor: S, borderTop: `1px solid ${HAIR}` }}
       >
         {/* Header - Solid Navy Divider Bar / Sekat Pemisah Mutlak */}
         <div
-          className="relative z-30 px-4 sm:px-8 lg:px-16 py-6 sm:py-8 flex items-center gap-6 bg-[#0F1735]"
-          style={{ borderBottom: `1px solid rgba(255,255,255,0.08)` }}
+          className="relative z-30 px-4 sm:px-8 lg:px-16 py-6 sm:py-8 flex items-center gap-6"
+          style={{ backgroundColor: S, borderBottom: `1px solid ${HAIR}` }}
         >
-          <span className="font-sans text-[11px] font-semibold tracking-widest uppercase" style={{ color: "rgba(255,255,255,0.4)" }}>
+          <span className="font-sans text-[11px] font-semibold tracking-widest uppercase" style={{ color: "rgba(25,36,78,0.6)" }}>
             SYSTEM LOGIC
           </span>
-          <div className="flex-1 h-px" style={{ backgroundColor: "rgba(255,255,255,0.08)" }} />
-          <span className="font-sans text-[11px] font-semibold tracking-widest uppercase text-[#F472B6]">
+          <div className="flex-1 h-px" style={{ backgroundColor: HAIR }} />
+          <span className="font-sans text-[11px] font-semibold tracking-widest uppercase text-[#DB3E8C]">
             DESIGN PHILOSOPHY · REINFORCEMENT
           </span>
         </div>
@@ -2797,15 +2846,13 @@ function WorkflowSection() {
         {/* Headline area */}
         <div className="relative flex-1 flex flex-col justify-center overflow-hidden">
           {/* Section headline — scroll-driven smooth fade out */}
-          <motion.div
-            style={{ opacity: heroOpacity, y: heroY }}
-            className="relative z-20 px-4 sm:px-8 lg:px-16 py-14 sm:py-20 lg:py-24 flex flex-col items-center text-center"
-          >
-            <p className="font-sans text-[11px] font-bold tracking-[0.25em] uppercase mb-6 sm:mb-10 text-[#F472B6]">
+          {/* No fade-out on scroll: once revealed, the statement stays fully readable. */}
+          <div className="relative z-20 px-4 sm:px-8 lg:px-16 py-14 sm:py-20 lg:py-24 flex flex-col items-center text-center">
+            <p className="font-sans text-[11px] font-bold tracking-[0.25em] uppercase mb-6 sm:mb-10 text-[#DB3E8C]">
               THE LOGIC BEHIND IT
             </p>
             <ScrollRevealText
-              className="font-display font-light leading-[1.45] text-white max-w-4xl text-center drop-shadow-lg"
+              className="font-display font-light leading-[1.45] text-[#19244E] max-w-4xl text-center"
               style={{ fontSize: "clamp(1.75rem, 4.5vw, 4.2rem)", letterSpacing: "-0.025em" }}
               pieces={[
                 ...revealWords("I dig into complex problems first", "a"),
@@ -2814,19 +2861,19 @@ function WorkflowSection() {
                   node: (
                     <span className="whitespace-nowrap">
                       <span className="inline-block align-middle mx-1 sm:mx-1.5 hover:scale-110 transition-transform duration-300">
-                        <StandaloneSearchIcon className="w-8 h-8 sm:w-11 sm:h-11 lg:w-14 lg:h-14 inline-block text-[#F472B6]" />
+                        <StandaloneSearchIcon className="w-8 h-8 sm:w-11 sm:h-11 lg:w-14 lg:h-14 inline-block text-[#DB3E8C]" />
                       </span>,
                     </span>
                   ),
                 },
                 ...revealWords("craft intuitive web & app interfaces with", "b"),
-                ...revealWords("solid logic", "c", (w) => <span className="text-[#F472B6] font-bold">{w}</span>),
+                ...revealWords("solid logic", "c", (w) => <span className="text-[#DB3E8C] font-bold">{w}</span>),
                 {
                   key: "icon-target",
                   node: (
                     <span className="whitespace-nowrap">
                       <span className="inline-block align-middle mx-1 sm:mx-1.5 hover:scale-110 transition-transform duration-300">
-                        <StandaloneTargetIcon className="w-8 h-8 sm:w-11 sm:h-11 lg:w-14 lg:h-14 inline-block text-[#F472B6]" />
+                        <StandaloneTargetIcon className="w-8 h-8 sm:w-11 sm:h-11 lg:w-14 lg:h-14 inline-block text-[#DB3E8C]" />
                       </span>,
                     </span>
                   ),
@@ -2837,13 +2884,13 @@ function WorkflowSection() {
                   key: "icon-clipboard",
                   node: (
                     <span className="inline-block align-middle mx-1 sm:mx-1.5 hover:scale-110 transition-transform duration-300">
-                      <StandaloneClipboardIcon className="w-8 h-8 sm:w-11 sm:h-11 lg:w-14 lg:h-14 inline-block text-[#F472B6]" />
+                      <StandaloneClipboardIcon className="w-8 h-8 sm:w-11 sm:h-11 lg:w-14 lg:h-14 inline-block text-[#DB3E8C]" />
                     </span>
                   ),
                 },
               ]}
             />
-          </motion.div>
+          </div>
         </div>
       </section>
     </div>
@@ -3406,15 +3453,15 @@ function ContactSection({ onOpenPdfPreview }: { onOpenPdfPreview?: () => void })
   return (
     <section
       id="contact"
-      style={{ backgroundColor: "#0F1735", borderTop: `1px solid rgba(255, 255, 255, 0.08)` }}
+      style={{ backgroundColor: W, borderTop: `1px solid ${HAIR}` }}
     >
       {/* Header */}
       <div
         className="px-4 sm:px-8 lg:px-16 py-6 sm:py-8 flex items-center gap-6"
-        style={{ borderBottom: `1px solid rgba(255, 255, 255, 0.08)` }}
+        style={{ borderBottom: `1px solid ${HAIR}` }}
       >
-        <span className="font-sans text-[11px] font-bold tracking-[0.2em] uppercase text-white/50">CONTACT</span>
-        <div className="flex-1 h-px bg-white/10" />
+        <span className="font-sans text-[11px] font-bold tracking-[0.2em] uppercase text-[#19244E]/60">CONTACT</span>
+        <div className="flex-1 h-px bg-[#19244E]/10" />
         <span className="font-sans text-[11px] font-semibold tracking-[0.15em] text-[#DB3E8C]">OPEN TO MID – SENIOR PRODUCT DESIGNER ROLES</span>
       </div>
 
@@ -3425,16 +3472,16 @@ function ContactSection({ onOpenPdfPreview }: { onOpenPdfPreview?: () => void })
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: REVEAL_Y }}
           transition={{ duration: REVEAL_DURATION, ease: REVEAL_EASE }}
           className="flex flex-col justify-center px-4 sm:px-8 lg:px-16 py-12 sm:py-16"
-          style={{ borderRight: `1px solid rgba(255, 255, 255, 0.08)` }}
+          style={{ borderRight: `1px solid ${HAIR}` }}
         >
           <h2
-            className="font-display font-light leading-[0.95] sm:leading-[0.9] my-4 sm:my-6 text-white"
+            className="font-display font-light leading-[0.95] sm:leading-[0.9] my-4 sm:my-6 text-[#19244E]"
             style={{ fontSize: "clamp(2.1rem, 5.5vw, 5rem)", letterSpacing: "-0.025em" }}
           >
             Ready to build<br />something<br />
             <TypingWordEffect words={WORDS} />
           </h2>
-          <p className="text-sm sm:text-base leading-relaxed mb-8 sm:mb-10 max-w-[440px] text-white/80 font-sans" style={{ lineHeight: 1.75 }}>
+          <p className="text-sm sm:text-base leading-relaxed mb-8 sm:mb-10 max-w-[440px] text-[#2E3A5C] font-sans" style={{ lineHeight: 1.75 }}>
             I'm open to Product Designer (Mid to Senior) roles whether remote, hybrid, or on-site with global relocation. Always excited to tackle complex systems and chat about your product challenges.
           </p>
           <div className="flex flex-wrap gap-3">
@@ -3447,8 +3494,8 @@ function ContactSection({ onOpenPdfPreview }: { onOpenPdfPreview?: () => void })
             </a>
             <button
               onClick={onOpenPdfPreview}
-              className="flex items-center gap-2 px-5 sm:px-6 py-3 text-sm font-medium text-white transition-all duration-150 hover:bg-white/10 rounded-xl cursor-pointer"
-              style={{ border: `1px solid rgba(255, 255, 255, 0.2)` }}
+              className="flex items-center gap-2 px-5 sm:px-6 py-3 text-sm font-medium text-[#19244E] bg-white transition-all duration-150 hover:bg-[#19244E]/5 rounded-xl cursor-pointer"
+              style={{ border: `1px solid rgba(25, 36, 78, 0.2)` }}
             >
               Resume <Eye size={14} />
             </button>
@@ -3456,14 +3503,14 @@ function ContactSection({ onOpenPdfPreview }: { onOpenPdfPreview?: () => void })
         </motion.div>
 
         {/* Vertical divider */}
-        <div className="hidden lg:block bg-white/10" />
+        <div className="hidden lg:block bg-[#19244E]/10" />
 
         {/* Right: contact details */}
         <motion.div
           initial={{ opacity: 0, y: REVEAL_Y }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: REVEAL_Y }}
           transition={{ duration: REVEAL_DURATION, delay: 0.15, ease: REVEAL_EASE }}
-          className="flex flex-col justify-center bg-[#0F1735]"
+          className="flex flex-col justify-center bg-white"
         >
           {[
             { label: "Email", value: "adinagayo@gmail.com", sub: "Primary contact", href: "mailto:adinagayo@gmail.com" },
@@ -3474,22 +3521,22 @@ function ContactSection({ onOpenPdfPreview }: { onOpenPdfPreview?: () => void })
             <div
               key={item.label}
               className="px-5 sm:px-10 py-6 sm:py-8"
-              style={{ borderBottom: i < 3 ? `1px solid rgba(255, 255, 255, 0.08)` : "none" }}
+              style={{ borderBottom: i < 3 ? `1px solid ${HAIR}` : "none" }}
             >
-              <span className="font-sans text-[11px] font-bold tracking-[0.2em] uppercase text-white/40 block mb-1">{item.label}</span>
+              <span className="font-sans text-[11px] font-bold tracking-[0.2em] uppercase text-[#19244E]/60 block mb-1">{item.label}</span>
               {item.href ? (
                 <a
                   href={item.href}
                   target={item.label === "LinkedIn" ? "_blank" : undefined}
                   rel={item.label === "LinkedIn" ? "noopener noreferrer" : undefined}
-                  className="block text-sm sm:text-base font-semibold mt-1.5 sm:mt-2 mb-0.5 hover:text-[#DB3E8C] transition-colors text-white"
+                  className="block text-sm sm:text-base font-semibold mt-1.5 sm:mt-2 mb-0.5 hover:text-[#DB3E8C] transition-colors text-[#19244E]"
                 >
                   {item.value}
                 </a>
               ) : (
-                <p className="text-sm sm:text-base font-semibold mt-1.5 sm:mt-2 mb-0.5 text-white">{item.value}</p>
+                <p className="text-sm sm:text-base font-semibold mt-1.5 sm:mt-2 mb-0.5 text-[#19244E]">{item.value}</p>
               )}
-              {item.sub && <p className="text-sm text-white/60">{item.sub}</p>}
+              {item.sub && <p className="text-sm text-[#2E3A5C]/80">{item.sub}</p>}
             </div>
           ))}
         </motion.div>
@@ -3503,9 +3550,9 @@ function Footer() {
   return (
     <footer
       className="px-8 lg:px-16 py-6 sm:py-8 flex items-center justify-center"
-      style={{ borderTop: `1px solid rgba(255, 255, 255, 0.08)`, backgroundColor: "#0F1735" }}
+      style={{ backgroundColor: W, borderTop: `1px solid ${HAIR}` }}
     >
-      <span className="font-sans text-[11px] sm:text-xs font-semibold tracking-widest uppercase text-white/60">© 2026 Adina Fayza Gayo</span>
+      <span className="font-sans text-[11px] sm:text-xs font-semibold tracking-widest uppercase text-[#19244E]/60">© 2026 Adina Fayza Gayo</span>
     </footer>
   )
 }
@@ -3527,7 +3574,7 @@ export default function App() {
   const [currentView, setCurrentView] = useState<"home" | "about" | "sunway-case" | "gegi-case" | "tng-case" | "archery-case" | "election-case" | "anlene-case" | "bijakwang-case" | "myarchery-case" | "backoffice-case" | "telkom-case">("home")
   const [activeFeaturedIndex, setActiveFeaturedIndex] = useState<number>(0)
   const [isPdfModalOpen, setIsPdfModalOpen] = useState(false)
-  const activeSection = useScrollSpy(["home", "work", "process", "archive", "contact"])
+  const activeSection = useScrollSpy(["home", "work", "archive", "process", "contact"])
 
   useEffect(() => {
     const handlePopState = () => {
@@ -3792,14 +3839,16 @@ export default function App() {
         onOpenPdfPreview={() => setIsPdfModalOpen(true)}
         onOpenProject={handleOpenProject}
       />
+      <HeroFactsStrip />
 
       <FeaturedWorkSection
         activeIndex={activeFeaturedIndex}
         onActiveIndexChange={setActiveFeaturedIndex}
         onOpenProject={handleOpenProject}
       />
-      <WorkflowSection />
+      {/* All the work together first (main cases, then the catalog), then how I work. */}
       <ProjectArchiveSection />
+      <WorkflowSection />
       <ContactSection onOpenPdfPreview={() => setIsPdfModalOpen(true)} />
       <Footer />
       <FloatingDock activeSection={activeSection} />
