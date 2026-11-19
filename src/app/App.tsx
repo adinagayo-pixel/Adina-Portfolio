@@ -3853,9 +3853,22 @@ function AppContent() {
   const [isPdfModalOpen, setIsPdfModalOpen] = useState(false)
   const activeSection = useScrollSpy(["home", "work", "archive", "process", "contact"])
 
+  // The browser's own back button: leaving a case page for the home page behaves like the case
+  // page's Home button (back to the Work section, that case selected, image shrinking onto the deck).
+  // Refs keep the listener (attached once) in step with the current view and handler.
+  const viewRef = useRef(currentView)
+  viewRef.current = currentView
+  const backFromCaseRef = useRef<(push?: unknown) => void>(() => {})
+
   useEffect(() => {
+    // The app restores scroll positions itself (for example to the Work section), so the browser must not.
+    if ("scrollRestoration" in window.history) window.history.scrollRestoration = "manual"
     const handlePopState = () => {
       const hash = window.location.hash.replace("#", "")
+      if (!hash && viewRef.current.endsWith("-case")) {
+        backFromCaseRef.current(false)
+        return
+      }
       if (hash === "about") {
         setCurrentView("about")
       } else if (hash && hash.includes("-case")) {
@@ -3935,7 +3948,8 @@ function AppContent() {
 
   // Back from a case page lands on the Work section (not the top of the page), with the case just
   // read selected in the deck, and its hero image shrinks back onto the deck.
-  const handleBackFromCase = () => {
+  // `push` is false when called from the browser's back button, which has already changed the URL.
+  const handleBackFromCase = (push: unknown = true) => {
     const id = currentView.replace(/-case$/, "")
     const heroEl = document.querySelector<HTMLElement>("[data-case-hero]")
     const hr = heroEl?.getBoundingClientRect()
@@ -3947,7 +3961,7 @@ function AppContent() {
     // Render the home view right away, scroll to the deck, and start the morph, all before the next
     // paint, so there is no blank or out-of-place frame in between.
     flushSync(() => setCurrentView("home"))
-    window.history.pushState(null, "", window.location.pathname)
+    if (push !== false) window.history.pushState(null, "", window.location.pathname)
     const deck = document.querySelector<HTMLElement>("[data-deck-target]")
     if (deck && deck.offsetParent) {
       const r = deck.getBoundingClientRect()
@@ -3957,6 +3971,7 @@ function AppContent() {
     }
     startDeckReturnMorph(id, from)
   }
+  backFromCaseRef.current = handleBackFromCase
 
 
 
