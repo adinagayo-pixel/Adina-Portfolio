@@ -3,8 +3,7 @@ import { motion, useMotionValue, useSpring, AnimatePresence, useScroll, useTrans
 import type { MotionValue } from "motion/react"
 import type { ReactNode } from "react"
 // @ts-expect-error -- react-dom has no type declarations installed in this project
-import { flushSync } from "react-dom"
-import section3PhaseBg from "@/imports/section 3 phase.jpg"
+import { flushSync, createPortal } from "react-dom"
 import adinaPhotoAbout from "@/imports/Foto At Work.jpg"
 import adinaPhotoLife from "@/imports/Foto In Life.jpg"
 import afgLogo from "@/imports/LOGO.png"
@@ -1929,7 +1928,12 @@ function ImageLightboxModal({
 
   const current = screens[currentIndex]
 
-  return (
+  // Rendered into <body> through a portal. Inside the deck it sat under a parent that scales on
+  // hover, which made the "fixed" overlay size itself to the deck (a small window) and jump to full
+  // screen when the cursor left. The wrapper stops clicks and pointer presses from reaching the deck
+  // through the React tree, so closing the viewer never opens the case or starts a drag.
+  return createPortal(
+    <div onClick={(e) => e.stopPropagation()} onPointerDown={(e) => e.stopPropagation()}>
     <AnimatePresence>
       <motion.div
         initial={{ opacity: 0, scale: 0.98 }}
@@ -2016,6 +2020,8 @@ function ImageLightboxModal({
         </div>
       </motion.div>
     </AnimatePresence>
+    </div>,
+    document.body,
   )
 }
 
@@ -2850,21 +2856,20 @@ function WorkflowSection() {
     >
       {/* ── BLOCK 1: PROCESS (three phases) ── */}
       <section className="relative overflow-hidden pt-16 sm:pt-20 lg:pt-24 pb-16 sm:pb-24 lg:pb-28 px-6 sm:px-12 lg:px-20 z-20 bg-white" style={{ borderTop: `1px solid ${HAIR}` }}>
-        {/* Faint blueprint texture: strongest at the bottom, fading out toward the top so the phase
-            text stays on a clean background. Static on purpose. */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 pointer-events-none z-0 opacity-[0.2]"
-          style={{
-            backgroundImage: `url(${section3PhaseBg})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center bottom",
-            WebkitMaskImage: "linear-gradient(to top, black 0%, black 18%, transparent 55%)",
-            maskImage: "linear-gradient(to top, black 0%, black 18%, transparent 55%)",
-          }}
-        />
 
         <div className="max-w-7xl mx-auto relative z-10">
+          {/* Section headline, styled like the catalog's */}
+          <motion.h2
+            initial={{ opacity: 0, y: REVEAL_Y }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, margin: "-60px" }}
+            transition={{ duration: REVEAL_DURATION, ease: REVEAL_EASE }}
+            className="font-display font-medium text-[#19244E] tracking-tight mb-12 sm:mb-16"
+            style={{ fontSize: "clamp(1.8rem, 3.5vw, 3rem)", lineHeight: 1.08, letterSpacing: "-0.02em" }}
+          >
+            From brief to <span className="text-[#DB3E8C]">developer handoff.</span>
+          </motion.h2>
+
           {/* Four phases: one row of four on wide screens, a 2×2 grid on tablets and small laptops */}
           <div className="relative">
             {/* Continuous Top Pipeline Track Line (Desktop) */}
