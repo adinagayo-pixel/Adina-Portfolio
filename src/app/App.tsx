@@ -2,6 +2,8 @@ import { useState, useRef, useEffect, Fragment } from "react"
 import { motion, useMotionValue, useSpring, AnimatePresence, useScroll, useTransform, useReducedMotion } from "motion/react"
 import type { MotionValue } from "motion/react"
 import type { ReactNode } from "react"
+// @ts-expect-error -- react-dom has no type declarations installed in this project
+import { flushSync } from "react-dom"
 import section3PhaseBg from "@/imports/section 3 phase.jpg"
 import adinaPhotoAbout from "@/imports/Foto At Work.jpg"
 import adinaPhotoLife from "@/imports/Foto In Life.jpg"
@@ -499,8 +501,122 @@ const HERO_FACTS = [
   { label: "Tools", items: ["Figma", "Figma Make", "Framer", "Adobe Illustrator", "Adobe Photoshop", "Claude", "Gemini", "Antigravity", "Excel"] },
 ]
 
+// ─── HERO TO DECK FLIGHT ─────────────────────────────────────────────────────
+// Desktop only. As the page scrolls from the hero to the Work section, the hero's case cards fly
+// down and settle into the stacked deck in the middle of the Work stage. The flight is tied to the
+// scroll position, so it plays backwards when scrolling up. Each card starts exactly where its hero
+// card sits and ends on the deck: the active case on top, the rest tucked underneath at a slight
+// angle and fading out, so the real deck (that case's own screens) takes over seamlessly.
+const HERO_FLIGHT_ITEMS = FEATURED.map((c) => ({ key: c.projectId, src: c.thumb }))
+
+function HeroDeckFlight() {
+  const reduceMotion = useReducedMotion()
+  const layerRef = useRef<HTMLDivElement>(null)
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([])
+
+  useEffect(() => {
+    if (reduceMotion) return
+    const mq = window.matchMedia("(min-width: 1024px)")
+    // Offsets for the cards tucked under the top one, echoing the deck's own fan.
+    const STACK_ROT = [4, -4, 7, -5, 3, -3, 6, -6]
+    const STACK_X = [6, -6, 12, -12, 4, -4, 9, -9]
+    const STACK_Y = [-2, 2, -4, 4, -1, 1, -3, 3]
+    const START = 40 // px of scroll before the flight begins
+    const smooth = (t: number) => (t <= 0 ? 0 : t >= 1 ? 1 : t * t * (3 - 2 * t))
+    let on = false
+    let hidDeck = false
+    const setOn = (next: boolean) => {
+      if (next === on) return
+      on = next
+      document.documentElement.dataset.heroFlight = next ? "on" : ""
+    }
+    let frame = 0
+    const tick = () => {
+      frame = requestAnimationFrame(tick)
+      const layer = layerRef.current
+      if (!layer) return
+      const target = document.querySelector<HTMLElement>("[data-deck-target]")
+      const off = () => {
+        layer.style.display = "none"
+        setOn(false)
+        // Only undo what the flight itself hid, so other effects (the case morph) can hide the deck too.
+        if (target && hidDeck) { target.style.opacity = ""; hidDeck = false }
+      }
+      if (!mq.matches || !target || !target.offsetParent) return off()
+
+      // 0 when the flight starts, 1 when the deck's center reaches 62% of the screen height, so the
+      // cards land a little before the deck is fully centered and never hang mid-air for long.
+      const tr = target.getBoundingClientRect()
+      const endY = window.scrollY + tr.top + tr.height / 2 - window.innerHeight * 0.62
+      const p = (window.scrollY - START) / Math.max(1, endY - START)
+      if (p <= 0 || p >= 1) return off()
+
+      layer.style.display = "block"
+      setOn(true)
+      target.style.opacity = "0"
+      hidDeck = true
+      const activeKey = target.dataset.deckTarget
+      const tw = Math.min(tr.width * 0.92, ((tr.height * 0.94) * 16) / 10)
+      const th = (tw * 10) / 16
+      const tcx = tr.left + tr.width / 2, tcy = tr.top + tr.height / 2
+
+      let rank = 0
+      HERO_FLIGHT_ITEMS.forEach((it, i) => {
+        const el = cardRefs.current[i]
+        if (!el) return
+        const src = document.querySelector<HTMLElement>(`[data-hero-case="${it.key}"]`)
+        if (!src || src.style.visibility === "hidden") { el.style.opacity = "0"; return }
+        const sr = src.getBoundingClientRect()
+        const isTop = it.key === activeKey
+        const r = isTop ? 0 : rank++
+        // Cards leave one after another, the top card first.
+        const delay = isTop ? 0 : Math.min(0.24, (r + 1) * 0.03)
+        const q = smooth((p - delay) / (1 - delay))
+        const dx = isTop ? 0 : STACK_X[r % 8], dy = isTop ? 0 : STACK_Y[r % 8], rot = isTop ? 0 : STACK_ROT[r % 8]
+        const w = sr.width + (tw - sr.width) * q
+        const h = sr.height + (th - sr.height) * q
+        const scx = sr.left + sr.width / 2, scy = sr.top + sr.height / 2
+        const cx = scx + (tcx + dx - scx) * q
+        const cy = scy + (tcy + dy - scy) * q
+        el.style.width = `${w}px`
+        el.style.height = `${h}px`
+        el.style.transform = `translate(${cx - w / 2}px, ${cy - h / 2}px) rotate(${rot * q}deg)`
+        el.style.zIndex = isTop ? "20" : String(10 - r)
+        // Start at the hero card's own opacity; cards under the top one fade out near the end.
+        const rest = parseFloat(src.dataset.restOpacity || "1")
+        const base = rest + (1 - rest) * q
+        el.style.opacity = String(isTop ? base : base * (1 - Math.max(0, (q - 0.8) / 0.2)))
+      })
+    }
+    frame = requestAnimationFrame(tick)
+    return () => {
+      cancelAnimationFrame(frame)
+      document.documentElement.dataset.heroFlight = ""
+      const t = document.querySelector<HTMLElement>("[data-deck-target]")
+      if (t) t.style.opacity = ""
+    }
+  }, [reduceMotion])
+
+  if (reduceMotion) return null
+  return (
+    <div ref={layerRef} aria-hidden="true" className="fixed inset-0 z-40 pointer-events-none" style={{ display: "none" }}>
+      {HERO_FLIGHT_ITEMS.map((it, i) => (
+        <div
+          key={it.key}
+          ref={(el) => { cardRefs.current[i] = el }}
+          className="absolute left-0 top-0 overflow-hidden rounded-xl border border-[#19244E]/10 bg-white shadow-[0_24px_50px_-20px_rgba(15,23,53,0.55)]"
+          style={{ willChange: "transform" }}
+        >
+          {/* Cropped from the top, exactly like the deck's cards, so the hand-off shows no jump */}
+          <img src={it.src} alt="" className="w-full h-full object-cover object-top" draggable={false} />
+        </div>
+      ))}
+    </div>
+  )
+}
+
 // Desktop only: the same industries, expertise, and tools as the phone hero's switcher, laid out
-// as a quiet three-column strip under the hero so every keyword is visible at a glance. No
+// as a quiet three-column strip after the catalog so every keyword is visible at a glance. No
 // interaction on purpose; the hero's floating cards stay the page's one signature moment.
 function HeroFactsStrip() {
   return (
@@ -1170,10 +1286,15 @@ function HeroWorkField({ items, children, className = "" }: { items: HeroFieldIt
         const fy = (Math.cos(now * c.fB + c.pB) * 0.7 + Math.cos(now * c.fA * 0.7 + c.pA) * 0.3) * amp
 
         // Upright, no rotation or skew.
-        const lift = exitEase * (120 + 520 * (c.tier === 3 ? 1 : c.tier === 2 ? 0.7 : c.tier === 1 ? 0.45 : 0.25))
+        // Backdrop cards drift up and fade on scroll. Case cards stay put: once the page scrolls, the
+        // flight layer (HeroDeckFlight) takes them over and carries them down into the Work deck.
+        const lift = c.backdrop ? exitEase * (120 + 130) : 0
+        const flying = !c.backdrop && document.documentElement.dataset.heroFlight === "on"
         el.style.transform = `translate(-50%, -50%) translate(${W / 2 + ax + c.ox + fx}px, ${H / 2 + ay + c.oy + fy - lift}px) scale(${shown})`
         el.style.zIndex = isHovered ? "40" : String(10 + c.tier * 5)
-        el.style.opacity = String((isHovered ? 1 : c.restOpacity) * (1 - exitEase))
+        el.dataset.restOpacity = String(c.restOpacity)
+        el.style.transitionDuration = flying || window.scrollY > 0 ? "0s" : ""
+        el.style.opacity = flying ? "0" : String((isHovered ? 1 : c.restOpacity) * (c.backdrop ? 1 - exitEase : 1))
         if (c.backdrop) el.style.filter = "grayscale(1)"
       })
       frame = requestAnimationFrame(tick)
@@ -1217,6 +1338,7 @@ function HeroWorkField({ items, children, className = "" }: { items: HeroFieldIt
           onBlur={() => setHovered((h) => (h === i ? null : h))}
           onClick={() => p.onOpen?.()}
           aria-label={`Open ${p.name}`}
+          data-hero-case={p.key}
           className="absolute left-0 top-0 w-[240px] overflow-hidden rounded-xl border border-[#19244E]/10 bg-white shadow-[0_12px_30px_-14px_rgba(25,36,78,0.4)] cursor-pointer transition-opacity duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C]"
           style={{ opacity: 0, aspectRatio: `1 / ${p.aspect}`, willChange: "transform" }}
         >
@@ -2187,6 +2309,14 @@ function FeaturedWorkSection({
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
   const [isHoveringCanvas, setIsHoveringCanvas] = useState(false)
   const canvasRef = useRef<HTMLDivElement>(null)
+  // Coming back from a case page, the deck must already be in place for the image to land on it,
+  // so the section skips its entrance animation that one time.
+  const [skipReveal] = useState(() => {
+    const w = window as unknown as { __skipWorkReveal?: boolean }
+    const skip = !!w.__skipWorkReveal
+    w.__skipWorkReveal = false
+    return skip
+  })
 
   // Mobile Showcase State & Refs
   const [mobileActiveIndex, setMobileActiveIndex] = useState(0)
@@ -2254,7 +2384,7 @@ function FeaturedWorkSection({
 
         {/* Section intro: fades up each time the section scrolls into view, like Process */}
         <motion.div
-          initial={{ opacity: 0, y: REVEAL_Y }}
+          initial={skipReveal ? false : { opacity: 0, y: REVEAL_Y }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, margin: "-60px" }}
           transition={{ duration: REVEAL_DURATION, ease: REVEAL_EASE }}
@@ -2274,7 +2404,7 @@ function FeaturedWorkSection({
 
         {/* Showcase container: follows the intro in, slightly later */}
         <motion.div
-          initial={{ opacity: 0, y: REVEAL_Y }}
+          initial={skipReveal ? false : { opacity: 0, y: REVEAL_Y }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, margin: "-60px" }}
           transition={{ duration: REVEAL_DURATION, delay: 0.15, ease: REVEAL_EASE }}
@@ -2363,6 +2493,8 @@ function FeaturedWorkSection({
                 aria-label={`Open case study: ${activeProject.name}`}
                 className="relative w-full h-full min-h-[460px] lg:min-h-[480px] flex items-center justify-center cursor-pointer transition-transform duration-300 hover:scale-[1.01] focus:outline-none group"
               >
+                {/* The hero's flying cards land here; this wrapper marks the landing spot. */}
+                <div data-deck-target={activeProject.projectId} className="relative w-full h-full min-h-[460px] lg:min-h-[480px] flex items-center justify-center">
                 {activeProject.screens ? (
                   <StackedFanOutDeck screens={activeProject.screens} />
                 ) : (
@@ -2382,6 +2514,7 @@ function FeaturedWorkSection({
                     />
                   </motion.div>
                 )}
+                </div>
               </motion.div>
               {/* Custom Figma cursor follower */}
               <AnimatePresence>
@@ -3570,7 +3703,169 @@ const FEATURED_INDEX_MAP: Record<string, number> = {
 }
 
 // ─── APP ──────────────────────────────────────────────────────────────────────
+// ─── CASE MORPH ───────────────────────────────────────────────────────────────
+// Desktop only. Opening a case study from the Work deck (or a hero card) grows that card's cover
+// smoothly into the hero image at the top of the case page, so the card's journey (hero → deck →
+// case) reads as one continuous move. The source rect is captured before the view changes; the
+// layer then waits for the case page's hero image ([data-case-hero]) and animates onto it.
+type CaseMorphDetail = {
+  src: string
+  from: { left: number; top: number; width: number; height: number }
+  // Where to land: the case page's hero image (opening a case) or the Work deck (coming back).
+  target?: "case" | "deck"
+}
+
+// The deck's top card inside the Work stage: 92% of the stage width (or 94% of its height), 16:10, centered.
+function deckTopCardRect(stage: DOMRect) {
+  const w = Math.min(stage.width * 0.92, ((stage.height * 0.94) * 16) / 10)
+  const h = (w * 10) / 16
+  return { left: stage.left + (stage.width - w) / 2, top: stage.top + (stage.height - h) / 2, width: w, height: h }
+}
+
+function startCaseMorph(projectId: string) {
+  if (typeof window === "undefined") return
+  if (!window.matchMedia("(min-width: 1024px)").matches) return
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
+  const feat = FEATURED.find((f) => f.projectId === projectId)
+  if (!feat) return
+  const inView = (r: DOMRect) => r.bottom > 0 && r.top < window.innerHeight && r.width > 0
+  let from: CaseMorphDetail["from"] | null = null
+  const deck = document.querySelector<HTMLElement>(`[data-deck-target="${projectId}"]`)
+  const dr = deck?.getBoundingClientRect()
+  if (deck && dr && inView(dr) && deck.style.opacity !== "0") {
+    from = deckTopCardRect(dr)
+  } else {
+    const card = document.querySelector<HTMLElement>(`[data-hero-case="${projectId}"]`)
+    const cr = card?.getBoundingClientRect()
+    if (card && cr && inView(cr) && card.style.visibility !== "hidden") from = { left: cr.left, top: cr.top, width: cr.width, height: cr.height }
+  }
+  if (!from) return
+  document.documentElement.dataset.morphing = "case"
+  window.dispatchEvent(new CustomEvent<CaseMorphDetail>("case-morph", { detail: { src: feat.thumb, from, target: "case" } }))
+}
+
+// Coming back from a case page: the case's hero image shrinks back onto the Work deck. Call it with
+// the hero image's rect captured before the view changes, after the page has scrolled to the deck.
+function canReturnMorph(projectId: string, from: CaseMorphDetail["from"] | null): from is CaseMorphDetail["from"] {
+  if (typeof window === "undefined" || !from) return false
+  if (!window.matchMedia("(min-width: 1024px)").matches) return false
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false
+  if (from.top + from.height < 0 || from.top > window.innerHeight) return false
+  return FEATURED.some((f) => f.projectId === projectId)
+}
+
+function startDeckReturnMorph(projectId: string, from: CaseMorphDetail["from"] | null) {
+  if (!canReturnMorph(projectId, from)) return
+  const feat = FEATURED.find((f) => f.projectId === projectId)!
+  window.dispatchEvent(new CustomEvent<CaseMorphDetail>("case-morph", { detail: { src: feat.thumb, from, target: "deck" } }))
+}
+
+function CaseMorphLayer() {
+  const [morph, setMorph] = useState<(CaseMorphDetail & { id: number }) | null>(null)
+  const [to, setTo] = useState<CaseMorphDetail["from"] | null>(null)
+  const [fading, setFading] = useState(false)
+  const [correcting, setCorrecting] = useState(false)
+  const imgRef = useRef<HTMLImageElement>(null)
+
+  useEffect(() => {
+    const onMorph = (e: Event) => {
+      setTo(null)
+      setFading(false)
+      setCorrecting(false)
+      setMorph({ ...(e as CustomEvent<CaseMorphDetail>).detail, id: Date.now() })
+    }
+    window.addEventListener("case-morph", onMorph)
+    return () => window.removeEventListener("case-morph", onMorph)
+  }, [])
+
+  const landingEl = () =>
+    document.querySelector<HTMLElement>(morph?.target === "deck" ? "[data-deck-target]" : "[data-case-hero]")
+  const rectOf = (el: HTMLElement) => {
+    const r = el.getBoundingClientRect()
+    return morph?.target === "deck" ? deckTopCardRect(r) : { left: r.left, top: r.top, width: r.width, height: r.height }
+  }
+
+  // Wait for the landing spot to be laid out (the case page's hero image, or the Work deck), then fly onto it.
+  useEffect(() => {
+    if (!morph) return
+    let raf = 0, tries = 0
+    const find = () => {
+      const target = landingEl()
+      const r = target?.getBoundingClientRect()
+      if (target && r && r.height > 40 && target.offsetParent) {
+        target.style.opacity = "0"
+        setTo(rectOf(target))
+        return
+      }
+      if (++tries > 90) { delete document.documentElement.dataset.morphing; setMorph(null); return }
+      raf = requestAnimationFrame(find)
+    }
+    raf = requestAnimationFrame(find)
+    return () => cancelAnimationFrame(raf)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [morph])
+
+  // Landed. If the spot moved while flying (the page was still settling), glide the last bit. Then
+  // wait until the page around it is fully shown, and swap to the real image in the same frame, so
+  // there is never a moment with two copies on screen. A video target (Telkom) cross-fades instead.
+  const land = () => {
+    const target = landingEl()
+    if (!target) { delete document.documentElement.dataset.morphing; setMorph(null); return }
+    const now = rectOf(target)
+    if (to && (Math.abs(now.left - to.left) > 1 || Math.abs(now.top - to.top) > 1 || Math.abs(now.width - to.width) > 1)) {
+      setCorrecting(true)
+      setTo(now)
+      return
+    }
+    let tries = 0
+    const swap = () => {
+      let el: HTMLElement | null = target.parentElement, settled = true
+      while (el && el !== document.body) {
+        if (parseFloat(getComputedStyle(el).opacity) < 0.99) { settled = false; break }
+        el = el.parentElement
+      }
+      if (!settled && ++tries < 60) { requestAnimationFrame(swap); return }
+      const isVideo = target.tagName === "VIDEO"
+      // Same frame: hide the flying copy (unless cross-fading to a video) and reveal the real image.
+      if (!isVideo && imgRef.current) imgRef.current.style.visibility = "hidden"
+      target.style.opacity = ""
+      delete document.documentElement.dataset.morphing
+      if (isVideo) setFading(true)
+      else setMorph(null)
+    }
+    swap()
+  }
+
+  if (!morph) return null
+  return (
+    <motion.img
+      ref={imgRef}
+      key={morph.id}
+      src={morph.src}
+      alt=""
+      aria-hidden="true"
+      className="fixed z-[300] object-cover object-top pointer-events-none"
+      initial={{ ...morph.from, borderRadius: 12, opacity: 1 }}
+      animate={fading ? { opacity: 0 } : to ? { ...to, borderRadius: 16, opacity: 1 } : { ...morph.from, borderRadius: 12, opacity: 1 }}
+      transition={fading ? { duration: 0.25 } : { duration: !to ? 0 : correcting ? 0.18 : 0.7, ease: [0.22, 1, 0.36, 1] }}
+      onAnimationComplete={() => {
+        if (fading) { setMorph(null); return }
+        if (to) land()
+      }}
+    />
+  )
+}
+
 export default function App() {
+  return (
+    <>
+      <AppContent />
+      <CaseMorphLayer />
+    </>
+  )
+}
+
+function AppContent() {
   const [currentView, setCurrentView] = useState<"home" | "about" | "sunway-case" | "gegi-case" | "tng-case" | "archery-case" | "election-case" | "anlene-case" | "bijakwang-case" | "myarchery-case" | "backoffice-case" | "telkom-case">("home")
   const [activeFeaturedIndex, setActiveFeaturedIndex] = useState<number>(0)
   const [isPdfModalOpen, setIsPdfModalOpen] = useState(false)
@@ -3656,6 +3951,31 @@ export default function App() {
   }
   const handleBackToWork = handleBackToHome
 
+  // Back from a case page lands on the Work section (not the top of the page), with the case just
+  // read selected in the deck, and its hero image shrinks back onto the deck.
+  const handleBackFromCase = () => {
+    const id = currentView.replace(/-case$/, "")
+    const heroEl = document.querySelector<HTMLElement>("[data-case-hero]")
+    const hr = heroEl?.getBoundingClientRect()
+    const from = hr ? { left: hr.left, top: hr.top, width: hr.width, height: hr.height } : null
+    if (FEATURED_INDEX_MAP[id] !== undefined) setActiveFeaturedIndex(FEATURED_INDEX_MAP[id])
+    ;(window as unknown as { __skipWorkReveal?: boolean }).__skipWorkReveal = true
+    // Hide the deck before the home view renders its first frame, so it never flashes before the image lands.
+    if (canReturnMorph(id, from)) document.documentElement.dataset.morphing = "deck"
+    // Render the home view right away, scroll to the deck, and start the morph, all before the next
+    // paint, so there is no blank or out-of-place frame in between.
+    flushSync(() => setCurrentView("home"))
+    window.history.pushState(null, "", window.location.pathname)
+    const deck = document.querySelector<HTMLElement>("[data-deck-target]")
+    if (deck && deck.offsetParent) {
+      const r = deck.getBoundingClientRect()
+      window.scrollTo({ top: window.scrollY + r.top + r.height / 2 - window.innerHeight / 2, behavior: "instant" })
+    } else {
+      document.getElementById("work")?.scrollIntoView({ behavior: "instant", block: "start" })
+    }
+    startDeckReturnMorph(id, from)
+  }
+
 
 
   if (currentView === "about") {
@@ -3731,7 +4051,7 @@ export default function App() {
           handleOpenProject(id)
           window.scrollTo({ top: 0 })
         }}
-        onBackToHome={handleBackToWork}
+        onBackToHome={handleBackFromCase}
       >
         {caseComponent}
       </CaseStudySwipeWrapper>
@@ -3743,7 +4063,7 @@ export default function App() {
     return renderCaseStudyView(
       "tng-case",
       <TngCase
-        onBack={handleBackToWork}
+        onBack={handleBackFromCase}
         onNext={() => { handleOpenProject("election"); window.scrollTo({ top: 0 }) }}
         onPrev={() => { handleOpenProject("backoffice"); window.scrollTo({ top: 0 }) }}
       />
@@ -3753,7 +4073,7 @@ export default function App() {
     return renderCaseStudyView(
       "gegi-case",
       <GegiCase
-        onBack={handleBackToWork}
+        onBack={handleBackFromCase}
         onNext={() => { handleOpenProject("archery"); window.scrollTo({ top: 0 }) }}
         onPrev={() => { handleOpenProject("bijakwang"); window.scrollTo({ top: 0 }) }}
       />
@@ -3763,7 +4083,7 @@ export default function App() {
     return renderCaseStudyView(
       "bijakwang-case",
       <BijakWangCase
-        onBack={handleBackToWork}
+        onBack={handleBackFromCase}
         onNext={() => { handleOpenProject("gegi"); window.scrollTo({ top: 0 }) }}
         onPrev={() => { handleOpenProject("myarchery"); window.scrollTo({ top: 0 }) }}
       />
@@ -3773,7 +4093,7 @@ export default function App() {
     return renderCaseStudyView(
       "election-case",
       <ElectionCase
-        onBack={handleBackToWork}
+        onBack={handleBackFromCase}
         onNext={() => { handleOpenProject("anlene"); window.scrollTo({ top: 0 }) }}
         onPrev={() => { handleOpenProject("tng"); window.scrollTo({ top: 0 }) }}
       />
@@ -3783,7 +4103,7 @@ export default function App() {
     return renderCaseStudyView(
       "backoffice-case",
       <BackofficeCase
-        onBack={handleBackToWork}
+        onBack={handleBackFromCase}
         onNext={() => { handleOpenProject("tng"); window.scrollTo({ top: 0 }) }}
         onPrev={() => { handleOpenProject("telkom"); window.scrollTo({ top: 0 }) }}
       />
@@ -3793,7 +4113,7 @@ export default function App() {
     return renderCaseStudyView(
       "anlene-case",
       <AnleneCase
-        onBack={handleBackToWork}
+        onBack={handleBackFromCase}
         onNext={() => { handleOpenProject("myarchery"); window.scrollTo({ top: 0 }) }}
         onPrev={() => { handleOpenProject("election"); window.scrollTo({ top: 0 }) }}
       />
@@ -3803,7 +4123,7 @@ export default function App() {
     return renderCaseStudyView(
       "archery-case",
       <ProArcheryCase
-        onBack={handleBackToWork}
+        onBack={handleBackFromCase}
         onNext={() => { handleOpenProject("telkom"); window.scrollTo({ top: 0 }) }}
         onPrev={() => { handleOpenProject("gegi"); window.scrollTo({ top: 0 }) }}
       />
@@ -3813,7 +4133,7 @@ export default function App() {
     return renderCaseStudyView(
       "myarchery-case",
       <MyArcheryCase
-        onBack={handleBackToWork}
+        onBack={handleBackFromCase}
         onNext={() => { handleOpenProject("bijakwang"); window.scrollTo({ top: 0 }) }}
         onPrev={() => { handleOpenProject("anlene"); window.scrollTo({ top: 0 }) }}
       />
@@ -3823,7 +4143,7 @@ export default function App() {
     return renderCaseStudyView(
       "telkom-case",
       <TelkomCase
-        onBack={handleBackToWork}
+        onBack={handleBackFromCase}
         onNext={() => { handleOpenProject("backoffice"); window.scrollTo({ top: 0 }) }}
         onPrev={() => { handleOpenProject("archery"); window.scrollTo({ top: 0 }) }}
       />
@@ -3837,17 +4157,19 @@ export default function App() {
       <HeroSection
         onReadMore={handleOpenAbout}
         onOpenPdfPreview={() => setIsPdfModalOpen(true)}
-        onOpenProject={handleOpenProject}
+        onOpenProject={(id: string) => { startCaseMorph(String(id).toLowerCase()); handleOpenProject(id) }}
       />
-      <HeroFactsStrip />
+      <HeroDeckFlight />
 
       <FeaturedWorkSection
         activeIndex={activeFeaturedIndex}
         onActiveIndexChange={setActiveFeaturedIndex}
-        onOpenProject={handleOpenProject}
+        onOpenProject={(id: string) => { startCaseMorph(String(id).toLowerCase()); handleOpenProject(id) }}
       />
       {/* All the work together first (main cases, then the catalog), then how I work. */}
       <ProjectArchiveSection />
+      {/* Breadth in keywords (industries, expertise, tools), between the catalog and the process */}
+      <HeroFactsStrip />
       <WorkflowSection />
       <ContactSection onOpenPdfPreview={() => setIsPdfModalOpen(true)} />
       <Footer />

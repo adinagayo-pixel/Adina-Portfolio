@@ -1,3 +1,10 @@
 @import './fonts.css';
 @import './tailwind.css';
 @import './theme.css';
+
+/* Card-to-page morph: while a card is flying to its landing spot, keep the real image hidden from
+   the very first frame the page renders, so it never flashes before the flying copy arrives. */
+html[data-morphing="case"] [data-case-hero],
+html[data-morphing="deck"] [data-deck-target] {
+  opacity: 0 !important;
+}

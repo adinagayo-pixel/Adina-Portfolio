@@ -247,7 +247,7 @@ export default function ProArcheryCase({ onBack, onNext, onPrev }: Props) {
             <img
               src={proArcheryThumb}
               alt="Pro Archery Ecosystem Preview"
-              className="w-full h-auto object-cover max-h-[380px] lg:max-h-[420px] rounded-2xl transform group-hover:scale-105 transition-transform duration-500"
+              data-case-hero className="w-full h-auto object-cover max-h-[380px] lg:max-h-[420px] rounded-2xl transform group-hover:scale-105 transition-transform duration-500"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#111836]/40 via-transparent to-transparent pointer-events-none" />
           </div>
