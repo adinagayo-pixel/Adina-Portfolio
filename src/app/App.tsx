@@ -656,9 +656,685 @@ const REVEAL_DURATION = 0.7
 const HERO_SPRING = { type: "tween" as const, ease: [0.16, 1, 0.3, 1] as const, duration: 0.7 }
 
 // ─── Hero Section ─────────────────────────────────────────────────────────────
-function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void; onOpenPdfPreview?: () => void }) {
+// ─── HERO WORK FIELD ─────────────────────────────────────────────────────────
+// The site's one signature interaction (desktop only). Project thumbnails float around the hero
+// content with 2.5D cursor parallax, curated and calm. Every thumbnail has a fixed, upright anchor in
+// a loose ring around the content, with generous white space: no two cards touch, and none reaches
+// the content, even at full parallax offset plus idle float. Cards come in three depth tiers. Far
+// cards are small, faint, and nearly still; near cards are larger, clear, and follow the cursor most.
+// Two layers. In front, the main case studies: large, in colour, and clickable to open the case.
+// Behind them, the catalog thumbnails: small, faint, grey, and not interactive, so the field feels
+// full without pulling attention from the main work. Case studies are placed first; catalog
+// thumbnails only fill the space that is left, and are the first to go on small screens.
+type ParallaxCard = {
+  hidden: boolean; fx: number; fy: number; depth: number; restScale: number; restOpacity: number; tier: 0 | 1 | 2 | 3; backdrop: boolean
+  ox: number; oy: number; scale: number
+  // Idle float: two slow waves per axis with their own speed, size, and phase, so each path is a loose, unrepeating loop.
+  floatAmp: number; floatLive: number; fA: number; fB: number; pA: number; pB: number
+}
+
+const PARALLAX = {
+  MAX_OFFSET: 45,    // px a card may move away from its anchor
+  LERP: 0.04,        // how quickly a card follows the cursor
+  IDLE_MIN: 5,       // px, smallest idle float
+  IDLE_MAX: 12,      // px, largest idle float
+  TEXT_GAP: 24,      // px kept between a card and the headline, on top of all motion
+  CARD_GAP: 22,      // px of white space kept between any two cards, on top of all motion
+  CARD_BASE: 240,    // px, width of the card element before scaling (cards are 3:2 landscape)
+}
+
+// Three depth tiers: card width range in px, opacity, and how strongly the card follows the cursor.
+const DEPTH_TIERS = {
+  0: { minW: 38, maxW: 52, opacity: 0.32, depth: 0.01 },    // backdrop (catalog thumbnails)
+  1: { minW: 100, maxW: 112, opacity: 0.6, depth: 0.015 },  // far
+  2: { minW: 128, maxW: 144, opacity: 0.85, depth: 0.035 }, // middle
+  3: { minW: 160, maxW: 176, opacity: 1, depth: 0.05 },     // near
+} as const
+
+// Each item gives its card height as a share of its width: 2/3 for the landscape case study
+// covers, 4/3 for the portrait catalog thumbnails. Backdrop items are decorative only.
+type HeroFieldItem = { key: string; name: string; sub: string; src: string; aspect: number; backdrop?: boolean; onOpen?: () => void }
+
+function HeroWorkField({ items, children, className = "" }: { items: HeroFieldItem[]; children: ReactNode; className?: string }) {
+  const wrapRef = useRef<HTMLDivElement>(null)
+  const itemRefs = useRef<(HTMLButtonElement | null)[]>([])
+  const textRef = useRef<HTMLDivElement>(null)
+  const reduceMotion = useReducedMotion()
+  // Cards that do not fit with full white space are left out; the list is in priority order, so
+  // the first cases are always the ones shown.
+  const withImages = items.filter((it) => it.src)
+  const [hovered, setHovered] = useState<number | null>(null)
+  const hoveredRef = useRef<number | null>(null)
+  hoveredRef.current = hovered
+
+  const cards = useRef<ParallaxCard[]>([])
+  // Cursor position relative to the section's center, from -0.5 to 0.5 on each axis.
+  const mouse = useRef({ x: 0, y: 0 })
+
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = wrapRef.current?.getBoundingClientRect()
+    if (!rect) return
+    mouse.current = { x: (e.clientX - rect.left) / rect.width - 0.5, y: (e.clientY - rect.top) / rect.height - 0.5 }
+  }
+  const onLeave = () => { mouse.current = { x: 0, y: 0 } }
+
+  useEffect(() => {
+    const wrap = wrapRef.current
+    if (!wrap) return
+    const lerp = (from: number, to: number, f: number) => from + (to - from) * f
+
+    // Areas no card may enter, as boxes measured from the canvas center: the hero content and, on
+    // load, the floating page dock at the bottom of the screen.
+    const zonesFor = (W: number, H: number) => {
+      const zones: { cx: number; cy: number; hw: number; hh: number; text: boolean }[] = []
+      const wr = wrap.getBoundingClientRect()
+      const t = textRef.current
+      if (t) {
+        const r = t.getBoundingClientRect()
+        zones.push({ cx: r.left + r.width / 2 - wr.left - W / 2, cy: r.top + r.height / 2 - wr.top - H / 2, hw: r.width / 2, hh: r.height / 2, text: true })
+      } else {
+        zones.push({ cx: 0, cy: 0, hw: 300, hh: 110, text: true })
+      }
+      const dock = document.querySelector<HTMLElement>('nav[aria-label="Page navigation"]')
+      if (dock && dock.offsetWidth < window.innerWidth * 0.9) {
+        const dh = dock.offsetHeight, dw = dock.offsetWidth
+        const dockTop = window.innerHeight - 24 - dh - window.scrollY
+        const cy = dockTop + dh / 2 - (wr.top) - H / 2
+        if (Math.abs(cy) < H / 2 + dh) zones.push({ cx: window.innerWidth / 2 - wr.left - W / 2, cy, hw: dw / 2 + 8, hh: dh / 2 + 8, text: false })
+      }
+      return zones
+    }
+
+    // Repeatable pseudo-random numbers, so the layout looks the same on every visit.
+    let seed = 7
+    const rand = () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646 }
+
+    // Everything scales with the canvas width: cards, motion range, and spacing. A 1280 px canvas is
+    // full size; narrower canvases scale down (to 55% at most), so the layout fits small windows too.
+    const fitFor = (w: number, h: number = w) => Math.max(0.55, Math.min(1, Math.max(w, h) / 1280))
+    // How much of the full spacing the current layout uses (1 = full). Lowered when space is tight.
+    const layout = { level: 1, fit: 1 }
+    const textCenter = { x: 0, y: 0 }
+
+    const place = () => {
+      const W0 = wrap.clientWidth, H0 = wrap.clientHeight
+      if (W0 < 50 || H0 < 50) return false
+      const fit = fitFor(W0, H0)
+      const zones = zonesFor(W0, H0)
+      const textZone = zones[0]
+      const n = withImages.length
+
+      // Tiers follow priority: the first third of the cases are near, the next third middle, the rest
+      // far. Catalog thumbnails form the backdrop tier.
+      const caseIdx = withImages.map((it, i) => (it.backdrop ? -1 : i)).filter((i) => i >= 0)
+      const backIdx = withImages.map((it, i) => (it.backdrop ? i : -1)).filter((i) => i >= 0)
+      const nCases = caseIdx.length, nBack = backIdx.length
+      const third = Math.ceil(nCases / 3)
+      const tiers: (0 | 1 | 2 | 3)[] = withImages.map((it, i) => {
+        if (it.backdrop) return 0
+        const r = caseIdx.indexOf(i)
+        return r < third ? 3 : r < third * 2 ? 2 : 1
+      })
+      // Home angle around the ring: cases spread evenly among themselves, backdrop cards evenly in between.
+      const homeOf = (i: number) => {
+        if (withImages[i].backdrop) return -Math.PI / 2 + (backIdx.indexOf(i) + 0.5) * ((Math.PI * 2) / Math.max(1, nBack))
+        return -Math.PI / 2 + caseIdx.indexOf(i) * ((Math.PI * 2) / Math.max(1, nCases))
+      }
+      const stepOf = (i: number) => (Math.PI * 2) / Math.max(1, withImages[i].backdrop ? nBack : nCases)
+      // A dropped case costs far more than any number of dropped backdrop cards.
+      const costOf = (i: number) => (withImages[i].backdrop ? 1 : 1000 * (nCases - caseIdx.indexOf(i)))
+      const tierWidths = tiers.map((t) => (DEPTH_TIERS[t].minW + rand() * (DEPTH_TIERS[t].maxW - DEPTH_TIERS[t].minW)) * fit)
+      const widths = tierWidths.map((w) => w)
+      let shrinkAll = 1
+      const setShrink = (k: number) => { shrinkAll = k; tierWidths.forEach((w, i) => { widths[i] = w * k }) }
+
+      // How far each card can travel from its anchor: parallax on each axis, plus idle float.
+      const reachX = (i: number) => Math.min(PARALLAX.MAX_OFFSET * fit, 0.5 * W0 * DEPTH_TIERS[tiers[i]].depth)
+      const reachY = (i: number) => Math.min(PARALLAX.MAX_OFFSET * fit, 0.5 * H0 * DEPTH_TIERS[tiers[i]].depth)
+      const idle = PARALLAX.IDLE_MAX * fit
+      // Backdrop cards float less, so they can sit closer to their neighbours.
+      const idleOf = (i: number) => (withImages[i].backdrop ? PARALLAX.IDLE_MIN * fit : idle)
+      const half = (i: number) => ({ hw: widths[i] / 2, hh: (widths[i] * withImages[i].aspect) / 2 })
+
+      // A spot is allowed when the card, at any parallax offset and float, stays inside the canvas,
+      // clear of the headline, and clear of every card already placed. Two cards always shift the same
+      // way with the cursor, so between them only the difference in their reach can close the gap.
+      const allowed = (x: number, y: number, i: number, placed: { i: number; x: number; y: number }[], spacing: number) => {
+        const { hw, hh } = half(i)
+        const mx = reachX(i) + idleOf(i), my = reachY(i) + idleOf(i)
+        if (Math.abs(x) > W0 / 2 - hw - mx - 8 || Math.abs(y) > H0 / 2 - hh - my - 8) return false
+        // The headline always keeps at least half its gap, whatever the spacing level.
+        const tg = PARALLAX.TEXT_GAP * fit * Math.max(spacing, 0.5) + 4
+        for (const z of zones) {
+          if (Math.abs(x - z.cx) < z.hw + hw + mx + tg && Math.abs(y - z.cy) < z.hh + hh + my + tg) return false
+        }
+        for (const p of placed) {
+          const o = half(p.i)
+          // White space between two cards. Two case cards never touch, whatever the cursor does. A
+          // backdrop card only keeps clear at rest: when the cursor moves, a case card may glide in
+          // front of it, the way a near object passes in front of a far one.
+          const withBackdrop = withImages[i].backdrop || withImages[p.i].backdrop
+          const cg = PARALLAX.CARD_GAP * fit * spacing * (withBackdrop ? 0.5 : 1)
+          const drift = withBackdrop ? 0 : 1
+          const needX = hw + o.hw + drift * Math.abs(reachX(i) - reachX(p.i)) + idleOf(i) + idleOf(p.i) + cg
+          const needY = hh + o.hh + drift * Math.abs(reachY(i) - reachY(p.i)) + idleOf(i) + idleOf(p.i) + cg
+          if (Math.abs(x - p.x) < needX && Math.abs(y - p.y) < needY) return false
+        }
+        return true
+      }
+
+      // Curated ring: each card has a home angle, evenly spaced all the way around. Larger tiers are
+      // placed first, then smaller cards settle into the space left. Each card searches near its home
+      // angle first, widening the search only if needed, at a radius between the headline and the edge.
+      const tryPlace = (spacing: number) => {
+        widths.forEach((_, i) => { widths[i] = tierWidths[i] * shrinkAll })
+        const placed: { i: number; x: number; y: number }[] = []
+        let failures = 0
+        const order = withImages.map((_, i) => i).sort((a, b) => tiers[b] - tiers[a])
+        for (const i of order) {
+          const home = homeOf(i)
+          const step = stepOf(i)
+          let spot: { x: number; y: number } | null = null
+          // A higher-priority card shrinks step by step until it fits (never below the far-tier size),
+          // so the most important cases are the last to be left out on small screens.
+          const fullWidth = widths[i]
+          const floor = withImages[i].backdrop ? fullWidth : DEPTH_TIERS[1].minW * fit * 0.8
+          for (const shrink of withImages[i].backdrop ? [1] : [1, 0.85, 0.72, 0.6, 0.5]) {
+            if (spot) break
+            widths[i] = Math.max(floor, fullWidth * shrink)
+            // Backdrop cards look anywhere on the canvas for space left between the cases.
+            if (withImages[i].backdrop) {
+              for (let attempt = 0; attempt < 500 && !spot; attempt++) {
+                const x = (rand() - 0.5) * W0, y = (rand() - 0.5) * H0
+                if (allowed(x, y, i, placed, spacing)) spot = { x, y }
+              }
+            }
+            for (let attempt = 0; attempt < 400 && !spot; attempt++) {
+              const spread = step * (0.3 + attempt / 50)
+              const angle = home + (rand() - 0.5) * spread
+              const band = 0.28 + rand() * 0.16
+              const ex = Math.cos(angle) * band * W0, ey = Math.sin(angle) * band * H0
+              const dist = Math.hypot(ex, ey) || 1
+              const cx = ex / dist, cy = ey / dist
+              // Search outward from just past the headline toward the canvas edge along this direction.
+              const r = dist * (0.85 + rand() * 0.4)
+              const x = textZone.cx + cx * r, y = textZone.cy + cy * r
+              if (allowed(x, y, i, placed, spacing)) spot = { x, y }
+            }
+            if (widths[i] === floor) break
+          }
+          // A card with no safe spot even at its smallest is left out rather than squeezed in.
+          // Failures are weighted by priority: dropping case 01 scores worse than dropping case 09, and
+          // dropping any case scores worse than dropping every backdrop card.
+          if (!spot) { widths[i] = fullWidth; failures += costOf(i); continue }
+          placed.push({ i, ...spot })
+        }
+        return { placed, failures }
+      }
+
+      // Full white space first. On small canvases, step the spacing down; if cards still do not all
+      // fit, make every card a little smaller and try again, so cards never have to overlap.
+      let result = tryPlace(1), spacingUsed = 1
+      let chosenWidths = [...widths]
+      outer: for (const k of [1, 0.9, 0.8, 0.7, 0.6]) {
+        if (k !== 1) setShrink(k)
+        for (const sp of [1, 0.6, 0.3, 0]) {
+          // Stop as soon as every case study fits; backdrop cards simply fill whatever space is left.
+          if (k === 1 && sp === 1) { if (result.failures < 1000) break outer; continue }
+          const next = tryPlace(sp)
+          if (next.failures < result.failures || next.failures === 0) { result = next; spacingUsed = sp; chosenWidths = [...widths] }
+          if (result.failures < 1000) break outer
+        }
+      }
+      // Draw every card at the size it had in the chosen round, so positions and sizes always match.
+      chosenWidths.forEach((w, i) => { widths[i] = w })
+      layout.level = spacingUsed
+      layout.fit = fit
+      textCenter.x = textZone.cx
+      textCenter.y = textZone.cy
+
+      // Balance the bottom-right quadrant. It runs after every card is placed and only moves cards in
+      // that quadrant, so the rest of the layout stays exactly as it was. Visual weight is card area
+      // times opacity. If the bottom-right carries less than half the average of the other quadrants:
+      //   1. one of its far cards becomes a near (tier 3) card, placed where it has the most room;
+      //   2. the most cramped of its remaining cards moves to a roomier spot in the same quadrant.
+      // Every move still passes the same checks: no overlap, clear of the headline, inside the canvas.
+      {
+        const placed = result.placed
+        const weightOf = (p: { i: number }) => widths[p.i] * widths[p.i] * withImages[p.i].aspect * DEPTH_TIERS[tiers[p.i]].opacity
+        const inBR = (p: { x: number; y: number }) => p.x > 0 && p.y > 0
+        const quadrant = (p: { x: number; y: number }) => (p.y < 0 ? 0 : 2) + (p.x < 0 ? 0 : 1)
+        const weights = [0, 0, 0, 0]
+        placed.forEach((p) => { weights[quadrant(p)] += weightOf(p) })
+        const othersAvg = (weights[0] + weights[1] + weights[2]) / 3
+        const roomAt = (x: number, y: number, skip: number) => {
+          let best = Infinity
+          for (const p of placed) if (p.i !== skip) best = Math.min(best, Math.hypot((x - p.x) * 0.75, y - p.y))
+          return best
+        }
+        const findRoomiest = (i: number) => {
+          const rest = placed.filter((p) => p.i !== i)
+          let spot: { x: number; y: number } | null = null, bestRoom = -1
+          for (let k = 0; k < 600; k++) {
+            const x = rand() * (W0 / 2), y = rand() * (H0 / 2)
+            if (!allowed(x, y, i, rest, spacingUsed)) continue
+            const room = roomAt(x, y, i)
+            if (room > bestRoom) { bestRoom = room; spot = { x, y } }
+          }
+          return spot ? { ...spot, room: bestRoom } : null
+        }
+
+        if (weights[3] < othersAvg * 0.5) {
+          // 1. Promote one far card to the near tier, at the size of the other near cards.
+          const nearWidths = placed.filter((p) => tiers[p.i] === 3).map((p) => widths[p.i])
+          const nearWidth = nearWidths.length ? nearWidths.reduce((a, b) => a + b, 0) / nearWidths.length : widths[0] * 1.8
+          const candidates = placed.filter((p) => inBR(p) && tiers[p.i] === 1)
+            .sort((a, b) => roomAt(b.x, b.y, b.i) - roomAt(a.x, a.y, a.i))
+          let promoted = -1
+          for (const c of candidates) {
+            const before = { tier: tiers[c.i], width: widths[c.i] }
+            tiers[c.i] = 3
+            widths[c.i] = nearWidth
+            const spot = findRoomiest(c.i)
+            if (spot) { c.x = spot.x; c.y = spot.y; promoted = c.i; break }
+            tiers[c.i] = before.tier
+            widths[c.i] = before.width
+          }
+
+          // 2. Give the most cramped remaining bottom-right card more room, if a clearly better spot exists.
+          const rest = placed.filter((p) => inBR(p) && p.i !== promoted)
+            .sort((a, b) => roomAt(a.x, a.y, a.i) - roomAt(b.x, b.y, b.i))
+          const cramped = rest[0]
+          if (cramped) {
+            const now = roomAt(cramped.x, cramped.y, cramped.i)
+            const spot = findRoomiest(cramped.i)
+            if (spot && spot.room > now * 1.3) { cramped.x = spot.x; cramped.y = spot.y }
+          }
+        }
+
+        // Bridge the widest gap in the bottom-right. For each small (far) card there, look at its nearest
+        // neighbours on the left and on the right. The card sitting in the widest such gap is raised to the
+        // middle tier and moved toward the midpoint between those two neighbours, so the row reads as a
+        // smooth run of sizes instead of a hole with a tiny card in it. The move starts at the midpoint and
+        // widens only as far as the checks allow: no overlap, clear of the headline, inside the canvas.
+        const midWidths = placed.filter((p) => tiers[p.i] === 2).map((p) => widths[p.i])
+        const midWidth = midWidths.length ? midWidths.reduce((a, b) => a + b, 0) / midWidths.length : widths[0] * 1.4
+        const lowerHalf = placed.filter((p) => p.y > 0)
+        let bridge: { card: (typeof placed)[number]; mid: { x: number; y: number }; span: number } | null = null
+        for (const c of placed.filter((p) => inBR(p) && tiers[p.i] === 1)) {
+          const left = lowerHalf.filter((p) => p.x < c.x).sort((a, b) => Math.hypot(a.x - c.x, a.y - c.y) - Math.hypot(b.x - c.x, b.y - c.y))[0]
+          const right = placed.filter((p) => p.x > c.x && p.y > -H0 * 0.1).sort((a, b) => Math.hypot(a.x - c.x, a.y - c.y) - Math.hypot(b.x - c.x, b.y - c.y))[0]
+          if (!left || !right) continue
+          const span = Math.hypot(right.x - left.x, right.y - left.y)
+          if (!bridge || span > bridge.span) bridge = { card: c, mid: { x: (left.x + right.x) / 2, y: (left.y + right.y) / 2 }, span }
+        }
+        if (bridge && bridge.span > midWidth * 3) {
+          const m = bridge.card
+          const rest = placed.filter((p) => p.i !== m.i)
+          const before = { tier: tiers[m.i], width: widths[m.i] }
+          const tryAt = (tier: 1 | 2, width: number) => {
+            tiers[m.i] = tier
+            widths[m.i] = width
+            for (let k = 0; k < 600; k++) {
+              const radius = k * 0.3
+              const a = rand() * Math.PI * 2
+              const x = bridge!.mid.x + Math.cos(a) * radius, y = bridge!.mid.y + Math.sin(a) * radius
+              // Only accept spots closer to the midpoint than the card already is.
+              if (Math.hypot(x - bridge!.mid.x, y - bridge!.mid.y) >= Math.hypot(m.x - bridge!.mid.x, m.y - bridge!.mid.y)) break
+              if (allowed(x, y, m.i, rest, spacingUsed)) return { x, y }
+            }
+            return null
+          }
+          const spot = tryAt(2, midWidth) ?? tryAt(1, before.width)
+          if (spot) { m.x = spot.x; m.y = spot.y } else { tiers[m.i] = before.tier; widths[m.i] = before.width }
+          // If the middle tier did not fit, try promoting in place.
+          if (!spot) {
+            tiers[m.i] = 2
+            widths[m.i] = midWidth
+            if (!allowed(m.x, m.y, m.i, rest, spacingUsed)) { tiers[m.i] = before.tier; widths[m.i] = before.width }
+          }
+        }
+      }
+
+      const byIndex = new Map(result.placed.map((p) => [p.i, p]))
+      cards.current = withImages.map((_, i) => {
+        const p = byIndex.get(i) ?? { x: 0, y: 0 }
+        const hidden = !byIndex.has(i)
+        const t = DEPTH_TIERS[tiers[i]]
+        const restScale = widths[i] / fit / PARALLAX.CARD_BASE
+        return {
+          hidden, fx: p.x / W0, fy: p.y / H0, depth: t.depth, restScale, restOpacity: t.opacity, tier: tiers[i], backdrop: !!withImages[i].backdrop,
+          ox: 0, oy: 0, scale: restScale,
+          floatAmp: withImages[i].backdrop ? PARALLAX.IDLE_MIN * rand() : PARALLAX.IDLE_MIN + rand() * (PARALLAX.IDLE_MAX - PARALLAX.IDLE_MIN), floatLive: 1,
+          // Periods of roughly 9 to 20 seconds.
+          fA: 0.0003 + rand() * 0.0004, fB: 0.0003 + rand() * 0.0004,
+          pA: rand() * Math.PI * 2, pB: rand() * Math.PI * 2,
+        }
+      })
+      return true
+    }
+
+    // Lay out once the canvas has a size, and again when its width changes noticeably.
+    let laidOutWidth = 0
+    const relayout = () => {
+      const w = wrap.clientWidth
+      if (laidOutWidth && Math.abs(w - laidOutWidth) / laidOutWidth < 0.12) return
+      seed = 7
+      if (place()) laidOutWidth = w
+    }
+    relayout()
+    const observer = new ResizeObserver(relayout)
+    observer.observe(wrap)
+    // Lay out again once the web fonts have loaded and the content has finished its entrance, since
+    // both change the size and position of the area the cards must avoid.
+    const force = () => { laidOutWidth = 0; relayout() }
+    document.fonts?.ready.then(force)
+    const settle = window.setTimeout(force, 1000)
+
+    let frame = 0
+    let last = performance.now()
+    const tick = (now: number) => {
+      // Every step is scaled by elapsed time, so the motion is equally smooth at 60 Hz and 120 Hz.
+      const dt = Math.min(3, (now - last) / 16.667)
+      last = now
+      const ease = (f: number) => 1 - Math.pow(1 - f, dt)
+      const W = wrap.clientWidth, H = wrap.clientHeight
+      const textHalfW = (textRef.current?.offsetWidth ?? 600) / 2
+      const textHalfH = (textRef.current?.offsetHeight ?? 220) / 2
+      const tcx = textCenter.x, tcy = textCenter.y
+      const hoveredIndex = hoveredRef.current
+      const fit = fitFor(W, H)
+      const maxOffset = PARALLAX.MAX_OFFSET * fit
+      const idle = PARALLAX.IDLE_MAX * fit
+
+      cards.current.forEach((c, i) => {
+        const el = itemRefs.current[i]
+        if (!el) return
+        if (c.hidden) { el.style.opacity = "0"; el.style.visibility = "hidden"; return }
+        el.style.visibility = "visible"
+        const isHovered = hoveredIndex === i
+        // Hover grows the card smoothly; small far cards grow enough to be readable.
+        c.scale = lerp(c.scale, isHovered ? Math.max(c.restScale * 1.35, 0.95) : c.restScale, ease(0.1))
+        const shown = c.scale * fit
+        const cardW = el.offsetWidth * shown, cardH = el.offsetHeight * shown
+
+        // Anchor from its stored fraction of the canvas. As a safety net after a resize, if it sits
+        // too close to the headline, move it outward along its own direction.
+        let ax = c.fx * W
+        let ay = c.fy * H
+        // Use this card's own reach, the same figure the layout was planned with, so the safety net
+        // never pushes a card further than planned and into a neighbour.
+        const cardIdle = c.backdrop ? PARALLAX.IDLE_MIN * fit : idle
+        const reachX = Math.min(maxOffset, 0.5 * W * c.depth) + cardIdle
+        const reachY = Math.min(maxOffset, 0.5 * H * c.depth) + cardIdle
+        const k = Math.max(Math.abs(ax - tcx) / (textHalfW + cardW / 2 + reachX), Math.abs(ay - tcy) / (textHalfH + cardH / 2 + reachY))
+        if (k < 0.001) { ax = tcx + textHalfW + cardW / 2 + reachX; ay = tcy }
+        else if (k < 1) { ax = tcx + (ax - tcx) / k; ay = tcy + (ay - tcy) / k }
+        // Keep the anchor far enough inside the section that a full offset stays inside too.
+        const limX = Math.max(0, W / 2 - cardW / 2 - reachX - 8)
+        const limY = Math.max(0, H / 2 - cardH / 2 - reachY - 8)
+        ax = Math.max(-limX, Math.min(limX, ax))
+        ay = Math.max(-limY, Math.min(limY, ay))
+
+        // Final position = anchor + idle float + cursor parallax.
+        // Parallax: near layers shift further than far ones, opposite to the cursor, capped at MAX_OFFSET,
+        // and eased with a heavy lerp so the cards follow the cursor slowly.
+        const still = reduceMotion || isHovered
+        const clampOffset = (v: number) => Math.max(-maxOffset, Math.min(maxOffset, v))
+        const targetX = still ? 0 : clampOffset(-mouse.current.x * W * c.depth)
+        const targetY = still ? 0 : clampOffset(-mouse.current.y * H * c.depth)
+        c.ox = lerp(c.ox, targetX, ease(PARALLAX.LERP))
+        c.oy = lerp(c.oy, targetY, ease(PARALLAX.LERP))
+        // Idle float: two slow waves per axis. It fades out while hovered and back in afterwards.
+        c.floatLive = lerp(c.floatLive, still ? 0 : 1, ease(0.04))
+        const amp = c.floatAmp * c.floatLive * fit
+        const fx = (Math.sin(now * c.fA + c.pA) * 0.7 + Math.sin(now * c.fB * 0.6 + c.pB) * 0.3) * amp
+        const fy = (Math.cos(now * c.fB + c.pB) * 0.7 + Math.cos(now * c.fA * 0.7 + c.pA) * 0.3) * amp
+
+        // Upright, no rotation or skew.
+        el.style.transform = `translate(-50%, -50%) translate(${W / 2 + ax + c.ox + fx}px, ${H / 2 + ay + c.oy + fy}px) scale(${shown})`
+        el.style.zIndex = isHovered ? "40" : String(10 + c.tier * 5)
+        el.style.opacity = isHovered ? "1" : String(c.restOpacity)
+        if (c.backdrop) el.style.filter = "grayscale(1)"
+      })
+      frame = requestAnimationFrame(tick)
+    }
+    frame = requestAnimationFrame(tick)
+    return () => { cancelAnimationFrame(frame); observer.disconnect(); window.clearTimeout(settle) }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [withImages.length, reduceMotion])
+
+  const active = hovered !== null ? withImages[hovered] : null
+
+  return (
+    <div
+      ref={wrapRef}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      className={`relative overflow-hidden select-none ${className}`}
+    >
+      {withImages.map((p, i) =>
+        p.backdrop ? (
+          // Backdrop card: decorative only, never focusable or clickable.
+          <button
+            key={p.key}
+            ref={(el) => { itemRefs.current[i] = el }}
+            type="button"
+            tabIndex={-1}
+            aria-hidden="true"
+            className="absolute left-0 top-0 w-[240px] overflow-hidden rounded-2xl border border-[#19244E]/10 bg-white pointer-events-none transition-opacity duration-500"
+            style={{ opacity: 0, aspectRatio: `1 / ${p.aspect}`, willChange: "transform" }}
+          >
+            <img src={p.src} alt="" className="w-full h-full object-cover object-top" draggable={false} />
+          </button>
+        ) : (
+        <button
+          key={p.key}
+          ref={(el) => { itemRefs.current[i] = el }}
+          type="button"
+          onMouseEnter={() => setHovered(i)}
+          onMouseLeave={() => setHovered((h) => (h === i ? null : h))}
+          onFocus={() => setHovered(i)}
+          onBlur={() => setHovered((h) => (h === i ? null : h))}
+          onClick={() => p.onOpen?.()}
+          aria-label={`Open ${p.name}`}
+          className="absolute left-0 top-0 w-[240px] overflow-hidden rounded-xl border border-[#19244E]/10 bg-white shadow-[0_12px_30px_-14px_rgba(25,36,78,0.4)] cursor-pointer transition-opacity duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C]"
+          style={{ opacity: 0, aspectRatio: `1 / ${p.aspect}`, willChange: "transform" }}
+        >
+          <img src={p.src} alt="" className="w-full h-full object-cover" draggable={false} />
+        </button>
+        )
+      )}
+
+      {/* The hero content sits in the clear zone in the middle; cards are laid out around it. */}
+      <div className="absolute inset-0 z-30 flex items-center justify-center px-6 pb-[100px] pointer-events-none">
+        <div
+          ref={textRef}
+          className="pointer-events-auto transition-opacity duration-300"
+          style={{ opacity: active ? 0.25 : 1 }}
+        >
+          {children}
+        </div>
+      </div>
+
+      {/* Name of the hovered project, pinned to the bottom so the image never covers it */}
+      <div className="absolute inset-x-0 bottom-2 z-50 flex justify-center px-6 pointer-events-none">
+        <AnimatePresence mode="wait">
+          {active && (
+            <motion.div
+              key={active.key}
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.18 }}
+              className="text-center"
+            >
+              <span className="block font-display font-semibold text-[#19244E] text-xl sm:text-2xl">{active.name}</span>
+              <span className="block mt-1 font-sans text-sm text-[#2E3A5C]">{active.sub} · Click to open the case study</span>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </div>
+  )
+}
+
+// Rotating greeting above the hero headline.
+function HeroGreeting({ tick, hellos, className = "" }: { tick: number; hellos: string[]; className?: string }) {
+  return (
+    <span
+      className={`block font-display font-medium text-[#DB3E8C] min-h-[1.6em] ${className}`}
+      style={{ fontSize: "clamp(1.1rem, 1.6vw, 1.4rem)" }}
+    >
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={tick}
+          initial={{ y: 4, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -4, opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          className="inline-block"
+        >
+          {hellos[tick]}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  )
+}
+
+// Resume, WhatsApp, email, LinkedIn, and View Full Profile, used by both hero layouts.
+function HeroActions({ onOpenPdfPreview, onReadMore, center = false }: { onOpenPdfPreview?: () => void; onReadMore: () => void; center?: boolean }) {
+  return (
+    <div className={`flex flex-wrap xl:flex-nowrap items-center ${center ? "justify-center" : "justify-center sm:justify-start"} gap-2 sm:gap-2.5`}>
+      {/* 1. Resume Download & In-App PDF Preview Button */}
+      <button
+        onClick={onOpenPdfPreview}
+        className="flex items-center gap-1.5 font-sans text-xs font-semibold tracking-wider transition-all duration-150 rounded-xl px-3.5 py-2 cursor-pointer bg-white"
+        style={{ border: `1px solid ${HAIR}`, color: `${N}DD` }}
+        onMouseEnter={(e) => {
+          ;(e.currentTarget as HTMLElement).style.backgroundColor = N
+          ;(e.currentTarget as HTMLElement).style.color = W
+          ;(e.currentTarget as HTMLElement).style.borderColor = N
+        }}
+        onMouseLeave={(e) => {
+          ;(e.currentTarget as HTMLElement).style.backgroundColor = W
+          ;(e.currentTarget as HTMLElement).style.color = `${N}DD`
+          ;(e.currentTarget as HTMLElement).style.borderColor = HAIR
+        }}
+      >
+        <span>Resume</span>
+        <Eye size={14} />
+      </button>
+    
+      {/* 2. WhatsApp Icon Button */}
+      <div className="relative group">
+        <a
+          href={getGeneralWhatsAppLink()}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Chat with Adina Fayza Gayo on WhatsApp"
+          className="flex items-center justify-center w-9 h-9 rounded-xl transition-all duration-150 cursor-pointer bg-white"
+          style={{ border: `1px solid ${HAIR}`, color: N }}
+          onMouseEnter={(e) => {
+            ;(e.currentTarget as HTMLElement).style.borderColor = N
+            ;(e.currentTarget as HTMLElement).style.backgroundColor = N
+            ;(e.currentTarget as HTMLElement).style.color = W
+          }}
+          onMouseLeave={(e) => {
+            ;(e.currentTarget as HTMLElement).style.borderColor = HAIR
+            ;(e.currentTarget as HTMLElement).style.backgroundColor = W
+            ;(e.currentTarget as HTMLElement).style.color = N
+          }}
+        >
+          <svg className="w-[15px] h-[15px] fill-current shrink-0" viewBox="0 0 24 24">
+          <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
+        </svg>
+        </a>
+    
+        <div className="absolute left-0 sm:left-auto sm:right-0 top-full mt-2 hidden group-hover:flex items-center gap-2 bg-[#19244E] text-white px-3 py-1.5 rounded-lg shadow-xl text-xs font-mono font-medium whitespace-nowrap z-50 pointer-events-none transition-all duration-200">
+          <span className="w-2 h-2 rounded-full bg-[#25D366]" />
+          <span>Let's chat on WhatsApp</span>
+        </div>
+      </div>
+    
+      {/* 3. Email Icon Button */}
+      <div className="relative group">
+        <a
+          href="mailto:adinagayo@gmail.com"
+          aria-label="Email Adina Fayza Gayo"
+          className="flex items-center justify-center w-9 h-9 rounded-xl transition-all duration-150 cursor-pointer bg-white"
+          style={{ border: `1px solid ${HAIR}`, color: N }}
+          onMouseEnter={(e) => {
+            ;(e.currentTarget as HTMLElement).style.borderColor = N
+            ;(e.currentTarget as HTMLElement).style.backgroundColor = N
+            ;(e.currentTarget as HTMLElement).style.color = W
+          }}
+          onMouseLeave={(e) => {
+            ;(e.currentTarget as HTMLElement).style.borderColor = HAIR
+            ;(e.currentTarget as HTMLElement).style.backgroundColor = W
+            ;(e.currentTarget as HTMLElement).style.color = N
+          }}
+        >
+          <Mail size={15} />
+        </a>
+    
+        <div className="absolute left-0 sm:left-auto sm:right-0 top-full mt-2 hidden group-hover:flex items-center gap-2 bg-[#19244E] text-white px-3 py-1.5 rounded-lg shadow-xl text-xs font-mono font-medium whitespace-nowrap z-50 pointer-events-none transition-all duration-200">
+          <span className="w-2 h-2 rounded-full bg-[#DB3E8C]" />
+          <span>adinagayo@gmail.com</span>
+        </div>
+      </div>
+    
+      {/* 4. LinkedIn Icon Button */}
+      <div className="relative group">
+        <a
+          href="https://www.linkedin.com/in/adinafayzagayo/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn Adina Fayza Gayo"
+          className="flex items-center justify-center w-9 h-9 rounded-xl transition-all duration-150 cursor-pointer bg-white"
+          style={{ border: `1px solid ${HAIR}`, color: N }}
+          onMouseEnter={(e) => {
+            ;(e.currentTarget as HTMLElement).style.borderColor = N
+            ;(e.currentTarget as HTMLElement).style.backgroundColor = N
+            ;(e.currentTarget as HTMLElement).style.color = W
+          }}
+          onMouseLeave={(e) => {
+            ;(e.currentTarget as HTMLElement).style.borderColor = HAIR
+            ;(e.currentTarget as HTMLElement).style.backgroundColor = W
+            ;(e.currentTarget as HTMLElement).style.color = N
+          }}
+        >
+          <Linkedin size={15} />
+        </a>
+    
+        <div className="absolute left-0 sm:left-auto sm:right-0 top-full mt-2 hidden group-hover:flex items-center gap-2 bg-[#19244E] text-white px-3 py-1.5 rounded-lg shadow-xl text-xs font-mono font-medium whitespace-nowrap z-50 pointer-events-none transition-all duration-200">
+          <span className="w-2 h-2 rounded-full bg-[#0077B5]" />
+          <span>/in/adinafayzagayo</span>
+        </div>
+      </div>
+      {/* 5. Link: VIEW FULL PROFILE › */}
+      <button
+        onClick={onReadMore}
+        className="font-sans text-xs font-bold tracking-wider uppercase text-[#DB3E8C] hover:underline transition-all flex items-center gap-1 focus:outline-none cursor-pointer py-0.5 ml-1 sm:ml-2 whitespace-nowrap"
+      >
+        <span>VIEW FULL PROFILE</span>
+        <ChevronRight size={13} />
+      </button>
+    </div>
+  )
+}
+
+function HeroSection({ onReadMore, onOpenPdfPreview, onOpenProject }: { onReadMore: () => void; onOpenPdfPreview?: () => void; onOpenProject: (projectId: string) => void }) {
   const [isAtWork, setIsAtWork] = useState(true)
   const [tick, setTick] = useState(0)
+  // The floating work field is the desktop hero; phones and tablets keep the stacked layout.
+  const [isDesktop, setIsDesktop] = useState(() => typeof window !== "undefined" && window.matchMedia("(min-width: 1024px)").matches)
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)")
+    const onChange = () => setIsDesktop(mq.matches)
+    mq.addEventListener("change", onChange)
+    return () => mq.removeEventListener("change", onChange)
+  }, [])
   const HELLOS = ["Hi, it's Dina!", "Halo, saya Dina!", "안녕하세요, 디나예요!"]
 
   // Scale and dim the hero as it leaves the screen. The fade is tied to the hero's own height:
@@ -768,13 +1444,13 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
             style={{ width: "200%" }}
           >
             {/* ── PANEL A: AT WORK ── */}
-            <div className="w-1/2 min-w-[50%] flex flex-col justify-between px-4 sm:px-8 lg:px-16 pt-0 sm:pt-1 pb-32 sm:pb-40 min-h-[calc(100vh-100px)] shrink-0 bg-transparent">
+            <div className="w-1/2 min-w-[50%] flex flex-col justify-between px-4 sm:px-8 lg:px-16 pt-0 sm:pt-1 pb-32 sm:pb-40 lg:pb-0 min-h-[calc(100vh-100px)] shrink-0 bg-transparent">
               {/* Top Oversized Asymmetrical Headline & Floating Bio Container */}
               <div className="w-full mt-0 lg:-mt-2 mb-auto flex flex-col bg-transparent">
                 {/* Info and profile row: info on the left, profile on the right in line style, no card */}
                 <div className="relative z-20 w-full mt-8 sm:mt-12 lg:mt-16 flex flex-col gap-6 lg:gap-8">
                   <div className="flex flex-col gap-6">
-                  <div className="flex flex-col items-center sm:items-start lg:flex-row lg:items-center lg:gap-x-0 gap-3 font-mono text-xs text-[#19244E] text-center sm:text-left">
+                  <div className="flex flex-col items-center sm:items-start lg:flex-row lg:items-center lg:justify-center lg:gap-x-0 gap-3 font-mono text-xs text-[#19244E] text-center sm:text-left">
                     {/* Shipped Systems Counter: one line at every width; sits beside the role line on large screens */}
                     <div className="flex items-center sm:items-start lg:items-center justify-center sm:justify-start gap-2 font-bold tracking-wider text-[#DB3E8C]">
                       <div className="text-[#19244E] flex flex-row items-center gap-1.5 whitespace-nowrap text-xs sm:text-sm leading-none">
@@ -797,6 +1473,62 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
 
                   </div>
 
+                  {isDesktop && (
+                    <HeroWorkField
+                      items={[
+                        ...FEATURED.map((c) => ({ key: c.projectId, name: c.shortTitle, sub: c.client, src: c.thumb, aspect: 2 / 3, onOpen: () => onOpenProject(c.projectId) })),
+                        // A handful of catalog thumbnails as a quiet backdrop (the newest ones), not the whole catalog.
+                        ...PROJECTS.filter((p) => PROJECT_PREVIEWS[p.id] && !/\.(mp4|webm)$/.test(PROJECT_PREVIEWS[p.id])).slice(0, 8).map((p) => ({
+                          key: `catalog-${p.id}`, name: p.name, sub: p.client, src: PROJECT_PREVIEWS[p.id], aspect: 4 / 3, backdrop: true,
+                        })),
+                      ]}
+                      className="-mx-16 h-[calc(100vh-180px)] min-h-[580px] max-h-[920px] -mt-4"
+                    >
+                      <motion.div
+                        initial={{ opacity: 0, y: REVEAL_Y }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: REVEAL_DURATION, delay: 0.15, ease: REVEAL_EASE }}
+                        className="flex flex-col items-center text-center max-w-[640px] 2xl:max-w-[820px]"
+                      >
+                        <div className="relative mb-4">
+                          <div className="w-20 h-20 xl:w-24 xl:h-24 rounded-full overflow-hidden border border-[#19244E]/10">
+                            <ImageWithFallback
+                              src={adinaPhotoAbout}
+                              alt="Adina Fayza Gayo - At Work"
+                              className="block w-full h-full object-cover object-[50%_18%]"
+                            />
+                          </div>
+                          <motion.span
+                            aria-hidden="true"
+                            animate={{ rotate: [0, 18, -8, 18, -4, 0] }}
+                            transition={{ duration: 1.6, repeat: Infinity, repeatDelay: 2.4, ease: "easeInOut" }}
+                            style={{ transformOrigin: "70% 70%" }}
+                            className="absolute -bottom-1 -right-2 w-8 h-8 rounded-full bg-white border border-[#19244E]/10 shadow-sm flex items-center justify-center text-base select-none"
+                          >
+                            👋
+                          </motion.span>
+                        </div>
+                        <HeroGreeting tick={tick} hellos={HELLOS} className="mb-2" />
+                        <h1
+                          className="font-display font-medium text-[#0F172A] tracking-tight"
+                          style={{ fontSize: "clamp(2rem, 3.1vw, 3.6rem)", lineHeight: 1.08 }}
+                        >
+                          I design end-to-end <span className="text-[#DB3E8C]">B2B platforms</span> across fintech, e-commerce, and enterprise systems.
+                        </h1>
+                        <p
+                          className="font-sans text-[#2E3A5C] mt-4 max-w-[600px]"
+                          style={{ fontSize: "clamp(1rem, 1.2vw, 1.15rem)", lineHeight: 1.6 }}
+                        >
+                          I turn business rules and compliance constraints into flows people can follow and specs developers can build from.
+                        </p>
+                        <div className="h-5" />
+                        <HeroActions onOpenPdfPreview={onOpenPdfPreview} onReadMore={onReadMore} center />
+                      </motion.div>
+                    </HeroWorkField>
+                  )}
+
+                  {!isDesktop && (
+                  <>
                   <motion.div
                     initial={{ opacity: 0, y: REVEAL_Y }}
                     animate={{ opacity: 1, y: 0 }}
@@ -826,23 +1558,7 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
 
                       {/* Bio Paragraph & Conversion CTAs */}
                       <div className="flex-1 min-w-0 max-w-5xl text-center sm:text-left sm:order-1">
-                        <span
-                          className="block font-display font-medium text-[#DB3E8C] mb-3 sm:mb-4 min-h-[1.6em]"
-                          style={{ fontSize: "clamp(1.1rem, 1.6vw, 1.4rem)" }}
-                        >
-                          <AnimatePresence mode="wait">
-                            <motion.span
-                              key={tick}
-                              initial={{ y: 4, opacity: 0 }}
-                              animate={{ y: 0, opacity: 1 }}
-                              exit={{ y: -4, opacity: 0 }}
-                              transition={{ duration: 0.2 }}
-                              className="inline-block"
-                            >
-                              {HELLOS[tick]}
-                            </motion.span>
-                          </AnimatePresence>
-                        </span>
+                        <HeroGreeting tick={tick} hellos={HELLOS} className="mb-3 sm:mb-4" />
                         <h1
                           className="font-display font-medium text-[#0F172A] tracking-tight"
                           style={{ fontSize: "clamp(2.1rem, 4.7vw, 5.2rem)", lineHeight: 1.04 }}
@@ -858,129 +1574,15 @@ function HeroSection({ onReadMore, onOpenPdfPreview }: { onReadMore: () => void;
 
                         <div className="h-5" />
 
-                        {/* Action Buttons Row (Order: Resume -> Let's Chat -> Email) */}
-                        <div className="flex flex-wrap xl:flex-nowrap items-center justify-center sm:justify-start gap-2 sm:gap-2.5">
-                          {/* 1. Resume Download & In-App PDF Preview Button */}
-                          <button
-                            onClick={onOpenPdfPreview}
-                            className="flex items-center gap-1.5 font-sans text-xs font-semibold tracking-wider transition-all duration-150 rounded-xl px-3.5 py-2 cursor-pointer bg-white"
-                            style={{ border: `1px solid ${HAIR}`, color: `${N}DD` }}
-                            onMouseEnter={(e) => {
-                              ;(e.currentTarget as HTMLElement).style.backgroundColor = N
-                              ;(e.currentTarget as HTMLElement).style.color = W
-                              ;(e.currentTarget as HTMLElement).style.borderColor = N
-                            }}
-                            onMouseLeave={(e) => {
-                              ;(e.currentTarget as HTMLElement).style.backgroundColor = W
-                              ;(e.currentTarget as HTMLElement).style.color = `${N}DD`
-                              ;(e.currentTarget as HTMLElement).style.borderColor = HAIR
-                            }}
-                          >
-                            <span>Resume</span>
-                            <Eye size={14} />
-                          </button>
-
-                          {/* 2. WhatsApp Icon Button */}
-                          <div className="relative group">
-                            <a
-                              href={getGeneralWhatsAppLink()}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              aria-label="Chat with Adina Fayza Gayo on WhatsApp"
-                              className="flex items-center justify-center w-9 h-9 rounded-xl transition-all duration-150 cursor-pointer bg-white"
-                              style={{ border: `1px solid ${HAIR}`, color: N }}
-                              onMouseEnter={(e) => {
-                                ;(e.currentTarget as HTMLElement).style.borderColor = N
-                                ;(e.currentTarget as HTMLElement).style.backgroundColor = N
-                                ;(e.currentTarget as HTMLElement).style.color = W
-                              }}
-                              onMouseLeave={(e) => {
-                                ;(e.currentTarget as HTMLElement).style.borderColor = HAIR
-                                ;(e.currentTarget as HTMLElement).style.backgroundColor = W
-                                ;(e.currentTarget as HTMLElement).style.color = N
-                              }}
-                            >
-                              <svg className="w-[15px] h-[15px] fill-current shrink-0" viewBox="0 0 24 24">
-                              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
-                            </svg>
-                            </a>
-
-                            <div className="absolute left-0 sm:left-auto sm:right-0 top-full mt-2 hidden group-hover:flex items-center gap-2 bg-[#19244E] text-white px-3 py-1.5 rounded-lg shadow-xl text-xs font-mono font-medium whitespace-nowrap z-50 pointer-events-none transition-all duration-200">
-                              <span className="w-2 h-2 rounded-full bg-[#25D366]" />
-                              <span>Let's chat on WhatsApp</span>
-                            </div>
-                          </div>
-
-                          {/* 3. Email Icon Button */}
-                          <div className="relative group">
-                            <a
-                              href="mailto:adinagayo@gmail.com"
-                              aria-label="Email Adina Fayza Gayo"
-                              className="flex items-center justify-center w-9 h-9 rounded-xl transition-all duration-150 cursor-pointer bg-white"
-                              style={{ border: `1px solid ${HAIR}`, color: N }}
-                              onMouseEnter={(e) => {
-                                ;(e.currentTarget as HTMLElement).style.borderColor = N
-                                ;(e.currentTarget as HTMLElement).style.backgroundColor = N
-                                ;(e.currentTarget as HTMLElement).style.color = W
-                              }}
-                              onMouseLeave={(e) => {
-                                ;(e.currentTarget as HTMLElement).style.borderColor = HAIR
-                                ;(e.currentTarget as HTMLElement).style.backgroundColor = W
-                                ;(e.currentTarget as HTMLElement).style.color = N
-                              }}
-                            >
-                              <Mail size={15} />
-                            </a>
-
-                            <div className="absolute left-0 sm:left-auto sm:right-0 top-full mt-2 hidden group-hover:flex items-center gap-2 bg-[#19244E] text-white px-3 py-1.5 rounded-lg shadow-xl text-xs font-mono font-medium whitespace-nowrap z-50 pointer-events-none transition-all duration-200">
-                              <span className="w-2 h-2 rounded-full bg-[#DB3E8C]" />
-                              <span>adinagayo@gmail.com</span>
-                            </div>
-                          </div>
-
-                          {/* 4. LinkedIn Icon Button */}
-                          <div className="relative group">
-                            <a
-                              href="https://www.linkedin.com/in/adinafayzagayo/"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              aria-label="LinkedIn Adina Fayza Gayo"
-                              className="flex items-center justify-center w-9 h-9 rounded-xl transition-all duration-150 cursor-pointer bg-white"
-                              style={{ border: `1px solid ${HAIR}`, color: N }}
-                              onMouseEnter={(e) => {
-                                ;(e.currentTarget as HTMLElement).style.borderColor = N
-                                ;(e.currentTarget as HTMLElement).style.backgroundColor = N
-                                ;(e.currentTarget as HTMLElement).style.color = W
-                              }}
-                              onMouseLeave={(e) => {
-                                ;(e.currentTarget as HTMLElement).style.borderColor = HAIR
-                                ;(e.currentTarget as HTMLElement).style.backgroundColor = W
-                                ;(e.currentTarget as HTMLElement).style.color = N
-                              }}
-                            >
-                              <Linkedin size={15} />
-                            </a>
-
-                            <div className="absolute left-0 sm:left-auto sm:right-0 top-full mt-2 hidden group-hover:flex items-center gap-2 bg-[#19244E] text-white px-3 py-1.5 rounded-lg shadow-xl text-xs font-mono font-medium whitespace-nowrap z-50 pointer-events-none transition-all duration-200">
-                              <span className="w-2 h-2 rounded-full bg-[#0077B5]" />
-                              <span>/in/adinafayzagayo</span>
-                            </div>
-                          </div>
-                          {/* 5. Link: VIEW FULL PROFILE › */}
-                          <button
-                            onClick={onReadMore}
-                            className="font-sans text-xs font-bold tracking-wider uppercase text-[#DB3E8C] hover:underline transition-all flex items-center gap-1 focus:outline-none cursor-pointer py-0.5 ml-1 sm:ml-2 whitespace-nowrap"
-                          >
-                            <span>VIEW FULL PROFILE</span>
-                            <ChevronRight size={13} />
-                          </button>
-                        </div>
+                        <HeroActions onOpenPdfPreview={onOpenPdfPreview} onReadMore={onReadMore} />
 
                       </div>
                     </div>
                   </motion.div>
 
                   <HeroFacts />
+                  </>
+                  )}
                 </div>
               </div>
             </div>
@@ -3152,6 +3754,7 @@ export default function App() {
       <HeroSection
         onReadMore={handleOpenAbout}
         onOpenPdfPreview={() => setIsPdfModalOpen(true)}
+        onOpenProject={handleOpenProject}
       />
 
       <FeaturedWorkSection
