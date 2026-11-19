@@ -507,6 +507,9 @@ const HERO_FACTS = [
 // card sits and ends on the deck: the active case on top, the rest tucked underneath at a slight
 // angle and fading out, so the real deck (that case's own screens) takes over seamlessly.
 const HERO_FLIGHT_ITEMS = FEATURED.map((c) => ({ key: c.projectId, src: c.thumb }))
+// px of scroll before the flight begins. Shared with the hero field, so the hero's case cards hide
+// and the flying copies appear in the very same frame, decided by the same scroll position.
+const HERO_FLIGHT_START = 40
 
 function HeroDeckFlight() {
   const reduceMotion = useReducedMotion()
@@ -520,7 +523,7 @@ function HeroDeckFlight() {
     const STACK_ROT = [4, -4, 7, -5, 3, -3, 6, -6]
     const STACK_X = [6, -6, 12, -12, 4, -4, 9, -9]
     const STACK_Y = [-2, 2, -4, 4, -1, 1, -3, 3]
-    const START = 40 // px of scroll before the flight begins
+    const START = HERO_FLIGHT_START
     const smooth = (t: number) => (t <= 0 ? 0 : t >= 1 ? 1 : t * t * (3 - 2 * t))
     let on = false
     let hidDeck = false
@@ -546,7 +549,12 @@ function HeroDeckFlight() {
       // 0 when the flight starts, 1 when the deck's center reaches 62% of the screen height, so the
       // cards land a little before the deck is fully centered and never hang mid-air for long.
       const tr = target.getBoundingClientRect()
-      const endY = window.scrollY + tr.top + tr.height / 2 - window.innerHeight * 0.62
+      // ...and never later than the moment the Work section's top reaches the top of the screen
+      // (where the dock's "Work" link scrolls to), so arriving there always shows the finished deck,
+      // whatever the browser's font size or window height.
+      const work = document.getElementById("work")
+      const workTop = work ? window.scrollY + work.getBoundingClientRect().top - 2 : Infinity
+      const endY = Math.min(window.scrollY + tr.top + tr.height / 2 - window.innerHeight * 0.62, workTop)
       const p = (window.scrollY - START) / Math.max(1, endY - START)
       if (p <= 0 || p >= 1) return off()
 
@@ -1220,6 +1228,7 @@ function HeroWorkField({ items, children, className = "" }: { items: HeroFieldIt
 
     let frame = 0
     let last = performance.now()
+    let everScrolled = window.scrollY > 0
     const tick = (now: number) => {
       // Every step is scaled by elapsed time, so the motion is equally smooth at 60 Hz and 120 Hz.
       const dt = Math.min(3, (now - last) / 16.667)
@@ -1288,11 +1297,14 @@ function HeroWorkField({ items, children, className = "" }: { items: HeroFieldIt
         // Backdrop cards drift up and fade on scroll. Case cards stay put: once the page scrolls, the
         // flight layer (HeroDeckFlight) takes them over and carries them down into the Work deck.
         const lift = c.backdrop ? exitEase * (120 + 130) : 0
-        const flying = !c.backdrop && document.documentElement.dataset.heroFlight === "on"
+        const flying = !c.backdrop && !reduceMotion && window.scrollY > HERO_FLIGHT_START
         el.style.transform = `translate(-50%, -50%) translate(${W / 2 + ax + c.ox + fx}px, ${H / 2 + ay + c.oy + fy - lift}px) scale(${shown})`
         el.style.zIndex = isHovered ? "40" : String(10 + c.tier * 5)
         el.dataset.restOpacity = String(c.restOpacity)
-        el.style.transitionDuration = flying || window.scrollY > 0 ? "0s" : ""
+        // The soft opacity fade is only for the cards' first appearance on load. Once the page has
+        // been scrolled, every change is instant, so cards returning from the deck never fade in late.
+        if (window.scrollY > 0) everScrolled = true
+        el.style.transitionDuration = everScrolled ? "0s" : ""
         el.style.opacity = flying ? "0" : String((isHovered ? 1 : c.restOpacity) * (c.backdrop ? 1 - exitEase : 1))
         if (c.backdrop) el.style.filter = "grayscale(1)"
       })
