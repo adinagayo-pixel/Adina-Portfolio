@@ -2539,7 +2539,7 @@ function FeaturedWorkSection({
 
                 {'confidentialNote' in activeProject && activeProject.confidentialNote && (
                   <div
-                    className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-200 text-xs font-sans font-medium shadow-md backdrop-blur-md whitespace-nowrap pointer-events-auto cursor-help hover:bg-amber-500/25 transition-colors"
+                    className="text-amber-200/90 text-xs font-sans font-medium whitespace-nowrap pointer-events-auto cursor-help"
                     title="Client names, logos, and specific metrics have been sanitized to respect NDAs. What is shown here reflects the real process, not real production data."
                   >
                     <span>Sanitized for NDA · Reflects real process</span>
@@ -2682,7 +2682,7 @@ function FeaturedWorkSection({
                   {/* Confidentiality Note badge under image */}
                   {'confidentialNote' in project && project.confidentialNote && (
                     <div
-                      className="mb-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-200 text-xs font-sans font-medium w-fit"
+                      className="mb-3 text-amber-200/90 text-xs font-sans font-medium w-fit"
                       title={project.confidentialNote}
                     >
                       <span>Sanitized for NDA · Reflects real process</span>
