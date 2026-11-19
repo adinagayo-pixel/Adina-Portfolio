@@ -693,7 +693,23 @@ const DEPTH_TIERS = {
 
 // Each item gives its card height as a share of its width: 2/3 for the landscape case study
 // covers, 4/3 for the portrait catalog thumbnails. Backdrop items are decorative only.
-type HeroFieldItem = { key: string; name: string; sub: string; src: string; aspect: number; backdrop?: boolean; onOpen?: () => void }
+// A case card can have a fixed slot, so the same cases appear in the same places in every browser
+// and window size. x: -1..1, the share of the way from the hero content's edge to the canvas edge
+// (negative = left side). y: -1..1, the share of the half height (negative = above the middle).
+type HeroFieldItem = { key: string; name: string; sub: string; src: string; aspect: number; backdrop?: boolean; slot?: { x: number; y: number }; onOpen?: () => void }
+
+// Where each main case study sits in the hero, left column top to bottom, then right column.
+const HERO_CASE_SLOTS: Record<string, { x: number; y: number }> = {
+  backoffice: { x: -0.41, y: -0.71 },
+  archery: { x: -0.78, y: -0.26 },
+  gegi: { x: -0.36, y: -0.32 },
+  telkom: { x: -0.76, y: 0.15 },
+  bijakwang: { x: -0.37, y: 0.05 },
+  myarchery: { x: -0.48, y: 0.52 },
+  tng: { x: 0.47, y: -0.64 },
+  election: { x: 0.55, y: -0.22 },
+  anlene: { x: 0.44, y: 0.18 },
+}
 
 function HeroWorkField({ items, children, className = "" }: { items: HeroFieldItem[]; children: ReactNode; className?: string }) {
   const wrapRef = useRef<HTMLDivElement>(null)
@@ -842,6 +858,26 @@ function HeroWorkField({ items, children, className = "" }: { items: HeroFieldIt
           for (const shrink of withImages[i].backdrop ? [1] : [1, 0.85, 0.72, 0.6, 0.5]) {
             if (spot) break
             widths[i] = Math.max(floor, fullWidth * shrink)
+            // A case with a fixed slot starts exactly there and, if needed, moves outward in a fixed
+            // spiral, so the result is the same in every browser.
+            const slot = withImages[i].slot
+            if (slot) {
+              const side = slot.x < 0 ? -1 : 1
+              const textEdge = textZone.cx + side * textZone.hw
+              const sx = textEdge + Math.abs(slot.x) * (side * W0 / 2 - textEdge)
+              const sy = slot.y * (H0 / 2)
+              // Stay on the slot's own side of the hero content and near its height, so the order
+              // down each side never changes; if there is no room, the card shrinks instead.
+              for (let r = 0; r <= 220 && !spot; r += 6) {
+                const turns = r === 0 ? 1 : 16
+                for (let k = 0; k < turns && !spot; k++) {
+                  const a = (k / turns) * Math.PI * 2
+                  const x = sx + Math.cos(a) * r, y = sy + Math.sin(a) * r * 0.5
+                  if (side * (x - textZone.cx) <= 0) continue
+                  if (allowed(x, y, i, placed, spacing)) spot = { x, y }
+                }
+              }
+            }
             // Backdrop cards look anywhere on the canvas for space left between the cases.
             if (withImages[i].backdrop) {
               for (let attempt = 0; attempt < 500 && !spot; attempt++) {
@@ -849,7 +885,7 @@ function HeroWorkField({ items, children, className = "" }: { items: HeroFieldIt
                 if (allowed(x, y, i, placed, spacing)) spot = { x, y }
               }
             }
-            for (let attempt = 0; attempt < 400 && !spot; attempt++) {
+            for (let attempt = 0; attempt < 400 && !spot && !slot; attempt++) {
               const spread = step * (0.3 + attempt / 50)
               const angle = home + (rand() - 0.5) * spread
               const band = 0.28 + rand() * 0.16
@@ -893,13 +929,13 @@ function HeroWorkField({ items, children, className = "" }: { items: HeroFieldIt
       textCenter.x = textZone.cx
       textCenter.y = textZone.cy
 
-      // Balance the bottom-right quadrant. It runs after every card is placed and only moves cards in
+      // Balance the bottom-right quadrant (only when the cases have no fixed slots). It runs after every card is placed and only moves cards in
       // that quadrant, so the rest of the layout stays exactly as it was. Visual weight is card area
       // times opacity. If the bottom-right carries less than half the average of the other quadrants:
       //   1. one of its far cards becomes a near (tier 3) card, placed where it has the most room;
       //   2. the most cramped of its remaining cards moves to a roomier spot in the same quadrant.
       // Every move still passes the same checks: no overlap, clear of the headline, inside the canvas.
-      {
+      if (!withImages.some((it) => it.slot)) {
         const placed = result.placed
         const weightOf = (p: { i: number }) => widths[p.i] * widths[p.i] * withImages[p.i].aspect * DEPTH_TIERS[tiers[p.i]].opacity
         const inBR = (p: { x: number; y: number }) => p.x > 0 && p.y > 0
@@ -1476,7 +1512,7 @@ function HeroSection({ onReadMore, onOpenPdfPreview, onOpenProject }: { onReadMo
                   {isDesktop && (
                     <HeroWorkField
                       items={[
-                        ...FEATURED.map((c) => ({ key: c.projectId, name: c.shortTitle, sub: c.client, src: c.thumb, aspect: 2 / 3, onOpen: () => onOpenProject(c.projectId) })),
+                        ...FEATURED.map((c) => ({ key: c.projectId, name: c.shortTitle, sub: c.client, src: c.thumb, aspect: 2 / 3, slot: HERO_CASE_SLOTS[c.projectId], onOpen: () => onOpenProject(c.projectId) })),
                         // A handful of catalog thumbnails as a quiet backdrop (the newest ones), not the whole catalog.
                         ...PROJECTS.filter((p) => PROJECT_PREVIEWS[p.id] && !/\.(mp4|webm)$/.test(PROJECT_PREVIEWS[p.id])).slice(0, 8).map((p) => ({
                           key: `catalog-${p.id}`, name: p.name, sub: p.client, src: PROJECT_PREVIEWS[p.id], aspect: 4 / 3, backdrop: true,
