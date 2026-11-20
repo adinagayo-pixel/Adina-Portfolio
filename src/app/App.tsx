@@ -2766,9 +2766,9 @@ const PHASES = [
     num: "02",
     title: "Benchmark & AI Ideation",
     category: "Explore",
-    desc: "I balance speed and quality by adapting proven patterns from mature apps and Dribbble, then exploring directions quickly with AI (Sketch AI, Claude, Gemini) before committing to one in Figma.",
+    desc: "I balance speed and quality by adapting proven patterns from mature apps and Dribbble, then exploring directions quickly with AI (Stitch AI, Claude, Gemini) before committing to one in Figma.",
     tools: ["Pattern Benchmarking", "Reference Boards", "AI Ideation", "Concept Directions"],
-    footerMeta: "Claude, Gemini & Sketch AI in the loop",
+    footerMeta: "Claude, Gemini & Stitch AI in the loop",
     Icon: Zap,
   },
   {

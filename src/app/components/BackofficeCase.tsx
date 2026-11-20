@@ -262,7 +262,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                 },
                 {
                   label: "Team & scope",
-                  value: "Backend engineers and partner teams, across insurance, mobility, and affiliate.",
+                  value: "Backend engineers and partner teams, across insurers, a ride-hailing and delivery app, and e-wallet and super app partners.",
                 },
                 {
                   label: "Verified impact",
@@ -454,7 +454,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
               <SectionTag id="constraints" num="02" label="Constraints: One Base, Different Partners" />
 
               <p className="font-sans text-base leading-relaxed text-[#2E3A5C] mb-6" style={{ lineHeight: 1.8 }}>
-                Partners ranged from mobility and delivery to regional InsurTech and affiliate commerce, each with different users and priorities. Four constraints shaped how I worked across them:
+                The partners were very different businesses: a ride-hailing and delivery app, insurers in Indonesia, Malaysia, and Singapore, and an e-wallet and a super app that offer insurance to their own users. Each had its own users and needs. Four things made the work harder:
               </p>
 
               <div className="grid md:grid-cols-2 gap-4">
@@ -505,7 +505,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                 <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
                   <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 01 · Reuse first, redesign only what differs</span>
                   <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
-                    <strong className="text-[#19244E]">The question:</strong> Does the partner need a new module, or different data and claim review logic?
+                    <strong className="text-[#19244E]">The question:</strong> Does the partner need something the base doesn't have: a new module, different data, or different logic?
                   </p>
                   <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                     <strong className="text-[#19244E]">What I did:</strong> I sorted every request into one of two tracks. Partner A's document check fit the existing codebase, so it went to Track A: reuse. Partner B's four-party eligibility check did not, so it went to Track B: new design work.
@@ -528,7 +528,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                 <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
                   <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 03 · Keep the chart off the date range filter</span>
                   <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
-                    <strong className="text-[#19244E]">The pressure:</strong> Tying the chart to the dashboard's date range could make data retrieval very slow, as my backend engineer pointed out.
+                    <strong className="text-[#19244E]">The pressure:</strong> One partner asked for a "Product Performance" chart on their dashboard, so their managers could compare products side by side. But tying the chart to the dashboard's date range could make data retrieval very slow, as my backend engineer pointed out.
                   </p>
                   <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                     <strong className="text-[#19244E]">What I did:</strong> The chart follows the product filter, ignores the date range, and has its own monthly or yearly toggle.
@@ -561,7 +561,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                 <div className="max-w-md w-full px-5 py-4 bg-white border-2 border-dashed border-[#DB3E8C]/50 rounded-xl text-center shadow-xs">
                   <span className="text-[11px] font-bold text-[#DB3E8C] uppercase tracking-wider block mb-1">Decision</span>
                   <p className="text-sm font-semibold text-[#19244E] leading-snug">
-                    Does the partner need a new module, or different data and claim review logic?
+                    Does the partner need something the base doesn't have: a new module, different data, or different logic?
                   </p>
                 </div>
                 <div className="w-px h-6 bg-[#19244E]/25" />
@@ -605,9 +605,9 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                   <TrackSteps
                     color="#3B82F6"
                     steps={[
-                      "Map how the partner differs beyond visuals",
-                      "Redesign the data shown in customer tables",
-                      "Design the partner's claim review flow",
+                      "Read the partner's module documents (BRDs, spreadsheets, business rules) and map how they differ beyond visuals",
+                      "Benchmark patterns, and sketch low-fidelity options with Stitch AI when the logic gets complex",
+                      "Design what differs: customer table data, a claim review, a chart, custom filters",
                       "Hand off new module designs",
                     ]}
                   />
@@ -652,7 +652,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                       Claims were judged on eligibility, not paperwork, and a single claim could involve four parties: the participant, the person covered, the claimant, and the nominee. Each stage was handled by a different user.
                     </p>
                     <p className="text-sm text-[#2E3A5C] leading-relaxed">
-                      The client gave me a business requirement specification (BRS) defining the rules and requirements. The question of how to turn those rules into a usable interface was mine to answer.
+                      The client gave me a business requirement specification (BRS) and Excel sheets defining the rules and requirements. How to turn those rules into a usable interface was mine to work out.
                     </p>
                   </div>
                 </div>
@@ -744,8 +744,8 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                       stage: "Claim list",
                       a: backofficeClaimTrackB,
                       b: backofficeClaimTrackA,
-                      captionA: "Claims grouped by stage, with requested and approved amounts visible.",
-                      captionB: "One table of claims, keyed by person covered and certificate number.",
+                      captionA: "Claims grouped by stage. Staff change a claim's status right from the list table.",
+                      captionB: "One table of claims, keyed by person covered and certificate number, for viewing only. Changing a status happens inside the claim's detail page.",
                     },
                     {
                       stage: "Claim detail",
@@ -787,6 +787,37 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                 </div>
 
                 <p className="font-sans text-xs text-gray-500">Recreated with dummy data.</p>
+              </div>
+
+              {/* How the claim module took shape with the partner: meetings, what changed, what stayed */}
+              <h3 className="font-display text-xl font-bold text-[#19244E] mb-2">How the Claim Module Took Shape With the Partner</h3>
+              <div className="space-y-5 font-sans text-base leading-relaxed text-[#2E3A5C] mb-12" style={{ lineHeight: 1.8 }}>
+                <p>
+                  Across the whole backoffice, the partner asked for two to three rounds of changes to menus, wording, and look. The claim module took the most work, over four meetings:
+                </p>
+                <ol className="space-y-3">
+                  {[
+                    { title: "Brief", desc: "They walked me through their internal claim-checking workflow. It turned out to be very different from ours, and it included a nominee system." },
+                    { title: "Review", desc: "We went through my revised designs, which their team had already reviewed." },
+                    { title: "Alignment", desc: "We aligned on the changes from that review." },
+                    { title: "Logic check", desc: "We checked for any logic that was still missing before hand-off." },
+                  ].map((step, i) => (
+                    <li key={step.title} className="flex items-start gap-3">
+                      <span className="flex-shrink-0 w-6 h-6 mt-1 rounded-full bg-[#DB3E8C] text-white text-xs font-bold flex items-center justify-center">{i + 1}</span>
+                      <p><strong className="text-[#19244E]">{step.title}.</strong> {step.desc}</p>
+                    </li>
+                  ))}
+                </ol>
+                <div className="grid md:grid-cols-2 gap-4 pt-2">
+                  <div className="p-5 bg-white rounded-xl border border-gray-200/80">
+                    <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block mb-2">What changed</span>
+                    <p className="text-[15px]">The claim flow itself. Their checking process and nominee rules could not fit our standard flow, so I designed around theirs instead of defending ours.</p>
+                  </div>
+                  <div className="p-5 bg-white rounded-xl border border-gray-200/80">
+                    <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block mb-2">What I kept</span>
+                    <p className="text-[15px]">On the policy detail page, they asked for several extra sections. I kept the base's existing tabs and added tabs for what they needed, so the page still matched every other partner portal.</p>
+                  </div>
+                </div>
               </div>
 
               {/* Evidence 02: Chart */}
