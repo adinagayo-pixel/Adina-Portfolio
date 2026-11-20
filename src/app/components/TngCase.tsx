@@ -119,9 +119,9 @@ const WORK_FLOW: WorkFlowStep[] = [
   },
   {
     num: "06",
-    lane: "TNG design team",
+    lane: "PM, GEGM & TNG",
     title: "Revisions, V1 to V5",
-    desc: "Most revisions came from the TNG design team through Figma comments and Lark, until V5 was ready.",
+    desc: "Every version went to our PM first, then to GEGM, our client, and the TNG team on Lark. The TNG design team also commented directly in Figma, and revisions they raised still went through our PM. I revised after each round until both sides approved, through to V5.",
   },
   {
     num: "07",
@@ -134,7 +134,7 @@ const WORK_FLOW: WorkFlowStep[] = [
 const LANE_COLOR: Record<string, string> = {
   "My research": N,
   GEGM: C,
-  "TNG design team": TNG,
+  "PM, GEGM & TNG": TNG,
   TNG: TNG,
 }
 
