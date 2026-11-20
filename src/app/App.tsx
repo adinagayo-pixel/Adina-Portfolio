@@ -132,7 +132,7 @@ const FEATURED = [
     ],
   },
   {
-    num: "02", shortTitle: "E-wallet Insurance Checkout", name: "Seamless Micro Insurance Integration", client: "Touch 'n Go × GEGM",
+    num: "02", shortTitle: "E-wallet Insurance Checkout", name: "Seamless Micro Insurance & Government Subsidy Integration", client: "Touch 'n Go × GEGM",
     location: "MY", year: "2025", tags: ["PWA / SSO", "eKYC Data Mapping", "B2C / FinTech"],
     role: "Sole Product Designer",
     headline: "A micro insurance checkout inside Touch 'n Go eWallet, where government subsidy eligibility decides the premium. Shipped as V5 after five design iterations.",
@@ -4042,7 +4042,7 @@ function AppContent() {
 
   const CASE_STUDY_SEQUENCE: CaseStudyMeta[] = [
     { id: "backoffice", num: "01", name: "One Base, Many Partners: Reusable White Label Backoffice", client: "Multiple Enterprise Partnerships", thumb: backofficePortalThumb },
-    { id: "tng", num: "02", name: "Seamless Micro Insurance Integration", client: "Touch 'n Go × GEGM", thumb: coverTng },
+    { id: "tng", num: "02", name: "Seamless Micro Insurance & Government Subsidy Integration", client: "Touch 'n Go × GEGM", thumb: coverTng },
     { id: "election", num: "03", name: "38 Province Real Time Election Monitoring", client: "Indonesian Political Party", thumb: aseanThumb },
     { id: "anlene", num: "04", name: "Bone Density & Health Check Passport Redesign", client: "Fonterra × Anlene", thumb: anleneThumb },
     { id: "myarchery", num: "05", name: "MyArchery · One Platform for Every Archery Event", client: "PERPANI / MyArchery", thumb: myArcheryPerpaniThumb },

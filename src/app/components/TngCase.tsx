@@ -6,6 +6,8 @@ import { CaseStudyDisclosure, CaseStudyFacts } from "@/app/components/ui/CaseStu
 import coverTng from "@/imports/Cover TNG.jpg"
 import tngThumb4 from "@/imports/TNG thumb4.jpg"
 import tngThumb5 from "@/imports/TNG thumb5.jpg"
+import tngPricingBrief from "@/imports/tng-pricing-brief.png"
+import tngPricingRelease from "@/imports/tng-pricing-release.png"
 import {
   ArrowLeft, ChevronRight, CheckCircle2, Globe, Home,
   FileCode2, IdCard, Shield, Zap, RefreshCw, GitBranch, Users, MessageSquare, Sparkles, AlertTriangle, ChevronDown
@@ -286,7 +288,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
               className="font-display font-medium leading-relaxed"
               style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
             >
-              Great Tenang Madani, embedded in the Touch 'n Go eWallet, where a government subsidy's eligibility decides the premium a user pays.
+              Great Tenang Madani, embedded in the Touch 'n Go eWallet, where eligibility for a government subsidy, the Perlindungan Tenang Voucher (PTV), decides the premium a user pays.
             </p>
 
 
@@ -294,7 +296,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
               facts={[
                 {
                   label: "My contribution",
-                  value: "Sole UI/UX designer: user flows, data mapping, UI specs, and developer handoff.",
+                  value: "Sole product designer: user flows, data mapping, UI specs, and developer handoff.",
                 },
                 {
                   label: "Team & scope",
@@ -307,7 +309,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
                 },
                 {
                   label: "Not measured here",
-                  value: "Adoption and conversion. The monthly plan share is client data.",
+                  value: "Adoption and conversion.",
                   tone: "muted",
                 },
               ]}
@@ -341,11 +343,11 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
             <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">02 · Constraints</span>
-            <p className="text-sm leading-relaxed text-[#2E3A5C]">A 3 month deadline, webview rules, PTV checks, and NRIC matching.</p>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">A 3 month deadline, webview rules, PTV checks, and NRIC (Malaysian ID number) matching.</p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
             <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">03 · Key Decisions</span>
-            <p className="text-sm leading-relaxed text-[#2E3A5C]">Build from the account, explicit health declarations, two pricing options, and the native X.</p>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">Build from the account, explicit health declarations, confirming unusual pricing, and the app's own close button.</p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
             <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">04 · Solution & Evidence</span>
@@ -545,15 +547,15 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
             </div>
 
             <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
-              <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 03 · Two pricing options instead of many</span>
+              <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 03 · Confirm unusual pricing before designing it</span>
               <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
-                <strong className="text-[#19244E]">The pressure:</strong> V2 introduced 8 to 12 month durations based on age eligibility. The choices felt unnatural for an insurance product, and the price display was unclear.
+                <strong className="text-[#19244E]">The pressure:</strong> The brief priced the plan by the month: users could buy anywhere from 1 to 12 months. In the insurance products I had worked on, monthly-based pricing was rare.
               </p>
               <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
-                <strong className="text-[#19244E]">What I did:</strong> I questioned the requested direction and said the concept felt unrefined, rather than treating the choices as a finished brief.
+                <strong className="text-[#19244E]">What I did:</strong> Before designing it, I checked with our PM that monthly-based pricing was intended. The PM confirmed it, and the client approved the 1 to 12 month scheme too. I then designed the month choices, using our internal assumption for which durations each age group could pick (8 to 12 months in the screen below).
               </p>
               <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
-                <strong className="text-[#19244E]">Why it held:</strong> The TNG team streamlined to monthly or yearly after its data showed over 90% of users chose monthly payments (client data).
+                <strong className="text-[#19244E]">Where it ended up:</strong> Later, the TNG team shared that most of their users preferred paying monthly, and the pricing changed: each age group got two options, a few months up front and then monthly, or the full year at once, both with 12 months of coverage.
               </p>
             </div>
 
@@ -570,6 +572,20 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
               </p>
             </div>
           </div>
+
+          {/* Decision 03 in pictures: the briefed durations vs the two options per age group at release */}
+          <figure className="mt-8 p-5 bg-white rounded-xl border border-gray-200 shadow-xs">
+            <div className="grid md:grid-cols-[1fr_3fr] gap-5 items-start">
+              <div>
+                <img src={tngPricingBrief} alt="First version of the pricing: one plan bought by the month, from 8 to 12 months" className="w-full h-auto rounded-lg border border-gray-100" />
+                <p className="mt-2 font-sans text-xs text-[#2E3A5C]"><strong className="text-[#19244E]">First version.</strong> Users chose how many months to buy. The 8 to 12 month range was our internal assumption.</p>
+              </div>
+              <div>
+                <img src={tngPricingRelease} alt="Released pricing: two options for each age group" className="w-full h-auto rounded-lg border border-gray-100" />
+                <p className="mt-2 font-sans text-xs text-[#2E3A5C]"><strong className="text-[#19244E]">At release, after TNG's input.</strong> Each age group had two options: some months up front and then monthly, or the full year at once, both with 12 months of coverage.</p>
+              </div>
+            </div>
+          </figure>
 
           <div className="mt-6">
             <CaseStudyDisclosure label="Trade-off I accepted" summary="Why two separate steps and not one">
@@ -697,7 +713,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
             </div>
 
             <p className="font-sans text-base text-white/90 leading-relaxed max-w-3xl">
-              V5 was released to production inside the Touch 'n Go eWallet. The biggest design call came before V1, when I chose the data-driven flow. The five versions that followed mostly refined it, with revisions focused on wording and pricing rather than major UX overhauls. My role was defending decisions under repeated questioning, accepting genuine technical constraints, and trusting my read when a requested direction felt unrefined. The monthly plan data later supported that read.
+              V5 was released to production inside the Touch 'n Go eWallet. The biggest design call came before V1, when I chose the data-driven flow. The five versions that followed mostly refined it, with revisions focused on wording and pricing rather than major UX overhauls. My role was defending decisions under repeated questioning, accepting genuine technical constraints, and confirming unusual requirements before designing them.
             </p>
 
             <p className="font-sans text-base text-white/90 leading-relaxed max-w-3xl">
