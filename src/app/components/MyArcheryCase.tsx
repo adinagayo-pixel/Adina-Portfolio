@@ -71,7 +71,7 @@ function SourceTag({ source }: { source: Source }) {
   const field = source === "Field"
   return (
     <span
-      className={`inline-block shrink-0 rounded-full px-2 py-0.5 text-[10px] font-bold tracking-wider uppercase ${
+      className={`inline-block shrink-0 self-start mt-0.5 whitespace-nowrap leading-4 rounded-full px-2 py-0.5 text-[10px] font-bold tracking-wider uppercase ${
         field ? "bg-[#DB3E8C]/10 text-[#DB3E8C] border border-[#DB3E8C]/25" : "bg-[#19244E]/5 text-[#19244E]/75 border border-[#19244E]/15"
       }`}
     >
