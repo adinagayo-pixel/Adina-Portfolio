@@ -49,7 +49,7 @@ const EXPERIENCE = [
     points: [
       { lead: "Healthcare and FMCG.", text: "Included Fonterra × Anlene's consumer health platform (FMCG)." },
       { lead: "National election quick count.", text: "Designed a national election quick count system for 820,000+ witness-registered polling stations, with field-driven iteration." },
-      { lead: "Audits and testing.", text: "Conducted system audits and usability testing for validated UX improvements. Analyzed business models and user patterns against technical and business requirements." },
+      { lead: "Audits and testing.", text: "Conducted system audits and heuristic reviews to ground UX improvements. Analyzed business models and user patterns against technical and business requirements." },
     ],
   },
   {

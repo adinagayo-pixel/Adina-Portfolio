@@ -224,7 +224,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
             <span style={{ color: HAIR }}>/</span>
             <MonoTag>WHITE LABEL BACKOFFICE</MonoTag>
             <span style={{ color: HAIR }}>/</span>
-            <MonoTag>MULTIPLE ENTERPRISE PARTNERSHIPS · 2024 to 2025</MonoTag>
+            <MonoTag>MULTIPLE ENTERPRISE PARTNERSHIPS · 2024 to present</MonoTag>
           </div>
           <h1
             className="font-display font-bold leading-[1.08] tracking-tight"
@@ -250,7 +250,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
             <div className="flex items-start gap-3 text-xs leading-relaxed text-gray-500">
               <div>
                 <strong className="font-bold text-[#19244E] block">Confidentiality Note:</strong>
-                Client names, logos, and data have been sanitized to respect NDAs. Screens reflect the real design process, not real production data.
+                Client data and screens are sanitized to respect NDAs. Partners are named only where the product is publicly launched.
               </div>
             </div>
 
@@ -258,7 +258,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
               facts={[
                 {
                   label: "My contribution",
-                  value: "Sole product designer. I mapped the shared base and designed new modules end to end.",
+                  value: "Sole product designer at Friendsure, through Deptech. I designed the shared base, set the working rule with developers, and designed new modules end to end.",
                 },
                 {
                   label: "Team & scope",
@@ -266,12 +266,12 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                 },
                 {
                   label: "Verified impact",
-                  value: "Standard portals deployed by developers without new designs. Around six partner portals are live.",
+                  value: "Ten partner portals were built by developers directly from the pattern, without new designs. Six of them are live. Standard flows are now approved on staging instead of in a Figma review round.",
                   tone: "verified",
                 },
                 {
                   label: "Not measured here",
-                  value: "Pitch turnaround. \"A few days\" is my estimate, not a tracked figure.",
+                  value: "Launch speed. The design-time figures in this case are my own estimates, not tracked data.",
                   tone: "muted",
                 },
               ]}
@@ -313,7 +313,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
           <div className="p-4 border-l border-[#19244E]/15">
             <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">03 · Key Decisions</span>
             <p className="text-sm leading-relaxed text-[#2E3A5C]">
-              Reuse what fits, redesign what differs, and keep the chart off the date filter.
+              Reuse what fits, redesign what differs, and a rule: anything new comes to Figma first.
             </p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
@@ -325,7 +325,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
           <div className="p-4 border-l border-[#19244E]/15">
             <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">05 · Outcome</span>
             <p className="text-sm font-semibold text-[#19244E] leading-relaxed">
-              Around six partner portals live without new designs. Design time went to complex claims.
+              Six partner portals live without new designs. Standard flows approved on staging. Design time went to new features.
             </p>
           </div>
         </div>
@@ -405,6 +405,9 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                 </p>
                 <p>
                   The system was already built for this. The admin portal handled users and roles, and every new partner was added as a new channel in the same system, with its own partner and insurance portals.
+                </p>
+                <p>
+                  So the problem was not one screen. It was how one designer could keep delivering portals for many partners, quickly and consistently, for two kinds of users: the partner and internal teams who run each insurance product day to day, and the insurance buyers who reach those products through customer-facing surfaces. I designed the portals for the first three projects myself. By then it was clear what stayed the same every time (navigation, page structures, tables, filters, common components) and what kept changing (terminology, data fields, and business logic). Some of those changes could even become configuration instead of new screens. One affiliate partner, for example, manages its own purchase questions per category and plan (Travel, Personal Accident, Car, Motorcycle) in its admin portal.
                 </p>
 
                 {/* System Architecture Diagram */}
@@ -508,10 +511,13 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                     <strong className="text-[#19244E]">The question:</strong> Does the partner need something the base doesn't have: a new module, different data, or different logic?
                   </p>
                   <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
-                    <strong className="text-[#19244E]">What I did:</strong> I sorted every request into one of two tracks. Partner A's document check fit the existing codebase, so it went to Track A: reuse. Partner B's four-party eligibility check did not, so it went to Track B: new design work.
+                    <strong className="text-[#19244E]">What I did:</strong> Once the pattern was clear, I started sorting every request into one of two tracks. Partner A's document check fit the existing codebase, so it went to Track A: reuse. Partner B's four-party eligibility check did not, so it went to Track B: new design work.
                   </p>
                   <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
-                    <strong className="text-[#19244E]">Why it held:</strong> Standard portals only needed colors, logo, and terminology changes, so developers could ship them without new designs.
+                    <strong className="text-[#19244E]">The working rule:</strong> I agreed one rule with our developers. Generic portals are built directly from the pattern, with no new designs from me. Any new feature or design change comes to me for Figma first, goes to the client for approval through our PM when needed, and is documented by default.
+                  </p>
+                  <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
+                    <strong className="text-[#19244E]">Why it held:</strong> Standard portals only needed colors, logo, and terminology changes, so developers could ship them without new designs. Because every change still passed through Figma, the portals stayed close to the pattern.
                   </p>
                 </div>
 
@@ -539,7 +545,10 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
               <div className="mt-6">
                 <CaseStudyDisclosure label="Trade-off I accepted" summary="Why reuse comes first, and what it costs later">
                   <p>
-                    Reuse is fast to start and easy to present to a client. A company that does not yet know what it wants customized can begin with a standard portal, and the flow stays largely the same. The cost comes later. When a client changes its inputs or flow, the change can ripple into other flows, so I have to check the logic and the impact of each change on the rest of the system before it ships.
+                    Reuse is fast to start and easy to present to a client. A company that does not yet know what it wants customized can begin with a standard portal, and the flow stays largely the same. The cost comes later. When a client changes its inputs or flow, the change can ripple into other flows, so I have to check the logic and the impact of each change on the rest of the system before it ships. The working rule keeps that manageable: because every change comes to Figma first, I see it before it reaches the code.
+                  </p>
+                  <p>
+                    Reuse also had a cost for some partners: a partner with unique needs sometimes had to adapt to the base first, until a change was justified enough to design. And because components were copied from file to file, small inconsistencies built up that I only saw later, in the library audit.
                   </p>
                 </CaseStudyDisclosure>
               </div>
@@ -587,9 +596,9 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                   <TrackSteps
                     color="#10B981"
                     steps={[
-                      "Duplicate the Figma file from a previous project",
+                      "Engineers build from the pattern, enabling the partner's menus",
                       "Swap colors, logo, and terminology",
-                      "Engineers reuse the codebase, enabling the partner's menus",
+                      "Show the flow to the client on staging for approval",
                       "Ship without new designs",
                     ]}
                   />
@@ -608,7 +617,8 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                       "Read the partner's module documents (BRDs, spreadsheets, business rules) and map how they differ beyond visuals",
                       "Benchmark patterns, and sketch low-fidelity options with Stitch AI when the logic gets complex",
                       "Design what differs: customer table data, a claim review, a chart, custom filters",
-                      "Hand off new module designs",
+                      "Client approves the Figma through our PM",
+                      "Hand off, log it in the Changelog, and flag it to QA",
                     ]}
                   />
                   <p className="text-sm text-[#2E3A5C] leading-relaxed">
@@ -885,35 +895,63 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                 <div className="grid md:grid-cols-3 gap-6">
                   <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
                     <span className="text-[11px] font-bold tracking-wider uppercase text-[#DB3E8C] font-mono block">Shipped</span>
-                    <h5 className="font-bold text-base text-[#19244E]">Standard portals</h5>
+                    <h5 className="font-bold text-base text-[#19244E]">Ten portals built, six live</h5>
                     <p className="text-sm text-[#2E3A5C] leading-relaxed">
-                      Deployed by developers from the existing codebase, without design bottlenecks or redrawing.
+                      Ten partner portals were built by developers directly from the pattern, without new designs. Six of them are live. Partner B's multi-stage claim review was the main new module.
                     </p>
                   </div>
 
                   <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
-                    <span className="text-[11px] font-bold tracking-wider uppercase text-[#DB3E8C] font-mono block">Designed</span>
-                    <h5 className="font-bold text-base text-[#19244E]">Partner B's claim flow</h5>
+                    <span className="text-[11px] font-bold tracking-wider uppercase text-[#DB3E8C] font-mono block">Changed</span>
+                    <h5 className="font-bold text-base text-[#19244E]">Approval and QA</h5>
                     <p className="text-sm text-[#2E3A5C] leading-relaxed">
-                      Multi-stage eligibility review, explored in depth and designed with the backend team.
+                      Standard flows are approved on staging, skipping a Figma review round. Only new features go through Figma approval.
                     </p>
                   </div>
 
                   <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
-                    <span className="text-[11px] font-bold tracking-wider uppercase text-[#DB3E8C] font-mono block">Estimated, not tracked</span>
-                    <h5 className="font-bold text-base text-[#19244E]">Pitch turnaround</h5>
+                    <span className="text-[11px] font-bold tracking-wider uppercase text-[#DB3E8C] font-mono block">My own estimate</span>
+                    <h5 className="font-bold text-base text-[#19244E]">Design time per portal</h5>
                     <p className="text-sm text-[#2E3A5C] leading-relaxed">
-                      A complete set of pitch portals for a new partner in a few days, based on my experience.
+                      At least a day per project before. About zero for a standard portal now, and around 3 to 4 hours for a specific new feature such as the chart above.
                     </p>
                   </div>
                 </div>
 
+                <h3 className="font-display text-xl font-bold text-[#19244E] pt-4">How handover changed</h3>
+                <ul className="font-sans text-base leading-relaxed text-[#2E3A5C] space-y-3 list-disc pl-5" style={{ lineHeight: 1.8 }}>
+                  <li>
+                    <strong className="text-[#19244E]">Figma tells everyone what is new.</strong> My files follow three parts: Masterflow, Changelog, and Archive. Each change is a numbered before-and-after frame linked to its Jira ticket, so developers rarely come back with questions, except about micro-interactions.
+                  </li>
+                  <li>
+                    <strong className="text-[#19244E]">QA checks with me first.</strong> Before testing, QA asks whether a Figma file exists. Standard flows are tested against the existing flow. New additions, like a dashboard chart or one partner's banner management menu, I design in Figma and flag to QA directly.
+                  </li>
+                  <li>
+                    <strong className="text-[#19244E]">Documentation catches up after release.</strong> For portals developers built straight from the pattern, I sometimes recreate the screens in Figma after release, so the next revision and QA have a reference.
+                  </li>
+                </ul>
+
                 <div className="font-sans text-base leading-relaxed text-[#2E3A5C] space-y-5" style={{ lineHeight: 1.8 }}>
                   <p>
-                    The two-track split was not something I planned upfront. It became clear only after several projects had shipped.
+                    None of this was planned upfront. I was the only designer, with several partners in parallel, and I could not design every portal. The working rule was how I prioritized: it took me out of the bottleneck for standard portals and freed my time for customer-facing surfaces, like microsites and mini programs, which need far more review from more stakeholders. The{" "}
+                    {onNext ? (
+                      <button
+                        type="button"
+                        onClick={onNext}
+                        className="font-semibold text-[#DB3E8C] underline underline-offset-2 hover:text-[#19244E] transition-colors cursor-pointer"
+                      >
+                        Touch 'n Go mini program
+                      </button>
+                    ) : (
+                      "Touch 'n Go mini program"
+                    )}{" "}
+                    is one of them.
                   </p>
                   <p>
-                    The lesson I take is to stay alert when a client changes its inputs or flow. Every change needs its logic checked, and its impact traced to the other flows, before it goes live.
+                    There are gaps I would close next time. My discovery came from auditing existing flows, reading partner documents, stakeholder reviews, and syncing with developers, not from talking to the people who use these portals every day. I would interview a few partner operations staff before designing a module like Partner B's claim review. I would also track design time and revision rounds, instead of relying on my own estimates.
+                  </p>
+                  <p>
+                    The lesson I take is to stay alert when a client changes its inputs or flow. Every change needs its logic checked, and its impact traced to the other flows, before it goes live. Working this way also shaped my Master's thesis at ITS, a framework for documenting design rationale and keeping it traceable for solo designers in multi-brand products.
                   </p>
                 </div>
 

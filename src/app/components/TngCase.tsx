@@ -339,7 +339,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 text-sm font-sans">
           <div className="p-4 border-l border-[#19244E]/15">
             <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">01 · Context</span>
-            <p className="text-sm leading-relaxed text-[#2E3A5C]">A micro insurance checkout inside Malaysia's leading eWallet, with over 20 million users.</p>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">A micro insurance checkout inside Malaysia's leading eWallet, a platform with over 20 million users.</p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
             <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">02 · Constraints</span>
@@ -728,7 +728,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
                 </span>
               </div>
               <p className="text-sm font-sans leading-relaxed text-white/95 italic" style={{ lineHeight: 1.8 }}>
-                "Working inside the TNG ecosystem taught me that enterprise design is not about creative freedom: it is about building trust fast enough that teams allow you to make decisions without re-checking every pixel. By version 5, the TNG team stopped asking for layout revisions and only reviewed copy: that shift in trust was the true milestone of this project."
+                "Working inside the TNG ecosystem taught me that enterprise design is not about creative freedom: it is about building trust fast enough that teams allow you to make decisions without re-checking every pixel. The UX and flow were settled by version 2. Versions 3 and 4 refined details and moved to the official kit, and by version 5 the TNG team only reviewed copy: that shift in trust was the true milestone of this project."
               </p>
             </div>
           </div>
