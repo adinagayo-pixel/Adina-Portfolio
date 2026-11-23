@@ -325,7 +325,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
           <div className="p-4 border-l border-[#19244E]/15">
             <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">05 · Outcome</span>
             <p className="text-sm font-semibold text-[#19244E] leading-relaxed">
-              Six partner portals live without new designs. Standard flows approved on staging. Design time went to new features.
+              Ten portals built from the pattern, six live, no new designs. Standard flows approved on staging. Design time went to new features.
             </p>
           </div>
         </div>
