@@ -10,8 +10,6 @@ import afgLogo from "@/imports/LOGO.png"
 import coverTng from "@/imports/Cover TNG.jpg"
 import tngThumb4 from "@/imports/TNG thumb4.jpg"
 import tngThumb5 from "@/imports/TNG thumb5.jpg"
-import projectThumb1 from "@/imports/image-7.jpg"
-import projectThumb2 from "@/imports/image-8.jpg"
 import projectThumb4 from "@/imports/image-7.jpg"
 import projectThumb5 from "@/imports/image-9.jpg"
 import projectThumb6 from "@/imports/image-8.jpg"
@@ -64,6 +62,8 @@ import backofficeSalesOverview from "@/imports/backoffice-sales-overview.png"
 import backofficeCustomerDetail from "@/imports/backoffice-customer-detail.png"
 import backofficeAiTopPicks from "@/imports/backoffice-ai-top-picks.png"
 import myArcheryPerpaniThumb from "@/imports/myarchery thumb.jpg"
+import myArcheryOrganizer from "@/imports/myarchery-organizer.png"
+import myArcheryUserTraining from "@/imports/myarchery-user-training.jpg"
 
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback"
 import {
@@ -187,8 +187,8 @@ const FEATURED = [
     thumb: myArcheryPerpaniThumb,
     screens: [
       { src: myArcheryPerpaniThumb, label: "01 · SCORING KEYPAD" },
-      { src: projectThumb2, label: "02 · ADMIN DASHBOARD" },
-      { src: projectThumb1, label: "03 · LIVE SCOREBOARD" },
+      { src: myArcheryOrganizer, label: "02 · ORGANIZER & MOBILE SCORING", fitContain: true },
+      { src: myArcheryUserTraining, label: "03 · MONTHLY USER TRAINING", fitContain: true },
     ],
   },
   {
