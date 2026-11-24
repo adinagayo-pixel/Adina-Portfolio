@@ -83,6 +83,7 @@ import MyArcheryCase from "./components/MyArcheryCase"
 import BackofficeCase from "./components/BackofficeCase"
 import TelkomCase from "./components/TelkomCase"
 import AboutMe from "./components/AboutMe"
+import AiWorkflowSection from "./components/AiWorkflowSection"
 import { CaseStudySwipeWrapper, CaseStudyMeta } from "./components/ui/CaseStudySwipeWrapper"
 
 // ─── Design tokens ────────────────────────────────────────────────────────────
@@ -2946,6 +2947,9 @@ function WorkflowSection() {
           </div>
         </div>
       </section>
+
+      {/* ── BLOCK 1B: HOW I WORK WITH AI ── */}
+      <AiWorkflowSection />
 
       {/* ── BLOCK 2: HOW I WORK PHILOSOPHICAL STATEMENT HERO (NOW AT THE BOTTOM AS CLOSER) ── */}
       <section
