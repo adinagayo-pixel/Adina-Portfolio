@@ -3063,44 +3063,8 @@ const getGradient = (id: number) => {
 // mouse users. Static on purpose, like the list view.
 function CatalogGrid({ projects, onOpen, headline, toolbar }: { projects: Project[]; onOpen: (p: Project) => void; headline: ReactNode; toolbar?: ReactNode }) {
   const trackRef = useRef<HTMLDivElement>(null)
-  const reduceMotion = useReducedMotion()
   const [edge, setEdge] = useState({ start: true, end: false })
 
-  // "Deal" entrance, continuing the hero → deck story: while the row is off screen its cards sit in a
-  // tilted pile on the first card's spot, like the Work deck; each time the row comes into view they
-  // are dealt out to the right, one after another. Cards whose spot is already off screen to the right
-  // stay where they are, so nothing streaks across the screen. Skipped for reduced motion.
-  const cardRefs = useRef<(HTMLButtonElement | null)[]>([])
-  const [pileOffsets, setPileOffsets] = useState<number[]>([])
-  const [dealt, setDealt] = useState(false)
-  const measurePile = () => {
-    const track = trackRef.current
-    const first = cardRefs.current[0]
-    if (!track || !first) return
-    setPileOffsets(cardRefs.current.map((c) => {
-      if (!c) return 0
-      const d = c.offsetLeft - first.offsetLeft
-      return d > track.clientWidth ? 0 : -d
-    }))
-  }
-  useEffect(() => {
-    const track = trackRef.current
-    if (!track) return
-    measurePile()
-    // Deal once a quarter of the row is visible; gather the pile again only after the row has left
-    // the screen completely, so cards never vanish while they can still be seen.
-    const io = new IntersectionObserver(([e]) => {
-      if (e.intersectionRatio >= 0.25) setDealt(true)
-      else if (!e.isIntersecting) { setDealt(false); track.scrollLeft = 0 }
-    }, { threshold: [0, 0.25] })
-    io.observe(track)
-    window.addEventListener("resize", measurePile)
-    return () => { io.disconnect(); window.removeEventListener("resize", measurePile) }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [projects.length])
-  const PILE_ROTATE = [0, -3, 2.5, -1.5, 3.5, -2.5]
-  const PILE_Y = [0, 2, -2, 3, -1, 1]
-  const showDealt = dealt || !!reduceMotion
   const updateEdge = () => {
     const el = trackRef.current
     if (!el) return
@@ -3138,25 +3102,10 @@ function CatalogGrid({ projects, onOpen, headline, toolbar }: { projects: Projec
         className="flex gap-3 sm:gap-5 overflow-x-auto snap-x snap-mandatory scroll-px-4 sm:scroll-px-8 lg:scroll-px-16 px-4 sm:px-8 lg:px-16 pb-2"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
-        {projects.map((p, i) => {
+        {projects.map((p) => {
           const src = PROJECT_PREVIEWS[p.id]
-          const offset = pileOffsets[i] ?? 0
-          const inPile = i === 0 || offset !== 0
           return (
-            <motion.button
-              ref={(el) => { cardRefs.current[i] = el }}
-              initial={false}
-              animate={
-                showDealt || !inPile
-                  ? { x: 0, y: 0, rotate: 0 }
-                  : { x: offset, y: PILE_Y[i % PILE_Y.length], rotate: PILE_ROTATE[i % PILE_ROTATE.length] }
-              }
-              transition={
-                showDealt
-                  ? { duration: 0.65, ease: REVEAL_EASE, delay: 0.1 + i * 0.07 }
-                  : { duration: 0 }
-              }
-              style={{ zIndex: projects.length - i }}
+            <button
               key={p.id}
               type="button"
               onClick={() => onOpen(p)}
@@ -3181,7 +3130,7 @@ function CatalogGrid({ projects, onOpen, headline, toolbar }: { projects: Projec
                   {p.category} · {p.year}
                 </p>
               </div>
-            </motion.button>
+            </button>
           )
         })}
       </div>
