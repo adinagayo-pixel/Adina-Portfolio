@@ -58,11 +58,9 @@ Cross-Team Collaboration: Conducted daily technical alignment sessions with engi
 Pricing & Copy Refinements: Managed 5 version cycles addressing minor UX adjustments, dynamic price calculation updates, and localized Malay/English copy compliance.
 
 05 // BUSINESS IMPACT & KEY DELIVERABLES
-Successful V5 Production Launch: Successfully deployed Great Tenang Madani to Touch 'n Go's live app ecosystem, maintaining zero-defect UX flows through version 5.
+Successful V5 Production Launch: Successfully deployed Great Tenang Madani to Touch 'n Go's live app ecosystem as version 5.
 
-Frictionless Government Subsidy Access: Enabled eligible Malaysian citizens to verify PTV status and claim subsidized micro-insurance in under 3 clicks via eKYC auto-population.
-
-Adaptable PWA Framework: Created a reusable embedded PWA insurance checkout architecture that GEGM now utilizes for third-party fintech partners.
+Frictionless Government Subsidy Access: Enabled eligible Malaysian citizens to verify PTV status and claim subsidized micro-insurance via eKYC auto-population.
 
 🎨 Tips Penataan Visual di Framer untuk Projek Ini:
 Version Evolution Showcase (Horizontal Scroll):
