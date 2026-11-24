@@ -135,7 +135,7 @@ const FEATURED = [
     location: "MY", year: "2025", tags: ["PWA / SSO", "eKYC Data Mapping", "B2C / FinTech"],
     role: "Sole Product Designer",
     headline: "A micro insurance checkout inside Touch 'n Go eWallet, where government subsidy eligibility decides the premium. Shipped as V5 after five design iterations.",
-    metrics: [{ val: "V5", sub: "Final Release" }, { val: "3mo", sub: "Sprint Timeline" }, { val: "RM0", sub: "PTV Checkout" }],
+    metrics: [{ val: "V5", sub: "Final Release" }, { val: "3mo", sub: "Sprint Timeline" }, { val: "PTV", sub: "Discount Eligibility" }],
     projectId: "tng",
     thumb: coverTng,
     screens: [

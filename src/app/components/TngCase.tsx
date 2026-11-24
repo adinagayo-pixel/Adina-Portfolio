@@ -351,7 +351,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
             <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">04 · Solution & Evidence</span>
-            <p className="text-sm font-semibold text-[#19244E] leading-relaxed">An embedded PWA with SSO and eKYC pre-fill. Eligible PTV users pay RM 0.</p>
+            <p className="text-sm font-semibold text-[#19244E] leading-relaxed">An embedded PWA with SSO and eKYC pre-fill. Eligible PTV users get a discounted premium.</p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
             <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">05 · Outcome</span>
@@ -604,7 +604,7 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
 
           <div className="space-y-5 font-sans text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
             <p>
-              The flow has three parts: identity pre-fill from SSO and eKYC, a PTV eligibility check, and a payment split. Eligible users reach a RM 0 premium. Everyone else continues to standard eWallet debit.
+              The flow has three parts: identity pre-fill from SSO and eKYC, a PTV eligibility check, and a payment split. Eligible users get the PTV discount on their premium. Everyone else continues to the standard price.
             </p>
           </div>
 
