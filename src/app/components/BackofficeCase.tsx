@@ -262,7 +262,7 @@ export default function BackofficeCase({ onBack, onNext, onPrev }: Props) {
                 },
                 {
                   label: "Team & scope",
-                  value: "Backend engineers and partner teams, across insurers, a ride-hailing and delivery app, and e-wallet and super app partners.",
+                  value: "Backend engineers and partner teams, from insurers to the consumer apps that sell insurance to their own users.",
                 },
                 {
                   label: "Verified impact",
