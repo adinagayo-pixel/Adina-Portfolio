@@ -229,14 +229,14 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
               className="font-display font-medium leading-relaxed"
               style={{ fontSize: "clamp(1rem, 1.8vw, 1.45rem)", color: N, letterSpacing: "-0.01em", lineHeight: 1.6 }}
             >
-              A system for a national political party to enter, verify, and tabulate polling station results in Indonesia's 2024 elections, inside a 48 hour window. It had to work with no signal, with handwritten forms, and with an AI that sometimes needs a human to step in.
+              A system for a national political party to enter, verify, and tabulate polling station results in Indonesia's 2024 elections, inside a 48 hour window. It had to work with no signal, with handwritten forms, and with OCR that sometimes needs a human to step in.
             </p>
 
             <CaseStudyFacts
               facts={[
                 { label: "My contribution", value: "Sole product designer across four connected platforms." },
                 { label: "Team & scope", value: "An Indonesian national political party, covering 38 provinces and 820,000+ polling stations." },
-                { label: "Verified impact", value: "The system ran live across 38 provinces with zero downtime through the 48 hour tabulation window." },
+                { label: "Outcome", value: "The system ran live across 38 provinces through the 48 hour tabulation window." },
                 { label: "Not measured here", value: "TPS level accuracy and submission data, which I did not have direct access to." },
               ]}
             />
@@ -273,7 +273,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
             <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">03 · Key Decisions</span>
-            <p className="text-sm leading-relaxed text-[#2E3A5C]">AI with a human fallback, offline as an expected state, and plain language seat allocation.</p>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">OCR with a human fallback, offline as an expected state, and plain language seat allocation.</p>
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
             <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">04 · Solution & Evidence</span>
@@ -281,7 +281,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
           </div>
           <div className="p-4 border-l border-[#19244E]/15">
             <span className="block text-xs font-bold tracking-widest text-[#19244E]/60 uppercase mb-1.5">05 · Outcome</span>
-            <p className="text-sm leading-relaxed text-[#2E3A5C]">Ran live across 38 provinces with zero downtime through the tabulation window.</p>
+            <p className="text-sm leading-relaxed text-[#2E3A5C]">Ran live across 38 provinces through the tabulation window.</p>
           </div>
         </div>
       </div>
@@ -331,7 +331,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
           <SectionTag id="context" num="01" label="Context: An Election That Does Not Wait" />
           <div className="space-y-5 font-sans text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
             <p>
-              An election does not wait for good conditions. The system had to work in a city with full signal and in a village with none, with a neatly filled form and with one scrawled in a rush during vote counting, and with an AI that reads handwriting well or needs a human to step in.
+              An election does not wait for good conditions. The system had to work in a city with full signal and in a village with none, with a neatly filled form and with one scrawled in a rush during vote counting, and with OCR that reads handwriting well or needs a human to step in.
             </p>
             <p>
               Four election types, President, DPR RI, DPRD Provinsi, and DPRD Kabupaten or Kota, each needed its own vote entry, verification, and seat allocation logic, all against the same 48 hour clock.
@@ -348,7 +348,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
             {[
               { title: "A fixed 48 hour window", desc: "Four election types shared one clock. The election date did not move, whatever the state of the system." },
               { title: "Unreliable infrastructure", desc: "Signal dead zones, and WhatsApp numbers that could go down without warning." },
-              { title: "Handwritten tallies", desc: "Vote tallies are handwritten on physical forms, so the AI reading needed a real fallback, not a best guess." },
+              { title: "Handwritten tallies", desc: "Vote tallies are handwritten on physical forms, so the OCR reading needed a real fallback, not a best guess." },
             ].map(({ title, desc }) => (
               <div key={title} className="p-6 bg-white rounded-xl border border-gray-200/80 shadow-xs space-y-3">
                 <h4 className="font-bold text-[#19244E] text-base">{title}</h4>
@@ -366,12 +366,12 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
 
           <div className="space-y-6">
             <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
-              <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 01 · AI with a human fallback, not AI alone</span>
+              <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 01 · OCR with a human fallback, not OCR alone</span>
               <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
-                <strong className="text-[#19244E]">The pressure:</strong> Handwriting is not always legible, and the AI needed a real fallback.
+                <strong className="text-[#19244E]">The pressure:</strong> OCR can't always read handwriting, and the system needed a real fallback.
               </p>
               <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
-                <strong className="text-[#19244E]">What I did:</strong> I built two parallel experiences: a fast automated flow for witnesses on mobile, and a manual web tool for a dedicated entry team. Party order follows the KPU ballot, with numbered tabs that match the physical paper.
+                <strong className="text-[#19244E]">What I did:</strong> I designed two parallel experiences: a fast OCR assisted flow for witnesses on mobile, and a manual web tool for a dedicated entry team. Party order follows the KPU ballot, with numbered tabs that match the physical paper.
               </p>
               <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
                 <strong className="text-[#19244E]">Why it held:</strong> A human could always step in without the system falling apart.
@@ -425,7 +425,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
               onClick={() => setSelectedImage({
                 src: electionVerificationCms,
                 title: "01 · Dual-Pane Verification Portal (PPLN Abuja)",
-                badge: "AI + Human Verification",
+                badge: "OCR + Human Verification",
                 desc: "Side-by-side verification CMS allowing dedicated data entry clerks to audit physical C-Hasil tallies against candidate vote inputs across all registered national parties."
               })}
               className="bg-white border border-gray-200 rounded-2xl p-4 shadow-xs hover:border-[#DB3E8C]/50 transition-all duration-300 cursor-pointer group"
@@ -485,7 +485,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
 
           <div className="space-y-5 font-sans text-base leading-relaxed text-[#2E3A5C]" style={{ lineHeight: 1.8 }}>
             <p>
-              Offline mode and the Emergency App were added in response to what the client met in the field: low signal regions, and a WhatsApp outage close to the election. Several planned modules, including Admin, Profile, and TPS Prioritas, were deliberately shelved to protect the flows that mattered most.
+              Offline mode and the Emergency App were added in response to what the client met in the field: low signal regions, and a WhatsApp outage close to the election. We deliberately shelved several planned modules, including Admin, Profile, and TPS Prioritas, to protect the flows that mattered most.
             </p>
           </div>
         </div>
@@ -501,12 +501,12 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
               <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
                 <span className="text-[11px] font-bold tracking-wider uppercase text-[#DB3E8C] font-sans block">Shipped</span>
                 <h5 className="font-bold text-base text-[#19244E]">Four connected platforms</h5>
-                <p className="text-sm text-[#2E3A5C] leading-relaxed">Witness submission, AI verification, offline capture, and seat allocation reporting.</p>
+                <p className="text-sm text-[#2E3A5C] leading-relaxed">Witness submission, OCR verification, offline capture, and seat allocation reporting.</p>
               </div>
               <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
                 <span className="text-[11px] font-bold tracking-wider uppercase text-[#DB3E8C] font-sans block">Ran live</span>
                 <h5 className="font-bold text-base text-[#19244E]">Across 38 provinces</h5>
-                <p className="text-sm text-[#2E3A5C] leading-relaxed">Through the 48 hour tabulation window, with the team on standby.</p>
+                <p className="text-sm text-[#2E3A5C] leading-relaxed">Through the 48 hour tabulation window, with the team on standby to handle issues as they came up.</p>
               </div>
               <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-xs space-y-2">
                 <span className="text-[11px] font-bold tracking-wider uppercase text-[#DB3E8C] font-sans block">Not measured here</span>
@@ -524,7 +524,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
             <div className="p-6 bg-white rounded-xl border border-gray-200 space-y-2">
               <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#19244E]">WHAT I LEARNED</span>
               <p className="text-sm font-sans leading-relaxed text-[#2E3A5C] italic" style={{ lineHeight: 1.8 }}>
-                "This project taught me that designing for conditions I don't control: bad signal, tight deadlines, a domain I didn't start out understanding: means building in fallbacks from the start, not patching them in after something breaks."
+                "This project taught me that designing for conditions I don't control (bad signal, tight deadlines, a domain I didn't start out understanding) means building in fallbacks from the start, not patching them in after something breaks."
               </p>
             </div>
           </div>
