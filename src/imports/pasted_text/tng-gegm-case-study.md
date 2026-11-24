@@ -34,7 +34,7 @@ Plaintext
 Mapped TNG’s native Single Sign-On (SSO) and eKYC data schema (base user profile, NRIC, full name, age parameters) directly into the embedded PWA forms—eliminating manual typing friction and preventing identity spoofing.
 
 2. Automated PTV Voucher Eligibility Verification
-Engineered an inline identity validation screen where users input/confirm their NRIC to instantly check government subsidy eligibility. The system automatically adjusts premium totals to RM 0 (for eligible PTV recipients) or routes to standard TNG e-wallet debit.
+Engineered an inline identity validation screen where users input/confirm their NRIC to instantly check government subsidy eligibility. The system automatically applies the PTV discount to the premium (for eligible PTV recipients) or routes to standard TNG e-wallet debit.
 
 3. Multi-Version Design Iteration (V1 to V5 Evolution)
 Managed continuous iterations across 5 design versions—refining copy nuances, adapting pricing updates, and synchronizing layout structures directly with Touch 'n Go’s design and technical teams.
@@ -60,7 +60,7 @@ Pricing & Copy Refinements: Managed 5 version cycles addressing minor UX adjustm
 05 // BUSINESS IMPACT & KEY DELIVERABLES
 Successful V5 Production Launch: Successfully deployed Great Tenang Madani to Touch 'n Go's live app ecosystem, maintaining zero-defect UX flows through version 5.
 
-Frictionless Government Subsidy Access: Enabled thousands of eligible Malaysian citizens to verify PTV status and claim subsidized micro-insurance in under 3 clicks via eKYC auto-population.
+Frictionless Government Subsidy Access: Enabled eligible Malaysian citizens to verify PTV status and claim subsidized micro-insurance in under 3 clicks via eKYC auto-population.
 
 Adaptable PWA Framework: Created a reusable embedded PWA insurance checkout architecture that GEGM now utilizes for third-party fintech partners.
 
@@ -71,7 +71,7 @@ Tampilkan 5 versi gambar/canvas Figma milikmu (V1 to V5) secara berurutan. Berik
 
 PTV Discount vs Normal Purchase Split Flow:
 
-Tampilkan potongan UI bagian Eligibility Check (RM 0 Voucher vs Standard Checkout) dalam format Bento Grid 2 kolom.
+Tampilkan potongan UI bagian Eligibility Check (PTV Discount vs Standard Checkout) dalam format Bento Grid 2 kolom.
 
 Monospace Metadata Tag:
 
