@@ -536,13 +536,13 @@ export default function TngCase({ onBack, onNext, onPrev }: Props) {
             <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs space-y-3">
               <span className="text-xs font-bold text-[#DB3E8C] uppercase tracking-wider block">Decision 02 · Health declarations stay explicit</span>
               <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
-                <strong className="text-[#19244E]">The pressure:</strong> The TNG team asked repeatedly why "No" answers were not pre-filled to reduce cognitive load.
+                <strong className="text-[#19244E]">The pressure:</strong> Pre-filling the "No" answers came up in reviews with the TNG team as a way to reduce cognitive load.
               </p>
               <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
-                <strong className="text-[#19244E]">What I did:</strong> I did not pre-fill them. The "Select No for All" button I added still needed explicit user action.
+                <strong className="text-[#19244E]">What I did:</strong> I kept the answers unselected and added a "Select No for All" button instead, so answering is quicker but still the user's own choice.
               </p>
               <p className="font-sans text-sm text-[#2E3A5C] leading-relaxed">
-                <strong className="text-[#19244E]">Why it held:</strong> Health declarations have to be read and accepted, not bypassed as a formality.
+                <strong className="text-[#19244E]">Why it held:</strong> A health declaration only counts when the user has read and answered it themselves.
               </p>
             </div>
 
