@@ -408,7 +408,7 @@ export default function ElectionCase({ onBack, onNext, onPrev }: Props) {
           <div className="mt-6">
             <CaseStudyDisclosure label="Trade-off I accepted" summary="Two experiences to build and keep in sync">
               <p>
-                Building two parallel experiences, one fast and automated and one manual and deliberate, meant more work on both sides. It was the price of making sure a human could always step in.
+                Two flows meant double the design work and a risk of the data drifting apart. I kept both on the same field order, following the KPU ballot, so a manual entry always matched what a witness would submit.
               </p>
             </CaseStudyDisclosure>
           </div>
