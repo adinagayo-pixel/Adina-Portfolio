@@ -3,7 +3,7 @@ import { Heart } from "lucide-react"
 
 interface CaseStudyHeaderBadgeProps {
   caseNum: string // e.g. "01", "02", "03"
-  totalCases?: string // e.g. "09"
+  totalCases?: string // e.g. "08"
 }
 
 export function useReadingProgress() {
@@ -36,7 +36,7 @@ export function useReadingProgress() {
   return progress
 }
 
-export function CaseStudyHeaderBadge({ caseNum, totalCases = "09" }: CaseStudyHeaderBadgeProps) {
+export function CaseStudyHeaderBadge({ caseNum, totalCases = "08" }: CaseStudyHeaderBadgeProps) {
   const rawProgress = useReadingProgress()
   const progress = isNaN(rawProgress) ? 0 : rawProgress
   const isComplete = progress >= 98

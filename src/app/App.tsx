@@ -43,7 +43,6 @@ import disnavThumb from "@/imports/disnav thumb.jpg"
 import adaPolisiThumb from "@/imports/ada polisi thumb.jpg"
 import ftjslThumb from "@/imports/FTJSL Thumbnail.jpg"
 import telkomCurvedLedDisplay from "@/imports/telkom-curved-led-display.png"
-import telkomCurationDashboard from "@/imports/telkom-curation-dashboard.png"
 import mykawanGegmThumb from "@/imports/Mykawan GEGM thumb.jpg"
 import drGadgetThumb from "@/imports/dr gadget thumb.jpg"
 import sunwayThumb from "@/imports/sunway thumb.jpg"
@@ -117,7 +116,7 @@ export function getGeneralWhatsAppLink() {
 const FEATURED = [
   {
     num: "01", shortTitle: "White Label Backoffice", name: "One Base, Many Partners: Reusable White Label Backoffice", client: "Multiple Enterprise Partnerships",
-    location: "Regional", year: "2024 to 2025", tags: ["White Label Engine", "Shared Foundation", "Data Analytics"],
+    location: "Regional", year: "2024 to present", tags: ["White Label Engine", "Shared Foundation", "Data Analytics"],
     role: "Sole Product Designer",
     headline: "A backoffice where partners monitor sales, manage customers, and review insurance claims. I designed the base once, then spent my design time only where partners genuinely differed.",
     confidentialNote: "Client names, logos, and data have been sanitized to respect NDAs. Screens reflect the real design process, not real production data.",
@@ -238,19 +237,6 @@ const FEATURED = [
       { src: proArcheryOrderTracking, label: "05 · ORDER & WARRANTY TRACKING" },
     ],
   },
-  {
-    num: "09", shortTitle: "Public LED Display", name: "Interactive Public LED Display Ecosystem", client: "Telkomsel Siaga",
-    location: "ID", year: "2025", tags: ["Interactive Display", "Two Tier Curation", "Public Space UX"],
-    role: "UI Designer",
-    headline: "Refining a nationwide greeting wall: from mobile input form to curated custom shaped LED display at Telkomsel HQ.",
-    metrics: [{ val: "3", sub: "System Touchpoints" }, { val: "2 Tier", sub: "Curation Moderation" }, { val: "1wk", sub: "Sprint Timeline" }],
-    projectId: "telkom",
-    thumb: telkomCurvedLedDisplay,
-    screens: [
-      { src: telkomCurvedLedDisplay, label: "01 · CURVED CEILING LED WALL" },
-      { src: telkomCurationDashboard, label: "02 · MESSAGE CURATION DASHBOARD" },
-    ],
-  },
 ]
 
 const PROJECTS: Project[] = [
@@ -265,6 +251,7 @@ const PROJECTS: Project[] = [
   { id: 7,  name: "MyKawan × GEGM",        client: "Great Eastern Malaysia × myKawan",  market: "Malaysia",    year: 2025, status: "LIVE",          category: "InsurTech & Protection",      scope: "Asuransi kesehatan dan proteksi digital Protect Active dan Great Shield Active." },
   { id: 8,  name: "Teman E Commerce",      client: "Teman",                            market: "Indonesia",   year: 2025, status: "PROTOTYPE",     category: "AI & Retail E Commerce",      scope: "AI driven product recommendation engine and personalized purchase flow integration." },
   { id: 9,  name: "Samaloop",              client: "Samaloop",                         market: "Indonesia",   year: 2025, status: "LIVE",          category: "EdTech & Marketplace",        scope: "Corporate website and public speaking coach directory booking platform." },
+  { id: 18, name: "Public LED Display",    client: "Telkomsel Siaga",                  market: "Indonesia",   year: 2025, status: "ARCHIVED",      category: "Interactive Display & Public Space UX", scope: "Nationwide greeting wall: a mobile input form, a two tier curation dashboard, and a curated custom shaped LED display at Telkomsel HQ." },
   // ── 2024 ──────────────────────────────────────────────────────────────────────
   { id: 10, name: "Friendsure × Dr Gadget",client: "Friendsure × Dr Gadget",          market: "Malaysia",    year: 2024, status: "LIVE",          category: "Customer & Admin Portal",     scope: "Menyediakan customer dan admin portal untuk alur layanan servis." },
   { id: 11, name: "Family Moo",            client: "Fonterra Indonesia",               market: "Indonesia",   year: 2024, status: "LIVE",          category: "FMCG & Loyalty Portal",       scope: "Customer loyalty management and points redemption portal for Fonterra's consumer ecosystem." },
@@ -862,7 +849,6 @@ const HERO_CASE_SLOTS: Record<string, { x: number; y: number }> = {
   backoffice: { x: -0.41, y: -0.71 },
   archery: { x: -0.78, y: -0.26 },
   gegi: { x: -0.36, y: -0.32 },
-  telkom: { x: -0.76, y: 0.15 },
   bijakwang: { x: -0.37, y: 0.05 },
   myarchery: { x: -0.48, y: 0.52 },
   tng: { x: 0.47, y: -0.64 },
@@ -3040,7 +3026,14 @@ const PROJECT_PREVIEWS: Record<number, string> = {
   15: yametThumb,
   16: adaPolisiThumb,
   17: ftjslThumb,
+  18: telkomCurvedLedDisplay,
 }
+
+// Catalog numbers come from each entry's place in the full list (01, 02, ...), not from its id or
+// from a filtered view, so an entry keeps its number whatever is shown around it.
+const CATALOG_NUM: Record<number, string> = Object.fromEntries(
+  PROJECTS.map((p, i) => [p.id, String(i + 1).padStart(2, "0")])
+)
 
 const STATUS_COLOR: Record<string, string> = {
   "LIVE":          "#22c55e",
@@ -3180,7 +3173,10 @@ function CatalogGrid({ projects, onOpen, headline, toolbar }: { projects: Projec
                 )}
               </div>
               <div className="px-1 pt-3 pb-1">
-                <p className="font-sans text-sm sm:text-[15px] font-semibold text-[#19244E] leading-snug">{p.name}</p>
+                <p className="font-sans text-sm sm:text-[15px] font-semibold text-[#19244E] leading-snug">
+                  <span className="font-bold tracking-wider text-[#19244E]/40 group-hover:text-[#DB3E8C] transition-colors duration-200 mr-2">{CATALOG_NUM[p.id]}</span>
+                  {p.name}
+                </p>
                 <p className="font-sans text-xs sm:text-[13px] text-[#2E3A5C]/70 mt-1 leading-snug">
                   {p.category} · {p.year}
                 </p>
@@ -3280,7 +3276,7 @@ function ProjectArchiveSection() {
             <div className="divide-y divide-[#19244E]/10 border-t border-b border-[#19244E]/10">
               {visible.map((project, idx) => {
                 const isHovered = hoveredId === project.id
-                const formattedNum = String(project.id).padStart(2, "0")
+                const formattedNum = CATALOG_NUM[project.id]
                 const previewImg = PROJECT_PREVIEWS[project.id]
 
                 return (
@@ -3484,7 +3480,7 @@ function ProjectArchiveSection() {
               <div className="flex justify-between items-start mb-4">
                 <div>
                   <span className="font-sans text-xs sm:text-sm font-bold tracking-[0.2em] uppercase text-[#DB3E8C]">
-                    [{String(selectedProject.id).padStart(2, "0")} // PROJECT DETAILS]
+                    [{CATALOG_NUM[selectedProject.id]} // PROJECT DETAILS]
                   </span>
                   <h3 className="font-display text-xl sm:text-2xl lg:text-3xl font-bold mt-1 text-[#19244E]">
                     {selectedProject.name}
@@ -3733,7 +3729,6 @@ const FEATURED_INDEX_MAP: Record<string, number> = {
   bijakwang: 5,
   gegi: 6,
   archery: 7,
-  telkom: 8,
 }
 
 // ─── APP ──────────────────────────────────────────────────────────────────────
@@ -4049,7 +4044,6 @@ function AppContent() {
     { id: "bijakwang", num: "06", name: "Kahoot to In House: Roadshow Tournament Platform", client: "mySalam × myKawan", thumb: mySalamThumb },
     { id: "gegi", num: "07", name: "Critical Illness Protection Gap Quiz", client: "GEGI Singapore", thumb: ci1 },
     { id: "archery", num: "08", name: "Pro Archery 4 Surface Digital Ecosystem", client: "Pro Archery Jakarta", thumb: proArcheryThumb },
-    { id: "telkom", num: "09", name: "Interactive Public LED Display Ecosystem", client: "Telkomsel Siaga", thumb: telkomCurvedLedDisplay },
   ]
 
   const renderCaseStudyView = (viewId: string, caseComponent: React.ReactNode) => {
@@ -4154,7 +4148,7 @@ function AppContent() {
       <BackofficeCase
         onBack={handleBackFromCase}
         onNext={() => { handleOpenProject("tng"); window.scrollTo({ top: 0 }) }}
-        onPrev={() => { handleOpenProject("telkom"); window.scrollTo({ top: 0 }) }}
+        onPrev={() => { handleOpenProject("archery"); window.scrollTo({ top: 0 }) }}
       />
     )
   }
@@ -4173,7 +4167,7 @@ function AppContent() {
       "archery-case",
       <ProArcheryCase
         onBack={handleBackFromCase}
-        onNext={() => { handleOpenProject("telkom"); window.scrollTo({ top: 0 }) }}
+        onNext={() => { handleOpenProject("backoffice"); window.scrollTo({ top: 0 }) }}
         onPrev={() => { handleOpenProject("gegi"); window.scrollTo({ top: 0 }) }}
       />
     )
