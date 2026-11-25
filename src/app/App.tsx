@@ -2892,10 +2892,8 @@ function WorkflowSection() {
                     className={`flex flex-col md:grid md:grid-rows-subgrid md:row-span-2 relative group md:border-[#19244E]/10 ${divider}`}
                   >
                     <div>
-                      {/* Top Node Header: Node Dot & Sleek Mono Label */}
-                      <div className="flex items-center gap-2.5 mb-7 bg-white pr-4 w-fit relative z-10">
-
-                        <span className="w-2.5 h-2.5 rounded-full bg-[#DB3E8C] shadow-[0_0_8px_rgba(219,62,140,0.45)] animate-pulse" />
+                      {/* Top Node Header: Sleek Mono Label */}
+                      <div className="flex items-center mb-7 bg-white pr-4 w-fit relative z-10">
                         <span className="font-mono text-[11px] font-bold tracking-widest text-[#DB3E8C] uppercase px-3 py-1 rounded-full bg-[#DB3E8C]/10 border border-[#DB3E8C]/25">
                           {phase.num} {phase.category}
                         </span>
