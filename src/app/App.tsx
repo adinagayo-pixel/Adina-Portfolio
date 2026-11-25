@@ -827,15 +827,15 @@ const PARALLAX = {
   IDLE_MAX: 12,      // px, largest idle float
   TEXT_GAP: 24,      // px kept between a card and the headline, on top of all motion
   CARD_GAP: 22,      // px of white space kept between any two cards, on top of all motion
-  CARD_BASE: 240,    // px, width of the card element before scaling (cards are 3:2 landscape)
+  CARD_BASE: 320,    // px, width of the card element before scaling (cards are 3:2 landscape)
 }
 
 // Three depth tiers: card width range in px, opacity, and how strongly the card follows the cursor.
 const DEPTH_TIERS = {
   0: { minW: 38, maxW: 52, opacity: 0.32, depth: 0.01 },    // backdrop (catalog thumbnails)
   1: { minW: 100, maxW: 112, opacity: 0.6, depth: 0.015 },  // far
-  2: { minW: 128, maxW: 144, opacity: 0.85, depth: 0.035 }, // middle
-  3: { minW: 160, maxW: 176, opacity: 1, depth: 0.05 },     // near
+  2: { minW: 200, maxW: 214, opacity: 0.92, depth: 0.035 }, // middle
+  3: { minW: 232, maxW: 248, opacity: 1, depth: 0.05 },     // near
 } as const
 
 // Each item gives its card height as a share of its width: 2/3 for the landscape case study
@@ -845,16 +845,13 @@ const DEPTH_TIERS = {
 // (negative = left side). y: -1..1, the share of the half height (negative = above the middle).
 type HeroFieldItem = { key: string; name: string; sub: string; src: string; aspect: number; backdrop?: boolean; slot?: { x: number; y: number }; onOpen?: () => void }
 
-// Where each main case study sits in the hero, left column top to bottom, then right column.
+// The case studies shown in the hero, and where each one sits: two on each side, one high and
+// one low, so the hero keeps plenty of white space. Only cases listed here appear in the hero.
 const HERO_CASE_SLOTS: Record<string, { x: number; y: number }> = {
-  backoffice: { x: -0.41, y: -0.71 },
-  archery: { x: -0.78, y: -0.26 },
-  gegi: { x: -0.36, y: -0.32 },
-  bijakwang: { x: -0.37, y: 0.05 },
-  myarchery: { x: -0.48, y: 0.52 },
-  tng: { x: 0.47, y: -0.64 },
-  election: { x: 0.55, y: -0.22 },
-  anlene: { x: 0.44, y: 0.18 },
+  backoffice: { x: -0.42, y: -0.46 },
+  election: { x: -0.5, y: 0.38 },
+  tng: { x: 0.44, y: -0.48 },
+  anlene: { x: 0.52, y: 0.36 },
 }
 
 function HeroWorkField({ items, children, className = "" }: { items: HeroFieldItem[]; children: ReactNode; className?: string }) {
@@ -1320,7 +1317,7 @@ function HeroWorkField({ items, children, className = "" }: { items: HeroFieldIt
             type="button"
             tabIndex={-1}
             aria-hidden="true"
-            className="absolute left-0 top-0 w-[240px] overflow-hidden rounded-2xl border border-[#19244E]/10 bg-white pointer-events-none transition-opacity duration-500"
+            className="absolute left-0 top-0 w-[320px] overflow-hidden rounded-2xl border border-[#19244E]/10 bg-white pointer-events-none transition-opacity duration-500"
             style={{ opacity: 0, aspectRatio: `1 / ${p.aspect}`, willChange: "transform" }}
           >
             <img src={p.src} alt="" className="w-full h-full object-cover object-top" draggable={false} />
@@ -1337,7 +1334,7 @@ function HeroWorkField({ items, children, className = "" }: { items: HeroFieldIt
           onClick={() => p.onOpen?.()}
           aria-label={`Open ${p.name}`}
           data-hero-case={p.key}
-          className="absolute left-0 top-0 w-[240px] overflow-hidden rounded-xl border border-[#19244E]/10 bg-white shadow-[0_12px_30px_-14px_rgba(25,36,78,0.4)] cursor-pointer transition-opacity duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C]"
+          className="absolute left-0 top-0 w-[320px] overflow-hidden rounded-xl border border-[#19244E]/10 bg-white shadow-[0_12px_30px_-14px_rgba(25,36,78,0.4)] cursor-pointer transition-opacity duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB3E8C]"
           style={{ opacity: 0, aspectRatio: `1 / ${p.aspect}`, willChange: "transform" }}
         >
           <img src={p.src} alt="" className="w-full h-full object-cover" draggable={false} />
@@ -1675,9 +1672,9 @@ function HeroSection({ onReadMore, onOpenPdfPreview, onOpenProject }: { onReadMo
                   {isDesktop && (
                     <HeroWorkField
                       items={[
-                        ...FEATURED.map((c) => ({ key: c.projectId, name: c.shortTitle, sub: c.client, src: c.thumb, aspect: 2 / 3, slot: HERO_CASE_SLOTS[c.projectId], onOpen: () => onOpenProject(c.projectId) })),
+                        ...FEATURED.filter((c) => HERO_CASE_SLOTS[c.projectId]).map((c) => ({ key: c.projectId, name: c.shortTitle, sub: c.client, src: c.thumb, aspect: 2 / 3, slot: HERO_CASE_SLOTS[c.projectId], onOpen: () => onOpenProject(c.projectId) })),
                         // A handful of catalog thumbnails as a quiet backdrop (the newest ones), not the whole catalog.
-                        ...PROJECTS.filter((p) => PROJECT_PREVIEWS[p.id] && !/\.(mp4|webm)$/.test(PROJECT_PREVIEWS[p.id])).slice(0, 8).map((p) => ({
+                        ...PROJECTS.filter((p) => PROJECT_PREVIEWS[p.id] && !/\.(mp4|webm)$/.test(PROJECT_PREVIEWS[p.id])).slice(0, 4).map((p) => ({
                           key: `catalog-${p.id}`, name: p.name, sub: p.client, src: PROJECT_PREVIEWS[p.id], aspect: 4 / 3, backdrop: true,
                         })),
                       ]}
